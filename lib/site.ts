@@ -1,6 +1,6 @@
 const productionOrigin='https://sidemannen.no';
 const publicLaunch=process.env.PUBLIC_LAUNCH==='true';
-const configuredOrigin=(process.env.SITE_URL||'https://sidekick-studio.pages.dev').replace(/\/$/,'');
+const configuredOrigin=(process.env.SITE_URL||'https://dev.sidemannen.pages.dev').replace(/\/$/,'');
 if(publicLaunch&&configuredOrigin!==productionOrigin)throw new Error(`PUBLIC_LAUNCH=true requires SITE_URL=${productionOrigin}; received ${configuredOrigin}`);
 const socialImage=process.env.SOCIAL_IMAGE_URL?.trim()||'/og.png';
 

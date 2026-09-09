@@ -17,7 +17,7 @@ const records=JSON.parse(fs.readFileSync(path.join(root,'lib/demos.json'),'utf8'
 const demoRoot=path.join(dest,'demos');if(fs.existsSync(demoRoot))for(const e of fs.readdirSync(demoRoot)){const target=path.resolve(demoRoot,e);if(!allowed.has(e)&&target.startsWith(demoRoot+path.sep))fs.rmSync(target,{recursive:true,force:true});}
 const previewRoot=path.join(dest,'previews');if(fs.existsSync(previewRoot))for(const e of fs.readdirSync(previewRoot)){if(e.endsWith('.webp')&&!allowed.has(e.slice(0,-5)))fs.rmSync(path.join(previewRoot,e),{force:true});}
 fs.writeFileSync(path.join(dest,'_routes.json'),JSON.stringify({version:1,include:['/api/*'],exclude:[]}));
-const origin=(process.env.SITE_URL||'https://sidekick-studio.pages.dev').replace(/\/$/,'');const publicLaunch=process.env.PUBLIC_LAUNCH==='true';
+const origin=(process.env.SITE_URL||'https://dev.sidemannen.pages.dev').replace(/\/$/,'');const publicLaunch=process.env.PUBLIC_LAUNCH==='true';
 const htmlRoutes=[];for(const entry of fs.readdirSync(dest,{withFileTypes:true})){if(!entry.isFile()||!entry.name.endsWith('.html')||entry.name==='404.html')continue;const stem=entry.name.slice(0,-5);htmlRoutes.push(stem==='index'?'':stem)}
 htmlRoutes.sort((a,b)=>a===''?-1:b===''?1:a.localeCompare(b,'nb'));
 fs.writeFileSync(path.join(dest,'robots.txt'),publicLaunch?`User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`:'User-agent: *\nDisallow: /\n');
