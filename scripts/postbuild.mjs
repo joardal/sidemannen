@@ -24,6 +24,9 @@ fs.writeFileSync(path.join(dest,'robots.txt'),publicLaunch?`User-agent: *\nAllow
 const urls=htmlRoutes.map(route=>`  <url><loc>${origin}/${route}</loc></url>`).join('\n');
 fs.writeFileSync(path.join(dest,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 for(const configName of ['wrangler.json','wrangler.jsonc','wrangler.toml']){const target=path.join(dest,configName);if(fs.existsSync(target))fs.rmSync(target,{force:true});}
+try{const deployDir=path.join(root,'.wrangler','deploy');if(fs.existsSync(deployDir))fs.rmSync(deployDir,{recursive:true,force:true});}catch(_){}
 runSeoSmoke({dest,production:publicLaunch,expectedOrigin:origin});
+
 console.log(`Pages output prepared and SEO-smoked: ${htmlRoutes.length} indexable routes, ${records.length} demos in ${found}.`);
+
 
