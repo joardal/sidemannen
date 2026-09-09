@@ -6,14 +6,16 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vinext dev",
-    "build": "vinext build && node scripts/postbuild.mjs",
+    "dev": "node scripts/run-node24.mjs node_modules/vinext/dist/cli.js dev",
+    "build": "node scripts/run-node24.mjs node_modules/vinext/dist/cli.js build && node scripts/run-node24.mjs scripts/postbuild.mjs",
+    "build:production": "node scripts/run-node24.mjs scripts/build-production.mjs",
+    "seo:smoke": "node scripts/run-node24.mjs scripts/seo-smoke.mjs --auto",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint app components/catalog.tsx components/contact-form.tsx components/sections.tsx lib cloudflare/functions",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
     "preview:pages": "wrangler pages dev --cwd cloudflare --d1 DB=6b860980-c6f4-431f-a4d3-07df12007039",
-    "deploy": "wrangler pages deploy --cwd cloudflare --project-name sidekick-studio --branch main"
+    "deploy": "node scripts/run-node24.mjs scripts/deploy-production.mjs"
   },
   "dependencies": {
     "react": "19.2.6",

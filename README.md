@@ -16,7 +16,7 @@ Bransjetekster og adresser ligger i lib/industries.ts. En ny bransje trenger en 
 
 ## Publisering
 
-Cloudflare-prosjekt: sidekick-studio. Kjør `npm run deploy` etter vellykket bygg. Cloudflare-konfigurasjonen ligger i cloudflare/wrangler.jsonc, adskilt fra Vinext-konfigurasjonen fordi frontend er en statisk eksport. Functions ligger i cloudflare/functions.
+Cloudflare-prosjekt: sidekick-studio. Bruk produksjonskommandoen i `package.json` etter vellykket kontroll; den skal bygge med riktig domene og stoppe hvis output fortsatt er noindex eller peker mot pages.dev. Cloudflare-konfigurasjonen ligger i cloudflare/wrangler.jsonc, adskilt fra Vinext-konfigurasjonen fordi frontend er en statisk eksport. Functions ligger i cloudflare/functions.
 
 Forhåndsvisningen har noindex. Før lansering på eget domene: bekreft eierskap til domenet, koble domenet til Pages, sett SITE_URL=https://sidemannen.no og PUBLIC_LAUNCH=true ved bygging, og bygg/publiser på nytt. Dette oppdaterer canonical, sitemap og indeksregler. Demoene beholder noindex.
 
@@ -24,15 +24,15 @@ Forhåndsvisningen har noindex. Før lansering på eget domene: bekreft eierskap
 
 Skjemaet lagrer i D1-databasen sidekick-inquiries (EU). Les og behandle nye henvendelser i Cloudflare Dashboard > Storage & databases > D1 > sidekick-inquiries. Tabellen inquiries har `state=new` for nye forespørsler. Det finnes ingen offentlig administrasjonsrute.
 
-E-postvarsling er ikke aktivert. kontakt@sidemannen.no er ønsket kontaktadresse, men innboks og domene er ikke bekreftet. Ikke lanser kontaktskjemaet som ordinær salgsinngang uten å avtale rutine for innboksen eller oppfølging i D1. Forespørsler eldre enn 90 dager slettes ved neste innsending. Spam-tellere slettes etter ett døgn ved neste innsending.
+Skjemaet kan varsle på e-post via Resend i tillegg til D1. Sett Cloudflare-hemmeligheten `RESEND_API_KEY` og variablene `INQUIRY_TO_EMAIL` (normalt `kontakt@sidemannen.no`) og valgfritt `INQUIRY_FROM_EMAIL` med en verifisert avsender. Hvis disse mangler, lagres forespørselen fortsatt i D1, men det sendes ikke varsel. Test varslingen før ordinær lansering. Forespørsler eldre enn 90 dager slettes ved neste innsending. Spam-tellere slettes etter ett døgn ved neste innsending.
 
 Skjemaet har servervalidering, begrenset nyttelast, opprinnelseskontroll, honeypot, ratebegrensning og idempotent lagring. Demo-ID-er kontrolleres mot katalogen. Favoritter lagres lokalt i nettleseren og følger med i forespørselen.
 
 ## Avklaringer før ordinær lansering
 
 - Domenet og fungerende kontaktadresse.
-- Prisene og leveringstiden på nettstedet følger den avtalte basisleveransen: fra 2 000 kr, 0 eller 200 kr/mnd og normalt 5–7 dager etter mottatt materiale. Tillegg prises før start.
-- Organisasjonsnummer når det foreligger.
+- Juridisk navn står foreløpig som `Sidemannen`. Sett `ORG_NUMBER` i produksjonsmiljøet når organisasjonsnummeret er klart. `LEGAL_NAME` kan fortsatt overstyres dersom det juridiske navnet senere endres.
+- Prisene og leveringstiden på nettstedet følger den avtalte basisleveransen: fra 2 000 kr, 0 eller 200 kr/mnd og normalt 5–7 dager etter at innhold, tilganger og omfang er avklart. Tillegg prises før start.
 - Kvalitetssikre beskrivelser av leveranser og personvern mot faktisk forretningsdrift.
 - Full visuell nettleserkontroll og måling av Core Web Vitals på offentlig løsning. Reelle CWV-feltdata finnes først etter trafikk.
 
