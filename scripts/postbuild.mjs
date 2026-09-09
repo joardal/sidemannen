@@ -23,5 +23,7 @@ htmlRoutes.sort((a,b)=>a===''?-1:b===''?1:a.localeCompare(b,'nb'));
 fs.writeFileSync(path.join(dest,'robots.txt'),publicLaunch?`User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`:'User-agent: *\nDisallow: /\n');
 const urls=htmlRoutes.map(route=>`  <url><loc>${origin}/${route}</loc></url>`).join('\n');
 fs.writeFileSync(path.join(dest,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
+for(const configName of ['wrangler.json','wrangler.jsonc','wrangler.toml']){const target=path.join(dest,configName);if(fs.existsSync(target))fs.rmSync(target,{force:true});}
 runSeoSmoke({dest,production:publicLaunch,expectedOrigin:origin});
 console.log(`Pages output prepared and SEO-smoked: ${htmlRoutes.length} indexable routes, ${records.length} demos in ${found}.`);
+
