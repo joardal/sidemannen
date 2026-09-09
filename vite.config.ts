@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/postcss';
 import vinext from 'vinext';
 import {defineConfig} from 'vite';
 
-export default defineConfig({
+export default defineConfig(({command}) => ({
   server: {
     watch: {
       ignored: ['**/public/previews/**', '**/public/demos/**', '**/work/**'],
@@ -20,10 +20,9 @@ export default defineConfig({
     },
   },
   plugins: [
-    cloudflare({
+    ...(command === 'build' ? [cloudflare({
       viteEnvironment: {name: 'rsc', childEnvironments: ['ssr']},
-    }),
+    })] : []),
     vinext(),
   ],
-});
-
+}));

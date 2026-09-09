@@ -91,8 +91,8 @@ export default function HomeHero() {
         </div>
       </div>
       <div className={styles.bottom}>
-        <p>Profesjonelle nettsider for nyetablerte og små bedrifter. Velg en retning, send innholdet — så tar jeg resten. Fra 2 000 kr.</p>
-        <Link className="button dark big" href="/kontakt">Få forslag + fast pris <span>↗</span></Link>
+        <p>Profesjonelle nettsider for nyetablerte og små bedrifter. Velg en retning, send innholdet — så tar vi resten. Fra 2 000 kr.</p>
+        <Link className="button dark big" href="/kontakt">Få fast pris <span>→</span></Link>
         <div className={styles.note}><strong>5–7</strong><span>dager når innhold<br/>og omfang er klart</span></div>
       </div>
     </section>

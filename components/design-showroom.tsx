@@ -47,7 +47,7 @@ export default function DesignShowroom({designs, total}: {designs: Design[]; tot
       <div className={styles.top}><span>Et lite utvalg av mulighetene</span><span>Designbibliotek / 01—03</span></div>
       <div className={styles.heading}>
         <h2>Bla i<br/><em>biblioteket.</em></h2>
-        <Link className="text-link" href="/portfolio">Se alle {total} design ↗</Link>
+        <Link className="text-link" href="/portfolio">Se alle {total} design →</Link>
       </div>
       <div className={styles.stage} ref={stage} data-entered={entered || undefined}>
         {designs.map((design, index) => (
@@ -60,8 +60,8 @@ export default function DesignShowroom({designs, total}: {designs: Design[]; tot
                   <div className={styles.display}>
                     {/* The optimized preview is taller than the screen, revealing more on hover. */}
                     {/* oxlint-disable-next-line next/no-img-element */}
-                    <img src={design.image} alt="" width="1200" height="850" loading="lazy"/>
-                    <span className={styles.open} aria-hidden="true">Se designet ↗</span>
+                    <img src={design.image} alt={`Forhåndsvisning av ${design.title}`} width="1200" height="850" loading="lazy"/>
+                    <span className={styles.open} aria-hidden="true">Se designet →</span>
                   </div>
                   <div className={styles.chin} aria-hidden="true"><span>✳</span><i/></div>
                 </div>
@@ -71,14 +71,14 @@ export default function DesignShowroom({designs, total}: {designs: Design[]; tot
               {index === 1 && <MobilePreview id={design.id}/>}
             </div>
             {index === 1 && <span className={styles.responsiveNote}>↳ Like gjennomtenkt på mobil.</span>}
-            <div className={styles.caption}><span className={styles.index}>0{index + 1}</span><div><span>{design.industryName}</span><h3>{design.title}</h3></div><b aria-hidden="true">↗</b></div>
+            <div className={styles.caption}><span className={styles.index}>0{index + 1}</span><div><span>{design.industryName}</span><h3>{design.title}</h3></div><b aria-hidden="true">→</b></div>
           </Link>
         ))}
       </div>
       <div className={styles.bottom}>
         <span className={styles.desktopHint}>Pek på en skjerm. Finn ditt uttrykk.</span>
         <span className={styles.mobileHint}>Sveip og finn ditt uttrykk →</span>
-        <Link href="/portfolio">+ {Math.max(0, total - designs.length)} flere design venter på deg ↗</Link>
+        <Link href="/portfolio">+ {Math.max(0, total - designs.length)} flere design venter på deg →</Link>
       </div>
     </section>
   );

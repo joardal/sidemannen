@@ -6,6 +6,7 @@ import {ProjectSection,ProofStrip,Pricing,Process,FAQ,ContactBand,About} from '@
 import {industries} from '@/lib/industries';
 import {seo} from '@/lib/site';
 import HomeHero from '@/components/home-hero';
+import WordPressSection from '@/components/wordpress-section';
 import DesignShowroom from '@/components/design-showroom';
 
 export const metadata=seo('Lage nettside for småbedrift — fra 2000 kr','Uvanlig gode nettsider for nyetablerte og små bedrifter. Fast og tydelig startpris fra 2000 kr, levert på 5–7 dager.','/');
@@ -21,8 +22,9 @@ export default function Home(){
   <Pricing/>
   <DesignShowroom designs={featured} total={demos.length}/>
   <section className="manifest"><span className="mono">Sidemannen / 01</span><p>En god nettside trenger ikke koste en formue. Den må være <em>tydelig</em>, se <strong>uvanlig bra</strong> ut og gjøre det enkelt for kunden å velge deg.</p></section>
+  <WordPressSection/>
   <Process/>
-  <section className="industry-strip"><div className="section-heading"><div><span className="mono">Sortert etter bransje</span><h2>Din bransje.<br/><em>Ditt uttrykk.</em></h2></div><Link className="text-link" href="/bransjer">Alle {industries.length} bransjer ↗</Link></div><div className="industry-rows">{selectedIndustries.map((i,index)=><Link key={i.id} href={`/nettside-${i.slug}`}><span className="mono">{String(index+1).padStart(2,'0')}</span><strong>{i.name}</strong><small>{i.count} design</small><b>↗</b></Link>)}</div></section>
+  <section className="industry-strip"><div className="section-heading"><div><span className="mono">Sortert etter bransje</span><h2>Din bransje.<br/><em>Ditt uttrykk.</em></h2></div><Link className="text-link" href="/bransjer">Alle {industries.length} bransjer →</Link></div><div className="industry-rows">{selectedIndustries.map((i,index)=><Link key={i.id} href={`/nettside-${i.slug}`}><span className="mono">{String(index+1).padStart(2,'0')}</span><strong>{i.name}</strong><small>{i.count} design</small><b>→</b></Link>)}</div></section>
   <ProjectSection/>
   <About/>
   <FAQ/>
