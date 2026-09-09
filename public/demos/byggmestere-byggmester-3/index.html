@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#161410" />
+  <meta name="description" content="Andersen Bygg AS er mesterbedrift i Bærum. Rehabilitering, tilbygg, kjøkken og snekkerarbeid for privatpersoner og bedrifter i Oslo og omegn." />
+  <title>Andersen Bygg AS — Snekker og byggmester i Oslo og Bærum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="images/photo-21.jpg" />
+  <link rel="icon" href="images/icon-01.svg" />
+  <meta property="og:title" content="Andersen Bygg AS — Rom som tåler tid" />
+  <meta property="og:description" content="Mesterbedrift i Bærum. Rehabilitering, tilbygg og snekkerarbeid for de som vil ha det gjort skikkelig." />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      --ink: #161410;
+      --paper: #EFE8DC;
+      --paper-2: #E4DACB;
+      --snow: #F7F3EC;
+      --pine: #1C221A;
+      --pine-2: #151910;
+      --falu: #9B3D2A;
+      --oak: #B08A62;
+      --muted: #6E675C;
+      --line: rgba(22, 20, 16, 0.12);
+      --ease: cubic-bezier(.16, 1, .3, 1);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.is-locked { overflow: hidden; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Schibsted Grotesk", system-ui, sans-serif;
+      font-feature-settings: "ss01" on, "cv11" on;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    ::selection { background: var(--falu); color: var(--snow); }
+    :focus-visible { outline: 2px solid var(--falu); outline-offset: 3px; }
+    img { max-width: 100%; display: block; }
+    button, input, select, textarea { font-family: inherit; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, .serif { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; letter-spacing: -0.03em; }
+    em, i { font-family: "Instrument Serif", Georgia, serif; font-style: italic; }
+    .skip {
+      position: absolute; left: -999px; top: 12px;
+    }
+    .skip:focus { left: 16px; z-index: 400; background: var(--snow); padding: 10px 16px; }
+    .wrap { width: min(1440px, calc(100% - 8vw)); margin-inline: auto; }
+    .eyebrow {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: var(--muted);
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 15px 22px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600;
+      border: 1px solid transparent; cursor: pointer; transition: background .45s var(--ease), color .45s var(--ease), border-color .45s var(--ease), transform .45s var(--ease);
+      background: var(--ink); color: var(--snow);
+    }
+    .btn:hover { background: var(--falu); color: #fff; }
+    .btn-ghost { background: transparent; color: var(--snow); border-color: rgba(247,243,236,.35); }
+    .btn-ghost:hover { background: var(--snow); color: var(--ink); border-color: var(--snow); }
+    .btn-line { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn-line:hover { background: var(--ink); color: var(--snow); }
+    .btn svg { width: 14px; height: 14px; transition: transform .4s var(--ease); }
+    .btn:hover svg { transform: translateX(3px); }
+
+    /* Preloader */
+    #preloader {
+      position: fixed; inset: 0; z-index: 300; background: var(--pine-2); color: var(--snow);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+      transition: transform 1s var(--ease), opacity .6s ease;
+    }
+    #preloader.out { transform: translateY(-100%); pointer-events: none; }
+    #preloader svg { width: 52px; height: 52px; }
+    #preloader .draw { stroke-dasharray: 80; stroke-dashoffset: 80; animation: draw 1.2s var(--ease) forwards; }
+    #preloader .pname { letter-spacing: 0.42em; text-transform: uppercase; font-size: 11px; font-weight: 600; opacity: 0; animation: fade 1s .4s forwards; }
+    .pre-bar { width: 120px; height: 1px; background: rgba(247,243,236,.15); overflow: hidden; }
+    .pre-bar span { display: block; height: 100%; width: 0; background: var(--oak); animation: load 1.6s var(--ease) forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes load { to { width: 100%; } }
+    @keyframes fade { to { opacity: 1; } }
+
+    #grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 250; opacity: .038; mix-blend-mode: multiply;
+      background-image: url("images/icon-02.svg");
+    }
+
+    /* Nav */
+    header.nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 80;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4vw; height: 84px; color: var(--snow);
+      transition: background .45s var(--ease), color .45s var(--ease), border-color .45s var(--ease), height .3s;
+    }
+    header.nav.light { background: rgba(239,232,220,.92); color: var(--ink); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); height: 72px; }
+    header.nav .desk-cta { background: var(--snow); color: var(--ink); padding: 12px 18px; }
+    header.nav.light .desk-cta { background: var(--ink); color: var(--snow); }
+    header.nav.light .desk-cta:hover, header.nav .desk-cta:hover { background: var(--falu); color: #fff; }
+    html.menu-open header.nav { color: var(--ink); background: transparent; border: 0; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; font-size: 13px; }
+    .brand small { display: block; font-size: 9px; letter-spacing: 0.22em; opacity: .55; font-weight: 500; }
+    .nav-links { display: flex; align-items: center; gap: 32px; font-size: 13px; font-weight: 500; }
+    .nav-links a { position: relative; padding: 6px 0; }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 1px; background: currentColor;
+      transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .burger { display: none; width: 28px; height: 18px; position: relative; background: none; border: 0; color: inherit; cursor: pointer; padding: 0; }
+    .burger span { position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor; transition: .35s var(--ease); }
+    .burger span:first-child { top: 4px; }
+    .burger span:last-child { bottom: 4px; }
+    html.menu-open .burger span:first-child { top: 8px; transform: rotate(45deg); }
+    html.menu-open .burger span:last-child { bottom: 8px; transform: rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 70; background: var(--paper); color: var(--ink);
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 28vw 8vw 10vh;
+      transform: translateY(-101%); transition: transform .7s var(--ease);
+    }
+    html.menu-open .mobile-menu { transform: none; }
+    .mobile-menu a.mlink {
+      font-family: "Instrument Serif", serif; font-size: clamp(2.4rem, 12vw, 4.2rem); line-height: 1.05; display: block;
+    }
+    .mobile-menu a.mlink em { color: var(--falu); }
+
+    /* Hero */
+    .hero { position: relative; height: 100svh; min-height: 640px; overflow: hidden; color: var(--snow); }
+    .hero-img { position: absolute; inset: 0; width: 100%; height: 120%; object-fit: cover; transform: scale(1.08); will-change: transform; }
+    body.ready .hero-img { animation: ken 18s ease-out forwards; }
+    @keyframes ken { to { transform: scale(1); } }
+    .hero-shade {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(15,16,12,.35) 0%, rgba(15,16,12,.12) 32%, rgba(15,16,12,.55) 70%, rgba(15,16,12,.82) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 4vw 8vh; }
+    .hero h1 {
+      font-size: clamp(3.2rem, 9.2vw, 8.6rem); line-height: .92; max-width: 11ch; margin: 14px 0 28px;
+    }
+    .hero h1 .line { display: block; overflow: hidden; }
+    .hero h1 .line span { display: block; transform: translateY(110%); }
+    body.ready .hero h1 .line span { animation: up 1.15s var(--ease) forwards; }
+    body.ready .hero h1 .line:nth-child(2) span { animation-delay: .12s; }
+    @keyframes up { to { transform: none; } }
+    .side-label {
+      position: absolute; right: 4vw; top: 50%; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg);
+      letter-spacing: .32em; font-size: 10px; text-transform: uppercase; font-weight: 600; opacity: .7;
+    }
+    .scroll-ind {
+      position: absolute; bottom: 8vh; right: 4vw; display: flex; align-items: center; gap: 12px;
+      font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+    }
+    .scroll-ind i { display: block; width: 1px; height: 48px; background: rgba(247,243,236,.35); position: relative; overflow: hidden; }
+    .scroll-ind i::after { content: ""; position: absolute; left: 0; top: -100%; width: 100%; height: 100%; background: var(--snow); animation: scr 1.8s ease-in-out infinite; }
+    @keyframes scr { 0% { top: -100%; } 100% { top: 100%; } }
+
+    /* Marquee */
+    .marquee { background: var(--pine); color: var(--oak); overflow: hidden; border-top: 1px solid rgba(176,138,98,.15); }
+    .marquee-track { display: flex; gap: 0; width: max-content; animation: mq 42s linear infinite; }
+    .marquee-track span { padding: 16px 8px; font-size: 11px; letter-spacing: .28em; text-transform: uppercase; font-weight: 600; white-space: nowrap; }
+    @keyframes mq { to { transform: translateX(-50%); } }
+
+    /* Reveal */
+    .rev { opacity: 0; transform: translateY(36px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .rev.on { opacity: 1; transform: none; }
+
+    /* Projects */
+    .proj { position: relative; overflow: hidden; cursor: pointer; background: var(--paper-2); }
+    .proj img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease), filter .6s; }
+    .proj:hover img { transform: scale(1.06); }
+    .proj-meta {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 22px 18px;
+      background: linear-gradient(180deg, transparent, rgba(15,16,12,.72));
+      color: var(--snow); transform: translateY(8px); transition: transform .5s var(--ease);
+    }
+    .proj:hover .proj-meta { transform: none; }
+    .proj-meta .code { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }
+    .proj-grid {
+      display: grid; grid-template-columns: 1.35fr 1fr 1fr; grid-auto-rows: minmax(240px, 28vh); gap: 10px;
+    }
+    .p-tall { grid-row: span 2; }
+    .p-wide { grid-column: span 2; }
+    .proj.is-hidden { display: none; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filters button {
+      background: transparent; border: 1px solid var(--line); color: var(--ink); padding: 8px 14px;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: .3s;
+    }
+    .filters button.on, .filters button:hover { background: var(--ink); color: var(--snow); border-color: var(--ink); }
+
+    /* Services */
+    .svc-item {
+      border-top: 1px solid var(--line); padding: 22px 0; cursor: pointer; display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; align-items: start;
+      transition: padding .4s var(--ease);
+    }
+    .svc-item:last-child { border-bottom: 1px solid var(--line); }
+    .svc-item:hover, .svc-item.active { padding-left: 8px; }
+    .svc-arr { opacity: .3; transition: transform .4s var(--ease), opacity .4s; font-size: 1.1rem; margin-top: 6px; }
+    .svc-item:hover .svc-arr, .svc-item.active .svc-arr { opacity: 1; transform: translateX(4px); color: var(--falu); }
+    .svc-item h3 { font-family: "Instrument Serif", serif; font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.1; margin: 0; }
+    .svc-item p { max-height: 0; overflow: hidden; margin: 0; color: var(--muted); transition: max-height .5s var(--ease), margin .5s; }
+    .svc-item.active p, .svc-item:hover p { max-height: 140px; margin-top: 8px; }
+    .svc-visual { position: sticky; top: 96px; height: calc(100svh - 140px); min-height: 420px; overflow: hidden; }
+    .svc-visual img { width: 100%; height: 100%; object-fit: cover; transition: opacity .5s, transform 1.2s var(--ease); }
+    .svc-visual.swap img { opacity: 0; transform: scale(1.06); }
+
+    /* Before after */
+    .ba { position: relative; overflow: hidden; height: min(78vh, 760px); min-height: 380px; user-select: none; touch-action: none; cursor: ew-resize; }
+    .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+    .ba-before { clip-path: inset(0 calc(100% - var(--pos, 54%)) 0 0); }
+    .ba-handle {
+      position: absolute; top: 0; bottom: 0; left: var(--pos, 54%); width: 1px; background: var(--snow);
+      transform: translateX(-50%); z-index: 2;
+    }
+    .ba-knob {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--snow); background: rgba(22,20,16,.35); backdrop-filter: blur(8px);
+      display: grid; place-items: center; color: var(--snow);
+    }
+    .ba-tag {
+      position: absolute; top: 20px; z-index: 2; font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      background: var(--ink); color: var(--snow); padding: 6px 10px; pointer-events: none;
+    }
+
+    /* Process */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .step { padding: 32px 28px 32px 0; border-top: 1px solid var(--line); }
+    .step .n { font-family: "Instrument Serif", serif; font-size: 2.4rem; color: var(--falu); line-height: 1; }
+
+    /* Quotes */
+    .quote { border-top: 1px solid var(--line); padding: 36px 0; }
+    .quote p { font-family: "Instrument Serif", serif; font-size: clamp(1.35rem, 2.4vw, 1.85rem); line-height: 1.3; font-style: italic; margin: 0 0 18px; }
+
+    /* FAQ */
+    .faq-item { border-top: 1px solid var(--line); }
+    .faq-item button {
+      width: 100%; background: none; border: 0; text-align: left; padding: 22px 0; cursor: pointer;
+      display: flex; justify-content: space-between; gap: 24px; align-items: center; font-size: 1.05rem; font-weight: 500; color: inherit;
+    }
+    .faq-item .ans { max-height: 0; overflow: hidden; color: var(--muted); transition: max-height .45s var(--ease), padding .45s; }
+    .faq-item.open .ans { max-height: 240px; padding-bottom: 22px; }
+    .faq-plus { width: 22px; height: 22px; position: relative; flex: none; }
+    .faq-plus::before, .faq-plus::after { content: ""; position: absolute; background: var(--ink); transition: .3s; }
+    .faq-plus::before { left: 0; right: 0; top: 10px; height: 1px; }
+    .faq-plus::after { top: 0; bottom: 0; left: 10px; width: 1px; }
+    .faq-item.open .faq-plus::after { transform: rotate(90deg); opacity: 0; }
+
+    /* Form */
+    .field { position: relative; margin-bottom: 8px; }
+    .field input, .field textarea, .field select {
+      width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(247,243,236,.22);
+      padding: 22px 0 10px; color: var(--snow); font-size: 16px; border-radius: 0; outline: none; appearance: none;
+      transition: border-color .3s;
+    }
+    .field textarea { min-height: 110px; resize: vertical; }
+    .field input:focus, .field textarea:focus, .field select:focus { border-bottom-color: var(--oak); }
+    .field select option { color: var(--ink); background: var(--snow); }
+    .field label {
+      position: absolute; left: 0; top: 20px; font-size: 15px; color: rgba(247,243,236,.55); pointer-events: none;
+      transition: .3s var(--ease);
+    }
+    .field.is-on label, .field:focus-within label {
+      top: 4px; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--oak);
+    }
+    .check { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: rgba(247,243,236,.7); margin: 18px 0 24px; }
+    .check input { margin-top: 3px; accent-color: var(--oak); }
+
+    /* Dialog */
+    dialog.proj-d {
+      width: min(1080px, 100%); max-height: 94vh; border: 0; padding: 0; background: var(--snow); color: var(--ink);
+      overflow: auto;
+    }
+    dialog.proj-d::backdrop { background: rgba(15, 16, 12, .72); }
+    dialog.proj-d[open] { animation: pop .5s var(--ease); }
+    @keyframes pop { from { opacity: 0; transform: translateY(24px); } }
+
+    #floater {
+      position: fixed; z-index: 90; pointer-events: none; width: 76px; height: 76px; border-radius: 50%;
+      background: var(--falu); color: #fff; display: grid; place-items: center; font-size: 10px; letter-spacing: .16em;
+      text-transform: uppercase; font-weight: 600; transform: translate(-50%, -50%) scale(0); transition: transform .35s var(--ease);
+    }
+    #floater.show { transform: translate(-50%, -50%) scale(1); }
+
+    .mcta {
+      display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+      background: var(--ink); color: var(--snow); padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      grid-template-columns: 1fr 1.4fr; gap: 8px;
+    }
+
+    .team-card img { aspect-ratio: 3/4; object-fit: cover; width: 100%; filter: saturate(.86); transition: filter .5s, transform .8s var(--ease); }
+    .team-card:hover img { filter: none; transform: scale(1.03); }
+    .team-card { overflow: hidden; }
+
+    .mat { aspect-ratio: 1; overflow: hidden; }
+    .mat img { width: 100%; height: 100%; object-fit: cover; }
+
+    .progress {
+      position: fixed; top: 0; left: 0; height: 2px; background: var(--falu); width: 0; z-index: 120; transform-origin: left;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links, header.nav .btn, .side-label, .scroll-ind { display: none; }
+      .burger { display: block; }
+      .proj-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 42vw; }
+      .p-tall { grid-row: span 1; }
+      .p-wide { grid-column: span 2; }
+      .svc-visual { display: none; }
+      .svc-arr { display: none; }
+      .svc-item { grid-template-columns: 48px 1fr; }
+      .svc-item p { max-height: 0; }
+      .svc-item.active p { max-height: 200px; margin-top: 8px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .mcta { display: grid; }
+      body { padding-bottom: 72px; }
+      .hero-content { padding-bottom: 11vh; }
+    }
+    @media (max-width: 680px) {
+      .proj-grid { grid-template-columns: 1fr; grid-auto-rows: 62vw; }
+      .p-wide { grid-column: span 1; }
+      .steps { grid-template-columns: 1fr; }
+      .wrap { width: min(1440px, calc(100% - 10vw)); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .rev { opacity: 1; transform: none; }
+    }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+  <a class="skip" href="#innhold">Hopp til innhold</a>
+  <div class="progress" id="progress"></div>
+  <div id="grain"></div>
+
+  <div id="preloader" aria-hidden="true">
+    <svg viewBox="0 0 32 32" fill="none" stroke="#F7F3EC" stroke-width="1.3">
+      <path class="draw" d="M3 28 L16 4 L29 28 M8 18.5 H24" />
+    </svg>
+    <div class="pname">Andersen Bygg</div>
+    <div class="pre-bar"><span></span></div>
+  </div>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="brand" aria-label="Andersen Bygg AS">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+        <path d="M3 28 L16 4 L29 28 M8 18.5 H24" />
+      </svg>
+      <span>Andersen <small>Bygg AS</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Hovedmeny">
+      <a href="#arbeider">Arbeider</a>
+      <a href="#tjenester">Tjenester</a>
+      <a href="#prosessen">Prosessen</a>
+      <a href="#om-oss">Om oss</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a href="#kontakt" class="btn desk-cta">Be om befaring
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
+    </a>
+    <button class="burger" id="burger" aria-label="Åpne meny" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <div class="mobile-menu" id="mmenu" hidden>
+    <nav class="flex flex-col gap-1 mb-16">
+      <a class="mlink" href="#arbeider">Arbeider</a>
+      <a class="mlink" href="#tjenester">Tjenester</a>
+      <a class="mlink" href="#prosessen">Prosessen</a>
+      <a class="mlink" href="#om-oss">Om oss</a>
+      <a class="mlink" href="#kontakt">Kontakt <em>—</em></a>
+    </nav>
+    <div class="flex justify-between items-end text-sm" style="color:var(--muted)">
+      <div>
+        <div class="eyebrow mb-2" style="color:var(--falu)">Verksted</div>
+        Industriveien 14<br />1337 Sandvika
+      </div>
+      <div class="text-right">
+        <a href="tel:+4767124000">67 12 40 00</a><br />
+        <a href="mailto:post@andersenbygg.no">post@andersenbygg.no</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <img class="hero-img" id="heroImg" alt="Moderne trehus med store glassflater i skogkanten, et Andersen Bygg-prosjekt" src="images/photo-21.jpg" />
+      <div class="hero-shade"></div>
+      <div class="hero-content wrap" style="width:min(1440px,100%)">
+        <p class="eyebrow rev" style="color:var(--oak)">Mesterbedrift · Oslo, Bærum &amp; Asker</p>
+        <h1>
+          <span class="line"><span>Vi bygger</span></span>
+          <span class="line"><span>rom som <em>tåler</em> tid.</span></span>
+        </h1>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <p class="rev max-w-md text-[15px] leading-relaxed" style="color:rgba(247,243,236,.78)">
+            Andersen Bygg AS planlegger og utfører rehabilitering, tilbygg og snekkerarbeid for de som vil ha det gjort skikkelig — én gang.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a class="btn" href="#kontakt" style="background:var(--snow);color:var(--ink)">Be om befaring
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#arbeider">Se arbeidet</a>
+          </div>
+        </div>
+      </div>
+      <div class="side-label">Est. 1998 — Slependen, Bærum</div>
+      <div class="scroll-ind"><span>Scroll</span><i></i></div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Rehabilitering · Tilbygg · Terrasse · Kjøkken · Fasade · Tak · Spesialsnekker · Bad · Hytter · Trapper · Garderober · Rehabilitering · Tilbygg · Terrasse · Kjøkken · Fasade · Tak · Spesialsnekker · Bad · Hytter · Trapper · Garderober · </span>
+        <span>Rehabilitering · Tilbygg · Terrasse · Kjøkken · Fasade · Tak · Spesialsnekker · Bad · Hytter · Trapper · Garderober · Rehabilitering · Tilbygg · Terrasse · Kjøkken · Fasade · Tak · Spesialsnekker · Bad · Hytter · Trapper · Garderober · </span>
+      </div>
+    </div>
+
+    <section id="innhold" class="py-24 md:py-36">
+      <div class="wrap grid md:grid-cols-12 gap-10 items-end">
+        <div class="md:col-span-5 rev">
+          <p class="eyebrow mb-6">Siden nittennittiåtte</p>
+          <div class="serif leading-none" style="font-size:clamp(6rem,18vw,13rem);letter-spacing:-.06em;color:var(--ink)">1998</div>
+        </div>
+        <div class="md:col-span-6 md:col-start-7 rev">
+          <h2 class="text-[clamp(1.8rem,3.4vw,2.8rem)] leading-[1.15] mb-6">Vi startet i et verksted på Slependen med én regel: ingenting forlater porten før det er noe vi selv ville hatt hjemme.</h2>
+          <p class="text-[var(--muted)] mb-10 max-w-xl">I dag er vi fjorten håndverkere og en mester som fortsatt går i arbeidsklær. Vi tar færre oppdrag enn vi kunne — fordi et hus fortjener folk som er der når listen skal møtes, ikke når fakturaen skal sendes.</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div><div class="serif text-4xl" data-count="28">0</div><div class="eyebrow mt-1">År i virke</div></div>
+            <div><div class="serif text-4xl"><span data-count="340">0</span>+</div><div class="eyebrow mt-1">Hjem</div></div>
+            <div><div class="serif text-4xl" data-count="14">0</div><div class="eyebrow mt-1">Håndverkere</div></div>
+            <div><div class="serif text-4xl">M</div><div class="eyebrow mt-1">Mesterbedrift</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="arbeider" class="pb-24 md:pb-36">
+      <div class="wrap">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 rev">
+          <div>
+            <p class="eyebrow mb-3">Utvalgte arbeider</p>
+            <h2 class="text-[clamp(2.4rem,6vw,5rem)] leading-[.95]">Hus vi har gitt<br />et nytt liv.</h2>
+          </div>
+          <p class="max-w-sm text-[var(--muted)]">Et utvalg fra de siste årene. Hvert prosjekt har fast prosjektleder, mester på byggeplass og en overlevering som tåler ettertiden.</p>
+        </div>
+
+        <article class="proj rev mb-[10px] h-[min(82vh,820px)] min-h-[420px]" data-id="holmenkollen" data-cat="rehabilitering">
+          <img src="images/photo-16.jpg" alt="Åpen stue og kjøkken i Villa Holmenkollen etter totalrehabilitering" />
+          <div class="proj-meta">
+            <div class="code">AB—24—12 · Oslo</div>
+            <div class="flex items-end justify-between gap-4 mt-1">
+              <div>
+                <h3 class="serif text-3xl md:text-5xl m-0">Villa Holmenkollen</h3>
+                <p class="m-0 opacity-80 text-sm">Totalrehabilitering · 240 m² · 9 måneder</p>
+              </div>
+              <span class="hidden md:inline eyebrow" style="color:var(--snow)">Åpne prosjekt</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="filters mb-4 rev" id="filters">
+          <button class="on" data-filter="alle">Alle</button>
+          <button data-filter="rehabilitering">Rehabilitering</button>
+          <button data-filter="kjokken">Kjøkken</button>
+          <button data-filter="tilbygg">Tilbygg</button>
+          <button data-filter="uterom">Uterom</button>
+          <button data-filter="hytte">Hytte</button>
+        </div>
+
+        <div class="proj-grid" id="projGrid">
+          <article class="proj p-tall" data-id="lysaker" data-cat="kjokken">
+            <img loading="lazy" src="images/photo-17.jpg" alt="Minimalistisk eikekjøkken på Lysaker" />
+            <div class="proj-meta"><div class="code">AB—25—03 · Bærum</div><h3 class="serif text-2xl m-0 mt-1">Kjøkken, Lysaker</h3><p class="m-0 text-sm opacity-80">Spesialinnredning</p></div>
+          </article>
+          <article class="proj" data-id="bygdoy" data-cat="uterom">
+            <img loading="lazy" src="images/photo-09.jpg" alt="Terrasse mot vannet på Bygdøy i kveldslys" />
+            <div class="proj-meta"><div class="code">AB—24—08 · Oslo</div><h3 class="serif text-2xl m-0 mt-1">Terrasse, Bygdøy</h3><p class="m-0 text-sm opacity-80">Uterom</p></div>
+          </article>
+          <article class="proj" data-id="skoyen" data-cat="rehabilitering">
+            <img loading="lazy" src="images/photo-23.jpg" alt="Moderne bad med frittstående kar på Skøyen" />
+            <div class="proj-meta"><div class="code">AB—25—01 · Oslo</div><h3 class="serif text-2xl m-0 mt-1">Bad, Skøyen</h3><p class="m-0 text-sm opacity-80">Våtrom</p></div>
+          </article>
+          <article class="proj p-wide" data-id="nesodden" data-cat="tilbygg">
+            <img loading="lazy" src="images/photo-25.jpg" alt="Treterrasse og tilbygg med utsikt over fjorden" />
+            <div class="proj-meta"><div class="code">AB—23—19 · Nesodden</div><h3 class="serif text-2xl md:text-4xl m-0 mt-1">Tilbygg, Nesodden</h3><p class="m-0 text-sm opacity-80">Tilbygg · 68 m²</p></div>
+          </article>
+          <article class="proj" data-id="frogner" data-cat="rehabilitering">
+            <img loading="lazy" src="images/photo-10.jpg" alt="Innvendig oppussing av leilighet på Frogner med eik og myke toner" />
+            <div class="proj-meta"><div class="code">AB—24—21 · Oslo</div><h3 class="serif text-2xl m-0 mt-1">Leilighet, Frogner</h3><p class="m-0 text-sm opacity-80">Interiør</p></div>
+          </article>
+          <article class="proj" data-id="norefjell" data-cat="hytte">
+            <img loading="lazy" src="images/photo-02.jpg" alt="Hytte i tåke på Norefjell etter restaurering" />
+            <div class="proj-meta"><div class="code">AB—22—14 · Krødsherad</div><h3 class="serif text-2xl m-0 mt-1">Hytte, Norefjell</h3><p class="m-0 text-sm opacity-80">Restaurering</p></div>
+          </article>
+          <article class="proj" data-id="stabekk" data-cat="kjokken">
+            <img loading="lazy" src="images/photo-11.jpg" alt="Håndlaget eikegelender og trapp" />
+            <div class="proj-meta"><div class="code">AB—25—06 · Bærum</div><h3 class="serif text-2xl m-0 mt-1">Trapp &amp; bibliotek</h3><p class="m-0 text-sm opacity-80">Spesialsnekker</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tjenester" class="py-24 md:py-36" style="background:var(--snow)">
+      <div class="wrap grid md:grid-cols-12 gap-12">
+        <div class="md:col-span-6">
+          <p class="eyebrow mb-3 rev">Tjenester</p>
+          <h2 class="text-[clamp(2.2rem,5vw,4.2rem)] leading-[.95] mb-6 rev">Fra første strek<br />til siste list.</h2>
+          <p class="text-[var(--muted)] mb-10 max-w-md rev">Vi tar totalentrepriser og avgrensede snekkeroppdrag. Privatbolig, hytte, borettslag og næringslokaler — alltid med mester på laget.</p>
+          <div id="svcList">
+            <article class="svc-item active" data-img="images/photo-14.jpg">
+              <span class="eyebrow" style="color:var(--falu)">01</span>
+              <div>
+                <h3>Rehabilitering</h3>
+                <p>Totalrenovering av eldre boliger, med respekt for originalen og kravene til et moderne hjem. Konstruksjon, våtrom, kjøkken og listverk i samme hånd.</p>
+              </div>
+              <span class="svc-arr" aria-hidden="true">→</span>
+            </article>
+            <article class="svc-item" data-img="images/photo-20.jpg">
+              <span class="eyebrow" style="color:var(--falu)">02</span>
+              <div>
+                <h3>Tilbygg</h3>
+                <p>Nye rom som ser ut som de alltid har vært der. Anneks, spisestue, soveromsfløy — tegnet sammen med din arkitekt, eller av oss.</p>
+              </div>
+              <span class="svc-arr" aria-hidden="true">→</span>
+            </article>
+            <article class="svc-item" data-img="images/photo-19.jpg">
+              <span class="eyebrow" style="color:var(--falu)">03</span>
+              <div>
+                <h3>Terrasse &amp; uterom</h3>
+                <p>Kebony, eik og termofuru. Terrasser, pergola og levegger som forlenger sesongen og tåler Oslo-klimaet.</p>
+              </div>
+              <span class="svc-arr" aria-hidden="true">→</span>
+            </article>
+            <article class="svc-item" data-img="images/photo-03.jpg">
+              <span class="eyebrow" style="color:var(--falu)">04</span>
+              <div>
+                <h3>Kjøkken</h3>
+                <p>Spesialtilpassede kjøkken i massivt tre og høykvalitets plater. Tegnet etter hvordan du faktisk lager mat — ikke etter en katalog.</p>
+              </div>
+              <span class="svc-arr" aria-hidden="true">→</span>
+            </article>
+            <article class="svc-item" data-img="images/photo-15.jpg">
+              <span class="eyebrow" style="color:var(--falu)">05</span>
+              <div>
+                <h3>Innvendig oppussing</h3>
+                <p>Gulv, dører, trapper, garderober og fast innredning. Det usynlige arbeidet som gjør at et rom faller til ro.</p>
+              </div>
+              <span class="svc-arr" aria-hidden="true">→</span>
+            </article>
+            <article class="svc-item" data-img="images/photo-07.jpg">
+              <span class="eyebrow" style="color:var(--falu)">06</span>
+              <div>
+                <h3>Fasade &amp; tak</h3>
+                <p>Kledning, etterisolering, vinduer og tak. Tett, pent, og bygd for vestavind. Vi tar også beslag og detaljer som andre hopper over.</p>
+              </div>
+              <span class="svc-arr" aria-hidden="true">→</span>
+            </article>
+            <article class="svc-item" data-img="images/photo-22.jpg">
+              <span class="eyebrow" style="color:var(--falu)">07</span>
+              <div>
+                <h3>Spesialsnekker</h3>
+                <p>Trapper, bibliotek, vegghengte møbler og innredning etter mål. Det som ikke finnes ferdig — lager vi.</p>
+              </div>
+              <span class="svc-arr" aria-hidden="true">→</span>
+            </article>
+          </div>
+        </div>
+        <div class="md:col-span-5 md:col-start-8">
+          <div class="svc-visual" id="svcVisual">
+            <img id="svcImg" src="images/photo-14.jpg" alt="Pågående fasade- og rehabiliteringsarbeid" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 md:py-36">
+      <div class="wrap grid md:grid-cols-12 gap-10 mb-10">
+        <div class="md:col-span-5 rev">
+          <p class="eyebrow mb-3">Før / etter</p>
+          <h2 class="text-[clamp(2.2rem,5vw,4rem)] leading-[.95] mb-5">Samme hus.<br />Annen tid.</h2>
+          <p class="text-[var(--muted)] max-w-md">Dra i linjen. Badet på Skøyen ble strippet til bæringen og bygget opp igjen med skjulte sluk, varme i gulv og eik mot puss. Åtte uker. Ingen overraskelser på slutten.</p>
+        </div>
+        <div class="md:col-span-6 md:col-start-7 flex items-end rev">
+          <dl class="grid grid-cols-3 gap-6 w-full">
+            <div><dt class="eyebrow">Sted</dt><dd class="m-0 mt-1 font-medium">Skøyen, Oslo</dd></div>
+            <div><dt class="eyebrow">Varighet</dt><dd class="m-0 mt-1 font-medium">8 uker</dd></div>
+            <div><dt class="eyebrow">År</dt><dd class="m-0 mt-1 font-medium">2025</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="ba rev" id="ba" style="--pos:54%">
+          <img src="images/photo-24.jpg" alt="Bad etter rehabilitering" />
+          <img class="ba-before" src="images/photo-01.jpg" alt="Bad før rehabilitering" />
+          <span class="ba-tag" style="left:20px">Før</span>
+          <span class="ba-tag" style="right:20px">Etter</span>
+          <div class="ba-handle">
+            <div class="ba-knob" aria-hidden="true">
+              <svg width="22" height="12" viewBox="0 0 22 12" fill="none"><path d="M8 1L3 6l5 5M14 1l5 5-5 5" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prosessen" class="py-24 md:py-36" style="background:var(--snow)">
+      <div class="wrap">
+        <div class="grid md:grid-cols-12 gap-8 mb-16">
+          <div class="md:col-span-6 rev">
+            <p class="eyebrow mb-3">Prosessen</p>
+            <h2 class="text-[clamp(2.2rem,5vw,4.2rem)] leading-[.95]">Forutsigbart,<br />uten å være firkantet.</h2>
+          </div>
+          <p class="md:col-span-5 md:col-start-8 text-[var(--muted)] self-end rev">Befaring i Oslo, Bærum, Asker og Drammen er kostnadsfri. Du får én kontaktperson fra første samtale til nøkkelen overleveres.</p>
+        </div>
+        <div class="steps">
+          <article class="step rev">
+            <div class="n">01</div>
+            <h3 class="serif text-2xl mt-4 mb-2">Samtale</h3>
+            <p class="text-[var(--muted)] m-0">Vi hører på huset og på dere. Bilder, tegninger, ønsker og det som gnager. Femten minutter kan spare tre måneder.</p>
+          </article>
+          <article class="step rev">
+            <div class="n">02</div>
+            <h3 class="serif text-2xl mt-4 mb-2">Befaring</h3>
+            <p class="text-[var(--muted)] m-0">Mesteren kommer hjem til dere. Vi måler, banker på vegger og sier ifra om det vi ser — også det dere ikke spurte om.</p>
+          </article>
+          <article class="step rev">
+            <div class="n">03</div>
+            <h3 class="serif text-2xl mt-4 mb-2">Tilbud</h3>
+            <p class="text-[var(--muted)] m-0">Fastpris der det lar seg gjøre. Tydelig fremdrift. Ingen poster gjemt i «div. snekkerarbeid».</p>
+          </article>
+          <article class="step rev">
+            <div class="n">04</div>
+            <h3 class="serif text-2xl mt-4 mb-2">Bygging</h3>
+            <p class="text-[var(--muted)] m-0">Samme lag på plassen. Ukentlig oppdatering. Overlevering med dokumentasjon, og vi kommer tilbake hvis noe setter seg.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="om-oss" class="py-24 md:py-36" style="background:var(--pine);color:var(--snow)">
+      <div class="wrap grid md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-6 rev">
+          <div class="relative overflow-hidden h-[min(78vh,720px)] min-h-[380px]">
+            <img class="w-full h-full object-cover" src="images/photo-04.jpg" alt="Nærbilde av snekker som høvler tre i verkstedet på Slependen" />
+          </div>
+        </div>
+        <div class="md:col-span-5 md:col-start-8 rev">
+          <p class="eyebrow mb-4" style="color:var(--oak)">Håndverket</p>
+          <h2 class="text-[clamp(2.1rem,4.4vw,3.6rem)] leading-[1.05] mb-6">Håndverket sitter i hånden, ikke i maskinen.</h2>
+          <p class="opacity-75 mb-6">Vi bruker CNC der det gir mening, og høvel der det gir sjel. Lars Andersen tok mesterbrev i 1996. Datteren Ingrid leder prosjektene. Sammen holder de verkstedet i en linje som er sjelden i bransjen: kort vei mellom den som selger jobben og den som gjør den.</p>
+          <p class="opacity-75 mb-10">Sentral godkjenning, mesterbrev og medlemskap i Byggmesterforbundet. Vi er Miljøfyrtårn, og vi kildesorterer på hvert eneste oppdrag.</p>
+          <div class="grid grid-cols-4 gap-2 mb-10">
+            <figure class="mat"><img loading="lazy" src="images/photo-13.jpg" alt="Eik" /><figcaption class="eyebrow mt-2" style="color:var(--oak)">Eik</figcaption></figure>
+            <figure class="mat"><img loading="lazy" src="images/photo-26.jpg" alt="Furu" /><figcaption class="eyebrow mt-2" style="color:var(--oak)">Furu</figcaption></figure>
+            <figure class="mat"><img loading="lazy" src="images/photo-27.jpg" alt="Ask" /><figcaption class="eyebrow mt-2" style="color:var(--oak)">Ask</figcaption></figure>
+            <figure class="mat"><img loading="lazy" src="images/photo-12.jpg" alt="Røkt eik" /><figcaption class="eyebrow mt-2" style="color:var(--oak)">Røkt eik</figcaption></figure>
+          </div>
+          <a class="btn" href="#kontakt" style="background:var(--snow);color:var(--ink)">Snakk med mesteren
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 md:py-36">
+      <div class="wrap">
+        <div class="flex items-end justify-between gap-8 mb-12 rev">
+          <div>
+            <p class="eyebrow mb-3">Folkene</p>
+            <h2 class="text-[clamp(2.2rem,5vw,4rem)] leading-[.95]">De som kommer hjem til dere.</h2>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+          <article class="team-card rev">
+            <div class="overflow-hidden"><img loading="lazy" src="images/photo-18.jpg" alt="Lars Andersen, daglig leder og snekkermester" /></div>
+            <h3 class="mt-3 mb-0 font-medium">Lars Andersen</h3>
+            <p class="eyebrow m-0 mt-1">Daglig leder · Mester</p>
+          </article>
+          <article class="team-card rev">
+            <div class="overflow-hidden"><img loading="lazy" src="images/photo-06.jpg" alt="Ingrid Andersen, prosjektleder" /></div>
+            <h3 class="mt-3 mb-0 font-medium">Ingrid Andersen</h3>
+            <p class="eyebrow m-0 mt-1">Prosjektleder</p>
+          </article>
+          <article class="team-card rev">
+            <div class="overflow-hidden"><img loading="lazy" src="images/photo-08.jpg" alt="Tomas Berg, snekkermester" /></div>
+            <h3 class="mt-3 mb-0 font-medium">Tomas Berg</h3>
+            <p class="eyebrow m-0 mt-1">Snekkermester</p>
+          </article>
+          <article class="team-card rev">
+            <div class="overflow-hidden"><img loading="lazy" src="images/photo-05.jpg" alt="Maya Solberg, kundekontakt" /></div>
+            <h3 class="mt-3 mb-0 font-medium">Maya Solberg</h3>
+            <p class="eyebrow m-0 mt-1">Kundekontakt</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-24 md:pb-36">
+      <div class="wrap">
+        <p class="eyebrow mb-8 rev">Klientene</p>
+        <article class="quote rev">
+          <p>«Vi hadde fått tre tilbud som alle handlet om kvadratmeterpris. Andersen var de eneste som snakket om hvordan lyset treffer kjøkkenbenken klokken fire i mars.»</p>
+          <div class="eyebrow">Marte Vold — Villa, Stabekk</div>
+        </article>
+        <article class="quote rev">
+          <p>«Tilbygget vårt på Nesodden er tegnet av arkitekt, men det er snekkerne som gjorde det til et hjem. Listene møtes. Dørene faller. Ingenting knirker.»</p>
+          <div class="eyebrow">Henrik og Ane Blehr — Tilbygg, Nesodden</div>
+        </article>
+        <article class="quote rev">
+          <p>«Vi forvalter førti leiligheter. Andersen er de eneste vi slipper inn uten å følge etter. Ryddige, presise, og de sier ifra før det blir et problem.»</p>
+          <div class="eyebrow">Nina Røed — Styreleder, Frogner borettslag</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="py-24 md:py-36" style="background:var(--snow)">
+      <div class="wrap grid md:grid-cols-12 gap-12">
+        <div class="md:col-span-5 rev">
+          <p class="eyebrow mb-3">Spørsmål</p>
+          <h2 class="text-[clamp(2.2rem,5vw,4rem)] leading-[.95] mb-6">Det folk lurer på<br />før de ringer.</h2>
+          <p class="text-[var(--muted)]">Finner du ikke svaret, send oss en melding. Vi svarer innen virkedagen.</p>
+        </div>
+        <div class="md:col-span-6 md:col-start-7" id="faq">
+          <article class="faq-item open">
+            <button type="button">Hva koster en befaring? <span class="faq-plus"></span></button>
+            <div class="ans">Befaring i Oslo, Bærum, Asker og Drammen er kostnadsfri og uforpliktende. Utenfor dette tar vi en avtalt kjøregodtgjørelse som trekkes fra om dere går videre.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">Hvor lang tid tar et typisk oppdrag? <span class="faq-plus"></span></button>
+            <div class="ans">Et kjøkken: tre til fem uker. Et bad: seks til åtte. Et tilbygg: tre til seks måneder avhengig av søknad. Vi sier ifra om reell ventetid allerede i første samtale — neste ledige oppstart er april 2026.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">Tar dere småjobber? <span class="faq-plus"></span></button>
+            <div class="ans">Ja, når de kan slås sammen eller fylles inn mellom større arbeider. En dør, et gelender, en garderobe. Ring Maya og hør.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">Har dere sentral godkjenning? <span class="faq-plus"></span></button>
+            <div class="ans">Ja. Mesterbedrift, sentral godkjenning i aktuelle tiltaksklasser, Byggmesterforbundet og Miljøfyrtårn. Vi søker også kommunen når prosjektet krever det.</div>
+          </article>
+          <article class="faq-item">
+            <button type="button">Jobber dere med arkitekter? <span class="faq-plus"></span></button>
+            <div class="ans">Ofte, og gjerne. Vi leser tegninger, stiller spørsmål tidlig og kommer med løsninger som er byggbare uten å vanne ut grepet.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="py-24 md:py-36" style="background:var(--pine-2);color:var(--snow)">
+      <div class="wrap grid md:grid-cols-12 gap-16">
+        <div class="md:col-span-5 rev">
+          <p class="eyebrow mb-4" style="color:var(--oak)">Kontakt</p>
+          <h2 class="text-[clamp(2.4rem,5.5vw,4.6rem)] leading-[.95] mb-6">La oss se<br />på huset.</h2>
+          <p class="opacity-70 mb-10 max-w-md">Fortell kort hva dere tenker. Vi tar kontakt innen 24 timer på virkedager og avtaler befaring der det gir mening.</p>
+          <div class="flex items-center gap-3 mb-10">
+            <span class="inline-block w-2 h-2 rounded-full" style="background:#7D9A6A"></span>
+            <span class="eyebrow" style="color:var(--oak)">Neste ledige oppstart · april 2026</span>
+          </div>
+          <dl class="grid gap-6">
+            <div>
+              <dt class="eyebrow" style="color:var(--oak)">Verksted</dt>
+              <dd class="m-0 mt-1">Industriveien 14<br />1337 Sandvika</dd>
+            </div>
+            <div>
+              <dt class="eyebrow" style="color:var(--oak)">Telefon</dt>
+              <dd class="m-0 mt-1"><a href="tel:+4767124000">67 12 40 00</a></dd>
+            </div>
+            <div>
+              <dt class="eyebrow" style="color:var(--oak)">E-post</dt>
+              <dd class="m-0 mt-1"><a href="mailto:post@andersenbygg.no">post@andersenbygg.no</a></dd>
+            </div>
+            <div>
+              <dt class="eyebrow" style="color:var(--oak)">Åpent</dt>
+              <dd class="m-0 mt-1">Mandag–fredag 07:30–16:00</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="md:col-span-6 md:col-start-7 rev">
+          <form id="form" novalidate>
+            <div class="grid md:grid-cols-2 gap-x-6">
+              <div class="field"><input id="f-navn" name="navn" autocomplete="name" required /><label for="f-navn">Navn</label></div>
+              <div class="field"><input id="f-tel" name="telefon" type="tel" autocomplete="tel" required /><label for="f-tel">Telefon</label></div>
+            </div>
+            <div class="field"><input id="f-epost" name="epost" type="email" autocomplete="email" required /><label for="f-epost">E-post</label></div>
+            <div class="grid md:grid-cols-2 gap-x-6">
+              <div class="field is-on">
+                <select id="f-type" name="type" required>
+                  <option value="" disabled selected>Velg</option>
+                  <option>Rehabilitering</option>
+                  <option>Tilbygg</option>
+                  <option>Kjøkken</option>
+                  <option>Terrasse / uterom</option>
+                  <option>Bad</option>
+                  <option>Fasade / tak</option>
+                  <option>Spesialsnekker</option>
+                  <option>Annet</option>
+                </select>
+                <label for="f-type">Type prosjekt</label>
+              </div>
+              <div class="field is-on">
+                <select id="f-budsjett" name="budsjett">
+                  <option value="" selected>Usikker</option>
+                  <option>Under 250 000</option>
+                  <option>250 000 – 750 000</option>
+                  <option>750 000 – 2 mill.</option>
+                  <option>Over 2 mill.</option>
+                </select>
+                <label for="f-budsjett">Budsjett</label>
+              </div>
+            </div>
+            <div class="field"><input id="f-sted" name="sted" autocomplete="address-level2" /><label for="f-sted">Sted / område</label></div>
+            <div class="field"><textarea id="f-mld" name="melding" rows="4"></textarea><label for="f-mld">Fortell kort om prosjektet</label></div>
+            <label class="check"><input type="checkbox" name="befaring" checked /> Jeg ønsker kostnadsfri befaring</label>
+            <button class="btn w-full" type="submit" style="background:var(--snow);color:var(--ink)">Send forespørsel
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
+            </button>
+            <p id="formErr" class="text-sm mt-3" style="color:#E8A598;display:none"></p>
+          </form>
+          <div id="formOk" hidden class="py-16">
+            <p class="eyebrow mb-4" style="color:var(--oak)">Mottatt</p>
+            <h3 class="serif text-4xl mb-4">Takk. Vi tar kontakt innen 24 timer.</h3>
+            <p class="opacity-70">En bekreftelse er notert. Trenger dere oss raskere, ring 67 12 40 00.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background:var(--pine);color:var(--snow)">
+    <div class="wrap py-20">
+      <div class="grid md:grid-cols-4 gap-10 mb-20">
+        <div>
+          <div class="brand mb-6">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 28 L16 4 L29 28 M8 18.5 H24"/></svg>
+            <span>Andersen <small>Bygg AS</small></span>
+          </div>
+          <p class="opacity-60 text-sm max-w-xs">Mesterbedrift siden 1998. Snekker- og byggmesterarbeid for privatpersoner og bedrifter i Oslo og omegn.</p>
+        </div>
+        <div>
+          <div class="eyebrow mb-4" style="color:var(--oak)">Sider</div>
+          <div class="flex flex-col gap-2 text-sm opacity-80">
+            <a href="#arbeider">Arbeider</a>
+            <a href="#tjenester">Tjenester</a>
+            <a href="#prosessen">Prosessen</a>
+            <a href="#om-oss">Om oss</a>
+            <a href="#kontakt">Kontakt</a>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow mb-4" style="color:var(--oak)">Tjenester</div>
+          <div class="flex flex-col gap-2 text-sm opacity-80">
+            <a href="#tjenester">Rehabilitering</a>
+            <a href="#tjenester">Tilbygg</a>
+            <a href="#tjenester">Kjøkken</a>
+            <a href="#tjenester">Terrasse</a>
+            <a href="#tjenester">Spesialsnekker</a>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow mb-4" style="color:var(--oak)">Følg</div>
+          <div class="flex flex-col gap-2 text-sm opacity-80">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="serif leading-none mb-8" style="font-size:clamp(3.4rem,16vw,13.5rem);letter-spacing:-.06em;opacity:.12">Andersen</div>
+      <div class="flex flex-col md:flex-row justify-between gap-4 text-xs opacity-50 border-t pt-6" style="border-color:rgba(247,243,236,.12)">
+        <div>© 2026 Andersen Bygg AS · Org.nr 912 334 567 MVA</div>
+        <div class="flex gap-6">
+          <span>Personvern</span>
+          <span>Mesterbrev</span>
+          <span>Sentral godkjenning</span>
+          <span>Miljøfyrtårn</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="proj-d" id="dialog">
+    <div class="relative">
+      <button type="button" id="dClose" class="absolute top-4 right-4 z-10 btn" style="background:var(--snow);color:var(--ink);padding:10px 14px">Lukk</button>
+      <img id="dHero" class="w-full h-[48vh] min-h-[260px] object-cover" alt="" />
+      <div class="p-6 md:p-12">
+        <p class="eyebrow mb-2" id="dCode"></p>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <h2 class="text-4xl md:text-6xl m-0" id="dTitle"></h2>
+          <a href="#kontakt" class="btn" id="dCta">Be om lignende
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3"/></svg>
+          </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-sm" id="dMeta"></div>
+        <p class="text-[var(--muted)] max-w-3xl mb-10 text-lg leading-relaxed" id="dText"></p>
+        <div class="grid md:grid-cols-2 gap-3" id="dGallery"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="mcta" id="mcta">
+    <a class="btn btn-ghost text-center" href="tel:+4767124000">Ring</a>
+    <a class="btn text-center" href="#kontakt" style="background:var(--snow);color:var(--ink)">Be om befaring</a>
+  </div>
+  <div id="floater">Åpne</div>
+
+  <script>
+    (function () {
+      const $ = (s, r = document) => r.querySelector(s);
+      const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+      const pexMap = {"7746980":"images/photo-22.jpg","17158647":"images/photo-28.jpg","5656686":"images/photo-07.jpg","9996341":"images/photo-27.jpg","7492581":"images/photo-18.jpg","8089171":"images/photo-23.jpg","6544938":"images/photo-12.jpg","8143944":"images/photo-37.jpg","6757413":"images/photo-13.jpg","7061397":"images/photo-15.jpg","31223429":"images/photo-30.jpg","5998051":"images/photo-10.jpg","8134813":"images/photo-25.jpg","7303735":"images/photo-17.jpg","7512031":"images/photo-33.jpg","19953099":"images/photo-01.jpg","7614405":"images/photo-36.jpg","31347659":"images/photo-02.jpg","6345071":"images/photo-11.jpg","7045831":"images/photo-32.jpg","5292234":"images/photo-06.jpg","8465898":"images/photo-26.jpg","7534275":"images/photo-34.jpg","5940032":"images/photo-09.jpg","7587812":"images/photo-35.jpg","5710742":"images/photo-08.jpg","36777559":"images/photo-31.jpg","5292232":"images/photo-05.jpg","7598374":"images/photo-20.jpg","35021550":"images/photo-03.jpg","31190947":"images/photo-29.jpg","7587879":"images/photo-19.jpg","37358117":"images/photo-04.jpg","7214467":"images/photo-16.jpg","7031412":"images/photo-14.jpg"};
+      const pex = (id, w = 1400) => pexMap[id] || '';
+
+      const projects = {
+        holmenkollen: {
+          title: "Villa Holmenkollen",
+          code: "AB—24—12 · Oslo",
+          meta: [["Type", "Totalrehabilitering"], ["Areal", "240 m²"], ["Varighet", "9 måneder"], ["År", "2024"]],
+          text: "Et trettitallsår gammelt hus med gode rom og slitne flater. Vi åpnet stue mot kjøkken, la eikegulv gjennom hele første etasje, bygget nytt kjøkken i røkt eik og etterisolerte fasaden uten å miste de opprinnelige vinduene i sør. Målet var ikke at huset skulle se nytt ut — det skulle se ut som det alltid hadde vært slik.",
+          images: [7214467, 7512031, 7045831, 8143944]
+        },
+        lysaker: {
+          title: "Kjøkken, Lysaker",
+          code: "AB—25—03 · Bærum",
+          meta: [["Type", "Spesialinnredning"], ["Materiale", "Eik / marmor"], ["Varighet", "5 uker"], ["År", "2025"]],
+          text: "Familien lagde mat, men kjøkkenet jobbet imot. Vi tegnet innredningen rundt arbeidsflyt, skjulte hvitevarer og lot eiken gå i ett med veggen. Øya er 3,2 meter — dimensjonert etter hvordan de faktisk står sammen om kvelden.",
+          images: [7303735, 35021550, 36777559]
+        },
+        bygdoy: {
+          title: "Terrasse, Bygdøy",
+          code: "AB—24—08 · Oslo",
+          meta: [["Type", "Uterom"], ["Materiale", "Kebony"], ["Areal", "48 m²"], ["År", "2024"]],
+          text: "En smal bakhage mot sjøen ble et rom. Skjult innfesting, innebygde benker og belysning i trinnene. Terrassen er bygget for å tåle sjøluft og å ligge lavt i terrenget.",
+          images: [5940032, 7587879, 8134813]
+        },
+        skoyen: {
+          title: "Bad, Skøyen",
+          code: "AB—25—01 · Oslo",
+          meta: [["Type", "Våtrom"], ["Varighet", "8 uker"], ["Membran", "Påstryk"], ["År", "2025"]],
+          text: "Strippet til bæringen. Nye fall, skjulte sluk, varme i gulv og eik mot puss. Et bad som tåler barna nå og gjester om tjue år.",
+          images: [8089171, 7614405, 7587812]
+        },
+        nesodden: {
+          title: "Tilbygg, Nesodden",
+          code: "AB—23—19 · Nesodden",
+          meta: [["Type", "Tilbygg"], ["Areal", "68 m²"], ["Varighet", "5 mnd"], ["År", "2023"]],
+          text: "Et 60-tallshus som trengte et spiserom mot fjorden. Tilbygget bærer samme takvinkel og kledning, men med større glass mot vest. Fra hagen ser det ut som det har stått der siden 1962.",
+          images: [8134813, 7598374, 7587879]
+        },
+        frogner: {
+          title: "Leilighet, Frogner",
+          code: "AB—24—21 · Oslo",
+          meta: [["Type", "Interiør"], ["Areal", "92 m²"], ["Varighet", "11 uker"], ["År", "2024"]],
+          text: "En leilighet fra 1912 med originale gerikter og et kjøkken fra 90-tallet. Vi beholdt listene, byttet kjøkken og bad, og la eik i hele planen. Resultatet er stille — i den forstanden at ingenting skriker.",
+          images: [5998051, 7061397, 7534275]
+        },
+        norefjell: {
+          title: "Hytte, Norefjell",
+          code: "AB—22—14 · Krødsherad",
+          meta: [["Type", "Restaurering"], ["Konstruksjon", "Laft / ny fløy"], ["Varighet", "7 mnd"], ["År", "2022"]],
+          text: "En laftet hytte med seterskader og et tilbygg fra 80-tallet som aldri falt på plass. Vi rettet opp, etterisolerte og bygget en ny fløy i kjerneved furu. Badstuen er i malmfuru.",
+          images: [31347659, 31190947, 31223429]
+        },
+        stabekk: {
+          title: "Trapp & bibliotek, Stabekk",
+          code: "AB—25—06 · Bærum",
+          meta: [["Type", "Spesialsnekker"], ["Materiale", "Europeisk eik"], ["Varighet", "6 uker"], ["År", "2025"]],
+          text: "En trapp som skulle være møbel, ikke gjennomgang. Massiv eik, skjulte innfestinger og et gelender som ligger i hånden. Biblioteket i hallen er bygget rundt de samme profilene.",
+          images: [6345071, 7746980, 17158647]
+        }
+      };
+
+      /* Preloader */
+      const pre = $("#preloader");
+      const done = () => {
+        document.body.classList.add("ready");
+        pre.classList.add("out");
+        setTimeout(() => pre.remove(), 1000);
+      };
+      window.addEventListener("load", () => setTimeout(done, 400));
+      setTimeout(() => { if (!document.body.classList.contains("ready")) done(); }, 2800);
+
+      /* Nav */
+      const nav = $("#nav");
+      const onScroll = () => {
+        nav.classList.toggle("light", window.scrollY > window.innerHeight - 90);
+        const p = window.scrollY / (document.documentElement.scrollHeight - innerHeight);
+        $("#progress").style.width = Math.min(100, p * 100) + "%";
+        const hero = $(".hero-img");
+        if (hero) hero.style.transform = `translateY(${window.scrollY * 0.22}px) scale(1.08)`;
+        const cta = $("#mcta");
+        if (cta) {
+          const k = $("#kontakt").getBoundingClientRect();
+          cta.style.display = k.top < innerHeight && k.bottom > 80 ? "none" : "";
+        }
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      /* Menu */
+      const burger = $("#burger");
+      const mmenu = $("#mmenu");
+      const setMenu = (open) => {
+        document.documentElement.classList.toggle("menu-open", open);
+        document.documentElement.classList.toggle("is-locked", open);
+        burger.setAttribute("aria-expanded", open);
+        burger.setAttribute("aria-label", open ? "Lukk meny" : "Åpne meny");
+        mmenu.hidden = false;
+      };
+      burger.addEventListener("click", () => setMenu(!document.documentElement.classList.contains("menu-open")));
+      $$("#mmenu a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+
+      /* Reveal + counters */
+      const io = new IntersectionObserver((ents) => {
+        ents.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add("on");
+          $$("[data-count]", e.target).forEach((n) => {
+            if (n.dataset.done) return;
+            n.dataset.done = "1";
+            const to = +n.dataset.count;
+            const start = performance.now();
+            const tick = (t) => {
+              const k = Math.min(1, (t - start) / 1100);
+              n.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+              if (k < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          });
+        });
+      }, { threshold: 0.14 });
+      $$(".rev").forEach((el, i) => { el.style.transitionDelay = (i % 5) * 70 + "ms"; io.observe(el); });
+
+      /* Filters */
+      $("#filters").addEventListener("click", (e) => {
+        const b = e.target.closest("button");
+        if (!b) return;
+        $$("#filters button").forEach((x) => x.classList.toggle("on", x === b));
+        const f = b.dataset.filter;
+        $$("#projGrid .proj").forEach((p) => p.classList.toggle("is-hidden", f !== "alle" && p.dataset.cat !== f));
+      });
+
+      /* Floater + modal */
+      const floater = $("#floater");
+      const fine = matchMedia("(pointer: fine)").matches;
+      const dialog = $("#dialog");
+      const openProject = (id) => {
+        const p = projects[id];
+        if (!p) return;
+        $("#dTitle").textContent = p.title;
+        $("#dCode").textContent = p.code;
+        $("#dText").textContent = p.text;
+        $("#dHero").src = pex(p.images[0], 1800);
+        $("#dHero").alt = p.title;
+        $("#dMeta").innerHTML = p.meta.map(([k, v]) => `<div><div class="eyebrow">${k}</div><div class="mt-1 font-medium">${v}</div></div>`).join("");
+        $("#dGallery").innerHTML = p.images.slice(1).map((id) => `<img loading="lazy" src="${pex(id, 1200)}" alt="${p.title}" class="w-full h-64 md:h-80 object-cover" />`).join("");
+        floater.classList.remove("show");
+        dialog.showModal();
+        document.documentElement.classList.add("is-locked");
+      };
+      $("#dClose").addEventListener("click", () => dialog.close());
+      $("#dCta").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("close", () => document.documentElement.classList.remove("is-locked"));
+      $$(".proj").forEach((card) => {
+        card.addEventListener("click", () => openProject(card.dataset.id));
+        card.addEventListener("keydown", (e) => { if (e.key === "Enter") openProject(card.dataset.id); });
+        card.tabIndex = 0;
+        if (!fine) return;
+        card.addEventListener("mouseenter", () => floater.classList.add("show"));
+        card.addEventListener("mouseleave", () => floater.classList.remove("show"));
+        card.addEventListener("mousemove", (e) => { floater.style.left = e.clientX + "px"; floater.style.top = e.clientY + "px"; });
+      });
+
+      /* Services */
+      const svcImg = $("#svcImg");
+      const svcVis = $("#svcVisual");
+      $$(".svc-item").forEach((item) => {
+        const act = () => {
+          $$(".svc-item").forEach((x) => x.classList.remove("active"));
+          item.classList.add("active");
+          if (!svcImg || item.dataset.img === svcImg.src) return;
+          svcVis.classList.add("swap");
+          setTimeout(() => { svcImg.src = item.dataset.img; svcVis.classList.remove("swap"); }, 280);
+        };
+        item.addEventListener("mouseenter", act);
+        item.addEventListener("click", act);
+      });
+
+      /* Before / after */
+      const ba = $("#ba");
+      const setPos = (x) => {
+        const r = ba.getBoundingClientRect();
+        const p = Math.min(0.94, Math.max(0.06, (x - r.left) / r.width));
+        ba.style.setProperty("--pos", p * 100 + "%");
+      };
+      let drag = false;
+      ba.addEventListener("pointerdown", (e) => { drag = true; ba.setPointerCapture(e.pointerId); setPos(e.clientX); });
+      ba.addEventListener("pointermove", (e) => { if (drag) setPos(e.clientX); });
+      ba.addEventListener("pointerup", () => { drag = false; });
+
+      /* FAQ */
+      $$("#faq .faq-item button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.parentElement;
+          const open = item.classList.contains("open");
+          $$("#faq .faq-item").forEach((x) => x.classList.remove("open"));
+          if (!open) item.classList.add("open");
+        });
+      });
+
+      /* Form */
+      $$("#form input, #form textarea").forEach((el) => {
+        const wrap = el.closest(".field");
+        const sync = () => wrap.classList.toggle("is-on", el.value.trim().length > 0);
+        el.addEventListener("input", sync);
+        el.addEventListener("blur", sync);
+      });
+      $("#form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const navn = $("#f-navn").value.trim();
+        const tel = $("#f-tel").value.trim();
+        const epost = $("#f-epost").value.trim();
+        const type = $("#f-type").value;
+        const err = $("#formErr");
+        if (!navn || !tel || !epost || !type) {
+          err.style.display = "block";
+          err.textContent = "Fyll inn navn, telefon, e-post og type prosjekt.";
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(epost)) {
+          err.style.display = "block";
+          err.textContent = "Sjekk at e-postadressen er skrevet riktig.";
+          return;
+        }
+        err.style.display = "none";
+        $("#form").hidden = true;
+        $("#formOk").hidden = false;
+      });
+    })();
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

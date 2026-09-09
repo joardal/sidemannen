@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Andersen Auto AS — Bilverksted i Oslo | Service, EU-kontroll, dekk &amp; reparasjon</title>
+<meta name="description" content="Andersen Auto AS er et moderne, familieeid bilverksted i Oslo. Bestill EU-kontroll, service, bremser, dekk eller feilsøking på nett — få svar innen én time.">
+<meta property="og:title" content="Andersen Auto AS — Trygghet du kan kjøre på">
+<meta property="og:description" content="Moderne bilverksted i Oslo. Bestill time på 60 sekunder.">
+<meta property="og:type" content="website">
+<link rel="icon" href="images/icon-01.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink:#0A0C0F; --ink2:#10141A; --ink3:#171C24;
+  --paper:#F4F2ED; --paper2:#EBE8E1; --card:#FFFFFF;
+  --acc:#FF4A00; --accDark:#D93D00;
+  --accSoft:rgba(255,74,0,.09);
+  --green:#21B26F; --red:#E0381F;
+  --line:rgba(10,12,14,.11); --line2:rgba(10,12,14,.06);
+  --lineD:rgba(255,255,255,.09); --lineD2:rgba(255,255,255,.05);
+  --txt:#14161A; --mut:#6B6E74;
+  --mutD:rgba(255,255,255,.55);
+  --font-d:'Archivo',sans-serif;
+  --font-b:'Manrope',sans-serif;
+  --font-m:'IBM Plex Mono',monospace;
+  --r:18px; --r-s:12px;
+  --shadow:0 1px 2px rgba(10,12,14,.04),0 12px 32px -12px rgba(10,12,14,.14);
+  --shadow-lg:0 30px 70px -30px rgba(6,8,10,.45);
+  --ease:cubic-bezier(.22,.8,.28,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:104px;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-b);background:var(--paper);color:var(--txt);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--acc);color:#fff}
+::-webkit-scrollbar{width:10px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#c9c6bd;border-radius:99px;border:2px solid var(--paper)}
+.sec-ink ::-webkit-scrollbar-thumb{background:#2a313b;border-color:var(--ink)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:1320px;margin-inline:auto;padding-inline:clamp(20px,4.5vw,52px)}
+.sec{padding-block:clamp(84px,10vw,150px);position:relative}
+
+/* ============ TYPO ============ */
+.h-d{font-family:var(--font-d);font-stretch:121%;font-weight:800;letter-spacing:-.028em;line-height:.98}
+.h-xl{font-size:clamp(2.7rem,6.4vw,5.4rem)}
+.h-lg{font-size:clamp(2.1rem,4.2vw,3.6rem)}
+.h-md{font-size:clamp(1.55rem,2.6vw,2.3rem)}
+.h-sm{font-size:1.34rem;line-height:1.15}
+.mono{font-family:var(--font-m);font-weight:500;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+.ey{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-m);font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--acc)}
+.ey::before{content:"";width:26px;height:1.5px;background:var(--acc);flex:none}
+.ey .t{color:inherit}
+.mut{color:var(--mut)} .mut-d{color:var(--mutD)}
+.lead{font-size:clamp(1.02rem,1.35vw,1.18rem);line-height:1.65}
+em.acc{font-style:italic;font-stretch:100%;color:var(--acc)}
+.sec-ink em.acc{color:var(--acc)}
+
+/* ============ BUTTONS ============ */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;border-radius:999px;font-weight:700;font-size:.95rem;letter-spacing:.01em;white-space:nowrap;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s,border-color .3s,color .3s;will-change:transform}
+.btn svg{width:17px;height:17px;transition:transform .35s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover svg{transform:translate(3px,-3px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn-a{background:var(--acc);color:#160600;box-shadow:0 10px 26px -10px rgba(255,74,0,.55)}
+.btn-a:hover{background:#ff5c14;box-shadow:0 16px 34px -12px rgba(255,74,0,.6)}
+.btn-d{background:var(--ink);color:#fff}
+.btn-d:hover{background:#1b2028;box-shadow:0 16px 34px -16px rgba(10,12,14,.5)}
+.btn-g{background:transparent;color:var(--txt);box-shadow:inset 0 0 0 1.5px rgba(10,12,14,.22)}
+.btn-g:hover{background:var(--ink);color:#fff;box-shadow:inset 0 0 0 1.5px var(--ink)}
+.sec-ink .btn-g{color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25)}
+.sec-ink .btn-g:hover{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px #fff}
+.btn-sm{height:44px;padding:0 20px;font-size:.86rem}
+.btn-block{width:100%}
+.circ{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;flex:none;transition:all .3s var(--ease)}
+.circ svg{width:17px;height:17px}
+
+/* ============ SECTION HEADS ============ */
+.sh{display:grid;grid-template-columns:1fr;gap:22px;margin-bottom:clamp(44px,6vw,76px)}
+.sh .row{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between}
+.sh p{max-width:56ch}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-m);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 13px;border-radius:999px;border:1px solid var(--line);color:var(--mut);background:transparent;white-space:nowrap}
+.sec-ink .tag{border-color:var(--lineD);color:var(--mutD)}
+
+/* ============ REVEAL ============ */
+[data-rv]{opacity:0;transform:translateY(30px);transition:opacity .95s var(--ease),transform .95s var(--ease);transition-delay:var(--d,0s)}
+[data-rv].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+  [data-rv]{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ============ HEADER ============ */
+.hdr{position:fixed;inset:0 0 auto 0;z-index:60;transition:background .45s,border-color .45s,backdrop-filter .45s;border-bottom:1px solid transparent}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:86px;transition:height .35s var(--ease)}
+.hdr.on{background:rgba(10,12,14,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--lineD2)}
+.hdr.on .wrap{height:70px}
+.logo{display:flex;align-items:center;gap:12px;color:#fff;z-index:5}
+.logo .mk{width:38px;height:38px;border-radius:11px;background:var(--ink);border:1px solid var(--lineD);display:grid;place-items:center;flex:none;transition:transform .5s var(--ease)}
+.logo:hover .mk{transform:rotate(-8deg)}
+.logo .mk svg{width:20px;height:20px}
+.logo b{font-family:var(--font-d);font-stretch:115%;font-weight:800;font-size:1.12rem;letter-spacing:-.01em;line-height:1}
+.logo small{display:block;font-family:var(--font-m);font-size:.55rem;letter-spacing:.3em;color:var(--mutD);text-transform:uppercase;margin-top:3px}
+.nav-d{display:flex;align-items:center;gap:6px;list-style:none}
+.nav-d a{position:relative;display:block;padding:10px 15px;font-size:.9rem;font-weight:600;color:rgba(255,255,255,.78);transition:color .25s}
+.nav-d a::after{content:"";position:absolute;left:15px;right:15px;bottom:4px;height:2px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav-d a:hover{color:#fff}
+.nav-d a:hover::after{transform:scaleX(1)}
+.hdr-act{display:flex;align-items:center;gap:14px;z-index:5}
+.hdr-tel{display:none;align-items:center;gap:9px;font-family:var(--font-m);font-size:.78rem;letter-spacing:.05em;color:#fff;padding:10px 0}
+.hdr-tel svg{width:15px;height:15px;color:var(--acc)}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:1px solid var(--lineD);flex-direction:column;align-items:center;justify-content:center;gap:5px;background:rgba(255,255,255,.04)}
+.burger span{width:17px;height:1.8px;background:#fff;border-radius:2px;transition:transform .4s var(--ease),opacity .3s}
+body.mno .burger span:nth-child(1){transform:translateY(6.8px) rotate(45deg)}
+body.mno .burger span:nth-child(2){opacity:0}
+body.mno .burger span:nth-child(3){transform:translateY(-6.8px) rotate(-45deg)}
+
+/* mobile nav */
+.mnav{position:fixed;inset:0;z-index:55;background:var(--ink);display:flex;flex-direction:column;padding:120px clamp(22px,6vw,48px) 40px;visibility:hidden;opacity:0;transition:opacity .45s var(--ease),visibility .45s}
+.mnav::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:52px 52px;pointer-events:none}
+body.mno .mnav{visibility:visible;opacity:1}
+.mnav nav{position:relative;display:flex;flex-direction:column}
+.mnav a.ml{font-family:var(--font-d);font-stretch:115%;font-weight:800;font-size:clamp(2rem,9vw,2.9rem);letter-spacing:-.02em;color:#fff;padding:8px 0;display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--lineD2);opacity:0;transform:translateY(24px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .25s}
+.mnav a.ml i{font-family:var(--font-m);font-style:normal;font-size:.66rem;letter-spacing:.2em;color:var(--mutD);font-weight:500}
+.mnav a.ml:active{color:var(--acc)}
+body.mno .mnav a.ml{opacity:1;transform:none}
+.mnav-foot{position:relative;margin-top:auto;padding-top:28px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:flex-end;opacity:0;transition:opacity .5s .25s}
+body.mno .mnav-foot{opacity:1}
+.mnav .mono{color:var(--mutD)}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;background:var(--ink);color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.12);animation:heroZoom 2.8s var(--ease) forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,9,11,.62) 0%,rgba(7,9,11,.28) 34%,rgba(7,9,11,.55) 62%,rgba(7,9,11,.94) 100%)}
+.hero-shade::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,9,11,.55),transparent 42%),linear-gradient(270deg,rgba(7,9,11,.4),transparent 30%)}
+.hero .wrap{position:relative;padding-top:150px;padding-bottom:clamp(40px,5.5vh,72px)}
+.hero-grid{display:grid;gap:clamp(28px,4vw,54px)}
+.hero h1{max-width:15ch;font-size:clamp(2.9rem,7.3vw,6.6rem)}
+.hero-sub{display:grid;grid-template-columns:1fr;gap:30px;align-items:end}
+.hero-sub p{max-width:52ch;color:rgba(255,255,255,.72);font-size:clamp(1rem,1.3vw,1.13rem)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero-trust{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,.85);font-size:.9rem;font-weight:600;margin-top:26px}
+.avatars{display:flex}
+.avatars i{width:36px;height:36px;border-radius:50%;border:2px solid #15181d;display:grid;place-items:center;font-style:normal;font-family:var(--font-m);font-weight:600;font-size:.66rem;color:#fff;background:#22272f}
+.avatars i+i{margin-left:-10px}
+.stars{color:var(--acc);letter-spacing:2px;font-size:.95rem}
+.hero-ticket{margin-top:clamp(36px,5vw,58px);border-top:1px solid var(--lineD);display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:8px;padding-top:20px}
+.tk{display:flex;align-items:center;gap:12px;color:var(--mutD);font-size:.83rem;padding-right:18px}
+.tk b{display:flex;align-items:center;gap:9px;color:#fff;font-weight:600;font-size:.88rem}
+.tk svg{width:15px;height:15px;color:var(--acc);flex:none}
+.pulse{position:relative;width:8px;height:8px;border-radius:50%;background:var(--green);flex:none}
+.pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.hr{position:relative;overflow:hidden}
+.hr-line{position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,var(--acc),transparent 40%)}
+.he{opacity:0;transform:translateY(30px);animation:heIn 1s var(--ease) forwards}
+@keyframes heIn{to{opacity:1;transform:none}}
+
+/* ============ MARQUEE ============ */
+.mq{background:var(--acc);color:#160600;overflow:hidden;padding:13px 0;position:relative;z-index:2}
+.mq-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+.mq:hover .mq-track{animation-play-state:paused}
+.mq span{font-family:var(--font-d);font-stretch:120%;font-weight:800;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:22px;padding-right:22px;white-space:nowrap}
+.mq span::after{content:"★";font-size:.6rem}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ============ STATS ============ */
+.stats{border-block:1px solid var(--line2);background:var(--paper)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.st{position:relative;padding:clamp(30px,3.6vw,48px) clamp(18px,2.4vw,40px)}
+.st + .st::before{content:"";position:absolute;left:0;top:24%;bottom:24%;width:1px;background:var(--line2)}
+.st b{font-family:var(--font-d);font-stretch:120%;font-weight:800;font-size:clamp(2rem,3.6vw,3.2rem);letter-spacing:-.03em;display:flex;align-items:baseline;line-height:1}
+.st b sup{font-size:.45em;color:var(--acc);margin-left:2px}
+.st span{display:block;margin-top:10px;font-size:.86rem;color:var(--mut);font-weight:600}
+
+/* ============ SERVICE ROWS ============ */
+.svc-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(20px,3vw,34px)}
+.svc-head .ey{color:var(--txt)}
+.svc-head .ey::before{background:var(--acc)}
+.svc-head .ey .o{color:var(--mut)}
+.svc-list{position:relative;border-bottom:1px solid var(--line)}
+.srow{position:relative;display:grid;grid-template-columns:74px minmax(0,1fr) auto;gap:10px 18px;align-items:center;padding:clamp(22px,2.8vw,34px) 10px;border-top:1px solid var(--line);cursor:pointer;transition:background .4s}
+.srow .no{font-family:var(--font-m);font-size:.74rem;letter-spacing:.14em;color:#A9A69C;transition:color .3s;align-self:start;padding-top:7px}
+.srow h3{font-family:var(--font-d);font-stretch:116%;font-weight:750;font-size:clamp(1.25rem,2.1vw,1.72rem);letter-spacing:-.015em;line-height:1.12;transition:transform .5s var(--ease),color .3s}
+.srow p{grid-column:2;max-width:62ch;color:var(--mut);font-size:.92rem;margin-top:7px}
+.srow .meta{grid-column:3;grid-row:1/3;text-align:right;align-self:center;display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.srow .meta b{font-family:var(--font-d);font-stretch:118%;font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.srow .meta i{font-style:normal;font-family:var(--font-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#A9A69C}
+.srow .go{grid-column:3;grid-row:3;justify-self:end;display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.86rem;color:var(--txt);opacity:0;transform:translateX(-8px);transition:opacity .35s,transform .45s var(--ease),color .3s;pointer-events:none;margin-top:6px}
+.srow .go svg{width:15px;height:15px;transition:transform .35s}
+.srow:hover{background:var(--paper2)}
+.srow:hover h3{transform:translateX(6px)}
+.srow:hover .no{color:var(--acc)}
+.srow:hover .go{opacity:1;transform:none;color:var(--acc)}
+.srow:hover .go svg{transform:translate(3px,-3px)}
+.svc-prev{position:fixed;z-index:80;width:340px;aspect-ratio:4/3;border-radius:16px;overflow:hidden;pointer-events:none;opacity:0;transform:scale(.94) rotate(-2deg);transition:opacity .35s var(--ease),transform .3s var(--ease);box-shadow:var(--shadow-lg)}
+.svc-prev img{width:100%;height:100%;object-fit:cover}
+.svc-prev.on{opacity:1}
+@media (pointer:coarse){.svc-prev{display:none}}
+.svc-all{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(26px,3vw,38px);align-items:center}
+.svc-all .lbl{font-family:var(--font-m);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#A9A69C;margin-right:6px}
+
+/* ============ BOOKING ============ */
+.sec-ink{background:var(--ink);color:#fff}
+.sec-ink .mut{color:var(--mutD)}
+.ink-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ink-deco .gridbg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:58px 58px;-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 20%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 90% 70% at 50% 20%,#000 30%,transparent 75%)}
+.ink-deco .glow{position:absolute;top:-340px;left:50%;transform:translateX(-50%);width:min(1100px,120%);height:620px;background:radial-gradient(ellipse at center,rgba(255,74,0,.13),transparent 65%);filter:blur(10px)}
+.ink-deco .glow2{position:absolute;right:-200px;bottom:-200px;width:560px;height:560px;background:radial-gradient(circle,rgba(255,74,0,.07),transparent 65%)}
+.bs-wrap{position:relative;z-index:2}
+.bs-grid{display:grid;grid-template-columns:1fr;gap:clamp(26px,4vw,56px);align-items:start}
+.bs-l{position:sticky;top:110px}
+.bs-l ul{list-style:none;margin-top:34px;display:grid;gap:0}
+.bs-l li{display:flex;gap:18px;padding:17px 0;border-top:1px solid var(--lineD2);font-size:.93rem;color:var(--mutD)}
+.bs-l li b{display:block;color:#fff;font-weight:700;font-size:.95rem;margin-bottom:3px}
+.bs-l li .n{font-family:var(--font-m);font-size:.68rem;letter-spacing:.14em;color:var(--acc);padding-top:3px;flex:none}
+.bs-card{background:var(--ink2);border:1px solid var(--lineD);border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -40px rgba(0,0,0,.7)}
+.bs-top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 22px;border-bottom:1px solid var(--lineD2);flex-wrap:wrap}
+.bs-prog{display:flex;align-items:center;gap:8px}
+.bs-stp{display:flex;align-items:center;gap:9px;font-family:var(--font-m);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mutD);opacity:.55;transition:opacity .3s;cursor:default}
+.bs-stp i{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:1px solid var(--lineD);font-style:normal;font-size:.66rem;transition:all .35s var(--ease)}
+.bs-stp.on{opacity:1;color:#fff}
+.bs-stp.done i{background:var(--acc);border-color:var(--acc);color:#160600}
+.bs-stp.on i{border-color:var(--acc);color:#fff}
+.bs-stp .ln{width:22px;height:1px;background:var(--lineD);display:block}
+.bs-count{font-family:var(--font-m);font-size:.66rem;letter-spacing:.2em;color:var(--acc);text-transform:uppercase}
+.bs-body{padding:clamp(22px,3.4vw,40px)}
+.bs-pane{display:none}
+.bs-pane.on{display:block;animation:paneIn .5s var(--ease)}
+@keyframes paneIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.pane-t{font-family:var(--font-m);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mutD);margin-bottom:18px}
+.pane-t b{color:var(--acc);font-weight:500}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.svc-opt{display:flex;align-items:center;gap:14px;text-align:left;padding:15px 16px;border-radius:14px;border:1.5px solid var(--lineD);background:var(--ink3);transition:border-color .25s,background .25s,transform .2s}
+.svc-opt:hover{border-color:rgba(255,255,255,.28);transform:translateY(-1px)}
+.svc-opt .ic{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.05);display:grid;place-items:center;flex:none;transition:background .25s}
+.svc-opt .ic svg{width:20px;height:20px;stroke:rgba(255,255,255,.85)}
+.svc-opt b{display:block;font-size:.94rem;font-weight:700;line-height:1.25}
+.svc-opt i{font-style:normal;font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--mutD);text-transform:uppercase}
+.svc-opt .r{margin-left:auto;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--lineD);flex:none;display:grid;place-items:center;transition:all .25s}
+.svc-opt .r svg{width:11px;height:11px;opacity:0;transform:scale(.4);transition:all .25s var(--ease)}
+.svc-opt.sel{border-color:var(--acc);background:rgba(255,74,0,.08)}
+.svc-opt.sel .r{border-color:var(--acc);background:var(--acc)}
+.svc-opt.sel .r svg{opacity:1;transform:none;stroke:#160600}
+.svc-opt.sel .ic{background:rgba(255,74,0,.16)}
+.svc-opt.sel .ic svg{stroke:var(--acc)}
+/* type segmented */
+.seg{display:inline-flex;background:var(--ink3);border:1px solid var(--lineD);border-radius:999px;padding:4px;gap:4px;flex-wrap:wrap}
+.seg button{padding:10px 20px;border-radius:999px;font-weight:700;font-size:.87rem;color:var(--mutD);transition:all .3s var(--ease)}
+.seg button.sel{background:var(--acc);color:#160600}
+.frow{display:grid;gap:8px;margin-bottom:16px}
+.frow label{font-family:var(--font-m);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mutD);display:flex;justify-content:space-between;align-items:center}
+.frow label small{color:var(--mutD);opacity:.7;font-weight:400}
+.inp{width:100%;background:var(--ink3);border:1.5px solid var(--lineD);border-radius:12px;padding:14px 16px;font-size:.95rem;color:#fff;transition:border-color .25s,box-shadow .25s;outline:none}
+.inp::placeholder{color:rgba(255,255,255,.28)}
+.inp:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(255,74,0,.15)}
+.inp.err{border-color:var(--red)}
+.fmsg{font-family:var(--font-m);font-size:.66rem;color:var(--red);letter-spacing:.04em;min-height:0;margin-top:6px;display:none}
+.fmsg.on{display:block;animation:paneIn .3s}
+.bs-note{font-size:.8rem;color:var(--mutD);margin-top:6px}
+/* days */
+.days{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(88px,1fr);gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.days::-webkit-scrollbar{display:none}
+.dcell{border:1.5px solid var(--lineD);background:var(--ink3);border-radius:14px;padding:13px 6px;text-align:center;transition:all .25s;display:grid;gap:3px;justify-items:center}
+.dcell small{font-family:var(--font-m);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mutD)}
+.dcell b{font-family:var(--font-d);font-stretch:115%;font-weight:750;font-size:1.4rem;line-height:1}
+.dcell i{font-style:normal;font-family:var(--font-m);font-size:.58rem;letter-spacing:.08em;color:var(--mutD);text-transform:uppercase}
+.dcell i.free{color:var(--green)}
+.dcell:hover{border-color:rgba(255,255,255,.3)}
+.dcell.sel{border-color:var(--acc);background:rgba(255,74,0,.1)}
+.dcell.sel small,.dcell.sel b{color:#fff}
+.dcell.sel i.free{color:var(--green)}
+.dcell.closed{opacity:.4;pointer-events:none}
+.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px;margin-top:18px}
+.tchip{padding:11px 4px;border-radius:11px;border:1.5px solid var(--lineD);background:var(--ink3);font-family:var(--font-m);font-size:.8rem;letter-spacing:.05em;color:#fff;transition:all .22s;text-align:center}
+.tchip:hover:not(.off):not(.sel){border-color:rgba(255,255,255,.35);transform:translateY(-1px)}
+.tchip.off{opacity:.32;text-decoration:line-through;pointer-events:none}
+.tchip.sel{border-color:var(--acc);background:var(--acc);color:#160600;font-weight:600}
+.legend{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mutD)}
+.legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+/* contact pane */
+.pane-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.pane-grid .full{grid-column:1/-1}
+.sum{background:var(--ink3);border:1px solid var(--lineD);border-radius:14px;padding:16px 18px;margin:20px 0;display:grid;gap:9px}
+.sum .sr{display:flex;justify-content:space-between;gap:14px;font-size:.88rem;color:var(--mutD)}
+.sum .sr b{color:#fff;font-weight:600;text-align:right}
+.sum .sr .k{font-family:var(--font-m);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mutD)}
+.cons{display:flex;gap:11px;align-items:flex-start;font-size:.8rem;color:var(--mutD);cursor:pointer}
+.cons input{width:18px;height:18px;accent-color:var(--acc);margin-top:2px;flex:none}
+.cons a{color:var(--acc);text-decoration:underline;text-underline-offset:3px}
+.bs-nav{display:flex;align-items:center;gap:12px;margin-top:26px;flex-wrap:wrap}
+.bs-nav .sp{flex:1}
+.bs-hint{font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mutD)}
+/* success */
+.ok{text-align:center;padding:clamp(18px,4vw,40px) 0 6px}
+.ok .chk{width:86px;height:86px;margin:0 auto 26px;border-radius:50%;background:rgba(33,178,111,.12);border:1px solid rgba(33,178,111,.4);display:grid;place-items:center}
+.ok .chk svg{width:38px;height:38px;stroke:var(--green);stroke-dasharray:60;stroke-dashoffset:60;animation:draw .8s .2s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ok .ref{font-family:var(--font-m);letter-spacing:.2em;font-size:.74rem;color:var(--acc);text-transform:uppercase;margin-top:10px}
+.ok .sum{text-align:left}
+.ok .oknote{max-width:46ch;margin:0 auto;color:var(--mutD);font-size:.9rem}
+
+/* ============ PRISER ============ */
+.sec-p2{background:var(--paper2)}
+.p-tabs{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px;box-shadow:var(--shadow)}
+.p-tabs button{padding:10px 22px;border-radius:999px;font-weight:700;font-size:.87rem;color:var(--mut);transition:all .3s var(--ease)}
+.p-tabs button.sel{background:var(--ink);color:#fff}
+.p-table{border-radius:22px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden}
+.p-head,.prow{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) auto auto;gap:14px;align-items:center;padding:17px 26px}
+.p-head{font-family:var(--font-m);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#A9A69C;background:#fff;border-bottom:1px solid var(--line2);padding-block:15px}
+.prow{border-top:1px solid var(--line2);transition:background .3s}
+.prow:hover{background:var(--paper)}
+.prow .pn{display:flex;flex-direction:column;gap:3px}
+.prow h4{font-size:1.05rem;font-weight:750;letter-spacing:-.01em}
+.prow h4 small{font-weight:600;color:var(--mut);font-size:.82rem}
+.prow .in{font-size:.8rem;color:var(--mut);max-width:44ch}
+.prow .td{font-family:var(--font-m);font-size:.68rem;letter-spacing:.1em;color:#A9A69C;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.prow .td svg{width:13px;height:13px;flex:none}
+.prow .pr{text-align:right;font-family:var(--font-d);font-stretch:118%;font-weight:800;font-size:1.42rem;letter-spacing:-.02em;white-space:nowrap}
+.prow .pr small{display:block;font-family:var(--font-m);font-size:.56rem;font-weight:500;letter-spacing:.18em;color:#A9A69C;text-transform:uppercase}
+.prow .pr .v{display:inline-block;animation:priceIn .4s var(--ease)}
+@keyframes priceIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.prow .pb{justify-self:end}
+.p-note{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;font-size:.8rem;color:var(--mut)}
+.p-note svg{width:14px;height:14px;color:var(--green);vertical-align:-2px;margin-right:6px}
+
+/* ============ WHY ============ */
+.why-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,90px)}
+.why-l{position:sticky;top:120px;align-self:start}
+.why-pts{margin-top:clamp(26px,3.4vw,42px)}
+.pt{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:clamp(18px,2.2vw,26px) 0;border-top:1px solid var(--line)}
+.pt .n{font-family:var(--font-m);font-size:.72rem;letter-spacing:.16em;color:var(--acc);padding-top:5px}
+.pt h3{font-family:var(--font-d);font-stretch:115%;font-weight:750;font-size:1.18rem;letter-spacing:-.01em;margin-bottom:6px}
+.pt p{font-size:.9rem;color:var(--mut);max-width:52ch}
+.why-r{display:grid;gap:18px;grid-template-columns:1fr 1fr;align-content:start}
+.why-r .im{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4}
+.why-r .im:first-child{grid-column:1/-1;aspect-ratio:16/10}
+.why-r .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.why-r .im:hover img{transform:scale(1.05)}
+.why-r .im::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,transparent 55%,rgba(8,10,12,.5));opacity:.6}
+.badge-p{position:absolute;z-index:3;right:18px;bottom:18px;background:var(--acc);color:#160600;border-radius:14px;padding:12px 16px;font-family:var(--font-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;line-height:1.5;box-shadow:0 16px 30px -12px rgba(0,0,0,.4)}
+.badge-p b{display:block;font-family:var(--font-d);font-stretch:120%;font-weight:800;font-size:1.5rem;letter-spacing:-.01em;text-transform:none}
+
+/* ============ REVIEWS ============ */
+.rw-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,80px);align-items:center}
+.rw-sum .big{font-family:var(--font-d);font-stretch:122%;font-weight:800;font-size:clamp(4.6rem,9vw,7.5rem);line-height:.9;letter-spacing:-.04em;margin:18px 0 10px}
+.rw-sum .big sup{font-size:.28em;color:var(--mutD);font-weight:500}
+.g-badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-m);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mutD);border:1px solid var(--lineD);padding:8px 14px;border-radius:999px;margin-top:22px}
+.g-badge svg{width:15px;height:15px}
+.rw-slider{position:relative;min-width:0}
+.rw-view{overflow:hidden;border-radius:22px}
+.rw-track{display:flex;transition:transform .65s var(--ease)}
+.rw-slide{flex:0 0 100%;min-width:0}
+.rw-card{background:var(--ink2);border:1px solid var(--lineD);border-radius:22px;padding:clamp(26px,3.4vw,44px);display:flex;flex-direction:column;gap:20px;min-height:340px;box-shadow:0 30px 70px -40px rgba(0,0,0,.6)}
+.rw-card .q{font-family:var(--font-d);font-stretch:110%;font-weight:600;font-size:clamp(1.12rem,1.7vw,1.42rem);line-height:1.45;letter-spacing:-.005em;flex:1}
+.rw-card .q i{font-style:normal;color:var(--acc)}
+.rw-who{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--lineD2)}
+.rw-who .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#262d37,#14181e);border:1px solid var(--lineD);display:grid;place-items:center;font-family:var(--font-m);font-weight:600;font-size:.8rem;color:#fff;flex:none}
+.rw-who b{display:block;font-size:.92rem;line-height:1.3}
+.rw-who span{font-family:var(--font-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mutD)}
+.rw-who .g{width:20px;height:20px;margin-left:auto;opacity:.9}
+.rw-ctl{display:flex;align-items:center;gap:16px;margin-top:22px}
+.rw-count{font-family:var(--font-m);font-size:.7rem;letter-spacing:.2em;color:var(--mutD)}
+.rw-count b{color:var(--acc);font-weight:500}
+.rw-arrow{width:50px;height:50px;border-radius:50%;border:1px solid var(--lineD);display:grid;place-items:center;color:#fff;transition:all .3s var(--ease)}
+.rw-arrow:hover{background:var(--acc);border-color:var(--acc);color:#160600;transform:translateY(-2px)}
+.rw-arrow svg{width:17px;height:17px}
+.rw-dots{display:flex;gap:7px;margin-left:auto}
+.rw-dots i{width:7px;height:7px;border-radius:99px;background:rgba(255,255,255,.2);transition:all .4s var(--ease);cursor:pointer}
+.rw-dots i.on{width:26px;background:var(--acc)}
+.svc-logos{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.svc-logos span{font-family:var(--font-d);font-stretch:115%;font-weight:650;font-size:.92rem;letter-spacing:.04em;color:var(--mutD);opacity:.55;padding:8px 0;white-space:nowrap}
+.svc-logos span+span::before{content:"/";margin-right:10px;color:var(--acc);opacity:.8;font-weight:500}
+
+/* ============ FAQ ============ */
+.faq-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,90px);align-items:start}
+.faq-l{position:sticky;top:120px}
+.faq-l .card-c{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;margin-top:34px;box-shadow:var(--shadow);display:grid;gap:16px}
+.faq-l .card-c h3{font-family:var(--font-d);font-stretch:116%;font-weight:750;font-size:1.2rem}
+.faq-l .card-c p{font-size:.88rem;color:var(--mut)}
+.faq-l .card-c .tel{font-family:var(--font-m);font-size:.95rem;letter-spacing:.02em;font-weight:600;display:flex;align-items:center;gap:10px}
+.faq-l .card-c .tel svg{width:16px;height:16px;color:var(--acc)}
+.faq-list{border-bottom:1px solid var(--line)}
+.fq{border-top:1px solid var(--line)}
+.fq-q{width:100%;display:flex;align-items:center;gap:20px;text-align:left;padding:24px 4px;font-weight:700;font-size:1.04rem;letter-spacing:-.01em;transition:color .25s}
+.fq-q .pm{margin-left:auto;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;flex:none;transition:all .4s var(--ease)}
+.fq-q .pm svg{width:15px;height:15px;transition:transform .4s var(--ease)}
+.fq.open .fq-q{color:var(--acc)}
+.fq.open .pm{background:var(--acc);border-color:var(--acc);transform:rotate(45deg)}
+.fq.open .pm svg{stroke:#160600}
+.fq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.fq.open .fq-a{grid-template-rows:1fr}
+.fq-a>div{overflow:hidden}
+.fq-a p{padding:0 4px 26px;color:var(--mut);font-size:.93rem;max-width:64ch}
+.fq-a p a{color:var(--acc);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* ============ CTA BAND ============ */
+.band{position:relative;color:#fff;overflow:hidden;background:var(--ink)}
+.band-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);transition:transform 6s linear}
+.band:hover .band-bg{transform:scale(1.12)}
+.band-shade{position:absolute;inset:0;background:linear-gradient(100deg,rgba(7,9,11,.93) 20%,rgba(7,9,11,.66) 60%,rgba(7,9,11,.45))}
+.band .wrap{position:relative;padding-block:clamp(84px,9vw,130px)}
+.band h2{max-width:18ch}
+.band p{max-width:52ch;color:rgba(255,255,255,.7);margin-top:20px}
+.band .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.band .chips span{font-size:.8rem;font-weight:600;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:8px 15px;border-radius:999px;backdrop-filter:blur(4px)}
+.band .acts{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+
+/* ============ KONTAKT ============ */
+.ct-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(40px,6vw,90px)}
+.ct-info{display:grid;gap:0;align-self:start}
+.ci{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--line)}
+.ci .ic{width:46px;height:46px;border-radius:13px;background:var(--paper2);border:1px solid var(--line);display:grid;place-items:center;flex:none;color:var(--txt)}
+.ci .ic svg{width:19px;height:19px}
+.ci b{display:block;font-family:var(--font-d);font-stretch:114%;font-weight:750;font-size:1.02rem;letter-spacing:-.01em;margin-bottom:5px}
+.ci p,.ci a.lk{font-size:.9rem;color:var(--mut);display:block}
+.ci a.lk:hover{color:var(--acc)}
+.ci .hours{display:grid;gap:6px;margin-top:8px}
+.ci .hours div{display:flex;justify-content:space-between;gap:20px;font-size:.86rem;color:var(--mut);font-family:var(--font-m);font-size:.74rem;letter-spacing:.02em;text-transform:uppercase}
+.ci .hours div b{font-weight:500;color:var(--txt);font-family:var(--font-b);text-transform:none;font-size:.86rem}
+.ci .hours div.today{color:var(--acc)}
+.ci .hours div.today b{color:var(--acc)}
+.ci .hours .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-left:6px;vertical-align:1px}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(24px,3.6vw,46px);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.form-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--acc),#ff8a4d)}
+.form-card h3{font-family:var(--font-d);font-stretch:116%;font-weight:800;font-size:clamp(1.4rem,2vw,1.8rem);letter-spacing:-.02em;margin-bottom:6px}
+.form-card .fs{font-size:.88rem;color:var(--mut);margin-bottom:28px}
+.fg{display:grid;gap:7px;margin-bottom:18px}
+.fg label{font-family:var(--font-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);display:flex;justify-content:space-between}
+.fg label em{color:var(--acc);font-style:normal}
+.fg .inp-l{width:100%;background:var(--paper);border:1.5px solid transparent;border-radius:13px;padding:14px 17px;font-size:.94rem;transition:all .25s;outline:none;color:var(--txt)}
+.fg .inp-l::placeholder{color:#A9A69C}
+.fg .inp-l:focus{background:#fff;border-color:var(--ink);box-shadow:0 0 0 4px rgba(10,12,14,.06)}
+.fg .inp-l.err{border-color:var(--red);background:#fff}
+.fg select.inp-l{appearance:none;background-image:url("images/icon-02.svg");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer}
+.fg textarea.inp-l{resize:vertical;min-height:110px}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.form-ok{display:none;text-align:center;padding:30px 6px}
+.form-ok.on{display:block;animation:paneIn .5s var(--ease)}
+.form-ok .chk{width:74px;height:74px;margin:0 auto 20px;border-radius:50%;background:rgba(33,178,112,.12);display:grid;place-items:center}
+.form-ok .chk svg{width:32px;height:32px;stroke:var(--green);stroke-dasharray:60;stroke-dashoffset:60;animation:draw .8s .15s var(--ease) forwards}
+.form-ok h4{font-family:var(--font-d);font-stretch:117%;font-weight:800;font-size:1.5rem;letter-spacing:-.02em;margin-bottom:8px}
+.form-ok p{color:var(--mut);font-size:.9rem;max-width:42ch;margin:0 auto 22px}
+
+/* ============ FOOTER ============ */
+.ftr{background:#07090B;color:#fff;position:relative;overflow:hidden}
+.ftr-top{border-bottom:1px solid var(--lineD2)}
+.ftr-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:clamp(28px,4vw,60px);padding-block:clamp(50px,6vw,80px)}
+.ftr-grid h5{font-family:var(--font-m);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mutD);margin-bottom:20px;font-weight:500}
+.ftr-grid ul{list-style:none;display:grid;gap:11px}
+.ftr-grid ul a{font-size:.92rem;color:rgba(255,255,255,.72);transition:color .25s,padding-left .3s var(--ease)}
+.ftr-grid ul a:hover{color:var(--acc);padding-left:4px}
+.ftr-grid p{font-size:.9rem;color:var(--mutD);max-width:30ch}
+.ftr-grid .mk{border-color:var(--lineD)}
+.ftr-brand b{font-family:var(--font-d);font-stretch:117%;font-weight:800;font-size:1.35rem;letter-spacing:-.01em;display:block;margin-top:18px}
+.ftr-brand p{color:var(--mutD);font-size:.88rem;margin-top:10px}
+.giant{display:block;font-family:var(--font-d);font-stretch:125%;font-weight:900;font-size:clamp(3.4rem,12.4vw,15rem);line-height:.78;letter-spacing:-.02em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.12);text-transform:uppercase;user-select:none;padding-top:clamp(30px,4vw,50px);transform:translateX(-1.5%)}
+.ftr-bot{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between;padding-block:26px;font-family:var(--font-m);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mutD)}
+.ftr-bot .f1{display:flex;gap:24px;flex-wrap:wrap}
+.ftr-bot a:hover{color:var(--acc)}
+.to-top{position:fixed;right:22px;bottom:22px;z-index:45;width:50px;height:50px;border-radius:50%;background:var(--ink);color:#fff;border:1px solid var(--lineD);display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateY(14px);transition:all .4s var(--ease);box-shadow:0 14px 30px -12px rgba(0,0,0,.5)}
+.to-top.on{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--acc);color:#160600}
+.to-top svg{width:17px;height:17px;transform:rotate(-90deg)}
+
+/* ============ MOBILE BAR ============ */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:46;display:none;padding:10px 14px calc(10px + env(safe-area-inset-bottom));gap:10px;transform:translateY(110%);transition:transform .5s var(--ease)}
+.mbar.on{transform:none}
+.mbar .mb-phone{width:54px;border-radius:999px;background:#fff;color:var(--ink);display:grid;place-items:center;flex:none;box-shadow:var(--shadow-lg)}
+.mbar .mb-phone svg{width:19px;height:19px}
+.mbar .btn{flex:1}
+@media (max-width:840px){
+  .mbar{display:flex}
+  body{padding-bottom:0}
+  .ftr{padding-bottom:0}
+  .ftr-bot{padding-bottom:calc(26px + env(safe-area-inset-bottom))}
+}
+.mbar-bg{position:fixed;inset:auto 0 0 0;z-index:44;height:0;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(10,12,14,.28));opacity:0;transition:opacity .4s}
+body.mbar-on .mbar-bg{height:110px;opacity:1}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1180px){
+  .rw-grid{grid-template-columns:1fr;gap:40px}
+  .rw-sum .big{font-size:clamp(3.6rem,10vw,5rem)}
+}
+@media (max-width:1024px){
+  .nav-d,.hdr-tel{display:none}
+  .burger{display:flex}
+  .why-grid,.faq-grid,.ct-grid,.bs-grid{grid-template-columns:1fr}
+  .why-l,.faq-l{position:static}
+  .bs-l{position:static}
+  .stats .wrap{grid-template-columns:repeat(2,1fr)}
+  .st:nth-child(3)::before{display:none}
+  .st{border-top:1px solid var(--line2)}
+  .st:nth-child(1),.st:nth-child(2){border-top:0}
+  .ftr-grid{grid-template-columns:1fr 1fr}
+  .hero-ticket{grid-template-columns:1fr;gap:14px}
+  .tk{padding-right:0}
+}
+@media (max-width:760px){
+  .p-head{display:none}
+  .prow{grid-template-columns:minmax(0,1fr) auto;padding:19px 20px;row-gap:8px}
+  .prow .td{grid-column:1}
+  .prow .pb{display:none}
+  .prow .pr{grid-column:2;grid-row:1/4;align-self:center}
+  .why-r{grid-template-columns:1fr}
+  .why-r .im,.why-r .im:first-child{aspect-ratio:16/11;grid-column:auto}
+  .svc-grid{grid-template-columns:1fr}
+  .pane-grid{grid-template-columns:1fr}
+  .fg2{grid-template-columns:1fr;gap:0}
+  .srow{grid-template-columns:44px minmax(0,1fr);padding:20px 4px;row-gap:6px}
+  .srow .no{font-size:.66rem}
+  .srow h3{grid-column:2}
+  .srow p{grid-column:2;font-size:.85rem;margin-top:4px}
+  .srow .meta{grid-column:2;grid-row:auto;flex-direction:row;align-items:baseline;gap:10px;justify-content:flex-start;margin-top:2px}
+  .srow .meta b{font-size:1.05rem}
+  .srow .go{display:none}
+  .bs-top{flex-direction:column;align-items:flex-start}
+  .bs-prog .lbl{display:none}
+  .hero h1{font-size:clamp(2.6rem,11.5vw,3.6rem)}
+  .bs-l ul{margin-top:20px}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<!-- ===== SVG SPRITE ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-wrench" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></g></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g></symbol>
+<symbol id="i-scan" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="m7 10 1.6 2.4L11 11l1.4 3 2.1-4 1.5 2H18"/></g></symbol>
+<symbol id="i-brake" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.4" stroke-dasharray="1.6 2.2"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/></g></symbol>
+<symbol id="i-tire" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21" stroke-width="1.3"/></g></symbol>
+<symbol id="i-store" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></g></symbol>
+<symbol id="i-wind" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></g></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></g></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g></symbol>
+<symbol id="i-car" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></g></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></g></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 10c0 4.99-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 14.99 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></g></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></g></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></g></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></g></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5 12h14M12 5v14"/></g></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></g></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></g></symbol>
+<symbol id="i-arr" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></g></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></g></symbol>
+<symbol id="i-left" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></g></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></g></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></symbol>
+<symbol id="i-brief" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></g></symbol>
+<symbol id="i-g" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.27c0-.85-.08-1.66-.22-2.45H12v4.64h6.46a5.53 5.53 0 0 1-2.4 3.63v3h3.88c2.27-2.1 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.94-2.91l-3.88-3c-1.08.72-2.45 1.15-4.06 1.15-3.13 0-5.78-2.11-6.73-4.96H1.26v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.27 14.28a7.2 7.2 0 0 1 0-4.56v-3.1H1.26a12 12 0 0 0 0 10.76z"/><path fill="#EA4335" d="M12 4.76c1.76 0 3.35.6 4.6 1.8l3.43-3.43A11.97 11.97 0 0 0 1.26 6.62l4 3.1C6.22 6.87 8.87 4.76 12 4.76z"/></symbol>
+</defs></svg>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <nav>
+    <a class="ml" style="transition-delay:.05s" href="#tjenester"><i>01</i>Tjenester</a>
+    <a class="ml" style="transition-delay:.1s" href="#priser"><i>02</i>Priser</a>
+    <a class="ml" style="transition-delay:.15s" href="#bestilling"><i>03</i>Bestill time</a>
+    <a class="ml" style="transition-delay:.2s" href="#hvorfor"><i>04</i>Hvorfor oss</a>
+    <a class="ml" style="transition-delay:.25s" href="#omtaler"><i>05</i>Omtaler</a>
+    <a class="ml" style="transition-delay:.3s" href="#kontakt"><i>06</i>Kontakt</a>
+  </nav>
+  <div class="mnav-foot">
+    <div style="display:grid;gap:14px">
+      <a class="btn btn-a" href="#bestilling">Bestill time
+        <svg><use href="#i-arr"/></svg></a>
+      <a class="mono" style="color:var(--acc);letter-spacing:.1em;text-transform:none" href="tel:+4722381100">+47 22 38 11 00</a>
+    </div>
+    <div class="mono" style="display:grid;gap:5px;text-align:right">
+      <span>Økernveien 145, Oslo</span>
+      <span>Man–fre 07.30–17.00</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Andersen Auto – til toppen">
+      <span class="mk"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18 11 5h2l5 13h-2.7l-1.1-3H9.8l-1.1 3H6zm4.4-5h3.2L12 8.6 10.4 13z" fill="#FF4A00"/></svg></span>
+      <span><b>Andersen Auto</b><small>Oslo · Est. 1984</small></span>
+    </a>
+    <ul class="nav-d">
+      <li><a href="#tjenester">Tjenester</a></li>
+      <li><a href="#priser">Priser</a></li>
+      <li><a href="#hvorfor">Hvorfor oss</a></li>
+      <li><a href="#omtaler">Omtaler</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="hdr-act">
+      <a class="hdr-tel" href="tel:+4722381100"><svg><use href="#i-phone"/></svg>22 38 11 00</a>
+      <a class="btn btn-a btn-sm" href="#bestilling">Bestill time<svg><use href="#i-arr"/></svg></a>
+      <button class="burger" id="burger" aria-label="Meny"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-bg" style="background-image:url('images/photo-07.jpg')"></div>
+  <div class="hero-shade"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="ey he" style="animation-delay:.15s;color:#fff;--d:0s">Bilverksted i Oslo · siden 1984</span>
+        <h1 class="h-d he" style="animation-delay:.28s">Trygghet du kan <em class="acc">kjøre på.</em></h1>
+      </div>
+      <div class="hero-sub">
+        <div class="he" style="animation-delay:.45s">
+          <p>Andersen Auto kombinerer 40 års verkstederfaring med moderne diagnoseutstyr — og et løfte om ærlige tilbakemeldinger. Service, EU-kontroll, dekk og reparasjoner for privatpersoner og bedrifter i Oslo.</p>
+          <div class="hero-cta">
+            <a class="btn btn-a" href="#bestilling">Bestill time<svg><use href="#i-arr"/></svg></a>
+            <a class="btn btn-g" href="#tjenester">Se tjenester</a>
+          </div>
+          <div class="hero-trust">
+            <span class="avatars"><i style="background:#3b3f47">ML</i><i style="background:#51565f">KB</i><i style="background:#6a6f78">IS</i><i style="background:#2c313a">JH</i></span>
+            <span><span class="stars">★★★★★</span><br>4,9 av 5 · 1 284 Google-anmeldelser</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-ticket he" style="animation-delay:.6s">
+        <div class="tk"><svg><use href="#i-clock"/></svg><span><b><i class="pulse" style="margin-right:8px"></i><span id="hs-state">Åpent nå</span></b>Man–fre 07.30–17.00</span></div>
+        <div class="tk"><svg><use href="#i-cal"/></svg><span>Neste ledige time<b id="hs-next">ons. kl. 08.10</b></span></div>
+        <div class="tk"><svg><use href="#i-pin"/></svg><span>Økernveien 145, Oslo<b>Verksted &amp; dekkhotell</b></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="mq" aria-hidden="true">
+  <div class="mq-track">
+    <span>EU-kontroll</span><span>Service</span><span>Bremser</span><span>Dekkskift</span><span>Dekkhotell</span><span>AC-service</span><span>Feilsøking</span><span>Elbil</span><span>Reparasjon</span><span>Bedriftsavtaler</span><span>EU-kontroll</span><span>Service</span><span>Bremser</span><span>Dekkskift</span><span>Dekkhotell</span><span>AC-service</span><span>Feilsøking</span><span>Elbil</span><span>Reparasjon</span><span>Bedriftsavtaler</span>
+  </div>
+</div>
+
+<!-- ===== STATS ===== -->
+<div class="stats">
+  <div class="wrap">
+    <div class="st" data-rv><b><span data-c="40" data-suf="+">0</span></b><span>År med håndverk</span></div>
+    <div class="st" data-rv style="--d:.08s"><b><span data-c="12400" data-format="1" data-suf="+">0</span></b><span>Utførte oppdrag</span></div>
+    <div class="st" data-rv style="--d:.16s"><b><span data-c="4.9" data-dec="1">0</span><sup>/5</sup></b><span>Snittvurdering på Google</span></div>
+    <div class="st" data-rv style="--d:.24s"><b><span data-c="14" data-suf="">0</span></b><span>Fagfolk på laget</span></div>
+  </div>
+</div>
+
+<!-- ===== TJENESTER ===== -->
+<section class="sec" id="tjenester">
+  <div class="wrap">
+    <div class="svc-head" data-rv>
+      <div>
+        <span class="ey">Tjenester</span>
+        <h2 class="h-d h-lg" style="margin-top:18px">Alt bilen din trenger.<br><em class="acc" style="font-weight:800">Ett verksted.</em></h2>
+      </div>
+      <p class="lead mut" style="max-width:44ch">Faste priser, originale kvalitetsdeler og digital dokumentasjon på alt vi gjør. Velg tjeneste — så booker du tid når det passer deg.</p>
+    </div>
+
+    <div class="svc-list" id="svcList" data-rv style="--d:.1s">
+      <div class="srow" data-img="images/photo-06.jpg" data-svc="eu" tabindex="0">
+        <span class="no">01</span>
+        <div><h3>EU-kontroll</h3><p>Komplett kontroll etter Statens vegvesens krav, utført av godkjent kontrollør. Svikt? Gratis etterkontroll og ærlig forklaring på hva som må gjøres.</p></div>
+        <div class="meta"><b>fra kr 949</b><i>20 minutter</i></div>
+        <span class="go">Bestill<svg><use href="#i-up"/></svg></span>
+      </div>
+      <div class="srow" data-img="images/photo-11.jpg" data-svc="service" tabindex="0">
+        <span class="no">02</span>
+        <div><h3>Service &amp; oljeskift</h3><p>Olje- og filterskift med 35-punkts sikkerhetskontroll av bremser, dekk og lys. Digital servicehistorikk — og påminnelse når neste service nærmer seg.</p></div>
+        <div class="meta"><b>fra kr 1 490</b><i>ca. 1,5 time</i></div>
+        <span class="go">Bestill<svg><use href="#i-up"/></svg></span>
+      </div>
+      <div class="srow" data-img="images/photo-04.jpg" data-svc="diagnose" tabindex="0">
+        <span class="no">03</span>
+        <div><h3>Feilsøking &amp; diagnose</h3><p>Fabrikkuavhengig diagnoseutstyr for alle merker — også elbil. Du får bilde, forklaring og fast pris før vi setter i gang. Diagnosen trekkes fra ved reparasjon.</p></div>
+        <div class="meta"><b>fra kr 990</b><i>60 minutter</i></div>
+        <span class="go">Bestill<svg><use href="#i-up"/></svg></span>
+      </div>
+      <div class="srow" data-img="images/photo-08.jpg" data-svc="bremser" tabindex="0">
+        <span class="no">04</span>
+        <div><h3>Bremser &amp; hjulstilling</h3><p>Skiver, klosser og bremsevæske — målt og dokumentert før og etter jobben. Vi anbefaler aldri utskifting uten at målingene viser behovet.</p></div>
+        <div class="meta"><b>fra kr 2 490</b><i>pr. aksel</i></div>
+        <span class="go">Bestill<svg><use href="#i-up"/></svg></span>
+      </div>
+      <div class="srow" data-img="images/photo-13.jpg" data-svc="dekk" tabindex="0">
+        <span class="no">05</span>
+        <div><h3>Dekkskift</h3><p>Piggfritt, piggdekk eller helårs — byttet, balansert og tiltrukket med riktig moment. Bestill kveld eller helg, og bilen er klar når du våkner.</p></div>
+        <div class="meta"><b>fra kr 690</b><i>30 minutter</i></div>
+        <span class="go">Bestill<svg><use href="#i-up"/></svg></span>
+      </div>
+      <div class="srow" data-img="images/photo-01.jpg" data-svc="hotell" tabindex="0">
+        <span class="no">06</span>
+        <div><h3>Dekkhotell</h3><p>Vi lagrer, vasker og markerer dekkene dine — og bytter dem når sesongen krever det. Trykk og mønsterdybde kontrolleres hver eneste sesong.</p></div>
+        <div class="meta"><b>fra kr 1 190</b><i>per sesong</i></div>
+        <span class="go">Bestill<svg><use href="#i-up"/></svg></span>
+      </div>
+      <div class="srow" data-img="images/photo-05.jpg" data-svc="ac" tabindex="0">
+        <span class="no">07</span>
+        <div><h3>AC-service</h3><p>Påfyll av klimaanlegg, tetthetstest og desinfisering av kanaler. Inkludert i prisen: sjekk av kupefilteret og garanti på kald luft gjennom sesongen.</p></div>
+        <div class="meta"><b>kr 1 290</b><i>45 minutter</i></div>
+        <span class="go">Bestill<svg><use href="#i-up"/></svg></span>
+      </div>
+      <div class="srow" data-img="images/photo-12.jpg" data-svc="rep" tabindex="0">
+        <span class="no">08</span>
+        <div><h3>Reparasjon &amp; vedlikehold</h3><p>Fra eksos og fjæring til elektroniske systemer. Vi reparerer der det er fornuftig, bytter der det må — og spør alltid før vi gjør mer enn avtalt.</p></div>
+        <div class="meta"><b>kr 1 150</b><i>per time</i></div>
+        <span class="go">Bestill<svg><use href="#i-up"/></svg></span>
+      </div>
+    </div>
+    <div class="svc-prev" id="svcPrev" aria-hidden="true"><img src="" alt=""></div>
+
+    <div class="svc-all" data-rv style="--d:.18s">
+      <span class="lbl">Vi jobber på de fleste merker — blant annet</span>
+      <span class="tag">VW</span><span class="tag">Audi</span><span class="tag">Škoda</span><span class="tag">Toyota</span><span class="tag">Tesla</span><span class="tag">Volvo</span><span class="tag">BMW</span><span class="tag">Mercedes-Benz</span><span class="tag">Nissan</span><span class="tag">Hyundai</span><span class="tag">Kia</span><span class="tag">Ford</span><span class="tag">Polestar</span><span class="tag">MG</span><span class="tag">+ flere</span>
+    </div>
+  </div>
+</section>
+<!-- ===== BESTILLING ===== -->
+<section class="sec sec-ink" id="bestilling">
+  <div class="ink-deco"><div class="gridbg"></div><div class="glow"></div><div class="glow2"></div></div>
+  <div class="wrap bs-wrap">
+    <div class="bs-grid">
+      <div class="bs-l">
+        <div data-rv><span class="ey">Bestill time</span>
+          <h2 class="h-d h-lg" style="margin-top:20px">60 sekunder.<br><em class="acc">Det er alt.</em></h2>
+          <p class="lead mut" style="margin-top:22px">Ingen app, ingen telefonkø. Velg tjeneste, bil og tidspunkt — så ordner vi resten.</p>
+        </div>
+        <ul data-rv style="--d:.12s">
+          <li><span class="n">01</span><span><b>Fast pris før vi starter</b>Du godkjenner alltid pristilbudet før jobben settes i gang. Alltid.</span></li>
+          <li><span class="n">02</span><span><b>SMS-bekreftelse &amp; påminnelse</b>Bekreftelse med en gang, påminnelse 24 timer før — med link til endring.</span></li>
+          <li><span class="n">03</span><span><b>Lånebil eller henting</b>Reserver lånebil i kommentarfeltet, eller la oss hente bilen på jobb — innenfor Oslo.</span></li>
+        </ul>
+        <div data-rv style="--d:.2s;display:flex;gap:10px;flex-wrap:wrap;margin-top:30px">
+          <span class="tag">1 200+ bookinger i år</span>
+          <span class="tag">Svar innen 1 time i åpningstiden</span>
+        </div>
+      </div>
+
+      <div class="bs-card" id="bsCard" data-rv style="--d:.1s">
+        <div class="bs-top">
+          <div class="bs-prog" id="bsProg">
+            <button class="bs-stp on" data-st="0" type="button"><i>1</i><span class="lbl">Tjeneste</span></button><span class="ln" style="width:22px;height:1px;background:var(--lineD);display:block"></span>
+            <button class="bs-stp" data-st="1" type="button"><i>2</i><span class="lbl">Bil</span></button><span class="ln" style="width:22px;height:1px;background:var(--lineD);display:block"></span>
+            <button class="bs-stp" data-st="2" type="button"><i>3</i><span class="lbl">Tid</span></button><span class="ln" style="width:22px;height:1px;background:var(--lineD);display:block"></span>
+            <button class="bs-stp" data-st="3" type="button"><i>4</i><span class="lbl">Kontakt</span></button>
+          </div>
+          <div class="bs-count" id="bsCount">Steg 1 av 4</div>
+        </div>
+
+        <div class="bs-body">
+          <!-- STEG 1 -->
+          <div class="bs-pane on" id="bsP0">
+            <div class="pane-t">Velg tjeneste</div>
+            <div class="svc-grid">
+              <button class="svc-opt" data-svc="eu" type="button"><span class="ic"><svg><use href="#i-shield"/></svg></span><span><b>EU-kontroll</b><i>20 min · kr 949</i></span><span class="r"><svg><use href="#i-check"/></svg></span></button>
+              <button class="svc-opt" data-svc="service" type="button"><span class="ic"><svg><use href="#i-gauge"/></svg></span><span><b>Service &amp; oljeskift</b><i>ca. 1,5 t · fra kr 1 490</i></span><span class="r"><svg><use href="#i-check"/></svg></span></button>
+              <button class="svc-opt" data-svc="diagnose" type="button"><span class="ic"><svg><use href="#i-scan"/></svg></span><span><b>Feilsøking &amp; diagnose</b><i>60 min · fra kr 990</i></span><span class="r"><svg><use href="#i-check"/></svg></span></button>
+              <button class="svc-opt" data-svc="bremser" type="button"><span class="ic"><svg><use href="#i-brake"/></svg></span><span><b>Bremser</b><i>2–3 t · fra kr 2 490</i></span><span class="r"><svg><use href="#i-check"/></svg></span></button>
+              <button class="svc-opt" data-svc="dekk" type="button"><span class="ic"><svg><use href="#i-tire"/></svg></span><span><b>Dekkskift</b><i>30 min · fra kr 690</i></span><span class="r"><svg><use href="#i-check"/></svg></span></button>
+              <button class="svc-opt" data-svc="hotell" type="button"><span class="ic"><svg><use href="#i-store"/></svg></span><span><b>Dekkhotell</b><i>15 min · fra kr 1 190</i></span><span class="r"><svg><use href="#i-check"/></svg></span></button>
+              <button class="svc-opt" data-svc="ac" type="button"><span class="ic"><svg><use href="#i-wind"/></svg></span><span><b>AC-service</b><i>45 min · kr 1 290</i></span><span class="r"><svg><use href="#i-check"/></svg></span></button>
+              <button class="svc-opt" data-svc="rep" type="button"><span class="ic"><svg><use href="#i-bolt"/></svg></span><span><b>Reparasjon</b><i>timepris kr 1 150</i></span><span class="r"><svg><use href="#i-check"/></svg></span></button>
+            </div>
+          </div>
+
+          <!-- STEG 2 -->
+          <div class="bs-pane" id="bsP1">
+            <div class="pane-t">Hvilken bil gjelder det?</div>
+            <div class="seg" id="typeSeg" role="tablist">
+              <button class="sel" data-type="Personbil" type="button">Personbil</button>
+              <button data-type="Varebil" type="button">Varebil</button>
+              <button data-type="Elbil" type="button">Elbil</button>
+            </div>
+            <div class="frow" style="margin-top:22px">
+              <label>Registreringsnummer <small>valgfritt — men gjør timen raskere</small></label>
+              <input class="inp" id="regInp" type="text" placeholder="AB 12345" autocomplete="off" maxlength="8">
+              <span class="fmsg" id="regMsg">Fyll inn gyldig kjennemerke, f.eks. AB 12345 — eller la feltet stå tomt.</span>
+              <p class="bs-note">Booker du for firmaet? Skriv organisasjonsnummer i kommentarfeltet i steg 4, så får dere faktura med 30 dagers betalingsfrist.</p>
+            </div>
+          </div>
+
+          <!-- STEG 3 -->
+          <div class="bs-pane" id="bsP2">
+            <div class="pane-t" id="dayLabel">Velg dag</div>
+            <div class="days" id="dayRow"></div>
+            <div class="pane-t" style="margin-top:22px">Ledige tidspunkt <b id="selDayName"></b></div>
+            <div class="times" id="timeRow"></div>
+            <div class="legend">
+              <span><i style="background:var(--green)"></i>Ledig</span>
+              <span><i style="background:rgba(255,255,255,.18)"></i>Opptatt</span>
+            </div>
+          </div>
+
+          <!-- STEG 4 -->
+          <div class="bs-pane" id="bsP3">
+            <div class="pane-t">Dine opplysninger</div>
+            <div class="pane-grid">
+              <div class="frow">
+                <label>Navn *</label>
+                <input class="inp" id="bkNavn" type="text" placeholder="Ola Nordmann" autocomplete="name">
+                <span class="fmsg" id="bkNavnMsg">Skriv inn navnet ditt.</span>
+              </div>
+              <div class="frow">
+                <label>Mobilnummer *</label>
+                <input class="inp" id="bkTlf" type="tel" placeholder="900 00 000" autocomplete="tel">
+                <span class="fmsg" id="bkTlfMsg">Skriv inn et gyldig norsk mobilnummer.</span>
+              </div>
+              <div class="frow full">
+                <label>E-post <small style="color:var(--mutD)">valgfritt — for kvittering</small></label>
+                <input class="inp" id="bkEpost" type="email" placeholder="ola@eksempel.no" autocomplete="email">
+                <span class="fmsg" id="bkEpostMsg">Dette ser ikke ut som en gyldig e-postadresse.</span>
+              </div>
+              <div class="frow full">
+                <label>Kommentar <small style="color:var(--mutD)">valgfritt</small></label>
+                <textarea class="inp" id="bkKom" rows="3" placeholder="Lånebil ønskes · bilen har ulyd fra høyre foran · må være ferdig før 15.00 …" style="resize:vertical;min-height:86px"></textarea>
+              </div>
+            </div>
+            <div class="sum" id="bkSum"></div>
+            <label class="cons"><input type="checkbox" id="bkCons"><span>Jeg godtar <a href="#kontakt">personvernvilkårene</a> og bekrefter at opplysningene kan brukes til å gjennomføre timen. *</span></label>
+            <span class="fmsg" id="bkConsMsg">Du må godta vilkårene for å bestille.</span>
+          </div>
+
+          <!-- BEKREFTELSE -->
+          <div class="bs-pane" id="bsOk">
+            <div class="ok">
+              <div class="chk"><svg><use href="#i-check"/></svg></div>
+              <h3 class="h-d h-md" style="letter-spacing:-.02em">Timen er booket!</h3>
+              <div class="ref">Referanse: <span id="okRef">AA-0000</span></div>
+              <p class="oknote" style="margin-top:16px">SMS-bekreftelse er sendt til <b id="okTlf" style="color:#fff"></b>. Vi minner deg 24 timer før timen — og du kan endre eller avlyse gratis frem til kl. 12.00 dagen før.</p>
+              <div class="sum" id="okSum" style="max-width:520px;margin:24px auto 0"></div>
+              <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px">
+                <a class="btn btn-g btn-sm" id="dlIcs" href="#">Legg i kalender<svg><use href="#i-cal"/></svg></a>
+                <button class="btn btn-d btn-sm" id="bkAgain" type="button">Book en gang til</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="bs-nav" id="bsNav">
+            <button class="btn btn-g btn-sm" id="bsBack" type="button" style="visibility:hidden"><svg style="transform:rotate(180deg)"><use href="#i-arr"/></svg>Tilbake</button>
+            <span class="bs-hint" id="bsHint">Ingen betaling på forhånd</span>
+            <span class="sp"></span>
+            <button class="btn btn-a" id="bsNext" type="button">Gå videre<svg><use href="#i-arr"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HVORFOR ===== -->
+<section class="sec" id="hvorfor">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-l">
+        <div data-rv><span class="ey">Hvorfor Andersen</span>
+          <h2 class="h-d h-lg" style="margin-top:20px">40 år med rette verktøy<br>og <em class="acc">ærlige svar.</em></h2>
+          <p class="lead mut" style="margin-top:20px">Andersen Auto startet i 1984 som et to-mannsverksted på Økern. I dag er vi 14 fagfolk — men fortsatt familieeid, og fortsatt like opptatt av at bilen din skal være trygg å levere fra seg.</p>
+        </div>
+        <div class="why-pts">
+          <div class="pt" data-rv><span class="n">01</span><div><h3>Fast pris før vi rører bilen</h3><p>Etter diagnose får du et pristilbud med bilder og beskrivelse. Ingen jobb starter før du har godkjent — og sluttprisen er prisen du godtok.</p></div></div>
+          <div class="pt" data-rv style="--d:.08s"><span class="n">02</span><div><h3>Kompetanse på alle merker</h3><p>Sertifisert på både elbil, hybrid og klassiske forbrenningsmotorer. Vi følger fabrikkens serviceprogrammer og oppdaterer verktøyene kontinuerlig.</p></div></div>
+          <div class="pt" data-rv style="--d:.16s"><span class="n">03</span><div><h3>Dokumentert med bilder &amp; video</h3><p>Alt vi finner og alt vi gjør, dokumenteres digitalt. Du får en tydelig rapport — ikke en telefon med vage forklaringer.</p></div></div>
+          <div class="pt" data-rv style="--d:.24s"><span class="n">04</span><div><h3>2 års garanti på arbeid</h3><p>Utført arbeid og monterte deler har 2 års garanti hos oss. Skulle noe svikte, retter vi det — uten diskusjon og uten ekstra kostnad.</p></div></div>
+        </div>
+      </div>
+      <div class="why-r" style="margin-top:clamp(30px,4vw,60px)">
+        <div class="im" data-rv>
+          <img src="images/photo-03.jpg" alt="Moderne verkstedhall hos Andersen Auto med bil på løftebukk" loading="lazy">
+          <div class="badge-p"><b>1984</b>Familieeid verksted — tredje generasjon</div>
+        </div>
+        <div class="im" data-rv style="--d:.1s">
+          <img src="images/photo-09.jpg" alt="Mekaniker utfører motorarbeid" loading="lazy">
+        </div>
+        <div class="im" data-rv style="--d:.18s">
+          <img src="images/photo-02.jpg" alt="Nyere bil inne til service i lys lokaler" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRISER ===== -->
+<section class="sec sec-p2" id="priser">
+  <div class="wrap">
+    <div class="sh" data-rv>
+      <div>
+        <span class="ey" style="color:var(--txt)">Prisliste</span>
+        <h2 class="h-d h-lg" style="margin-top:18px">Ærlige priser.<br>Null overraskelser.</h2>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <p class="lead mut">Veiledende priser for de vanligste jobbene. Endelig pris avtales alltid skriftlig før arbeidet starter — og du betaler først når bilen er klar.</p>
+        <div class="p-tabs" id="pTabs" role="tablist">
+          <button class="sel" data-t="p" type="button">Personbil</button>
+          <button data-t="v" type="button">Varebil</button>
+          <button data-t="e" type="button">Elbil</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-table" data-rv style="--d:.08s">
+      <div class="p-head"><span>Tjeneste</span><span>Inkluderer</span><span>Tid</span><span style="text-align:right">Pris</span></div>
+
+      <div class="prow" data-svc="eu">
+        <div class="pn"><h4>EU-kontroll</h4><span class="in">Kontrollgebyr, digital rapport og gratis etterkontroll ved svikt.</span></div>
+        <span class="td"><svg><use href="#i-clock"/></svg>20 min</span>
+        <div class="pr"><small>inkl. mva</small><span class="prx">kr </span><b class="v" data-p="949" data-v="1090" data-e="949">949</b></div>
+        <span class="pb"><button class="btn btn-d btn-sm gb" type="button">Bestill</button></span>
+      </div>
+
+      <div class="prow" data-svc="service">
+        <div class="pn"><h4>Service &amp; oljeskift</h4><span class="in">Olje, oljefilter, 35-punkts kontroll og digitalt servicehefte.</span></div>
+        <span class="td"><svg><use href="#i-clock"/></svg>1,5 time</span>
+        <div class="pr"><small>inkl. mva</small><span class="prx">fra kr </span><b class="v" data-p="1490" data-v="1990" data-e="1290">1 490</b></div>
+        <span class="pb"><button class="btn btn-d btn-sm gb" type="button">Bestill</button></span>
+      </div>
+
+      <div class="prow" data-svc="bremser">
+        <div class="pn"><h4>Bremser — pr. aksel</h4><span class="in">Nye skiver og klosser, rengjøring av nav og dokumentasjon med målinger.</span></div>
+        <span class="td"><svg><use href="#i-clock"/></svg>2–3 timer</span>
+        <div class="pr"><small>inkl. mva</small><span class="prx">fra kr </span><b class="v" data-p="2490" data-v="3190" data-e="2490">2 490</b></div>
+        <span class="pb"><button class="btn btn-d btn-sm gb" type="button">Bestill</button></span>
+      </div>
+
+      <div class="prow" data-svc="dekk">
+        <div class="pn"><h4>Dekkskift — 4 hjul</h4><span class="in">Bytte, balansering og tiltrekking med momentnøkkel. Inkl. av/på bilen.</span></div>
+        <span class="td"><svg><use href="#i-clock"/></svg>30 min</span>
+        <div class="pr"><small>inkl. mva</small><span class="prx">fra kr </span><b class="v" data-p="690" data-v="890" data-e="690">690</b></div>
+        <span class="pb"><button class="btn btn-d btn-sm gb" type="button">Bestill</button></span>
+      </div>
+
+      <div class="prow" data-svc="hotell">
+        <div class="pn"><h4>Dekkhotell — pr. sesong</h4><span class="in">Lagring, vask, sesongbytte og kontroll av trykk og mønsterdybde.</span></div>
+        <span class="td"><svg><use href="#i-clock"/></svg>Hele sesongen</span>
+        <div class="pr"><small>inkl. mva</small><span class="prx">fra kr </span><b class="v" data-p="1190" data-v="1490" data-e="1190">1 190</b></div>
+        <span class="pb"><button class="btn btn-d btn-sm gb" type="button">Bestill</button></span>
+      </div>
+
+      <div class="prow" data-svc="ac">
+        <div class="pn"><h4>AC-service</h4><span class="in">Påfyll, tetthetstest, desinfisering av kanaler og sjekk av kupefilter.</span></div>
+        <span class="td"><svg><use href="#i-clock"/></svg>45 min</span>
+        <div class="pr"><small>inkl. mva</small><span class="prx">kr </span><b class="v" data-p="1290" data-v="1490" data-e="1290">1 290</b></div>
+        <span class="pb"><button class="btn btn-d btn-sm gb" type="button">Bestill</button></span>
+      </div>
+    </div>
+
+    <div class="p-note" data-rv style="--d:.15s">
+      <span><svg><use href="#i-check"/></svg>Alle priser inkl. mva.</span>
+      <span><svg><use href="#i-check"/></svg>Originale kvalitetsdeler med 2 års garanti</span>
+      <span><svg><use href="#i-check"/></svg>Lånebil fra kr 290 pr. dag</span>
+      <span><svg><use href="#i-check"/></svg>Bedriftsavtaler med faktura &amp; rapporter</span>
+    </div>
+  </div>
+</section>
+<!-- ===== OM TALER ===== -->
+<section class="sec sec-ink" id="omtaler">
+  <div class="ink-deco"><div class="gridbg"></div><div class="glow2" style="left:-200px;right:auto"></div></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="rw-grid">
+      <div class="rw-sum">
+        <div data-rv><span class="ey">Kundeomtaler</span>
+          <div class="big">4,9<sup>/5</sup></div>
+          <div class="stars" style="font-size:1.25rem">★★★★★</div>
+          <p class="mut" style="margin-top:14px;max-width:34ch">Basert på 1 284 Google-anmeldelser de siste 12 månedene. Vi svarer på alle — også de som ikke er fulle stjerner.</p>
+          <span class="g-badge"><svg><use href="#i-g"/></svg>Google-anmeldelser</span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:26px">
+            <span class="tag">Godkjent EU-kontrollør</span>
+            <span class="tag">Mesterbedrift</span>
+            <span class="tag">Medlem av NBF</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rw-slider" data-rv style="--d:.12s">
+        <div class="rw-view">
+          <div class="rw-track" id="rwTrack">
+            <div class="rw-slide"><div class="rw-card">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span class="stars">★★★★★</span><span class="mono" style="color:var(--mutD)">for 2 uker siden</span></div>
+              <p class="q">«Bestilte EU-kontroll klokka 21.30 på nett og fikk time dagen etter. Ryddig digital rapport — og de kunne lett ha anbefalt unødvendige jobber. Det gjorde de ikke. Derfor kommer jeg tilbake.»</p>
+              <div class="rw-who"><span class="av">ML</span><span><b>Marte Løken</b><span>VW Golf · EU-kontroll</span></span><svg class="g"><use href="#i-g"/></svg></div>
+            </div></div>
+            <div class="rw-slide"><div class="rw-card">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span class="stars">★★★★★</span><span class="mono" style="color:var(--mutD)">for 1 måned siden</span></div>
+              <p class="q">«AC-en blåste lunkent hele forrige sommer. Én time på verkstedet — nå er den iskald. Prisen var nøyaktig den jeg fikk i pristilbudet på forhånd, ikke en krone mer.»</p>
+              <div class="rw-who"><span class="av">KB</span><span><b>Kristian Berg</b><span>Audi A6 · AC-service</span></span><svg class="g"><use href="#i-g"/></svg></div>
+            </div></div>
+            <div class="rw-slide"><div class="rw-card">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span class="stars">★★★★★</span><span class="mono" style="color:var(--mutD)">for 2 måneder siden</span></div>
+              <p class="q">«Tredje sesongen med dekkhotell. Leverer bilen etter jobb, og alt er byttet når jeg henter. Aldri kø, aldri mas — og dekkene kommer tilbake vasket og merket.»</p>
+              <div class="rw-who"><span class="av">IS</span><span><b>Ingrid Sørum</b><span>Toyota RAV4 · Dekkhotell</span></span><svg class="g"><use href="#i-g"/></svg></div>
+            </div></div>
+            <div class="rw-slide"><div class="rw-card">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span class="stars">★★★★★</span><span class="mono" style="color:var(--mutD)">for 3 måneder siden</span></div>
+              <p class="q">«Andersen drifter firmabilparken vår. Faste priser på rammeavtale, digitale rapporter og én faktura i måneden. Samarbeidet bare flyter — anbefales for alle med varebiler.»</p>
+              <div class="rw-who"><span class="av">JH</span><span><b>Jonas Halvorsen</b><span>Driftssjef · logistikkbedrift</span></span><svg class="g"><use href="#i-g"/></svg></div>
+            </div></div>
+            <div class="rw-slide"><div class="rw-card">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span class="stars">★★★★★</span><span class="mono" style="color:var(--mutD)">for 4 måneder siden</span></div>
+              <p class="q">«To andre verksteder ga opp feilsøkingen på elbilen vår. Andersen fant feilen på 20 minutter — og fikset den samme dagen. Endelig et verksted som kan elbil.»</p>
+              <div class="rw-who"><span class="av">AC</span><span><b>Amina Chaudry</b><span>Tesla Model Y · Feilsøking</span></span><svg class="g"><use href="#i-g"/></svg></div>
+            </div></div>
+            <div class="rw-slide"><div class="rw-card">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span class="stars">★★★★★</span><span class="mono" style="color:var(--mutD)">for 5 måneder siden</span></div>
+              <p class="q">«Gammel bil med uklare symptomer. Fikk ærlig beskjed om hva som hastet og hva som kunne vente. Slik skal et verksted være — hele familien har fått anbefalingen.»</p>
+              <div class="rw-who"><span class="av">PH</span><span><b>Per Magnus Haga</b><span>Volvo V70 · Reparasjon</span></span><svg class="g"><use href="#i-g"/></svg></div>
+            </div></div>
+          </div>
+        </div>
+        <div class="rw-ctl">
+          <span class="rw-count"><b id="rwCur">01</b> / 06</span>
+          <div style="display:flex;gap:10px">
+            <button class="rw-arrow" id="rwPrev" type="button" aria-label="Forrige omtale"><svg><use href="#i-left"/></svg></button>
+            <button class="rw-arrow" id="rwNext" type="button" aria-label="Neste omtale"><svg><use href="#i-arr"/></svg></button>
+          </div>
+          <div class="rw-dots" id="rwDots"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-l">
+        <div data-rv><span class="ey">Spørsmål &amp; svar</span>
+          <h2 class="h-d h-lg" style="margin-top:20px">Lurer du på<br>noe?</h2>
+          <div class="card-c">
+            <h3>Fant du ikke svaret?</h3>
+            <p>Ring oss — vi svarer gjerne på alt fra dekkdimensjoner til garanti på elbilbatteri.</p>
+            <a class="tel" href="tel:+4722381100"><svg><use href="#i-phone"/></svg>22 38 11 00</a>
+            <a class="btn btn-d btn-sm" href="#kontakt" style="justify-self:start">Send oss en melding<svg><use href="#i-arr"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="faq-list" data-rv style="--d:.1s">
+        <div class="fq">
+          <button class="fq-q" type="button">Hvor mye koster en EU-kontroll hos dere?<span class="pm"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="fq-a"><div><p>Kr 949 for personbil og kr 1 090 for varebil — inkludert kontrollgebyr, digital rapport og gratis etterkontroll. Får bilen «svikt», får du bilder og en prioritert oversikt over hva som må utbedres, med faste priser. <a href="#priser">Se hele prislisten</a>.</p></div></div>
+        </div>
+        <div class="fq">
+          <button class="fq-q" type="button">Må jeg bestille time for EU-kontroll?<span class="pm"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="fq-a"><div><p>Vi anbefaler time — da er du garantert start innen 10 minutter etter avtalt tid. Drop-in fungerer når vi har ledig kapasitet, men i høysesongene (mars–mai og september–november) kan ventetiden bli lang. <a href="#bestilling">Bestill EU-kontroll her</a>.</p></div></div>
+        </div>
+        <div class="fq">
+          <button class="fq-q" type="button">Kan dere fikse elbilen min?<span class="pm"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="fq-a"><div><p>Ja. Våre teknikere har høyspentkompetanse og jobber daglig med Tesla, VW, Polestar, MG, Nissan og flere. Vi utfører service etter fabrikkens program, batterihelsesjekk, bremseservice, hjulstilling og feilsøking på elektriske systemer.</p></div></div>
+        </div>
+        <div class="fq">
+          <button class="fq-q" type="button">Hvordan fungerer dekkhotellet?<span class="pm"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="fq-a"><div><p>Du leverer bilen med dekkene du ikke bruker — vi vasker, merker og lagrer dem i vårt låste lagerlokale med jevn temperatur. Når sesongen skifter, booker du bytte på nett. Da er bilen klar samme dag, med kontrollert trykk og mønsterdybde. Kr 1 190 per sesong inkludert bytte.</p></div></div>
+        </div>
+        <div class="fq">
+          <button class="fq-q" type="button">Får jeg lånebil mens bilen min er på verksted?<span class="pm"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="fq-a"><div><p>Ja — vi har et lite utvalg lånebiler til kr 290 per dag (inkl. ansvarsforsikring). Antallet er begrenset, så reserver gjerne i kommentarfeltet når du bestiller time, så bekrefter vi tilgjengelighet sammen med timen.</p></div></div>
+        </div>
+        <div class="fq">
+          <button class="fq-q" type="button">Hva skjer hvis dere finner mer feil enn avtalt?<span class="pm"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="fq-a"><div><p>Vi stopper alltid opp. Du får telefon eller e-post med bilder, beskrivelse og fast pris på det vi fant — og ingenting blir gjort før du har godkjent. Finner vi ingenting kritisk, sier vi det også. Ærlighet er billigere enn dårlige omtaler.</p></div></div>
+        </div>
+        <div class="fq">
+          <button class="fq-q" type="button">Håndterer dere forsikringsskader?<span class="pm"><svg><use href="#i-plus"/></svg></span></button>
+          <div class="fq-a"><div><p>Ja. Vi utfører skadereparasjoner i samarbeid med de fleste forsikringsselskaper og bistår med dokumentasjon og skadeoppgjør. Kontakt oss med skadenummeret ditt, så tar vi dialogen med selskapet videre.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BÅND ===== -->
+<section class="band">
+  <div class="band-bg" style="background-image:url('images/photo-10.jpg')"></div>
+  <div class="band-shade"></div>
+  <div class="wrap">
+    <div data-rv>
+      <span class="ey">Bedriftskunder</span>
+      <h2 class="h-d h-lg" style="margin-top:20px">Drifter du en bilpark?<br>Vi tar service-<em class="acc">sjauen.</em></h2>
+      <p>En rammeavtale med Andersen Auto gir faste priser, prioriterte timer og én kontaktperson for hele flåten — fra enkeltstående varebiler til 50+ biler.</p>
+      <div class="chips"><span>✓ Faste priser på hele avtalen</span><span>✓ Prioriterte time-luker</span><span>✓ Månedsrapport med status pr. bil</span><span>✓ Faktura med 30 dagers frist</span></div>
+      <div class="acts">
+        <a class="btn btn-a" href="#kontakt">Få pristilbud<svg><use href="#i-up"/></svg></a>
+        <a class="btn btn-g" href="tel:+4722381100">Ring 22 38 11 00</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KONTAKT ===== -->
+<section class="sec" id="kontakt">
+  <div class="wrap">
+    <div class="ct-grid">
+      <div>
+        <div data-rv><span class="ey">Kontakt</span>
+          <h2 class="h-d h-lg" style="margin-top:20px">Snakk med oss —<br>eller skriv.</h2>
+          <p class="lead mut" style="margin-top:20px">Vi svarer i telefonen i åpningstiden, og på e-post og skjema innen én arbeidsdag.</p>
+        </div>
+        <div class="ct-info" data-rv style="--d:.1s">
+          <div class="ci">
+            <span class="ic"><svg><use href="#i-pin"/></svg></span>
+            <div><b>Verkstedet</b>
+              <p>Økernveien 145, 0579 Oslo</p>
+              <a class="lk" href="https://maps.google.com/?q=%C3%98kernveien+145,+0579+Oslo" target="_blank" rel="noopener">Åpne i Google Maps →</a>
+            </div>
+          </div>
+          <div class="ci">
+            <span class="ic"><svg><use href="#i-phone"/></svg></span>
+            <div><b>Ring eller SMS</b>
+              <a class="lk" style="font-weight:700;color:var(--txt);font-size:1.25rem;font-family:var(--font-m);letter-spacing:.02em" href="tel:+4722381100">22 38 11 00</a>
+              <p>Beredskap for bedriftskunder utenom åpningstid</p>
+            </div>
+          </div>
+          <div class="ci">
+            <span class="ic"><svg><use href="#i-mail"/></svg></span>
+            <div><b>E-post</b>
+              <a class="lk" href="mailto:post@andersenauto.no">post@andersenauto.no</a>
+              <p>Svar innen én arbeidsdag</p>
+            </div>
+          </div>
+          <div class="ci">
+            <span class="ic"><svg><use href="#i-clock"/></svg></span>
+            <div><b>Åpningstider</b>
+              <div class="hours">
+                <div data-d="1"><span>Mandag – torsdag</span><b>07.30 – 17.00</b></div>
+                <div data-d="5"><span>Fredag</span><b>07.30 – 16.00</b></div>
+                <div data-d="6"><span>Lørdag <i class="dot"></i></span><b>09.00 – 14.00</b><span style="font-size:.62rem">Dekk &amp; levering</span></div>
+                <div data-d="0"><span>Søndag</span><b>Stengt</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card" data-rv style="--d:.15s">
+        <div id="cformWrap">
+          <h3>Send oss en melding</h3>
+          <p class="fs">Fyll ut skjemaet, så svarer vi innen én time i åpningstiden — vanligvis mye raskere.</p>
+          <form id="cform" novalidate>
+            <div class="fg2">
+              <div class="fg"><label>Navn <em>*</em></label><input class="inp-l" id="cNavn" type="text" placeholder="Ola Nordmann" autocomplete="name"><span class="fmsg" id="cNavnMsg">Skriv inn navnet ditt.</span></div>
+              <div class="fg"><label>E-post <em>*</em></label><input class="inp-l" id="cEpost" type="email" placeholder="ola@eksempel.no" autocomplete="email"><span class="fmsg" id="cEpostMsg">Skriv inn en gyldig e-postadresse.</span></div>
+              <div class="fg"><label>Telefon <em>*</em></label><input class="inp-l" id="cTlf" type="tel" placeholder="900 00 000" autocomplete="tel"><span class="fmsg" id="cTlfMsg">Skriv inn et gyldig telefonnummer.</span></div>
+              <div class="fg"><label>Firma <span style="opacity:.6">valgfritt</span></label><input class="inp-l" id="cFirma" type="text" placeholder="Firmanavn AS" autocomplete="organization"></div>
+            </div>
+            <div class="fg"><label>Gjelder <em>*</em></label>
+              <select class="inp-l" id="cEmne">
+                <option value="">Velg emne …</option>
+                <option>Få pristilbud</option>
+                <option>Bedriftsavtale / bilpark</option>
+                <option>EU-kontroll</option>
+                <option>Service &amp; reparasjon</option>
+                <option>Dekk &amp; dekkhotell</option>
+                <option>Forsikringsskade</option>
+                <option>Annet</option>
+              </select><span class="fmsg" id="cEmneMsg">Velg et emne.</span>
+            </div>
+            <div class="fg"><label>Melding <em>*</em></label><textarea class="inp-l" id="cMsg" rows="4" placeholder="Hei! Jeg lurer på …"></textarea><span class="fmsg" id="cMsgMsg">Skriv gjerne noen ord om hva du lurer på.</span></div>
+            <p style="font-size:.72rem;color:var(--mut);margin:2px 0 18px">Ved å sende godtar du vår <a href="#" style="text-decoration:underline;text-underline-offset:3px;color:var(--ink);font-weight:600" onclick="return false">personvernerklæring</a>. Opplysningene brukes kun til å svare deg.</p>
+            <button class="btn btn-d btn-block" id="cSend" type="submit">Send melding<svg><use href="#i-send"/></svg></button>
+          </form>
+        </div>
+        <div class="form-ok" id="cOk">
+          <div class="chk"><svg><use href="#i-check"/></svg></div>
+          <h4>Meldingen er sendt!</h4>
+          <p>Takk for henvendelsen. Vi svarer innen én time i åpningstiden — du hører fra oss på telefon eller e-post.</p>
+          <button class="btn btn-g btn-sm" id="cAgain" type="button">Send en melding til</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== FOOTER ===== -->
+<footer class="ftr">
+  <div class="ftr-top">
+    <div class="wrap">
+      <div class="ftr-grid">
+        <div class="ftr-brand">
+          <a class="logo" href="#top" style="color:#fff"><span class="mk"><svg viewBox="0 0 24 24"><path d="M6 18 11 5h2l5 13h-2.7l-1.1-3H9.8l-1.1 3H6zm4.4-5h3.2L12 8.6 10.4 13z" fill="#FF4A00"/></svg></span></a>
+          <b>Andersen Auto AS</b>
+          <p>Familieeid bilverksted på Økern i Oslo — siden 1984. Service, EU-kontroll, dekk og reparasjoner for folk som bryr seg om bilen sin.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px">
+            <span class="tag">MVA-reg. 921 449 073</span>
+            <span class="tag">Godkjent kontrollorgan</span>
+          </div>
+        </div>
+        <div>
+          <h5>Tjenester</h5>
+          <ul>
+            <li><a href="#bestilling" class="gb" data-svc="eu">EU-kontroll</a></li>
+            <li><a href="#bestilling" class="gb" data-svc="service">Service &amp; oljeskift</a></li>
+            <li><a href="#bestilling" class="gb" data-svc="diagnose">Feilsøking &amp; diagnose</a></li>
+            <li><a href="#bestilling" class="gb" data-svc="bremser">Bremser</a></li>
+            <li><a href="#bestilling" class="gb" data-svc="dekk">Dekkskift</a></li>
+            <li><a href="#bestilling" class="gb" data-svc="hotell">Dekkhotell</a></li>
+            <li><a href="#bestilling" class="gb" data-svc="ac">AC-service</a></li>
+            <li><a href="#bestilling" class="gb" data-svc="rep">Reparasjon</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Selskap</h5>
+          <ul>
+            <li><a href="#hvorfor">Hvorfor oss</a></li>
+            <li><a href="#priser">Prisliste</a></li>
+            <li><a href="#omtaler">Kundeomtaler</a></li>
+            <li><a href="#faq">Spørsmål &amp; svar</a></li>
+            <li><a href="#kontakt">Kontakt oss</a></li>
+            <li><a href="#bestilling">Bestill time</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Besøk oss</h5>
+          <ul style="gap:8px">
+            <li style="color:var(--mutD);font-size:.9rem">Økernveien 145<br>0579 Oslo</li>
+            <li><a href="tel:+4722381100">22 38 11 00</a></li>
+            <li><a href="mailto:post@andersenauto.no">post@andersenauto.no</a></li>
+          </ul>
+          <div class="mono" style="margin-top:22px;display:grid;gap:6px;color:var(--mutD)">
+            <span>Man–tor 07.30–17.00</span>
+            <span>Fre 07.30–16.00</span>
+            <span>Lør 09.00–14.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <span class="giant" aria-hidden="true">Andersen Auto</span>
+  </div>
+  <div class="wrap">
+    <div class="ftr-bot">
+      <span>© 2026 Andersen Auto AS</span>
+      <span class="f1"><a href="#">Personvern</a><a href="#">Informasjonskapsler</a><a href="#">Tilgjengelighet</a></span>
+      <span>Designet &amp; bygget i Oslo</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mbar-bg"></div>
+<div class="mbar" id="mbar">
+  <a class="mb-phone" href="tel:+4722381100" aria-label="Ring oss"><svg><use href="#i-phone"/></svg></a>
+  <a class="btn btn-a" href="#bestilling">Bestill time<svg><use href="#i-arr"/></svg></a>
+</div>
+<button class="to-top" id="toTop" aria-label="Til toppen"><svg><use href="#i-arr"/></svg></button>
+<noscript><style>[data-rv]{opacity:1!important;transform:none!important}</style></noscript>
+
+<style>
+/* -- finpuss/overstyringer -- */
+@media (min-width:1025px){.bs-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,4vw,60px)}}
+.giant{transform:none;width:max-content;margin-inline:auto;text-align:center;font-size:clamp(2.6rem,10.4vw,11rem);padding-inline:6vw}
+.ci .hours div>span:nth-child(3){display:none}
+.ci .hours div[data-d="6"] b::after{content:" — dekk og levering";font-family:var(--font-b);font-weight:600;font-size:.74rem;letter-spacing:0;text-transform:none;color:var(--mut)}
+@keyframes shk{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.shake{animation:shk .45s var(--ease)}
+.pane-t.warn{color:var(--red)}
+.btn[disabled]{opacity:.55;pointer-events:none}
+.svc-opt.sel .r{color:#160600}
+.svc-opt.sel .ic{color:var(--acc)}
+.fq.open .pm{color:#160600}
+.svc-opt .ic svg,.svc-opt .r svg,.fq .pm svg,.circ svg{stroke:currentColor}
+.btn svg{stroke:currentColor}
+.tk b .pulse{display:inline-block;vertical-align:1px}
+.sec-ink .p-tabs{background:#fff}
+.why-r .im img{filter:saturate(.92) contrast(1.02)}
+body.mno{overflow:hidden}
+.tk>span{display:grid;gap:3px;min-width:0}
+.ci .hours .dot{display:none}
+.ci .hours div.today .dot{display:inline-block}
+#regInp{text-transform:uppercase;font-family:var(--font-m);letter-spacing:.14em}
+.hours .today b{color:var(--acc)!important}
+#selDayName{text-transform:none;letter-spacing:.02em;color:#fff;font-weight:500}
+@media (max-width:560px){.bs-stp .ln{display:none}.bs-stp{font-size:.58rem}}
+@media (max-width:840px){.to-top{bottom:98px}}
+</style>
+
+<script>
+/* ============ HJELPERE ============ */
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const rnd01=(a,b)=>{const s=Math.sin(a*127.1+b*311.7)*43758.5453;return s-Math.floor(s)};
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const nb=(d,o)=>cap(new Intl.DateTimeFormat('nb-NO',o).format(d));
+const pad=n=>String(n).padStart(2,'0');
+const fmtN=n=>n.toLocaleString('nb-NO').replace(/\u00A0/g,' ');
+
+/* ============ HEADER / MOBIL ============ */
+const hdr=$('#hdr'), burger=$('#burger'), toTop=$('#toTop'), mbar=$('#mbar');
+const onScroll=()=>{
+  const y=scrollY;
+  hdr.classList.toggle('on',y>40);
+  toTop.classList.toggle('on',y>900);
+  mbar.classList.toggle('on',y>520);
+  document.body.classList.toggle('mbar-on',y>520 && innerWidth<=840);
+};
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+burger.addEventListener('click',()=>document.body.classList.toggle('mno'));
+$$('.mnav a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('mno')));
+addEventListener('resize',()=>{if(innerWidth>1024)document.body.classList.remove('mno')});
+toTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+/* ============ REVEAL ============ */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+$$('[data-rv]').forEach(el=>io.observe(el));
+
+/* ============ TELLERE ============ */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,b=el.dataset,dec=+(b.dec||0),to=parseFloat(b.c),t0=performance.now(),dur=1500;
+  const step=t=>{const p=Math.min(1,(t-t0)/dur),e2=1-Math.pow(1-p,4);let v=to*e2;
+    let out=b.format?(fmtN(Math.round(v))):(dec?v.toFixed(dec).replace('.',','):Math.round(v));
+    el.textContent=out+(b.suf||'');
+    if(p<1)requestAnimationFrame(step)};
+  requestAnimationFrame(step);
+}),{threshold:.5});
+$$('[data-c]').forEach(el=>cio.observe(el));
+
+/* ============ TJENESTE-ROWS (hover-bilde) ============ */
+const svcList=$('#svcList'),prev=$('#svcPrev'),pvImg=$('img',prev);
+if(svcList&&matchMedia('(pointer:fine)').matches){
+  svcList.addEventListener('mousemove',e=>{
+    if(prev.classList.contains('on'))posPrev(e.clientX,e.clientY);
+  });
+}
+const posPrev=(x,y)=>{let px=x+26,py=y-110;
+  if(px+340>innerWidth-14)px=x-366;
+  if(py+250>innerHeight-14)py=innerHeight-262;
+  if(py<14)py=14;
+  prev.style.transform=`translate(${px}px,${py}px) scale(1) rotate(-1.2deg)`};
+const pickImg=(row,x,y)=>{const u=row.dataset.img;if(!u)return;pvImg.src=u;posPrev(x,y);prev.classList.add('on')};
+const dropImg=()=>prev.classList.remove('on');
+if(svcList){svcList.querySelectorAll('.srow').forEach(r=>{
+  r.addEventListener('mouseenter',e=>pickImg(r,e.clientX,e.clientY));
+  r.addEventListener('mouseleave',dropImg);
+  const go=()=>goBook(r.dataset.svc);
+  r.addEventListener('click',go);
+  r.addEventListener('keydown',e=>{if(e.key==='Enter')go()});
+});}
+
+/* ============ BOOKING ============ */
+const SVC_NAMES={eu:['EU-kontroll','20 min'],service:['Service & oljeskift','ca. 1,5 time'],diagnose:['Feilsøking & diagnose','60 min'],bremser:['Bremser — pr. aksel','2–3 timer'],dekk:['Dekkskift','30 min'],hotell:['Dekkhotell','15 min'],ac:['AC-service','45 min'],rep:['Reparasjon','etter avtale']};
+const WEEK_SLOTS=['07:30','08:10','08:50','09:30','10:10','10:50','11:30','12:10','12:50','13:30','14:10','14:50','15:30','16:10'];
+const SAT_SLOTS=['09:00','09:40','10:20','11:00','11:40','12:20','13:00'];
+let cur=0,maxReach=0;
+const bk={svc:null,type:'Personbil',reg:'',di:-1,ti:-1,navn:'',tlf:'',epost:'',kom:'',cons:false};
+const days=[];
+const buildDays=()=>{
+  days.length=0;
+  const now=new Date();
+  for(let i=0;i<7;i++){const d=new Date(now);d.setDate(d.getDate()+i);days.push(d)}
+};
+const slotsFor=d=>{const wd=d.getDay();return wd===6?SAT_SLOTS:(wd===0?[]:WEEK_SLOTS)};
+const isFree=(di,si)=>{
+  const d=days[di];if(!d)return false;
+  const wd=d.getDay();if(wd===0)return false;
+  const slots=slotsFor(d);if(si>=slots.length)return false;
+  const now=new Date();
+  const isToday=d.toDateString()===now.toDateString();
+  if(isToday){const[h,m]=slots[si].split(':').map(Number);const t=new Date(d);t.setHours(h,m,0,0);if(t.getTime()<now.getTime()+45*60000)return false}
+  if(si<2)return true;
+  return rnd01(di*7+si+1,(wd+1)*3)<.56;
+};
+const freeCount=di=>{let n=0;slotsFor(days[di]).forEach((_,si)=>{if(isFree(di,si))n++});return n};
+const labelDay=d=>{const now=new Date();const diff=Math.round((d-now)/86400000);
+  if(diff===0)return 'I dag';if(diff===1)return 'I morgen';
+  return cap(new Intl.DateTimeFormat('nb-NO',{weekday:'long'}).format(d))};
+const selLabel=d=>labelDay(d)+' '+d.getDate()+'. '+cap(new Intl.DateTimeFormat('nb-NO',{month:'long'}).format(d));
+const dayKey=d=>'D'+d.getDate()+'_'+d.getMonth();
+
+/* pane- og steg-rendering */
+const paneTitles=['Velg tjeneste','Hvilken bil gjelder det?','Velg tidspunkt','Dine opplysninger'];
+const hints=['Ingen betaling på forhånd','Gratis å endre eller avlyse','Endre eller avlyse gratis til dagen før','Ingen betaling på forhånd'];
+function goStep(n){
+  cur=n;maxReach=Math.max(maxReach,n);
+  for(let i=0;i<4;i++)$('#bsP'+i).classList.toggle('on',i===n);
+  $$('#bsProg .bs-stp').forEach((b,i)=>{
+    b.classList.toggle('done',i<cur);b.classList.toggle('on',i===cur);
+    b.style.cursor=(i<cur||i<=maxReach)?'pointer':'default';
+  });
+  $('#bsCount').textContent='Steg '+(cur+1)+' av 4 — '+paneTitles[cur];
+  $('#bsBack').style.visibility=cur>0?'visible':'hidden';
+  const last=cur===3;
+  $('#bsNext').innerHTML=last?'Bestill time':'Gå videre';
+  $('#bsNext').innerHTML+=last?'':'<svg><use href="#i-arr"/></svg>';
+  if(!last)$('#bsNext').querySelector('svg').outerHTML='<svg><use href="#i-arr"/></svg>';
+  $('#bsHint').textContent=hints[cur];
+  if(cur===2)renderPick();
+  if(cur===3)renderSum($('#bkSum'));
+  if(n===0)$('#bsOk').classList.remove('on');
+}
+$$('#bsProg .bs-stp').forEach(b=>b.addEventListener('click',()=>{
+  if($('#bsNav').style.display==='none')return;
+  const n=+b.dataset.st;
+  if(n<cur){goStep(n);return}
+  if(n===cur)return;
+  if(n<=maxReach&&validate(cur))goStep(n);
+}));
+const shake=()=>{const bd=$('.bs-body');bd.classList.remove('shake');void bd.offsetWidth;bd.classList.add('shake')};
+
+/* steg 1: velg tjeneste */
+$$('.svc-opt').forEach(o=>o.addEventListener('click',()=>{
+  $$('.svc-opt').forEach(x=>x.classList.remove('sel'));
+  o.classList.add('sel');bk.svc=o.dataset.svc;bk.di=-1;bk.ti=-1;
+  $('#bsP0 .pane-t').classList.remove('warn');
+}));
+
+/* steg 2: biltype + reg.nr */
+$$('#typeSeg button').forEach(b=>b.addEventListener('click',()=>{
+  $$('#typeSeg button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');bk.type=b.dataset.type;
+}));
+$('#regInp').addEventListener('input',()=>{$('#regMsg').classList.remove('on');$('#regInp').classList.remove('err')});
+
+/* steg 3: dager & tider */
+const renderPick=()=>{
+  buildDays();
+  const row=$('#dayRow');row.innerHTML='';
+  days.forEach((d,i)=>{
+    const wd=d.getDay(),slots=slotsFor(d);
+    const b=document.createElement('button');b.type='button';b.className='dcell'+(i===bk.di?' sel':'');
+    if(wd===0)b.classList.add('closed');
+    b.innerHTML=`<small>${labelDay(d)}</small><b>${d.getDate()}.</b><i class="${freeCount(i)>0?'free':''}">${wd===0?'Stengt':freeCount(i)>0?freeCount(i)+' ledige':'Fullt'}</i>`;
+    b.addEventListener('click',()=>{bk.di=i;bk.ti=-1;renderPick();renderTimes()});
+    row.appendChild(b);
+  });
+  if(bk.di<0||!slotsFor(days[bk.di]).length){bk.di=days.findIndex((d,i)=>d.getDay()!==0&&freeCount(i)>0);bk.di=bk.di<0?days.findIndex(d=>d.getDay()!==0):bk.di;bk.ti=-1}
+  $('#selDayName').textContent='— '+selLabel(days[bk.di]);
+  renderTimes();
+};
+const renderTimes=()=>{
+  const row=$('#timeRow');row.innerHTML='';
+  const slots=slotsFor(days[bk.di]);
+  slots.forEach((t,si)=>{
+    const free=isFree(bk.di,si);
+    const b=document.createElement('button');b.type='button';b.className='tchip'+(bk.ti===si?' sel':'')+(free?'':' off');
+    b.textContent=t;
+    if(free)b.addEventListener('click',()=>{bk.ti=si;renderTimes()});
+    row.appendChild(b);
+  });
+  if(bk.ti<0&&slots.length){const f=slots.findIndex((_,si)=>isFree(bk.di,si));if(f>=0){bk.ti=f;renderTimes()}}
+  $('#selDayName').textContent='— '+selLabel(days[bk.di]);
+};
+/* finn første ledige (for hero + auto) */
+const nextFree=()=>{
+  buildDays();const now=new Date();
+  for(let i=0;i<7;i++){const d=days[i];
+    if(d.toDateString()===now.toDateString())continue;
+    const slots=slotsFor(d);
+    for(let si=0;si<slots.length;si++){if(isFree(i,si))return{d,time:slots[si]}}
+  }
+  return null;
+};
+/* steg 4: kontakt */
+['bkNavn','bkTlf','bkEpost'].forEach(id=>{const el=$('#'+id);el.addEventListener('input',()=>{$('#'+id+'Msg').classList.remove('on');el.classList.remove('err')})});
+$('#bkCons').addEventListener('change',()=>{$('#bkConsMsg').classList.remove('on')});
+const sumHtml=()=>`
+  <div class="sr"><span class="k">Tjeneste</span><b>${SVC_NAMES[bk.svc][0]} · ${SVC_NAMES[bk.svc][1]}</b></div>
+  <div class="sr"><span class="k">Bil</span><b>${bk.type}${bk.reg?' · '+bk.reg.toUpperCase():''}</b></div>
+  <div class="sr"><span class="k">Tidspunkt</span><b>${selLabel(days[bk.di])} kl. ${slotsFor(days[bk.di])[bk.ti]}</b></div>`;
+const renderSum=el=>{el.innerHTML=sumHtml()};
+
+/* validering */
+const setMsg=(id,on,txt)=>{const m=$('#'+id);m.textContent=txt||m.textContent;m.classList.toggle('on',on)};
+function validate(n){
+  if(n===0){if(!bk.svc){shake();$('#bsP0 .pane-t').classList.add('warn');return false}return true}
+  if(n===1){const v=bk.reg.trim();if(v&&!/^[A-ZÆØÅ]{2}\s?\d{5}$/i.test(v)){setMsg('regMsg',true);$('#regInp').classList.add('err');return false}return true}
+  if(n===2){if(bk.di<0||bk.ti<0){shake();return false}return true}
+  if(n===3){
+    let ok=true;
+    const navn=$('#bkNavn').value.trim();
+    if(navn.length<2){setMsg('bkNavnMsg',true);$('#bkNavn').classList.add('err');ok=false}
+    const tlf=$('#bkTlf').value.replace(/\D/g,'');
+    if(tlf.length<8){setMsg('bkTlfMsg',true);$('#bkTlf').classList.add('err');ok=false}
+    const ep=$('#bkEpost').value.trim();
+    if(ep&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ep)){setMsg('bkEpostMsg',true);$('#bkEpost').classList.add('err');ok=false}
+    if(!$('#bkCons').checked){setMsg('bkConsMsg',true);ok=false}
+    return ok;
+  }
+  return true;
+}
+/* submit */
+$('#bsNext').addEventListener('click',()=>{
+  if(cur===3&&validate(3)){
+    bk.navn=$('#bkNavn').value.trim();bk.tlf=$('#bkTlf').value.trim();bk.epost=$('#bkEpost').value.trim();bk.kom=$('#bkKom').value.trim();
+    const btn=$('#bsNext');btn.disabled=true;btn.innerHTML='Booker …';
+    setTimeout(()=>{
+      const ref='AA-'+Array.from({length:4},()=>'ABCDEFGHJKMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*31)]).join('');
+      $('#okRef').textContent=ref;
+      $('#okTlf').textContent=bk.tlf.replace(/.(?=....)/g,'•');
+      $('#okSum').innerHTML=sumHtml()+
+        '<div class="sr"><span class="k">Kommentar</span><b>'+(bk.kom||'—')+'</b></div>';
+      $('#bsOk').classList.add('on');
+      for(let i=0;i<4;i++)$('#bsP'+i).classList.remove('on');
+      $$('#bsProg .bs-stp').forEach(b=>{b.classList.add('done');b.classList.remove('on')});
+      $('#bsNav').style.display='none';
+      btn.disabled=false;btn.innerHTML='Gå videre<svg><use href="#i-arr"/></svg>';
+    },1100);
+    return;
+  }
+  if(validate(cur))goStep(cur+1);
+});
+$('#bsBack').addEventListener('click',()=>{if($('#bsNav').style.display==='none')return;if(cur>0)goStep(cur-1)});
+$('#bkAgain').addEventListener('click',()=>{$('#bsNav').style.display='';goStep(0);bk.svc=null;bk.di=-1;bk.ti=-1;$$('.svc-opt').forEach(x=>x.classList.remove('sel'));['bkNavn','bkTlf','bkEpost','bkKom'].forEach(id=>$('#'+id).value='');$('#bkCons').checked=false});
+/* kalender-fil */
+$('#dlIcs').addEventListener('click',e=>{
+  e.preventDefault();
+  const d=days[bk.di],t=slotsFor(d)[bk.ti]||'08:00';
+  const start=`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${t.replace(':','')}00`;
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Andersen Auto//NO','BEGIN:VEVENT','UID:'+Date.now()+'@andersenauto.no','DTSTART:'+start,'DTEND:'+start.replace(/\d{6}$/,m=>{const h=+m.slice(0,2),mi=+m.slice(2);const nt=h*60+mi+45;return pad(Math.floor(nt/60)%24)+pad(nt%60)+'00'}),'SUMMARY:'+SVC_NAMES[bk.svc][0]+' – Andersen Auto','LOCATION:Økernveien 145, 0579 Oslo','DESCRIPTION:Booket via andersenauto.no','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));
+  a.download='andersen-auto-time.ics';a.click();URL.revokeObjectURL(a.href);
+});
+/* goBook fra tjenester/priser/footer */
+const resetBooking=()=>{cur=0;maxReach=0;bk.svc=null;bk.di=-1;bk.ti=-1;$('#bsNav').style.display='';goStep(0);$$('.svc-opt').forEach(x=>x.classList.remove('sel'))};
+function goBook(id){
+  resetBooking();
+  const opt=$(`.svc-opt[data-svc="${id}"]`);
+  if(opt){opt.classList.add('sel');bk.svc=id}
+  $('#bestilling').scrollIntoView({behavior:'smooth'});
+  if(opt)setTimeout(()=>goStep(1),650);
+}
+$$('.gb').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();const id=b.dataset.svc||(b.closest('.prow')||{}).dataset.svc;if(id)goBook(id)}));
+$$('a[href="#bestilling"]:not(.gb)').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();resetBooking();$('#bestilling').scrollIntoView({behavior:'smooth'})}));
+
+
+/* ============ OM TALER-KARUSSELL ============ */
+(()=>{
+  const track=$('#rwTrack'),dots=$('#rwDots'),slides=track.children.length;
+  for(let i=0;i<slides;i++){const d=document.createElement('i');d.addEventListener('click',()=>go(i));dots.appendChild(d)}
+  let i=0,timer;
+  const go=n=>{i=(n+slides)%slides;track.style.transform=`translateX(-${i*100}%)`;
+    $('#rwCur').textContent=pad(i+1);
+    $$('#rwDots i').forEach((d,k)=>d.classList.toggle('on',k===i))};
+  const play=()=>{clearInterval(timer);timer=setInterval(()=>go(i+1),6500)};
+  $('#rwNext').addEventListener('click',()=>{go(i+1);play()});
+  $('#rwPrev').addEventListener('click',()=>{go(i-1);play()});
+  const v=$('.rw-view');
+  v.addEventListener('mouseenter',()=>clearInterval(timer));
+  v.addEventListener('mouseleave',play);
+  document.addEventListener('visibilitychange',()=>document.hidden?clearInterval(timer):play());
+  let sx=null;
+  v.addEventListener('pointerdown',e=>{sx=e.clientX});
+  v.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>45){go(dx<0?i+1:i-1);play()}});
+  go(0);play();
+})();
+
+/* ============ FAQ ============ */
+$$('.fq').forEach(f=>{const q=$('.fq-q',f);
+  q.addEventListener('click',()=>{
+    const was=f.classList.contains('open');
+    $$('.fq.open').forEach(x=>x.classList.remove('open'));
+    if(!was)f.classList.add('open');
+  });
+});
+
+/* ============ PRIS-TABS ============ */
+(()=>{
+  const tabs=$('#pTabs');
+  if(!tabs)return;
+  $$('button',tabs).forEach(b=>b.addEventListener('click',()=>{
+    $$('button',tabs).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');
+    const k=b.dataset.t;
+    $$('.prow .v').forEach(el=>{
+      el.textContent=fmtN(+el.dataset[k]);
+      el.style.animation='none';void el.offsetWidth;el.style.animation='';
+    });
+  }));
+})();
+
+/* ============ ÅPNINGSTIDER (i dag / åpent nå) ============ */
+(()=>{
+  const now=new Date(),wd=now.getDay(),mins=now.getHours()*60+now.getMinutes();
+  const rule=wd===0?null:wd===6?[540,840]:wd===5?[450,960]:[450,1020];
+  const open=rule&&mins>=rule[0]&&mins<rule[1];
+  const st=$('#hs-state');
+  if(st){
+    const hm=m=>Math.floor(m/60)+'.'+pad(m%60);
+    let txt;
+    if(open)txt='Åpent nå — stenger '+hm(rule[1]);
+    else if(wd===0)txt='Stengt — åpner mandag 07.30';
+    else if(mins<rule[0])txt='Stengt — åpner i dag '+hm(rule[0]);
+    else txt=wd===6?'Stengt — åpner mandag 07.30':'Stengt — åpner i morgen 07.30';
+    st.textContent=txt;
+    if(!open){const p=$('.tk .pulse');if(p)p.style.background='var(--red)'}}
+  /* merk dag i åpningstidene */
+  const rows=$$('.hours div[data-d]');
+  const match=wd>=1&&wd<=4?'1':String(wd);
+  rows.forEach(r=>{if(r.dataset.d===match){r.classList.add('today');const s=$('span',r);if(s)s.innerHTML=s.textContent+' <span style="font-family:var(--font-m);font-size:.6rem;letter-spacing:.1em;color:var(--acc)">— i dag</span>'}});
+  /* neste ledige */
+  const nf=nextFree();
+  const hsn=$('#hs-next');
+  if(hsn&&nf){const d0=new Date();d0.setHours(0,0,0,0);const diff=Math.round((nf.d-d0)/86400000);
+    hsn.textContent=(diff===1?'i morgen':nb(nf.d,{weekday:'long'}))+' kl. '+nf.time}
+})();
+
+/* ============ KONTAKTSKJEMA ============ */
+(()=>{
+  const f=$('#cform');
+  const clear=e=>{e.classList.remove('err');const m=$('#'+e.id+'Msg');if(m)m.classList.remove('on')};
+  ['cNavn','cEpost','cTlf','cEmne','cMsg'].forEach(id=>{const el=$('#'+id);if(el)el.addEventListener('input',()=>clear(el))});
+  f.addEventListener('submit',e=>{
+    e.preventDefault();let ok=true;
+    const chk=(id,test,msg)=>{const el=$('#'+id),m=$('#'+id+'Msg');
+      if(!test()){el.classList.add('err');m.textContent=msg;m.classList.add('on');ok=false}else clear(el)};
+    chk('cNavn',()=>f.cNavn.value.trim().length>=2,'Skriv inn navnet ditt.');
+    chk('cEpost',()=>/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.cEpost.value.trim()),'Skriv inn en gyldig e-postadresse.');
+    chk('cTlf',()=>f.cTlf.value.replace(/\D/g,'').length>=8,'Skriv inn et gyldig telefonnummer.');
+    chk('cEmne',()=>f.cEmne.value!=='','Velg et emne.');
+    chk('cMsg',()=>f.cMsg.value.trim().length>=5,'Skriv gjerne noen ord om hva du lurer på.');
+    if(!ok)return;
+    const btn=$('#cSend');btn.disabled=true;btn.innerHTML='Sender …';
+    setTimeout(()=>{
+      $('#cformWrap').style.display='none';
+      $('#cOk').classList.add('on');
+      btn.disabled=false;btn.innerHTML='Send melding<svg><use href="#i-send"/></svg>';
+    },1200);
+  });
+  $('#cAgain').addEventListener('click',()=>{
+    f.reset();$('#cOk').classList.remove('on');$('#cformWrap').style.display='';
+  });
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

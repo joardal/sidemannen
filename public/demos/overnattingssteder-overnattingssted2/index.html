@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fjellro Lodge — Høyt over dalen, stille i sjelen</title>
+<meta name="description" content="Eksklusiv overnatting i norske fjell. Rom, hytter, badstue og naturopplevelser. Fjellro Lodge i Hemsedal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1612;
+  --paper:#f4efe6;
+  --cream:#ebe4d6;
+  --sand:#d8cfc0;
+  --gold:#b08a5a;
+  --gold-lt:#c9a574;
+  --moss:#3d4a3a;
+  --pine:#2a3328;
+  --dusk:#0e1210;
+  --muted:#6b6358;
+  --white:#faf8f4;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Outfit",system-ui,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+  font-weight:500;color:var(--gold);
+}
+h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500}
+
+/* NAV */
+#nav{
+  position:fixed;inset:0 0 auto 0;z-index:80;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 2.4rem;transition:background .4s var(--ease),padding .4s,color .3s;
+  color:#fff;mix-blend-mode:normal;
+}
+#nav.scrolled{
+  background:rgba(14,18,16,.88);backdrop-filter:blur(16px);
+  padding:.75rem 2.4rem;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.logo{font-family:"Cormorant Garamond",serif;font-size:1.55rem;letter-spacing:.08em;font-weight:500}
+.logo span{display:block;font-family:Outfit,sans-serif;font-size:.58rem;letter-spacing:.32em;opacity:.7;margin-top:-2px}
+.nav-links{display:flex;gap:2rem;align-items:center;font-size:.82rem;letter-spacing:.08em}
+.nav-links a{opacity:.85;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  background:var(--gold);color:#1a1612;border:none;cursor:pointer;
+  padding:.85rem 1.5rem;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:500;transition:transform .35s var(--ease),background .25s,color .25s;
+}
+.btn:hover{background:var(--gold-lt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+.btn-ghost:hover{background:#fff;color:var(--ink)}
+.btn-dark{background:var(--ink);color:var(--paper)}
+.btn-outline{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+.btn-outline:hover{background:var(--ink);color:var(--paper)}
+.menu-btn{display:none;background:none;border:none;color:inherit;cursor:pointer;width:40px;height:40px}
+.menu-btn span{display:block;height:1px;background:currentColor;margin:7px 0;transition:.3s}
+
+/* HERO */
+.hero{
+  position:relative;height:100svh;min-height:640px;overflow:hidden;color:#fff;
+}
+.hero-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scale(1.08);animation:ken 28s ease-in-out infinite alternate;
+}
+@keyframes ken{to{transform:scale(1)}}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,12,10,.35) 0%,rgba(10,12,10,.15) 40%,rgba(10,12,10,.72) 100%);
+}
+.hero-content{
+  position:relative;z-index:2;height:100%;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 7vw 11vh;
+  max-width:1400px;
+}
+.hero h1{
+  font-size:clamp(3.2rem,8vw,7.2rem);line-height:.92;letter-spacing:-.02em;
+  font-weight:400;max-width:14ch;margin:.4rem 0 1.2rem;
+}
+.hero p.lead{max-width:38ch;font-size:1.05rem;font-weight:300;opacity:.9;margin-bottom:2rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.scroll-hint{
+  position:absolute;right:7vw;bottom:8vh;z-index:2;
+  writing-mode:vertical-rl;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;opacity:.7;
+}
+.hero-meta{
+  position:absolute;left:7vw;bottom:4vh;z-index:2;
+  display:flex;gap:2.5rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75;
+}
+
+/* BOOKING BAR */
+.book-bar{
+  position:relative;z-index:10;margin:-3.2rem auto 0;width:min(1100px,92vw);
+  background:var(--white);box-shadow:0 30px 80px rgba(26,22,18,.18);
+  display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:0;
+}
+.book-field{padding:1.15rem 1.3rem;border-right:1px solid var(--sand)}
+.book-field label{display:block;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.book-field input,.book-field select{
+  width:100%;border:none;background:transparent;font-size:1rem;color:var(--ink);outline:none;
+}
+.book-bar .btn{margin:1rem;align-self:stretch;padding:0 1.8rem}
+
+/* SECTIONS */
+section{padding:7.5rem 7vw}
+.wrap{max-width:1280px;margin:0 auto}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+h2{font-size:clamp(2.4rem,4.5vw,4rem);line-height:1.05;letter-spacing:-.02em}
+.lede{font-size:1.12rem;color:var(--muted);max-width:42ch;margin:1.2rem 0 2rem}
+
+/* STORY */
+.story{background:var(--dusk);color:var(--paper);padding:0}
+.story-grid{display:grid;grid-template-columns:1.05fr .95fr;min-height:90vh}
+.story-img{position:relative;overflow:hidden;min-height:520px}
+.story-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.story-copy{padding:8rem 6vw;display:flex;flex-direction:column;justify-content:center}
+.quote{
+  font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(1.6rem,3vw,2.3rem);
+  line-height:1.35;margin:1.5rem 0 2rem;
+}
+.stat-row{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.12)}
+.stat b{display:block;font-family:"Cormorant Garamond",serif;font-size:2.1rem;font-weight:500}
+.stat span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:.65}
+
+/* ROOMS */
+.rooms{background:var(--cream)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:3.5rem;flex-wrap:wrap}
+.room-list{display:flex;flex-direction:column;gap:4.5rem}
+.room{
+  display:grid;grid-template-columns:1.35fr .85fr;gap:0;background:var(--white);
+  min-height:520px;
+}
+.room:nth-child(even){grid-template-columns:.85fr 1.35fr}
+.room:nth-child(even) .room-media{order:2}
+.room-media{position:relative;overflow:hidden;min-height:420px}
+.room-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1.2s var(--ease)}
+.room:hover .room-media img{transform:scale(1.05)}
+.room-tag{
+  position:absolute;top:1.2rem;left:1.2rem;z-index:2;
+  background:rgba(14,18,16,.72);color:#fff;padding:.4rem .8rem;
+  font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;
+}
+.room-body{padding:3rem 2.6rem;display:flex;flex-direction:column;justify-content:center}
+.room-body h3{font-size:2.35rem;margin:.4rem 0 .8rem}
+.amenities{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0 1.6rem}
+.amenities span{
+  border:1px solid var(--sand);padding:.3rem .7rem;font-size:.72rem;letter-spacing:.04em;color:var(--muted)
+}
+.price{font-family:"Cormorant Garamond",serif;font-size:1.8rem;margin-bottom:1.2rem}
+.price small{font-family:Outfit,sans-serif;font-size:.75rem;color:var(--muted);letter-spacing:.06em}
+
+/* SEASONS */
+.seasons{padding:0;background:var(--ink);color:#fff}
+.season-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.1)}
+.season-tabs button{
+  flex:1;background:none;border:none;color:rgba(255,255,255,.45);padding:1.3rem;
+  font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;
+  border-bottom:2px solid transparent;transition:.3s;
+}
+.season-tabs button.on{color:#fff;border-bottom-color:var(--gold)}
+.season-panel{display:none;grid-template-columns:1fr 1fr;min-height:70vh}
+.season-panel.on{display:grid}
+.season-panel img{width:100%;height:100%;object-fit:cover;min-height:420px}
+.season-copy{padding:5rem 4.5rem;display:flex;flex-direction:column;justify-content:center}
+
+/* EXPERIENCES */
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.exp{position:relative;overflow:hidden;min-height:380px;color:#fff}
+.exp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.exp:hover img{transform:scale(1.06)}
+.exp::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(10,12,10,.78))}
+.exp-txt{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:1.8rem}
+.exp h3{font-size:1.9rem}
+
+/* GALLERY */
+.gallery{padding:0;background:var(--dusk)}
+.gal-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:280px 280px;gap:.5rem}
+.gal-grid img{width:100%;height:100%;object-fit:cover;cursor:pointer;filter:saturate(.92);transition:filter .4s,transform .8s}
+.gal-grid img:hover{filter:saturate(1.05)}
+.gal-grid .wide{grid-row:1/3}
+.lightbox{position:fixed;inset:0;background:rgba(8,8,8,.94);z-index:100;display:none;align-items:center;justify-content:center;padding:2rem}
+.lightbox.on{display:flex}
+.lightbox img{max-width:92vw;max-height:88vh;object-fit:contain}
+
+/* REVIEWS */
+.reviews{background:var(--paper)}
+.rev-track{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.rev{background:var(--white);padding:2.2rem;border-top:3px solid var(--gold)}
+.stars{color:var(--gold);letter-spacing:.15em;margin-bottom:.8rem;font-size:.85rem}
+.rev p{font-family:"Cormorant Garamond",serif;font-size:1.28rem;line-height:1.45;font-style:italic;margin-bottom:1.2rem}
+.rev cite{font-style:normal;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* MAP / VISIT */
+.visit{background:var(--cream);padding:0}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;min-height:70vh}
+.map-fake{
+  background:
+    linear-gradient(180deg,rgba(26,22,18,.15),rgba(26,22,18,.45)),
+    url("img/hike.jpg") center/cover;
+  min-height:480px;position:relative;color:#fff;
+  display:flex;align-items:flex-end;padding:2.5rem;
+}
+.pin{
+  position:absolute;top:42%;left:48%;width:18px;height:18px;background:var(--gold);
+  border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 8px 20px rgba(0,0,0,.4);
+  animation:pulse 2.4s infinite;
+}
+@keyframes pulse{50%{box-shadow:0 0 0 16px rgba(176,138,90,.25)}}
+.visit-copy{padding:5.5rem 4.5rem}
+
+/* FOOTER */
+footer{background:var(--dusk);color:var(--paper);padding:4.5rem 7vw 2rem}
+.ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2.5rem;max-width:1280px;margin:0 auto 3rem}
+footer h4{font-size:1.3rem;margin-bottom:1rem}
+footer a,footer p{font-size:.9rem;opacity:.75;line-height:1.9}
+footer a:hover{opacity:1}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.4rem;display:flex;justify-content:space-between;font-size:.75rem;opacity:.5;max-width:1280px;margin:0 auto}
+
+/* MOBILE MENU */
+.drawer{
+  position:fixed;inset:0;background:var(--dusk);color:#fff;z-index:90;
+  display:flex;flex-direction:column;justify-content:center;padding:3rem;
+  transform:translateX(100%);transition:transform .5s var(--ease);
+}
+.drawer.open{transform:none}
+.drawer a{font-family:"Cormorant Garamond",serif;font-size:2.4rem;display:block;margin:.4rem 0}
+.drawer .close{position:absolute;top:1.2rem;right:1.4rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(120%);
+  background:var(--ink);color:#fff;padding:1rem 1.6rem;z-index:120;font-size:.85rem;
+  transition:transform .45s var(--ease);letter-spacing:.04em;
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+@media (max-width:980px){
+  #nav{padding:1rem 1.2rem}
+  .nav-links{display:none}
+  .menu-btn{display:block}
+  .book-bar{grid-template-columns:1fr 1fr;margin-top:-2rem}
+  .book-bar .btn{grid-column:1/-1;margin:.6rem}
+  .split,.story-grid,.room,.room:nth-child(even),.season-panel.on,.exp-grid,.rev-track,.visit-grid,.ft-grid,.gal-grid{
+    grid-template-columns:1fr;grid-template-rows:auto;
+  }
+  .room:nth-child(even) .room-media{order:0}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px 200px}
+  .gal-grid .wide{grid-row:auto;grid-column:1/-1;height:260px}
+  .story-copy,.season-copy,.visit-copy,.room-body{padding:3rem 1.5rem}
+  section{padding:4.5rem 1.4rem}
+  .hero-content{padding:0 1.4rem 10vh}
+  .hero-meta{display:none}
+  .exp{min-height:300px}
+  .ft-bottom{flex-direction:column;gap:.6rem}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<nav id="nav">
+  <a class="logo" href="#top">Fjellro<span>LODGE · HEMSEDAL</span></a>
+  <div class="nav-links">
+    <a href="#stedet">Stedet</a>
+    <a href="#rom">Rom &amp; hytter</a>
+    <a href="#sesong">Sesong</a>
+    <a href="#opplevelser">Opplevelser</a>
+    <a href="#besok">Besøk</a>
+    <a class="btn" href="#booking">Sjekk ledighet</a>
+  </div>
+  <button class="menu-btn" id="openMenu" aria-label="Meny"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="drawer" id="drawer">
+  <button class="close" id="closeMenu">×</button>
+  <a href="#stedet">Stedet</a>
+  <a href="#rom">Rom &amp; hytter</a>
+  <a href="#sesong">Sesong</a>
+  <a href="#opplevelser">Opplevelser</a>
+  <a href="#besok">Besøk</a>
+  <a href="#booking" class="btn" style="margin-top:1.5rem;align-self:flex-start">Sjekk ledighet</a>
+</div>
+
+<header class="hero" id="top">
+  <img class="hero-img" src="img/hero.jpg" alt="Fjellro Lodge i skumring">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">1 148 moh. · Hemsedal</p>
+    <h1>Der fjellet<br>holder pusten.</h1>
+    <p class="lead">Ni rom og tre hytter, tre kilometer over tregrensen i følelsen — men bare 18 minutter fra Hemsedal sentrum. Et sted å komme ned, ved å reise opp.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#booking">Bestill opphold</a>
+      <a class="btn btn-ghost" href="#rom">Se rom og hytter</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Rull videre</div>
+  <div class="hero-meta">
+    <span>Åpent hele året</span>
+    <span>12 enheter</span>
+    <span>Privat badstue</span>
+  </div>
+</header>
+
+<form class="book-bar" id="booking" onsubmit="return book(event)">
+  <div class="book-field">
+    <label for="inn">Ankomst</label>
+    <input type="date" id="inn" required>
+  </div>
+  <div class="book-field">
+    <label for="out">Avreise</label>
+    <input type="date" id="out" required>
+  </div>
+  <div class="book-field">
+    <label for="gjester">Gjester</label>
+    <select id="gjester">
+      <option>1 gjest</option>
+      <option selected>2 gjester</option>
+      <option>3 gjester</option>
+      <option>4 gjester</option>
+      <option>5–6 gjester</option>
+    </select>
+  </div>
+  <div class="book-field">
+    <label for="enhet">Rom / hytte</label>
+    <select id="enhet">
+      <option>Alle enheter</option>
+      <option>Panoramasuite</option>
+      <option>Loftkammer</option>
+      <option>Fjordhytte</option>
+      <option>Tjørnhytte</option>
+    </select>
+  </div>
+  <button class="btn" type="submit">Sjekk ledighet</button>
+</form>
+
+<section id="stedet">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="eyebrow">Historien</p>
+      <h2>Bygget av de som visste at stillhet er en luksus.</h2>
+      <p class="lede">Fjellro ble reist i 2019 på tomten etter et gammelt seteranlegg. Arkitekturen er mørk furu, store glassflater og tak som følger ryggen mot Skogshorn. Vi serverer ikke «opplevelser». Vi gir deg plass til dine egne.</p>
+      <a class="btn btn-dark" href="#rom">Se rom og hytter</a>
+    </div>
+    <div class="reveal">
+      <img src="img/cabin.jpg" alt="Utsikt fra suiten">
+    </div>
+  </div>
+</section>
+
+<div class="story">
+  <div class="story-grid">
+    <div class="story-img">
+      <img src="img/winter.jpg" alt="Lodge i vintermørke">
+    </div>
+    <div class="story-copy reveal">
+      <p class="eyebrow">Manifest</p>
+      <p class="quote">«Du hører vinden før du hører deg selv. Det er poenget.»</p>
+      <p style="opacity:.8;max-width:42ch">Vi holder bevisst tilbake. Ingen spa-meny på tolv sider. Ingen bar med 40 drinker. Frokost til klokken elleve. Badstue som er din alene i to timer. En vert som kjenner stiene, og som vet når det er best å tie.</p>
+      <div class="stat-row">
+        <div class="stat"><b>12</b><span>Rom &amp; hytter</span></div>
+        <div class="stat"><b>18</b><span>Min til sentrum</span></div>
+        <div class="stat"><b>−12°</b><span>Typisk januar</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="rooms" id="rom">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Overnatting</p>
+        <h2>Rom og hytter</h2>
+      </div>
+      <p class="lede" style="margin:0">Hver enhet har eget bad, ullpledd og utsikt som gjør gardiner overflødige. Prisene er per natt, frokost inkludert.</p>
+    </div>
+    <div class="room-list">
+      <article class="room reveal">
+        <div class="room-media">
+          <span class="room-tag">Mest etterspurt</span>
+          <img src="img/suite.jpg" alt="Panoramasuite">
+        </div>
+        <div class="room-body">
+          <p class="eyebrow">Suite · 52 m²</p>
+          <h3>Panoramasuite</h3>
+          <p>King-seng vendt mot dalen, peis og eget bad med dyp badekar. For to som vil våkne uten å si noe først.</p>
+          <div class="amenities">
+            <span>Peis</span><span>Badekar</span><span>King</span><span>2 gjester</span>
+          </div>
+          <div class="price">fra 4 890 kr <small>/ natt</small></div>
+          <button class="btn btn-dark" onclick="prefill('Panoramasuite')">Bestill opphold</button>
+        </div>
+      </article>
+      <article class="room reveal">
+        <div class="room-media">
+          <img src="img/cabin.jpg" alt="Fjordhytte">
+        </div>
+        <div class="room-body">
+          <p class="eyebrow">Hytte · 78 m²</p>
+          <h3>Fjordhytte</h3>
+          <p>Frittstående tømmerhytte med eget kjøkken, terrasse og utendørs stamp. Plass til fire, stillhet til alle.</p>
+          <div class="amenities">
+            <span>Kjøkken</span><span>Stamp</span><span>Terrasse</span><span>4 gjester</span>
+          </div>
+          <div class="price">fra 7 200 kr <small>/ natt</small></div>
+          <button class="btn btn-dark" onclick="prefill('Fjordhytte')">Bestill opphold</button>
+        </div>
+      </article>
+      <article class="room reveal">
+        <div class="room-media">
+          <img src="img/loft.jpg" alt="Loftkammer">
+        </div>
+        <div class="room-body">
+          <p class="eyebrow">Rom · 28 m²</p>
+          <h3>Loftkammer</h3>
+          <p>Under bjelkene, med vindu mot skogen. Kompakt, varmt og det rommet gjestene kommer tilbake til.</p>
+          <div class="amenities">
+            <span>Ullpledd</span><span>Dusj</span><span>Skogsutsikt</span><span>2 gjester</span>
+          </div>
+          <div class="price">fra 2 690 kr <small>/ natt</small></div>
+          <button class="btn btn-dark" onclick="prefill('Loftkammer')">Bestill opphold</button>
+        </div>
+      </article>
+      <article class="room reveal">
+        <div class="room-media">
+          <span class="room-tag">Familie</span>
+          <img src="img/hot-tub.jpg" alt="Tjørnhytte">
+        </div>
+        <div class="room-body">
+          <p class="eyebrow">Hytte · 96 m²</p>
+          <h3>Tjørnhytte</h3>
+          <p>Vår største hytte ved tjernet. To soverom, hems, vedfyrt badstue og plass til seks. For dem som reiser sammen, men trenger avstand.</p>
+          <div class="amenities">
+            <span>Badstue</span><span>2 soverom</span><span>Hem</span><span>6 gjester</span>
+          </div>
+          <div class="price">fra 8 900 kr <small>/ natt</small></div>
+          <button class="btn btn-dark" onclick="prefill('Tjørnhytte')">Bestill opphold</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="seasons" id="sesong">
+  <div class="season-tabs">
+    <button class="on" data-s="v">Vinter</button>
+    <button data-s="s">Sommer</button>
+    <button data-s="h">Høst</button>
+  </div>
+  <div class="season-panel on" id="p-v">
+    <img src="img/winter.jpg" alt="Vinter">
+    <div class="season-copy">
+      <p class="eyebrow">Desember — april</p>
+      <h2>Når snøen tar over språket.</h2>
+      <p class="lede" style="color:rgba(255,255,255,.7)">Ski in Hemsedal, topptur mot Røggjin, kveldsbadstue mens nordausten går. Vi pakker termos og kart. Du velger tempo.</p>
+      <ul style="list-style:none;opacity:.8;line-height:2.1">
+        <li>— Alpint 18 minutter unna</li>
+        <li>— Preparerte turløyper fra døren</li>
+        <li>— Nordlysnetter, når himmelen vil</li>
+      </ul>
+    </div>
+  </div>
+  <div class="season-panel" id="p-s">
+    <img src="img/summer.jpg" alt="Sommer">
+    <div class="season-copy">
+      <p class="eyebrow">Juni — august</p>
+      <h2>Midnattssol over vidda.</h2>
+      <p class="lede" style="color:rgba(255,255,255,.7)">Fisk i tjern, barfot på mose, lange kvelder der klokken mister betydning. Frokost kan spises ute til den slutter å smake morgen.</p>
+      <ul style="list-style:none;opacity:.8;line-height:2.1">
+        <li>— Topptur til Skogshorn</li>
+        <li>— Villblomst og ørret</li>
+        <li>— Kveldsdyp i stampen</li>
+      </ul>
+    </div>
+  </div>
+  <div class="season-panel" id="p-h">
+    <img src="img/hike.jpg" alt="Høst">
+    <div class="season-copy">
+      <p class="eyebrow">September — november</p>
+      <h2>Gullbjørk og tomme stier.</h2>
+      <p class="lede" style="color:rgba(255,255,255,.7)">Høsten er vår hemmelighet. Færre gjester, skarpere luft, og et kjøkken som går over til vilt og tyttebær.</p>
+      <ul style="list-style:none;opacity:.8;line-height:2.1">
+        <li>— Hjort i lisidene</li>
+        <li>— Fotografering i tåke</li>
+        <li>— Peiskvelder uten slutt</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section id="opplevelser">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Dagen din</p>
+        <h2>Ikke et program.<br>Et tempo.</h2>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <article class="exp reveal">
+        <img src="img/breakfast.jpg" alt="Frokost">
+        <div class="exp-txt">
+          <p class="eyebrow">Kjøkken</p>
+          <h3>Frokost til elleve</h3>
+          <p>Røkelaks, brunost, egg fra nabogården. Ingen buffetkø.</p>
+        </div>
+      </article>
+      <article class="exp reveal">
+        <img src="img/sauna.jpg" alt="Badstue">
+        <div class="exp-txt">
+          <p class="eyebrow">Varme</p>
+          <h3>Vedfyrt badstue</h3>
+          <p>To timer, bare dere. Snøen utenfor glasset.</p>
+        </div>
+      </article>
+      <article class="exp reveal">
+        <img src="img/hike.jpg" alt="Tur">
+        <div class="exp-txt">
+          <p class="eyebrow">Terreng</p>
+          <h3>Stier vi kjenner</h3>
+          <p>Kart, kaffe og et råd om hvor tåken letter først.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="gallery">
+  <div class="gal-grid">
+    <img class="wide" src="img/hero.jpg" alt="Lodge" data-full="img/hero.jpg">
+    <img src="img/sauna.jpg" alt="Badstue" data-full="img/sauna.jpg">
+    <img src="img/breakfast.jpg" alt="Frokost" data-full="img/breakfast.jpg">
+    <img src="img/hot-tub.jpg" alt="Stamp" data-full="img/hot-tub.jpg">
+    <img src="img/summer.jpg" alt="Sommer" data-full="img/summer.jpg">
+  </div>
+</div>
+<div class="lightbox" id="lb"><img alt=""></div>
+
+<section class="reviews">
+  <div class="wrap">
+    <p class="eyebrow reveal">Gjester</p>
+    <h2 class="reveal" style="margin-bottom:2.5rem">De skriver det vi ikke tør love.</h2>
+    <div class="rev-track">
+      <blockquote class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>«Vi kom for å ski. Vi ble for stillheten. Tre netter ble fem.»</p>
+        <cite>Ingrid L. · Oslo · februar 2026</cite>
+      </blockquote>
+      <blockquote class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>«Fjordhytta. Stampen i minus sju. Det er det jeg tenker på når uken blir for mye.»</p>
+        <cite>Markus H. · Bergen · januar 2026</cite>
+      </blockquote>
+      <blockquote class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>«Ingen spa-meny. Bare en nøkkel til badstuen og en frokost som smakte som barndom, bare bedre.»</p>
+        <cite>Thea &amp; Jonas · København · september 2025</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<div class="visit" id="besok">
+  <div class="visit-grid">
+    <div class="map-fake">
+      <div class="pin"></div>
+      <div>
+        <p class="eyebrow">Kart</p>
+        <h3 class="serif" style="font-size:2rem">Fjellrovegen 14<br>3560 Hemsedal</h3>
+      </div>
+    </div>
+    <div class="visit-copy reveal">
+      <p class="eyebrow">Finn oss</p>
+      <h2>18 minutter fra alt.<br>En verden unna.</h2>
+      <p class="lede">Kjør RV52, ta av ved Tuv og følg skiltingen mot Fjellro. Parkering ved hver hytte. Tog til Gol, så 35 minutter med bil. Vi henter etter avtale.</p>
+      <p style="margin-bottom:1.6rem;color:var(--muted)">+47 41 28 19 00<br>opphold@fjellrolodge.no<br>Sjekk inn fra 16:00 · ut innen 11:00</p>
+      <a class="btn btn-dark" href="#booking">Sjekk ledighet</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="logo" style="margin-bottom:1rem">Fjellro<span>LODGE · HEMSEDAL</span></div>
+      <p>Et lite lodge for dem som vil ha mer fjell og færre valg.</p>
+    </div>
+    <div>
+      <h4 class="serif">Opphold</h4>
+      <p><a href="#rom">Rom &amp; hytter</a><br><a href="#booking">Bestill</a><br><a href="#sesong">Sesonger</a></p>
+    </div>
+    <div>
+      <h4 class="serif">Praktisk</h4>
+      <p>Gavekort<br>Henting Gol stasjon<br>Husdyr etter avtale</p>
+    </div>
+    <div>
+      <h4 class="serif">Kontakt</h4>
+      <p>opphold@fjellrolodge.no<br>+47 41 28 19 00</p>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 Fjellro Lodge. Fiktiv demoside.</span>
+    <span>Designet som porteføljeprosjekt</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Takk. Vi har notert ønsket ditt — dette er en demoside uten ekte booking.</div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.getElementById('openMenu').onclick=()=>drawer.classList.add('open');
+document.getElementById('closeMenu').onclick=()=>drawer.classList.remove('open');
+drawer.querySelectorAll('a').forEach(a=>a.onclick=()=>drawer.classList.remove('open'));
+
+document.querySelectorAll('.season-tabs button').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.season-tabs button').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.season-panel').forEach(p=>p.classList.remove('on'));
+    btn.classList.add('on');
+    document.getElementById('p-'+btn.dataset.s).classList.add('on');
+  };
+});
+
+const lb=document.getElementById('lb');
+document.querySelectorAll('.gal-grid img').forEach(img=>{
+  img.onclick=()=>{lb.querySelector('img').src=img.src;lb.classList.add('on')};
+});
+lb.onclick=()=>lb.classList.remove('on');
+
+const today=new Date().toISOString().slice(0,10);
+inn.min=today;inn.value=today;
+const t2=new Date();t2.setDate(t2.getDate()+2);
+out.min=today;out.value=t2.toISOString().slice(0,10);
+
+function prefill(name){
+  enhet.value=name;
+  document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+}
+function book(e){
+  e.preventDefault();
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3800);
+  return false;
+}
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

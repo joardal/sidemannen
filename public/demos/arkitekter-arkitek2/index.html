@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Arkitekter — Arkitektkontor i Oslo</title>
+<meta name="description" content="Form Arkitekter er et Oslo-basert arkitektkontor som prosjekterer boliger, rehabilitering, tilbygg, fritidsboliger, næringsbygg og interiør. Arkitektur som begynner i terrenget.">
+<meta name="theme-color" content="#EFEAE3">
+<meta property="og:title" content="Form Arkitekter — Arkitektkontor i Oslo">
+<meta property="og:description" content="Boliger, rehabilitering, tilbygg, fritidsboliger, næringsbygg og interiør. Arkitektur som begynner i terrenget.">
+<meta property="og:type" content="website">
+<link rel="icon" href="images/image-21.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FORM ARKITEKTER — designsystem
+   Papir, blekk og rød penn. Et digitalt arkitekturmagasin.
+   ============================================================ */
+:root{
+  --paper:#EFEAE3;
+  --paper-2:#E4DDD2;
+  --paper-3:#D8D0C2;
+  --ink:#16150F;
+  --ink-2:#3E3A31;
+  --ink-3:#6B6558;
+  --line:rgba(22,21,15,.16);
+  --line-2:rgba(22,21,15,.32);
+  --accent:#C4502A;
+  --accent-2:#9E3B1C;
+  --dark:#141310;
+  --dark-2:#1E1C17;
+  --paper-on-dark:#EDE7DD;
+  --line-on-dark:rgba(237,231,221,.18);
+  --disp:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-2:cubic-bezier(.65,0,.35,1);
+  --pad:clamp(20px,5vw,76px);
+  --sec-pad:clamp(72px,9vw,148px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+section[id],main[id],footer[id]{scroll-margin-top:64px}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-weight:400;font-size:clamp(15px,1.05vw,17px);
+  line-height:1.65;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body::after{ /* korn / papirstruktur */
+  content:"";position:fixed;inset:-50%;z-index:120;pointer-events:none;opacity:.055;
+  background-image:url("images/image-22.svg");
+  mix-blend-mode:multiply;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--accent);color:var(--paper)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.skip{position:fixed;top:-60px;left:16px;z-index:300;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;padding:10px 16px;transition:top .3s}
+.skip:focus{top:12px}
+
+/* ---------- typografi ---------- */
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:400}
+.mono--sm{font-size:10px;letter-spacing:.14em}
+.disp{font-family:var(--disp);font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0;line-height:.98;letter-spacing:-.015em}
+h1,h2,h3{font-family:var(--disp);font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0;line-height:1.02;letter-spacing:-.015em}
+em{font-style:italic;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 1}
+.sec-title{font-size:clamp(2.5rem,6.4vw,5.4rem)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.35rem);line-height:1.55;font-weight:300;color:var(--ink-2)}
+p+p{margin-top:1em}
+
+/* ---------- skall ---------- */
+.sec{position:relative;padding:var(--sec-pad) var(--pad);border-top:1px solid var(--line)}
+.sec--dark{background:var(--dark);color:var(--paper-on-dark);border-top-color:transparent}
+.sec--dark .lead{color:rgba(237,231,221,.72)}
+.sec-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,40px);flex-wrap:wrap;margin-bottom:clamp(36px,5vw,72px)}
+.sec-idx{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--accent);white-space:nowrap}
+.sec-note{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);max-width:34ch;text-align:right;line-height:1.9}
+.sec--dark .sec-note{color:rgba(237,231,221,.5)}
+.cross{position:absolute;width:13px;height:13px;opacity:.5;pointer-events:none}
+.cross::before,.cross::after{content:"";position:absolute;background:var(--line-2)}
+.cross::before{left:6px;top:0;width:1px;height:13px}
+.cross::after{top:6px;left:0;height:1px;width:13px}
+.sec--dark .cross::before,.sec--dark .cross::after{background:var(--line-on-dark)}
+
+/* ---------- knapper & lenker ---------- */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:12px;overflow:hidden;
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  padding:16px 26px;border:1px solid var(--ink);color:var(--ink);background:transparent;
+  transition:color .45s var(--ease),border-color .45s var(--ease);isolation:isolate;
+}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ink);z-index:-1;transform:translateY(101%);transition:transform .5s var(--ease)}
+.btn:hover::before,.btn:focus-visible::before{transform:translateY(0)}
+.btn:hover,.btn:focus-visible{color:var(--paper)}
+.btn .ar{transition:transform .45s var(--ease)}
+.btn:hover .ar{transform:translateX(5px)}
+.btn--accent{border-color:var(--accent);color:var(--accent)}
+.btn--accent::before{background:var(--accent)}
+.btn--accent:hover,.btn--accent:focus-visible{color:var(--paper)}
+.btn--light{border-color:var(--paper-on-dark);color:var(--paper-on-dark)}
+.btn--light::before{background:var(--paper-on-dark)}
+.btn--light:hover,.btn--light:focus-visible{color:var(--ink)}
+.btn--solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn--solid::before{background:var(--accent);border-color:var(--accent)}
+.link-u{position:relative;background-image:linear-gradient(currentColor,currentColor);background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .5s var(--ease);padding-bottom:2px}
+.link-u:hover,.link-u:focus-visible{background-size:100% 1px}
+
+/* ---------- reveal-animasjoner ---------- */
+[data-reveal]{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
+[data-reveal].rv{opacity:1;transform:none}
+.mask{display:block;overflow:hidden}
+.mask>span{display:block;transform:translateY(115%);transition:transform 1.1s var(--ease);transition-delay:var(--d,0s)}
+.rv .mask>span,.mask.rv>span{transform:translateY(0)}
+[data-img]{background:var(--paper-3);overflow:hidden;position:relative}
+.sec--dark [data-img]{background:var(--dark-2)}
+[data-img] img{width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity 1.1s var(--ease),transform 1.6s var(--ease)}
+[data-img].ld img{opacity:1;transform:scale(1)}
+[data-img].clip img{clip-path:inset(0 0 100% 0);transition:opacity .8s var(--ease),transform 1.6s var(--ease),clip-path 1.3s var(--ease)}
+[data-img].clip.ld img{clip-path:inset(0 0 0% 0)}
+
+/* ---------- loader ---------- */
+#loader{position:fixed;inset:0;z-index:200;background:var(--paper);display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,4vw,44px);transition:transform .9s var(--ease-2) .15s,visibility 0s .9s}
+body.loaded #loader{transform:translateY(-101%);visibility:hidden}
+#loader .l-top{display:flex;justify-content:space-between;align-items:center}
+#loader .l-mark{display:flex;align-items:center;gap:12px}
+#loader .l-num{font-family:var(--disp);font-size:clamp(4rem,16vw,13rem);line-height:.85;align-self:flex-end;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+#loader .l-bar{height:1px;background:var(--line-2);position:relative;margin-top:24px;overflow:hidden}
+#loader .l-bar i{position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:0 50%}
+#loader .l-word{font-family:var(--mono);font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ---------- navigasjon ---------- */
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px var(--pad);transition:background .5s var(--ease),padding .5s var(--ease),box-shadow .5s}
+#nav.scr{background:var(--paper);padding-top:12px;padding-bottom:12px;box-shadow:0 1px 0 var(--line)}
+#nav .brand{display:flex;align-items:center;gap:12px;z-index:110}
+#nav .brand svg{width:30px;height:30px;flex:none}
+#nav .brand b{font-family:var(--disp);font-weight:500;font-size:19px;letter-spacing:.02em}
+#nav .brand span{font-family:var(--mono);font-size:9.5px;letter-spacing:.3em;color:var(--ink-3);display:block;margin-top:1px}
+#nav ul{display:flex;gap:clamp(18px,2.4vw,38px);list-style:none;align-items:center}
+#nav ul a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;position:relative;padding:6px 0}
+#nav ul a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s var(--ease)}
+#nav ul a:hover::after,#nav ul a.on::after{transform:scaleX(1);transform-origin:0 50%}
+#nav ul a.on{color:var(--accent)}
+#nav .nav-cta{display:inline-flex}
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:101;width:0}
+#burger{display:none;width:44px;height:44px;position:relative;z-index:110}
+#burger i{position:absolute;left:10px;right:10px;height:1.5px;background:var(--ink);transition:transform .5s var(--ease),top .5s var(--ease)}
+#burger i:nth-child(1){top:18px}#burger i:nth-child(2){top:26px}
+body.menu #burger i:nth-child(1){top:22px;transform:rotate(45deg)}
+body.menu #burger i:nth-child(2){top:22px;transform:rotate(-45deg)}
+#mmenu{position:fixed;inset:0;z-index:105;background:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:96px var(--pad) 40px;clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--ease-2);visibility:hidden}
+body.menu #mmenu{clip-path:inset(0 0 0 0);visibility:visible}
+body.menu #nav{z-index:106;background:transparent;box-shadow:none}
+#mmenu a.ml{font-family:var(--disp);font-size:clamp(2.6rem,12vw,4.4rem);line-height:1.22;margin:2px 0;display:flex;align-items:baseline;gap:16px;opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+body.menu #mmenu a.ml{opacity:1;transform:none}
+#mmenu a.ml i{font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:.2em;color:var(--accent)}
+#mmenu .m-foot{margin-top:auto;padding-top:36px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
+
+/* ---------- masthead (forside) ---------- */
+#topp{position:relative;min-height:100svh;display:flex;flex-direction:column;padding-top:clamp(76px,10vh,110px)}
+.mast-meta{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:0 var(--pad) 14px;border-bottom:1px solid var(--line);color:var(--ink-3)}
+.mast-meta b{color:var(--ink);font-weight:500}
+.mast-name{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;padding:clamp(18px,3vh,34px) var(--pad) clamp(18px,3vh,30px)}
+.mast-name h1{font-size:clamp(4.2rem,17.5vw,17rem);line-height:.82;letter-spacing:-.03em;font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.mast-name h1 .o{position:relative;display:inline-block}
+.mast-name h1 .o::after{content:"";position:absolute;inset:14% 6% 16% 6%;border:1.5px solid var(--accent);border-radius:50%;transform:rotate(-6deg)}
+.mast-side{max-width:30ch;font-size:14px;line-height:1.75;color:var(--ink-2);padding-bottom:clamp(6px,1.4vh,16px)}
+.mast-side .mono{display:block;color:var(--accent);margin-bottom:12px}
+.mast-plate{position:relative;flex:1;min-height:44vh;margin:0 var(--pad);overflow:hidden}
+.mast-plate .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s var(--ease)}
+.mast-plate .slide.on{opacity:1}
+.mast-plate .slide img{width:100%;height:100%;object-fit:cover;animation:kb 16s var(--ease-2) infinite alternate}
+@keyframes kb{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.14) translate(-1.5%,-2%)}}
+.mast-plate::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,19,16,.62),rgba(20,19,16,0) 46%);pointer-events:none}
+.plate-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:clamp(18px,3vw,32px);color:var(--paper-on-dark)}
+.plate-cap .pc-t{font-family:var(--disp);font-size:clamp(1.5rem,3.4vw,2.9rem);line-height:1.05}
+.plate-cap .pc-m{color:rgba(237,231,221,.75);margin-top:8px}
+.plate-idx{display:flex;gap:8px;align-items:center;padding-bottom:6px}
+.plate-idx button{width:34px;height:3px;background:rgba(237,231,221,.35);position:relative;overflow:hidden;transition:background .3s}
+.plate-idx button.on{background:rgba(237,231,221,.35)}
+.plate-idx button i{position:absolute;inset:0;background:var(--paper-on-dark);transform:scaleX(0);transform-origin:0 50%}
+.plate-idx button.on i{animation:idx 6s linear forwards}
+@keyframes idx{to{transform:scaleX(1)}}
+.mast-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px var(--pad) 0;margin-top:14px}
+.scrollhint{display:flex;align-items:center;gap:12px;color:var(--ink-3)}
+.scrollhint i{display:block;width:1px;height:38px;background:var(--line-2);position:relative;overflow:hidden}
+.scrollhint i::after{content:"";position:absolute;inset:0;background:var(--accent);animation:drip 2.2s var(--ease-2) infinite}
+@keyframes drip{0%{transform:translateY(-100%)}55%{transform:translateY(0)}100%{transform:translateY(100%)}}
+.ticker{overflow:hidden;border-top:1px solid var(--line);margin-top:14px;padding:11px 0}
+.ticker-track{display:flex;gap:0;width:max-content;animation:mar 34s linear infinite}
+.ticker span{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);padding:0 26px;position:relative;white-space:nowrap}
+.ticker span::after{content:"◆";position:absolute;right:-6px;color:var(--accent);font-size:7px;top:3px}
+@keyframes mar{to{transform:translateX(-50%)}}
+
+/* ---------- manifest ---------- */
+#studio .man{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);gap:clamp(32px,6vw,96px);align-items:start}
+#studio .man-l{position:sticky;top:clamp(84px,12vh,130px)}
+#studio .man-l h2{font-size:clamp(2.3rem,4.6vw,4.3rem);line-height:1.06}
+#studio .man-l h2 em{color:var(--accent)}
+#studio .sig{margin-top:clamp(28px,4vw,44px);display:flex;align-items:center;gap:18px}
+#studio .sig svg{width:132px;height:44px;color:var(--ink-2)}
+#studio .man-r p{font-size:clamp(1rem,1.25vw,1.15rem);color:var(--ink-2);font-weight:300}
+#studio .man-r p strong{font-weight:500;color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:clamp(40px,6vw,72px)}
+.stat{background:var(--paper);padding:clamp(18px,2.6vw,32px)}
+.stat b{font-family:var(--disp);font-size:clamp(2rem,4.4vw,3.6rem);font-weight:400;line-height:1;display:block;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.stat b i{font-style:normal;color:var(--accent)}
+.stat span{display:block;margin-top:10px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ---------- utvalgte prosjekter (pinneds horisontal scroll) ---------- */
+#utvalgt{border-top:1px solid var(--line)}
+#pin-wrap{position:relative}
+#pin-sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;background:var(--dark);color:var(--paper-on-dark)}
+#pin-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:clamp(70px,9vh,96px) var(--pad) clamp(18px,3vh,30px)}
+#pin-head .sec-idx{color:var(--accent)}
+#pin-head h2{font-size:clamp(1.9rem,4vw,3.4rem)}
+#pin-count{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:rgba(237,231,221,.55)}
+#pin-count b{color:var(--paper-on-dark);font-weight:400}
+#track{display:flex;gap:clamp(24px,4vw,64px);padding:0 var(--pad) clamp(24px,4vh,44px);flex:1;min-height:0;align-items:center;will-change:transform}
+.pslide{flex:none;width:min(76vw,1080px);display:grid;grid-template-columns:minmax(0,62fr) minmax(0,38fr);gap:clamp(20px,3vw,48px);align-items:end}
+.pslide .pimg{aspect-ratio:16/10;max-height:58vh;overflow:hidden;position:relative}
+.pslide .pimg img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 1.2s var(--ease)}
+.pslide:hover .pimg img{transform:scale(1)}
+.pslide .pimg .pnum{position:absolute;top:0;left:0;background:var(--dark);color:var(--paper-on-dark);font-family:var(--mono);font-size:10px;letter-spacing:.2em;padding:8px 12px}
+.pmeta .pm-k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px}
+.pmeta h3{font-size:clamp(1.7rem,3vw,2.7rem);line-height:1.04}
+.pmeta .pm-row{display:flex;flex-wrap:wrap;gap:6px 18px;margin:14px 0 16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,231,221,.6)}
+.pmeta p{font-size:15px;line-height:1.7;color:rgba(237,231,221,.78);font-weight:300;max-width:44ch}
+.pmeta .link-u{display:inline-block;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-on-dark)}
+#pin-bar{margin:0 var(--pad) clamp(20px,3.5vh,36px);height:1px;background:var(--line-on-dark);position:relative}
+#pin-bar i{position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:0 50%}
+
+/* ---------- alle prosjekter (editorielt grid) ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(32px,4.5vw,60px)}
+.filters button{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:10px 18px;border:1px solid var(--line-2);color:var(--ink-2);transition:all .4s var(--ease);position:relative}
+.filters button:hover{border-color:var(--ink);color:var(--ink)}
+.filters button.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.filters button sup{color:var(--accent);margin-left:6px;font-size:8.5px}
+#pgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(18px,2.6vw,40px) clamp(16px,2.2vw,32px)}
+.ptile{grid-column:span 4;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.ptile.hide{opacity:0;transform:scale(.97);pointer-events:none}
+.ptile.gone{display:none}
+.ptile .pimg{overflow:hidden;position:relative;background:var(--paper-3)}
+.ptile .pimg img{transition:transform 1.4s var(--ease),opacity 1.1s var(--ease)}
+.ptile:hover .pimg img{transform:scale(1.06)}
+.ptile .pimg::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:0;transition:opacity .5s var(--ease);mix-blend-mode:multiply}
+.ptile:hover .pimg::after{opacity:.12}
+.ptile .pt-view{position:absolute;right:14px;bottom:14px;z-index:2;width:44px;height:44px;border-radius:50%;background:var(--paper);color:var(--ink);display:grid;place-items:center;transform:translateY(14px);opacity:0;transition:all .5s var(--ease)}
+.ptile:hover .pt-view{transform:none;opacity:1}
+.pcap{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-top:16px;border-top:1px solid var(--line);margin-top:16px}
+.pcap h3{font-size:clamp(1.25rem,1.9vw,1.7rem);line-height:1.15}
+.pcap h3 a{background-image:linear-gradient(var(--accent),var(--accent));background-size:0% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .5s var(--ease)}
+.ptile:hover .pcap h3 a{background-size:100% 1px}
+.pcap .pc-m{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:8px;line-height:2}
+.pcap .pc-y{font-family:var(--disp);font-size:clamp(1.1rem,1.6vw,1.5rem);color:var(--ink-3);white-space:nowrap;font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.sp7{grid-column:span 7}.sp5{grid-column:span 5}.sp4{grid-column:span 4}.sp6{grid-column:span 6}.sp12{grid-column:span 12}
+.ar-32{aspect-ratio:3/2}.ar-45{aspect-ratio:4/5}.ar-11{aspect-ratio:1/1}.ar-219{aspect-ratio:21/9}
+
+/* ---------- prosjektarkiv ---------- */
+#arkiv{margin-top:clamp(56px,8vw,110px)}
+#arkiv h3{font-size:clamp(1.5rem,2.6vw,2.2rem);margin-bottom:clamp(20px,3vw,36px)}
+.arow{display:grid;grid-template-columns:76px minmax(0,1fr) minmax(0,1fr) 120px 34px;gap:16px;align-items:baseline;padding:18px 8px;border-top:1px solid var(--line);transition:background .4s var(--ease),padding .4s var(--ease);position:relative}
+.arow:last-child{border-bottom:1px solid var(--line)}
+.arow:hover{background:var(--paper-2);padding-left:20px}
+.arow .ay{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent)}
+.arow .an{font-family:var(--disp);font-size:clamp(1.1rem,1.8vw,1.5rem)}
+.arow .as,.arow .at{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.arow .aa{font-family:var(--mono);font-size:14px;justify-self:end;transform:translateX(-6px);opacity:0;transition:all .4s var(--ease);color:var(--accent)}
+.arow:hover .aa{transform:none;opacity:1}
+#peek{position:fixed;z-index:90;width:230px;aspect-ratio:4/3;pointer-events:none;overflow:hidden;opacity:0;transform:translate(-50%,-50%) scale(.92) rotate(-2deg);transition:opacity .35s var(--ease),transform .35s var(--ease);box-shadow:0 24px 60px rgba(22,21,15,.28)}
+#peek.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-2deg)}
+#peek img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- før / etter ---------- */
+#forvandling .ba-wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,4vw,64px);align-items:start}
+.ba{position:relative;aspect-ratio:16/10;overflow:hidden;cursor:ew-resize;touch-action:none;user-select:none;background:var(--dark-2)}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba .ba-after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .ba-line{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:1px;background:var(--paper-on-dark);z-index:3;transform:translateX(-.5px)}
+.ba .ba-grip{position:absolute;top:50%;left:var(--pos,50%);transform:translate(-50%,-50%);z-index:4;width:56px;height:56px;border-radius:50%;background:var(--paper-on-dark);color:var(--ink);display:grid;place-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;box-shadow:0 8px 30px rgba(0,0,0,.35);transition:transform .3s var(--ease)}
+.ba .ba-grip:hover,.ba .ba-grip:focus-visible{transform:translate(-50%,-50%) scale(1.08)}
+.ba .ba-tag{position:absolute;top:16px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.2em;padding:7px 12px;background:rgba(20,19,16,.72);color:var(--paper-on-dark)}
+.ba .ba-tag.t-before{left:16px}
+.ba .ba-tag.t-after{right:16px;background:var(--accent);color:var(--paper)}
+.ba-facts{list-style:none;margin-top:clamp(24px,3vw,40px);border-top:1px solid var(--line-on-dark)}
+.ba-facts li{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line-on-dark);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,231,221,.65)}
+.ba-facts li b{color:var(--paper-on-dark);font-weight:400}
+#forvandling .ba-txt h2{font-size:clamp(2rem,3.6vw,3.2rem);margin-bottom:20px}
+#forvandling .ba-txt h2 em{color:var(--accent)}
+#forvandling .ba-txt p{color:rgba(237,231,221,.75);font-weight:300;font-size:15.5px}
+.ba-quote{margin-top:28px;padding-left:22px;border-left:2px solid var(--accent);font-family:var(--disp);font-style:italic;font-size:clamp(1.1rem,1.6vw,1.4rem);line-height:1.5;color:var(--paper-on-dark)}
+.ba-quote footer{margin-top:12px;font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(237,231,221,.55)}
+
+/* ---------- fagfelt (accordion) ---------- */
+.frow{border-top:1px solid var(--line)}
+.frow:last-of-type{border-bottom:1px solid var(--line)}
+.fhead{display:grid;grid-template-columns:70px minmax(0,1fr) auto auto;gap:clamp(14px,2.4vw,32px);align-items:center;width:100%;text-align:left;padding:clamp(20px,3vw,34px) 6px;transition:padding .45s var(--ease)}
+.frow:hover .fhead{padding-left:18px}
+.fhead .fn{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--accent)}
+.fhead h3{font-size:clamp(1.6rem,3.6vw,3rem);line-height:1.05;transition:color .4s}
+.frow.open .fhead h3,.frow:hover .fhead h3{color:var(--accent)}
+.fhead .fk{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.fhead .fx{width:38px;height:38px;border:1px solid var(--line-2);border-radius:50%;position:relative;flex:none;transition:transform .5s var(--ease),background .4s,border-color .4s}
+.fhead .fx::before,.fhead .fx::after{content:"";position:absolute;left:50%;top:50%;background:currentColor;transition:transform .5s var(--ease)}
+.fhead .fx::before{width:13px;height:1px;transform:translate(-50%,-50%)}
+.fhead .fx::after{width:1px;height:13px;transform:translate(-50%,-50%)}
+.frow.open .fx{transform:rotate(90deg);background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.frow.open .fx::after{transform:translate(-50%,-50%) rotate(90deg)}
+.fbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
+.frow.open .fbody{grid-template-rows:1fr}
+.fbody>div{overflow:hidden}
+.fbody-in{display:grid;grid-template-columns:70px minmax(0,1fr) minmax(0,320px);gap:clamp(14px,2.4vw,32px);padding:0 6px clamp(24px,3vw,40px)}
+.fbody-in p{grid-column:2;font-size:clamp(1rem,1.3vw,1.15rem);font-weight:300;color:var(--ink-2);max-width:56ch}
+.fbody-in ul{grid-column:2;grid-row:2;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;list-style:none}
+.fbody-in ul li{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line-2);padding:7px 12px;color:var(--ink-2)}
+.fbody-in .fimg{grid-column:3;grid-row:1/3;aspect-ratio:4/3}
+
+/* ---------- prosess ---------- */
+#prosess .pr-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:start}
+#prosess .pr-l{position:sticky;top:clamp(84px,12vh,130px)}
+#prosess .pr-l .fimg{aspect-ratio:4/5;margin-bottom:20px}
+#prosess .pr-l figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);line-height:2}
+.pr-steps{position:relative;padding-left:38px}
+.pr-steps::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--line-2)}
+.pr-steps .pr-line{position:absolute;left:7px;top:8px;width:1px;background:var(--accent);height:0;transition:height .2s linear}
+.pr-step{position:relative;padding:0 0 clamp(36px,5vw,64px)}
+.pr-step:last-child{padding-bottom:0}
+.pr-step::before{content:"";position:absolute;left:-35px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--paper);border:1.5px solid var(--line-2);transition:background .5s,border-color .5s,transform .5s}
+.pr-step.rv::before{background:var(--accent);border-color:var(--accent);transform:scale(1.15)}
+.pr-step .ps-k{display:flex;align-items:baseline;gap:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.pr-step .ps-k i{font-style:normal;color:var(--ink-3)}
+.pr-step h3{font-size:clamp(1.5rem,2.6vw,2.2rem);margin:10px 0 12px}
+.pr-step p{font-weight:300;color:var(--ink-2);max-width:52ch;font-size:clamp(.98rem,1.2vw,1.1rem)}
+.pr-step .ps-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;list-style:none}
+.pr-step .ps-tags li{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line-2);padding-bottom:3px}
+
+/* ---------- folk (team) ---------- */
+#folk .folk-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(28px,4.5vw,80px);align-items:start}
+.folk-panel{position:sticky;top:clamp(84px,12vh,130px);aspect-ratio:4/5;overflow:hidden;background:var(--paper-3)}
+.folk-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity .8s var(--ease),transform 1.4s var(--ease);filter:grayscale(.35)}
+.folk-panel img.on{opacity:1;transform:scale(1);filter:grayscale(0)}
+.folk-panel .fp-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:18px;background:linear-gradient(to top,rgba(20,19,16,.78),transparent);color:var(--paper-on-dark);opacity:0;transform:translateY(8px);transition:all .5s var(--ease)}
+.folk-panel.has .fp-cap{opacity:1;transform:none}
+.frow-t{border-top:1px solid var(--line);padding:clamp(18px,2.6vw,30px) 6px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px;cursor:pointer;transition:background .4s var(--ease),padding .4s var(--ease)}
+.frow-t:last-of-type{border-bottom:1px solid var(--line)}
+.frow-t:hover,.frow-t.on{background:var(--paper-2);padding-left:18px}
+.frow-t h3{font-size:clamp(1.45rem,2.7vw,2.3rem);line-height:1.1}
+.frow-t.on h3{color:var(--accent)}
+.frow-t .fr-role{grid-column:1;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
+.frow-t .fr-y{grid-row:1;grid-column:2;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-3);align-self:start;white-space:nowrap}
+.frow-t .fr-tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;list-style:none;max-height:0;opacity:0;overflow:hidden;transition:max-height .6s var(--ease),opacity .5s var(--ease),margin .5s}
+.frow-t.on .fr-tags,.frow-t:hover .fr-tags{max-height:80px;opacity:1}
+.frow-t .fr-tags li{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);padding:6px 10px}
+.folk-extra{margin-top:28px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);line-height:2.2}
+.folk-extra b{color:var(--ink);font-weight:500}
+
+/* ---------- anerkjennelser ---------- */
+#anerkj .aw-row{display:grid;grid-template-columns:80px minmax(0,1fr) minmax(0,1fr);gap:16px;padding:16px 6px;border-top:1px solid var(--line-on-dark);align-items:baseline}
+#anerkj .aw-row:last-of-type{border-bottom:1px solid var(--line-on-dark)}
+#anerkj .aw-y{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--accent)}
+#anerkj .aw-n{font-family:var(--disp);font-size:clamp(1.1rem,1.9vw,1.6rem)}
+#anerkj .aw-p{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(237,231,221,.55)}
+.press{margin-top:clamp(40px,6vw,72px);overflow:hidden;border-top:1px solid var(--line-on-dark);border-bottom:1px solid var(--line-on-dark);padding:20px 0}
+.press .ticker-track{animation-duration:44s}
+.press span{font-family:var(--disp);font-size:clamp(1.3rem,3vw,2.4rem);letter-spacing:.02em;text-transform:none;color:rgba(237,231,221,.4);padding:0 34px}
+.press span::after{content:"—";color:var(--accent);font-size:.7em}
+
+/* ---------- kontakt ---------- */
+#kontakt .k-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,90px);align-items:start}
+#kontakt h2{font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:1.02}
+#kontakt h2 em{color:var(--accent)}
+.k-info{margin-top:clamp(28px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.k-info div{background:var(--paper);padding:20px}
+.k-info .mono{color:var(--ink-3);display:block;margin-bottom:10px}
+.k-info p{font-size:14.5px;line-height:1.8;color:var(--ink-2)}
+.k-info a:hover{color:var(--accent)}
+.k-note{margin-top:24px;display:flex;gap:14px;align-items:flex-start;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);line-height:2}
+.k-note svg{flex:none;width:18px;height:18px;color:var(--accent);margin-top:3px}
+form.kf{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.6vw,32px)}
+.fld{position:relative;display:flex;flex-direction:column}
+.fld.full{grid-column:1/-1}
+.fld label,.fld .flab{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:block}
+.fld label .req{color:var(--accent)}
+.fld input[type=text],.fld input[type=email],.fld input[type=tel],.fld select,.fld textarea{
+  font-family:var(--body);font-size:16px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line-2);
+  padding:10px 2px 14px;border-radius:0;transition:border-color .4s;appearance:none;width:100%}
+.fld textarea{resize:vertical;min-height:96px}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-bottom-color:var(--accent)}
+.fld select{background-image:url("images/image-23.svg");background-repeat:no-repeat;background-position:right 4px center;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{cursor:pointer;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line-2);padding:10px 15px;color:var(--ink-2);transition:all .35s var(--ease);margin:0}
+.chips label:hover{border-color:var(--ink);color:var(--ink)}
+.chips input:checked+label{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chips input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+.stage{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line-2)}
+.stage input{position:absolute;opacity:0;pointer-events:none}
+.stage label{cursor:pointer;text-align:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:13px 6px;color:var(--ink-3);border-right:1px solid var(--line-2);transition:all .35s var(--ease);margin:0;position:relative}
+.stage label:last-of-type{border-right:0}
+.stage label::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .4s var(--ease)}
+.stage label:hover{color:var(--ink)}
+.stage input:checked+label{color:var(--ink);background:var(--paper-2)}
+.stage input:checked+label::after{transform:scaleX(1)}
+.stage input:focus-visible+label{outline:2px solid var(--accent);outline-offset:-2px}
+.kf .consent{grid-column:1/-1;display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--ink-3)}
+.kf .consent input{width:18px;height:18px;accent-color:var(--accent);margin-top:2px;flex:none}
+.kf .submit{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.kf .submit .mono{color:var(--ink-3)}
+#sent{display:none;border:1px solid var(--line-2);padding:clamp(28px,4vw,56px);text-align:left}
+#sent.on{display:block;animation:pop .7s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+#sent svg{width:52px;height:52px;color:var(--accent);margin-bottom:22px}
+#sent svg path{stroke-dasharray:60;stroke-dashoffset:60;animation:draw 1s var(--ease) .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+#sent h3{font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:14px}
+#sent p{color:var(--ink-2);font-weight:300;max-width:46ch}
+#sent .ref{margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--accent)}
+
+/* ---------- footer ---------- */
+footer#bunn{background:var(--dark);color:var(--paper-on-dark);padding:clamp(60px,8vw,110px) var(--pad) 34px;position:relative;overflow:hidden}
+.f-word{font-family:var(--disp);font-weight:500;font-size:clamp(4.5rem,19.5vw,19rem);line-height:.8;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(237,231,221,.3);margin-bottom:clamp(36px,6vw,80px);font-variation-settings:"opsz" 144,"SOFT" 0,"WONK" 0}
+.f-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,48px);padding-bottom:clamp(36px,5vw,64px);border-bottom:1px solid var(--line-on-dark)}
+.f-cols h4{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;font-weight:400}
+.f-cols p,.f-cols a{display:block;font-size:14px;line-height:2.1;color:rgba(237,231,221,.72);font-weight:300}
+.f-cols a:hover{color:var(--paper-on-dark)}
+.f-btm{display:flex;flex-wrap:wrap;gap:14px 30px;justify-content:space-between;align-items:center;padding-top:26px;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(237,231,221,.45)}
+#totop{display:inline-flex;align-items:center;gap:10px;color:var(--paper-on-dark)}
+#totop:hover .ar{transform:translateY(-4px)}
+#totop .ar{transition:transform .4s var(--ease)}
+
+/* ---------- cursor ---------- */
+#cur,#curR{position:fixed;top:0;left:0;z-index:150;pointer-events:none;border-radius:50%;mix-blend-mode:difference;opacity:0;transition:opacity .3s}
+#cur{width:7px;height:7px;background:#fff;margin:-3.5px 0 0 -3.5px}
+#curR{width:36px;height:36px;border:1px solid #fff;margin:-18px 0 0 -18px;transition:opacity .3s,transform .35s var(--ease),width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease)}
+body.cur-on #cur,body.cur-on #curR{opacity:1}
+body.cur-big #curR{width:64px;height:64px;margin:-32px 0 0 -32px}
+@media (hover:none),(pointer:coarse){#cur,#curR{display:none}}
+
+/* ---------- responsivt ---------- */
+@media (max-width:1080px){
+  .pslide{width:min(84vw,900px)}
+  .fbody-in{grid-template-columns:56px minmax(0,1fr)}
+  .fbody-in .fimg{grid-column:2;grid-row:3;max-width:420px}
+}
+@media (max-width:960px){
+  #nav ul,#nav .nav-cta{display:none}
+  #burger{display:block}
+  #studio .man,#prosess .pr-grid,#folk .folk-grid,#kontakt .k-grid,#forvandling .ba-wrap{grid-template-columns:1fr}
+  #studio .man-l,#prosess .pr-l,.folk-panel{position:static}
+  #prosess .pr-l .fimg{max-width:440px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .pslide{grid-template-columns:1fr;width:100%;gap:20px;align-items:start}
+  #pin-sticky{position:static;height:auto;overflow:visible}
+  #track{flex-direction:column;height:auto;transform:none!important;align-items:stretch;padding-bottom:10px}
+  .pslide .pimg{aspect-ratio:16/10}
+  #pin-bar{display:none}
+  #pin-head{padding-top:20px}
+  .sp7,.sp5,.sp4,.sp6{grid-column:span 6}
+  .ar-45{aspect-ratio:3/4}
+  .arow{grid-template-columns:60px minmax(0,1fr) 90px;row-gap:4px}
+  .arow .as{display:none}
+  .arow .at{grid-column:2;grid-row:2}
+  .arow .aa{grid-row:1}
+  .folk-panel{aspect-ratio:16/10;margin-bottom:8px}
+  .f-cols{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .mast-name h1{font-size:23vw}
+  .mast-name{grid-template-columns:1fr}
+  .mast-side{max-width:none}
+  .sp7,.sp5,.sp4,.sp6,.sp12{grid-column:span 12}
+  .ar-45,.ar-11{aspect-ratio:4/3}
+  .ar-219{aspect-ratio:16/10}
+  form.kf{grid-template-columns:1fr}
+  .stage{grid-template-columns:repeat(3,1fr)}
+  .stage label{border-bottom:1px solid var(--line-2)}
+  .stage label:nth-child(2n){border-right:0}
+  .k-info{grid-template-columns:1fr}
+  .fhead{grid-template-columns:44px minmax(0,1fr) auto}
+  .fhead .fk{display:none}
+  .fbody-in{grid-template-columns:1fr}
+  .fbody-in p,.fbody-in ul{grid-column:1}
+  .fbody-in ul{grid-row:auto}
+  .fbody-in .fimg{grid-column:1;grid-row:auto}
+  .aw-row{grid-template-columns:64px 1fr}
+  .aw-row .aw-p{grid-column:2}
+  .stats{grid-template-columns:1fr 1fr}
+  .plate-cap{flex-direction:column;align-items:flex-start;gap:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.15s!important}
+  .ticker-track{animation:none;transform:none}
+  [data-reveal]{opacity:1;transform:none}
+  .mask>span{transform:none}
+  #pin-sticky{position:static;height:auto}
+  #track{flex-direction:column;height:auto;transform:none!important}
+  .pslide{width:100%}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<a class="skip" href="#prosjekter">Hopp til prosjektene</a>
+
+<!-- ======= LOADER ======= -->
+<div id="loader" aria-hidden="true">
+  <div class="l-top">
+    <div class="l-mark">
+      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect width="32" height="32" fill="#16150F"/><path d="M9 25V7h14M9 16h10" stroke="#EFEAE3" stroke-width="2.6" fill="none"/><circle cx="23" cy="23" r="2.4" fill="#C4502A"/></svg>
+      <span class="l-word">Form Arkitekter — Oslo</span>
+    </div>
+    <span class="l-word">Utgave 17 / Høst 2026</span>
+  </div>
+  <div>
+    <div class="l-num" id="lnum">000</div>
+    <div class="l-bar"><i id="lbar"></i></div>
+  </div>
+</div>
+
+<!-- ======= CURSOR ======= -->
+<div id="cur" aria-hidden="true"></div><div id="curR" aria-hidden="true"></div>
+<div id="prog" aria-hidden="true"></div>
+
+<!-- ======= NAV ======= -->
+<header id="nav">
+  <a class="brand" href="#topp" aria-label="Form Arkitekter — til toppen">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#16150F"/><path d="M9 25V7h14M9 16h10" stroke="#EFEAE3" stroke-width="2.6" fill="none"/><circle cx="23" cy="23" r="2.4" fill="#C4502A"/></svg>
+    <span><b>Form</b><span>Arkitekter MNAL</span></span>
+  </a>
+  <nav aria-label="Hovedmeny">
+    <ul>
+      <li><a href="#prosjekter" data-nav="prosjekter">Prosjekter</a></li>
+      <li><a href="#forvandling" data-nav="forvandling">Før &amp; etter</a></li>
+      <li><a href="#fagfelt" data-nav="fagfelt">Fagfelt</a></li>
+      <li><a href="#prosess" data-nav="prosess">Prosess</a></li>
+      <li><a href="#folk" data-nav="folk">Folk</a></li>
+    </ul>
+  </nav>
+  <a class="btn nav-cta" href="#kontakt">Start et prosjekt <span class="ar">→</span></a>
+  <button id="burger" aria-label="Meny" aria-expanded="false"><i></i><i></i></button>
+</header>
+<div id="mmenu">
+  <a class="ml" href="#prosjekter"><i>01</i>Prosjekter</a>
+  <a class="ml" href="#forvandling"><i>02</i>Før &amp; etter</a>
+  <a class="ml" href="#fagfelt"><i>03</i>Fagfelt</a>
+  <a class="ml" href="#prosess"><i>04</i>Prosess</a>
+  <a class="ml" href="#folk"><i>05</i>Folk</a>
+  <a class="ml" href="#kontakt"><i>06</i>Kontakt</a>
+  <div class="m-foot">
+    <span class="mono">Thorvald Meyers gate 61, Oslo</span>
+    <span class="mono">+47 22 04 71 80</span>
+    <span class="mono"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0b0afb3b480a6afb2ada1b2aba9b4a5abb4a5b2eeaeaf">[email&#160;protected]</a></span>
+  </div>
+</div>
+
+<!-- ======= MASTHEAD ======= -->
+<main id="topp">
+  <div class="mast-meta mono">
+    <span><b>Form Arkitekter AS</b> — arkitektkontor, etablert 2009</span>
+    <span>Oslo · 59.9139° N / 10.7522° Ø · <b id="klokke">--:--:--</b></span>
+    <span>Utgave 17 — høst 2026</span>
+  </div>
+  <div class="mast-name">
+    <h1 aria-label="Form Arkitekter">F<span class="o">o</span>rm</h1>
+    <div class="mast-side">
+      <span class="mono">Arkitekter · Oslo · siden 2009</span>
+      Vi prosjekterer boliger, rehabilitering, tilbygg, fritidsboliger, næringsbygg og interiør — rom som tåler å bli brukt i hundre år.
+    </div>
+  </div>
+  <div class="mast-plate" id="plate">
+    <div class="slide on" data-img="fjellstua" data-slide="0"><img alt="Fjellstua i Hemsedal: mørkbeiset limtrehytte på slanke søyler over snødekt terreng"></div>
+    <div class="slide" data-img="vannlinjen" data-slide="1"><img alt="Vannlinjen Brygge i Drøbak: tre etasjer grånet furu mot bryggekanten i gyllent kveldslys"></div>
+    <div class="slide" data-img="kornsiloen" data-slide="2"><img alt="Kornsiloen i Fredrikstad: rå betongsylindre med nye punsjerte vinduer mot havnen"></div>
+    <div class="plate-cap">
+      <div>
+        <div class="pc-t" id="pc-t">Fjellstua, Hemsedal</div>
+        <div class="pc-m mono" id="pc-m">Fritidsbolig · 2026 · 118 m²</div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <div class="plate-idx" id="plate-idx" role="tablist" aria-label="Utvalgte forsidebilder">
+          <button class="on" aria-label="Bilde 1"><i></i></button><button aria-label="Bilde 2"><i></i></button><button aria-label="Bilde 3"><i></i></button>
+        </div>
+        <a class="btn btn--light" href="#prosjekter">Se prosjekter <span class="ar">↓</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="mast-foot">
+    <span class="scrollhint mono"><i></i> Scroll</span>
+    <span class="mono" style="color:var(--ink-3)">147 prosjekter · 236 000 m² · 14 hoder</span>
+  </div>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Nytt: Skarpsno Terrasser under bygging</span><span>Sagene Verksted vant Oslo bys arkitekturpris 2024</span><span>Ledig praksisplass høst 2027</span><span>Kornsiloen åpner takterrasse for publikum i mai</span><span>Vi søker en tegner med sans for detaljer</span><span>Fjellstua nominert til Nordisk trearkitekturpris</span>
+      <span>Nytt: Skarpsno Terrasser under bygging</span><span>Sagene Verksted vant Oslo bys arkitekturpris 2024</span><span>Ledig praksisplass høst 2027</span><span>Kornsiloen åpner takterrasse for publikum i mai</span><span>Vi søker en tegner med sans for detaljer</span><span>Fjellstua nominert til Nordisk trearkitekturpris</span>
+    </div>
+  </div>
+</main>
+
+<!-- ======= MANIFEST ======= -->
+<section class="sec" id="studio">
+  <span class="cross" style="top:22px;left:var(--pad)"></span>
+  <span class="cross" style="top:22px;right:var(--pad)"></span>
+  <div class="sec-head">
+    <span class="sec-idx">01 / Manifest</span>
+    <span class="sec-note">Thorvald Meyers gate 61, 4. etasje — et tegneverksted med fjorten arbeidsbenker og én kaffetrakter.</span>
+  </div>
+  <div class="man">
+    <div class="man-l" data-reveal>
+      <h2>
+        <span class="mask"><span>Vi tegner ikke</span></span>
+        <span class="mask"><span>bare bygg. Vi tegner</span></span>
+        <span class="mask"><span><em>rammene</em> for livet</span></span>
+        <span class="mask"><span>som skal leves i dem.</span></span>
+      </h2>
+      <div class="sig" aria-hidden="true">
+        <svg viewBox="0 0 132 44" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 32c8-14 14-22 18-22s-6 26 0 26 12-20 17-20-4 18 1 18 10-13 15-13 2 9 7 9 9-6 14-6 6 4 12 4 10-3 16-8"/><path d="M108 24c6-4 12-6 18-4" stroke-dasharray="2 3"/></svg>
+        <span class="mono" style="color:var(--ink-3)">Ingrid &amp; Marius, partnere</span>
+      </div>
+    </div>
+    <div class="man-r" data-reveal style="--d:.15s">
+      <p><strong>Form Arkitekter ble grunnlagt i 2009</strong> med en enkel overbevisning: at et rom er ferdig først når det fungerer en helt vanlig tirsdag i november — ikke bare på innvielsesdagen. Derfor begynner vi alltid i terrenget. Med en gåtur, en samtale og et skissebord.</p>
+      <p>Vi er et mellomstort kontor med kort avstand fra første strek til siste befaring. Partneren som tegner huset ditt, er den samme som står på byggeplassen i uke 34. Vi prosjekterer i tre der vi kan, gjenbruker der vi får lov, og mener at det grønneste bygget ofte er det som allerede står.</p>
+      <p>Portfolioen spenner fra en 38 kvadratmeters glassveranda på Majorstuen til en hel barneskole i Aurskog-Høland. Fellesnevneren er omsorgen for detaljen: hvordan lyset faller klokka sju om morgenen, hvordan terskelen mellom ute og inne kjennes under foten, og hvordan et hus eldes med verdigheten i behold.</p>
+    </div>
+  </div>
+  <div class="stats" data-reveal>
+    <div class="stat"><b><span data-count="147">0</span></b><span>Fullførte prosjekter</span></div>
+    <div class="stat"><b><span data-count="18">0</span></b><span>År i Oslo</span></div>
+    <div class="stat"><b><span data-count="236">0</span><i> 000</i></b><span>m² prosjektert</span></div>
+    <div class="stat"><b><span data-count="14">0</span></b><span>Ansatte &amp; praksis</span></div>
+  </div>
+</section>
+
+<!-- ======= UTVALGTE PROSJEKTER (pinned horisontal) ======= -->
+<section id="utvalgt" aria-label="Utvalgte prosjekter">
+  <div id="pin-wrap">
+    <div id="pin-sticky">
+      <div id="pin-head">
+        <div>
+          <span class="sec-idx">02 / Utvalgte prosjekter</span>
+          <h2 class="disp">Fire prosjekter, tett på</h2>
+        </div>
+        <span id="pin-count"><b>01</b> / 04 — scroll sidelengs</span>
+      </div>
+      <div id="track">
+        <article class="pslide">
+          <div class="pimg" data-img="vannlinjen"><span class="pnum">P—01</span><img alt="Vannlinjen Brygge: fasade i grånet furu med altaner mot bryggekanten"></div>
+          <div class="pmeta">
+            <span class="pm-k">Boliger · under bruk</span>
+            <h3>Vannlinjen Brygge</h3>
+            <div class="pm-row"><span>Drøbak, Frogn</span><span>2025</span><span>4 800 m²</span></div>
+            <p>24 sjørettede leiligheter og en offentlig bryggepromenade i grånet furu og glass. Bygget gir privaten tilbake til vannet — og vannet tilbake til byen.</p>
+            <a class="link-u" href="#kontakt">Be om presentasjon →</a>
+          </div>
+        </article>
+        <article class="pslide">
+          <div class="pimg" data-img="fjellstua"><span class="pnum">P—02</span><img alt="Fjellstua Hemsedal: hytte på slanke stålsøyler over skrånende terreng"></div>
+          <div class="pmeta">
+            <span class="pm-k">Fritidsbolig · ferdigstilles 2026</span>
+            <h3>Fjellstua, Hemsedal</h3>
+            <div class="pm-row"><span>Hemsedal, Viken</span><span>2026</span><span>118 m²</span></div>
+            <p>Mørkbeiset limtre på slanke søyler, svevende over terrenget uten å røre det. Ett oppholdsrom, én ovn — og hundreåtte grader med fjell utsikt.</p>
+            <a class="link-u" href="#kontakt">Be om presentasjon →</a>
+          </div>
+        </article>
+        <article class="pslide">
+          <div class="pimg" data-img="kornsiloen"><span class="pnum">P—03</span><img alt="Kornsiloen Fredrikstad: betongsiloer i transformasjon mot havnelandskapet"></div>
+          <div class="pmeta">
+            <span class="pm-k">Rehabilitering · næring</span>
+            <h3>Kornsiloen</h3>
+            <div class="pm-row"><span>Fredrikstad havn</span><span>2021</span><span>5 600 m²</span></div>
+            <p>Åtte betongsiloer fra 1953 ble havnens nye arbeidsplasser, galleri og takterrasse. Vi punsjerte sirkelrunde vinduer i sylindre som aldri var ment å ses utenfra.</p>
+            <a class="link-u" href="#kontakt">Be om presentasjon →</a>
+          </div>
+        </article>
+        <article class="pslide">
+          <div class="pimg" data-img="sagene"><span class="pnum">P—04</span><img alt="Sagene Verksted: rød tegl fra 1898 med ny taketasje i sink"></div>
+          <div class="pmeta">
+            <span class="pm-k">Rehabilitering · vinner av Oslo bys arkitekturpris</span>
+            <h3>Sagene Verksted</h3>
+            <div class="pm-row"><span>Oslo, Sagene</span><span>2024</span><span>2 150 m²</span></div>
+            <p>Trikkeverkstedet fra 1898 rommer nå tretten kontorer, et bokbinderi og et fellesverksted. Ny taketasje i sink legger seg tilbakeholden — som om den alltid har ligget der.</p>
+            <a class="link-u" href="#forvandling">Se før &amp; etter →</a>
+          </div>
+        </article>
+      </div>
+      <div id="pin-bar"><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= ALLE PROSJEKTER ======= -->
+<section class="sec" id="prosjekter">
+  <span class="cross" style="top:22px;left:var(--pad)"></span>
+  <div class="sec-head">
+    <span class="sec-idx">03 / Portefølje</span>
+    <h2 class="sec-title">Alle prosjekter</h2>
+    <span class="sec-note">Tolv av hundreførtisyv. Filtrer på fagfelt — eller bla ned til arkivet for 2009–2021.</span>
+  </div>
+  <div class="filters" role="group" aria-label="Filtrer prosjekter på fagfelt">
+    <button class="on" data-f="alle">Alle<sup>12</sup></button>
+    <button data-f="boliger">Boliger<sup>3</sup></button>
+    <button data-f="rehab">Rehabilitering<sup>3</sup></button>
+    <button data-f="tilbygg">Tilbygg<sup>2</sup></button>
+    <button data-f="fritid">Fritidsboliger<sup>3</sup></button>
+    <button data-f="naering">Næringsbygg<sup>4</sup></button>
+    <button data-f="interior">Interiør<sup>3</sup></button>
+  </div>
+  <div id="pgrid">
+    <article class="ptile sp7" data-cat="boliger" data-reveal>
+      <div class="pimg ar-32 clip" data-img="vannlinjen"><img alt="Vannlinjen Brygge i Drøbak"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Vannlinjen Brygge</a></h3><div class="pc-m">Drøbak, Frogn · Boliger · 4 800 m²</div></div><span class="pc-y">2025</span></div>
+    </article>
+    <article class="ptile sp5" data-cat="fritid" data-reveal style="--d:.08s">
+      <div class="pimg ar-45 clip" data-img="nordmarka"><img alt="Nordmarka Hytte 04 i vinterskog"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Nordmarka Hytte 04</a></h3><div class="pc-m">Oslo, Nordmarka · Fritidsbolig · 96 m²</div></div><span class="pc-y">2023</span></div>
+    </article>
+    <article class="ptile sp5" data-cat="rehab tilbygg naering" data-reveal>
+      <div class="pimg ar-45 clip" data-img="sagene"><img alt="Sagene Verksted: tegl og nye stålvinduer"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#forvandling">Sagene Verksted</a></h3><div class="pc-m">Oslo, Sagene · Rehabilitering · 2 150 m²</div></div><span class="pc-y">2024</span></div>
+    </article>
+    <article class="ptile sp7" data-cat="fritid" data-reveal style="--d:.08s">
+      <div class="pimg ar-32 clip" data-img="fjellstua"><img alt="Fjellstua Hemsedal i blå time"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Fjellstua, Hemsedal</a></h3><div class="pc-m">Hemsedal · Fritidsbolig · 118 m²</div></div><span class="pc-y">2026</span></div>
+    </article>
+    <article class="ptile sp4" data-cat="boliger" data-reveal>
+      <div class="pimg ar-11 clip" data-img="skarpsno"><img alt="Skarpsno Terrasser trapper nedover liaen"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Skarpsno Terrasser</a></h3><div class="pc-m">Oslo, Frogner · Boliger · 6 200 m²</div></div><span class="pc-y">2026</span></div>
+    </article>
+    <article class="ptile sp4" data-cat="interior rehab" data-reveal style="--d:.08s">
+      <div class="pimg ar-11 clip" data-img="brenneriet"><img alt="Brenneriet Grünerløkka: mur, eik og kobber"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Brenneriet, Grünerløkka</a></h3><div class="pc-m">Oslo · Interiør · 620 m²</div></div><span class="pc-y">2023</span></div>
+    </article>
+    <article class="ptile sp4" data-cat="tilbygg interior" data-reveal style="--d:.16s">
+      <div class="pimg ar-11 clip" data-img="vinterhagen"><img alt="Vinterhagen Majorstuen: glassveranda mot murvilla"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Vinterhagen, Majorstuen</a></h3><div class="pc-m">Oslo · Tilbygg · 38 m²</div></div><span class="pc-y">2024</span></div>
+    </article>
+    <article class="ptile sp7" data-cat="rehab naering" data-reveal>
+      <div class="pimg ar-32 clip" data-img="kornsiloen"><img alt="Kornsiloen i Fredrikstad"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Kornsiloen</a></h3><div class="pc-m">Fredrikstad havn · Rehabilitering · 5 600 m²</div></div><span class="pc-y">2021</span></div>
+    </article>
+    <article class="ptile sp5" data-cat="fritid" data-reveal style="--d:.08s">
+      <div class="pimg ar-45 clip" data-img="hvitsten"><img alt="Hvitsten Sjøhus på svabergene"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Hvitsten Sjøhus</a></h3><div class="pc-m">Vestby, Hvitsten · Fritidsbolig · 140 m²</div></div><span class="pc-y">2022</span></div>
+    </article>
+    <article class="ptile sp6" data-cat="naering" data-reveal>
+      <div class="pimg ar-32 clip" data-img="bjorkelangen"><img alt="Bjørkelangen skole i massivtre"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Bjørkelangen skole</a></h3><div class="pc-m">Aurskog-Høland · Næringsbygg · 3 400 m²</div></div><span class="pc-y">2025</span></div>
+    </article>
+    <article class="ptile sp6" data-cat="boliger" data-reveal style="--d:.08s">
+      <div class="pimg ar-32 clip" data-img="villa"><img alt="Villa Nordre Aker mellom bevarte eiker"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Villa Nordre Aker</a></h3><div class="pc-m">Oslo, Nordre Aker · Bolig · 310 m²</div></div><span class="pc-y">2022</span></div>
+    </article>
+    <article class="ptile sp12" data-cat="interior naering" data-reveal>
+      <div class="pimg ar-219 clip" data-img="tollbugata"><img alt="Tollbugata 12: kontorlandskap i eik og glass"><span class="pt-view" aria-hidden="true">↗</span></div>
+      <div class="pcap"><div><h3><a href="#kontakt">Tollbugata 12 kontor</a></h3><div class="pc-m">Oslo, Kvadraturen · Interiør &amp; næring · 1 150 m²</div></div><span class="pc-y">2025</span></div>
+    </article>
+  </div>
+
+  <div id="arkiv" data-reveal>
+    <h3 class="disp">Prosjektarkiv <em>2009–2021</em></h3>
+    <div class="arow" data-img="sagene" tabindex="0"><span class="ay">2020</span><span class="an">Grønland Bakgård</span><span class="as">Oslo</span><span class="at">Rehabilitering</span><span class="aa">→</span></div>
+    <div class="arow" data-img="villa" tabindex="0"><span class="ay">2019</span><span class="an">Kastellet Trehus</span><span class="as">Oslo</span><span class="at">Boliger</span><span class="aa">→</span></div>
+    <div class="arow" data-img="vinterhagen" tabindex="0"><span class="ay">2018</span><span class="an">Fagerborg Påbygg</span><span class="as">Oslo</span><span class="at">Tilbygg</span><span class="aa">→</span></div>
+    <div class="arow" data-img="tollbugata" tabindex="0"><span class="ay">2017</span><span class="an">Lysaker Brygge Kontor</span><span class="as">Bærum</span><span class="at">Næringsbygg</span><span class="aa">→</span></div>
+    <div class="arow" data-img="brenneriet" tabindex="0"><span class="ay">2016</span><span class="an">Sørumsand Låve</span><span class="as">Lillestrøm</span><span class="at">Rehabilitering</span><span class="aa">→</span></div>
+    <div class="arow" data-img="nordmarka" tabindex="0"><span class="ay">2014</span><span class="an">Krokskogen Bu</span><span class="as">Hole</span><span class="at">Fritidsbolig</span><span class="aa">→</span></div>
+    <div class="arow" data-img="hvitsten" tabindex="0"><span class="ay">2012</span><span class="an">Vulkan Markedshall</span><span class="as">Oslo</span><span class="at">Interiør</span><span class="aa">→</span></div>
+    <div class="arow" data-img="skarpsno" tabindex="0"><span class="ay">2010</span><span class="an">Hausmanns gate 8</span><span class="as">Oslo</span><span class="at">Boliger — kontorets første</span><span class="aa">→</span></div>
+  </div>
+  <div id="peek" aria-hidden="true"><img alt=""></div>
+</section>
+
+<!-- ======= FØR / ETTER ======= -->
+<section class="sec sec--dark" id="forvandling">
+  <span class="cross" style="top:22px;right:var(--pad)"></span>
+  <div class="sec-head">
+    <span class="sec-idx">04 / Forvandling</span>
+    <h2 class="sec-title">Før &amp; etter</h2>
+    <span class="sec-note">Dra i håndtaket — eller bruk piltastene. Samme kamerastativ, fem år mellom bildene.</span>
+  </div>
+  <div class="ba-wrap">
+    <div>
+      <div class="ba" id="ba" role="slider" tabindex="0" aria-label="Sammenlign før og etter av Sagene Verksted" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="--pos:50%">
+        <img class="ba-before" data-img="sagene_before" alt="Sagene Verksted før rehabilitering: mørk hall med slitt tegl" >
+        <img class="ba-after" data-img="sagene" alt="Sagene Verksted etter rehabilitering: lys hall med nye stålvinduer">
+        <span class="ba-tag t-before mono">2019 · Før</span>
+        <span class="ba-tag t-after mono">2024 · Etter</span>
+        <span class="ba-line" aria-hidden="true"></span>
+        <span class="ba-grip" aria-hidden="true"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 1L1 6l4 5M17 1l4 5-4 5M1 6h20"/></svg></span>
+      </div>
+      <ul class="ba-facts">
+        <li><span>Bevart</span><b>Takstoler &amp; tegl, 100 %</b></li>
+        <li><span>Tilført</span><b>Taketasje i sink, 340 m²</b></li>
+        <li><span>Ombruk</span><b>78 % av opprinnelige bygningsdeler</b></li>
+        <li><span>Energi</span><b>Fra G til B — uten å røre fasaden</b></li>
+      </ul>
+    </div>
+    <div class="ba-txt" data-reveal>
+      <h2>Det grønneste bygget er det som <em>allerede står</em>.</h2>
+      <p>Sagene Verksted var dømt til riving da vi fikk nøklene. Vi brukte ett år på å dokumentere hver bjelke og hver murstein — og overtalte byantikvaren, eieren og banken om at transformasjon var både billigere og vakrere enn nybygg.</p>
+      <p>Resultatet: tretten arbeidsplasser rundt et felles gulv, et bokbinderi i den gamle smia og en taketasje som ikke synes fra gaten. Prosjektet vant Oslo bys arkitekturpris i 2024.</p>
+      <blockquote class="ba-quote">«De tegnet ikke om historien vår. De tegnet videre på den.»
+        <footer>— Kari Ødegård, daglig leder i Verkstedet Sagene AS</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FAGFELT ======= -->
+<section class="sec" id="fagfelt">
+  <span class="cross" style="top:22px;left:var(--pad)"></span>
+  <div class="sec-head">
+    <span class="sec-idx">05 / Fagfelt</span>
+    <h2 class="sec-title">Det vi kan</h2>
+    <span class="sec-note">Seks fagfelt, én metode: stedsans, skissebord og samarbeid med folkene som skal bruke rommet.</span>
+  </div>
+  <div class="frow open">
+    <button class="fhead" aria-expanded="true"><span class="fn">01</span><h3>Boliger</h3><span class="fk">34 prosjekter</span><span class="fx" aria-hidden="true"></span></button>
+    <div class="fbody"><div><div class="fbody-in">
+      <p>Fra én enkelt bolig på en vanskelig tomt til hele kvartaler med bydelsliv. Vi tegner hjem med rom for hverdagen: lys inn fra to sider, plass til jakker og sykler, og uterom som fungerer i norsk klima — ikke bare på renderingen.</p>
+      <ul><li>Regulering &amp; omregulering</li><li>Brukermedvirkning</li><li>Passivhusnivå</li><li>Delte uterom</li></ul>
+      <div class="fimg clip" data-img="villa"><img alt="Villa Nordre Aker"></div>
+    </div></div></div>
+  </div>
+  <div class="frow">
+    <button class="fhead" aria-expanded="false"><span class="fn">02</span><h3>Rehabilitering &amp; transformasjon</h3><span class="fk">28 prosjekter</span><span class="fx" aria-hidden="true"></span></button>
+    <div class="fbody"><div><div class="fbody-in">
+      <p>Vi finner verdien i det som allerede står: tegl, tre og takstoler med patina ingen nybygg kan kopiere. Gjennom grundig kartlegging, antikvarisk dialog og ombruk gir vi gamle bygg nye hundre år — ofte med lavere klimaregnskap enn riving og nybygg.</p>
+      <ul><li>Antikvarisk dialog</li><li>Ombrukskartlegging</li><li>Energioppgradering</li><li>Verneplaner</li></ul>
+      <div class="fimg clip" data-img="sagene"><img alt="Sagene Verksted"></div>
+    </div></div></div>
+  </div>
+  <div class="frow">
+    <button class="fhead" aria-expanded="false"><span class="fn">03</span><h3>Tilbygg &amp; påbygg</h3><span class="fk">19 prosjekter</span><span class="fx" aria-hidden="true"></span></button>
+    <div class="fbody"><div><div class="fbody-in">
+      <p>Rommet du mangler, uten at du må flytte. Glassverandaer, takpåbygg og sidefløyer som respekterer verten de vokser på — enten det er en murvilla fra 1926 eller et verneverdig industribygg. Kontrast der det kler, dempet der det må.</p>
+      <ul><li>Verneverdige verter</li><li>Taketaser</li><li>Glassverandaer</li><li>Nabodialog</li></ul>
+      <div class="fimg clip" data-img="vinterhagen"><img alt="Vinterhagen Majorstuen"></div>
+    </div></div></div>
+  </div>
+  <div class="frow">
+    <button class="fhead" aria-expanded="false"><span class="fn">04</span><h3>Fritidsboliger</h3><span class="fk">22 prosjekter</span><span class="fx" aria-hidden="true"></span></button>
+    <div class="fbody"><div><div class="fbody-in">
+      <p>Hytter som står stille i landskapet. Vi leser terreng, vind og utsiktslinjer før første strek settes, og bygger med laft, limtre og lokale materialer som eldes pent. Minimalt fotavtrykk, maksimalt friluftsliv — fra Nordmarka til Hemsedal.</p>
+      <ul><li>Terrengtilpasning</li><li>Laft &amp; limtre</li><li>Lavt energibehov</li><li>Uteareal &amp; utsikt</li></ul>
+      <div class="fimg clip" data-img="nordmarka"><img alt="Nordmarka Hytte 04"></div>
+    </div></div></div>
+  </div>
+  <div class="frow">
+    <button class="fhead" aria-expanded="false"><span class="fn">05</span><h3>Næringsbygg</h3><span class="fk">26 prosjekter</span><span class="fx" aria-hidden="true"></span></button>
+    <div class="fbody"><div><div class="fbody-in">
+      <p>Kontor, skole og handel som tåler omstilling. Fleksible planløsninger i massivtre, sertifisert etter BREEAM-NOR, med dagslys og luft som gjør at folk orker å være der åtte timer om dagen — og at bygget kan bli til noe annet om tjue år.</p>
+      <ul><li>Massivtre &amp; hybrid</li><li>BREEAM-NOR</li><li>Fleksible planer</li><li>Prosessdesign</li></ul>
+      <div class="fimg clip" data-img="bjorkelangen"><img alt="Bjørkelangen skole"></div>
+    </div></div></div>
+  </div>
+  <div class="frow">
+    <button class="fhead" aria-expanded="false"><span class="fn">06</span><h3>Interiør</h3><span class="fk">18 prosjekter</span><span class="fx" aria-hidden="true"></span></button>
+    <div class="fbody"><div><div class="fbody-in">
+      <p>Rom innenfor rommet: kaféer, kontorer og fellesarealer der materialpalett, lys og akustikk henger sammen fra terskel til bakerste bord. Vi tegner gjerne også det som står i rommet — bardisk, reol og skilting i samme språk som veggen.</p>
+      <ul><li>Materialpalett</li><li>Lyssetting</li><li>Møblering</li><li>Skilting &amp; grafikk</li></ul>
+      <div class="fimg clip" data-img="brenneriet"><img alt="Brenneriet Grünerløkka"></div>
+    </div></div></div>
+  </div>
+</section>
+
+<!-- ======= PROSESS ======= -->
+<section class="sec" id="prosess" style="background:var(--paper-2)">
+  <span class="cross" style="top:22px;right:var(--pad)"></span>
+  <div class="sec-head">
+    <span class="sec-idx">06 / Metode</span>
+    <h2 class="sec-title">Fra idé til etterliv</h2>
+    <span class="sec-note">Seks faser, ingen snarveier. Du vet alltid hvor vi er, hva som kommer neste uke — og hva det koster.</span>
+  </div>
+  <div class="pr-grid">
+    <div class="pr-l">
+      <figure>
+        <div class="fimg clip" data-img="studio"><img alt="Skissebordet hos Form Arkitekter: hender, blyant og tegning"></div>
+        <figcaption>Skissebordet, torsdag morgen.<br>Alle prosjekter begynner i 1:200 — i hånden.</figcaption>
+      </figure>
+    </div>
+    <div class="pr-steps" id="prsteps">
+      <span class="pr-line" aria-hidden="true"></span>
+      <div class="pr-step" data-reveal>
+        <div class="ps-k">Fase 01 <i>· uke 1–2</i></div>
+        <h3>Samtale &amp; sted</h3>
+        <p>Vi begynner med en lang samtale og en lengre gåtur på tomten — i alle fall én gang i hvert årstidslys. Hva drømmer dere om, hva tåler budsjettet, og hva sier terrenget, naboen og kommuneplanen?</p>
+        <ul class="ps-tags"><li>Brief</li><li>Stedsanalyse</li><li>Budsjettramme</li></ul>
+      </div>
+      <div class="pr-step" data-reveal>
+        <div class="ps-k">Fase 02 <i>· uke 3–8</i></div>
+        <h3>Skisse &amp; konsept</h3>
+        <p>Blyant, pappmodeller og to–tre konsepter som virkelig peker i ulike retninger. Vi tester dem mot sol, utsikt og lommebok før vi sammen velger den retningen som skal bæres videre.</p>
+        <ul class="ps-tags"><li>Skisseprosjekt</li><li>Fysiske modeller</li><li>Visualisering</li></ul>
+      </div>
+      <div class="pr-step" data-reveal>
+        <div class="ps-k">Fase 03 <i>· uke 9–16</i></div>
+        <h3>Forprosjekt &amp; myndigheter</h3>
+        <p>Konseptet gjøres målbart: planer, snitt og fasader i 1:100, energistrategi og materialvalg. Vi søker nabodialog, rammetillatelse og — der det trengs — dispensasjoner med gode argumenter.</p>
+        <ul class="ps-tags"><li>Søknadstegninger</li><li>Energistrategi</li><li>Nabodialog</li></ul>
+      </div>
+      <div class="pr-step" data-reveal>
+        <div class="ps-k">Fase 04 <i>· uke 17–30</i></div>
+        <h3>Detaljprosjektering</h3>
+        <p>Her avgjøres alt: hvordan terskelen møter gulvet, hvordan beslaget brettes, hvilken eik som står til hvilken hvitmaling. Full BIM-modell, arbeids- og detaljtegninger, anbudsgrunnlag og entreprisekontrakt.</p>
+        <ul class="ps-tags"><li>Arbeidstegninger</li><li>BIM / IFC</li><li>Anbud &amp; kontrakt</li></ul>
+      </div>
+      <div class="pr-step" data-reveal>
+        <div class="ps-k">Fase 05 <i>· måned 8–20</i></div>
+        <h3>Byggefase</h3>
+        <p>Partneren som tegnet prosjektet, følger det ut på byggeplassen. Ukemøter, beslutningslogg og kvalitetssikring av hver eneste prøve — slik at tegningens intensjon overlever møtet med virkeligheten.</p>
+        <ul class="ps-tags"><li>Byggeoppfølging</li><li>Ukesmøter</li><li>Kvalitetsrunder</li></ul>
+      </div>
+      <div class="pr-step" data-reveal>
+        <div class="ps-k">Fase 06 <i>· første året</i></div>
+        <h3>Overtakelse &amp; etterliv</h3>
+        <p>Ett år etter innflytting kommer vi tilbake og måler hvordan rommet faktisk brukes: lys, lyd, temperatur og vaner. Justeringene dokumenterer vi — de blir til læring i neste prosjekt.</p>
+        <ul class="ps-tags"><li>1-års evaluering</li><li>Justeringer</li><li>Driftsdokumentasjon</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FOLK ======= -->
+<section class="sec" id="folk">
+  <span class="cross" style="top:22px;left:var(--pad)"></span>
+  <div class="sec-head">
+    <span class="sec-idx">07 / Folk</span>
+    <h2 class="sec-title">Hodene bak</h2>
+    <span class="sec-note">Peil eller trykk på et navn for å se hvem som tegner hva. Alle partnerne tegner fortsatt selv.</span>
+  </div>
+  <div class="folk-grid">
+    <div class="folk-panel" id="folkpanel">
+      <img data-img="ingrid" alt="Portrett av Ingrid Solberg Falch">
+      <img data-img="marius" alt="Portrett av Marius Kvale Hagen">
+      <img data-img="sunniva" alt="Portrett av Sunniva Berg Lind">
+      <img data-img="aleksander" alt="Portrett av Aleksander Vang">
+      <img data-img="nora" alt="Portrett av Nora Tveit">
+      <img data-img="amira" alt="Portrett av Amira Halvorsen">
+      <div class="fp-cap"><span class="mono" id="fpcap">Partner · siden 2009</span></div>
+    </div>
+    <div>
+      <div class="frow-t on" data-p="0" data-cap="Partner / sivilarkitekt MNAL · siden 2009" tabindex="0" role="button" aria-label="Vis portrett av Ingrid Solberg Falch">
+        <h3>Ingrid Solberg Falch</h3><span class="fr-y">siden 2009</span>
+        <span class="fr-role">Partner · sivilarkitekt MNAL</span>
+        <ul class="fr-tags"><li>Bolig &amp; byrom</li><li>Regulering</li><li>NTNU / ETH Zürich</li></ul>
+      </div>
+      <div class="frow-t" data-p="1" data-cap="Partner / sivilarkitekt MNAL · siden 2009" tabindex="0" role="button" aria-label="Vis portrett av Marius Kvale Hagen">
+        <h3>Marius Kvale Hagen</h3><span class="fr-y">siden 2009</span>
+        <span class="fr-role">Partner · sivilarkitekt MNAL</span>
+        <ul class="fr-tags"><li>Rehabilitering</li><li>Transformasjon</li><li>NTNU / AHO</li></ul>
+      </div>
+      <div class="frow-t" data-p="2" data-cap="Prosjektleder / interiørarkitekt MNIL · siden 2014" tabindex="0" role="button" aria-label="Vis portrett av Sunniva Berg Lind">
+        <h3>Sunniva Berg Lind</h3><span class="fr-y">siden 2014</span>
+        <span class="fr-role">Prosjektleder · interiørarkitekt MNIL</span>
+        <ul class="fr-tags"><li>Interiør &amp; lys</li><li>Materialitet</li><li>KHiO</li></ul>
+      </div>
+      <div class="frow-t" data-p="3" data-cap="Arkitekt / BIM-ansvarlig · siden 2018" tabindex="0" role="button" aria-label="Vis portrett av Aleksander Vang">
+        <h3>Aleksander Vang</h3><span class="fr-y">siden 2018</span>
+        <span class="fr-role">Arkitekt · BIM-ansvarlig</span>
+        <ul class="fr-tags"><li>Parametrisk design</li><li>Digital tvilling</li><li>NTNU</li></ul>
+      </div>
+      <div class="frow-t" data-p="4" data-cap="Arkitekt / landskap · siden 2020" tabindex="0" role="button" aria-label="Vis portrett av Nora Tveit">
+        <h3>Nora Tveit</h3><span class="fr-y">siden 2020</span>
+        <span class="fr-role">Arkitekt · landskap</span>
+        <ul class="fr-tags"><li>Fritidsboliger</li><li>Terreng &amp; uteareal</li><li>NMBU</li></ul>
+      </div>
+      <div class="frow-t" data-p="5" data-cap="Interiørarkitekt MNIL · siden 2022" tabindex="0" role="button" aria-label="Vis portrett av Amira Halvorsen">
+        <h3>Amira Halvorsen</h3><span class="fr-y">siden 2022</span>
+        <span class="fr-role">Interiørarkitekt MNIL</span>
+        <ul class="fr-tags"><li>Næring &amp; interiør</li><li>Ombruk</li><li>DKA / AHO</li></ul>
+      </div>
+      <p class="folk-extra"><b>I studioet også:</b> to tegnere · én landskapsarkitekt · én byggøkonom · én praksisplass — og hunden Blyant, uoffisiell kvalitetskontroll.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======= ANERKJENNELSER ======= -->
+<section class="sec sec--dark" id="anerkj">
+  <div class="sec-head">
+    <span class="sec-idx">08 / Anerkjennelser</span>
+    <h2 class="sec-title">Priser &amp; omtale</h2>
+    <span class="sec-note">Vi søker ikke priser for sportens skyld — men når fagfeller peker, takker vi og tegner videre.</span>
+  </div>
+  <div data-reveal>
+    <div class="aw-row"><span class="aw-y">2025</span><span class="aw-n">Treprisen — nominert</span><span class="aw-p">Vannlinjen Brygge, Drøbak</span></div>
+    <div class="aw-row"><span class="aw-y">2024</span><span class="aw-n">Oslo bys arkitekturpris — vinner</span><span class="aw-p">Sagene Verksted</span></div>
+    <div class="aw-row"><span class="aw-y">2024</span><span class="aw-n">DOGA-merket for design og arkitektur</span><span class="aw-p">Sagene Verksted</span></div>
+    <div class="aw-row"><span class="aw-y">2023</span><span class="aw-n">Nordisk trearkitekturpris — nominert</span><span class="aw-p">Nordmarka Hytte 04</span></div>
+    <div class="aw-row"><span class="aw-y">2022</span><span class="aw-n">Vestby kommunes byggeskikkpris</span><span class="aw-p">Hvitsten Sjøhus</span></div>
+    <div class="aw-row"><span class="aw-y">2021</span><span class="aw-n">Fredrikstad byutviklingspris</span><span class="aw-p">Kornsiloen</span></div>
+  </div>
+  <div class="press" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Arkitektur N</span><span>Dezeen</span><span>Wallpaper*</span><span>Norske Hjem</span><span>Tre Magasinet</span><span>Byggmesteren</span><span>ArchDaily</span><span>Rom for Rom</span>
+      <span>Arkitektur N</span><span>Dezeen</span><span>Wallpaper*</span><span>Norske Hjem</span><span>Tre Magasinet</span><span>Byggmesteren</span><span>ArchDaily</span><span>Rom for Rom</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======= KONTAKT ======= -->
+<section class="sec" id="kontakt">
+  <span class="cross" style="top:22px;left:var(--pad)"></span>
+  <span class="cross" style="top:22px;right:var(--pad)"></span>
+  <div class="k-grid">
+    <div data-reveal>
+      <span class="sec-idx" style="display:block;margin-bottom:22px">09 / Kontakt</span>
+      <h2>La oss bygge noe som <em>varer</em>.</h2>
+      <p class="lead" style="margin-top:24px;max-width:42ch">Fortell oss om tomten, drømmen eller bygget som trenger et nytt liv. Vi svarer innen ett døgn — med en ærlig vurdering av om vi er rette kontor for akkurat ditt prosjekt.</p>
+      <div class="k-info">
+        <div><span class="mono">Besøk</span><p>Thorvald Meyers gate 61, 4. et.<br>0552 Oslo<br><span style="color:var(--ink-3);font-size:12px">Ringeklokke: Form Arkitekter</span></p></div>
+        <div><span class="mono">Kontakt</span><p><a class="link-u" href="tel:+4722047180">+47 22 04 71 80</a><br><a class="link-u" href="/cdn-cgi/l/email-protection#8bfbe4f8ffcbede4f9e6eaf9e0e2ffeee0ffeef9a5e5e4"><span class="__cf_email__" data-cfemail="aedec1dddaeec8c1dcc3cfdcc5c7dacbc5dacbdc80c0c1">[email&#160;protected]</span></a><br><a class="link-u" href="/cdn-cgi/l/email-protection#49393b263a232c223d092f263b24283b22203d2c223d2c3b672726"><span class="__cf_email__" data-cfemail="6d1d1f021e070806192d0b021f000c1f060419080619081f430302">[email&#160;protected]</span></a></p></div>
+        <div><span class="mono">Åpent</span><p>Man–tor 08–16 · fre 08–15<br>Kaffetrakteren står på fra 07.30.<br>Du trenger ingen avtale.</p></div>
+        <div><span class="mono">Formelt</span><p>Form Arkitekter AS<br>Org.nr 923 458 117 MVA<br>MNAL · Norske arkitekters landsforbund</p></div>
+      </div>
+      <p class="k-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> Første møte er alltid gratis — og foregår helst på tomten, ikke på kontoret.</p>
+    </div>
+    <div>
+      <form class="kf" id="kjema" novalidate>
+        <div class="fld"><label for="f-navn">Navn <span class="req">*</span></label><input id="f-navn" name="navn" type="text" autocomplete="name" required placeholder="Kari Nordmann"></div>
+        <div class="fld"><label for="f-epost">E-post <span class="req">*</span></label><input id="f-epost" name="epost" type="email" autocomplete="email" required placeholder="kari@eksempel.no"></div>
+        <div class="fld"><label for="f-tlf">Telefon</label><input id="f-tlf" name="telefon" type="tel" autocomplete="tel" placeholder="+47 ··· ·· ···"></div>
+        <div class="fld"><label for="f-sted">Sted / kommune</label><input id="f-sted" name="sted" type="text" placeholder="Oslo, tomt i Nordmarka …"></div>
+        <div class="fld full"><span class="flab">Prosjekttype <span class="req" style="color:var(--accent)">*</span></span>
+          <div class="chips" role="radiogroup" aria-label="Prosjekttype">
+            <input type="radio" id="t-bolig" name="ptype" value="Bolig" checked><label for="t-bolig">Bolig</label>
+            <input type="radio" id="t-rehab" name="ptype" value="Rehabilitering"><label for="t-rehab">Rehabilitering</label>
+            <input type="radio" id="t-tilbygg" name="ptype" value="Tilbygg"><label for="t-tilbygg">Tilbygg</label>
+            <input type="radio" id="t-fritid" name="ptype" value="Fritidsbolig"><label for="t-fritid">Fritidsbolig</label>
+            <input type="radio" id="t-naering" name="ptype" value="Næringsbygg"><label for="t-naering">Næringsbygg</label>
+            <input type="radio" id="t-interior" name="ptype" value="Interiør"><label for="t-interior">Interiør</label>
+          </div>
+        </div>
+        <div class="fld full"><span class="flab">Hvilket stadium er prosjektet i?</span>
+          <div class="stage" role="radiogroup" aria-label="Prosjektstadium">
+            <input type="radio" id="s-ide" name="stadium" value="Idé" checked><label for="s-ide">Bare en idé</label>
+            <input type="radio" id="s-skisse" name="stadium" value="Skisse"><label for="s-skisse">Skisser finnes</label>
+            <input type="radio" id="s-tegn" name="stadium" value="Tegninger"><label for="s-tegn">Tegninger finnes</label>
+            <input type="radio" id="s-soknad" name="stadium" value="Søknad"><label for="s-soknad">Søknad klart</label>
+            <input type="radio" id="s-bygg" name="stadium" value="Bygging"><label for="s-bygg">Under bygging</label>
+          </div>
+        </div>
+        <div class="fld"><label for="f-budsjett">Omtrentlig budsjett</label>
+          <select id="f-budsjett" name="budsjett">
+            <option>Velg gjerne — ikke krav</option><option>Under 2 mill.</option><option>2–5 mill.</option><option>5–15 mill.</option><option>15–50 mill.</option><option>Over 50 mill.</option><option>Vet ikke ennå</option>
+          </select>
+        </div>
+        <div class="fld"><label for="f-tid">Ønsket oppstart</label>
+          <select id="f-tid" name="oppstart"><option>Så snart som mulig</option><option selected>Innen 6 måneder</option><option>Innen ett år</option><option>Bare nysgjerrig</option></select>
+        </div>
+        <div class="fld full"><label for="f-meld">Fortell om prosjektet <span class="req">*</span></label><textarea id="f-meld" name="melding" required placeholder="Tomten, drømmen, utfordringen — noen setninger holder lang vei."></textarea></div>
+        <label class="consent"><input type="checkbox" id="f-ok" required> <span>Jeg godtar at Form Arkitekter lagrer henvendelsen for å svare meg. Ingen salg, ingen nyhetsbrev uten samtykke.</span></label>
+        <div class="submit">
+          <button class="btn btn--solid" type="submit">Send forespørsel <span class="ar">→</span></button>
+          <span class="mono">Svar innen 24 timer · man–fre</span>
+        </div>
+      </form>
+      <div id="sent" role="status">
+        <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 27l11 11 21-24"/></svg>
+        <h3>Takk — forespørselen er mottatt.</h3>
+        <p>En av partnerene leser den i morgen formiddag og ringer eller skriver tilbake innen 24 timer. Har det hast, ring +47 22 04 71 80 mellom 08 og 16.</p>
+        <p class="ref">Referanse: <span id="refkode">FA-26-0000</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer id="bunn">
+  <div class="f-word" aria-hidden="true">Form</div>
+  <div class="f-cols">
+    <div><h4>Studioet</h4><p>Thorvald Meyers gate 61, 4. et.<br>0552 Oslo<br>Inngang fra bakgården —<br>følg lyden av plotteren.</p></div>
+    <div><h4>Kontakt</h4><a href="tel:+4722047180">+47 22 04 71 80</a><a href="/cdn-cgi/l/email-protection#4b3b24383f0b2d2439262a3920223f2e203f2e39652524"><span class="__cf_email__" data-cfemail="04746b777044626b766965766f6d70616f7061762a6a6b">[email&#160;protected]</span></a><a href="/cdn-cgi/l/email-protection#3040425f435a555b4470565f425d51425b5944555b4455421e5e5f"><span class="__cf_email__" data-cfemail="bfcfcdd0ccd5dad4cbffd9d0cdd2decdd4d6cbdad4cbdacd91d1d0">[email&#160;protected]</span></a><p style="margin-top:8px">Org.nr 923 458 117 MVA</p></div>
+    <div><h4>Fagfelt</h4><a href="#fagfelt">Boliger</a><a href="#fagfelt">Rehabilitering</a><a href="#fagfelt">Tilbygg &amp; påbygg</a><a href="#fagfelt">Fritidsboliger</a><a href="#fagfelt">Næringsbygg</a><a href="#fagfelt">Interiør</a></div>
+    <div><h4>Følg med</h4><a href="#topp" rel="noopener">Instagram — @formarkitekter</a><a href="#topp" rel="noopener">LinkedIn — Form Arkitekter AS</a><a href="#topp" rel="noopener">Arkitektur N — profil</a><p style="margin-top:8px">Nyhetsbrev: fire utgaver i året.<br><a class="link-u" href="#kontakt">Be om å stå på listen</a></p></div>
+  </div>
+  <div class="f-btm">
+    <span>© 2026 Form Arkitekter AS — fiktivt demo-prosjekt for porteføljebruk</span>
+    <span>Satt i Fraunces, Archivo &amp; IBM Plex Mono</span>
+    <a id="totop" href="#topp">Til toppen <span class="ar">↑</span></a>
+  </div>
+</footer>
+
+<script>
+/* ================= BILDEDATA (base64, én kilde) ================= */
+const IMG = {"fjellstua":"images/image-01.jpg","vannlinjen":"images/image-02.jpg","kornsiloen":"images/image-03.jpg","sagene":"images/image-04.jpg","nordmarka":"images/image-05.jpg","skarpsno":"images/image-06.jpg","hvitsten":"images/image-07.jpg","vinterhagen":"images/image-08.jpg","bjorkelangen":"images/image-09.jpg","brenneriet":"images/image-10.jpg","villa":"images/image-11.jpg","tollbugata":"images/image-12.jpg","studio":"images/image-13.jpg","sagene_before":"images/image-14.jpg","ingrid":"images/image-15.jpg","marius":"images/image-16.jpg","sunniva":"images/image-17.jpg","aleksander":"images/image-18.jpg","nora":"images/image-19.jpg","amira":"images/image-20.jpg"};
+
+(function(){
+"use strict";
+const $=(s,c)=>(c||document).querySelector(s), $$=(s,c)=>[...(c||document).querySelectorAll(s)];
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+/* ---------- loader ---------- */
+const lnum=$('#lnum'), lbar=$('#lbar');
+let lt0=performance.now();
+(function tick(t){
+  const p=Math.min(1,(t-lt0)/1100);
+  const v=Math.round(p*100);
+  lnum.textContent=String(v).padStart(3,'0');
+  lbar.style.transform='scaleX('+p+')';
+  if(p<1) requestAnimationFrame(tick);
+})(lt0);
+const done=()=>document.body.classList.add('loaded');
+let doneF=false; const fin=()=>{if(!doneF){doneF=true;setTimeout(done,250)}};
+window.addEventListener('load',fin); setTimeout(fin,2000);
+
+/* ---------- klokker ---------- */
+const klokke=$('#klokke');
+const tf=new Intl.DateTimeFormat('no-NO',{timeZone:'Europe/Oslo',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+const tickClock=()=>{klokke.textContent=tf.format(new Date())+' CET'};
+tickClock(); setInterval(tickClock,1000);
+
+/* ---------- lat bildelasting fra base64-map ---------- */
+const ioImg=('IntersectionObserver' in window)? new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(!e.isIntersecting) return; const el=e.target; ioImg.unobserve(el);
+    const key=el.dataset.img, src=IMG[key]; if(!src) return;
+    if(el.tagName==='IMG'){ el.src=src; }
+    else { const im=el.querySelector('img'); if(im){ im.src=src; } }
+    const mark=()=>{ if(el.closest('.folk-panel'))return; el.classList.add('ld'); };
+    const im=(el.tagName==='IMG')?el:el.querySelector('img');
+    if(im){ if(im.complete&&im.naturalWidth) mark(); else {
+      im.addEventListener('load',mark,{once:true}); im.addEventListener('error',mark,{once:true});
+      if(im.decode) im.decode().then(mark).catch(()=>{}); } }
+  });
+},{rootMargin:'500px 0px'}) : null;
+$$('[data-img]').forEach(el=>{
+  if(el.closest('#arkiv')) return;               /* kun peek-kilde */
+  if(ioImg) ioImg.observe(el);
+  else { const src=IMG[el.dataset.img]; if(src){ if(el.tagName==='IMG')el.src=src; else {const im=el.querySelector('img'); if(im)im.src=src;} if(!el.closest('.folk-panel'))el.classList.add('ld'); } }
+});
+
+/* ---------- reveal on scroll ---------- */
+const ioRv=('IntersectionObserver' in window)? new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('rv'); ioRv.unobserve(e.target);} });
+},{threshold:.12,rootMargin:'0px 0px -6% 0px'}) : null;
+$$('[data-reveal]').forEach(el=> ioRv? ioRv.observe(el) : el.classList.add('rv'));
+
+/* ---------- tellverk ---------- */
+const ioCnt=('IntersectionObserver' in window)? new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(!e.isIntersecting)return; ioCnt.unobserve(e.target);
+    const el=e.target, target=+el.dataset.count, t0=performance.now();
+    if(RM){el.textContent=target;return}
+    (function step(t){ const p=Math.min(1,(t-t0)/1600), e2=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*e2); if(p<1)requestAnimationFrame(step); })(t0);
+  });
+},{threshold:.6}) : null;
+$$('[data-count]').forEach(el=> ioCnt? ioCnt.observe(el) : (el.textContent=el.dataset.count));
+
+/* ---------- nav, progress, aktiv lenke ---------- */
+const nav=$('#nav'), prog=$('#prog');
+const onScroll=()=>{ nav.classList.toggle('scr',scrollY>40);
+  const h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(h>0?(scrollY/h)*100:0)+'%'; };
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+const secs=['prosjekter','forvandling','fagfelt','prosess','folk'].map(id=>document.getElementById(id));
+const ioNav=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){
+  $$('#nav ul a').forEach(a=>a.classList.toggle('on',a.dataset.nav===e.target.id)); }});
+},{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s=>s&&ioNav.observe(s));
+
+/* ---------- mobilmeny ---------- */
+const burger=$('#burger');
+burger.addEventListener('click',()=>{ const open=document.body.classList.toggle('menu');
+  burger.setAttribute('aria-expanded',open); document.documentElement.style.overflow=open?'hidden':'';
+  $$('#mmenu a.ml').forEach((a,i)=>a.style.transitionDelay=open?(.12+i*.07)+'s':'0s'); });
+$$('#mmenu a').forEach(a=>a.addEventListener('click',()=>{ document.body.classList.remove('menu');
+  burger.setAttribute('aria-expanded','false'); document.documentElement.style.overflow=''; }));
+
+/* ---------- forsidekarusell ---------- */
+const slides=$$('#plate .slide'), idxBtns=$$('#plate-idx button');
+const caps=[['Fjellstua, Hemsedal','Fritidsbolig · 2026 · 118 m²'],['Vannlinjen Brygge, Drøbak','Boliger · 2025 · 4 800 m²'],['Kornsiloen, Fredrikstad','Rehabilitering · 2021 · 5 600 m²']];
+let si=0, sTimer;
+function goSlide(i){ si=i; slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  idxBtns.forEach((b,k)=>{ b.classList.remove('on'); if(k===i){ void b.offsetWidth; b.classList.add('on'); } });
+  $('#pc-t').textContent=caps[i][0]; $('#pc-m').textContent=caps[i][1]; }
+function autoSlide(){ clearInterval(sTimer); if(!RM) sTimer=setInterval(()=>goSlide((si+1)%slides.length),6000); }
+idxBtns.forEach((b,i)=>b.addEventListener('click',()=>{goSlide(i);autoSlide();}));
+goSlide(0); autoSlide();
+
+/* ---------- pinneds horisontal scroll ---------- */
+const wrap=$('#pin-wrap'), sticky=$('#pin-sticky'), track=$('#track'), pinBar=$('#pin-bar i'), pinCount=$('#pin-count b');
+let extra=0;
+function pinSetup(){
+  if(innerWidth<=960||RM){ wrap.style.height=''; track.style.transform=''; return; }
+  extra=Math.max(0,track.scrollWidth-innerWidth);
+  wrap.style.height=(extra+innerHeight)+'px';
+}
+function pinScroll(){
+  if(innerWidth<=960||RM) return;
+  const r=wrap.getBoundingClientRect(), tot=wrap.offsetHeight-innerHeight;
+  const p=Math.min(1,Math.max(0,-r.top/(tot||1)));
+  track.style.transform='translate3d('+(-p*extra)+'px,0,0)';
+  pinBar.style.transform='scaleX('+p+')';
+  pinCount.textContent=String(Math.min(4,Math.floor(p*4)+1)).padStart(2,'0');
+}
+pinSetup(); addEventListener('resize',()=>{pinSetup();pinScroll();});
+addEventListener('scroll',pinScroll,{passive:true});
+
+/* ---------- filtrering ---------- */
+const fbtns=$$('.filters button'), tiles=$$('#pgrid .ptile');
+fbtns.forEach(b=>b.addEventListener('click',()=>{
+  fbtns.forEach(x=>x.classList.toggle('on',x===b));
+  const f=b.dataset.f; let n=0;
+  tiles.forEach(t=>{
+    const show = f==='alle' || t.dataset.cat.split(' ').includes(f);
+    if(show){ t.classList.remove('gone'); requestAnimationFrame(()=>{ setTimeout(()=>t.classList.remove('hide'), n*45); n++; }); }
+    else { t.classList.add('hide'); setTimeout(()=>t.classList.add('gone'),380); }
+  });
+}));
+
+/* ---------- arkiv-peek ---------- */
+const peek=$('#peek'), peekImg=$('#peek img');
+if(FINE){ let px=0,py=0,cx=0,cy=0,raf=null;
+  const loop=()=>{ cx+=(px-cx)*.16; cy+=(py-cy)*.16; peek.style.left=cx+'px'; peek.style.top=cy+'px'; raf=requestAnimationFrame(loop); };
+  $$('#arkiv .arow').forEach(r=>{
+    r.addEventListener('mouseenter',()=>{ const src=IMG[r.dataset.img]; if(src)peekImg.src=src; peek.classList.add('on'); if(!raf)loop(); });
+    r.addEventListener('mouseleave',()=>{ peek.classList.remove('on'); });
+    r.addEventListener('mousemove',e=>{px=e.clientX+140;py=e.clientY;});
+  });
+}
+
+/* ---------- før/etter ---------- */
+const ba=$('#ba'); let baPos=50;
+function setBA(p){ baPos=Math.min(96,Math.max(4,p)); ba.style.setProperty('--pos',baPos+'%'); ba.setAttribute('aria-valuenow',Math.round(baPos)); }
+let baDrag=false;
+const baAt=e=>{ const r=ba.getBoundingClientRect(); setBA(((e.clientX-r.left)/r.width)*100); };
+ba.addEventListener('pointerdown',e=>{baDrag=true;ba.setPointerCapture(e.pointerId);baAt(e);});
+ba.addEventListener('pointermove',e=>{if(baDrag)baAt(e);});
+ba.addEventListener('pointerup',()=>baDrag=false);
+ba.addEventListener('pointercancel',()=>baDrag=false);
+ba.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft'){setBA(baPos-4);e.preventDefault();}
+  if(e.key==='ArrowRight'){setBA(baPos+4);e.preventDefault();}
+  if(e.key==='Home'){setBA(4);e.preventDefault();}
+  if(e.key==='End'){setBA(96);e.preventDefault();}
+});
+
+/* ---------- fagfelt-accordion ---------- */
+$$('.frow').forEach(row=>{
+  $('.fhead',row).addEventListener('click',()=>{
+    const open=row.classList.contains('open');
+    $$('.frow').forEach(r=>{r.classList.remove('open');$('.fhead',r).setAttribute('aria-expanded','false');});
+    if(!open){ row.classList.add('open'); $('.fhead',row).setAttribute('aria-expanded','true'); }
+  });
+});
+
+/* ---------- prosesslinje ---------- */
+const steps=$('#prsteps'), prLine=$('.pr-line');
+const prScroll=()=>{ if(!steps)return; const r=steps.getBoundingClientRect();
+  const p=Math.min(1,Math.max(0,(innerHeight*.72-r.top)/(r.height||1)));
+  prLine.style.height=(p*100)+'%'; };
+addEventListener('scroll',prScroll,{passive:true}); prScroll();
+
+/* ---------- folk ---------- */
+const panelImgs=$$('#folkpanel img'), frows=$$('.frow-t'), fpcap=$('#fpcap'), fpanel=$('#folkpanel');
+function setFolk(i){ frows.forEach((r,k)=>r.classList.toggle('on',k===i));
+  panelImgs.forEach((im,k)=>im.classList.toggle('on',k===i));
+  fpcap.textContent=frows[i].dataset.cap; fpanel.classList.add('has'); }
+frows.forEach((r,i)=>{ r.addEventListener('mouseenter',()=>setFolk(i));
+  r.addEventListener('focus',()=>setFolk(i));
+  r.addEventListener('click',()=>setFolk(i));
+  r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){setFolk(i);e.preventDefault();}}); });
+setFolk(0);
+
+/* ---------- skjema ---------- */
+const kf=$('#kjema');
+kf.addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!kf.checkValidity()){ kf.reportValidity(); return; }
+  $('#refkode').textContent='FA-26-'+String(Math.floor(1000+Math.random()*9000));
+  kf.style.display='none'; $('#sent').classList.add('on');
+  $('#sent').scrollIntoView({behavior:RM?'auto':'smooth',block:'center'});
+});
+
+/* ---------- cursor ---------- */
+if(FINE && !RM){ const cur=$('#cur'), curR=$('#curR'); let mx=0,my=0,rx=0,ry=0;
+  addEventListener('mousemove',e=>{ mx=e.clientX;my=e.clientY; cur.style.transform='translate('+mx+'px,'+my+'px)'; document.body.classList.add('cur-on'); });
+  (function loop(){ rx+=(mx-rx)*.14; ry+=(my-ry)*.14; curR.style.transform='translate('+rx+'px,'+ry+'px)'; requestAnimationFrame(loop); })();
+  $$('a,button,.ptile,.arow,.frow-t,.ba,[data-cursor]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cur-big'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-big'));
+  });
+}
+
+/* ---------- magnetiske knapper ---------- */
+if(FINE && !RM){ $$('.btn').forEach(b=>{
+  b.addEventListener('mousemove',e=>{ const r=b.getBoundingClientRect();
+    b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.12)+'px,'+((e.clientY-r.top-r.height/2)*.22)+'px)'; });
+  b.addEventListener('mouseleave',()=>{ b.style.transform=''; });
+}); }
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a37697672e80569f',t:'MTc4ODc5MzMxNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

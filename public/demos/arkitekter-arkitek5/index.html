@@ -1,0 +1,1247 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form Arkitekter — Arkitektur og interiør, Oslo</title>
+<meta name="description" content="Form Arkitekter er et Oslo-basert arkitektkontor for bolig, rehabilitering, tilbygg, fritidsboliger, næringsbygg og interiør. Vi tegner rom som varer.">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="images/image-11.svg">
+<style>
+:root{
+  --paper:#F3EFE7;
+  --paper-2:#ECE6DA;
+  --ink:#191512;
+  --ink-2:#211C17;
+  --rust:#B4552D;
+  --rust-deep:#8E3F1F;
+  --sage:#7A8374;
+  --line:rgba(25,21,18,.14);
+  --line-strong:rgba(25,21,18,.32);
+  --muted:rgba(25,21,18,.6);
+  --paper-line:rgba(243,239,231,.16);
+  --paper-muted:rgba(243,239,231,.62);
+  --serif:'Fraunces','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-2:cubic-bezier(.7,0,.2,1);
+  --pad:clamp(20px,4.5vw,72px);
+  --fs-hero:clamp(2.85rem,8.6vw,7.6rem);
+  --fs-h2:clamp(2.1rem,5.4vw,4.7rem);
+  --fs-h3:clamp(1.5rem,3.2vw,2.6rem);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html.no-scroll,html.no-scroll body{overflow:hidden}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  overflow-x:clip;
+}
+::selection{background:var(--rust);color:var(--paper)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--rust);outline-offset:3px;border-radius:2px}
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono)}
+.skip{position:fixed;top:-60px;left:16px;z-index:2000;background:var(--ink);color:var(--paper);padding:10px 16px;font-size:13px;transition:top .2s}
+.skip:focus{top:12px}
+
+/* ============ GRAIN ============ */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:1200;opacity:.055;mix-blend-mode:multiply;
+  background-image:url("images/image-12.svg");
+  animation:grain 9s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+@media (prefers-reduced-motion:reduce){.grain{animation:none}}
+
+/* ============ PROGRESS ============ */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:1500;background:transparent}
+.progress span{display:block;height:100%;width:0;background:var(--rust);transition:width .1s linear}
+
+/* ============ CURSOR ============ */
+.cursor{position:fixed;top:0;left:0;pointer-events:none;z-index:1900;display:none}
+html.has-cursor .cursor{display:block}
+html.has-cursor,html.has-cursor a,html.has-cursor button,html.has-cursor input,html.has-cursor select,html.has-cursor textarea,html.has-cursor label{cursor:none}
+.cursor-dot{width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--rust);transition:transform .15s ease,opacity .2s}
+.cursor-ring{width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;border:1px solid var(--rust);opacity:.75;transition:transform .35s var(--ease),opacity .2s,width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),border-color .3s}
+.cursor-ring.is-hover{transform:scale(1.7);opacity:.35;border-color:var(--ink)}
+.cursor-ring.is-press{transform:scale(.8)}
+.cursor-dot.is-hover{transform:scale(.5)}
+
+/* ============ PRELOADER ============ */
+.preloader{display:none}
+html.js .preloader{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;background:var(--paper)}
+.preloader-inner{display:flex;flex-direction:column;align-items:center;gap:20px}
+.preloader-mark{width:64px;height:64px;background:var(--rust);color:var(--paper);font-family:var(--serif);font-size:40px;line-height:64px;text-align:center}
+.preloader-line{width:0;height:1px;background:var(--ink);transition:width 1.1s var(--ease)}
+.preloader-word{font-family:var(--mono);font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--muted)}
+html.js .preloader.done{transition:opacity .7s ease,visibility .7s;opacity:0;visibility:hidden}
+html.js .preloader.done .preloader-inner{transform:translateY(-14px);transition:transform .7s ease}
+.preloader-inner{transition:transform .7s ease}
+
+/* ============ HEADER ============ */
+.header{position:fixed;top:0;left:0;width:100%;z-index:1400;transition:background .4s ease,box-shadow .4s ease,transform .4s ease}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px var(--pad);max-width:1720px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;color:var(--paper);transition:color .4s ease}
+.logo-mark{width:38px;height:38px;background:var(--rust);color:var(--paper);font-family:var(--serif);font-size:23px;line-height:38px;text-align:center;flex:0 0 auto}
+.logo-word{display:flex;flex-direction:column;line-height:1}
+.logo-word b{font-family:var(--serif);font-weight:560;font-size:21px;letter-spacing:-.01em}
+.logo-word span{font-family:var(--mono);font-size:8.5px;letter-spacing:.44em;text-transform:uppercase;opacity:.75;margin-top:4px}
+.nav{display:none;align-items:center;gap:clamp(18px,2.6vw,40px)}
+.nav a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper);opacity:.82;position:relative;transition:opacity .3s,color .4s}
+.nav a:after{content:"";position:absolute;left:0;bottom:-6px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav a:hover{opacity:1}
+.nav a:hover:after{transform:scaleX(1);transform-origin:left}
+.nav-cta{display:none;border:1px solid var(--paper);color:var(--paper);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:11px 20px;transition:background .3s,color .3s,border-color .3s}
+.nav-cta:hover{background:var(--paper);color:var(--ink)}
+.burger{width:44px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--paper)}
+.burger span{display:block;width:26px;height:1.5px;background:currentColor;transition:transform .4s var(--ease),opacity .3s}
+.burger.is-open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.is-open span:nth-child(2){opacity:0}
+.burger.is-open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.header.scrolled{background:rgba(243,239,231,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.header.scrolled .logo,.header.scrolled .nav a,.header.scrolled .burger{color:var(--ink)}
+.header.scrolled .nav-cta{border-color:var(--ink);color:var(--ink)}
+.header.scrolled .nav-cta:hover{background:var(--ink);color:var(--paper)}
+@media (min-width:960px){
+  .nav{display:flex}
+  .nav-cta{display:inline-flex}
+  .burger{display:none}
+}
+
+/* mobile menu */
+.mmenu{position:fixed;inset:0;z-index:1350;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:0 var(--pad);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s}
+.mmenu.open{opacity:1;visibility:visible}
+.mmenu a.mm-link{font-family:var(--serif);font-weight:340;font-size:clamp(2.2rem,9vw,3.4rem);line-height:1.25;padding:10px 0;border-bottom:1px solid var(--paper-line);display:flex;align-items:baseline;justify-content:space-between;gap:16px;transform:translateY(22px);opacity:0;transition:transform .6s var(--ease),opacity .6s}
+.mmenu.open a.mm-link{transform:none;opacity:1}
+.mmenu a.mm-link small{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--paper-muted)}
+.mmenu-foot{margin-top:36px;display:flex;flex-wrap:wrap;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-muted);transform:translateY(22px);opacity:0;transition:transform .6s var(--ease) .15s,opacity .6s .15s}
+.mmenu.open .mmenu-foot{transform:none;opacity:1}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--ink)}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity 1.6s ease}
+.hero-media img.is-on{opacity:1}
+.hero-media img.is-anim{animation:kenburns 11s var(--ease-2) forwards}
+@keyframes kenburns{from{transform:scale(1.06)}to{transform:scale(1.14)}}
+.hero-scrim{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(to top,rgba(12,10,8,.62) 0%,rgba(12,10,8,.18) 42%,rgba(12,10,8,.28) 100%)}
+.hero-ghost{position:absolute;z-index:1;top:8%;right:-2vw;font-family:var(--serif);font-weight:300;font-size:clamp(11rem,34vw,30rem);line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(243,239,231,.16);pointer-events:none;user-select:none;transform:translateY(0)}
+.hero-content{position:relative;z-index:2;width:100%;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(96px,14vh,140px) var(--pad) clamp(28px,6vh,72px)}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;color:var(--paper);font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:clamp(18px,3.5vh,34px)}
+.hero-eyebrow:before{content:"";width:44px;height:1px;background:var(--rust)}
+.hero-title{color:var(--paper);font-family:var(--serif);font-weight:380;font-size:var(--fs-hero);line-height:.98;letter-spacing:-.02em;max-width:14ch}
+.hero-title em{font-style:italic;font-weight:320;color:#E8DFD0}
+.hero-sub{color:rgba(243,239,231,.82);max-width:52ch;margin-top:clamp(18px,3vh,30px);font-size:clamp(.95rem,1.4vw,1.13rem);line-height:1.65;font-weight:400}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(22px,4vh,38px)}
+.btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:15px 26px;transition:background .35s,color .35s,border-color .35s,transform .35s var(--ease)}
+.btn-solid{background:var(--paper);color:var(--ink)}
+.btn-solid:hover{background:var(--rust);color:var(--paper)}
+.btn-ghost{border:1px solid rgba(243,239,231,.5);color:var(--paper)}
+.btn-ghost:hover{border-color:var(--paper);background:rgba(243,239,231,.12)}
+.btn .arr{transition:transform .35s var(--ease)}
+.btn:hover .arr{transform:translate(3px,-3px)}
+.hero-foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;width:100%;padding:0 var(--pad) 24px;color:rgba(243,239,231,.72);font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.stamp{text-align:right;line-height:1.9;font-size:10px;letter-spacing:.18em}
+.stamp b{color:var(--paper);font-weight:500}
+.hero-scroll{display:flex;align-items:center;gap:10px}
+.hero-scroll .line{width:1px;height:44px;background:rgba(243,239,231,.35);position:relative;overflow:hidden}
+.hero-scroll .line:after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--paper);animation:scrollline 2.2s var(--ease-2) infinite}
+@keyframes scrollline{0%{top:-100%}55%{top:0}100%{top:100%}}
+
+/* ============ MARQUEE ============ */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);padding:18px 0;position:relative;z-index:2}
+.marquee-track{display:flex;width:max-content;animation:marq 34s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--serif);font-weight:320;font-size:clamp(1.5rem,3.4vw,2.9rem);letter-spacing:.01em;white-space:nowrap;padding:0 26px;display:flex;align-items:center;gap:26px}
+.marquee-track span i{font-style:normal;color:var(--rust);font-size:.55em}
+.marquee-track .outline{color:transparent;-webkit-text-stroke:1px var(--ink)}
+@keyframes marq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation-duration:80s}}
+
+/* ============ SECTION SCAFFOLD ============ */
+section{position:relative}
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.eyebrow .idx{color:var(--rust)}
+.eyebrow:after{content:"";height:1px;width:64px;background:var(--line-strong)}
+
+/* ============ MANIFESTO ============ */
+.manifesto{padding:clamp(90px,14vh,170px) var(--pad) clamp(70px,10vh,120px)}
+.manifesto-grid{max-width:1720px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:clamp(30px,5vw,80px)}
+.manifesto-statement{font-family:var(--serif);font-weight:360;font-size:var(--fs-h2);line-height:1.08;letter-spacing:-.015em}
+.manifesto-statement .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+.manifesto-statement .w span{display:inline-block;transform:translateY(115%);transition:transform 1s var(--ease)}
+.manifesto-statement.in .w span{transform:none}
+.manifesto-statement em{font-style:italic;font-weight:320;color:var(--rust)}
+.manifesto-side{display:flex;flex-direction:column;gap:28px}
+.manifesto-side p{color:var(--muted);font-size:clamp(.98rem,1.3vw,1.08rem);line-height:1.75;max-width:46ch}
+.manifesto-side .rule{width:100%;height:1px;background:var(--line)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 20px;margin-top:8px}
+.stat .num{font-family:var(--serif);font-weight:380;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1;letter-spacing:-.02em}
+.stat .num sup{font-size:.5em;color:var(--rust);font-weight:500}
+.stat .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px;line-height:1.7}
+
+/* ============ SERVICES ============ */
+.services{padding:clamp(70px,11vh,140px) var(--pad);background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.services-inner{max-width:1720px;margin:0 auto}
+.services-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:clamp(36px,5vh,64px)}
+.services-head h2{font-family:var(--serif);font-weight:360;font-size:var(--fs-h2);line-height:1.05;letter-spacing:-.015em}
+.services-head p{color:var(--muted);max-width:38ch;font-size:.98rem}
+.services-list{border-top:1px solid var(--line-strong)}
+.svc{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:clamp(12px,2.6vw,34px);padding:clamp(22px,3.4vh,34px) 8px;border-bottom:1px solid var(--line);position:relative;transition:padding .45s var(--ease)}
+.svc .n{font-family:var(--mono);font-size:12px;color:var(--rust);letter-spacing:.1em;grid-column:1;grid-row:1}
+.svc .name{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3.6vw,2.9rem);letter-spacing:-.01em;line-height:1.1;transition:transform .45s var(--ease);grid-column:2;grid-row:1;display:block}
+.svc .desc{grid-column:2;grid-row:2;display:block;font-size:.95rem;color:var(--muted);max-width:52ch;margin-top:-8px;opacity:0;max-height:0;overflow:hidden;transition:opacity .4s ease,max-height .5s var(--ease),margin .4s ease}
+.svc .go{width:46px;height:46px;border:1px solid var(--line-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .4s,color .4s,border-color .4s,transform .4s var(--ease);flex:0 0 auto;grid-column:3;grid-row:1;align-self:center}
+.svc .go svg{width:17px;height:17px;transition:transform .4s var(--ease)}
+.svc:before{content:"";position:absolute;left:-2%;right:-2%;top:0;bottom:0;background:var(--paper);z-index:-1;opacity:0;transition:opacity .4s ease}
+.svc:hover, .svc:focus-visible{padding-left:22px}
+.svc:hover .name, .svc:focus-visible .name{transform:translateX(8px)}
+.svc:hover .go, .svc:focus-visible .go{background:var(--rust);border-color:var(--rust);color:var(--paper);transform:rotate(45deg)}
+.svc:hover .go svg{transform:translate(2px,-2px)}
+.svc:hover:before{opacity:1}
+@media (hover:hover){
+  .svc:hover .desc{opacity:1;max-height:120px;margin-top:10px}
+}
+.svc.open .desc{opacity:1;max-height:120px;margin-top:10px}
+
+/* ============ WORKS ============ */
+.works{padding:clamp(90px,14vh,170px) var(--pad)}
+.works-inner{max-width:1720px;margin:0 auto}
+.works-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:26px;margin-bottom:clamp(34px,5vh,58px)}
+.works-head h2{font-family:var(--serif);font-weight:360;font-size:var(--fs-h2);line-height:1.02;letter-spacing:-.015em}
+.works-head h2 sup{font-family:var(--mono);font-size:.3em;color:var(--rust);vertical-align:super;letter-spacing:.1em;margin-left:8px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.fbtn{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--line-strong);border-radius:100px;color:var(--muted);transition:background .3s,color .3s,border-color .3s}
+.fbtn:hover{border-color:var(--ink);color:var(--ink)}
+.fbtn.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.works-grid{display:grid;grid-template-columns:1fr;gap:clamp(18px,2.6vw,32px)}
+.work{position:relative;text-align:left;cursor:pointer;opacity:1;transform:none;transition:opacity .45s ease,transform .45s var(--ease)}
+.work.is-hide,.work.is-hide.in{opacity:0;transform:scale(.97)}
+.work-media{position:relative;overflow:hidden;background:var(--paper-2)}
+.work-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.001);transition:transform 1.1s var(--ease),filter 1.1s var(--ease)}
+.work:hover .work-media img{transform:scale(1.05)}
+.work-media:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,10,8,.45),transparent 46%);opacity:.75;transition:opacity .5s ease}
+.work:hover .work-media:after{opacity:1}
+.r-wide{aspect-ratio:16/9}
+.r-tall{aspect-ratio:4/5}
+.r-box{aspect-ratio:4/3}
+.work .view{position:absolute;top:16px;right:16px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:var(--paper);color:var(--ink);font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;opacity:0;transform:translateY(-8px);transition:opacity .4s ease,transform .4s var(--ease)}
+.work:hover .view{opacity:1;transform:none}
+.work .view i{font-style:normal;color:var(--rust)}
+.work-caption{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding-top:16px}
+.work-caption h3{font-family:var(--serif);font-weight:420;font-size:clamp(1.35rem,2.4vw,2rem);letter-spacing:-.01em;line-height:1.1}
+.work-caption h3 small{display:block;font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--rust);margin-bottom:7px}
+.work-caption .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.9;flex:0 0 auto}
+.work-overlay-caption{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:clamp(16px,2.4vw,26px);display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.work-overlay-caption h3{color:var(--paper);font-family:var(--serif);font-weight:380;font-size:clamp(1.5rem,2.8vw,2.3rem);letter-spacing:-.01em;line-height:1.05}
+.work-overlay-caption .meta{color:rgba(243,239,231,.75);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;text-align:right;line-height:1.9}
+.works-foot{display:flex;justify-content:center;margin-top:clamp(40px,6vh,64px)}
+@media (min-width:720px){
+  .works-grid{grid-template-columns:repeat(12,1fr)}
+  .work{grid-column:span 12}
+  .work.w-5{grid-column:span 5}
+  .work.w-7{grid-column:span 7}
+}
+
+/* ============ PROCESS ============ */
+.process{background:var(--ink);color:var(--paper);border-top:1px solid var(--paper-line)}
+.process-sticky{display:flex;flex-direction:column;min-height:100svh}
+.process-head{flex:0 0 auto;padding:clamp(70px,10vh,120px) var(--pad) clamp(24px,4vh,48px);border-bottom:1px solid var(--paper-line)}
+.process-head .eyebrow{color:var(--paper-muted)}
+.process-head .eyebrow:after{background:var(--paper-line)}
+.process-head h2{font-family:var(--serif);font-weight:360;font-size:var(--fs-h2);line-height:1.03;letter-spacing:-.015em;margin-top:22px;max-width:16ch}
+.process-head p{color:var(--paper-muted);max-width:44ch;margin-top:20px;font-size:.98rem;line-height:1.75}
+.process-progress{margin-top:clamp(26px,4vh,44px);display:flex;align-items:center;gap:16px}
+.process-progress .bar{flex:1;max-width:260px;height:1px;background:var(--paper-line);position:relative;overflow:hidden}
+.process-progress .bar i{position:absolute;left:0;top:0;height:100%;width:0;background:var(--rust)}
+.process-progress .hint{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-muted)}
+.process-track{display:flex;flex-direction:column;gap:0}
+.step{padding:clamp(30px,5vh,54px) var(--pad);border-bottom:1px solid var(--paper-line);display:grid;grid-template-columns:1fr;gap:22px}
+.step:last-child{border-bottom:0}
+.step .no{font-family:var(--mono);font-size:12px;color:var(--rust);letter-spacing:.18em}
+.step h3{font-family:var(--serif);font-weight:380;font-size:clamp(1.7rem,3.4vw,2.8rem);letter-spacing:-.01em;line-height:1.1}
+.step p{color:var(--paper-muted);font-size:.96rem;line-height:1.75;max-width:52ch}
+.step .ph{overflow:hidden;margin-top:6px}
+.step .ph img{width:100%;height:clamp(160px,32vh,340px);object-fit:cover;transition:transform 1.1s var(--ease)}
+.step:hover .ph img{transform:scale(1.04)}
+@media (min-width:960px){
+  .process{height:auto}
+  .process-sticky{position:sticky;top:0;height:100svh;flex-direction:row;align-items:stretch;overflow:hidden}
+  .process-head{flex:0 0 44%;display:flex;flex-direction:column;justify-content:center;border-bottom:0;border-right:1px solid var(--paper-line);padding-right:clamp(24px,4vw,72px);position:relative;z-index:2}
+  .process-track{flex-direction:row;align-items:stretch;will-change:transform}
+  .step{flex:0 0 auto;width:min(44vw,560px);border-bottom:0;border-right:1px solid var(--paper-line);padding:clamp(40px,7vh,72px) clamp(24px,3.4vw,48px);display:flex;flex-direction:column;justify-content:center;gap:18px}
+  .step .ph{margin-top:auto}
+  .process-scroll-space{height:240vh;margin-top:0;background:var(--ink)}
+}
+
+/* ============ STUDIO ============ */
+.studio{padding:clamp(90px,14vh,170px) var(--pad)}
+.studio-inner{max-width:1720px;margin:0 auto}
+.studio-top{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,60px);margin-bottom:clamp(44px,7vh,80px)}
+.studio-top h2{font-family:var(--serif);font-weight:360;font-size:var(--fs-h2);line-height:1.03;letter-spacing:-.015em}
+.studio-top h2 em{font-style:italic;font-weight:320;color:var(--rust)}
+.studio-top .lead{color:var(--muted);font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.75;max-width:52ch;align-self:end}
+.studio-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:clamp(44px,7vh,80px)}
+.fact{background:var(--paper);padding:clamp(18px,2.6vw,28px);display:flex;flex-direction:column;gap:6px}
+.fact .k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.fact .v{font-family:var(--serif);font-weight:400;font-size:clamp(1.05rem,1.9vw,1.4rem);letter-spacing:-.01em;line-height:1.25}
+.people{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line-strong)}
+.person{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(14px,3vw,30px);align-items:start;padding:clamp(22px,3.4vh,32px) 6px;border-bottom:1px solid var(--line);position:relative;transition:background .4s ease,padding .4s var(--ease)}
+.person:hover,.person:focus-within{background:var(--paper-2);padding-left:16px}
+.person .mono-block{width:clamp(52px,6vw,68px);height:clamp(52px,6vw,68px);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--paper);letter-spacing:.02em;flex:0 0 auto}
+.person .who h3{font-family:var(--serif);font-weight:420;font-size:clamp(1.3rem,2.4vw,1.9rem);letter-spacing:-.01em;line-height:1.15}
+.person .who .role{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--rust);margin-top:6px}
+.person .bio{color:var(--muted);font-size:.94rem;line-height:1.7;margin-top:12px;max-width:56ch}
+.person .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.person .tags span{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line-strong);color:var(--muted);padding:5px 10px;border-radius:100px}
+.person .since{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.8}
+@media (min-width:820px){
+  .studio-top{grid-template-columns:1.2fr 1fr}
+  .studio-facts{grid-template-columns:repeat(4,1fr)}
+}
+
+/* ============ QUOTE ============ */
+.quote{padding:clamp(90px,15vh,180px) var(--pad);text-align:center}
+.quote-inner{max-width:1100px;margin:0 auto}
+.quote-mark{font-family:var(--serif);font-size:clamp(5rem,12vw,9rem);line-height:.6;color:var(--rust);display:block;margin-bottom:clamp(20px,4vh,40px)}
+.quote blockquote{font-family:var(--serif);font-weight:360;font-size:clamp(1.7rem,4.4vw,3.4rem);line-height:1.18;letter-spacing:-.015em}
+.quote blockquote em{font-style:italic;font-weight:320}
+.quote figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:clamp(24px,4vh,38px)}
+.quote figcaption b{color:var(--ink);font-weight:500}
+
+/* ============ CONTACT ============ */
+.contact{background:var(--ink);color:var(--paper);padding:clamp(90px,14vh,170px) var(--pad)}
+.contact-inner{max-width:1720px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:clamp(40px,7vw,110px)}
+.contact-head h2{font-family:var(--serif);font-weight:360;font-size:var(--fs-h2);line-height:1.04;letter-spacing:-.015em;margin-top:22px}
+.contact-head h2 em{font-style:italic;font-weight:320;color:#D9A98C}
+.contact-head p{color:var(--paper-muted);max-width:46ch;margin-top:22px;font-size:1rem;line-height:1.75}
+.contact-details{margin-top:clamp(34px,5vh,56px);display:flex;flex-direction:column;gap:0;border-top:1px solid var(--paper-line)}
+.cd{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--paper-line);font-size:.95rem}
+.cd .k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-muted);align-self:flex-start;padding-top:3px}
+.cd .v{text-align:right;line-height:1.7}
+.cd a:hover{color:#D9A98C}
+.socials{display:flex;gap:26px;margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.socials a{opacity:.8;transition:opacity .3s,color .3s}
+.socials a:hover{opacity:1;color:#D9A98C}
+.form-wrap{background:var(--ink-2);border:1px solid var(--paper-line);padding:clamp(24px,4vw,52px);align-self:start}
+.form-wrap h3{font-family:var(--serif);font-weight:380;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-.01em;margin-bottom:6px}
+.form-wrap .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-muted);margin-bottom:clamp(24px,3.5vh,36px)}
+.field{margin-bottom:20px}
+.field label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-muted);margin-bottom:9px}
+.field input,.field select,.field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--paper-line);color:var(--paper);font-family:var(--sans);font-size:1rem;padding:10px 2px;transition:border-color .3s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--rust)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(243,239,231,.3)}
+.field select{appearance:none;-webkit-appearance:none;background-image:url("images/image-13.svg");background-repeat:no-repeat;background-position:right 4px center;cursor:pointer}
+.field select option{background:var(--ink-2);color:var(--paper)}
+.field-row{display:grid;grid-template-columns:1fr;gap:0}
+.field textarea{resize:vertical;min-height:96px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:10px 15px;border:1px solid var(--paper-line);border-radius:100px;color:var(--paper-muted);transition:background .3s,color .3s,border-color .3s;cursor:pointer}
+.chip input:checked + span{background:var(--rust);border-color:var(--rust);color:var(--paper)}
+.chip input:focus-visible + span{outline:2px solid var(--rust);outline-offset:2px}
+.range-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.range-val{font-family:var(--serif);font-size:1.4rem;min-width:110px;text-align:right}
+.range-val small{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--paper-muted)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:var(--paper-line);border-radius:0;border:0;padding:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--rust);border:2px solid var(--paper);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--rust);border:2px solid var(--paper);cursor:pointer}
+.form-submit{margin-top:28px;width:100%;display:flex;justify-content:center}
+.form-note{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-muted);margin-top:16px;text-align:center;line-height:1.8}
+.form-success{display:none;text-align:center;padding:clamp(30px,6vh,60px) 12px}
+.form-success .tick{width:74px;height:74px;border-radius:50%;background:var(--rust);color:var(--paper);display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-size:30px}
+.form-success h4{font-family:var(--serif);font-weight:380;font-size:clamp(1.5rem,2.8vw,2.2rem);letter-spacing:-.01em}
+.form-success p{color:var(--paper-muted);max-width:40ch;margin:14px auto 0;font-size:.96rem}
+@media (min-width:720px){.field-row{grid-template-columns:1fr 1fr;gap:18px}}
+@media (min-width:960px){
+  .contact-inner{grid-template-columns:1fr 1.05fr}
+  .contact-head{position:sticky;top:120px;align-self:start}
+}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--ink);color:var(--paper);border-top:1px solid var(--paper-line);padding:0 var(--pad) 40px}
+.footer-word{font-family:var(--serif);font-weight:340;font-size:clamp(3rem,12.5vw,13rem);line-height:1;letter-spacing:-.03em;color:var(--paper);border-top:1px solid var(--paper-line);padding:clamp(30px,5vh,56px) 0 clamp(24px,4vh,44px);overflow:hidden}
+.footer-word span{display:inline-block;transform:translateY(120%);transition:transform 1.1s var(--ease)}
+.footer-word.in span{transform:none}
+.footer-cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;padding:34px 0;border-top:1px solid var(--paper-line)}
+.footer-col h4{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--paper-muted);margin-bottom:18px}
+.footer-col a,.footer-col li{display:block;color:var(--paper);opacity:.85;font-size:.95rem;padding:5px 0;transition:opacity .3s,transform .3s var(--ease)}
+.footer-col a:hover{opacity:1;transform:translateX(4px)}
+.footer-col .addr{color:var(--paper-muted);font-size:.92rem;line-height:1.8;opacity:1}
+.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;border-top:1px solid var(--paper-line);padding-top:26px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-muted);line-height:2}
+.footer-bottom .credit{color:rgba(243,239,231,.4)}
+@media (min-width:820px){.footer-cols{grid-template-columns:repeat(4,1fr)}}
+
+/* ============ CASE MODAL ============ */
+.case{position:fixed;inset:0;z-index:2000;background:var(--paper);overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;transform:translateY(2%);transition:opacity .5s ease,transform .5s var(--ease),visibility .5s}
+.case.open{opacity:1;visibility:visible;transform:none}
+.case-bar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px var(--pad);background:rgba(243,239,231,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.case-bar .idx{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--rust)}
+.case-close{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--line-strong);transition:background .3s,color .3s,border-color .3s}
+.case-close:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.case-body{padding:clamp(26px,4.5vh,48px) var(--pad) clamp(60px,10vh,120px)}
+.case-body .inner{max-width:1500px;margin:0 auto}
+.case-meta{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 26px;margin-bottom:18px}
+.case-meta .sep{color:var(--rust)}
+.case-title{font-family:var(--serif);font-weight:360;font-size:clamp(2.4rem,6.6vw,5.4rem);line-height:.99;letter-spacing:-.02em;margin-bottom:clamp(24px,4vh,40px)}
+.case-lead{font-size:clamp(1.02rem,1.5vw,1.25rem);line-height:1.65;max-width:60ch;color:var(--muted);margin-bottom:clamp(28px,4.5vh,44px)}
+.case-media{overflow:hidden;margin-bottom:clamp(30px,5vh,52px)}
+.case-media.wide,.case-media.box{position:relative}
+.case-media.wide{aspect-ratio:16/9}
+.case-media.box{aspect-ratio:4/3}
+.case-media.wide img,.case-media.box img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.case-media.tall{max-width:860px;margin-left:auto;margin-right:auto}
+.case-media.tall img{width:100%;height:auto}
+.case-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,64px);margin-bottom:clamp(40px,7vh,70px)}
+.case-desc h4,.facts h4{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:18px}
+.case-desc p{font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.8;color:var(--ink);max-width:56ch;margin-bottom:18px}
+.facts{display:flex;flex-direction:column;border-top:1px solid var(--line-strong)}
+.facts .f{display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.facts .f .k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.facts .f .v{font-weight:500;text-align:right}
+.case-gallery{display:grid;grid-template-columns:1fr;gap:clamp(16px,2.6vw,28px);margin-bottom:clamp(40px,7vh,70px)}
+.case-gallery figure{overflow:hidden}
+.case-gallery img{width:100%;object-fit:cover;aspect-ratio:4/3}
+.forlop{border-top:1px solid var(--line-strong);padding-top:clamp(26px,4vh,40px);margin-bottom:clamp(40px,7vh,70px)}
+.forlop h4{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:26px}
+.forlop-steps{display:grid;grid-template-columns:1fr;gap:18px}
+.fstep{position:relative;padding-left:30px}
+.fstep:before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border:1.5px solid var(--rust);border-radius:50%;background:var(--paper)}
+.fstep:not(:last-child):after{content:"";position:absolute;left:4px;top:22px;bottom:-14px;width:1px;background:var(--line-strong)}
+.fstep .t{font-family:var(--serif);font-weight:440;font-size:1.05rem;letter-spacing:-.01em}
+.fstep .y{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.case-nav{display:flex;justify-content:space-between;gap:14px;border-top:1px solid var(--line-strong);padding-top:26px}
+.case-nav button{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;display:flex;flex-direction:column;gap:6px;align-items:flex-start;transition:opacity .3s}
+.case-nav button small{color:var(--muted);font-size:9.5px}
+.case-nav button:hover{color:var(--rust)}
+.case-nav .next{align-items:flex-end;text-align:right}
+@media (min-width:820px){
+  .case-grid{grid-template-columns:1.5fr 1fr}
+  .forlop-steps{grid-template-columns:repeat(4,1fr);gap:24px}
+  .fstep:not(:last-child):after{display:none}
+  .case-gallery{grid-template-columns:1fr 1fr}
+}
+
+/* ============ REVEAL ============ */
+[data-reveal]{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
+[data-reveal].in{opacity:1;transform:none}
+[data-reveal="left"]{transform:translateX(-40px)}
+[data-reveal="left"].in{transform:none}
+[data-reveal="right"]{transform:translateX(40px)}
+[data-reveal="right"].in{transform:none}
+[data-reveal="scale"]{transform:scale(.94)}
+[data-reveal="scale"].in{transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  [data-reveal]{opacity:1;transform:none;transition:none}
+  .hero-media img{animation:none}
+  .manifesto-statement .w span{transform:none}
+  .footer-word span{transform:none}
+  .marquee-track{animation:none}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<a class="skip" href="#arbeider">Hopp til prosjekter</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<div class="cursor cursor-dot" aria-hidden="true"></div>
+<div class="cursor cursor-ring" aria-hidden="true"></div>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader-inner">
+    <div class="preloader-mark">F</div>
+    <div class="preloader-line"></div>
+    <div class="preloader-word">Form Arkitekter</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a class="logo" href="#top" aria-label="Form Arkitekter — til toppen">
+      <span class="logo-mark">F</span>
+      <span class="logo-word"><b>Form</b><span>Arkitekter</span></span>
+    </a>
+    <nav class="nav" aria-label="Hovedmeny">
+      <a href="#arbeider">Arbeider</a>
+      <a href="#tjenester">Tjenester</a>
+      <a href="#prosess">Prosess</a>
+      <a href="#studio">Studio</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:14px">
+      <a class="nav-cta" href="#kontakt">Start et prosjekt</a>
+      <button class="burger" id="burger" aria-label="Åpne meny" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mmenu" id="mmenu" aria-hidden="true">
+  <nav aria-label="Mobilmeny">
+    <a class="mm-link" href="#arbeider" style="transition-delay:.05s">Arbeider <small>01</small></a>
+    <a class="mm-link" href="#tjenester" style="transition-delay:.1s">Tjenester <small>02</small></a>
+    <a class="mm-link" href="#prosess" style="transition-delay:.15s">Prosess <small>03</small></a>
+    <a class="mm-link" href="#studio" style="transition-delay:.2s">Studio <small>04</small></a>
+    <a class="mm-link" href="#kontakt" style="transition-delay:.25s">Kontakt <small>05</small></a>
+  </nav>
+  <div class="mmenu-foot">
+    <span>Torvbakkgata 7, Oslo</span>
+    <a href="mailto:post@formarkitekter.no">post@formarkitekter.no</a>
+    <a href="tel:+4722406080">+47 22 40 60 80</a>
+  </div>
+</div>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-media" aria-hidden="true">
+      <img class="is-on" src="images/image-01.webp" alt="" fetchpriority="high">
+      <img src="images/image-02.webp" alt="">
+    </div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-ghost" aria-hidden="true">F</div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Arkitektkontor — Oslo, siden 2011</p>
+      <h1 class="hero-title">Rom som <em>varer.</em></h1>
+      <p class="hero-sub">Vi tegner boliger, hytter, næringsbygg og interiører som står seg — i landskapet, i klimaet og i tiden. Fra første skisse til overlevert nøkkel.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#arbeider">Se prosjekter <span class="arr">↗</span></a>
+        <a class="btn btn-ghost" href="#kontakt">Start et prosjekt <span class="arr">→</span></a>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <div class="hero-scroll"><span class="line" aria-hidden="true"></span> Rull</div>
+      <div class="stamp">59.9139° N — 10.7522° Ø<br><b>M 1:100</b> · OSLO · 2026</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Form Arkitekter <i>✦</i> <span class="outline">Rom som varer</span> <i>✦</i> Bolig <i>✦</i> Fritidsbolig <i>✦</i> Næring <i>✦</i> Interiør <i>✦</i></span>
+      <span>Form Arkitekter <i>✦</i> <span class="outline">Rom som varer</span> <i>✦</i> Bolig <i>✦</i> Fritidsbolig <i>✦</i> Næring <i>✦</i> Interiør <i>✦</i></span>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto" id="manifest">
+    <div class="manifesto-grid">
+      <div>
+        <p class="eyebrow" data-reveal><span class="idx">01</span> Manifest</p>
+        <h2 class="manifesto-statement" id="statement" style="margin-top:24px">Vi tegner ikke bygg.<br>Vi tegner stedene <em>livet leves.</em></h2>
+      </div>
+      <div class="manifesto-side">
+        <p data-reveal style="--d:.1s">Form Arkitekter er et Oslo-basert kontor for arkitektur og interiør. Siden 2011 har vi tegnet boliger, hytter, næringsbygg og byrom med én ambisjon: at hvert prosjekt skal stå seg — estetisk, funksjonelt og i landskapet rundt.</p>
+        <p data-reveal style="--d:.18s">Vi er et lite kontor med store tegninger. Få prosjekter om gangen, tett dialog og en håndskrift som går igjen i alt vi gjør — fra terrengsnittet til dørhåndtaket.</p>
+        <div class="rule" data-reveal style="--d:.24s"></div>
+        <div class="stats">
+          <div class="stat" data-reveal style="--d:.3s"><div class="num"><span data-count="14">0</span></div><div class="lbl">År i drift</div></div>
+          <div class="stat" data-reveal style="--d:.34s"><div class="num"><span data-count="130">0</span><sup>+</sup></div><div class="lbl">Gjennomførte prosjekter</div></div>
+          <div class="stat" data-reveal style="--d:.38s"><div class="num"><span data-count="9">0</span></div><div class="lbl">Priser &amp; utmerkelser</div></div>
+          <div class="stat" data-reveal style="--d:.42s"><div class="num"><span data-count="92">0</span><sup>%</sup></div><div class="lbl">Gjentatte oppdrag</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="tjenester">
+    <div class="services-inner">
+      <div class="services-head">
+        <div>
+          <p class="eyebrow" data-reveal><span class="idx">02</span> Fagområder</p>
+          <h2 data-reveal style="--d:.06s;margin-top:20px">Det vi gjør</h2>
+        </div>
+        <p data-reveal style="--d:.12s">Seks fagområder, én metode. Trykk på et fagområde for å se relevante prosjekter.</p>
+      </div>
+      <div class="services-list">
+        <button class="svc" data-filter="bolig" data-reveal>
+          <span class="n">01</span>
+          <span class="name serif">Bolig</span>
+          <span class="desc">Eneboliger og flermannsboliger tegnet for lyset, terrenget og hverdagen — med materialer som eldes vakkert.</span>
+          <span class="go"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h12v12M16 4L3 17"/></svg></span>
+        </button>
+        <button class="svc" data-filter="tilbygg" data-reveal style="--d:.05s">
+          <span class="n">02</span>
+          <span class="name serif">Rehabilitering</span>
+          <span class="desc">Vi gir eldre bygg nytt liv — med respekt for historien og mot for samtiden.</span>
+          <span class="go"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h12v12M16 4L3 17"/></svg></span>
+        </button>
+        <button class="svc" data-filter="tilbygg" data-reveal style="--d:.1s">
+          <span class="n">03</span>
+          <span class="name serif">Tilbygg</span>
+          <span class="desc">Presise tilføyelser som løfter helheten — ikke stjeler den.</span>
+          <span class="go"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h12v12M16 4L3 17"/></svg></span>
+        </button>
+        <button class="svc" data-filter="fritidsbolig" data-reveal style="--d:.15s">
+          <span class="n">04</span>
+          <span class="name serif">Fritidsboliger</span>
+          <span class="desc">Hytter som lander lett i naturen, tåler klimaet og eldes med verdighet.</span>
+          <span class="go"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h12v12M16 4L3 17"/></svg></span>
+        </button>
+        <button class="svc" data-filter="naring" data-reveal style="--d:.2s">
+          <span class="n">05</span>
+          <span class="name serif">Næringsbygg</span>
+          <span class="desc">Arbeidsplasser og publikumsbygg med rom for mennesker — og for virksomheten som skal vokse.</span>
+          <span class="go"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h12v12M16 4L3 17"/></svg></span>
+        </button>
+        <button class="svc" data-filter="interior" data-reveal style="--d:.25s">
+          <span class="n">06</span>
+          <span class="name serif">Interiør</span>
+          <span class="desc">Materialer, møbler og lys satt sammen til ett helhetlig rom — ned til minste detalj.</span>
+          <span class="go"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h12v12M16 4L3 17"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section class="works" id="arbeider">
+    <div class="works-inner">
+      <div class="works-head">
+        <div>
+          <p class="eyebrow" data-reveal><span class="idx">03</span> Utvalgte arbeider</p>
+          <h2 data-reveal style="--d:.06s;margin-top:20px">Prosjekter<sup id="workCount"></sup></h2>
+        </div>
+        <div class="filters" id="filters" data-reveal style="--d:.12s">
+          <button class="fbtn active" data-filter="alle">Alle</button>
+          <button class="fbtn" data-filter="bolig">Bolig</button>
+          <button class="fbtn" data-filter="fritidsbolig">Fritidsbolig</button>
+          <button class="fbtn" data-filter="tilbygg">Tilbygg &amp; rehab</button>
+          <button class="fbtn" data-filter="naring">Næring</button>
+          <button class="fbtn" data-filter="interior">Interiør</button>
+        </div>
+      </div>
+      <div class="works-grid" id="worksGrid"></div>
+      <div class="works-foot">
+        <a class="btn btn-solid" href="#kontakt" style="background:var(--ink);color:var(--paper)">Start et prosjekt <span class="arr">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="prosess">
+    <div class="process-sticky" id="processSticky">
+      <div class="process-head">
+        <p class="eyebrow"><span class="idx">04</span> Prosess</p>
+        <h2>Fra første strek til ferdig hus.</h2>
+        <p>Fem faser, én ansvarlig kontakt gjennom hele løpet. Du vet alltid hvor prosjektet står — og hva som skjer neste uke.</p>
+        <div class="process-progress">
+          <span class="mono" style="font-size:10px;letter-spacing:.22em;text-transform:uppercase">0%</span>
+          <span class="bar"><i id="processBar"></i></span>
+          <span class="hint">Rull →</span>
+        </div>
+      </div>
+      <div class="process-track" id="processTrack">
+        <article class="step">
+          <span class="no">Fase 01</span>
+          <h3>Innspill &amp; befaring</h3>
+          <p>Vi starter på tomta. Lys, terreng, utsikt, nabolag og føringer — vi kartlegger alt som betyr noe, før første strek settes på papiret.</p>
+        </article>
+        <article class="step">
+          <span class="no">Fase 02</span>
+          <h3>Skisse &amp; konsept</h3>
+          <p>Volumer, romforløp og materialidéer. Du får tidlig modeller og bilder å kjenne deg igjen i — og vi justerer til det sitter.</p>
+          <div class="ph ph-a"><img src="images/image-03.webp" alt="Skalamodell i tre på arbeidsbord" loading="lazy"></div>
+        </article>
+        <article class="step">
+          <span class="no">Fase 03</span>
+          <h3>Prosjektering</h3>
+          <p>Tegninger, detaljer og søknader. Vi sikrer byggbarhet, budsjett og fremdrift — og følger prosessen tett mot myndigheter og entreprenør.</p>
+        </article>
+        <article class="step">
+          <span class="no">Fase 04</span>
+          <h3>Bygging &amp; oppfølging</h3>
+          <p>Vi er på byggeplassen, svarer raskt og løser det som dukker opp. Kvalitet avgjøres i detaljen — derfor er vi til stede.</p>
+          <div class="ph ph-a"><img src="images/image-04.webp" alt="Møterom med modeller og materialprøver" loading="lazy"></div>
+        </article>
+        <article class="step">
+          <span class="no">Fase 05</span>
+          <h3>Overlevering &amp; etterbruk</h3>
+          <p>Nøkkel, dokumentasjon og en oppfølging etter ett år. Et hus er aldri helt ferdig — det begynner når du flytter inn.</p>
+        </article>
+      </div>
+    </div>
+    <div class="process-scroll-space" id="processSpace" aria-hidden="true"></div>
+  </section>
+
+  <!-- STUDIO -->
+  <section class="studio" id="studio">
+    <div class="studio-inner">
+      <div class="studio-top">
+        <div>
+          <p class="eyebrow" data-reveal><span class="idx">05</span> Studio</p>
+          <h2 data-reveal style="--d:.06s;margin-top:20px">Ni hoder.<br>Én <em>håndskrift.</em></h2>
+        </div>
+        <p class="lead" data-reveal style="--d:.12s">Form holder til i en gammel trykkeribygning på Grünerløkka. Her sitter arkitekter, interiørarkitekter og ingeniører side om side — og modeller, materialprøver og tegninger dekker hver vegg. Ingen møterom uten skissepapir.</p>
+      </div>
+      <div class="studio-facts">
+        <div class="fact" data-reveal><span class="k">Grunnlagt</span><span class="v">2011, Oslo</span></div>
+        <div class="fact" data-reveal style="--d:.05s"><span class="k">Medarbeidere</span><span class="v">9 arkitekter &amp; rådgivere</span></div>
+        <div class="fact" data-reveal style="--d:.1s"><span class="k">Medlemskap</span><span class="v">MNAL · NAL · DOGA</span></div>
+        <div class="fact" data-reveal style="--d:.15s"><span class="k">Priser</span><span class="v">Oslo bys arkitekturpris · Årets trebyggeri</span></div>
+      </div>
+      <div class="people" id="people"></div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote" id="quote">
+    <div class="quote-inner">
+      <span class="quote-mark" data-reveal>“</span>
+      <blockquote data-reveal style="--d:.08s">Form klarte å lytte. De tegnet ikke huset vi trodde vi ville ha — de tegnet huset vi <em>trengte.</em></blockquote>
+      <figcaption data-reveal style="--d:.16s">Ingrid &amp; Magnus — <b>Vardåsen, Oslo</b></figcaption>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="kontakt">
+    <div class="contact-inner">
+      <div class="contact-head">
+        <p class="eyebrow" data-reveal><span class="idx">06</span> Kontakt</p>
+        <h2 data-reveal style="--d:.06s;margin-top:20px">La oss tegne det <em>sammen.</em></h2>
+        <p data-reveal style="--d:.12s">Fortell oss litt om prosjektet ditt — så ringer vi deg for en uforpliktende prat. De fleste prosjekter starter med en kaffe og en befaring.</p>
+        <div class="contact-details" data-reveal style="--d:.18s">
+          <div class="cd"><span class="k">Studio</span><span class="v">Torvbakkgata 7<br>0550 Oslo</span></div>
+          <div class="cd"><span class="k">E-post</span><span class="v"><a href="mailto:post@formarkitekter.no">post@formarkitekter.no</a></span></div>
+          <div class="cd"><span class="k">Telefon</span><span class="v"><a href="tel:+4722406080">+47 22 40 60 80</a></span></div>
+          <div class="cd"><span class="k">Åpningstid</span><span class="v">Man–fre · 09–17</span></div>
+        </div>
+        <div class="socials" data-reveal style="--d:.24s">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="Pinterest">Pinterest</a>
+        </div>
+      </div>
+      <div class="form-wrap" data-reveal style="--d:.15s">
+        <form id="prosjektform" novalidate>
+          <h3>Prosjektforespørsel</h3>
+          <p class="sub">Ta 2 minutter — vi svarer innen én virkedag</p>
+          <div class="field-row">
+            <div class="field"><label for="f-navn">Navn *</label><input id="f-navn" name="navn" type="text" placeholder="Ditt navn" required></div>
+            <div class="field"><label for="f-epost">E-post *</label><input id="f-epost" name="epost" type="email" placeholder="navn@epost.no" required></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="f-telefon">Telefon</label><input id="f-telefon" name="telefon" type="tel" placeholder="+47 …"></div>
+            <div class="field"><label for="f-sted">Sted / kommune</label><input id="f-sted" name="sted" type="text" placeholder="F.eks. Asker"></div>
+          </div>
+          <div class="field">
+            <label for="f-type">Type prosjekt *</label>
+            <select id="f-type" name="type" required>
+              <option value="" selected disabled>Velg prosjekttype</option>
+              <option>Bolig</option>
+              <option>Fritidsbolig</option>
+              <option>Tilbygg</option>
+              <option>Rehabilitering</option>
+              <option>Næringsbygg</option>
+              <option>Interiør</option>
+              <option>Annet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Hvor er prosjektet?</label>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="stadium" value="idé"><span>Bare en idé</span></label>
+              <label class="chip"><input type="radio" name="stadium" value="tomt"><span>Tomt funnet</span></label>
+              <label class="chip"><input type="radio" name="stadium" value="skisse"><span>Skisseprosjekt</span></label>
+              <label class="chip"><input type="radio" name="stadium" value="ferdig"><span>Ferdig tegnet</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-storrelse">Antatt størrelse</label>
+            <div class="range-row">
+              <input id="f-storrelse" name="storrelse" type="range" min="30" max="5000" step="10" value="180" aria-label="Antatt størrelse i kvadratmeter">
+              <span class="range-val" id="rangeVal">180 <small>m²</small></span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-beskrivelse">Kort om prosjektet</label>
+            <textarea id="f-beskrivelse" name="beskrivelse" placeholder="Tomt, ønsker, ambisjoner, tidsplan …"></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-solid" style="background:var(--rust);color:var(--paper)">Send forespørsel <span class="arr">→</span></button>
+          </div>
+          <p class="form-note">Ved å sende godtar du at vi lagrer opplysningene for å kunne svare deg.</p>
+        </form>
+        <div class="form-success" id="formSuccess" role="status">
+          <div class="tick">✓</div>
+          <h4>Takk for forespørselen!</h4>
+          <p>Vi har mottatt meldingen din og tar kontakt innen én virkedag. I mellomtiden kan du gjerne se gjennom prosjektene våre.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-word" id="footerWord"><span>Form Arkitekter</span></div>
+  <div class="footer-cols">
+    <div class="footer-col">
+      <h4>Utforsk</h4>
+      <a href="#arbeider">Arbeider</a>
+      <a href="#tjenester">Tjenester</a>
+      <a href="#prosess">Prosess</a>
+      <a href="#studio">Studio</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <a href="mailto:post@formarkitekter.no">post@formarkitekter.no</a>
+      <a href="tel:+4722406080">+47 22 40 60 80</a>
+      <span class="addr">Torvbakkgata 7<br>0550 Oslo</span>
+    </div>
+    <div class="footer-col">
+      <h4>Følg oss</h4>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Pinterest</a>
+    </div>
+    <div class="footer-col">
+      <h4>Form Arkitekter AS</h4>
+      <span class="addr">Org.nr. 917 223 441 MVA<br>MNAL · NAL · DOGA</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Form Arkitekter AS</span>
+    <span class="credit">Form Arkitekter er et fiktivt kontor — demoprosjekt</span>
+  </div>
+</footer>
+
+<!-- CASE MODAL -->
+<div class="case" id="caseModal" role="dialog" aria-modal="true" aria-label="Prosjektcase">
+  <div class="case-bar">
+    <span class="idx" id="caseIdx">—</span>
+    <button class="case-close" id="caseClose" aria-label="Lukk prosjektcase">Lukk ✕</button>
+  </div>
+  <div class="case-body">
+    <div class="inner" id="caseInner"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var d=document, w=window;
+var finePointer = w.matchMedia && w.matchMedia('(pointer:fine)').matches;
+var reduceMotion = w.matchMedia && w.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ---------- DATA ---------- */
+var WORKS=[
+  {id:'vardasen', name:'Vardåsen', place:'Nordmarka, Oslo', type:'Bolig', year:2024, area:'310 m²', status:'Ferdigstilt', cat:'bolig', ratio:'r-wide',
+   imgs:['images/image-05.webp','images/image-06.webp'],
+   lead:'En enebolig i massivtre som klatrer nedover en bratt tomt ved Nordmarka. Huset folder seg rundt to furutrær, og store glassfelt åpner rommene mot skogen — og Oslofjorden i det fjerne.',
+   body:['Tomten lå i et bratt, nordvendt terreng som de fleste avskrev som umulig. Vi så et hus som kunne stå på lette punktfundamenter og følge terrenget i tre nivåer, med en hovedetasje som løfter seg over skogbunnen.',
+          'Fasaden er kledd i sibirsk lerk som vil gråne naturlig med årene. Innvendig møtes eik, stål og synlig betong — materialer valgt for å eldes med verdighet og kreve lite vedlikehold.'],
+   forlop:[['Skisseprosjekt','2022'],['Rammetillatelse','2023'],['Byggestart','2023'],['Overlevert','2024']]},
+  {id:'utsikten', name:'Utsikten', place:'Ål, Hallingdal', type:'Fritidsbolig', year:2023, area:'118 m²', status:'Ferdigstilt', cat:'fritidsbolig', ratio:'r-tall',
+   imgs:['images/image-07.webp'],
+   lead:'En lavmælt hytte i svartbeiset furu, plassert på en rygg i høyfjellet med utsikt ned mot dalen.',
+   body:['Hytta er splittet i to forskjøvne volumer — en privat fløy for søvn og ro, og et fellesrom med himlingshøyde og vindusbenk mot dalen. Mellom dem ligger en lunt skjermet uteplass.',
+          'Bygget for å tåle vind, snø og mange generasjoner. Materialene er vedlikeholdsfrie, og hytta trenger lite energi takket være tett klimaskall og god orientering mot sør.'],
+   forlop:[['Befaring','2021'],['Skisseprosjekt','2022'],['Byggestart','2022'],['Overlevert','2023']]},
+  {id:'skriverhaven', name:'Skriverhaven', place:'Frogner, Oslo', type:'Tilbygg & rehabilitering', year:2022, area:'240 + 85 m²', status:'Ferdigstilt', cat:'tilbygg', ratio:'r-box',
+   imgs:['images/image-08.webp'],
+   lead:'En klassisk murvilla fra 1898 som fikk et nytt tilbygg i cortenstål og glass mot hagen — og en varsom rehabilitering innvendig.',
+   body:['Originaldetaljene — stukken, trappene, de høye dørene — ble bevart og restaurert. Samtidig åpnet vi første etasje mot sør, slik at stue, kjøkken og hage flyter i ett.',
+          'Tilbygget er tegnet som en rolig kontrast til villaen: en presis stål- og glasskropp som trekker dagslyset inn, uten å konkurrere med husets historie.'],
+   forlop:[['Tilstandskartlegging','2020'],['Søknad','2021'],['Byggestart','2021'],['Overlevert','2022']]},
+  {id:'vinkel', name:'Vinkel Loft', place:'Kampen, Oslo', type:'Interiør', year:2023, area:'96 m²', status:'Ferdigstilt', cat:'interior', ratio:'r-tall',
+   imgs:['images/image-09.webp'],
+   lead:'Totalrenovering av et loftsrom fra 1970-tallet til en leilighet for to — kompakt, varmt og gjennomtenkt til minste detalj.',
+   body:['Åpen planløsning, innbygde eikehyller og nye takvinduer gir rommet luft og lys. Sovealkoven er skjermet bak en garderobevegg i heltre, og hver kvadratmeter gjør en jobb.',
+          'Farge- og materialpaletten er holdt rolig: hvite vegger, eik, varm grå og innslag av terrakotta. Et lite hjem med stort nærvær.'],
+   forlop:[['Konsept','2022'],['Detaljprosjektering','2022'],['Byggefase','2023'],['Overlevert','2023']]},
+  {id:'fjordkontoret', name:'Fjordkontoret', place:'Bjørvika, Oslo', type:'Næringsbygg', year:2025, area:'4 800 m²', status:'Under bygging', cat:'naring', ratio:'r-tall',
+   imgs:['images/image-10.webp'],
+   lead:'Et kontorbygg i massivtre med sju etasjer på havnefronten i Bjørvika — tegnet for mennesker, lys og et lavt klimaavtrykk.',
+   body:['Et åpent atrium fører dagslyset gjennom hele bygget, og felles takterrasse gir utsikt over fjorden. Fasaden skygger for lav kveldssol uten å stenge ute utsikten.',
+          'Prosjektet sertifiseres mot BREEAM-NOR Excellent, og konstruksjonen i massivtre reduserer CO₂-avtrykket med over 40 prosent sammenlignet med stål og betong.'],
+   forlop:[['Skissekonkurranse','2023'],['Detaljprosjektering','2024'],['Byggestart','2024'],['Forventet ferdig','2026']]}
+];
+
+var PEOPLE=[
+  {init:'MF', name:'Maren Formo', role:'Daglig leder · Sivilarkitekt MNAL', since:'2011', c:'#B4552D',
+   bio:'Utdannet ved AHO og TU Delft. Leder kontoret og holder i de store linjene — fra strategi til siste detaljtegning.', tags:['Strategi','Bolig','Juryarbeid']},
+  {init:'EB', name:'Eirik Bø', role:'Fagansvarlig bolig · Arkitekt MNAL', since:'2013', c:'#7A8374',
+   bio:'Brenner for trearkitektur og lave klimafotavtrykk. Har tegnet over seksti boliger og hytter — og teller fortsatt.', tags:['Trearkitektur','Fritidsbolig','Klima']},
+  {init:'SL', name:'Sara Lindberg', role:'Fagansvarlig interiør · Interiørarkitekt MNIL', since:'2015', c:'#A98E6B',
+   bio:'Setter materialer, farger og lys sammen til rolige, varme rom. Står bak de fleste interiørprosjektene våre.', tags:['Interiør','Materialer','Lys']},
+  {init:'JV', name:'Jonas Vik', role:'Prosjektleder · Arkitekt MNAL', since:'2017', c:'#6B7B8C',
+   bio:'Holder prosjekter i rute — fra første skisse til overlevert nøkkel. Byggherrenes faste kontaktpunkt på byggeplassen.', tags:['Prosjektledelse','Byggeplass','Fremdrift']},
+  {init:'NH', name:'Nora Hauge', role:'Arkitekt', since:'2022', c:'#B4552D',
+   bio:'Nyutdannet med særlig interesse for rehabilitering og gjenbruk. Mener de beste byggene ofte allerede finnes.', tags:['Rehabilitering','Gjenbruk','Transformasjon']},
+  {init:'MS', name:'Mikkel Sæther', role:'Teknisk tegner · BIM', since:'2019', c:'#7A8374',
+   bio:'Bygger detaljerte modeller som gjør at vi oppdager utfordringene på skjermen — ikke på byggeplassen.', tags:['BIM','Detaljering','Produksjon']}
+];
+
+/* ---------- PRELOADER ---------- */
+var pre=d.getElementById('preloader');
+function hidePre(){
+  if(!pre) return;
+  pre.classList.add('done');
+  setTimeout(function(){ if(pre.parentNode) pre.parentNode.removeChild(pre); }, 850);
+}
+if(pre){
+  var pl=pre.querySelector('.preloader-line');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ if(pl) pl.style.width='180px'; }); });
+  w.addEventListener('load', function(){ setTimeout(hidePre, 500); });
+  setTimeout(hidePre, 2600); /* failsafe */
+}
+
+/* ---------- HEADER SCROLL STATE ---------- */
+var header=d.getElementById('header');
+var onScrollState=function(){
+  if(w.scrollY>70){ header.classList.add('scrolled'); }
+  else{ header.classList.remove('scrolled'); }
+  var ph=d.querySelector('.progress span');
+  var h=d.documentElement;
+  var sc=h.scrollTop/(h.scrollHeight-h.clientHeight);
+  if(ph) ph.style.width=(sc*100)+'%';
+};
+w.addEventListener('scroll', onScrollState, {passive:true});
+onScrollState();
+
+/* ---------- MOBILE MENU ---------- */
+var burger=d.getElementById('burger'), mmenu=d.getElementById('mmenu');
+function closeMenu(){
+  mmenu.classList.remove('open'); burger.classList.remove('is-open');
+  burger.setAttribute('aria-expanded','false'); mmenu.setAttribute('aria-hidden','true');
+  d.documentElement.classList.remove('no-scroll');
+}
+burger.addEventListener('click', function(){
+  var open=mmenu.classList.contains('open');
+  if(open){ closeMenu(); }
+  else{
+    mmenu.classList.add('open'); burger.classList.add('is-open');
+    burger.setAttribute('aria-expanded','true'); mmenu.setAttribute('aria-hidden','false');
+    d.documentElement.classList.add('no-scroll');
+  }
+});
+mmenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+/* ---------- HERO CROSSFADE ---------- */
+var heroImgs=d.querySelectorAll('.hero-media img');
+if(heroImgs.length>1 && !reduceMotion){
+  var cur=0;
+  setInterval(function(){
+    var curEl=heroImgs[cur];
+    var next=heroImgs[(cur+1)%heroImgs.length];
+    curEl.classList.remove('is-on','is-anim');
+    next.classList.add('is-on','is-anim');
+    cur=(cur+1)%heroImgs.length;
+  }, 5600);
+}
+
+/* ---------- REVEAL ---------- */
+var io=new IntersectionObserver(function(ents){
+  ents.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+},{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+d.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+
+/* statement word reveal */
+var stmt=d.getElementById('statement');
+if(stmt){
+  var html=stmt.innerHTML.replace(/<br\s*\/?>/gi,' <br> ');
+  var parts=html.split(/(<\/?[^>]+>|<br\s*\/?>|\s+)/);
+  var out='';
+  parts.forEach(function(p,i){
+    if(p.trim()==='' ){ out+=' '; return; }
+    if(/^<br/.test(p)){ out+='<br>'; return; }
+    if(/^<\/?[^>]+>$/.test(p)){ out+=p; return; }
+    out+='<span class="w" style="transition-delay:'+(Math.min(i*0.045,0.5))+'s"><span>'+p+'</span></span>';
+  });
+  stmt.innerHTML=out;
+  var sio=new IntersectionObserver(function(ents){
+    ents.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); sio.unobserve(e.target);} });
+  },{threshold:.25});
+  sio.observe(stmt);
+}
+
+/* footer word reveal */
+var fw=d.getElementById('footerWord');
+if(fw){ var fio=new IntersectionObserver(function(ents){
+  ents.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); fio.unobserve(e.target);} });
+},{threshold:.4}); fio.observe(fw); }
+
+/* ---------- COUNTERS ---------- */
+var counters=d.querySelectorAll('[data-count]');
+var cio=new IntersectionObserver(function(ents){
+  ents.forEach(function(e){
+    if(!e.isIntersecting) return;
+    var el=e.target, target=parseInt(el.getAttribute('data-count'),10), start=null, dur=1500;
+    function tick(ts){
+      if(!start) start=ts;
+      var p=Math.min((ts-start)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*eased);
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    cio.unobserve(el);
+  });
+},{threshold:.6});
+counters.forEach(function(el){ cio.observe(el); });
+
+/* ---------- CURSOR ---------- */
+if(finePointer && !reduceMotion){
+  d.documentElement.classList.add('has-cursor');
+  var cdot=d.querySelector('.cursor-dot'), cring=d.querySelector('.cursor-ring');
+  var mx=0,my=0,rx=0,ry=0;
+  d.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY;
+    cdot.style.transform='translate('+mx+'px,'+my+'px)';
+  });
+  (function loop(){
+    rx+=(mx-rx)*0.16; ry+=(my-ry)*0.16;
+    cring.style.transform='translate('+rx+'px,'+ry+'px)';
+    requestAnimationFrame(loop);
+  })();
+  var hoverables='a, button, .chip span, input, select, textarea, .work';
+  d.addEventListener('mouseover', function(e){
+    if(e.target.closest(hoverables)){ cring.classList.add('is-hover'); cdot.classList.add('is-hover'); }
+  });
+  d.addEventListener('mouseout', function(e){
+    if(e.target.closest(hoverables)){ cring.classList.remove('is-hover'); cdot.classList.remove('is-hover'); }
+  });
+  d.addEventListener('mousedown', function(){ cring.classList.add('is-press'); });
+  d.addEventListener('mouseup', function(){ cring.classList.remove('is-press'); });
+}
+
+/* ---------- SERVICES (open desc on tap for touch) ---------- */
+if(!finePointer){
+  d.querySelectorAll('.svc').forEach(function(s){
+    s.addEventListener('click', function(ev){
+      /* let filter nav happen; just toggle desc on non-link? svc is button -> open/close */
+    });
+  });
+}
+/* services filter navigation */
+d.querySelectorAll('.svc').forEach(function(s){
+  s.addEventListener('click', function(){
+    var f=s.getAttribute('data-filter');
+    applyFilter(f);
+    var sec=d.getElementById('arbeider');
+    if(sec) sec.scrollIntoView({behavior:reduceMotion?'auto':'smooth'});
+  });
+});
+
+/* ---------- WORKS RENDER ---------- */
+var grid=d.getElementById('worksGrid');
+var countEl=d.getElementById('workCount');
+countEl.textContent=WORKS.length;
+
+function workItemHTML(w, i){
+  var colClass = i===0 ? '' : (i%2===1 ? 'w-5' : 'w-7');
+  if(i===0) colClass='';
+  var media='<div class="work-media '+w.ratio+'"><img src="'+w.imgs[0]+'" alt="'+w.name+' — '+w.type+', '+w.place+'" loading="'+(i===0?'eager':'lazy')+'"><span class="view">Se case <i>↗</i></span>';
+  if(i===0){
+    media+='<div class="work-overlay-caption"><h3>'+w.name+' <span style="font-style:italic;font-weight:320;color:rgba(243,239,231,.85)">· '+w.type+'</span></h3><span class="meta">'+w.place+'<br>'+w.year+'</span></div>';
+  }
+  media+='</div>';
+  var caption = i===0 ? '' : '<div class="work-caption"><h3><small>'+String(i+1).padStart(2,'0')+' — '+w.type+'</small>'+w.name+'</h3><span class="meta">'+w.place+'<br>'+w.year+'</span></div>';
+  return '<article class="work '+colClass+'" data-case="'+i+'" data-cat="'+w.cat+'" role="button" tabindex="0" aria-label="Åpne prosjektcase: '+w.name+'" data-reveal style="--d:'+((i%3)*0.06)+'s">'+media+caption+'</article>';
+}
+function renderWorks(list){
+  grid.innerHTML = list.map(workItemHTML).join('');
+  d.querySelectorAll('#worksGrid .work').forEach(function(el){ io.observe(el); });
+  d.querySelectorAll('#worksGrid .work').forEach(function(el){
+    function open(){ openCase(parseInt(el.getAttribute('data-case'),10)); }
+    el.addEventListener('click', open);
+    el.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+    });
+  });
+}
+renderWorks(WORKS);
+
+/* ---------- PEOPLE ---------- */
+var peopleEl=d.getElementById('people');
+if(peopleEl){
+  peopleEl.innerHTML=PEOPLE.map(function(p,i){
+    return '<div class="person" data-reveal style="--d:'+(i*0.05)+'s">'+
+      '<div class="mono-block" style="background:'+p.c+'">'+p.init+'</div>'+
+      '<div class="who"><h3>'+p.name+'</h3><div class="role">'+p.role+'</div><p class="bio">'+p.bio+'</p><div class="tags">'+p.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div></div>'+
+      '<div class="since">Siden '+p.since+'</div>'+
+    '</div>';
+  }).join('');
+  peopleEl.querySelectorAll('.person').forEach(function(el){ io.observe(el); });
+}
+
+/* ---------- FILTER ---------- */
+var currentFilter='alle';
+function applyFilter(f){
+  currentFilter=f;
+  var fbtns=d.querySelectorAll('.fbtn');
+  fbtns.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-filter')===f); });
+  var items=d.querySelectorAll('#worksGrid .work');
+  var visibleCount=0;
+  items.forEach(function(el){
+    var show = f==='alle' || el.getAttribute('data-cat')===f;
+    if(show) visibleCount++;
+    el.classList.toggle('is-hide', !show);
+  });
+  /* hide fully after transition so grid reflows */
+  clearTimeout(applyFilter._t);
+  applyFilter._t=setTimeout(function(){
+    items.forEach(function(el){
+      var show = f==='alle' || el.getAttribute('data-cat')===f;
+      if(!show){ el.style.display='none'; }
+      else{ el.style.display=''; }
+    });
+    /* re-observe newly visible */
+    d.querySelectorAll('#worksGrid .work').forEach(function(el){ if(el.style.display!=='none') io.observe(el); });
+  }, 300);
+}
+d.getElementById('filters').addEventListener('click', function(e){
+  var btn=e.target.closest('.fbtn'); if(!btn) return;
+  applyFilter(btn.getAttribute('data-filter'));
+});
+
+/* ---------- CASE MODAL ---------- */
+var modal=d.getElementById('caseModal');
+var inner=d.getElementById('caseInner');
+var caseIdxEl=d.getElementById('caseIdx');
+var currentCase=0;
+
+function openCase(i){
+  currentCase=i;
+  var w=WORKS[i];
+  caseIdxEl.textContent=String(i+1).padStart(2,'0')+' / '+String(WORKS.length).padStart(2,'0');
+  var gallery='';
+  var extras=w.imgs.slice(1);
+  if(extras.length){
+    gallery='<div class="case-gallery">'+extras.map(function(src){
+      return '<figure><img src="'+src+'" alt="'+w.name+' — detalj" loading="lazy"></figure>';
+    }).join('')+'</div>';
+  }
+  var forlop='<div class="forlop"><h4>Forløp</h4><div class="forlop-steps">'+
+    w.forlop.map(function(f){ return '<div class="fstep"><div class="t">'+f[0]+'</div><div class="y">'+f[1]+'</div></div>'; }).join('')+
+    '</div></div>';
+  var prev=(i-1+WORKS.length)%WORKS.length, next=(i+1)%WORKS.length;
+  inner.innerHTML=
+    '<div class="case-meta"><span>'+w.type+'</span><span class="sep">/</span><span>'+w.place+'</span><span class="sep">/</span><span>'+w.year+'</span><span class="sep">/</span><span>'+w.status+'</span></div>'+
+    '<h1 class="case-title">'+w.name+'</h1>'+
+    '<p class="case-lead">'+w.lead+'</p>'+
+    '<figure class="case-media '+({ 'r-wide':'wide','r-tall':'tall','r-box':'box' }[w.ratio]||'wide')+'"><img src="'+w.imgs[0]+'" alt="'+w.name+' — '+w.place+'"></figure>'+
+    '<div class="case-grid"><div class="case-desc"><h4>Om prosjektet</h4>'+
+      w.body.map(function(p){ return '<p>'+p+'</p>'; }).join('')+
+    '</div><div class="facts"><h4>Fakta</h4>'+
+      '<div class="f"><span class="k">Sted</span><span class="v">'+w.place+'</span></div>'+
+      '<div class="f"><span class="k">Type</span><span class="v">'+w.type+'</span></div>'+
+      '<div class="f"><span class="k">År</span><span class="v">'+w.year+'</span></div>'+
+      '<div class="f"><span class="k">Areal</span><span class="v">'+w.area+'</span></div>'+
+      '<div class="f"><span class="k">Status</span><span class="v">'+w.status+'</span></div>'+
+    '</div></div>'+
+    gallery+
+    forlop+
+    '<div class="case-nav"><button data-goto="'+prev+'"><small>← Forrige</small>'+WORKS[prev].name+'</button><button class="next" data-goto="'+next+'"><small>Neste →</small>'+WORKS[next].name+'</button></div>';
+  modal.classList.add('open');
+  d.documentElement.classList.add('no-scroll');
+  modal.scrollTop=0;
+}
+function closeCase(){
+  modal.classList.remove('open');
+  d.documentElement.classList.remove('no-scroll');
+}
+d.getElementById('caseClose').addEventListener('click', closeCase);
+modal.addEventListener('click', function(e){
+  if(e.target===modal) closeCase();
+  var g=e.target.closest('[data-goto]');
+  if(g){ openCase(parseInt(g.getAttribute('data-goto'),10)); modal.scrollTop=0; }
+});
+d.addEventListener('keydown', function(e){
+  if(!modal.classList.contains('open')) return;
+  if(e.key==='Escape') closeCase();
+  if(e.key==='ArrowRight'){ openCase((currentCase+1)%WORKS.length); modal.scrollTop=0; }
+  if(e.key==='ArrowLeft'){ openCase((currentCase-1+WORKS.length)%WORKS.length); modal.scrollTop=0; }
+});
+
+/* ---------- PROCESS HORIZONTAL SCROLL ---------- */
+var processSec=d.getElementById('prosess');
+var sticky=d.getElementById('processSticky');
+var track=d.getElementById('processTrack');
+var space=d.getElementById('processSpace');
+var bar=d.getElementById('processBar');
+var isDesktop=w.matchMedia('(min-width:960px)').matches;
+function setupProcess(){
+  isDesktop=w.matchMedia('(min-width:960px)').matches;
+  if(!isDesktop || reduceMotion){ space.style.height='0'; sticky.style.position=''; track.style.transform=''; return; }
+  var total = track.scrollWidth - sticky.clientWidth + 80;
+  if(total<=0){ total=1; }
+  space.style.height=Math.max(total+120, 400)+'px';
+}
+function moveProcess(){
+if(!isDesktop || reduceMotion) return;
+var rect=processSec.getBoundingClientRect();
+var progress=Math.min(Math.max(-rect.top/(space.offsetHeight-window.innerHeight),0),1);
+var total = track.scrollWidth - sticky.clientWidth + 80;
+track.style.transform='translateX('+(-progress*total)+'px)';
+if(bar) bar.style.width=(progress*100)+'%';
+}
+w.addEventListener('resize', setupProcess);
+w.addEventListener('scroll', moveProcess, {passive:true});
+w.addEventListener('load', function(){ setupProcess(); moveProcess(); });
+setupProcess();
+
+/* ---------- FORM ---------- */
+var range=d.getElementById('f-storrelse'), rangeVal=d.getElementById('rangeVal');
+if(range){
+  function upd(){ rangeVal.innerHTML=range.value+' <small>m²</small>'; }
+  range.addEventListener('input', upd); upd();
+}
+var form=d.getElementById('prosjektform'), success=d.getElementById('formSuccess');
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  var navn=d.getElementById('f-navn').value.trim();
+  var epost=d.getElementById('f-epost').value.trim();
+  var type=d.getElementById('f-type').value;
+  var ok=true;
+  [['f-navn', navn], ['f-epost', epost], ['f-type', type]].forEach(function(pair){
+    var el=d.getElementById(pair[0]);
+    if(!pair[1]){ el.style.borderColor='#C44'; ok=false; } else { el.style.borderColor=''; }
+  });
+  if(epost && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(epost)){ d.getElementById('f-epost').style.borderColor='#C44'; ok=false; }
+  if(!ok) return;
+  form.style.display='none';
+  success.style.display='block';
+});
+
+/* ---------- CLOSE MENU ON ESC ---------- */
+d.addEventListener('keydown', function(e){ if(e.key==='Escape' && mmenu.classList.contains('open')) closeMenu(); });
+
+/* smooth-scroll offset for fixed header */
+d.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var id=a.getAttribute('href');
+    if(id.length<2){ e.preventDefault(); return; }
+    var t=d.querySelector(id);
+    if(!t) return;
+    e.preventDefault();
+    var y=t.getBoundingClientRect().top + w.scrollY - 74;
+    w.scrollTo({top:y, behavior:reduceMotion?'auto':'smooth'});
+  });
+});
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

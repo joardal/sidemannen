@@ -1,0 +1,1401 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apex Motors Oslo — Premium bruktbiler &amp; elbiler</title>
+<meta name="description" content="Apex Motors Oslo håndplukker nyere brukte premiumbiler og elbiler. Innbytte, finansiering og inntil 24 måneders garanti. Bestill prøvekjøring i dag.">
+<link rel="icon" href="images/image-20.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0b0d; --bg-2:#101215; --bg-3:#15181c;
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --txt:#f2f4ef; --mut:#9aa0a3; --mut-2:#6f7579;
+  --acc:#d7ff3f; --acc-dim:rgba(215,255,63,.12); --acc-ink:#11130a;
+  --blu:#8fd8ff; --red:#ff6b6b;
+  --r:18px;
+  --ease:cubic-bezier(.22,.7,.2,1);
+  --disp:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;z-index:2000;pointer-events:none;opacity:.05;
+  background-image:url("images/image-21.svg");}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit;cursor:pointer;background:none;border:none}
+input,select,textarea{font-family:inherit;font-size:1rem;color:var(--txt)}
+::selection{background:var(--acc);color:var(--acc-ink)}
+.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
+@media(min-width:900px){.wrap{width:min(1240px,100% - 80px)}}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:600;letter-spacing:-.02em;line-height:1.04}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;padding:14px 26px;border-radius:100px;font-weight:600;font-size:.94rem;letter-spacing:.01em;border:1px solid transparent;transition:all .35s var(--ease);white-space:nowrap}
+.btn svg{width:17px;height:17px;transition:transform .35s var(--ease)}
+.btn-pri{background:var(--acc);color:var(--acc-ink)}
+.btn-pri:hover{background:#e7ff70;transform:translateY(-2px);box-shadow:0 14px 44px -10px rgba(215,255,63,.45)}
+.btn-pri:hover svg{transform:translateX(4px)}
+.btn-ghost{border-color:var(--line-2);color:var(--txt);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:var(--acc);color:var(--acc);background:rgba(215,255,63,.06);transform:translateY(-2px)}
+.btn-ghost:hover svg{transform:translateX(4px)}
+.btn-lg{padding:17px 32px;font-size:1rem}
+.btn-block{width:100%}
+.btn:disabled{opacity:.4;pointer-events:none}
+
+/* ---------- preloader ---------- */
+#loader{position:fixed;inset:0;z-index:3000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .6s ease,visibility .6s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .lg{font-family:var(--disp);font-weight:700;font-size:1.5rem;letter-spacing:.14em}
+#loader .lg b{color:var(--acc)}
+#loader .bar{width:140px;height:2px;background:rgba(255,255,255,.1);overflow:hidden;border-radius:2px}
+#loader .bar i{display:block;height:100%;width:40%;background:var(--acc);animation:load 1s ease-in-out infinite}
+@keyframes load{0%{transform:translateX(-120%)}100%{transform:translateX(320%)}}
+
+/* ---------- nav ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .4s,box-shadow .4s,border-color .4s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(10,11,13,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
+.logo{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:700;letter-spacing:.02em}
+.logo .mk{width:34px;height:34px;flex:none;display:grid;place-items:center;background:var(--acc);border-radius:9px}
+.logo .mk svg{width:20px;height:20px}
+.logo .tx{display:flex;flex-direction:column;line-height:1.05}
+.logo .tx b{font-size:1.12rem;letter-spacing:.12em}
+.logo .tx span{font-size:.58rem;letter-spacing:.42em;color:var(--mut);font-weight:500}
+.nav-links{display:none;align-items:center;gap:34px}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--mut);position:relative;padding:6px 0;transition:color .3s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--acc);transition:width .35s var(--ease)}
+.nav-links a:hover{color:var(--txt)}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:none;align-items:center;gap:20px}
+.nav-phone{font-family:var(--disp);font-weight:600;font-size:.92rem;display:flex;align-items:center;gap:8px}
+.nav-phone svg{width:16px;height:16px;color:var(--acc)}
+@media(min-width:1020px){.nav-links,.nav-right{display:flex}}
+.burger{width:46px;height:46px;border:1px solid var(--line-2);border-radius:12px;display:grid;place-items:center}
+.burger svg{width:22px;height:22px}
+@media(min-width:1020px){.burger{display:none}}
+
+/* mobile menu */
+#mmenu{position:fixed;inset:0;z-index:950;background:rgba(8,9,10,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;justify-content:center;padding:32px 28px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+#mmenu.open{opacity:1;visibility:visible}
+#mmenu a{font-family:var(--disp);font-size:clamp(2rem,9vw,3rem);font-weight:600;padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:14px;transform:translateY(24px);opacity:0;transition:transform .5s var(--ease),opacity .5s}
+#mmenu.open a{transform:none;opacity:1}
+#mmenu a span{font-size:.8rem;color:var(--acc);letter-spacing:.2em;font-family:var(--body)}
+#mmenu a:hover{color:var(--acc)}
+#mmenu.open a:nth-child(1){transition-delay:.05s}#mmenu.open a:nth-child(2){transition-delay:.1s}
+#mmenu.open a:nth-child(3){transition-delay:.15s}#mmenu.open a:nth-child(4){transition-delay:.2s}
+#mmenu.open a:nth-child(5){transition-delay:.25s}
+#mmenu .mm-foot{margin-top:36px;display:flex;flex-direction:column;gap:10px;color:var(--mut);font-size:.95rem}
+.mm-close{position:absolute;top:20px;right:20px;width:48px;height:48px;border:1px solid var(--line-2);border-radius:50%;display:grid;place-items:center}
+.mm-close svg{width:22px;height:22px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;animation:heroZoom 24s var(--ease) infinite alternate;filter:saturate(.92)}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hero-bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(8,9,10,.72) 0%,rgba(8,9,10,.25) 38%,rgba(8,9,10,.78) 78%,var(--bg) 100%),
+  linear-gradient(90deg,rgba(8,9,10,.75) 0%,rgba(8,9,10,.15) 60%)}
+.hero-inner{position:relative;z-index:2;padding:120px 0 46px;width:100%}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.76rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--mut);margin-bottom:26px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--acc)}
+.hero h1{font-size:clamp(2.9rem,8.6vw,6.6rem);font-weight:700;text-transform:uppercase;letter-spacing:-.015em;line-height:.96}
+.hero h1 .ac{color:var(--acc)}
+.hero p.lead{margin-top:24px;max-width:560px;color:#c9cec8;font-size:1.06rem;line-height:1.7}
+.hero-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px}
+.hero-stats{margin-top:54px;display:grid;grid-template-columns:repeat(2,1fr);gap:22px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+@media(min-width:760px){.hero-stats{grid-template-columns:repeat(4,1fr)}}
+.hero-stats .st b{display:block;font-family:var(--disp);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;letter-spacing:-.02em}
+.hero-stats .st b i{color:var(--acc);font-style:normal}
+.hero-stats .st span{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.scroll-hint{position:absolute;right:26px;bottom:46px;z-index:3;writing-mode:vertical-rl;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--mut);display:none;align-items:center;gap:14px}
+@media(min-width:1020px){.scroll-hint{display:flex}}
+.scroll-hint::after{content:"";width:1px;height:64px;background:linear-gradient(var(--acc),transparent);animation:drop 1.8s ease infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- ticker ---------- */
+.ticker{border-block:1px solid var(--line);background:var(--bg-2);overflow:hidden;padding:18px 0;position:relative;z-index:5}
+.ticker-track{display:flex;gap:0;width:max-content;animation:tick 30s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{display:flex;align-items:center;gap:38px;padding-right:38px;font-family:var(--disp);font-weight:600;font-size:1.05rem;letter-spacing:.22em;color:#cfd4cb;white-space:nowrap;text-transform:uppercase}
+.ticker-track svg{width:14px;height:14px;color:var(--acc);flex:none}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{position:relative;z-index:4}
+section[id]{scroll-margin-top:84px}
+.sec{padding:96px 0}
+@media(min-width:900px){.sec{padding:130px 0}}
+.sec-head{display:flex;flex-direction:column;gap:22px;margin-bottom:48px}
+@media(min-width:860px){.sec-head{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.sec-label{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);margin-bottom:18px}
+.sec-label::before{content:"";width:9px;height:9px;background:var(--acc);border-radius:2px}
+.sec-head h2{font-size:clamp(2rem,4.6vw,3.5rem)}
+.sec-head .sub{color:var(--mut);max-width:420px;font-size:.98rem}
+
+/* ---------- filters ---------- */
+.filters{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:34px}
+.f-row{display:flex;flex-wrap:wrap;gap:12px}
+.f-search{flex:1 1 240px;position:relative;display:flex;align-items:center}
+.f-search svg{position:absolute;left:15px;width:17px;height:17px;color:var(--mut);pointer-events:none}
+.f-search input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:13px 15px 13px 44px;color:var(--txt);outline:none;transition:border-color .3s,box-shadow .3s}
+.f-search input:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-dim)}
+.sel{position:relative;display:flex;align-items:center}
+.sel select{appearance:none;-webkit-appearance:none;background-color:rgba(255,255,255,.04);background-image:url("images/image-03.svg");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;border:1px solid var(--line);border-radius:12px;padding:13px 42px 13px 15px;min-width:150px;outline:none;cursor:pointer;transition:border-color .3s;font-size:.92rem;font-weight:500}
+.sel select:focus{border-color:var(--acc)}
+.sel select option{background:var(--bg-2);color:var(--txt)}
+.sel>svg{display:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{padding:11px 18px;border-radius:100px;border:1px solid var(--line-2);font-size:.86rem;font-weight:600;color:var(--mut);transition:all .3s var(--ease);display:inline-flex;align-items:center;gap:8px}
+.chip em{font-style:normal;font-size:.72rem;background:rgba(255,255,255,.08);padding:2px 8px;border-radius:100px}
+.chip:hover{border-color:var(--acc);color:var(--txt)}
+.chip.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.chip.on em{background:rgba(0,0,0,.18);color:var(--acc-ink)}
+.f-price{flex:1 1 220px;min-width:210px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:10px 16px}
+.f-price .pl{display:flex;justify-content:space-between;font-size:.78rem;color:var(--mut);margin-bottom:6px}
+.f-price .pl b{color:var(--acc);font-weight:600}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:rgba(255,255,255,.12);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--acc);border:3px solid #0e0f0b;box-shadow:0 0 0 2px var(--acc);cursor:pointer;transition:transform .2s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--acc);border:3px solid #0e0f0b;box-shadow:0 0 0 2px var(--acc);cursor:pointer}
+.f-meta{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+.f-count{font-size:.88rem;color:var(--mut)}
+.f-count b{color:var(--txt);font-family:var(--disp)}
+.f-reset{font-size:.84rem;font-weight:600;color:var(--mut);display:inline-flex;align-items:center;gap:7px;border-bottom:1px solid transparent;padding-bottom:2px;transition:.3s}
+.f-reset:hover{color:var(--acc);border-color:var(--acc)}
+.f-reset svg{width:14px;height:14px}
+
+/* ---------- car cards ---------- */
+.car-grid{display:grid;grid-template-columns:1fr;gap:26px}
+@media(min-width:640px){.car-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1020px){.car-grid{grid-template-columns:repeat(3,1fr)}}
+.car-card{position:relative;background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);border-radius:20px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .5s var(--ease),border-color .5s,box-shadow .5s;opacity:0;animation:cardIn .7s var(--ease) forwards}
+@keyframes cardIn{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+.car-card:hover{transform:translateY(-8px);border-color:rgba(215,255,63,.4);box-shadow:0 34px 70px -28px rgba(0,0,0,.85)}
+.car-media{position:relative;aspect-ratio:16/10.5;overflow:hidden;background:#0d0f11}
+.car-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease);filter:saturate(.95)}
+.car-card:hover .car-media img{transform:scale(1.08)}
+.car-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,10,.35),transparent 30%,transparent 62%,rgba(8,9,10,.5))}
+.car-badges{position:absolute;top:14px;left:14px;z-index:2;display:flex;gap:7px;flex-wrap:wrap}
+.badge{font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:6px 11px;border-radius:100px}
+.badge.ev{background:var(--acc);color:var(--acc-ink)}
+.badge.hy{background:rgba(143,216,255,.92);color:#0a141c}
+.badge.bz{background:rgba(10,11,13,.6);backdrop-filter:blur(8px);color:#e8eae4;border:1px solid var(--line-2)}
+.badge.tag{background:rgba(10,11,13,.62);backdrop-filter:blur(8px);color:var(--acc);border:1px solid rgba(215,255,63,.35)}
+.fav{position:absolute;top:12px;right:12px;z-index:3;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(10,11,13,.55);backdrop-filter:blur(8px);border:1px solid var(--line-2);transition:all .3s}
+.fav svg{width:18px;height:18px;stroke:#fff;fill:none;transition:all .3s}
+.fav:hover{border-color:var(--acc)}
+.fav.on{background:var(--acc);border-color:var(--acc)}
+.fav.on svg{stroke:var(--acc-ink);fill:var(--acc-ink)}
+.car-body{padding:21px 22px 22px;display:flex;flex-direction:column;gap:15px;flex:1}
+.car-brand{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.car-name{font-size:1.22rem;font-weight:600;line-height:1.15}
+.car-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;padding-top:4px}
+.car-specs .s{display:flex;align-items:center;gap:9px;font-size:.84rem;color:#c3c8c0}
+.car-specs .s svg{width:16px;height:16px;color:var(--acc);flex:none}
+.car-foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.car-price b{font-family:var(--disp);font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+.car-price b i{font-style:normal;font-size:.85rem;color:var(--mut);font-weight:500;margin-left:4px}
+.car-price span{display:block;font-size:.76rem;color:var(--mut);margin-top:2px}
+.car-go{width:46px;height:46px;flex:none;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:all .4s var(--ease)}
+.car-go svg{width:18px;height:18px;transition:transform .4s var(--ease)}
+.car-card:hover .car-go{background:var(--acc);border-color:var(--acc)}
+.car-card:hover .car-go svg{transform:translate(2px,-2px);stroke:var(--acc-ink)}
+.empty{display:none;text-align:center;padding:80px 20px;border:1px dashed var(--line-2);border-radius:var(--r)}
+.empty h3{font-size:1.4rem;margin-bottom:10px}
+.empty p{color:var(--mut);margin-bottom:24px}
+
+/* ---------- services ---------- */
+.svc-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:640px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1020px){.svc-grid{grid-template-columns:repeat(3,1fr)}}
+.svc{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;transition:all .45s var(--ease);position:relative;overflow:hidden}
+.svc::before{content:"";position:absolute;inset:0;background:radial-gradient(380px circle at var(--mx,50%) 0%,rgba(215,255,63,.08),transparent 65%);opacity:0;transition:opacity .4s}
+.svc:hover{border-color:rgba(215,255,63,.35);transform:translateY(-5px)}
+.svc:hover::before{opacity:1}
+.svc .ic{width:52px;height:52px;border-radius:14px;background:var(--acc-dim);display:grid;place-items:center;margin-bottom:20px;transition:all .4s var(--ease)}
+.svc .ic svg{width:25px;height:25px;stroke:var(--acc);fill:none}
+.svc:hover .ic{background:var(--acc)}
+.svc:hover .ic svg{stroke:var(--acc-ink)}
+.svc h4{font-size:1.12rem;margin-bottom:9px}
+.svc p{color:var(--mut);font-size:.92rem;line-height:1.65}
+
+/* ---------- finance ---------- */
+.fin-grid{display:grid;gap:54px;align-items:center}
+@media(min-width:960px){.fin-grid{grid-template-columns:1.05fr .95fr;gap:70px}}
+.fin-copy h2{margin-bottom:22px}
+.fin-copy>p{color:var(--mut);margin-bottom:30px;max-width:520px}
+.fin-list{list-style:none;display:flex;flex-direction:column;gap:16px;margin-bottom:32px}
+.fin-list li{display:flex;gap:14px;align-items:flex-start;font-size:.95rem}
+.fin-list .ck{width:24px;height:24px;flex:none;border-radius:50%;background:var(--acc-dim);display:grid;place-items:center;margin-top:1px}
+.fin-list .ck svg{width:13px;height:13px;stroke:var(--acc)}
+.fin-list b{font-weight:600}
+.fin-note{font-size:.8rem;color:var(--mut-2);line-height:1.6;max-width:480px}
+.calc{background:var(--bg-2);border:1px solid var(--line);border-radius:24px;padding:34px 30px;box-shadow:0 40px 90px -40px rgba(0,0,0,.8)}
+.calc h3{font-size:1.35rem;margin-bottom:26px;display:flex;align-items:center;gap:10px}
+.calc h3 svg{width:22px;height:22px;stroke:var(--acc);fill:none}
+.c-field{margin-bottom:24px}
+.c-field .cl{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.c-field .cl span{font-size:.84rem;color:var(--mut);font-weight:500}
+.c-field .cl b{font-family:var(--disp);font-size:1.05rem;font-weight:600}
+.c-field .cl b.volt{color:var(--acc)}
+.yr-chips{display:flex;gap:8px;flex-wrap:wrap}
+.yr-chips button{padding:9px 17px;border-radius:10px;border:1px solid var(--line-2);font-size:.88rem;font-weight:600;color:var(--mut);transition:all .3s}
+.yr-chips button.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.yr-chips button:hover:not(.on){border-color:var(--acc);color:var(--txt)}
+.calc-out{margin:30px 0 24px;padding:26px 24px;border-radius:16px;background:linear-gradient(160deg,rgba(215,255,63,.1),rgba(215,255,63,.02));border:1px solid rgba(215,255,63,.25)}
+.calc-out .mo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.calc-out .mo b{font-family:var(--disp);font-size:clamp(2.4rem,5vw,3.1rem);font-weight:700;color:var(--acc);letter-spacing:-.03em;line-height:1}
+.calc-out .mo span{color:var(--mut);font-size:.95rem}
+.calc-rows{margin-top:20px;display:flex;flex-direction:column;gap:9px;font-size:.88rem}
+.calc-rows div{display:flex;justify-content:space-between;color:var(--mut)}
+.calc-rows div b{color:var(--txt);font-weight:600}
+
+/* ---------- trade-in wizard ---------- */
+.wiz-wrap{max-width:780px;margin-inline:auto}
+.wiz{background:var(--bg-2);border:1px solid var(--line);border-radius:24px;padding:36px 28px;position:relative;overflow:hidden}
+@media(min-width:680px){.wiz{padding:44px 48px}}
+.wiz-steps{display:flex;justify-content:space-between;position:relative;margin-bottom:40px}
+.wiz-steps::before{content:"";position:absolute;top:19px;left:10%;right:10%;height:2px;background:rgba(255,255,255,.1)}
+.wiz-steps .fill{position:absolute;top:19px;left:10%;height:2px;background:var(--acc);transition:width .5s var(--ease)}
+.wstep{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;width:25%}
+.wstep .n{width:40px;height:40px;border-radius:50%;background:var(--bg-3);border:1px solid var(--line-2);display:grid;place-items:center;font-family:var(--disp);font-weight:600;font-size:.95rem;transition:all .4s}
+.wstep span{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut-2);text-align:center;transition:color .3s}
+.wstep.done .n,.wstep.active .n{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.wstep.active span{color:var(--txt)}
+@media(max-width:560px){.wstep span{font-size:0}.wstep .n{width:34px;height:34px}}
+.wpanel{display:none;animation:fadeUp .5s var(--ease)}
+.wpanel.show{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.wpanel h3{font-size:1.5rem;margin-bottom:8px}
+.wpanel>p{color:var(--mut);margin-bottom:26px;font-size:.95rem}
+.f-grid{display:grid;gap:18px}
+@media(min-width:600px){.f-grid.two{grid-template-columns:1fr 1fr}}
+.fld label{display:block;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:600;margin-bottom:8px}
+.fld input,.fld select,.fld textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:14px 16px;outline:none;transition:border-color .3s,box-shadow .3s;color:var(--txt)}
+.fld textarea{resize:vertical;min-height:110px}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-dim)}
+.fld input.err{border-color:var(--red)}
+.fld .emsg{display:none;color:var(--red);font-size:.78rem;margin-top:6px}
+.fld input.err~.emsg{display:block}
+.cond-chips{display:flex;flex-wrap:wrap;gap:9px}
+.cond-chips label{position:relative}
+.cond-chips input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.cond-chips span{display:inline-block;padding:11px 18px;border-radius:100px;border:1px solid var(--line-2);font-size:.86rem;font-weight:600;color:var(--mut);transition:all .3s;cursor:pointer}
+.cond-chips input:checked+span{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.cond-chips input:focus-visible+span{outline:2px solid var(--acc);outline-offset:2px}
+.w-nav{display:flex;gap:12px;margin-top:30px}
+.w-nav .btn-pri{margin-left:auto}
+.reg-input{font-family:var(--disp)!important;font-size:1.5rem!important;letter-spacing:.28em;text-transform:uppercase;text-align:center;padding:18px!important}
+.reg-hint{text-align:center;color:var(--mut-2);font-size:.82rem;margin-top:12px}
+.w-success{text-align:center;padding:20px 0}
+.w-success .ckbig{width:84px;height:84px;border-radius:50%;background:var(--acc-dim);border:1px solid rgba(215,255,63,.4);display:grid;place-items:center;margin:0 auto 26px;animation:pop .6s var(--ease)}
+@keyframes pop{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.w-success .ckbig svg{width:38px;height:38px;stroke:var(--acc)}
+.w-success h3{font-size:1.7rem;margin-bottom:12px}
+.w-success p{color:var(--mut);max-width:440px;margin:0 auto 14px}
+.est{display:inline-flex;flex-direction:column;gap:2px;background:rgba(215,255,63,.08);border:1px solid rgba(215,255,63,.28);border-radius:14px;padding:18px 30px;margin:18px 0 28px}
+.est span{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+.est b{font-family:var(--disp);font-size:1.7rem;color:var(--acc)}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;gap:50px;align-items:center}
+@media(min-width:960px){.about-grid{grid-template-columns:1fr 1fr;gap:80px}}
+.about-img{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+.about-img img{width:100%;aspect-ratio:4/4.6;object-fit:cover}
+@media(min-width:960px){.about-img img{aspect-ratio:4/5}}
+.about-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,9,10,.85))}
+.about-badge{position:absolute;left:22px;bottom:22px;right:22px;z-index:2;background:rgba(10,11,13,.72);backdrop-filter:blur(14px);border:1px solid var(--line-2);border-radius:16px;padding:18px 22px;display:flex;align-items:center;gap:16px}
+.about-badge .pin{width:44px;height:44px;flex:none;border-radius:12px;background:var(--acc);display:grid;place-items:center}
+.about-badge .pin svg{width:22px;height:22px;stroke:var(--acc-ink)}
+.about-badge b{font-family:var(--disp);display:block;font-size:1.02rem}
+.about-badge span{font-size:.82rem;color:var(--mut)}
+.about-copy h2{margin-bottom:22px}
+.about-copy p{color:var(--mut);margin-bottom:18px}
+.about-chips{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0 36px}
+.about-chips span{font-size:.82rem;font-weight:600;padding:9px 16px;border-radius:100px;border:1px solid var(--line-2);color:#cfd4cb;display:inline-flex;align-items:center;gap:8px}
+.about-chips span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.about-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 20px;padding-top:30px;border-top:1px solid var(--line)}
+.about-stats b{font-family:var(--disp);font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:700;display:block;letter-spacing:-.02em}
+.about-stats b i{font-style:normal;color:var(--acc)}
+.about-stats span{font-size:.8rem;color:var(--mut);letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- reviews ---------- */
+.rev-head{text-align:center;margin-bottom:50px}
+.rev-score{display:inline-flex;align-items:center;gap:14px;background:var(--bg-2);border:1px solid var(--line);border-radius:100px;padding:12px 26px;margin-bottom:22px}
+.rev-score b{font-family:var(--disp);font-size:1.4rem}
+.rev-score .stars{display:flex;gap:3px}
+.rev-score .stars svg{width:17px;height:17px;fill:var(--acc)}
+.rev-score span{color:var(--mut);font-size:.88rem}
+.rev-grid{display:grid;gap:20px}
+@media(min-width:860px){.rev-grid{grid-template-columns:repeat(3,1fr)}}
+.rev{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;display:flex;flex-direction:column;gap:18px;transition:border-color .4s,transform .4s var(--ease)}
+.rev:hover{border-color:rgba(215,255,63,.3);transform:translateY(-5px)}
+.rev .stars{display:flex;gap:3px}
+.rev .stars svg{width:16px;height:16px;fill:var(--acc)}
+.rev blockquote{font-size:.97rem;line-height:1.7;color:#d7dcd3;flex:1}
+.rev .who{display:flex;align-items:center;gap:13px;padding-top:18px;border-top:1px solid var(--line)}
+.rev .av{width:44px;height:44px;border-radius:50%;background:var(--acc-dim);border:1px solid rgba(215,255,63,.3);display:grid;place-items:center;font-family:var(--disp);font-weight:700;color:var(--acc)}
+.rev .who b{display:block;font-size:.92rem}
+.rev .who span{font-size:.8rem;color:var(--mut)}
+
+/* ---------- contact ---------- */
+.cta-band{background:linear-gradient(150deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);border-radius:28px;padding:clamp(40px,7vw,80px);text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(215,255,63,.14),transparent 65%);top:-260px;left:50%;transform:translateX(-50%);pointer-events:none}
+.cta-band h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:16px;position:relative}
+.cta-band p{color:var(--mut);max-width:480px;margin:0 auto 34px;position:relative}
+.cta-band .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.contact-grid{display:grid;gap:40px;margin-top:70px}
+@media(min-width:960px){.contact-grid{grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}}
+.cinfo{display:flex;flex-direction:column;gap:14px}
+.cinfo .ci{display:flex;gap:17px;align-items:flex-start;background:var(--bg-2);border:1px solid var(--line);border-radius:16px;padding:20px 22px;transition:border-color .3s}
+.cinfo .ci:hover{border-color:rgba(215,255,63,.3)}
+.cinfo .ic{width:44px;height:44px;flex:none;border-radius:12px;background:var(--acc-dim);display:grid;place-items:center}
+.cinfo .ic svg{width:21px;height:21px;stroke:var(--acc);fill:none}
+.cinfo b{display:block;font-family:var(--disp);font-size:.98rem;margin-bottom:3px}
+.cinfo span{color:var(--mut);font-size:.9rem;line-height:1.55}
+.cform{background:var(--bg-2);border:1px solid var(--line);border-radius:24px;padding:clamp(28px,4vw,44px)}
+.cform h3{font-size:1.5rem;margin-bottom:6px}
+.cform>p{color:var(--mut);font-size:.92rem;margin-bottom:28px}
+.check{display:flex;gap:11px;align-items:flex-start;font-size:.84rem;color:var(--mut);margin:18px 0 24px;cursor:pointer}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--acc);flex:none}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);background:var(--bg-2);padding:70px 0 34px;margin-top:110px;position:relative;z-index:4}
+.foot-grid{display:grid;gap:40px;grid-template-columns:1fr;margin-bottom:54px}
+@media(min-width:760px){.foot-grid{grid-template-columns:1.6fr 1fr 1fr 1.2fr}}
+.foot-grid h5{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-bottom:20px;font-weight:600}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.foot-grid ul a{color:#c3c8c0;font-size:.92rem;transition:color .3s}
+.foot-grid ul a:hover{color:var(--acc)}
+.foot-blurb{color:var(--mut);font-size:.9rem;max-width:320px;margin:18px 0 22px;line-height:1.7}
+.foot-contact li{display:flex;gap:11px;color:#c3c8c0;font-size:.9rem;align-items:flex-start}
+.foot-contact svg{width:16px;height:16px;stroke:var(--acc);fill:none;flex:none;margin-top:3px}
+.foot-bottom{border-top:1px solid var(--line);padding-top:28px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;color:var(--mut-2);font-size:.8rem}
+
+/* ---------- modal ---------- */
+#modal{position:fixed;inset:0;z-index:1100;display:none;overflow-y:auto;padding:24px 16px}
+#modal.open{display:block}
+.modal-bg{position:fixed;inset:0;background:rgba(5,6,7,.78);backdrop-filter:blur(10px);animation:fade .3s}
+@keyframes fade{from{opacity:0}}
+.modal-p{position:relative;max-width:1060px;margin:30px auto;background:var(--bg-2);border:1px solid var(--line-2);border-radius:24px;overflow:hidden;animation:fadeUp .45s var(--ease)}
+.modal-close{position:absolute;top:18px;right:18px;z-index:10;width:46px;height:46px;border-radius:50%;background:rgba(10,11,13,.65);backdrop-filter:blur(8px);border:1px solid var(--line-2);display:grid;place-items:center;transition:all .3s}
+.modal-close:hover{background:var(--acc);border-color:var(--acc)}
+.modal-close:hover svg{stroke:var(--acc-ink)}
+.modal-close svg{width:20px;height:20px;stroke:#fff;transition:stroke .3s}
+.modal-grid{display:grid}
+@media(min-width:900px){.modal-grid{grid-template-columns:1.1fr 1fr}}
+.m-gal{background:#0c0e10;position:relative}
+.m-gal .main{aspect-ratio:16/10.5;overflow:hidden}
+@media(min-width:900px){.m-gal .main{aspect-ratio:auto;min-height:100%;height:100%}
+  .m-gal .main img{height:100%}}
+.m-gal .main img{width:100%;height:100%;object-fit:cover}
+.m-thumbs{display:flex;gap:10px;padding:12px}
+.m-thumbs button{flex:1;border-radius:12px;overflow:hidden;border:2px solid transparent;aspect-ratio:16/10;opacity:.55;transition:all .3s;position:relative}
+.m-thumbs button img{width:100%;height:100%;object-fit:cover}
+.m-thumbs button.on{border-color:var(--acc);opacity:1}
+.m-thumbs button:hover:not(.on){opacity:.85}
+.m-info{padding:34px 30px 34px}
+@media(min-width:900px){.m-info{padding:42px 40px;max-height:90vh;overflow-y:auto}}
+.m-brand{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--acc);font-weight:700}
+.m-info h3{font-size:clamp(1.5rem,2.6vw,2rem);margin:8px 0 4px}
+.m-sub{color:var(--mut);font-size:.9rem;margin-bottom:22px}
+.m-price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:20px 0;border-block:1px solid var(--line);margin-bottom:22px}
+.m-price b{font-family:var(--disp);font-size:2rem;font-weight:700;letter-spacing:-.02em}
+.m-price span{color:var(--mut);font-size:.86rem}
+.m-specs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:24px}
+.m-specs .sp{padding:13px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.m-specs .sp span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-2)}
+.m-specs .sp b{font-size:.94rem;font-weight:600}
+.m-desc{color:var(--mut);font-size:.92rem;line-height:1.7;margin-bottom:22px}
+.m-feats{list-style:none;display:grid;gap:10px;margin-bottom:28px}
+.m-feats li{display:flex;gap:11px;align-items:center;font-size:.9rem}
+.m-feats .ck{width:22px;height:22px;flex:none;border-radius:50%;background:var(--acc-dim);display:grid;place-items:center}
+.m-feats .ck svg{width:12px;height:12px;stroke:var(--acc)}
+.m-btns{display:flex;flex-direction:column;gap:11px}
+@media(min-width:480px){.m-btns{flex-direction:row;flex-wrap:wrap}
+  .m-btns .btn{flex:1;min-width:200px}}
+.m-link{width:100%;text-align:center;color:var(--mut);font-size:.86rem;font-weight:600;padding:10px;transition:color .3s}
+.m-link:hover{color:var(--acc)}
+.td-form{margin-top:26px;padding-top:26px;border-top:1px solid var(--line);display:none}
+.td-form.show{display:block;animation:fadeUp .4s var(--ease)}
+.td-form h4{font-size:1.05rem;margin-bottom:18px}
+.td-ok{text-align:center;padding:26px 10px;display:none}
+.td-ok.show{display:block;animation:pop .5s var(--ease)}
+.td-ok .ckbig{width:64px;height:64px;border-radius:50%;background:var(--acc-dim);display:grid;place-items:center;margin:0 auto 16px}
+.td-ok .ckbig svg{width:30px;height:30px;stroke:var(--acc)}
+.td-ok b{font-family:var(--disp);font-size:1.15rem;display:block;margin-bottom:6px}
+.td-ok span{color:var(--mut);font-size:.9rem}
+
+/* ---------- toast ---------- */
+#toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(30px);z-index:2500;background:var(--acc);color:var(--acc-ink);font-weight:600;font-size:.92rem;padding:15px 26px;border-radius:100px;box-shadow:0 18px 50px -12px rgba(0,0,0,.7);opacity:0;visibility:hidden;transition:all .45s var(--ease);display:flex;align-items:center;gap:10px;max-width:calc(100% - 40px)}
+#toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+#toast svg{width:18px;height:18px;flex:none}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<!-- preloader -->
+<div id="loader">
+  <div class="lg">APEX<b>.</b></div>
+  <div class="bar"><i></i></div>
+</div>
+
+<!-- nav -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#hjem" class="logo" aria-label="Apex Motors Oslo — forsiden">
+      <span class="mk"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2 5 14h6l-1 8 8-12h-6z" fill="#11130a"/></svg></span>
+      <span class="tx"><b>APEX</b><span>MOTORS OSLO</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Hovedmeny">
+      <a href="#biler">Biler</a>
+      <a href="#finansiering">Finansiering</a>
+      <a href="#innbytte">Innbytte</a>
+      <a href="#om-oss">Om oss</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:+4723609000" class="nav-phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg>23 60 90 00</a>
+      <a href="#kontakt" class="btn btn-pri">Bestill prøvekjøring</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Åpne meny"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div id="mmenu">
+  <button class="mm-close" id="mmClose" aria-label="Lukk meny"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <a href="#biler"><span>01</span> Biler</a>
+  <a href="#finansiering"><span>02</span> Finansiering</a>
+  <a href="#innbytte"><span>03</span> Innbytte</a>
+  <a href="#om-oss"><span>04</span> Om oss</a>
+  <a href="#kontakt"><span>05</span> Kontakt</a>
+  <div class="mm-foot">
+    <span>Strømsveien 261, 0668 Oslo</span>
+    <span>23 60 90 00 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4f3f203c3b0f2e3f2a3722203b203d3c612120">[email&#160;protected]</a></span>
+  </div>
+</div>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="hjem">
+  <div class="hero-bg"><img src="images/image-01.jpg" alt="Premium sportsbil i Apex Motors' showroom i Oslo"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Apex Motors Oslo · Et annet nivå av bilhandel</span>
+    <h1>Biler som<br>flytter grenser<span class="ac">.</span></h1>
+    <p class="lead">Vi håndplukker nyere brukte premiumbiler og elbiler — og leverer dem med innbytte, finansiering på minutter og inntil 24 måneders garanti. Velkommen til Oslos mest ettertraktede bilutvalg.</p>
+    <div class="hero-cta">
+      <a href="#biler" class="btn btn-pri btn-lg">Se bilutvalget <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#innbytte" class="btn btn-ghost btn-lg">Få innbyttepris</a>
+    </div>
+    <div class="hero-stats">
+      <div class="st"><b><span data-count="214">0</span><i>+</i></b><span>Biler levert</span></div>
+      <div class="st"><b><span data-count="4.9" data-dec="1">0</span><i>/</i>5</b><span>Kundevurdering</span></div>
+      <div class="st"><b><span data-count="24">0</span><i> mnd</i></b><span>Toppgaranti</span></div>
+      <div class="st"><b><span data-count="125">0</span><i>-pk</i></b><span>Tilstandssjekk</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ticker -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- ============ BILER ============ -->
+<section class="sec" id="biler">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="sec-label">01 — Utvalget</span>
+        <h2>Håndplukket.<br>Hver eneste bil.</h2>
+      </div>
+      <p class="sub">Alt fra elektriske luksussedaner til høyytelses sportsbiler — alle med dokumentert historikk og tilstandsrapport.</p>
+    </div>
+
+    <div class="filters reveal">
+      <div class="f-row" style="margin-bottom:12px">
+        <div class="f-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="fSearch" placeholder="Søk merke eller modell…" aria-label="Søk biler">
+        </div>
+        <div class="sel">
+          <select id="fBrand" aria-label="Filtrer på merke"><option value="">Alle merker</option></select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+        <div class="sel">
+          <select id="fYear" aria-label="Filtrer på årsmodell">
+            <option value="0">Alle årsmodeller</option>
+            <option value="2024">2024 eller nyere</option>
+            <option value="2023">2023 eller nyere</option>
+            <option value="2022">2022 eller nyere</option>
+            <option value="2021">2021 eller nyere</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+        <div class="sel">
+          <select id="fSort" aria-label="Sortering">
+            <option value="new">Sorter: Nyeste først</option>
+            <option value="plh">Pris: lav → høy</option>
+            <option value="phl">Pris: høy → lav</option>
+            <option value="km">Lavest kilometerstand</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="f-row" style="align-items:center">
+        <div class="chips" id="fDriv" role="group" aria-label="Filtrer på drivlinje"></div>
+        <div class="f-price">
+          <div class="pl"><span>Maks pris</span><b id="fPriceLbl"></b></div>
+          <input type="range" id="fPrice" min="400000" max="2000000" step="50000" value="2000000" aria-label="Maksimal pris">
+        </div>
+      </div>
+    </div>
+
+    <div class="f-meta reveal">
+      <span class="f-count">Viser <b id="carCount">0</b> av <b id="carTotal">0</b> biler</span>
+      <button class="f-reset" id="fReset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Nullstill filtre</button>
+    </div>
+
+    <div class="car-grid" id="carGrid"></div>
+    <div class="empty" id="empty">
+      <h3>Ingen biler matcher kriteriene</h3>
+      <p>Prøv å utvide prisspennet eller tømme filtrene — eller ta kontakt, vi skaffer drømmebilen.</p>
+      <button class="btn btn-pri" onclick="resetFilters()">Nullstill filtre</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TJENESTER ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="sec-label">Hvorfor Apex</span><h2>Trygghet, bygget inn i hver handel.</h2></div>
+    </div>
+    <div class="svc-grid" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- ============ FINANSIERING ============ -->
+<section class="sec" id="finansiering" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap fin-grid">
+    <div class="fin-copy reveal">
+      <span class="sec-label">02 — Finansiering</span>
+      <h2>Drømmebilen nærmere enn du tror.</h2>
+      <p>Søk på to minutter og få svar innen to timer — ofte før du har forlatt showrommet. Vi samarbeider med Nordea, DNB og Santander og finner løsningen som passer deg.</p>
+      <ul class="fin-list">
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span><span><b>Fra 0 kr i egenkapital</b> — eller opptil 60 % om du vil ha lavere termin.</span></li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span><span><b>Nominell rente fra 9,9 %</b> — ingen skjulte gebyrer, alt på forhånd.</span></li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span><span><b>Svar innen 2 timer</b> på hverdager — og finansiering kan ferdigstilles samme dag.</span></li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span><span><b>Inntil 10 års løpetid</b> og mulighet for avdragsfrihet ved behov.</span></li>
+      </ul>
+      <p class="fin-note">Finansieringsformidling via Apex Motors Oslo AS. Renten er individuell og avhenger av kredittvurdering. Eksempel: 9,9 % nom., etableringsgebyr 9 950 kr, termingebyr 65 kr/md. Siktemålet er en veiledende indikasjon — ikke et bindende tilbud.</p>
+    </div>
+    <div class="calc reveal">
+      <h3><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2m4 0h2M8 14h2m4 0h2M8 18h2m4 0h2"/></svg>Lånets kalkulator</h3>
+      <div class="c-field">
+        <div class="cl"><span>Bilpris</span><b id="cPrice"></b></div>
+        <input type="range" id="cPriceR" min="400000" max="2000000" step="10000" value="899000">
+      </div>
+      <div class="c-field">
+        <div class="cl"><span>Egenkapital</span><b class="volt" id="cEq"></b></div>
+        <input type="range" id="cEqR" min="0" max="60" step="1" value="35">
+      </div>
+      <div class="c-field">
+        <div class="cl"><span>Løpetid</span><b id="cYr"></b></div>
+        <div class="yr-chips" id="cYrChips"></div>
+      </div>
+      <div class="calc-out">
+        <div class="mo"><b id="cMo">0</b><span>kr / måned</span></div>
+        <div class="calc-rows">
+          <div><span>Lånebeløp</span><b id="cLoan"></b></div>
+          <div><span>Totalt tilbakebetalt</span><b id="cTotal"></b></div>
+          <div><span>Nominell rente</span><b>9,9 %</b></div>
+        </div>
+      </div>
+      <button class="btn btn-pri btn-block btn-lg" id="cApply">Søk finansiering <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INNBYTTE ============ -->
+<section class="sec" id="innbytte">
+  <div class="wrap wiz-wrap">
+    <div class="sec-head reveal" style="text-align:center;justify-content:center">
+      <div>
+        <span class="sec-label" style="justify-content:center">03 — Innbytte</span>
+        <h2>Få svar på hva bilen din er verdt.</h2>
+        <p class="sub" style="margin:16px auto 0">Skriv inn registreringsnummeret — vi gir deg en uforpliktende innbyttepris innen 24 timer. Raskt, rettferdig og uten prutepress.</p>
+      </div>
+    </div>
+
+    <div class="wiz reveal">
+      <div class="wiz-steps">
+        <div class="fill" id="wizFill" style="width:0%"></div>
+        <div class="wstep active" data-ws="0"><div class="n">1</div><span>Kjøretøy</span></div>
+        <div class="wstep" data-ws="1"><div class="n">2</div><span>Detaljer</span></div>
+        <div class="wstep" data-ws="2"><div class="n">3</div><span>Kontakt</span></div>
+        <div class="wstep" data-ws="3"><div class="n">4</div><span>Bekreftelse</span></div>
+      </div>
+
+      <!-- step 1 -->
+      <div class="wpanel show" data-wp="0">
+        <h3>Start med registreringsnummeret</h3>
+        <p>Det står på vognkortet og i kjennemerket på bilen. Vi henter automatisk opp kjøretøydata fra Statens vegvesen.</p>
+        <div class="f-grid">
+          <div class="fld">
+            <label for="reg">Registreringsnummer</label>
+            <input class="reg-input" id="reg" maxlength="7" placeholder="EL 12345" autocomplete="off">
+            <span class="emsg">Skriv inn et gyldig norsk kjennemerke, f.eks. EL12345.</span>
+          </div>
+        </div>
+        <p class="reg-hint">Demo: skriv hva som helst i gyldig format, f.eks. <b>AB12345</b></p>
+        <div class="w-nav">
+          <button class="btn btn-pri btn-lg" id="regBtn" style="margin-left:auto">Hent kjøretøy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+
+      <!-- step 2 -->
+      <div class="wpanel" data-wp="1">
+        <h3>Bekreft detaljene</h3>
+        <p>Vi har funnet kjøretøyet. Sjekk at opplysningene stemmer — de brukes i pristilbudet.</p>
+        <div class="f-grid two">
+          <div class="fld">
+            <label for="tBrand">Merke</label>
+            <div class="sel" style="display:block">
+              <select id="tBrand" style="width:100%"><option value="">Velg merke</option></select>
+            </div>
+          </div>
+          <div class="fld">
+            <label for="tModel">Modell</label>
+            <input id="tModel" placeholder="f.eks. e-Tron 55">
+          </div>
+          <div class="fld">
+            <label for="tYear">Årsmodell</label>
+            <div class="sel" style="display:block">
+              <select id="tYear" style="width:100%"></select>
+            </div>
+          </div>
+          <div class="fld">
+            <label for="tKm">Kilometerstand</label>
+            <input id="tKm" type="number" inputmode="numeric" placeholder="f.eks. 48000">
+          </div>
+        </div>
+        <div class="fld" style="margin-top:18px">
+          <label>Generell tilstand</label>
+          <div class="cond-chips">
+            <label><input type="radio" name="cond" value="1.12" checked><span>Som ny</span></label>
+            <label><input type="radio" name="cond" value="1"><span>Meget bra</span></label>
+            <label><input type="radio" name="cond" value="0.88"><span>Normal</span></label>
+            <label><input type="radio" name="cond" value="0.72"><span>Velbrukt</span></label>
+          </div>
+        </div>
+        <div class="w-nav">
+          <button class="btn btn-ghost" data-wback>Tilbake</button>
+          <button class="btn btn-pri" data-wnext="1">Videre <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+
+      <!-- step 3 -->
+      <div class="wpanel" data-wp="2">
+        <h3>Hvor skal tilbudet sendes?</h3>
+        <p>En selger går gjennom bilen og kontakter deg innen 24 timer — helt uforpliktende.</p>
+        <div class="f-grid two">
+          <div class="fld">
+            <label for="tName">Fullt navn</label>
+            <input id="tName" placeholder="Ola Nordmann">
+            <span class="emsg">Vennligst skriv navnet ditt.</span>
+          </div>
+          <div class="fld">
+            <label for="tPhone">Telefon</label>
+            <input id="tPhone" type="tel" inputmode="tel" placeholder="900 00 000">
+            <span class="emsg">Skriv inn et gyldig telefonnummer.</span>
+          </div>
+          <div class="fld" style="grid-column:1/-1">
+            <label for="tMail">E-post</label>
+            <input id="tMail" type="email" placeholder="ola@eksempel.no">
+            <span class="emsg">Skriv inn en gyldig e-postadresse.</span>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" id="tConsent"> <span>Jeg samtykker til at Apex Motors Oslo kontakter meg med et uforpliktende innbyttetilbud. Les vår personvernerklæring.</span></label>
+        <div class="w-nav">
+          <button class="btn btn-ghost" data-wback>Tilbake</button>
+          <button class="btn btn-pri" id="tSubmit">Få mitt tilbud <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+
+      <!-- step 4 -->
+      <div class="wpanel" data-wp="3">
+        <div class="w-success">
+          <div class="ckbig"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></div>
+          <h3>Forespørselen er sendt!</h3>
+          <p>Takk, <b id="tOkName">deg</b>. Basert på opplysningene anslår vi en innbytteverdi på omtrent:</p>
+          <div class="est"><span>Estimert innbyttepris</span><b id="tEst">–</b></div>
+          <p>Endelig pris fastsettes etter en kort befaring i showrommet — vanligvis innen 30 minutter. En selger tar kontakt innen 24 timer.</p>
+          <div class="w-nav" style="justify-content:center">
+            <button class="btn btn-ghost" id="tRestart">Start på nytt</button>
+            <a href="#biler" class="btn btn-pri" id="tToCars">Se biler i mellomtiden</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OM OSS ============ -->
+<section class="sec" id="om-oss" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap about-grid">
+    <div class="about-img reveal">
+      <img src="images/image-01.jpg" alt="Showrommet til Apex Motors Oslo i kveldslys" loading="lazy">
+      <div class="about-badge">
+        <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div><b>Showroom på Økern</b><span>Strømsveien 261, Oslo · 3 000 kvm med biler</span></div>
+      </div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="sec-label">04 — Om Apex</span>
+      <h2>Ikke et vanlig bruktbilutsalg.</h2>
+      <p>Apex Motors ble startet av én enkel grunn: bruktbilhandel fortjener å være like førsteklasses som bilene vi selger. Hver bil i utvalget er håndplukket, fagmessig gjennomgått og presentert slik den faktisk står — uten filter, uten skjær i virkeligheten.</p>
+      <p>Vi holder til i et 3 000 kvm stort showroom på Økern i Oslo, med kaffe i baren, lading på parkeringen og god tid til deg. Enten du skal bytte inn, finansiere eller bare drømme deg bort — er du velkommen.</p>
+      <div class="about-chips">
+        <span>125-punkters tilstandssjekk</span>
+        <span>Komplett servicehistorikk</span>
+        <span>Inntil 24 mnd garanti</span>
+        <span>Hjemlevering i hele Norge</span>
+      </div>
+      <div class="about-stats">
+        <div><b><span data-count="214">0</span><i>+</i></b><span>Biler levert siden 2014</span></div>
+        <div><b><span data-count="98">0</span><i>%</i></b><span>Anbefaler oss videre</span></div>
+        <div><b><span data-count="327">0</span></b><span>Verifiserte omtaler</span></div>
+        <div><b><span data-count="14">0</span><i> dager</i></b><span>Angrefrist på kjøpet</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OMTALER ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rev-head reveal">
+      <div class="rev-score">
+        <b>4,9</b>
+        <span class="stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.5 6.9L12 17.5 5.7 21l1.5-6.9L2 9.4l7-.8z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.5 6.9L12 17.5 5.7 21l1.5-6.9L2 9.4l7-.8z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.5 6.9L12 17.5 5.7 21l1.5-6.9L2 9.4l7-.8z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.5 6.9L12 17.5 5.7 21l1.5-6.9L2 9.4l7-.8z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.5 6.9L12 17.5 5.7 21l1.5-6.9L2 9.4l7-.8z"/></svg>
+        </span>
+        <span>basert på 327 verifiserte omtaler</span>
+      </div>
+      <h2>Det sier kundene våre.</h2>
+    </div>
+    <div class="rev-grid" id="revGrid"></div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section class="sec" id="kontakt" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2>Klar for å finne din neste bil?</h2>
+      <p>Book en prøvekjøring i dag — eller stikk innom showrommet på Økern. Kaffen står klar.</p>
+      <div class="btns">
+        <a href="#biler" class="btn btn-pri btn-lg">Se alle biler <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#innbytte" class="btn btn-ghost btn-lg">Få innbyttepris</a>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="cinfo reveal">
+        <div class="ci"><span class="ic"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><b>Showroom</b><span>Strømsveien 261, 0668 Oslo<br>3 000 kvm — 40+ biler utstilt</span></div></div>
+        <div class="ci"><span class="ic"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Åpningstider</b><span>Mandag–fredag 09:00–18:00<br>Lørdag 10:00–16:00 · Søndag stengt<br>Prøvekjøring utenfor åpningstid etter avtale</span></div></div>
+        <div class="ci"><span class="ic"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><div><b>Ring oss</b><span>23 60 90 00<br>Man–fre 09–18, lør 10–16</span></div></div>
+        <div class="ci"><span class="ic"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><b>E-post</b><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bacad5c9cefadbcadfc2d7d5ced5c8c994d4d5">[email&#160;protected]</a><br>Svar innenfor 2 timer på hverdager</span></div></div>
+      </div>
+
+      <form class="cform reveal" id="contactForm" novalidate>
+        <h3>Bestill prøvekjøring</h3>
+        <p>Skriv inn hva du er ute etter — så rigger vi bilen klar til deg.</p>
+        <div class="f-grid two">
+          <div class="fld"><label for="cfName">Navn</label><input id="cfName" placeholder="Ola Nordmann" required></div>
+          <div class="fld"><label for="cfPhone">Telefon</label><input id="cfPhone" type="tel" inputmode="tel" placeholder="900 00 000" required></div>
+          <div class="fld" style="grid-column:1/-1"><label for="cfMail">E-post</label><input id="cfMail" type="email" placeholder="ola@eksempel.no"></div>
+          <div class="fld" style="grid-column:1/-1">
+            <label for="cfCar">Jeg er interessert i</label>
+            <div class="sel" style="display:block"><select id="cfCar" style="width:100%"></select></div>
+          </div>
+          <div class="fld" style="grid-column:1/-1"><label for="cfMsg">Melding (valgfritt)</label><textarea id="cfMsg" placeholder="Ønsket tidspunkt, spørsmål om innbytte, finansiering…"></textarea></div>
+        </div>
+        <label class="check"><input type="checkbox" id="cfConsent"> <span>Jeg samtykker til å bli kontaktet angående prøvekjøring.</span></label>
+        <button type="submit" class="btn btn-pri btn-lg btn-block">Send forespørsel <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#hjem" class="logo">
+          <span class="mk"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2 5 14h6l-1 8 8-12h-6z" fill="#11130a"/></svg></span>
+          <span class="tx"><b>APEX</b><span>MOTORS OSLO</span></span>
+        </a>
+        <p class="foot-blurb">Håndplukkede nyere brukte premiumbiler og elbiler — med innbytte, finansiering og inntil 24 måneders garanti. Velkommen til Økern.</p>
+      </div>
+      <div>
+        <h5>Snarveier</h5>
+        <ul>
+          <li><a href="#biler">Bilutvalget</a></li>
+          <li><a href="#finansiering">Finansiering</a></li>
+          <li><a href="#innbytte">Innbytte</a></li>
+          <li><a href="#om-oss">Om Apex</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Tjenester</h5>
+        <ul>
+          <li><a href="#innbytte">Innbytte av bil</a></li>
+          <li><a href="#finansiering">Billån &amp; leasing</a></li>
+          <li><a href="#om-oss">Garanti &amp; tilstandsrapport</a></li>
+          <li><a href="#kontakt">Hjemlevering</a></li>
+          <li><a href="#kontakt">Service &amp; klargjøring</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <ul class="foot-contact">
+          <li><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Strømsveien 261, 0668 Oslo</li>
+          <li><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg>23 60 90 00</li>
+          <li><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1c6c736f685c7d6c7964717368736e6f327273">[email&#160;protected]</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Apex Motors Oslo AS · Org.nr 928 447 103 MVA</span>
+      <span>Demoside for presentasjonsformål — alle biler, priser og personer er fiktive.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div id="modal" role="dialog" aria-modal="true" aria-label="Bildetaljer">
+  <div class="modal-bg" id="modalBg"></div>
+  <div class="modal-p">
+    <button class="modal-close" id="modalClose" aria-label="Lukk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="modal-grid">
+      <div class="m-gal">
+        <div class="main"><img id="mImg" src="" alt=""></div>
+        <div class="m-thumbs">
+          <button class="on" data-mi="0"><img id="mTh0" src="" alt="Eksteriør"></button>
+          <button data-mi="1"><img id="mTh1" src="" alt="Detaljbilde"></button>
+        </div>
+      </div>
+      <div class="m-info">
+        <span class="m-brand" id="mBrand"></span>
+        <h3 id="mName"></h3>
+        <p class="m-sub" id="mSub"></p>
+        <div class="m-price">
+          <b id="mPrice"></b>
+          <span id="mFin"></span>
+        </div>
+        <div class="m-specs" id="mSpecs"></div>
+        <p class="m-desc" id="mDesc"></p>
+        <ul class="m-feats">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>125-punkters tilstandsrapport gjennomført</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>Inntil 24 måneders Apex-garanti inkludert</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>Komplett servicehistorikk &amp; nylig EU-godkjenning</li>
+        </ul>
+        <div class="m-btns">
+          <button class="btn btn-pri btn-lg" id="mTd">Bestill prøvekjøring <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <a href="tel:+4723609000" class="btn btn-ghost btn-lg">Kontakt selger</a>
+        </div>
+        <button class="m-link" id="mTrade">→ Få innbyttepris for din nåværende bil</button>
+
+        <form class="td-form" id="tdForm" novalidate>
+          <h4>Book prøvekjøring</h4>
+          <div class="f-grid two">
+            <div class="fld"><label for="tdName">Navn</label><input id="tdName" placeholder="Ola Nordmann" required></div>
+            <div class="fld"><label for="tdPhone">Telefon</label><input id="tdPhone" type="tel" inputmode="tel" placeholder="900 00 000" required></div>
+            <div class="fld"><label for="tdDate">Ønsket dato</label><input id="tdDate" type="date" required></div>
+            <div class="fld"><label for="tdWhere">Sted</label>
+              <div class="sel" style="display:block"><select id="tdWhere" style="width:100%"><option>Showroom, Økern Oslo</option><option>Hjem til meg (Oslo &amp; Viken)</option></select></div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-pri btn-block" style="margin-top:18px">Bekreft prøvekjøring</button>
+        </form>
+        <div class="td-ok" id="tdOk">
+          <div class="ckbig"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></div>
+          <b>Prøvekjøringen er booket!</b>
+          <span>En selger bekrefter tidspunktet på SMS innen kort tid.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span id="toastMsg"></span></div>
+
+<script>
+/* ================================================================
+   APEX MOTORS OSLO — demoside
+================================================================ */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const fmt = n => Math.round(n).toLocaleString('nb-NO');
+const RATE = 0.099;
+
+const ICONS = {
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>',
+  km:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="m13.4 10.6 3.6-3.6M4 18a8 8 0 1 1 16 0"/></svg>',
+  bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 5 14h6l-1 8 8-12h-6z"/></svg>',
+  fuel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M4 21h10M4 11h10M14 9l3.3 3.3a2 2 0 0 1 .7 1.4V18a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-3-3"/></svg>',
+  gear:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>',
+  power:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>',
+  arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>',
+  heart:'<svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21l8.8-8.3a5 5 0 0 0 0-7.1z"/></svg>',
+  star:'<svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.5 6.9L12 17.5 5.7 21l1.5-6.9L2 9.4l7-.8z"/></svg>'
+};
+const SERVICES = [
+  {ic:'<path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/>',t:'Inntil 24 mnd garanti',d:'Vår Apex-garanti dekker motor, girkasse, elektronikk og veihjelp i hele Norden — uten egenandel.'},
+  {ic:'<path d="M7 16V4m0 0L3 8m4-4 4 4M17 8v12m0 0 4-4m-4 4-4-4"/>',t:'Raskt innbytte',d:'Få en rettferdig innbyttepris innen 24 timer. Vi henter bilen og ordner alt papirarbeid.'},
+  {ic:'<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2m4 0h2M8 14h2m4 0h2M8 18h2m4 0h2"/>',t:'Finansiering på minutter',d:'Svar innen 2 timer, fra 0 kr egenkapital. Vi samarbeider med Nordea, DNB og Santander.'},
+  {ic:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1M9 11h2m2 0h2M9 15h2m2 0h2"/>',t:'125-punkters sjekk',d:'Hver bil gjennomgås punkt for punkt av sertifiserte teknikere før den i det hele tatt kommer til utstilling.'},
+  {ic:'<path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>',t:'Hjemlevering i hele Norge',d:'Trygg, forsikret transport rett til døren din — fra Kirkenes til Kristiansand.'},
+  {ic:'<path d="M14.7 6.3a4 4 0 0 0-5.5 5.5L3 18l3 3 6.2-6.2a4 4 0 0 0 5.5-5.5l-2.7 2.7-2.5-.8-.8-2.5z"/>',t:'Full servicehistorikk',d:'Ingen hull, ingen overraskelser. All dokumentasjon følger bilen — åpen og etterprøvbar.'}
+];
+const REVIEWS = [
+  {n:'Martine H.',ini:'MH',car:'Kjøpte Porsche Taycan Turbo',q:'Handelen gikk sømløst fra første visning til nøklene var i hånden. Bilen var enda penere enn på bildene, og innbyttet ble avgjort samme dag — til en pris jeg faktisk var fornøyd med.'},
+  {n:'Anders K.',ini:'AK',car:'Kjøpte BMW M3 Competition',q:'Profesjonelle, ærlige og tydelige på pris hele veien. Finansieringen var godkjent før jeg rakk å bestille prøvekjøring. Dette er ikke standard bruktbilkjøp — det er en helt annen liga.'},
+  {n:'Ingrid L.',ini:'IL',car:'Kjøpte Polestar 2',q:'Som førstegangskjøper av elbil satte jeg pris på at de tok seg tid til å forklare alt — lading, rekkevidde, app og garantier. Null mas, bare gode svar. Anbefales på det varmeste.'}
+];
+
+const CARS = [
+  {id:1, brand:'Porsche', model:'911 Carrera 4S', year:2022, km:18500, price:1890000, driv:'Bensin', hk:450, acc:'3,6', range:null, gear:'8-trinns PDK', drive:'Firehjulsdrift', color:'GT-sølv metallic', seats:'4 (2+2)', boot:'132 l', tag:'Favoritt', img:'images/image-02.jpg', det:'images/image-03.jpg',
+   desc:'En av markedets mest ettertraktede sportsbiler. 992-generasjonens Carrera 4S kombinerer presisjon, lyd og overraskende mye hverdagskomfort — levert ny i Norge med komplett servicehistorikk hos merkeforhandler.'},
+  {id:2, brand:'Tesla', model:'Model S Plaid', year:2023, km:24300, price:1090000, driv:'El', hk:1020, acc:'2,1', range:600, gear:'1-trinns reduksjon', drive:'Firehjulsdrift', color:'Perlehvit', seats:'5', boot:'793 l', tag:'Råeste ytelser', img:'images/image-04.jpg', det:'images/image-05.jpg',
+   desc:'Tredobbel motor, 1 020 hestekrefter og 0–100 på 2,1 sekunder. Dette er ikke bare en familiebil — det er et av verdens raskeste serieproduserte kjøretøy, med fri Supercharging og nylig utført service.'},
+  {id:3, brand:'BMW', model:'M3 Competition xDrive', year:2022, km:31200, price:1190000, driv:'Bensin', hk:510, acc:'3,5', range:null, gear:'8-trinns M Steptronic', drive:'Firehjulsdrift', color:'Isle of Man Green', seats:'5', boot:'480 l', tag:'Populær', img:'images/image-06.jpg', det:'images/image-07.jpg',
+   desc:'510 hestekrefter, karbon-tak og M Carbon-skåler. Competition-utgaven med xDrive er den mest kapable M3-en som er bygget — like rå på bane som på vei til hytta. Norsksolgt, kun én eier.'},
+  {id:4, brand:'Audi', model:'RS6 Avant', year:2022, km:27800, price:1750000, driv:'Bensin', hk:600, acc:'3,6', range:null, gear:'8-trinns Tiptronic', drive:'Firehjulsdrift', color:'Nardo grå', seats:'5', boot:'565 l', tag:'', img:'images/image-08.jpg', det:'images/image-09.jpg',
+   desc:'Superbilen som også er en stasjonsvogn. 600 hestekrefter, quattro, plass til hele familien og 565 liter bagasje. Denne Nardo grå-utgaven har Dynamic Plus-pakke og keramiske bremser.'},
+  {id:5, brand:'Mercedes-Benz', model:'EQS 580 4MATIC', year:2023, km:19600, price:945000, driv:'El', hk:523, acc:'4,3', range:620, gear:'1-trinns reduksjon', drive:'Firehjulsdrift', color:'Obsidiansvart', seats:'5', boot:'610 l', tag:'', img:'images/image-10.jpg', det:'images/image-11.jpg',
+   desc:'Den elektriske S-klassen. Hyperscreen, luftfjæring, 620 km rekkevidde og en stilhet som må oppleves. Velutstyrt AMG Line-utgave med varmepumpe og bakaksel-sving.'},
+  {id:6, brand:'Range Rover', model:'Sport P510e Autobiography', year:2023, km:22400, price:1590000, driv:'Hybrid', hk:510, acc:'5,3', range:113, gear:'8-trinns automat', drive:'Firehjulsdrift', color:'Santorini sort', seats:'5', boot:'500 l', tag:'', img:'images/image-12.jpg', det:'images/image-13.jpg',
+   desc:'Luksus-SUV med plugg i veggen. 510 systemhester, 113 km elektrisk rekkevidde og Autobiography-utstyr på øverste hylle. Meridian-signaturanlegg, luftfjæring og panoramatak.'},
+  {id:7, brand:'Porsche', model:'Taycan Turbo', year:2021, km:38900, price:869000, driv:'El', hk:680, acc:'3,2', range:452, gear:'2-trinns automat', drive:'Firehjulsdrift', color:'Frozen Blue metallic', seats:'4', boot:'447 l', tag:'Sport-EL', img:'images/image-14.jpg', det:'images/image-15.jpg',
+   desc:'Den elektriske sportsbilen som kjører som en Porsche skal. 680 hester med overboost, aktiv aerodynamikk og det legendariske lave tyngdepunktet. Nylig oppdatert programvare og nye batterisertifisering.'},
+  {id:8, brand:'Polestar', model:'2 Long Range Dual Motor', year:2024, km:9800, price:549000, driv:'El', hk:421, acc:'4,5', range:590, gear:'1-trinns reduksjon', drive:'Firehjulsdrift', color:'Thunder grå', seats:'5', boot:'440 l', tag:'Nyhet', img:'images/image-16.jpg', det:'images/image-17.jpg',
+   desc:'Den oppdaterte 2024-modellen med lengre rekkevidde, bakhjulsdrift-inspirert kalibrering og Performance-pakke. Nesten ny bil til bruktbilpris — med resten av fabrikkgarantien intakt.'},
+  {id:9, brand:'Volvo', model:'XC90 Recharge T8 AWD', year:2023, km:34900, price:785000, driv:'Hybrid', hk:455, acc:'5,4', range:77, gear:'8-trinns automat', drive:'Firehjulsdrift', color:'Krystallhvit', seats:'7', boot:'314 l (7-seter)', tag:'7 seter', img:'images/image-18.jpg', det:'images/image-19.jpg',
+   desc:'Skandinavisk luksus til hele familien. T8 Recharge med 455 systemhester, 77 km elektrisk rekkevidde, syv seter, Bowers & Wilkins og luftfjæring. Trygg, romslig og gjennomført.'}
+];
+
+/* monthly price: 35 % equity, 5 years, nominal 9,9 %, + 65 kr term fee */
+function monthly(price, eq=.35, years=5, rate=RATE){
+  const P = Math.max(0, price*(1-eq));
+  const r = rate/12, n = years*12;
+  if(P<=0) return 0;
+  return P*r/(1-Math.pow(1+r,-n)) + 65;
+}
+const drivLabel = d => d==='El' ? 'Elbil' : d==='Hybrid' ? 'Plugin-hybrid' : 'Bensin';
+
+/* ---------------- ticker ---------------- */
+(function(){
+  const brands = ['Porsche','Tesla','BMW','Audi','Mercedes-Benz','Range Rover','Polestar','Volvo'];
+  const seg = brands.map(b=>'<span>'+b+' '+ICONS.bolt+'</span>').join('');
+  $('#ticker').innerHTML = seg + seg;
+})();
+
+/* ---------------- services ---------------- */
+(function(){
+  $('#svcGrid').innerHTML = SERVICES.map(s=>`
+    <div class="svc reveal">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${s.ic}</svg></div>
+      <h4>${s.t}</h4><p>${s.d}</p>
+    </div>`).join('');
+  $('#svcGrid').addEventListener('pointermove', e=>{
+    const card = e.target.closest('.svc'); if(!card) return;
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX-r.left)+'px');
+  });
+})();
+
+/* ---------------- reviews ---------------- */
+(function(){
+  $('#revGrid').innerHTML = REVIEWS.map(r=>`
+    <div class="rev reveal">
+      <div class="stars">${ICONS.star.repeat(5)}</div>
+      <blockquote>«${r.q}»</blockquote>
+      <div class="who"><span class="av">${r.ini}</span><div><b>${r.n}</b><span>${r.car}</span></div></div>
+    </div>`).join('');
+})();
+
+/* ---------------- car grid + filters ---------------- */
+const state = { q:'', brand:'', driv:'Alle', year:0, maxPrice:2000000, sort:'new' };
+const saved = new Set();
+
+function cardHTML(c, i){
+  const dIcon = c.driv==='El' ? ICONS.bolt : c.driv==='Hybrid' ? ICONS.bolt : ICONS.fuel;
+  const badgeCls = c.driv==='El' ? 'ev' : c.driv==='Hybrid' ? 'hy' : 'bz';
+  const mo = Math.round(monthly(c.price)/10)*10;
+  return `
+  <article class="car-card" data-id="${c.id}" style="animation-delay:${Math.min(i*70,500)}ms" tabindex="0" role="button" aria-label="Se ${c.brand} ${c.model}">
+    <div class="car-media">
+      <img src="${c.img}" alt="${c.brand} ${c.model}" loading="lazy">
+      <div class="car-badges">
+        <span class="badge ${badgeCls}">${drivLabel(c.driv)}</span>
+        ${c.tag ? `<span class="badge tag">${c.tag}</span>` : ''}
+      </div>
+      <button class="fav ${saved.has(c.id)?'on':''}" data-fav="${c.id}" aria-label="Lagre favoritt">${ICONS.heart}</button>
+    </div>
+    <div class="car-body">
+      <span class="car-brand">${c.brand} · ${c.year}</span>
+      <h3 class="car-name">${c.model}</h3>
+      <div class="car-specs">
+        <span class="s">${ICONS.km}${fmt(c.km)} km</span>
+        <span class="s">${dIcon}${c.range ? c.range+' km rekkevidde' : drivLabel(c.driv)}</span>
+        <span class="s">${ICONS.power}${c.hk} hk</span>
+        <span class="s">${ICONS.gear}Automat</span>
+      </div>
+      <div class="car-foot">
+        <div class="car-price">
+          <b>${fmt(c.price)} <i>kr</i></b>
+          <span>Fra ${fmt(mo)} kr/md · 5 år</span>
+        </div>
+        <span class="car-go">${ICONS.arrow}</span>
+      </div>
+    </div>
+  </article>`;
+}
+
+function filtered(){
+  let list = CARS.filter(c=>{
+    if(state.q && !(c.brand+' '+c.model).toLowerCase().includes(state.q)) return false;
+    if(state.brand && c.brand!==state.brand) return false;
+    if(state.driv!=='Alle' && c.driv!==state.driv) return false;
+    if(c.year < state.year) return false;
+    if(c.price > state.maxPrice) return false;
+    return true;
+  });
+  if(state.sort==='plh') list.sort((a,b)=>a.price-b.price);
+  else if(state.sort==='phl') list.sort((a,b)=>b.price-a.price);
+  else if(state.sort==='km') list.sort((a,b)=>a.km-b.km);
+  else list.sort((a,b)=>b.year-a.year || a.km-b.km);
+  return list;
+}
+
+function renderCars(){
+  const list = filtered();
+  $('#carGrid').innerHTML = list.map(cardHTML).join('');
+  $('#carCount').textContent = list.length;
+  $('#carTotal').textContent = CARS.length;
+  $('#empty').style.display = list.length ? 'none' : 'block';
+}
+
+/* init filters */
+(function(){
+  const brands = [...new Set(CARS.map(c=>c.brand))];
+  $('#fBrand').insertAdjacentHTML('beforeend', brands.map(b=>`<option>${b}</option>`).join(''));
+  const sel = $('#cfCar');
+  sel.innerHTML = '<option value="">Velg bil fra utvalget…</option>' +
+    CARS.map(c=>`<option>${c.brand} ${c.model} (${c.year})</option>`).join('') +
+    '<option>En annen bil / usikker</option>';
+  const tb = $('#tBrand');
+  tb.insertAdjacentHTML('beforeend', brands.map(b=>`<option>${b}</option>`).join('') + '<option>Annet merke</option>');
+  const ty = $('#tYear');
+  for(let y=2025;y>=2008;y--) ty.insertAdjacentHTML('beforeend', `<option ${y===2020?'selected':''}>${y}</option>`);
+
+  const counts = { Alle:CARS.length, El:CARS.filter(c=>c.driv==='El').length, Bensin:CARS.filter(c=>c.driv==='Bensin').length, Hybrid:CARS.filter(c=>c.driv==='Hybrid').length };
+  $('#fDriv').innerHTML = ['Alle','El','Bensin','Hybrid'].map(d=>
+    `<button class="chip ${d==='Alle'?'on':''}" data-driv="${d}">${d==='Alle'?'Alle':drivLabel(d)} <em>${counts[d]}</em></button>`).join('');
+
+  $('#fDriv').addEventListener('click', e=>{
+    const b = e.target.closest('[data-driv]'); if(!b) return;
+    state.driv = b.dataset.driv;
+    $$('#fDriv .chip').forEach(x=>x.classList.toggle('on', x===b));
+    renderCars();
+  });
+  $('#fSearch').addEventListener('input', e=>{ state.q = e.target.value.trim().toLowerCase(); renderCars(); });
+  $('#fBrand').addEventListener('change', e=>{ state.brand = e.target.value; renderCars(); });
+  $('#fYear').addEventListener('change', e=>{ state.year = +e.target.value; renderCars(); });
+  $('#fSort').addEventListener('change', e=>{ state.sort = e.target.value; renderCars(); });
+  const priceR = $('#fPrice');
+  function paintPrice(){
+    const v = +priceR.value; state.maxPrice = v;
+    $('#fPriceLbl').textContent = v >= 2000000 ? 'Alle priser' : 'opptil '+fmt(v)+' kr';
+    const pct = (v-priceR.min)/(priceR.max-priceR.min)*100;
+    priceR.style.background = `linear-gradient(90deg,var(--acc) ${pct}%,rgba(255,255,255,.12) ${pct}%)`;
+  }
+  priceR.addEventListener('input', ()=>{ paintPrice(); renderCars(); });
+  paintPrice();
+  renderCars();
+})();
+
+window.resetFilters = function(){
+  state.q=''; state.brand=''; state.driv='Alle'; state.year=0; state.maxPrice=2000000; state.sort='new';
+  $('#fSearch').value=''; $('#fBrand').value=''; $('#fYear').value='0'; $('#fSort').value='new';
+  $('#fPrice').value=2000000; $('#fPrice').dispatchEvent(new Event('input'));
+  $$('#fDriv .chip').forEach(x=>x.classList.toggle('on', x.dataset.driv==='Alle'));
+  renderCars();
+};
+$('#fReset').addEventListener('click', resetFilters);
+
+/* card interactions: open modal + favourites */
+$('#carGrid').addEventListener('click', e=>{
+  const fav = e.target.closest('[data-fav]');
+  if(fav){
+    const id = +fav.dataset.fav;
+    if(saved.has(id)){ saved.delete(id); fav.classList.remove('on'); toast('Fjernet fra favoritter'); }
+    else { saved.add(id); fav.classList.add('on'); toast('Lagt til i favoritter'); }
+    return;
+  }
+  const card = e.target.closest('.car-card');
+  if(card) openModal(+card.dataset.id);
+});
+$('#carGrid').addEventListener('keydown', e=>{
+  if((e.key==='Enter'||e.key===' ') && e.target.classList.contains('car-card')){
+    e.preventDefault(); openModal(+e.target.dataset.id);
+  }
+});
+
+/* ---------------- modal ---------------- */
+let modalCar = null;
+function openModal(id){
+  const c = CARS.find(x=>x.id===id); if(!c) return;
+  modalCar = c;
+  $('#mImg').src = c.img; $('#mImg').alt = c.brand+' '+c.model;
+  $('#mTh0').src = c.img; $('#mTh1').src = c.det;
+  $$('.m-thumbs button').forEach((b,i)=>b.classList.toggle('on', i===0));
+  $('#mBrand').textContent = c.brand;
+  $('#mName').textContent = c.model;
+  $('#mSub').textContent = `${c.year} · ${fmt(c.km)} km · ${c.color}`;
+  $('#mPrice').textContent = fmt(c.price)+' kr';
+  const mo = Math.round(monthly(c.price)/10)*10;
+  $('#mFin').textContent = `Fra ${fmt(mo)} kr/md · 35 % egenkapital, 5 år, 9,9 %`;
+  const specs = [
+    ['Årsmodell', c.year], ['Kilometerstand', fmt(c.km)+' km'],
+    ['Drivlinje', c.driv==='El' ? 'Elektrisk' : c.driv==='Hybrid' ? 'Plugin-hybrid' : 'Bensin'],
+    ['Rekkevidde', c.range ? c.range+' km (WLTP)' : '—'],
+    ['Effekt', c.hk+' hk'], ['0–100 km/t', c.acc+' s'],
+    ['Girkasse', c.gear], ['Hjuldrift', c.drive],
+    ['Farge', c.color], ['Antall seter', c.seats],
+    ['Bagasjerom', c.boot], ['Garanti', 'Inntil 24 mnd']
+  ];
+  $('#mSpecs').innerHTML = specs.map(([k,v])=>`<div class="sp"><span>${k}</span><b>${v}</b></div>`).join('');
+  $('#mDesc').textContent = c.desc;
+  $('#tdForm').classList.remove('show'); $('#tdOk').classList.remove('show');
+  $('#tdForm').reset();
+  $('#modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){ $('#modal').classList.remove('open'); document.body.style.overflow=''; }
+$('#modalClose').addEventListener('click', closeModal);
+$('#modalBg').addEventListener('click', closeModal);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal(); closeMenu(); }});
+$$('.m-thumbs button').forEach(b=>b.addEventListener('click', ()=>{
+  $$('.m-thumbs button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  const c = modalCar; if(!c) return;
+  $('#mImg').src = b.dataset.mi==='0' ? c.img : c.det;
+}));
+$('#mTd').addEventListener('click', ()=>{
+  const f = $('#tdForm');
+  f.classList.toggle('show'); $('#tdOk').classList.remove('show');
+  if(f.classList.contains('show')) f.scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+$('#mTrade').addEventListener('click', ()=>{ closeModal(); location.hash='#innbytte'; });
+$('#tdDate').min = new Date().toISOString().split('T')[0];
+$('#tdForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const n = $('#tdName').value.trim(), p = $('#tdPhone').value.trim();
+  if(n.length<2 || p.length<8){ toast('Fyll inn navn og telefon'); return; }
+  $('#tdForm').classList.remove('show');
+  $('#tdOk').classList.add('show');
+  toast('Prøvekjøring forespurt — vi tar kontakt!');
+});
+
+/* ---------------- finance calculator ---------------- */
+(function(){
+  const pr=$('#cPriceR'), eq=$('#cEqR');
+  let years = 5;
+  $('#cYrChips').innerHTML = [3,4,5,6,7,8].map(y=>`<button data-y="${y}" class="${y===5?'on':''}">${y} år</button>`).join('');
+  $('#cYrChips').addEventListener('click', e=>{
+    const b=e.target.closest('[data-y]'); if(!b) return;
+    years=+b.dataset.y;
+    $$('#cYrChips button').forEach(x=>x.classList.toggle('on',x===b));
+    calc();
+  });
+  function paint(r){
+    const pct=(r.value-r.min)/(r.max-r.min)*100;
+    r.style.background=`linear-gradient(90deg,var(--acc) ${pct}%,rgba(255,255,255,.12) ${pct}%)`;
+  }
+  function calc(){
+    const price=+pr.value, eqPct=+eq.value/100;
+    $('#cPrice').textContent = fmt(price)+' kr';
+    $('#cEq').textContent = eqPct*100+' %';
+    $('#cYr').textContent = years+' år';
+    const loan = price*(1-eqPct);
+    const mo = monthly(price, eqPct, years);
+    $('#cMo').textContent = fmt(Math.round(mo));
+    $('#cLoan').textContent = fmt(Math.round(loan))+' kr';
+    $('#cTotal').textContent = fmt(Math.round(mo*years*12))+' kr';
+    paint(pr); paint(eq);
+  }
+  pr.addEventListener('input',calc); eq.addEventListener('input',calc);
+  calc();
+  $('#cApply').addEventListener('click', ()=>toast('Finansieringssøknad startet — vi ringer deg innen 2 timer.'));
+})();
+
+/* ---------------- trade-in wizard ---------------- */
+const wiz = { step:0, data:{} };
+function goStep(n){
+  wiz.step = n;
+  $$('.wpanel').forEach(p=>p.classList.toggle('show', +p.dataset.wp===n));
+  $$('.wstep').forEach(s=>{
+    const i=+s.dataset.ws;
+    s.classList.toggle('active', i===n);
+    s.classList.toggle('done', i<n);
+  });
+  $('#wizFill').style.width = (n/3*80)+'%';
+}
+$$('[data-wback]').forEach(b=>b.addEventListener('click', ()=>goStep(wiz.step-1)));
+$$('[data-wnext]').forEach(b=>b.addEventListener('click', ()=>{
+  if(wiz.step===1 && !$('#tBrand').value){ toast('Velg bilmerke'); return; }
+  if(wiz.step===1 && !$('#tKm').value){ toast('Skriv inn kilometerstand'); return; }
+  goStep(+b.dataset.wnext+1);
+}));
+$('#regBtn').addEventListener('click', ()=>{
+  const inp = $('#reg');
+  const v = inp.value.replace(/\s/g,'').toUpperCase();
+  const ok = /^[A-Z]{2}\d{4,5}$/.test(v);
+  inp.classList.toggle('err', !ok);
+  if(!ok) return;
+  inp.value = v;
+  const btn = $('#regBtn');
+  btn.disabled = true; btn.textContent = 'Henter kjøretøy…';
+  setTimeout(()=>{
+    btn.disabled = false;
+    btn.innerHTML = 'Hent kjøretøy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    wiz.data.reg = v;
+    if(/^(EL|EK|EB|EV)/.test(v)){ toast('Elektrisk kjøretøy gjenkjent'); }
+    else toast('Kjøretøy funnet i vegvesenets register');
+    goStep(1);
+  }, 1100);
+});
+$('#reg').addEventListener('input', e=>{
+  e.target.classList.remove('err');
+  e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+});
+$('#tSubmit').addEventListener('click', ()=>{
+  let ok = true;
+  const checks = [
+    ['#tName', v=>v.trim().length>=2],
+    ['#tPhone', v=>v.replace(/\D/g,'').length===8],
+    ['#tMail', v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)]
+  ];
+  checks.forEach(([sel,test])=>{
+    const el=$(sel), good=test(el.value);
+    el.classList.toggle('err', !good);
+    if(!good) ok=false;
+  });
+  if(!$('#tConsent').checked){ toast('Du må samtykke for å motta tilbud'); ok=false; }
+  if(!ok){ toast('Sjekk at feltene er riktig fylt ut'); return; }
+  const year = +$('#tYear').value, km = +($('#tKm').value||40000);
+  const cond = +document.querySelector('input[name=cond]:checked').value;
+  let base = (380000 - (2026-year)*26000 - km*1.05) * cond;
+  base = Math.max(35000, Math.min(700000, base));
+  const lo = Math.round(base*0.9/1000)*1000, hi = Math.round(base*1.12/1000)*1000;
+  $('#tEst').textContent = fmt(lo)+' – '+fmt(hi)+' kr';
+  $('#tOkName').textContent = $('#tName').value.trim().split(' ')[0];
+  goStep(3);
+  toast('Innbytteforespørsel sendt!');
+});
+$('#tRestart').addEventListener('click', ()=>{
+  $$('.wpanel input').forEach(i=>{ if(i.type!=='radio') i.value=''; i.classList.remove('err'); });
+  $('#reg').value=''; goStep(0);
+});
+$('#tToCars').addEventListener('click', ()=>setTimeout(()=>{},0));
+
+/* ---------------- contact form ---------------- */
+$('#contactForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const n=$('#cfName'), p=$('#cfPhone');
+  let ok=true;
+  [n,p].forEach(el=>{ if(el.value.trim().length<(el===p?8:2)){ el.classList.add('err'); ok=false; } else el.classList.remove('err'); });
+  if(!$('#cfConsent').checked){ toast('Du må samtykke for å bli kontaktet'); return; }
+  if(!ok){ toast('Fyll inn navn og telefon'); return; }
+  toast('Takk! Vi kontakter deg for å bekrefte prøvekjøring.');
+  e.target.reset();
+});
+
+/* ---------------- toast ---------------- */
+let toastT;
+function toast(msg){
+  $('#toastMsg').textContent = msg;
+  const t = $('#toast');
+  t.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(()=>t.classList.remove('show'), 3400);
+}
+
+/* ---------------- nav / menu / scroll ---------------- */
+const hdr = $('#hdr');
+addEventListener('scroll', ()=>hdr.classList.toggle('scrolled', scrollY>40), {passive:true});
+const mmenu = $('#mmenu');
+function closeMenu(){ mmenu.classList.remove('open'); document.body.style.overflow=''; }
+$('#burger').addEventListener('click', ()=>{ mmenu.classList.add('open'); document.body.style.overflow='hidden'; });
+$('#mmClose').addEventListener('click', closeMenu);
+mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+
+/* reveal on scroll */
+const io = new IntersectionObserver(es=>{
+  es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+},{threshold:.12});
+$$('.reveal').forEach(el=>io.observe(el));
+/* observe dynamically added service cards */
+new MutationObserver(()=>$$('.svc.reveal:not(.in)').forEach(el=>io.observe(el))).observe($('#svcGrid'),{childList:true});
+
+/* counters */
+const cio = new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(!en.isIntersecting) return;
+    cio.unobserve(en.target);
+    const el = en.target, target = parseFloat(el.dataset.count), dec = +(el.dataset.dec||0);
+    const t0 = performance.now(), dur = 1600;
+    (function tick(t){
+      const k = Math.min(1,(t-t0)/dur), e = 1-Math.pow(1-k,3);
+      const v = target*e;
+      el.textContent = dec ? v.toFixed(dec).replace('.',',') : fmt(v);
+      if(k<1) requestAnimationFrame(tick);
+    })(t0);
+  });
+},{threshold:.6});
+$$('[data-count]').forEach(el=>cio.observe(el));
+
+/* preloader */
+addEventListener('load', ()=>setTimeout(()=>$('#loader').classList.add('done'), 500));
+setTimeout(()=>$('#loader').classList.add('done'), 2600);
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3783ec10d545ebd',t:'MTc4ODgxMDY1NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

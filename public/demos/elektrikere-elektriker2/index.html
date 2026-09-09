@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andersen Elektro AS — Elektro i Oslo & Viken</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;450;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-editorial: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --color-ink: #0a0a0f;
+      --color-parchment: #f6f4f0;
+      --color-linen: #ebe8e2;
+      --color-clay: #c9bfae;
+      --color-timber: #3a342e;
+      --color-copper: #a87a4b;
+      --color-copper-dim: rgba(168,122,75,0.12);
+      --color-copper-soft: rgba(168,122,75,0.6);
+      --color-moss: #5a6e58;
+      --color-ash: #8a837c;
+    }
+  </style>
+
+  <style>
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    ::selection { background: rgba(168,122,75,0.18); color: inherit; }
+
+    /* Hero background canvas */
+    #hero-canvas { position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0.55; }
+
+    /* Noise overlay */
+    .noise::after {
+      content:''; position:absolute; inset:0; pointer-events:none; z-index:9999; opacity:0.025;
+      background-image: url("images/icon-01.svg");
+      background-size: 256px;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(168,122,75,0.35); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(168,122,75,0.6); }
+
+    /* Link underline sweep */
+    .link-sweep { position:relative; text-decoration:none; }
+    .link-sweep::after {
+      content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:#a87a4b;
+      transition: width 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .link-sweep:hover::after { width:100%; }
+
+    /* Magnetic button */
+    .btn-magnetic { position:relative; overflow:hidden; transition: transform 0.25s ease, box-shadow 0.3s ease; }
+    .btn-magnetic:hover { transform: translateY(-2px); box-shadow: 0 20px 50px -12px rgba(168,122,75,0.35); }
+    .btn-magnetic::before {
+      content:''; position:absolute; inset:0; background: rgba(255,255,255,0.06); transform: translateX(-110%); transition: transform 0.6s ease;
+    }
+    .btn-magnetic:hover::before { transform: translateX(0); }
+
+    /* Card lift */
+    .lift { transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease; }
+    .lift:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -20px rgba(10,10,15,0.15); }
+
+    /* Line reveal for headings */
+    .line-reveal { overflow:hidden; display:inline-block; }
+    .line-reveal > span { display:inline-block; transform: translateY(105%); animation: slideUp 1s cubic-bezier(0.22,1,0.36,1) forwards; }
+    @keyframes slideUp { to { transform: translateY(0); } }
+
+    /* Subtle fade-in for sections */
+    .reveal { opacity:0; transform: translateY(24px); animation: revealUp 1s cubic-bezier(0.22,1,0.36,1) forwards; }
+    @keyframes revealUp { to { opacity:1; transform: translateY(0); } }
+
+    /* Service number ring */
+    .num-ring { width:64px; height:64px; border-radius:50%; border:1px solid rgba(168,122,75,0.2); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; font-size:11px; color:#a87a4b; letter-spacing:2px; transition: border-color 0.3s ease, background 0.3s ease; }
+    .service-card:hover .num-ring { border-color:rgba(168,122,75,0.5); background:rgba(168,122,75,0.05); }
+
+    /* Image zoom */
+    .zoom-img { overflow:hidden; }
+    .zoom-img img { transition: transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+    .zoom-img:hover img { transform: scale(1.05); }
+
+    /* Input elegant */
+    .input-elegant { background: transparent; border: none; border-bottom: 1px solid rgba(10,10,15,0.12); padding: 14px 0; font-family:'Inter', sans-serif; font-size:15px; color:#0a0a0f; width:100%; transition: border-color 0.3s ease; outline:none; }
+    .input-elegant:focus { border-color:#a87a4b; }
+    .input-elegant::placeholder { color:#8a837c; font-weight:300; }
+
+    /* Mobile nav */
+    #mobile-menu { transform: translateY(-100%); transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    #mobile-menu.open { transform: translateY(0); }
+
+    /* Testimonial quote mark */
+    .quote-mark { font-family:'Instrument Serif', serif; font-size:10rem; line-height:0.6; color:rgba(168,122,75,0.08); position:absolute; top:0; left:-0.1em; user-select:none; pointer-events:none; }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+
+<body class="bg-parchment text-ink font-body leading-relaxed">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-parchment/80 backdrop-blur-2xl border-b border-ink/[0.06] transition-all duration-500" style="height:72px;">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 h-full flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group" aria-label="Andersen Elektro AS">
+        <span class="w-9 h-9 rounded-full bg-ink text-parchment flex items-center justify-center font-editorial text-lg leading-none tracking-tighter">A</span>
+        <div class="leading-none">
+          <span class="block text-[13px] font-medium tracking-[-0.03em] text-ink">Andersen</span>
+          <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-ash">Elektro AS</span>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-10 text-[13px] font-medium tracking-[-0.02em] text-timber">
+        <a href="#tjenester" class="link-sweep hover:text-ink transition-colors">Tjenester</a>
+        <a href="#prosjekter" class="link-sweep hover:text-ink transition-colors">Prosjekter</a>
+        <a href="#om-oss" class="link-sweep hover:text-ink transition-colors">Om oss</a>
+        <a href="#omtaler" class="link-sweep hover:text-ink transition-colors">Omtaler</a>
+        <a href="#kontakt" class="link-sweep hover:text-ink transition-colors">Kontakt</a>
+      </div>
+
+      <div class="hidden md:block">
+        <a href="#kontakt" class="btn-magnetic inline-flex items-center gap-2.5 bg-ink text-parchment px-5 py-2.5 rounded-full text-[12px] font-medium tracking-[-0.01em] uppercase">Få tilbud</a>
+      </div>
+
+      <button onclick="toggleMenu()" aria-label="Åpne meny" class="md:hidden w-10 h-10 flex items-center justify-center -mr-2 text-ink">
+        <i class="fa-solid fa-bars-staggered text-lg"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-[60] bg-parchment/98 backdrop-blur-xl flex flex-col justify-center items-center gap-8 text-3xl font-editorial text-ink">
+    <button onclick="toggleMenu()" aria-label="Lukk meny" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-ink"><i class="fa-solid fa-xmark text-xl"></i></button>
+    <a onclick="toggleMenu()" href="#tjenester" class="hover:text-copper transition-colors">Tjenester</a>
+    <a onclick="toggleMenu()" href="#prosjekter" class="hover:text-copper transition-colors">Prosjekter</a>
+    <a onclick="toggleMenu()" href="#om-oss" class="hover:text-copper transition-colors">Om oss</a>
+    <a onclick="toggleMenu()" href="#omtaler" class="hover:text-copper transition-colors">Omtaler</a>
+    <a onclick="toggleMenu()" href="#kontakt" class="hover:text-copper transition-colors">Kontakt</a>
+    <a onclick="toggleMenu()" href="#kontakt" class="mt-6 btn-magnetic bg-ink text-parchment px-10 py-4 rounded-full text-lg">Få tilbud</a>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="relative min-h-[100dvh] flex items-end overflow-hidden noise" aria-label="Hero">
+      <canvas id="hero-canvas"></canvas>
+
+      <img src="images/photo-08.jpg" alt="Elektriker i arbeid" class="absolute inset-0 w-full h-full object-cover z-[-1]" loading="eager" decode="async" style="filter:brightness(0.55) contrast(1.1) saturate(0.85);">
+
+      <div class="absolute inset-0 z-[1] bg-gradient-to-t from-ink/85 via-ink/30 to-ink/20"></div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 pb-24 md:pb-36 pt-[55vh] md:pt-[50vh]">
+        <div class="max-w-3xl">
+          <p class="font-mono text-[11px] md:text-xs uppercase tracking-[0.3em] text-clay mb-6 reveal" style="animation-delay:0.1s">Elektrikerfirma · Oslo & Viken</p>
+          <h1 class="font-editorial text-[clamp(3rem,10vw,8rem)] leading-[0.88] text-parchment tracking-[-0.035em] mb-8">
+            <span class="line-reveal"><span>Strøm</span></span><br>
+            <span class="line-reveal"><span style="animation-delay:0.15s">som</span></span><br>
+            <span class="line-reveal"><span style="animation-delay:0.3s"><em class="text-copper not-italic">skal</em></span></span> <span class="line-reveal"><span style="animation-delay:0.45s"><em class="text-copper not-italic">fungere</em></span></span>
+          </h1>
+          <p class="text-parchment/80 text-base md:text-xl font-light leading-relaxed max-w-xl mb-10 reveal" style="animation-delay:0.6s">Andersen Elektro AS leverer elektriske løsninger for private hjem, næringsbygg og industrielle anlegg. Trygghet, presisjon og estetikk i hver eneste kontakt.</p>
+          <div class="flex flex-wrap gap-4 reveal" style="animation-delay:0.8s">
+            <a href="#kontakt" class="btn-magnetic inline-flex items-center gap-3 bg-parchment text-ink px-8 py-4 rounded-full text-sm font-medium tracking-[-0.01em]">Få tilbud <i class="fa-solid fa-arrow-right-long text-xs text-copper"></i></a>
+            <a href="#tjenester" class="inline-flex items-center gap-3 border border-parchment/30 text-parchment px-8 py-4 rounded-full text-sm font-medium tracking-[-0.01em] hover:bg-parchment/5 transition">Se tjenester</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-parchment/50 text-xs font-mono uppercase tracking-[0.25em] animate-bounce">
+        <span>Scroll</span>
+        <div class="w-px h-8 bg-gradient-to-b from-parchment/60 to-transparent"></div>
+      </div>
+    </section>
+
+    <!-- ============ TRUST BAR ============ -->
+    <section class="bg-ink relative overflow-hidden" aria-label="Tillit">
+      <div class="max-w-7xl mx-auto px-6 md:px-10 py-12 md:py-16">
+        <div class="flex flex-wrap items-center justify-between gap-8 md:gap-4">
+          <div>
+            <p class="text-parchment/50 font-mono text-[10px] uppercase tracking-[0.3em] mb-2">Sertifiserte</p>
+            <h2 class="font-editorial text-3xl md:text-4xl text-parchment tracking-[-0.03em]">Godkjent av <span class="text-copper">Bransjerådet</span></h2>
+          </div>
+          <div class="flex gap-10 md:gap-16 text-parchment/40 font-mono text-xs md:text-sm tracking-[0.15em] uppercase">
+            <span>Elkomp</span><span>NEK</span><span>ISO 9001</span><span>Forsikret</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section id="tjenester" class="relative py-28 md:py-36 bg-parchment" aria-label="Tjenester">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20">
+          <div class="lg:col-span-5 lg:sticky lg:top-28">
+            <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-copper mb-5">01 — Tjenester</p>
+            <h2 class="font-editorial text-[clamp(2.5rem,6vw,5rem)] leading-[0.92] text-ink tracking-[-0.03em] mb-7">Alt fra <em class="text-timber">en pol</em> til hele <em class="text-timber">anlegg</em></h2>
+            <p class="text-timber text-base md:text-lg leading-relaxed mb-8 font-light">Vi dekker hele spekteret av elektriske arbeider — fra enkel utskifting av stikkontakt til komplekse automasjons- og energiløsninger for næringsbygg.</p>
+            <a href="#kontakt" class="btn-magnetic inline-flex items-center gap-3 bg-ink text-parchment px-7 py-3.5 rounded-full text-[13px] font-medium tracking-[-0.01em]">Drøft prosjekt <i class="fa-solid fa-arrow-right-long text-xs text-copper"></i></a>
+          </div>
+          <div class="lg:col-span-7 grid md:grid-cols-2 gap-6">
+            <article class="service-card lift bg-white rounded-3xl p-8 md:p-10 border border-ink/[0.06] shadow-[0_4px_30px_-15px_rgba(10,10,15,0.06)]">
+              <div class="num-ring mb-7">01</div>
+              <h3 class="font-editorial text-2xl md:text-[1.6rem] text-ink tracking-[-0.02em] mb-3">Installasjon</h3>
+              <p class="text-ash text-[15px] leading-relaxed font-light">Nye stikkontakter, belysning, sikringer og fordelingsskap. Vi følger NEK 400 til punkt og prikke.</p>
+            </article>
+            <article class="service-card lift bg-white rounded-3xl p-8 md:p-10 border border-ink/[0.06] shadow-[0_4px_30px_-15px_rgba(10,10,15,0.06)]">
+              <div class="num-ring mb-7">02</div>
+              <h3 class="font-editorial text-2xl md:text-[1.6rem] text-ink tracking-[-0.02em] mb-3">Vedlikehold</h3>
+              <p class="text-ash text-[15px] leading-relaxed font-light">Forebyggende kontroll, feilsøking, oppgradering av eldre installasjoner og sikkerhetsinspeksjoner.</p>
+            </article>
+            <article class="service-card lift bg-white rounded-3xl p-8 md:p-10 border border-ink/[0.06] shadow-[0_4px_30px_-15px_rgba(10,10,15,0.06)]">
+              <div class="num-ring mb-7">03</div>
+              <h3 class="font-editorial text-2xl md:text-[1.6rem] text-ink tracking-[-0.02em] mb-3">Energi</h3>
+              <p class="text-ash text-[15px] leading-relaxed font-light">Solcelleanlegg, varmepumper, batterilagring og smart hjem-styring. Fremtidsrettet og bærekraftig.</p>
+            </article>
+            <article class="service-card lift bg-white rounded-3xl p-8 md:p-10 border border-ink/[0.06] shadow-[0_4px_30px_-15px_rgba(10,10,15,0.06)]">
+              <div class="num-ring mb-7">04</div>
+              <h3 class="font-editorial text-2xl md:text-[1.6rem] text-ink tracking-[-0.02em] mb-3">Næring</h3>
+              <p class="text-ash text-[15px] leading-relaxed font-light">Komplette elektrikaranlegg for kontor, butikk, resturant og industri. Effektivitet, estetikk og sikkerhet.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT / STORY ============ -->
+    <section id="om-oss" class="bg-ink text-parchment relative overflow-hidden noise" aria-label="Om oss">
+      <img src="images/photo-04.jpg" alt="Arbeider på anlegg" class="absolute inset-0 w-full h-full object-cover opacity-[0.12] mix-blend-overlay" loading="lazy">
+      <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36">
+        <div class="grid lg:grid-cols-12 gap-14 lg:gap-20">
+          <div class="lg:col-span-5">
+            <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-copper mb-5">02 — Om oss</p>
+            <h2 class="font-editorial text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.92] text-parchment tracking-[-0.03em] mb-8">Et firma som <em class="text-copper">taker på alvor</em></h2>
+            <div class="flex gap-10 md:gap-16 mt-12">
+              <div>
+                <span class="font-editorial text-5xl text-copper">15</span>
+                <span class="block text-[11px] font-mono text-parchment/40 uppercase tracking-[0.2em] mt-2">År i bransjen</span>
+              </div>
+              <div>
+                <span class="font-editorial text-5xl text-copper">430+</span>
+                <span class="block text-[11px] font-mono text-parchment/40 uppercase tracking-[0.2em] mt-2">Fullførte</span>
+              </div>
+              <div>
+                <span class="font-editorial text-5xl text-copper">12</span>
+                <span class="block text-[11px] font-mono text-parchment/40 uppercase tracking-[0.2em] mt-2">Elektrikere</span>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6 lg:col-start-7">
+            <p class="text-parchment/80 text-lg md:text-xl leading-relaxed font-light mb-6">Andersen Elektro AS ble grunnlagt i 2010 av Thomas Andersen, med en enkel idé: elektrisk arbeid skal være rustfritt, trygt og vakkert.</p>
+            <p class="text-parchment/60 text-base leading-relaxed mb-6">I dag er vi et team på tolv sertifiserte elektrikere og ingeniører med spisskompetanse innen både klassisk installasjon og moderne smarte løsninger. Vi jobber utelukkende i Oslo og Viken — fordi vi kjenner byggene, reglene og menneskene her.</p>
+            <p class="text-parchment/60 text-base leading-relaxed mb-8">Vår filosofi er enkel: vi gjør jobben én gang — korrekt, ryddig og med respekt for både rommet og kunden.</p>
+            <a href="#kontakt" class="btn-magnetic inline-flex items-center gap-3 border border-parchment/30 text-parchment px-7 py-3.5 rounded-full text-sm font-medium tracking-[-0.01em] hover:bg-parchment hover:text-ink transition-colors">Kontakt oss</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="prosjekter" class="py-28 md:py-36 bg-parchment" aria-label="Prosjekter">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 md:mb-20">
+          <div>
+            <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-copper mb-5">03 — Prosjekter</p>
+            <h2 class="font-editorial text-[clamp(2.5rem,6vw,5rem)] leading-[0.92] text-ink tracking-[-0.03em]">Utvalgte <em class="text-timber">arbeider</em></h2>
+          </div>
+          <a href="#kontakt" class="link-sweep text-ink font-medium text-sm">Se alle prosjekter <i class="fa-solid fa-arrow-right-long text-xs ml-1 text-copper"></i></a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-7">
+          <a href="#kontakt" class="group block zoom-img rounded-3xl overflow-hidden relative aspect-[4/5] shadow-xl shadow-ink/[0.05]">
+            <img src="images/photo-09.jpg" alt="VILLA FROGNER" class="w-full h-full object-cover" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-7 md:p-9">
+              <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-copper mb-2 block">Privat bolig · 2025</span>
+              <h3 class="font-editorial text-2xl md:text-3xl text-parchment tracking-[-0.02em] mb-1">Villa Frogner</h3>
+              <p class="text-parchment/60 text-sm font-light">Komplett elektrisk renovasjon med varmepumpe og smart styring.</p>
+            </div>
+          </a>
+          <a href="#kontakt" class="group block zoom-img rounded-3xl overflow-hidden relative aspect-[4/5] shadow-xl shadow-ink/[0.05] md:-mt-14">
+            <img src="images/photo-07.jpg" alt="KONTOR HAMAR" class="w-full h-full object-cover" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-7 md:p-9">
+              <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-copper mb-2 block">Næringsbygg · 2024</span>
+              <h3 class="font-editorial text-2xl md:text-3xl text-parchment tracking-[-0.02em] mb-1">Kontor Hamar</h3>
+              <p class="text-parchment/60 text-sm font-light">Automatisk belysning, energistyring og ladestasjoner.</p>
+            </div>
+          </a>
+          <a href="#kontakt" class="group block zoom-img rounded-3xl overflow-hidden relative aspect-[4/5] shadow-xl shadow-ink/[0.05]">
+            <img src="images/photo-05.jpg" alt="INDUSTRI BÆRUM" class="w-full h-full object-cover" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-7 md:p-9">
+              <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-copper mb-2 block">Industri · 2025</span>
+              <h3 class="font-editorial text-2xl md:text-3xl text-parchment tracking-[-0.02em] mb-1">Industri Bærum</h3>
+              <p class="text-parchment/60 text-sm font-light">Høyspent installasjon, sikkerhetssystemer og overvåkning.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section id="omtaler" class="bg-linen py-28 md:py-36 relative" aria-label="Kundeomtaler">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="text-center mb-16 md:mb-20">
+          <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-copper mb-5">04 — Omtaler</p>
+          <h2 class="font-editorial text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.92] text-ink tracking-[-0.03em]">Det sier <em class="text-timber">kundene</em></h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <blockquote class="bg-white rounded-3xl p-10 md:p-12 shadow-[0_4px_30px_-12px_rgba(10,10,15,0.08)] relative">
+            <span class="quote-mark">“</span>
+            <p class="font-editorial text-xl md:text-2xl text-ink leading-snug mb-6 relative z-10">Andersen gjorde jobben raskt, ryddig og med en presisjon vi aldri har sett før. Alt fra første samtale til siste kontakt var profesjonelt.</p>
+            <div class="flex items-center gap-4 pt-6 border-t border-ink/[0.06]">
+              <img src="images/photo-03.jpg" alt="Marte Solberg" class="w-11 h-11 rounded-full object-cover ring-2 ring-copper-dim">
+              <div>
+                <cite class="not-italic font-medium text-ink text-sm block">Marte Solberg</cite>
+                <span class="font-mono text-[10px] text-ash uppercase tracking-[0.15em]">Villa Frogner</span>
+              </div>
+            </div>
+          </blockquote>
+
+          <blockquote class="bg-white rounded-3xl p-10 md:p-12 shadow-[0_4px_30px_-12px_rgba(10,10,15,0.08)] relative md:-mt-10">
+            <span class="quote-mark">“</span>
+            <p class="font-editorial text-xl md:text-2xl text-ink leading-snug mb-6 relative z-10">Som arkitekt setter jeg stor pris på elektrikere som forstår estetikk. Andersen leverte et anlegg som er like vakkert som det er funksjonelt.</p>
+            <div class="flex items-center gap-4 pt-6 border-t border-ink/[0.06]">
+              <img src="images/photo-02.jpg" alt="Henrik Dahl" class="w-11 h-11 rounded-full object-cover ring-2 ring-copper-dim">
+              <div>
+                <cite class="not-italic font-medium text-ink text-sm block">Henrik Dahl</cite>
+                <span class="font-mono text-[10px] text-ash uppercase tracking-[0.15em]">Arkitekt kontor Hamar</span>
+              </div>
+            </div>
+          </blockquote>
+
+          <blockquote class="bg-white rounded-3xl p-10 md:p-12 shadow-[0_4px_30px_-12px_rgba(10,10,15,0.08)] relative">
+            <span class="quote-mark">“</span>
+            <p class="font-editorial text-xl md:text-2xl text-ink leading-snug mb-6 relative z-10">Vi trengte en komplett oppgradering av vårt næringsbygg på kort tid. Andersen leverte på time — og på budsjett.</p>
+            <div class="flex items-center gap-4 pt-6 border-t border-ink/[0.06]">
+              <img src="images/photo-01.jpg" alt="Ingrid Nordli" class="w-11 h-11 rounded-full object-cover ring-2 ring-copper-dim">
+              <div>
+                <cite class="not-italic font-medium text-ink text-sm block">Ingrid Nordli</cite>
+                <span class="font-mono text-[10px] text-ash uppercase tracking-[0.15em]">Industri Bærum</span>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA STRIP ============ -->
+    <section class="bg-copper text-parchment relative overflow-hidden" aria-label="Kontakt CTA">
+      <img src="images/photo-06.jpg" alt="Kretskort" class="absolute inset-0 w-full h-full object-cover opacity-[0.15] mix-blend-overlay" loading="lazy">
+      <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28 text-center">
+        <h2 class="font-editorial text-[clamp(2.5rem,7vw,6rem)] leading-[0.9] text-parchment tracking-[-0.035em] mb-6">Trenger du en <em>elektriker</em>?</h2>
+        <p class="text-parchment/80 text-lg md:text-xl font-light max-w-2xl mx-auto mb-10">Vi tar på oss alt fra enkle reparasjoner til komplette anleggsprosjekter. Få et uforpliktende tilbud i dag.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#kontakt" class="btn-magnetic inline-flex items-center gap-3 bg-parchment text-ink px-10 py-5 rounded-full text-base font-medium tracking-[-0.01em] shadow-xl shadow-ink/20">Kontakt oss</a>
+          <a href="tel:+4722345678" class="inline-flex items-center gap-3 border border-parchment/30 text-parchment px-10 py-5 rounded-full text-base font-medium tracking-[-0.01em] hover:bg-parchment hover:text-ink transition">Ring 22 34 56 78</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="kontakt" class="py-28 md:py-36 bg-parchment" aria-label="Kontakt">
+      <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          <div>
+            <p class="font-mono text-[11px] uppercase tracking-[0.3em] text-copper mb-5">05 — Kontakt</p>
+            <h2 class="font-editorial text-[clamp(2.5rem,6vw,5rem)] leading-[0.92] text-ink tracking-[-0.03em] mb-8">La oss snakke <em class="text-timber">strøm</em></h2>
+            <p class="text-timber text-lg leading-relaxed font-light mb-12">Uforpliktende tilbud, rådgivning eller bare et spørsmål? Vi svarer innen én virkedag. For akutte problemer har vi vakttelefon døgnet rundt.</p>
+
+            <div class="space-y-7 mb-12">
+              <div class="flex items-start gap-5">
+                <div class="w-11 h-11 rounded-2xl bg-ink text-parchment flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <h4 class="font-medium text-ink text-sm mb-0.5">Besøksadresse</h4>
+                  <p class="text-ash text-sm font-light">Storgata 24, 0155 Oslo</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-5">
+                <div class="w-11 h-11 rounded-2xl bg-ink text-parchment flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <h4 class="font-medium text-ink text-sm mb-0.5">Telefon</h4>
+                  <p class="text-ash text-sm font-light"><a href="tel:+4722345678" class="hover:text-copper transition-colors">+47 22 34 56 78</a></p>
+                </div>
+              </div>
+              <div class="flex items-start gap-5">
+                <div class="w-11 h-11 rounded-2xl bg-ink text-parchment flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <h4 class="font-medium text-ink text-sm mb-0.5">E-post</h4>
+                  <p class="text-ash text-sm font-light"><a href="mailto:post@andersenelektro.no" class="hover:text-copper transition-colors">post@andersenelektro.no</a></p>
+                </div>
+              </div>
+              <div class="flex items-start gap-5">
+                <div class="w-11 h-11 rounded-2xl bg-ink text-parchment flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                  <h4 class="font-medium text-ink text-sm mb-0.5">Åpningstider</h4>
+                  <p class="text-ash text-sm font-light">Man–Fre: 07:00 – 16:00 · Akutt: 24/7</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-medium text-ink text-sm mb-3">Følg oss</h4>
+              <div class="flex gap-2">
+                <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-ink text-parchment flex items-center justify-center hover:bg-copper transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-ink text-parchment flex items-center justify-center hover:bg-copper transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-ink text-parchment flex items-center justify-center hover:bg-copper transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <form id="contactForm" onsubmit="handleSubmit(event)" class="bg-white rounded-3xl p-8 md:p-12 shadow-[0_4px_40px_-15px_rgba(10,10,15,0.08)] border border-ink/[0.05]" novalidate>
+            <div class="grid md:grid-cols-2 gap-x-8 gap-y-8 mb-8">
+              <div>
+                <label for="navn" class="font-mono text-[10px] uppercase tracking-[0.2em] text-ash mb-2 block">Navn</label>
+                <input type="text" id="navn" name="navn" placeholder="Ditt navn" class="input-elegant" required>
+              </div>
+              <div>
+                <label for="telefon" class="font-mono text-[10px] uppercase tracking-[0.2em] text-ash mb-2 block">Telefon</label>
+                <input type="tel" id="telefon" name="telefon" placeholder="+47 900 00 000" class="input-elegant" required>
+              </div>
+            </div>
+            <div class="mb-8">
+              <label for="epost" class="font-mono text-[10px] uppercase tracking-[0.2em] text-ash mb-2 block">E-post</label>
+              <input type="email" id="epost" name="epost" placeholder="din@epost.no" class="input-elegant" required>
+            </div>
+            <div class="mb-2">
+              <label for="melding" class="font-mono text-[10px] uppercase tracking-[0.2em] text-ash mb-2 block">Prosjekt / melding</label>
+              <textarea id="melding" name="melding" rows="4" placeholder="Fortell oss om prosjektet..." class="input-elegant resize-none" required></textarea>
+            </div>
+            <div class="flex items-center gap-3 mt-8 mb-8">
+              <input type="checkbox" id="samtykke" required class="w-4 h-4 rounded border-ink/30 text-copper accent-copper cursor-pointer">
+              <label for="samtykke" class="text-ash text-sm font-light leading-snug">Jeg samtykker til at Andersen Elektro AS kan kontakte meg angående henvendelsen.</label>
+            </div>
+            <button type="submit" class="btn-magnetic w-full bg-ink text-parchment py-4 rounded-full text-sm font-medium tracking-[-0.01em] uppercase flex items-center justify-center gap-3">Send forespørsel <i class="fa-solid fa-paper-plane text-copper"></i></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-ink text-parchment border-t border-parchment/[0.06]" aria-label="Footer">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-10">
+      <div class="grid md:grid-cols-12 gap-12 md:gap-8 mb-16">
+        <div class="md:col-span-4">
+          <a href="#" class="flex items-center gap-3 mb-6" aria-label="Andersen Elektro AS">
+            <span class="w-10 h-10 rounded-full bg-parchment text-ink flex items-center justify-center font-editorial text-xl leading-none">A</span>
+            <div class="leading-none">
+              <span class="block text-sm font-medium tracking-[-0.03em]">Andersen</span>
+              <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-ash">Elektro AS</span>
+            </div>
+          </a>
+          <p class="text-parchment/50 text-sm leading-relaxed font-light">Profesjonelle elektriske løsninger for private hjem og næringsbygg i Oslo og Viken.</p>
+        </div>
+        <div class="md:col-span-2 md:col-start-6">
+          <h4 class="font-mono text-[10px] uppercase tracking-[0.3em] text-ash mb-6">Tjenester</h4>
+          <ul class="space-y-2.5 text-sm text-parchment/70 font-light">
+            <li><a href="#tjenester" class="hover:text-parchment transition-colors">Installasjon</a></li>
+            <li><a href="#tjenester" class="hover:text-parchment transition-colors">Vedlikehold</a></li>
+            <li><a href="#tjenester" class="hover:text-parchment transition-colors">Energi</a></li>
+            <li><a href="#tjenester" class="hover:text-parchment transition-colors">Næring</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <h4 class="font-mono text-[10px] uppercase tracking-[0.3em] text-ash mb-6">Firma</h4>
+          <ul class="space-y-2.5 text-sm text-parchment/70 font-light">
+            <li><a href="#om-oss" class="hover:text-parchment transition-colors">Om oss</a></li>
+            <li><a href="#prosjekter" class="hover:text-parchment transition-colors">Prosjekter</a></li>
+            <li><a href="#omtaler" class="hover:text-parchment transition-colors">Omtaler</a></li>
+            <li><a href="#kontakt" class="hover:text-parchment transition-colors">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-3 md:col-start-10">
+          <h4 class="font-mono text-[10px] uppercase tracking-[0.3em] text-ash mb-6">Kontakt</h4>
+          <p class="text-sm text-parchment/70 font-light leading-relaxed">Storgata 24<br>0155 Oslo<br><a href="tel:+4722345678" class="hover:text-parchment transition-colors">+47 22 34 56 78</a></p>
+        </div>
+      </div>
+      <div class="border-t border-parchment/[0.08] pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-mono text-parchment/30 tracking-[0.1em] uppercase">
+        <span>© 2026 Andersen Elektro AS</span>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-parchment/70 transition-colors">Personvern</a>
+          <a href="#" class="hover:text-parchment/70 transition-colors">Vilkår</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+      document.body.style.overflow = document.getElementById('mobile-menu').classList.contains('open') ? 'hidden' : '';
+    }
+
+    // Form submit (visual only)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.innerHTML = '<span class="flex items-center gap-2">Sendt <i class="fa-solid fa-check"></i></span>';
+      btn.classList.add('bg-copper');
+      btn.classList.remove('bg-ink');
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.classList.remove('bg-copper');
+        btn.classList.add('bg-ink');
+        e.target.reset();
+      }, 3000);
+    }
+
+    // Subtle canvas particles in hero
+    (function initCanvas() {
+      const c = document.getElementById('hero-canvas');
+      if (!c) return;
+      const ctx = c.getContext('2d');
+      let w, h, particles = [];
+
+      function resize() {
+        w = c.width = c.parentElement.offsetWidth;
+        h = c.height = c.parentElement.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      for (let i = 0; i < 30; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          r: Math.random() * 1.5 + 0.5
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = 'rgba(168,122,75,0.35)';
+        for (const p of particles) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        // Draw faint connections
+        ctx.strokeStyle = 'rgba(168,122,75,0.12)';
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // Navbar shadow on scroll
+    (function navScroll() {
+      const nav = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          nav.style.boxShadow = '0 1px 0 rgba(10,10,15,0.06), 0 10px 30px -10px rgba(10,10,15,0.05)';
+        } else {
+          nav.style.boxShadow = 'none';
+        }
+      }, { passive: true });
+    })();
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

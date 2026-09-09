@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Andersen Bygg AS — Byggmester & Snekker | Oslo & Akershus</title>
+<meta name="description" content="Andersen Bygg AS er et byggmesterfirma i Oslo og Akershus. Vi leverer rehabilitering, tilbygg, terrasse, kjøkken, fasade, tak og spesialtilpasset snekkerarbeid. Be om gratis befaring.">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#141310; --ink2:#1d1c18; --ink3:#26241f;
+    --paper:#f1ede4; --paper2:#e8e2d3; --card:#faf8f3;
+    --line:rgba(20,19,16,.12); --line-l:rgba(241,237,228,.14);
+    --brass:#9c7c3c; --brass-l:#c9a961; --brass-d:#7d6330;
+    --moss:#20291f;
+    --shadow:0 24px 60px -24px rgba(20,19,16,.28);
+    --shadow-sm:0 12px 32px -16px rgba(20,19,16,.22);
+  }
+  html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+  body{background:var(--paper); color:var(--ink); font-family:'Manrope',system-ui,sans-serif; overflow-x:hidden}
+  .font-display{font-family:'Fraunces',Georgia,serif}
+  .font-mono2{font-family:'JetBrains Mono',monospace}
+  ::selection{background:var(--brass); color:#fff}
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--paper2)}
+  ::-webkit-scrollbar-thumb{background:#2a2925; border-radius:8px; border:2px solid var(--paper2)}
+  img{user-select:none}
+
+  /* grain */
+  .grain::after{content:""; position:fixed; inset:0; z-index:120; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("images/icon-01.svg");}
+
+  /* preloader */
+  #preloader{position:fixed; inset:0; z-index:200; background:var(--ink); display:flex; align-items:center; justify-content:center; transition:opacity .7s ease, visibility .7s}
+  #preloader.done{opacity:0; visibility:hidden}
+  #preloader .bar{height:2px; background:var(--brass-l); width:0%; transition:width .2s}
+  .loader-mark{animation:markPulse 1.6s ease-in-out infinite}
+  @keyframes markPulse{0%,100%{opacity:1}50%{opacity:.55}}
+
+  /* hero */
+  .hero-img{animation:kenburns 22s ease-in-out infinite alternate}
+  @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+  .scroll-line{position:relative; width:1px; height:56px; background:rgba(255,255,255,.25); overflow:hidden}
+  .scroll-line::after{content:""; position:absolute; top:-40%; left:0; width:100%; height:40%; background:var(--brass-l); animation:scrollDrop 2s ease-in-out infinite}
+  @keyframes scrollDrop{to{top:110%}}
+  .hero-word{display:inline-block; opacity:0; transform:translateY(110%); animation:riseIn 1s cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes riseIn{to{opacity:1; transform:translateY(0)}}
+  .mask{overflow:hidden; display:inline-block; vertical-align:bottom}
+
+  /* marquee */
+  .marquee-track{display:flex; width:max-content; animation:marquee 30s linear infinite}
+  .marquee-track:hover{animation-play-state:paused}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(34px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1; transform:none}
+  .reveal-l{opacity:0; transform:translateX(-40px); transition:all 1s cubic-bezier(.16,1,.3,1)}
+  .reveal-r{opacity:0; transform:translateX(40px); transition:all 1s cubic-bezier(.16,1,.3,1)}
+  .reveal-l.in,.reveal-r.in{opacity:1; transform:none}
+  .reveal-scale{opacity:0; transform:scale(.94); transition:all 1.1s cubic-bezier(.16,1,.3,1)}
+  .reveal-scale.in{opacity:1; transform:scale(1)}
+
+  /* buttons */
+  .btn{position:relative; display:inline-flex; align-items:center; gap:.65rem; font-weight:700; border-radius:999px; transition:all .35s cubic-bezier(.16,1,.3,1); overflow:hidden; white-space:nowrap}
+  .btn .arr{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+  .btn:hover .arr{transform:translate(3px,-3px)}
+  .btn-dark{background:var(--ink); color:var(--paper)}
+  .btn-dark:hover{background:#000; transform:translateY(-2px); box-shadow:var(--shadow-sm)}
+  .btn-light{background:var(--paper); color:var(--ink)}
+  .btn-light:hover{background:#fff; transform:translateY(-2px); box-shadow:0 16px 40px -12px rgba(0,0,0,.4)}
+  .btn-brass{background:var(--brass); color:#fff}
+  .btn-brass:hover{background:var(--brass-d); transform:translateY(-2px); box-shadow:0 16px 36px -12px rgba(156,124,60,.6)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.35); color:#fff; backdrop-filter:blur(6px)}
+  .btn-ghost:hover{border-color:#fff; background:rgba(255,255,255,.1)}
+  .btn-outline{border:1px solid var(--line); color:var(--ink)}
+  .btn-outline:hover{border-color:var(--ink); background:var(--ink); color:var(--paper)}
+  .link-line{position:relative}
+  .link-line::after{content:""; position:absolute; left:0; bottom:-3px; height:1px; width:100%; background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform .4s cubic-bezier(.16,1,.3,1)}
+  .link-line:hover::after{transform:scaleX(1); transform-origin:left}
+
+  /* header */
+  #header{transition:all .45s cubic-bezier(.16,1,.3,1)}
+  #header.scrolled{background:rgba(241,237,228,.9); backdrop-filter:blur(16px); border-bottom:1px solid var(--line)}
+  #header.scrolled .nav-ink{color:var(--ink)!important}
+  #header.scrolled .logo-box{background:var(--ink); color:var(--paper)}
+  #header.scrolled .logo-sub{color:rgba(20,19,16,.6)!important}
+
+  /* mobile menu */
+  #mmenu{transition:clip-path .7s cubic-bezier(.76,0,.24,1); clip-path:inset(0 0 100% 0)}
+  #mmenu.open{clip-path:inset(0 0 0% 0)}
+  #mmenu .m-link{opacity:0; transform:translateY(24px); transition:all .6s cubic-bezier(.16,1,.3,1)}
+  #mmenu.open .m-link{opacity:1; transform:none}
+
+  /* services */
+  .svc-row{border-top:1px solid var(--line-l); transition:background .4s}
+  .svc-row:last-child{border-bottom:1px solid var(--line-l)}
+  .svc-row:hover{background:rgba(255,255,255,.03)}
+  .svc-body{max-height:0; overflow:hidden; transition:max-height .7s cubic-bezier(.16,1,.3,1)}
+  .svc-row.open .svc-body{max-height:640px}
+  .svc-row.open .svc-plus{transform:rotate(45deg); background:var(--brass); border-color:var(--brass)}
+  .svc-plus{transition:all .4s}
+  .svc-row.open .svc-title{color:var(--brass-l)}
+  #svcPreview{position:fixed; width:300px; height:380px; border-radius:18px; overflow:hidden; pointer-events:none; z-index:60; opacity:0; transform:scale(.85) rotate(-4deg); transition:opacity .35s, transform .45s cubic-bezier(.16,1,.3,1); box-shadow:var(--shadow)}
+  #svcPreview.show{opacity:1; transform:scale(1) rotate(-2deg)}
+  #svcPreview img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .4s}
+  #svcPreview img.active{opacity:1}
+
+  /* before after */
+  #baWrap{--pos:50%; touch-action:pan-y}
+  #baAfter{clip-path:inset(0 0 0 var(--pos))}
+  #baHandle{left:var(--pos)}
+  .ba-label{backdrop-filter:blur(8px)}
+
+  /* projects */
+  .proj-card img{transition:transform 1.1s cubic-bezier(.16,1,.3,1)}
+  .proj-card:hover img{transform:scale(1.07)}
+  .proj-card .proj-arrow{transition:all .45s cubic-bezier(.16,1,.3,1)}
+  .proj-card:hover .proj-arrow{background:var(--brass); border-color:var(--brass); transform:rotate(45deg)}
+  .proj-card{transition:opacity .5s, transform .5s}
+  .proj-card.hide{opacity:0; transform:scale(.96); pointer-events:none; position:absolute; visibility:hidden}
+  .filter-pill{transition:all .3s}
+  .filter-pill.active{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+
+  /* lightbox */
+  #lightbox{transition:opacity .4s; opacity:0; pointer-events:none}
+  #lightbox.open{opacity:1; pointer-events:auto}
+  #lightbox .lb-panel{transform:translateY(30px) scale(.98); transition:transform .5s cubic-bezier(.16,1,.3,1)}
+  #lightbox.open .lb-panel{transform:none}
+  .lb-thumb{transition:all .3s; opacity:.5}
+  .lb-thumb.active{opacity:1; outline:2px solid var(--brass-l); outline-offset:2px}
+
+  /* testimonials */
+  #tstTrack{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .tst-dot{transition:all .3s}
+  .tst-dot.active{width:32px; background:var(--brass)}
+
+  /* faq */
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .6s cubic-bezier(.16,1,.3,1)}
+  .faq-item.open .faq-a{max-height:280px}
+  .faq-item.open .faq-icon{transform:rotate(45deg)}
+  .faq-icon{transition:transform .4s}
+
+  /* form */
+  .field{background:#fff; border:1px solid var(--line); border-radius:14px; transition:all .3s; width:100%}
+  .field:focus{outline:none; border-color:var(--brass); box-shadow:0 0 0 4px rgba(156,124,60,.14)}
+  .field.err{border-color:#b3402e; box-shadow:0 0 0 4px rgba(179,64,46,.12)}
+  .chip{transition:all .3s; cursor:pointer}
+  .chip.sel{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  input[type=range]{-webkit-appearance:none; width:100%; height:6px; border-radius:99px; background:linear-gradient(to right, var(--brass) 0%, var(--brass) 40%, #d8d2c0 40%, #d8d2c0 100%)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:26px; height:26px; border-radius:50%; background:var(--ink); border:3px solid var(--paper); box-shadow:0 4px 14px rgba(0,0,0,.3); cursor:grab}
+  .spinner{width:20px; height:20px; border:2.5px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .check-pop{animation:pop .6s cubic-bezier(.16,1,.3,1)}
+  @keyframes pop{from{transform:scale(.4); opacity:0}to{transform:scale(1); opacity:1}}
+
+  /* timeline */
+  .step-line{transform:scaleY(0); transform-origin:top; transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+  .step-line.in{transform:scaleY(1)}
+
+  .rot-badge{animation:spinSlow 18s linear infinite}
+  @keyframes spinSlow{to{transform:rotate(360deg)}}
+  .float-soft{animation:floaty 6s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  #toast{transition:all .5s cubic-bezier(.16,1,.3,1); transform:translateY(140%); opacity:0}
+  #toast.show{transform:none; opacity:1}
+
+  #mobileCta{transition:transform .5s cubic-bezier(.16,1,.3,1); transform:translateY(120%)}
+  #mobileCta.show{transform:none}
+
+  #toTop{transition:all .4s; opacity:0; pointer-events:none; transform:translateY(12px)}
+  #toTop.show{opacity:1; pointer-events:auto; transform:none}
+
+  .tick{color:var(--brass)}
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important; transition-duration:.01ms!important}}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body class="grain antialiased">
+
+<!-- ══════════ PRELOADER ══════════ -->
+<div id="preloader">
+  <div class="text-center px-6 w-full max-w-sm">
+    <div class="loader-mark mx-auto w-16 h-16 rounded-2xl bg-[#c9a961] flex items-center justify-center mb-6">
+      <span class="font-display text-3xl text-[#141310] font-medium">A</span>
+    </div>
+    <p class="font-mono2 text-[11px] tracking-[0.3em] text-[#c9a961] uppercase mb-2">Andersen Bygg AS</p>
+    <p class="font-display text-2xl text-[#f1ede4] italic mb-8">Solid håndverk siden 1998</p>
+    <div class="h-[2px] bg-white/10 rounded-full overflow-hidden"><div class="bar" id="loadBar"></div></div>
+    <p class="font-mono2 text-xs text-white/40 mt-3"><span id="loadPct">0</span> %</p>
+  </div>
+</div>
+
+<!-- ══════════ HEADER ══════════ -->
+<header id="header" class="fixed top-0 left-0 right-0 z-[100]">
+  <div class="max-w-[1440px] mx-auto px-5 md:px-10">
+    <div class="flex items-center justify-between h-[76px]">
+      <a href="#topp" class="flex items-center gap-3 group">
+        <span class="logo-box w-11 h-11 rounded-xl bg-[#f1ede4] text-[#141310] flex items-center justify-center transition-all duration-500 shadow-lg">
+          <span class="font-display text-[22px] font-medium leading-none pt-[2px]">A</span>
+        </span>
+        <span class="leading-none">
+          <span class="nav-ink block font-extrabold tracking-tight text-[17px] text-[#f1ede4] transition-colors duration-500">ANDERSEN BYGG</span>
+          <span class="logo-sub block font-mono2 text-[9.5px] tracking-[0.32em] text-white/60 mt-1 transition-colors duration-500">BYGGMESTER · AS</span>
+        </span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#tjenester" class="nav-ink link-line text-[13.5px] font-semibold text-white/85 transition-colors duration-500">Tjenester</a>
+        <a href="#prosjekter" class="nav-ink link-line text-[13.5px] font-semibold text-white/85 transition-colors duration-500">Prosjekter</a>
+        <a href="#prosess" class="nav-ink link-line text-[13.5px] font-semibold text-white/85 transition-colors duration-500">Prosess</a>
+        <a href="#om-oss" class="nav-ink link-line text-[13.5px] font-semibold text-white/85 transition-colors duration-500">Om oss</a>
+        <a href="#anmeldelser" class="nav-ink link-line text-[13.5px] font-semibold text-white/85 transition-colors duration-500">Anmeldelser</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="tel:+4767123450" class="nav-ink hidden md:flex items-center gap-2 text-[13.5px] font-bold text-white/85 transition-colors duration-500 hover:opacity-80">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+          67 12 34 50
+        </a>
+        <a href="#kontakt" class="btn btn-brass text-[13.5px] px-5 py-2.5 hidden sm:inline-flex">Få tilbud
+          <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <button id="burger" aria-label="Åpne meny" class="lg:hidden w-11 h-11 rounded-full border border-white/30 flex flex-col items-center justify-center gap-[5px] backdrop-blur-sm">
+          <span class="block w-5 h-[2px] bg-white rounded transition-all" id="b1"></span>
+          <span class="block w-5 h-[2px] bg-white rounded transition-all" id="b2"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ MOBILMENY ══════════ -->
+<div id="mmenu" class="fixed inset-0 z-[95] bg-[#141310] text-[#f1ede4] flex flex-col">
+  <div class="flex-1 flex flex-col justify-center px-8 pt-20 max-w-lg">
+    <p class="font-mono2 text-[11px] tracking-[0.3em] text-[#c9a961] uppercase mb-6 m-link">Meny</p>
+    <nav class="space-y-1">
+      <a href="#tjenester" class="m-link mnav flex items-baseline gap-4 py-2.5 border-b border-white/10" style="transition-delay:.08s"><span class="font-mono2 text-xs text-[#c9a961]">01</span><span class="font-display text-4xl font-light">Tjenester</span></a>
+      <a href="#prosjekter" class="m-link mnav flex items-baseline gap-4 py-2.5 border-b border-white/10" style="transition-delay:.14s"><span class="font-mono2 text-xs text-[#c9a961]">02</span><span class="font-display text-4xl font-light">Prosjekter</span></a>
+      <a href="#prosess" class="m-link mnav flex items-baseline gap-4 py-2.5 border-b border-white/10" style="transition-delay:.2s"><span class="font-mono2 text-xs text-[#c9a961]">03</span><span class="font-display text-4xl font-light">Prosess</span></a>
+      <a href="#om-oss" class="m-link mnav flex items-baseline gap-4 py-2.5 border-b border-white/10" style="transition-delay:.26s"><span class="font-mono2 text-xs text-[#c9a961]">04</span><span class="font-display text-4xl font-light">Om oss</span></a>
+      <a href="#kontakt" class="m-link mnav flex items-baseline gap-4 py-2.5 border-b border-white/10" style="transition-delay:.32s"><span class="font-mono2 text-xs text-[#c9a961]">05</span><span class="font-display text-4xl font-light">Kontakt</span></a>
+    </nav>
+    <div class="m-link flex gap-3 mt-8" style="transition-delay:.4s">
+      <a href="#kontakt" class="mnav btn btn-brass px-6 py-3 text-sm flex-1 justify-center">Be om befaring</a>
+      <a href="tel:+4767123450" class="btn px-6 py-3 text-sm border border-white/25 flex-1 justify-center">Ring oss</a>
+    </div>
+  </div>
+  <div class="m-link px-8 pb-8 flex items-center justify-between text-sm text-white/50" style="transition-delay:.46s">
+    <span>Verkstedveien 14, Asker</span><span class="font-mono2">67 12 34 50</span>
+  </div>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="topp" class="relative min-h-[100svh] flex flex-col overflow-hidden bg-[#141310]">
+  <div class="absolute inset-0">
+    <img src="images/photo-29.jpg" alt="Moderne trehus bygget av Andersen Bygg" class="hero-img w-full h-full object-cover" fetchpriority="high">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#141310] via-[#141310]/55 to-[#141310]/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#141310]/70 via-transparent to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 flex-1 flex flex-col justify-end max-w-[1440px] mx-auto w-full px-5 md:px-10 pb-8 md:pb-10 pt-32">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="inline-flex items-center gap-2 border border-white/25 bg-white/10 backdrop-blur-md rounded-full pl-2 pr-4 py-1.5">
+        <span class="w-6 h-6 rounded-full bg-[#c9a961] flex items-center justify-center">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#141310" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </span>
+        <span class="text-[12px] md:text-[13px] font-semibold text-white tracking-wide">Mesterbedrift · Sentral godkjenning</span>
+      </span>
+    </div>
+
+    <h1 class="font-display font-light text-[#f1ede4] leading-[0.98] tracking-[-0.02em] text-[clamp(2.7rem,9vw,7.5rem)] max-w-[14ch]">
+      <span class="mask"><span class="hero-word" style="animation-delay:.15s">Vi bygger hjem</span></span><br>
+      <span class="mask"><span class="hero-word italic text-[#c9a961]" style="animation-delay:.3s">som varer i</span></span>
+      <span class="mask"><span class="hero-word" style="animation-delay:.42s">generasjoner.</span></span>
+    </h1>
+
+    <div class="mt-6 md:mt-8 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+      <p class="text-white/75 text-[15px] md:text-lg leading-relaxed max-w-md">
+        Byggmester og snekkerverksted i Oslo og Akershus. Tilbygg, rehabilitering, kjøkken og terrasse — levert med presisjon, faste avtaler og ryddig byggeplass.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="#kontakt" class="btn btn-light px-7 py-4 text-[15px] justify-center">Be om gratis befaring
+          <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a href="#prosjekter" class="btn btn-ghost px-7 py-4 text-[15px] justify-center">Se prosjekter
+          <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-10 md:mt-12 pt-6 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div><p class="font-display text-3xl md:text-4xl text-[#f1ede4]"><span class="counter" data-to="27">0</span> <span class="text-[#c9a961] text-2xl">år</span></p><p class="font-mono2 text-[10.5px] tracking-[0.18em] uppercase text-white/50 mt-1">Med håndverket</p></div>
+      <div><p class="font-display text-3xl md:text-4xl text-[#f1ede4]"><span class="counter" data-to="480">0</span>+</p><p class="font-mono2 text-[10.5px] tracking-[0.18em] uppercase text-white/50 mt-1">Fullførte prosjekter</p></div>
+      <div class="flex items-start gap-2">
+        <div><p class="font-display text-3xl md:text-4xl text-[#f1ede4]">4,9<span class="text-[#c9a961] text-2xl"> ★</span></p><p class="font-mono2 text-[10.5px] tracking-[0.18em] uppercase text-white/50 mt-1">187 Google-anmeldelser</p></div>
+      </div>
+      <div class="hidden md:flex items-center justify-end gap-4">
+        <span class="font-mono2 text-[10.5px] tracking-[0.25em] uppercase text-white/40 [writing-mode:vertical-lr] rotate-180">Scroll for mer</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="bg-[#9c7c3c] text-[#141310] overflow-hidden py-3.5 border-y border-[#141310]/10">
+  <div class="marquee-track font-extrabold text-[13px] md:text-sm tracking-[0.14em] uppercase">
+    <div class="flex items-center gap-8 pr-8" id="mq1"></div>
+    <div class="flex items-center gap-8 pr-8" id="mq2"></div>
+  </div>
+</div>
+
+<!-- ══════════ INTRO / OM OSS ══════════ -->
+<section id="om-oss" class="relative py-24 md:py-36 overflow-hidden">
+  <div class="max-w-[1440px] mx-auto px-5 md:px-10 grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+    <div class="lg:sticky lg:top-28">
+      <p class="reveal font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#9c7c3c] flex items-center gap-3"><span class="w-10 h-[1.5px] bg-[#9c7c3c] inline-block"></span>Om Andersen Bygg</p>
+      <h2 class="reveal font-display font-light text-[clamp(2.1rem,4.5vw,3.9rem)] leading-[1.04] tracking-tight mt-5">Et byggmesterfirma du <em class="italic text-[#9c7c3c]">faktisk</em> kan stole på.</h2>
+      <p class="reveal mt-6 text-[16px] md:text-[17px] leading-relaxed text-[#141310]/70 max-w-xl">Vi er 18 tømrere, snekkere og prosjektledere med eget verksted på Billingstad. Ingen innleide tilfeldigheter, ingen overraskelser på fakturaen — bare ærlig håndverk, faste kontaktpersoner og avtaler vi holder.</p>
+      <ul class="reveal mt-8 space-y-4">
+        <li class="flex gap-3 items-start"><span class="tick mt-[3px]"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="text-[15px]"><strong>Fastpris etter befaring</strong> <span class="text-[#141310]/60">— skriftlig tilbud med spesifisert underlag.</span></span></li>
+        <li class="flex gap-3 items-start"><span class="tick mt-[3px]"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="text-[15px]"><strong>Egen prosjektleder</strong> <span class="text-[#141310]/60">— én person å forholde seg til fra start til overlevering.</span></span></li>
+        <li class="flex gap-3 items-start"><span class="tick mt-[3px]"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="text-[15px]"><strong>5 års garanti</strong> <span class="text-[#141310]/60">— dokumentert HMS, forsikring og bustadoppføringslova.</span></span></li>
+      </ul>
+      <div class="reveal mt-9 flex items-center gap-5">
+        <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-[#9c7c3c]/40">
+          <img src="images/photo-23.jpg" alt="Jonas Andersen" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <p class="font-display italic text-xl">Jonas Andersen</p>
+          <p class="font-mono2 text-[11px] tracking-[0.15em] uppercase text-[#141310]/55">Daglig leder · Byggmester</p>
+        </div>
+        <a href="#kontakt" class="btn btn-dark px-6 py-3 text-sm ml-auto hidden sm:inline-flex">Møt oss
+          <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="reveal-scale rounded-[22px] overflow-hidden shadow-[0_30px_70px_-30px_rgba(20,19,16,.4)]">
+        <img src="images/photo-01.jpg" alt="Snekker i arbeid på verkstedet" class="w-full h-[420px] md:h-[540px] object-cover" loading="lazy">
+      </div>
+      <div class="reveal absolute -bottom-8 -left-3 md:-left-8 w-[62%] rounded-2xl overflow-hidden border-[6px] border-[#f1ede4] shadow-xl">
+        <img src="images/photo-27.jpg" alt="Ferdig tilbygg i vintersol" class="w-full h-[190px] md:h-[240px] object-cover" loading="lazy">
+      </div>
+      <div class="reveal absolute -top-8 -right-2 md:right-6 w-[128px] h-[128px]">
+        <div class="absolute inset-0 rounded-full bg-[#141310] text-[#f1ede4] flex items-center justify-center text-center shadow-xl">
+          <div><p class="font-display text-3xl leading-none">27</p><p class="font-mono2 text-[9px] tracking-[0.2em] uppercase mt-1 text-[#c9a961]">års erfaring</p></div>
+        </div>
+        <svg class="rot-badge absolute -inset-3 w-[152px] h-[152px]" viewBox="0 0 100 100"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text class="font-mono2" font-size="8.2" letter-spacing="2.5" fill="#9c7c3c"><textPath href="#circ">MESTERBREV · SENTRAL GODKJENNING · </textPath></text></svg>
+      </div>
+      <div class="reveal mt-14 md:mt-16 grid grid-cols-3 gap-3">
+        <div class="bg-[#faf8f3] border border-[#141310]/10 rounded-2xl p-4 md:p-5 text-center"><p class="font-display text-2xl md:text-3xl">18</p><p class="font-mono2 text-[9.5px] md:text-[10px] tracking-[0.15em] uppercase text-[#141310]/55 mt-1">Faste ansatte</p></div>
+        <div class="bg-[#faf8f3] border border-[#141310]/10 rounded-2xl p-4 md:p-5 text-center"><p class="font-display text-2xl md:text-3xl">98<span class="text-lg">%</span></p><p class="font-mono2 text-[9.5px] md:text-[10px] tracking-[0.15em] uppercase text-[#141310]/55 mt-1">Leverer til avtalt tid</p></div>
+        <div class="bg-[#141310] rounded-2xl p-4 md:p-5 text-center"><p class="font-display text-2xl md:text-3xl text-[#c9a961]">5 år</p><p class="font-mono2 text-[9.5px] md:text-[10px] tracking-[0.15em] uppercase text-white/50 mt-1">Garanti på arbeid</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TJENESTER ══════════ -->
+<section id="tjenester" class="relative bg-[#141310] text-[#f1ede4] py-24 md:py-32 rounded-[28px] md:rounded-[40px] mx-2 md:mx-4 overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.07] pointer-events-none" style="background-image:linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px); background-size:72px 72px"></div>
+  <div class="relative max-w-[1240px] mx-auto px-5 md:px-10">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
+      <div>
+        <p class="reveal font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#c9a961] flex items-center gap-3"><span class="w-10 h-[1.5px] bg-[#c9a961] inline-block"></span>Våre tjenester</p>
+        <h2 class="reveal font-display font-light text-[clamp(2.1rem,4.5vw,3.8rem)] leading-[1.05] tracking-tight mt-5">Alt av tømring og snekkerarbeid.<br class="hidden md:block"><em class="italic text-[#c9a961]">Under ett tak.</em></h2>
+      </div>
+      <p class="reveal text-white/60 max-w-sm text-[15px] leading-relaxed">Fra små snekkeroppdrag til totalentrepriser. Trykk på en tjeneste for å se hva som inngår — og hva det typisk koster.</p>
+    </div>
+    <div id="svcList" class="reveal"></div>
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-5 bg-white/[0.04] border border-white/10 rounded-2xl p-6 md:p-7">
+      <p class="text-white/75 text-[15px] text-center sm:text-left">Usikker på hva prosjektet ditt trenger? <strong class="text-white">Vi kommer på gratis befaring</strong> og gir ærlige råd.</p>
+      <a href="#kontakt" class="btn btn-brass px-7 py-3.5 text-sm shrink-0">Bestill befaring
+        <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </div>
+  <div id="svcPreview"><img data-i="0" src="images/photo-22.jpg" alt=""><img data-i="1" src="images/photo-26.jpg" alt=""><img data-i="2" src="images/photo-33.jpg" alt=""><img data-i="3" src="images/photo-31.jpg" alt=""><img data-i="4" src="images/photo-18.jpg" alt=""><img data-i="5" src="images/photo-03.jpg" alt=""><img data-i="6" src="images/photo-05.jpg" alt=""><img data-i="7" src="images/photo-14.jpg" alt=""></div>
+</section>
+
+<!-- ══════════ FØR / ETTER ══════════ -->
+<section class="py-24 md:py-32">
+  <div class="max-w-[1240px] mx-auto px-5 md:px-10">
+    <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+      <p class="reveal font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#9c7c3c]">Før / Etter</p>
+      <h2 class="reveal font-display font-light text-[clamp(2.1rem,4.5vw,3.6rem)] leading-tight tracking-tight mt-4">Dra i håndtaket.<br><em class="italic text-[#9c7c3c]">Se forskjellen.</em></h2>
+      <p class="reveal text-[#141310]/60 mt-4 text-[15px]">Totalrehabilitering av stue og kjøkken — Villa Nordstrand, 2025. Seks uker fra riving til ferdig vasket.</p>
+    </div>
+    <div class="reveal-scale relative rounded-[22px] md:rounded-[28px] overflow-hidden shadow-[0_40px_90px_-30px_rgba(20,19,16,.45)] select-none" id="baWrap">
+      <img src="images/photo-21.jpg" alt="Før rehabilitering" class="w-full h-[440px] md:h-[620px] object-cover" style="filter:grayscale(.85) sepia(.25) brightness(.62) contrast(.92)" draggable="false" loading="lazy">
+      <div id="baAfter" class="absolute inset-0">
+        <img src="images/photo-21.jpg" alt="Etter rehabilitering" class="w-full h-[440px] md:h-[620px] object-cover" draggable="false" loading="lazy">
+      </div>
+      <span class="ba-label absolute top-5 left-5 bg-black/45 text-white font-mono2 text-[11px] tracking-[0.2em] uppercase px-4 py-2 rounded-full border border-white/20">Før · 1978</span>
+      <span class="ba-label absolute top-5 right-5 bg-[#c9a961]/90 text-[#141310] font-mono2 text-[11px] tracking-[0.2em] uppercase px-4 py-2 rounded-full font-medium">Etter · 2025</span>
+      <div id="baHandle" class="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_20px_rgba(0,0,0,.5)] -translate-x-1/2 cursor-ew-resize">
+        <span class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 w-14 h-14 rounded-full bg-[#f1ede4] shadow-2xl flex items-center justify-center gap-[3px] border-4 border-[#141310]/10">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141310" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l-4 6 4 6M15 6l4 6-4 6"/></svg>
+        </span>
+      </div>
+    </div>
+    <div class="reveal mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <div class="bg-[#faf8f3] border border-[#141310]/10 rounded-2xl p-5"><p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-[#141310]/50">Omfang</p><p class="font-bold mt-1.5 text-[15px]">98 m² stue + kjøkken</p></div>
+      <div class="bg-[#faf8f3] border border-[#141310]/10 rounded-2xl p-5"><p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-[#141310]/50">Tidsbruk</p><p class="font-bold mt-1.5 text-[15px]">6 uker, til avtalt tid</p></div>
+      <div class="bg-[#faf8f3] border border-[#141310]/10 rounded-2xl p-5"><p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-[#141310]/50">Entreprise</p><p class="font-bold mt-1.5 text-[15px]">Totalentreprise m/ rør & elektro</p></div>
+      <div class="bg-[#141310] rounded-2xl p-5 flex items-center justify-between"><div><p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-white/50">Kunde</p><p class="font-bold mt-1.5 text-[15px] text-white">«Over all forventning» ★★★★★</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROSJEKTER ══════════ -->
+<section id="prosjekter" class="pb-24 md:pb-32">
+  <div class="max-w-[1440px] mx-auto px-5 md:px-10">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
+      <div>
+        <p class="reveal font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#9c7c3c] flex items-center gap-3"><span class="w-10 h-[1.5px] bg-[#9c7c3c] inline-block"></span>Utvalgte prosjekter</p>
+        <h2 class="reveal font-display font-light text-[clamp(2.1rem,4.5vw,3.8rem)] leading-[1.05] tracking-tight mt-5">Arbeid vi er <em class="italic text-[#9c7c3c]">stolte</em> av.</h2>
+      </div>
+      <p class="reveal text-[#141310]/60 max-w-sm text-[15px]">Et utvalg fra de siste to årene. Trykk på et prosjekt for å se flere bilder og detaljer.</p>
+    </div>
+    <div class="reveal flex gap-2.5 overflow-x-auto pb-2 -mx-5 px-5 md:mx-0 md:px-0 md:flex-wrap" id="filters">
+      <button data-f="alle" class="filter-pill active shrink-0 text-[13px] font-bold px-5 py-2.5 rounded-full border border-[#141310]/20">Alle</button>
+      <button data-f="rehab" class="filter-pill shrink-0 text-[13px] font-bold px-5 py-2.5 rounded-full border border-[#141310]/20">Rehabilitering</button>
+      <button data-f="tilbygg" class="filter-pill shrink-0 text-[13px] font-bold px-5 py-2.5 rounded-full border border-[#141310]/20">Tilbygg</button>
+      <button data-f="kjokken" class="filter-pill shrink-0 text-[13px] font-bold px-5 py-2.5 rounded-full border border-[#141310]/20">Kjøkken</button>
+      <button data-f="ute" class="filter-pill shrink-0 text-[13px] font-bold px-5 py-2.5 rounded-full border border-[#141310]/20">Terrasse & ute</button>
+      <button data-f="snekker" class="filter-pill shrink-0 text-[13px] font-bold px-5 py-2.5 rounded-full border border-[#141310]/20">Snekkerarbeid</button>
+    </div>
+    <div class="relative grid md:grid-cols-12 gap-4 md:gap-5 mt-6" id="projGrid"></div>
+    <div class="reveal mt-10 text-center">
+      <a href="#kontakt" class="btn btn-outline px-8 py-4 text-[15px]">Diskuter ditt prosjekt med oss
+        <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROSESS ══════════ -->
+<section id="prosess" class="bg-[#e8e2d3] py-24 md:py-32 rounded-[28px] md:rounded-[40px] mx-2 md:mx-4">
+  <div class="max-w-[1240px] mx-auto px-5 md:px-10">
+    <div class="text-center max-w-2xl mx-auto mb-14 md:mb-20">
+      <p class="reveal font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#9c7c3c]">Slik jobber vi</p>
+      <h2 class="reveal font-display font-light text-[clamp(2.1rem,4.5vw,3.6rem)] tracking-tight mt-4">Fra første telefon til <em class="italic text-[#9c7c3c]">ferdig nøkkel.</em></h2>
+    </div>
+    <div class="relative grid md:grid-cols-4 gap-5">
+      <div class="hidden md:block absolute top-[52px] left-[12%] right-[12%] h-[2px] bg-[#141310]/10 rounded"><div class="step-line absolute inset-0 bg-[#9c7c3c] origin-left" id="stepLine" style="transform:scaleX(0); transform-origin:left"></div></div>
+      <div class="reveal relative bg-[#faf8f3] rounded-3xl p-7 md:p-8 border border-[#141310]/10 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500">
+        <span class="w-[68px] h-[68px] rounded-2xl bg-[#141310] text-[#c9a961] font-display text-2xl flex items-center justify-center relative z-10">01</span>
+        <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-[#9c7c3c] mt-6">Dag 1–3 · Gratis</p>
+        <h3 class="font-display text-[26px] mt-2">Befaring & råd</h3>
+        <p class="text-[14.5px] text-[#141310]/65 leading-relaxed mt-3">Vi kommer hjem til deg, måler, lytter og gir ærlige faglige råd — uten salgspress. Du får referanseprosjekter å se på.</p>
+      </div>
+      <div class="reveal relative bg-[#faf8f3] rounded-3xl p-7 md:p-8 border border-[#141310]/10 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500" style="transition-delay:.1s">
+        <span class="w-[68px] h-[68px] rounded-2xl bg-[#141310] text-[#c9a961] font-display text-2xl flex items-center justify-center relative z-10">02</span>
+        <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-[#9c7c3c] mt-6">Uke 1 · Fastpris</p>
+        <h3 class="font-display text-[26px] mt-2">Tilbud & avtale</h3>
+        <p class="text-[14.5px] text-[#141310]/65 leading-relaxed mt-3">Spesifisert fastpristilbud med fremdriftsplan. Alt skriftlig etter bustadoppføringslova. Ingen skjulte tillegg.</p>
+      </div>
+      <div class="reveal relative bg-[#141310] text-[#f1ede4] rounded-3xl p-7 md:p-8 shadow-xl hover:-translate-y-1.5 transition-all duration-500" style="transition-delay:.2s">
+        <span class="w-[68px] h-[68px] rounded-2xl bg-[#c9a961] text-[#141310] font-display text-2xl flex items-center justify-center relative z-10">03</span>
+        <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-[#c9a961] mt-6">Byggeperiode</p>
+        <h3 class="font-display text-[26px] mt-2">Bygging & dialog</h3>
+        <p class="text-[14.5px] text-white/65 leading-relaxed mt-3">Fast prosjektleder, ukentlige oppdateringer med bilder, tildekking og ryddig byggeplass — hver eneste dag.</p>
+      </div>
+      <div class="reveal relative bg-[#faf8f3] rounded-3xl p-7 md:p-8 border border-[#141310]/10 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500" style="transition-delay:.3s">
+        <span class="w-[68px] h-[68px] rounded-2xl bg-[#141310] text-[#c9a961] font-display text-2xl flex items-center justify-center relative z-10">04</span>
+        <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-[#9c7c3c] mt-6">Overlevering + 5 år</p>
+        <h3 class="font-display text-[26px] mt-2">Ferdig & garanti</h3>
+        <p class="text-[14.5px] text-[#141310]/65 leading-relaxed mt-3">Gjennomgang med sjekkliste, FDV-dokumentasjon og 5 års garanti. Vi svarer også etter at vi har dratt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HÅNDVERK / VERKSTED ══════════ -->
+<section class="py-24 md:py-32">
+  <div class="max-w-[1440px] mx-auto px-5 md:px-10 grid lg:grid-cols-2 gap-6 items-stretch">
+    <div class="reveal-l relative rounded-[24px] overflow-hidden min-h-[480px] md:min-h-[620px] group">
+      <img id="craftImg" src="images/photo-12.jpg" alt="Håndverk på snekkerverkstedet" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" loading="lazy">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+      <div class="absolute bottom-0 p-7 md:p-10 text-white">
+        <p class="font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#c9a961]">Eget snekkerverksted · Billingstad</p>
+        <p class="font-display text-2xl md:text-[32px] leading-snug mt-3 font-light">«Vi lager det som ikke finnes å få kjøpt — <em class="italic">tilpasset din bolig på millimeteren.</em>»</p>
+        <p class="text-white/60 text-sm mt-4">— Morten Andersen, snekkermester</p>
+      </div>
+      <div class="absolute top-6 right-6 flex gap-2">
+        <button class="craft-dot w-2.5 h-2.5 rounded-full bg-white transition-all" data-src="images/photo-12.jpg"></button>
+        <button class="craft-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all" data-src="images/photo-10.jpg"></button>
+        <button class="craft-dot w-2.5 h-2.5 rounded-full bg-white/40 transition-all" data-src="images/photo-06.jpg"></button>
+      </div>
+    </div>
+    <div class="reveal-r bg-[#141310] text-[#f1ede4] rounded-[24px] p-7 md:p-12 flex flex-col justify-center">
+      <p class="font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#c9a961]">Hvorfor velge oss</p>
+      <h2 class="font-display font-light text-[clamp(1.9rem,3.5vw,3rem)] leading-tight tracking-tight mt-4">Håndverkere som behandler hjemmet ditt <em class="italic text-[#c9a961]">som sitt eget.</em></h2>
+      <div class="grid sm:grid-cols-2 gap-x-8 gap-y-7 mt-9">
+        <div class="flex gap-4"><span class="w-11 h-11 shrink-0 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.8" stroke-linecap="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 3.7-3.7z"/></svg></span><div><p class="font-bold text-[15px]">Eget verksted</p><p class="text-white/55 text-[13.5px] mt-1 leading-relaxed">Kjøkken, garderober og trapper bygges av oss — ikke flatpakket.</p></div></div>
+        <div class="flex gap-4"><span class="w-11 h-11 shrink-0 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><div><p class="font-bold text-[15px]">Dokumentert kvalitet</p><p class="text-white/55 text-[13.5px] mt-1 leading-relaxed">Mesterbrev, sentral godkjenning og full ansvarsforsikring.</p></div></div>
+        <div class="flex gap-4"><span class="w-11 h-11 shrink-0 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 9h18"/></svg></span><div><p class="font-bold text-[15px]">Holder tidsfrister</p><p class="text-white/55 text-[13.5px] mt-1 leading-relaxed">98 % av prosjektene overleveres til avtalt dato.</p></div></div>
+        <div class="flex gap-4"><span class="w-11 h-11 shrink-0 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.8" stroke-linecap="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg></span><div><p class="font-bold text-[15px]">Ærlig kommunikasjon</p><p class="text-white/55 text-[13.5px] mt-1 leading-relaxed">Ukentlig status med bilder. Du vet alltid hva som skjer.</p></div></div>
+      </div>
+      <div class="mt-9 pt-7 border-t border-white/10 flex flex-wrap items-center gap-x-8 gap-y-3 font-mono2 text-[11px] tracking-[0.18em] uppercase text-white/45">
+        <span>✓ Mesterbrev</span><span>✓ Sentral godkjenning</span><span>✓ StartBANK</span><span>✓ Godkjent opplæringsbedrift</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ANMELDELSER ══════════ -->
+<section id="anmeldelser" class="pb-24 md:pb-32">
+  <div class="max-w-[1240px] mx-auto px-5 md:px-10">
+    <div class="reveal bg-[#faf8f3] border border-[#141310]/10 rounded-[24px] md:rounded-[32px] p-7 md:p-14 overflow-hidden relative">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+        <div>
+          <p class="font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#9c7c3c]">Kundeomtaler</p>
+          <h2 class="font-display font-light text-[clamp(1.9rem,3.8vw,3rem)] tracking-tight mt-3">187 anmeldelser. <em class="italic text-[#9c7c3c]">4,9 i snitt.</em></h2>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="flex -space-x-3">
+            <span class="w-11 h-11 rounded-full bg-[#141310] text-white text-xs font-bold flex items-center justify-center border-2 border-[#faf8f3]">KH</span>
+            <span class="w-11 h-11 rounded-full bg-[#9c7c3c] text-white text-xs font-bold flex items-center justify-center border-2 border-[#faf8f3]">ML</span>
+            <span class="w-11 h-11 rounded-full bg-[#5c6650] text-white text-xs font-bold flex items-center justify-center border-2 border-[#faf8f3]">SO</span>
+            <span class="w-11 h-11 rounded-full bg-[#faf8f3] border-2 border-[#141310]/15 text-[10px] font-bold flex items-center justify-center">187+</span>
+          </div>
+          <div class="flex gap-2">
+            <button id="tstPrev" aria-label="Forrige" class="w-12 h-12 rounded-full border border-[#141310]/20 flex items-center justify-center hover:bg-[#141310] hover:text-white transition-all"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+            <button id="tstNext" aria-label="Neste" class="w-12 h-12 rounded-full border border-[#141310]/20 flex items-center justify-center hover:bg-[#141310] hover:text-white transition-all"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="overflow-hidden" id="tstView">
+        <div class="flex" id="tstTrack"></div>
+      </div>
+      <div class="flex items-center justify-center gap-2 mt-8" id="tstDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRISGUIDE + CTA ══════════ -->
+<section class="pb-24 md:pb-32">
+  <div class="max-w-[1240px] mx-auto px-5 md:px-10 grid lg:grid-cols-5 gap-5">
+    <div class="reveal-l lg:col-span-3 bg-[#faf8f3] border border-[#141310]/10 rounded-[24px] p-7 md:p-11">
+      <p class="font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#9c7c3c]">Ærlig prisguide 2026</p>
+      <h2 class="font-display font-light text-[clamp(1.8rem,3.2vw,2.7rem)] tracking-tight mt-3">Hva koster det <em class="italic text-[#9c7c3c]">egentlig?</em></h2>
+      <p class="text-[#141310]/60 text-[14.5px] mt-3 max-w-md">Veiledende priser inkl. mva. basert på våre siste 120 prosjekter. Nøyaktig pris får du alltid på skriftlig fastpristilbud.</p>
+      <div class="mt-7 divide-y divide-[#141310]/10">
+        <div class="flex items-center justify-between py-4 gap-4"><div><p class="font-bold text-[15px]">Terrasse i MøreRoyal / kebony</p><p class="text-[13px] text-[#141310]/55">Inkl. grunnarbeid, rekkverk og beis</p></div><p class="font-display text-lg md:text-xl whitespace-nowrap">180–450<span class="text-sm">′</span></p></div>
+        <div class="flex items-center justify-between py-4 gap-4"><div><p class="font-bold text-[15px]">Kjøkken totalrenovering</p><p class="text-[13px] text-[#141310]/55">Snekret på mål, inkl. rørlegger og elektriker</p></div><p class="font-display text-lg md:text-xl whitespace-nowrap">450–950<span class="text-sm">′</span></p></div>
+        <div class="flex items-center justify-between py-4 gap-4"><div><p class="font-bold text-[15px]">Tilbygg 25–40 m²</p><p class="text-[13px] text-[#141310]/55">Nøkkelferdig, inkl. søknad og grunnmur</p></div><p class="font-display text-lg md:text-xl whitespace-nowrap">1,4–2,6 <span class="text-sm">mill</span></p></div>
+        <div class="flex items-center justify-between py-4 gap-4"><div><p class="font-bold text-[15px]">Fasade + etterisolering</p><p class="text-[13px] text-[#141310]/55">Ny kledning, vindsperre og maling, enebolig</p></div><p class="font-display text-lg md:text-xl whitespace-nowrap">550–980<span class="text-sm">′</span></p></div>
+      </div>
+      <p class="font-mono2 text-[10.5px] text-[#141310]/40 mt-4 tracking-wide">′ = tusen kroner · Alle priser inkl. mva.</p>
+    </div>
+    <div class="reveal-r lg:col-span-2 relative rounded-[24px] overflow-hidden min-h-[420px] flex flex-col justify-end p-7 md:p-10">
+      <img src="images/photo-08.jpg" alt="Terrasse i kveldssol" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#141310]/95 via-[#141310]/45 to-transparent"></div>
+      <div class="relative text-white">
+        <span class="inline-flex items-center gap-2 bg-[#c9a961] text-[#141310] font-bold text-[12px] px-4 py-1.5 rounded-full"><span class="w-2 h-2 rounded-full bg-[#141310] animate-pulse"></span>3 ledige tidsluker våren 2026</span>
+        <h3 class="font-display font-light text-[clamp(1.7rem,3vw,2.5rem)] leading-tight mt-5">Få fastpris på ditt prosjekt — <em class="italic text-[#c9a961]">innen 5 dager.</em></h3>
+        <p class="text-white/70 text-[14.5px] mt-3">Gratis befaring i Oslo, Bærum, Asker og Lier. Uforpliktende og uten salgsmas.</p>
+        <a href="#kontakt" class="btn btn-light w-full justify-center py-4 mt-6 text-[15px]">Be om befaring nå
+          <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <p class="text-center text-white/50 text-[12.5px] mt-3">Svar innen 24 timer på hverdager</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ KONTAKT ══════════ -->
+<section id="kontakt" class="bg-[#141310] text-[#f1ede4] py-24 md:py-32 rounded-[28px] md:rounded-[40px] mx-2 md:mx-4 mb-2 md:mb-4 relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#9c7c3c]/10 blur-[120px] pointer-events-none"></div>
+  <div class="relative max-w-[1240px] mx-auto px-5 md:px-10 grid lg:grid-cols-2 gap-12 lg:gap-16">
+    <div>
+      <p class="reveal font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#c9a961] flex items-center gap-3"><span class="w-10 h-[1.5px] bg-[#c9a961] inline-block"></span>Kontakt oss</p>
+      <h2 class="reveal font-display font-light text-[clamp(2.2rem,4.5vw,3.8rem)] leading-[1.03] tracking-tight mt-5">Fortell oss om <em class="italic text-[#c9a961]">prosjektet ditt.</em></h2>
+      <p class="reveal text-white/60 mt-5 text-[15.5px] leading-relaxed max-w-md">Fyll ut skjemaet — vi ringer deg innen én virkedag for en uforpliktende prat og avtaler befaring.</p>
+      <div class="reveal mt-9 space-y-5">
+        <a href="tel:+4767123450" class="flex items-center gap-5 group">
+          <span class="w-[52px] h-[52px] rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center group-hover:bg-[#c9a961] group-hover:border-[#c9a961] transition-all"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" class="text-[#c9a961] group-hover:text-[#141310] transition-colors"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg></span>
+          <span><span class="block font-mono2 text-[10.5px] tracking-[0.2em] uppercase text-white/45">Telefon · Man–Fre 07–16</span><span class="block font-bold text-lg mt-0.5 group-hover:text-[#c9a961] transition-colors">67 12 34 50</span></span>
+        </a>
+        <a href="mailto:post@andersenbygg.no" class="flex items-center gap-5 group">
+          <span class="w-[52px] h-[52px] rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center group-hover:bg-[#c9a961] group-hover:border-[#c9a961] transition-all"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" class="text-[#c9a961] group-hover:text-[#141310] transition-colors"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></span>
+          <span><span class="block font-mono2 text-[10.5px] tracking-[0.2em] uppercase text-white/45">E-post · Svar innen 24 t</span><span class="block font-bold text-lg mt-0.5 group-hover:text-[#c9a961] transition-colors">post@andersenbygg.no</span></span>
+        </a>
+        <div class="flex items-center gap-5">
+          <span class="w-[52px] h-[52px] rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1.8" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span><span class="block font-mono2 text-[10.5px] tracking-[0.2em] uppercase text-white/45">Verksted & kontor</span><span class="block font-bold text-lg mt-0.5">Verkstedveien 14, 1383 Asker</span></span>
+        </div>
+      </div>
+      <div class="reveal mt-9 flex flex-wrap gap-2">
+        <span class="font-mono2 text-[11px] tracking-wider uppercase border border-white/15 rounded-full px-4 py-2 text-white/60">Oslo</span>
+        <span class="font-mono2 text-[11px] tracking-wider uppercase border border-white/15 rounded-full px-4 py-2 text-white/60">Bærum</span>
+        <span class="font-mono2 text-[11px] tracking-wider uppercase border border-white/15 rounded-full px-4 py-2 text-white/60">Asker</span>
+        <span class="font-mono2 text-[11px] tracking-wider uppercase border border-white/15 rounded-full px-4 py-2 text-white/60">Lier</span>
+        <span class="font-mono2 text-[11px] tracking-wider uppercase border border-white/15 rounded-full px-4 py-2 text-white/60">Nesodden</span>
+        <span class="font-mono2 text-[11px] tracking-wider uppercase border border-white/15 rounded-full px-4 py-2 text-white/60">+ omegn</span>
+      </div>
+    </div>
+
+    <div class="reveal-r bg-[#f1ede4] text-[#141310] rounded-[24px] p-6 md:p-10 shadow-2xl relative overflow-hidden">
+      <form id="quoteForm" novalidate>
+        <div class="flex items-center justify-between mb-7">
+          <h3 class="font-display text-2xl md:text-[28px]">Be om tilbud</h3>
+          <span class="font-mono2 text-[10.5px] tracking-[0.15em] uppercase bg-[#141310] text-[#c9a961] px-3.5 py-1.5 rounded-full">Svar innen 24 t</span>
+        </div>
+        <p class="font-bold text-[13.5px] mb-3">Hva gjelder det? <span class="font-normal text-[#141310]/50">— velg én eller flere</span></p>
+        <div class="flex flex-wrap gap-2 mb-6" id="chipWrap">
+          <button type="button" class="chip text-[13px] font-bold px-4 py-2 rounded-full border border-[#141310]/20">Tilbygg</button>
+          <button type="button" class="chip text-[13px] font-bold px-4 py-2 rounded-full border border-[#141310]/20">Rehabilitering</button>
+          <button type="button" class="chip text-[13px] font-bold px-4 py-2 rounded-full border border-[#141310]/20">Kjøkken</button>
+          <button type="button" class="chip text-[13px] font-bold px-4 py-2 rounded-full border border-[#141310]/20">Terrasse</button>
+          <button type="button" class="chip text-[13px] font-bold px-4 py-2 rounded-full border border-[#141310]/20">Fasade / tak</button>
+          <button type="button" class="chip text-[13px] font-bold px-4 py-2 rounded-full border border-[#141310]/20">Oppussing inne</button>
+          <button type="button" class="chip text-[13px] font-bold px-4 py-2 rounded-full border border-[#141310]/20">Annet</button>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label class="font-bold text-[13.5px] block mb-2" for="fNavn">Navn *</label><input id="fNavn" type="text" placeholder="Ola Nordmann" class="field px-4 py-3.5 text-[15px]" autocomplete="name"></div>
+          <div><label class="font-bold text-[13.5px] block mb-2" for="fTlf">Telefon *</label><input id="fTlf" type="tel" placeholder="900 00 000" class="field px-4 py-3.5 text-[15px]" autocomplete="tel" inputmode="tel"></div>
+        </div>
+        <div class="mt-4"><label class="font-bold text-[13.5px] block mb-2" for="fEpost">E-post *</label><input id="fEpost" type="email" placeholder="ola@eksempel.no" class="field px-4 py-3.5 text-[15px]" autocomplete="email"></div>
+        <div class="mt-6">
+          <div class="flex items-center justify-between mb-3"><label class="font-bold text-[13.5px]" for="fBudsjett">Omtrentlig budsjett</label><span id="budOut" class="font-display text-xl text-[#7d6330]">ca. 500 000 kr</span></div>
+          <input id="fBudsjett" type="range" min="50000" max="3000000" step="50000" value="500000">
+          <div class="flex justify-between font-mono2 text-[10px] text-[#141310]/45 mt-1.5"><span>50′</span><span>3 mill</span></div>
+        </div>
+        <div class="mt-5"><label class="font-bold text-[13.5px] block mb-2" for="fMsg">Fortell kort om prosjektet *</label><textarea id="fMsg" rows="4" placeholder="F.eks: Vi ønsker å bygge tilbygg på ca. 30 m² med stue og bad. Huset er fra 1985 og ligger på Stabekk …" class="field px-4 py-3.5 text-[15px] resize-none"></textarea></div>
+        <label class="flex items-start gap-3 mt-5 cursor-pointer group">
+          <input id="fSamtykke" type="checkbox" class="mt-1 w-[18px] h-[18px] accent-[#9c7c3c]">
+          <span class="text-[13px] text-[#141310]/60 leading-relaxed">Jeg samtykker til at Andersen Bygg AS lagrer opplysningene for å behandle henvendelsen. <span class="underline">Personvernerklæring</span></span>
+        </label>
+        <p id="formErr" class="hidden text-[13.5px] font-bold text-[#b3402e] mt-4 bg-[#b3402e]/10 border border-[#b3402e]/25 rounded-xl px-4 py-3"></p>
+        <button type="submit" id="sendBtn" class="btn btn-dark w-full justify-center py-4.5 mt-6 text-[16px] py-4">
+          <span id="sendTxt">Send forespørsel om befaring</span>
+          <svg id="sendArr" class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span id="sendSpin" class="spinner hidden"></span>
+        </button>
+        <p class="text-center text-[12.5px] text-[#141310]/50 mt-3.5">Helt uforpliktende · Ingen spam · Org.nr 912 345 678</p>
+      </form>
+      <div id="formDone" class="hidden text-center py-10">
+        <div class="check-pop w-20 h-20 rounded-full bg-[#2e5c3a] mx-auto flex items-center justify-center">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3 class="font-display text-3xl mt-6">Takk! Vi tar kontakt.</h3>
+        <p class="text-[#141310]/65 mt-3 max-w-sm mx-auto text-[15px] leading-relaxed">Forespørselen din er mottatt. En prosjektleder ringer deg innen én virkedag — som regel mye raskere.</p>
+        <div class="inline-flex items-center gap-3 bg-white border border-[#141310]/10 rounded-2xl px-6 py-4 mt-6">
+          <span class="font-mono2 text-[11px] tracking-[0.2em] uppercase text-[#141310]/50">Ditt referansenummer</span>
+          <span class="font-mono2 font-medium text-lg" id="refNr">AB-2026-0000</span>
+        </div>
+        <div><button id="formReset" class="btn btn-outline px-6 py-3 text-sm mt-7">Send ny henvendelse</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="py-24 md:py-28">
+  <div class="max-w-[860px] mx-auto px-5 md:px-10">
+    <div class="text-center mb-10">
+      <p class="reveal font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#9c7c3c]">Spørsmål & svar</p>
+      <h2 class="reveal font-display font-light text-[clamp(1.9rem,4vw,3rem)] tracking-tight mt-3">Det kundene <em class="italic text-[#9c7c3c]">lurer mest</em> på.</h2>
+    </div>
+    <div id="faqWrap" class="reveal space-y-3"></div>
+  </div>
+</section>
+
+<!-- ══════════ STOR CTA ══════════ -->
+<section class="px-2 md:px-4 pb-2 md:pb-4">
+  <div class="reveal-scale relative rounded-[28px] md:rounded-[40px] overflow-hidden min-h-[480px] md:min-h-[560px] flex items-center justify-center text-center">
+    <img src="images/photo-16.jpg" alt="Norsk kveldsstemning" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+    <div class="absolute inset-0 bg-[#141310]/60"></div>
+    <div class="relative px-6 py-20 max-w-3xl">
+      <p class="font-mono2 text-[11px] tracking-[0.3em] uppercase text-[#c9a961]">Klar når du er klar</p>
+      <h2 class="font-display font-light text-white text-[clamp(2.3rem,6vw,4.5rem)] leading-[1.02] tracking-tight mt-5">La oss bygge noe som <em class="italic text-[#c9a961]">varer.</em></h2>
+      <p class="text-white/70 mt-5 text-[15.5px] md:text-lg max-w-xl mx-auto">Gratis befaring, fastpris og håndverkere du får lyst til å anbefale videre.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+        <a href="#kontakt" class="btn btn-brass px-8 py-4 text-[15px] justify-center">Få tilbud
+          <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a href="tel:+4767123450" class="btn btn-ghost px-8 py-4 text-[15px] justify-center">Ring 67 12 34 50</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="bg-[#141310] text-[#f1ede4] pt-16 md:pt-20 pb-28 md:pb-8 mt-0">
+  <div class="max-w-[1440px] mx-auto px-5 md:px-10">
+    <div class="grid md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+      <div class="md:col-span-4">
+        <div class="flex items-center gap-3">
+          <span class="w-11 h-11 rounded-xl bg-[#c9a961] text-[#141310] flex items-center justify-center"><span class="font-display text-[22px] font-medium pt-[2px]">A</span></span>
+          <span><span class="block font-extrabold tracking-tight text-[17px]">ANDERSEN BYGG</span><span class="block font-mono2 text-[9.5px] tracking-[0.32em] text-white/50 mt-1">BYGGMESTER · AS</span></span>
+        </div>
+        <p class="text-white/55 text-[14px] leading-relaxed mt-5 max-w-xs">Byggmester og snekkerverksted i Asker. Vi bygger og rehabiliterer boliger i Oslo og Akershus — solid, ærlig og til avtalt tid.</p>
+        <div class="flex gap-2.5 mt-6">
+          <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-[#c9a961] hover:border-[#c9a961] hover:text-[#141310] transition-all"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5V11H8.5v3H11v7h2.5z"/></svg></a>
+          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-[#c9a961] hover:border-[#c9a961] hover:text-[#141310] transition-all"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-[#c9a961] hover:border-[#c9a961] hover:text-[#141310] transition-all"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.8v12H3v-12h3.5zM4.7 3.5a2 2 0 1 1 0 4.1 2 2 0 0 1 0-4.1zM21 13.4v7.4h-3.5v-6.9c0-1.7-.6-2.6-2.1-2.6-1.2 0-1.8.8-2.1 1.5-.1.3-.1.7-.1 1v7H9.7V8.8h3.5v1.6c.5-.7 1.3-1.8 3.2-1.8 2.3 0 4.6 1.5 4.6 4.8z"/></svg></a>
+        </div>
+      </div>
+      <div class="md:col-span-2">
+        <p class="font-mono2 text-[11px] tracking-[0.25em] uppercase text-white/40 mb-5">Tjenester</p>
+        <ul class="space-y-3 text-[14px] text-white/70">
+          <li><a href="#tjenester" class="hover:text-[#c9a961] transition-colors">Rehabilitering</a></li>
+          <li><a href="#tjenester" class="hover:text-[#c9a961] transition-colors">Tilbygg & påbygg</a></li>
+          <li><a href="#tjenester" class="hover:text-[#c9a961] transition-colors">Kjøkken</a></li>
+          <li><a href="#tjenester" class="hover:text-[#c9a961] transition-colors">Terrasse & uteplass</a></li>
+          <li><a href="#tjenester" class="hover:text-[#c9a961] transition-colors">Fasade & tak</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-2">
+        <p class="font-mono2 text-[11px] tracking-[0.25em] uppercase text-white/40 mb-5">Firma</p>
+        <ul class="space-y-3 text-[14px] text-white/70">
+          <li><a href="#om-oss" class="hover:text-[#c9a961] transition-colors">Om oss</a></li>
+          <li><a href="#prosjekter" class="hover:text-[#c9a961] transition-colors">Prosjekter</a></li>
+          <li><a href="#prosess" class="hover:text-[#c9a961] transition-colors">Prosess</a></li>
+          <li><a href="#anmeldelser" class="hover:text-[#c9a961] transition-colors">Anmeldelser</a></li>
+          <li><a href="#kontakt" class="hover:text-[#c9a961] transition-colors">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-4">
+        <p class="font-mono2 text-[11px] tracking-[0.25em] uppercase text-white/40 mb-5">Kontakt</p>
+        <ul class="space-y-3 text-[14px] text-white/70">
+          <li>Verkstedveien 14, 1383 Asker</li>
+          <li><a href="tel:+4767123450" class="hover:text-[#c9a961] transition-colors font-bold text-white">67 12 34 50</a> <span class="text-white/40">· Man–Fre 07–16</span></li>
+          <li><a href="mailto:post@andersenbygg.no" class="hover:text-[#c9a961] transition-colors">post@andersenbygg.no</a></li>
+          <li class="text-white/40">Org.nr 912 345 678 MVA</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-brass px-6 py-3 text-sm mt-6">Be om befaring
+          <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="pt-7 flex flex-col md:flex-row items-center justify-between gap-4 text-[12.5px] text-white/35">
+      <p>© <span id="year">2026</span> Andersen Bygg AS · Alle rettigheter reservert</p>
+      <p class="font-mono2 text-[11px] tracking-wider">MESTERBREV · SENTRAL GODKJENNING · 5 ÅRS GARANTI</p>
+      <div class="flex gap-6"><a href="#" class="hover:text-white/70">Personvern</a><a href="#" class="hover:text-white/70">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ LIGHTBOX ══════════ -->
+<div id="lightbox" class="fixed inset-0 z-[150] bg-[#141310]/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8">
+  <div class="lb-panel bg-[#f1ede4] rounded-[22px] max-w-5xl w-full max-h-[92vh] overflow-y-auto grid md:grid-cols-5">
+    <div class="md:col-span-3 bg-black md:rounded-l-[22px] overflow-hidden relative min-h-[300px]">
+      <img id="lbImg" src="" alt="" class="w-full h-[320px] md:h-full md:min-h-[560px] object-cover">
+      <button id="lbPrev" aria-label="Forrige bilde" class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 backdrop-blur-md text-white flex items-center justify-center hover:bg-[#c9a961] hover:text-[#141310] transition-all"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button id="lbNext" aria-label="Neste bilde" class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 backdrop-blur-md text-white flex items-center justify-center hover:bg-[#c9a961] hover:text-[#141310] transition-all"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      <span id="lbCount" class="absolute bottom-4 left-4 font-mono2 text-[11px] tracking-widest bg-black/50 text-white px-3 py-1.5 rounded-full backdrop-blur">1 / 3</span>
+    </div>
+    <div class="md:col-span-2 p-7 md:p-9 flex flex-col">
+      <div class="flex items-start justify-between gap-4">
+        <div><p id="lbCat" class="font-mono2 text-[10.5px] tracking-[0.22em] uppercase text-[#9c7c3c]"></p><h3 id="lbTitle" class="font-display text-[28px] md:text-[32px] leading-tight mt-2"></h3></div>
+        <button id="lbClose" aria-label="Lukk" class="w-11 h-11 shrink-0 rounded-full border border-[#141310]/20 flex items-center justify-center hover:bg-[#141310] hover:text-white transition-all"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      </div>
+      <p id="lbDesc" class="text-[14.5px] text-[#141310]/70 leading-relaxed mt-4"></p>
+      <div id="lbFacts" class="grid grid-cols-2 gap-2.5 mt-6"></div>
+      <div class="flex gap-2.5 mt-5" id="lbThumbs"></div>
+      <a href="#kontakt" id="lbCta" class="btn btn-dark w-full justify-center py-3.5 mt-7 text-sm">Vil du ha noe lignende?
+        <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ FLYTENDE ELEMENTER ══════════ -->
+<div id="mobileCta" class="fixed bottom-0 left-0 right-0 z-[90] md:hidden bg-[#141310]/95 backdrop-blur-lg border-t border-white/10 px-4 py-3 flex gap-2.5" style="padding-bottom:calc(0.75rem + env(safe-area-inset-bottom))">
+  <a href="tel:+4767123450" class="btn flex-1 justify-center py-3 text-sm border border-white/25 text-white">Ring oss</a>
+  <a href="#kontakt" class="btn btn-brass flex-1 justify-center py-3 text-sm">Få tilbud</a>
+</div>
+<button id="toTop" aria-label="Tilbake til toppen" class="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-[90] w-12 h-12 rounded-full bg-[#141310] text-[#f1ede4] shadow-2xl flex items-center justify-center hover:bg-[#9c7c3c]"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<div id="toast" class="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 z-[160] bg-[#141310] text-white pl-4 pr-6 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 max-w-[92vw]">
+  <span class="w-9 h-9 rounded-full bg-[#2e5c3a] flex items-center justify-center shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+  <span id="toastTxt" class="text-[14px] font-semibold">Takk! Vi tar kontakt innen 24 timer.</span>
+</div>
+
+<script>
+/* ── DATA ─────────────────────────────── */
+const SERVICES = [
+  {t:"Rehabilitering", d:"Totalrenovering av boliger fra grunnmur til møne.", tags:["Bad & våtrom","Bærekonstruksjon","Etterisolering"], img:0, pris:"Fra 28 000 kr/m²", body:"Vi tar hele boligen eller enkeltetasjer — inkludert riving, nye tekniske anlegg, isolering og overflater. Du får én kontrakt, én prosjektleder og full dokumentasjon."},
+  {t:"Tilbygg & påbygg", d:"Mer plass uten å flytte. Søknad til ferdig rom.", tags:["Arkitekt & søknad","Grunnmur","Nøkkelferdig"], img:1, pris:"Fra 55 000 kr/m²", body:"Vi hjelper med tegninger, nabovarsel og byggesøknad, og bygger tilbygget nøkkelferdig. De fleste tilbygg på 25–40 m² ferdigstilles på 10–14 uker."},
+  {t:"Terrasse & uteplass", d:"Uterom i MøreRoyal, kebony eller termotre.", tags:["Grunnarbeid","Rekkverk & levegg","Belysning"], img:2, pris:"Fra 4 500 kr/m²", body:"Drenerende grunnarbeid, solid bærekonstruksjon og materialer som tåler norsk klima. Vi bygger også overbygg, utekjøkken og trappeløsninger."},
+  {t:"Kjøkken", d:"Snekret på mål eller montering av kvalitetskjøkken.", tags:["På mål i verksted","Benkeplater i stein","Rør & elektro inkludert"], img:3, pris:"Fra 450 000 kr", body:"Vårt snekkerverksted bygger fronter og innredning på millimeteren, eller vi monterer kjøkken fra danske og norske leverandører — komplett med hvitevarer og flis."},
+  {t:"Innvendig oppussing", d:"Gulv, vegger, tak og overflater som løfter alt.", tags:["Parkett & flis","Sparkling & maling","Listverk"], img:4, pris:"Fra 3 800 kr/m²", body:"Helhetlig oppussing av stue, soverom, gang og trapperom. Vi beskytter resten av boligen med støvvegger og overtrykk — du kan bo hjemme underveis."},
+  {t:"Fasade & kledning", d:"Ny fasade med etterisolering og lang levetid.", tags:["Vindsperre","Lufting & beslag","Maling"], img:5, pris:"Fra 3 200 kr/m²", body:"Utskifting av kledning med korrekt lufting, nye vinduer og beslag. Vi dokumenterer alle sjikt med bilder og gir 5 års garanti på utførelsen."},
+  {t:"Takararbeid", d:"Taktekking, takrenner og undertak som holder tett.", tags:["Shingel & takstein","Undertak & sløyfer","Snøfangere"], img:6, pris:"Fra 2 900 kr/m²", body:"Komplett omtekking med nytt undertak, ventilasjon og beslag — eller punktreparasjoner og lekkasjesøk. Vi samarbeider med blikkenslager for piper og beslag."},
+  {t:"Spesialsnekkering", d:"Bibliotek, garderober, trapper og unike detaljer.", tags:["Heltre eik & valnøtt","Trapper","Dører & vinduer"], img:7, pris:"Etter befaring", body:"I verkstedet på Billingstad lager vi det ingen andre har: skyvedører i eik, bokhyller vegg-til-vegg, kjøkkenøyer og trapper. Tegning og 3D-visualisering inngår."}
+];
+const PROJECTS = [
+  {cat:"rehab", catN:"Rehabilitering", title:"Villa Nordstrand", place:"Nordstrand, Oslo", year:"2025", span:"md:col-span-7", h:"h-[340px] md:h-[480px]",
+   imgs:["images/photo-20.jpg","images/photo-30.jpg","images/photo-19.jpg"],
+   desc:"Totalrehabilitering av enebolig fra 1978: ny planløsning med åpen kjøkkenløsning, to nye bad, etterisolering og nye overflater i hele huset. Familien bodde i sokkelleilighet under byggeperioden.", facts:[["Omfang","142 m²"],["Tid","11 uker"],["Type","Totalentreprise"],["Kunde","★★★★★ «Sømløst»"]]},
+  {cat:"tilbygg", catN:"Tilbygg", title:"Tilbygg i eik & glass", place:"Asker", year:"2025", span:"md:col-span-5", h:"h-[340px] md:h-[480px]",
+   imgs:["images/photo-25.jpg","images/photo-17.jpg","images/photo-09.jpg"],
+   desc:"32 m² tilbygg med dobbel glassfasade mot hagen, eikegulv med varme og sedumtak. Vi håndterte arkitekt, søknad og alt av grunnarbeid — overlevert nøkkelferdig to dager før avtalt.", facts:[["Omfang","32 m²"],["Tid","12 uker"],["Type","Nøkkelferdig"],["Kunde","★★★★★ «Presist»"]]},
+  {cat:"kjokken", catN:"Kjøkken", title:"Kjøkken på Frogner", place:"Frogner, Oslo", year:"2024", span:"md:col-span-5", h:"h-[320px] md:h-[420px]",
+   imgs:["images/photo-30.jpg","images/photo-28.jpg","images/photo-24.jpg"],
+   desc:"Skreddersydd kjøkken i eik og linoljeum med benkeplate i børstet marmor, integrerte hvitevarer og skjult ventilasjon. Fronter og øy snekret i vårt eget verksted.", facts:[["Omfang","18 m²"],["Tid","4 uker"],["Type","Snekret på mål"],["Kunde","★★★★★ «Drømmen»"]]},
+  {cat:"ute", catN:"Terrasse & ute", title:"Terrasse på 120 m²", place:"Høvik, Bærum", year:"2024", span:"md:col-span-7", h:"h-[320px] md:h-[420px]",
+   imgs:["images/photo-32.jpg","images/photo-15.jpg","images/photo-09.jpg"],
+   desc:"Terrasse i kebony med soner for utespisestue, lounge og utekjøkken. Innebygd LED-belysning, glassrekkverk og levegg i spiler — bygget for kveldssol og norske vintre.", facts:[["Omfang","120 m²"],["Tid","5 uker"],["Type","Fastpris"],["Kunde","★★★★★ «Magisk»"]]},
+  {cat:"rehab", catN:"Fasade & tak", title:"Fasade & tak Ullern", place:"Ullern, Oslo", year:"2024", span:"md:col-span-7", h:"h-[320px] md:h-[420px]",
+   imgs:["images/photo-02.jpg","images/photo-04.jpg","images/photo-07.jpg"],
+   desc:"Komplett utvendig løft: ny kledning med 10 cm etterisolering, omtekking med dobbeltfalset takstein, nye vinduer og beslag. Energiforbruket sank med 38 %.", facts:[["Omfang","210 m²"],["Tid","8 uker"],["Type","Totalentreprise"],["Kunde","★★★★★ «Trygt»"]]},
+  {cat:"snekker", catN:"Snekkerarbeid", title:"Bibliotek i valnøtt", place:"Holmenkollen, Oslo", year:"2023", span:"md:col-span-5", h:"h-[320px] md:h-[420px]",
+   imgs:["images/photo-19.jpg","images/photo-13.jpg","images/photo-11.jpg"],
+   desc:"Vegg-til-vegg bibliotek i amerikansk valnøtt med skyvestige, integrert belysning og skjult dør til kontor. Tegnet, bygget og montert av våre snekkermestere.", facts:[["Omfang","9 løpemeter"],["Tid","3 uker"],["Type","Verkstedarbeid"],["Kunde","★★★★★ «Kunst»"]]}
+];
+const TESTIMONIALS = [
+  {q:"Andersen Bygg bygget tilbygg for oss i fjor. Fastpris holdt på krona, byggeplassen var strøken hver ettermiddag, og kommunikasjonen var upåklagelig. Vi anbefaler dem til alle vi kjenner.", n:"Kari & Henrik Larsen", p:"Tilbygg · Asker", i:"KH"},
+  {q:"Endelig et firma som gjør som avtalt. De snekret kjøkken på mål som ser ut som noe fra et interiørmagasin, og prosjektlederen sendte bilder hver fredag. Terningkast seks.", n:"Mari Lund", p:"Kjøkken · Frogner, Oslo", i:"ML"},
+  {q:"Vi rehabiliterte hele huset med dem — 140 kvadrat. Det er ikke småtteri å slippe fremmede inn i hjemmet i tre måneder, men gutta var høflige, presise og ryddige. Resultatet er over all forventning.", n:"Stig Olsen", p:"Rehabilitering · Nordstrand", i:"SO"},
+  {q:"Terrassen ble ferdig to dager før tiden, midt i den travleste sesongen. Naboe'n har allerede bestilt samme løsning. Solid håndverk og null stress fra start til slutt.", n:"Familien Berg", p:"Terrasse · Høvik, Bærum", i:"FB"}
+];
+const FAQS = [
+  ["Hva koster en befaring?","Befaring er alltid gratis og uforpliktende innenfor Oslo, Bærum, Asker, Lier og Nesodden. Vi bruker 30–60 minutter, måler, fotograferer og gir ærlige råd — også om vi mener du ikke trenger oss."],
+  ["Gir dere fastpris?","Ja. Etter befaring får du et spesifisert skriftlig tilbud med fastpris på avtalt omfang. Skulle du ønske endringer underveis, avtaler vi pris skriftlig før arbeidet utføres. Ingen overraskelser."],
+  ["Hvor lang ventetid har dere?","Det varierer med sesong. Akkurat nå har vi ledig kapasitet for oppstart av mellomstore prosjekter innen 4–8 uker. Mindre snekkeroppdrag kan ofte starte raskere. Ring oss for ærlig svar på dagsaktuell kapasitet."],
+  ["Kan vi bo hjemme under oppussingen?","I de fleste tilfeller, ja. Vi bygger støvvegger, bruker overtrykksventilasjon og rydder daglig. Ved totalrehabilitering av bad eller kjøkken avtaler vi løsninger så hverdagen fungerer — mange kunder bor hjemme under hele prosessen."],
+  ["Hvilke garantier gir dere?","Vi følger bustadoppføringslova og gir 5 års garanti på utført arbeid. I tillegg er vi mesterbedrift med sentral godkjenning, ansvarsforsikring og registrering i StartBANK. All dokumentasjon (FDV) overleveres ved ferdigstillelse."],
+  ["Hjelper dere med byggesøknad?","Ja, vi tar hele søknadsprosessen: tegninger via samarbeidende arkitekt, nabovarsel, ansvarsretter og dialog med kommunen. Søknadsarbeid prises separat og spesifiseres alltid i tilbudet."]
+];
+
+/* ── PRELOADER ────────────────────────── */
+(function(){
+  let p=0; const bar=document.getElementById('loadBar'), pct=document.getElementById('loadPct');
+  const t=setInterval(()=>{ p=Math.min(100,p+Math.random()*22); bar.style.width=p+'%'; pct.textContent=Math.floor(p);
+    if(p>=100){ clearInterval(t); setTimeout(()=>document.getElementById('preloader').classList.add('done'),350); } },140);
+})();
+
+/* ── MARQUEE ──────────────────────────── */
+(function(){
+  const items=["Rehabilitering","Tilbygg","Terrasse","Kjøkken","Fasade","Takararbeid","Oppussing inne","Spesialsnekkering"];
+  const html=items.map(i=>`<span class="flex items-center gap-8"><span>${i}</span><span class="text-[#141310]/40">◆</span></span>`).join('');
+  document.getElementById('mq1').innerHTML=html; document.getElementById('mq2').innerHTML=html;
+})();
+
+/* ── HEADER / MENY ────────────────────── */
+const header=document.getElementById('header'), burger=document.getElementById('burger'), mmenu=document.getElementById('mmenu');
+let menuOpen=false;
+function setMenu(open){
+  menuOpen=open; mmenu.classList.toggle('open',open); document.body.style.overflow=open?'hidden':'';
+  document.getElementById('b1').style.transform=open?'rotate(45deg) translateY(3.5px)':'';
+  document.getElementById('b2').style.transform=open?'rotate(-45deg) translateY(-3.5px)':'';
+  burger.style.borderColor=open?'rgba(255,255,255,.4)':'';
+}
+burger.addEventListener('click',()=>setMenu(!menuOpen));
+document.querySelectorAll('.mnav').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+
+const toTop=document.getElementById('toTop'), mobileCta=document.getElementById('mobileCta');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  header.classList.toggle('scrolled',y>60);
+  toTop.classList.toggle('show',y>900);
+  mobileCta.classList.toggle('show',y>650);
+  const bb=burger.querySelectorAll('span');
+  if(!header.classList.contains('scrolled')&&!menuOpen){bb.forEach(s=>s.style.background='#fff');burger.style.borderColor='rgba(255,255,255,.3)';}
+  else if(!menuOpen){bb.forEach(s=>s.style.background='#141310');burger.style.borderColor='rgba(20,19,16,.25)';}
+  else{bb.forEach(s=>s.style.background='#fff');}
+},{passive:true});
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ── REVEAL & COUNTERS ────────────────── */
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.reveal-scale').forEach(el=>io.observe(el));
+
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting) return; cio.unobserve(e.target);
+  const el=e.target, to=+el.dataset.to, t0=performance.now();
+  (function tick(t){ const k=Math.min(1,(t-t0)/1600), ease=1-Math.pow(1-k,3);
+    el.textContent=Math.round(to*ease); if(k<1) requestAnimationFrame(tick); })(t0);
+}),{threshold:.4});
+document.querySelectorAll('.counter').forEach(el=>cio.observe(el));
+
+const sio=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ document.getElementById('stepLine').style.transform='scaleX(1)'; document.getElementById('stepLine').style.transition='transform 1.6s cubic-bezier(.16,1,.3,1) .3s'; sio.disconnect(); }}),{threshold:.3});
+sio.observe(document.getElementById('stepLine'));
+
+/* ── TJENESTER ────────────────────────── */
+const svcList=document.getElementById('svcList'), svcPrev=document.getElementById('svcPreview'), svcImgs=[...svcPrev.querySelectorAll('img')];
+svcList.innerHTML=SERVICES.map((s,i)=>`
+  <div class="svc-row ${i===0?'open':''} rounded-xl" data-i="${i}">
+    <button class="svc-head w-full flex items-center gap-4 md:gap-7 py-6 md:py-7 px-3 md:px-6 text-left cursor-pointer" aria-expanded="${i===0}">
+      <span class="font-mono2 text-[12px] text-[#c9a961]/70 w-7 shrink-0">0${i+1}</span>
+      <span class="flex-1 min-w-0">
+        <span class="svc-title block font-display font-light text-[24px] md:text-[38px] leading-tight tracking-tight transition-colors">${s.t}</span>
+        <span class="block text-white/50 text-[13.5px] md:text-[15px] mt-1">${s.d}</span>
+      </span>
+      <span class="hidden md:block font-mono2 text-[11px] tracking-[0.15em] uppercase text-white/40 border border-white/15 rounded-full px-4 py-2 shrink-0">${s.pris}</span>
+      <span class="svc-plus w-11 h-11 md:w-12 md:h-12 shrink-0 rounded-full border border-white/25 flex items-center justify-center text-xl font-light">+</span>
+    </button>
+    <div class="svc-body"><div class="px-3 md:px-6 pb-7 md:pl-[68px] grid md:grid-cols-[1fr_220px] gap-6">
+      <div>
+        <p class="text-white/70 text-[14.5px] leading-relaxed max-w-2xl">${s.body}</p>
+        <div class="flex flex-wrap gap-2 mt-4">${s.tags.map(t=>`<span class="text-[12px] font-bold bg-white/[0.07] border border-white/10 rounded-full px-3.5 py-1.5">${t}</span>`).join('')}</div>
+        <a href="#kontakt" class="inline-flex items-center gap-2 text-[#c9a961] font-bold text-[14px] mt-5 link-line">Be om pris på ${s.t.toLowerCase()} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <div class="md:hidden rounded-xl overflow-hidden h-44"><img src="${svcImgs[s.img].src}" alt="${s.t}" class="w-full h-full object-cover" loading="lazy"></div>
+    </div></div>
+  </div>`).join('');
+svcList.querySelectorAll('.svc-head').forEach(h=>h.addEventListener('click',()=>{
+  const row=h.parentElement, was=row.classList.contains('open');
+  svcList.querySelectorAll('.svc-row').forEach(r=>{r.classList.remove('open'); r.querySelector('.svc-head').setAttribute('aria-expanded','false');});
+  if(!was){row.classList.add('open'); h.setAttribute('aria-expanded','true');}
+}));
+/* hover preview (desktop) */
+if(window.matchMedia('(pointer:fine)').matches){
+  const sec=document.getElementById('tjenester');
+  svcList.querySelectorAll('.svc-row').forEach(r=>{
+    r.addEventListener('mouseenter',()=>{ svcImgs.forEach(im=>im.classList.toggle('active',+im.dataset.i===SERVICES[+r.dataset.i].img)); svcPrev.classList.add('show'); });
+  });
+  sec.addEventListener('mousemove',e=>{ svcPrev.style.left=(e.clientX+24)+'px'; svcPrev.style.top=(e.clientY-190)+'px'; });
+  sec.addEventListener('mouseleave',()=>svcPrev.classList.remove('show'));
+}
+
+/* ── FØR/ETTER ────────────────────────── */
+(function(){
+  const wrap=document.getElementById('baWrap'); let drag=false;
+  const set=x=>{ const r=wrap.getBoundingClientRect(); wrap.style.setProperty('--pos',Math.min(96,Math.max(4,(x-r.left)/r.width*100))+'%'); };
+  wrap.addEventListener('pointerdown',e=>{drag=true; wrap.setPointerCapture(e.pointerId); set(e.clientX);});
+  wrap.addEventListener('pointermove',e=>{ if(drag) set(e.clientX); });
+  wrap.addEventListener('pointerup',()=>drag=false); wrap.addEventListener('pointercancel',()=>drag=false);
+  /* intro-nudge */
+  const nio=new IntersectionObserver(es=>{ if(!es[0].isIntersecting) return; nio.disconnect();
+    let k=0; const t=setInterval(()=>{ k+=1; wrap.style.setProperty('--pos',(50+Math.sin(k/6)*14)+'%'); if(k>26){clearInterval(t); wrap.style.setProperty('--pos','50%');} },40);
+  },{threshold:.5}); nio.observe(wrap);
+})();
+
+/* ── PROSJEKTER + LIGHTBOX ────────────── */
+const grid=document.getElementById('projGrid');
+grid.innerHTML=PROJECTS.map((p,i)=>`
+  <article class="proj-card reveal in ${p.span} relative rounded-[20px] overflow-hidden cursor-pointer group bg-[#141310]" data-cat="${p.cat}" data-i="${i}" tabindex="0" role="button" aria-label="Se prosjekt ${p.title}">
+    <img src="${p.imgs[0]}" alt="${p.title} — ${p.place}" class="w-full ${p.h} object-cover" loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
+    <div class="absolute top-4 left-4 flex gap-2">
+      <span class="font-mono2 text-[10.5px] tracking-[0.15em] uppercase bg-[#f1ede4]/95 text-[#141310] font-medium px-3.5 py-1.5 rounded-full">${p.catN}</span>
+      <span class="font-mono2 text-[10.5px] tracking-[0.15em] uppercase bg-black/40 text-white px-3.5 py-1.5 rounded-full backdrop-blur border border-white/20">${p.year}</span>
+    </div>
+    <span class="proj-arrow absolute top-4 right-4 w-11 h-11 rounded-full border border-white/40 text-white flex items-center justify-center backdrop-blur"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-7 flex items-end justify-between gap-4">
+      <div><h3 class="font-display text-white text-[26px] md:text-[32px] leading-none">${p.title}</h3><p class="text-white/65 text-[13.5px] mt-2 font-medium">${p.place}</p></div>
+      <span class="hidden sm:inline text-white/0 group-hover:text-white/80 font-mono2 text-[11px] tracking-[0.2em] uppercase transition-all duration-500 translate-y-2 group-hover:translate-y-0">Se bilder →</span>
+    </div>
+  </article>`).join('');
+
+document.querySelectorAll('#filters button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  const f=b.dataset.f;
+  document.querySelectorAll('.proj-card').forEach(c=>{
+    const show=f==='alle'||c.dataset.cat===f||(f==='rehab'&&(c.dataset.cat==='rehab'))||(f==='ute'&&(c.dataset.cat==='ute'));
+    c.classList.toggle('hide',!show);
+  });
+}));
+
+/* lightbox */
+const lb=document.getElementById('lightbox'); let lbI=0, lbP=PROJECTS[0];
+function openLb(i){ lbP=PROJECTS[i]; lbI=0; renderLb(); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+function renderLb(){
+  const im=document.getElementById('lbImg'); im.style.opacity=0;
+  setTimeout(()=>{ im.src=lbP.imgs[lbI]; im.alt=lbP.title; im.onload=()=>im.style.opacity=1; setTimeout(()=>im.style.opacity=1,400); },120);
+  im.style.transition='opacity .3s';
+  document.getElementById('lbCat').textContent=lbP.catN+' · '+lbP.place+' · '+lbP.year;
+  document.getElementById('lbTitle').textContent=lbP.title;
+  document.getElementById('lbDesc').textContent=lbP.desc;
+  document.getElementById('lbCount').textContent=(lbI+1)+' / '+lbP.imgs.length;
+  document.getElementById('lbFacts').innerHTML=lbP.facts.map(f=>`<div class="bg-white border border-[#141310]/10 rounded-xl px-4 py-3"><p class="font-mono2 text-[9.5px] tracking-[0.18em] uppercase text-[#141310]/50">${f[0]}</p><p class="font-bold text-[14px] mt-0.5">${f[1]}</p></div>`).join('');
+  document.getElementById('lbThumbs').innerHTML=lbP.imgs.map((s,k)=>`<button class="lb-thumb ${k===lbI?'active':''} w-16 h-12 rounded-lg overflow-hidden" data-k="${k}"><img src="${s}" alt="" class="w-full h-full object-cover" loading="lazy"></button>`).join('');
+  document.querySelectorAll('.lb-thumb').forEach(t=>t.addEventListener('click',()=>{lbI=+t.dataset.k; renderLb();}));
+}
+function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+grid.querySelectorAll('.proj-card').forEach(c=>{
+  c.addEventListener('click',()=>openLb(+c.dataset.i));
+  c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault(); openLb(+c.dataset.i);} });
+});
+document.getElementById('lbClose').addEventListener('click',closeLb);
+document.getElementById('lbPrev').addEventListener('click',e=>{e.stopPropagation(); lbI=(lbI-1+lbP.imgs.length)%lbP.imgs.length; renderLb();});
+document.getElementById('lbNext').addEventListener('click',e=>{e.stopPropagation(); lbI=(lbI+1)%lbP.imgs.length; renderLb();});
+document.getElementById('lbCta').addEventListener('click',closeLb);
+lb.addEventListener('click',e=>{ if(e.target===lb) closeLb(); });
+document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')closeLb(); if(e.key==='ArrowRight'){lbI=(lbI+1)%lbP.imgs.length;renderLb();} if(e.key==='ArrowLeft'){lbI=(lbI-1+lbP.imgs.length)%lbP.imgs.length;renderLb();} });
+
+/* ── VERKSTED-BILDER ──────────────────── */
+document.querySelectorAll('.craft-dot').forEach(d=>d.addEventListener('click',()=>{
+  document.querySelectorAll('.craft-dot').forEach(x=>{x.classList.remove('bg-white');x.classList.add('bg-white/40');});
+  d.classList.add('bg-white'); d.classList.remove('bg-white/40');
+  const im=document.getElementById('craftImg'); im.style.opacity=0;
+  setTimeout(()=>{im.src=d.dataset.src; im.onload=()=>im.style.opacity=1;},250);
+}));
+
+/* ── ANMELDELSER ──────────────────────── */
+const track=document.getElementById('tstTrack'), dots=document.getElementById('tstDots'); let ti=0, timer;
+track.innerHTML=TESTIMONIALS.map(t=>`
+  <div class="w-full md:w-1/2 shrink-0 px-1 md:px-3">
+    <div class="bg-white border border-[#141310]/10 rounded-2xl p-7 md:p-8 h-full flex flex-col">
+      <div class="text-[#9c7c3c] tracking-[3px] text-[15px]">★★★★★</div>
+      <p class="font-display text-[19px] md:text-[21px] leading-snug mt-4 flex-1">«${t.q}»</p>
+      <div class="flex items-center gap-3.5 mt-6 pt-6 border-t border-[#141310]/10">
+        <span class="w-12 h-12 rounded-full bg-[#141310] text-white font-bold text-[13px] flex items-center justify-center">${t.i}</span>
+        <div><p class="font-bold text-[14.5px]">${t.n}</p><p class="font-mono2 text-[11px] tracking-wider uppercase text-[#141310]/50">${t.p}</p></div>
+      </div>
+    </div>
+  </div>`).join('');
+function perView(){ return window.innerWidth>=768?2:1; }
+function maxI(){ return TESTIMONIALS.length-perView(); }
+function goTst(n){ ti=n>maxI()?0:n<0?maxI():n;
+  track.style.transform=`translateX(-${ti*(100/perView())}%)`;
+  dots.innerHTML=Array.from({length:maxI()+1},(_,k)=>`<button data-k="${k}" aria-label="Anmeldelse ${k+1}" class="tst-dot h-2 rounded-full ${k===ti?'active bg-[#9c7c3c]':'bg-[#141310]/15 w-2'}"></button>`).join('');
+  dots.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{goTst(+b.dataset.k); restart();}));
+}
+function restart(){ clearInterval(timer); timer=setInterval(()=>goTst(ti+1),6000); }
+document.getElementById('tstNext').addEventListener('click',()=>{goTst(ti+1);restart();});
+document.getElementById('tstPrev').addEventListener('click',()=>{goTst(ti-1);restart();});
+document.getElementById('tstView').addEventListener('mouseenter',()=>clearInterval(timer));
+document.getElementById('tstView').addEventListener('mouseleave',restart);
+window.addEventListener('resize',()=>goTst(ti));
+goTst(0); restart();
+
+/* ── FAQ ──────────────────────────────── */
+document.getElementById('faqWrap').innerHTML=FAQS.map((f,i)=>`
+  <div class="faq-item ${i===0?'open':''} bg-[#faf8f3] border border-[#141310]/10 rounded-2xl overflow-hidden">
+    <button class="faq-q w-full flex items-center justify-between gap-4 text-left px-6 md:px-7 py-5 md:py-6 cursor-pointer">
+      <span class="font-bold text-[15px] md:text-[16.5px]">${f[0]}</span>
+      <span class="faq-icon w-9 h-9 shrink-0 rounded-full bg-[#141310] text-white flex items-center justify-center text-lg font-light">+</span>
+    </button>
+    <div class="faq-a"><p class="px-6 md:px-7 pb-6 text-[14.5px] text-[#141310]/65 leading-relaxed">${f[1]}</p></div>
+  </div>`).join('');
+document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>{
+  const it=q.parentElement, was=it.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));
+  if(!was) it.classList.add('open');
+}));
+
+/* ── SKJEMA ───────────────────────────── */
+document.querySelectorAll('#chipWrap .chip').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('sel')));
+const bud=document.getElementById('fBudsjett'), budOut=document.getElementById('budOut');
+function fmtBud(v){ return v>=1000000?(v/1000000).toString().replace('.',',')+' mill kr':v.toLocaleString('no-NO')+' kr'; }
+bud.addEventListener('input',()=>{ budOut.textContent='ca. '+fmtBud(+bud.value);
+  const p=(bud.value-bud.min)/(bud.max-bud.min)*100; bud.style.background=`linear-gradient(to right, #9c7c3c 0%, #9c7c3c ${p}%, #d8d2c0 ${p}%, #d8d2c0 100%)`; });
+
+const form=document.getElementById('quoteForm');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const navn=document.getElementById('fNavn'), tlf=document.getElementById('fTlf'), ep=document.getElementById('fEpost'), msg=document.getElementById('fMsg');
+  const err=document.getElementById('formErr');
+  [navn,tlf,ep,msg].forEach(f=>f.classList.remove('err'));
+  const probs=[];
+  if(navn.value.trim().length<2){probs.push('navn'); navn.classList.add('err');}
+  if(tlf.value.replace(/\D/g,'').length<8){probs.push('telefonnummer'); tlf.classList.add('err');}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ep.value.trim())){probs.push('e-post'); ep.classList.add('err');}
+  if(msg.value.trim().length<10){probs.push('prosjektbeskrivelse'); msg.classList.add('err');}
+  if(probs.length){ err.textContent='Sjekk følgende felt: '+probs.join(', ')+'.'; err.classList.remove('hidden');
+    err.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  err.classList.add('hidden');
+  document.getElementById('sendTxt').textContent='Sender …';
+  document.getElementById('sendArr').classList.add('hidden');
+  document.getElementById('sendSpin').classList.remove('hidden');
+  document.getElementById('sendBtn').disabled=true;
+  setTimeout(()=>{
+    form.classList.add('hidden');
+    const done=document.getElementById('formDone'); done.classList.remove('hidden');
+    document.getElementById('refNr').textContent='AB-2026-'+Math.floor(1000+Math.random()*9000);
+    toast('Forespørsel mottatt — vi ringer deg innen 24 timer.');
+  },1600);
+});
+document.getElementById('formReset').addEventListener('click',()=>{
+  document.getElementById('formDone').classList.add('hidden'); form.classList.remove('hidden'); form.reset();
+  document.querySelectorAll('#chipWrap .chip').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('sendTxt').textContent='Send forespørsel om befaring';
+  document.getElementById('sendArr').classList.remove('hidden');
+  document.getElementById('sendSpin').classList.add('hidden');
+  document.getElementById('sendBtn').disabled=false;
+  budOut.textContent='ca. 500 000 kr';
+});
+
+/* ── TOAST / DIVERSE ──────────────────── */
+let toastT;
+function toast(msg){ document.getElementById('toastTxt').textContent=msg;
+  const t=document.getElementById('toast'); t.classList.add('show');
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),4500); }
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

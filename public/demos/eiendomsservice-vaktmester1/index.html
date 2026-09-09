@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eiendomspartner AS — Fast vaktmester & eiendomsservice i Oslo</title>
+<meta name="description" content="Eiendomspartner AS — fast vaktmester, teknisk tilsyn, uteområder, snørydding og serviceavtaler for borettslag, sameier, næringsbygg og forvaltere i Oslo-området.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="images/image-01.svg">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#F5F3ED; --paper2:#ECE8DC; --white:#fff;
+  --ink:#0F1513; --ink2:#202927; --muted:#5D6965; --muted2:#8A948F;
+  --line:#DDD8C8; --line2:#CFC9B6;
+  --forest:#0D2B23; --forest2:#11382D; --forest3:#17493A;
+  --emerald:#157A52; --emerald-d:#0E5E3F;
+  --lime:#D9F24F; --lime-d:#BFDN40;
+  --clay:#E85A24; --clay-d:#C6471A; --clay-l:#FFF0E8;
+  --amber:#FFB81C;
+  --radius:20px; --radius-s:12px; --radius-l:28px;
+  --shadow:0 1px 2px rgba(15,21,19,.06),0 12px 32px -12px rgba(15,21,19,.16);
+  --shadow-l:0 2px 4px rgba(15,21,19,.06),0 28px 64px -20px rgba(13,43,35,.28);
+  --font-d:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-s:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --max:1220px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{font-family:var(--font-s);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+::selection{background:var(--lime);color:var(--forest)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--emerald-d)}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--emerald);border-radius:2px}
+.eyebrow.on-dark{color:var(--lime)}
+.eyebrow.on-dark::before{background:var(--lime)}
+h1,h2,h3{font-family:var(--font-d);line-height:1.05;letter-spacing:-.02em;font-weight:600}
+.section{padding:96px 0}
+.section-head{max-width:720px;margin-bottom:48px}
+.section-head h2{font-size:clamp(30px,4.4vw,52px);margin:14px 0 16px}
+.section-head p{font-size:17px;color:var(--muted);max-width:600px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:15.5px;padding:15px 28px;border-radius:100px;border:1.5px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease,border-color .18s ease;white-space:nowrap}
+.btn .arr{transition:transform .18s ease;font-weight:800}
+.btn:hover .arr{transform:translateX(4px)}
+.btn-clay{background:var(--clay);color:#fff;box-shadow:0 10px 24px -8px rgba(232,90,36,.55)}
+.btn-clay:hover{background:var(--clay-d);transform:translateY(-2px);box-shadow:0 16px 32px -8px rgba(232,90,36,.6)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:var(--forest2);transform:translateY(-2px)}
+.btn-forest{background:var(--forest);color:#fff}
+.btn-forest:hover{background:var(--forest3);transform:translateY(-2px)}
+.btn-lime{background:var(--lime);color:var(--forest)}
+.btn-lime:hover{transform:translateY(-2px);box-shadow:0 14px 28px -10px rgba(217,242,79,.6)}
+.btn-ghost{background:transparent;border-color:var(--line2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+.btn-ghost-light{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#fff}
+.btn-ghost-light:hover{background:rgba(255,255,255,.16)}
+.btn-white{background:#fff;color:var(--forest)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-sm{padding:10px 20px;font-size:14px}
+.btn-lg{padding:18px 34px;font-size:16.5px}
+/* Topbar */
+.topbar{background:var(--forest);color:#DCE7E2;font-size:13px;padding:9px 0;position:relative;z-index:60}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.topbar-left,.topbar-right{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.topbar a:hover{color:var(--lime)}
+.topbar .dot-live{display:inline-flex;align-items:center;gap:7px;font-weight:600;color:#fff}
+.pulse{width:8px;height:8px;border-radius:50%;background:#3DDA7F;position:relative;flex-shrink:0}
+.pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #3DDA7F;opacity:.5;animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.5);opacity:.8}100%{transform:scale(1.2);opacity:0}}
+.topbar svg{width:14px;height:14px;flex-shrink:0}
+/* Nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(245,243,237,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .25s,box-shadow .25s}
+.nav.scrolled{border-bottom-color:var(--line);box-shadow:0 8px 24px -12px rgba(15,21,19,.12)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:44px;height:44px;border-radius:13px;background:var(--forest);display:grid;place-items:center;color:var(--lime);font-family:var(--font-d);font-weight:700;font-size:21px;flex-shrink:0;position:relative;overflow:hidden}
+.logo-mark::after{content:"";position:absolute;right:-8px;top:-8px;width:22px;height:22px;border-radius:50%;background:var(--clay);opacity:.9}
+.logo-text{line-height:1.1}
+.logo-text strong{display:block;font-size:17px;font-weight:800;letter-spacing:-.01em}
+.logo-text span{display:block;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-size:14.5px;font-weight:600;color:var(--ink2);padding:10px 14px;border-radius:100px;transition:background .15s}
+.nav-links a:hover{background:rgba(15,21,19,.06)}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.burger{display:none;width:48px;height:48px;border-radius:14px;border:1.5px solid var(--line2);background:#fff;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.burger span{display:block;width:20px;height:2.2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .25s}
+.burger.open span:nth-child(1){transform:translateY(7.2px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7.2px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:49;background:var(--forest);color:#fff;padding:110px 28px 32px;display:flex;flex-direction:column;gap:6px;transform:translateY(-102%);transition:transform .4s cubic-bezier(.7,0,.2,1);overflow-y:auto}
+.mobile-menu.open{transform:none}
+.mobile-menu a.mlink{font-family:var(--font-d);font-size:30px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center}
+.mobile-menu a.mlink small{font-family:var(--font-s);font-size:13px;color:var(--lime);font-weight:700}
+.mobile-cta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.mobile-contact{margin-top:22px;font-size:14px;color:#B9C8C1}
+/* Hero */
+.hero{position:relative;padding:64px 0 72px;overflow:hidden;background:
+  radial-gradient(900px 420px at 85% -60px, rgba(21,122,82,.10), transparent 60%),
+  radial-gradient(700px 380px at -80px 30%, rgba(232,90,36,.08), transparent 60%),
+  var(--paper)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(15,21,19,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(15,21,19,.045) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(1000px 600px at 30% 20%,#000 30%,transparent 75%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:100px;padding:8px 16px 8px 9px;font-size:13.5px;font-weight:600;box-shadow:var(--shadow);margin-bottom:22px}
+.hero-badge .tag{background:var(--forest);color:var(--lime);font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:100px}
+.hero h1{font-size:clamp(42px,5.6vw,72px);letter-spacing:-.03em}
+.hero h1 .accent{position:relative;white-space:nowrap}
+.hero h1 .accent svg{position:absolute;left:0;right:0;bottom:-8px;width:100%;height:14px}
+.hero-sub{font-size:18px;color:var(--muted);max-width:520px;margin:22px 0 30px}
+.hero-sub strong{color:var(--ink)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.hero-proof{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.avatars{display:flex}
+.avatars span{width:40px;height:40px;border-radius:50%;border:3px solid var(--paper);display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;margin-left:-10px}
+.avatars span:first-child{margin-left:0}
+.hero-proof-text{font-size:14px;line-height:1.45}
+.hero-proof-text .stars{color:#E89B00;letter-spacing:2px;font-size:13px}
+.hero-proof-text strong{font-weight:800}
+/* Dashboard card */
+.dash{position:relative}
+.dash-card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow-l);overflow:hidden}
+.dash-top{background:var(--forest);color:#fff;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.dash-top-left{display:flex;align-items:center;gap:12px}
+.dash-live{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
+.dash-title{font-weight:800;font-size:16px;margin-top:2px}
+.dash-weather{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:10px 14px;text-align:right;font-size:12.5px;line-height:1.4}
+.dash-weather strong{display:block;font-size:18px}
+.dash-body{padding:20px 22px 22px}
+.dash-prop{display:flex;gap:10px;margin-bottom:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.dash-prop::-webkit-scrollbar{display:none}
+.prop-chip{flex-shrink:0;border:1.5px solid var(--line);background:var(--paper);border-radius:12px;padding:9px 14px;font-size:13.5px;font-weight:700;transition:all .15s}
+.prop-chip.active{background:var(--forest);color:#fff;border-color:var(--forest)}
+.prop-chip small{display:block;font-weight:500;font-size:11.5px;opacity:.7}
+.task-row{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;background:#fff;transition:transform .15s,box-shadow .15s}
+.task-row:hover{transform:translateX(4px);box-shadow:var(--shadow)}
+.task-ico{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex-shrink:0}
+.task-ico svg{width:19px;height:19px}
+.task-info{flex:1;min-width:0}
+.task-info strong{display:block;font-size:14px}
+.task-info span{font-size:12.5px;color:var(--muted)}
+.status{font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:100px;flex-shrink:0}
+.st-done{background:#E3F5EA;color:#0E6B3E}
+.st-progress{background:#FFF3D6;color:#9A6500}
+.st-plan{background:#EAF0FF;color:#2B4BCB}
+.dash-progress{margin-top:16px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.dash-progress-top{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:8px}
+.bar{height:9px;background:#E0DAC9;border-radius:100px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--emerald),#2BA86E);width:0;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.dash-foot{display:flex;gap:10px;margin-top:14px}
+.dash-foot a{flex:1;text-align:center;font-size:13.5px;font-weight:700;padding:12px;border-radius:12px}
+.float-card{position:absolute;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-l);padding:13px 16px;display:flex;align-items:center;gap:11px;font-size:13px;animation:float 5s ease-in-out infinite}
+.float-card strong{display:block;font-size:13.5px}
+.float-card span{color:var(--muted);font-size:12.5px}
+.float-1{top:-24px;right:-14px}
+.float-2{bottom:-22px;left:-18px;animation-delay:2.5s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.float-ico{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex-shrink:0}
+.float-ico svg{width:19px;height:19px}
+/* Marquee */
+.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:16px 0;border-top:1px solid var(--ink)}
+.marquee-track{display:flex;gap:0;width:max-content;animation:scroll 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.mq-item{display:flex;align-items:center;gap:14px;padding:0 26px;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.mq-item i{width:8px;height:8px;border-radius:50%;background:var(--lime);flex-shrink:0}
+/* Stats */
+.stats-sec{padding:72px 0 8px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.stat:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.stat::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--emerald)}
+.stat:nth-child(2)::after{background:var(--clay)}
+.stat:nth-child(3)::after{background:var(--amber)}
+.stat:nth-child(4)::after{background:var(--forest)}
+.stat b{display:block;font-family:var(--font-d);font-size:40px;letter-spacing:-.02em;line-height:1}
+.stat b small{font-size:22px}
+.stat span{font-size:14px;color:var(--muted);font-weight:600}
+/* Services */
+.svc-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.svc-sticky{position:sticky;top:110px}
+.svc-sticky .num-big{font-family:var(--font-d);font-size:120px;line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--line2);margin:18px 0 6px}
+.svc-list{display:flex;flex-direction:column;gap:12px}
+.svc{border:1px solid var(--line);background:#fff;border-radius:18px;overflow:hidden;transition:box-shadow .2s,border-color .2s}
+.svc.open{border-color:var(--forest);box-shadow:var(--shadow)}
+.svc-head{width:100%;background:none;border:none;display:flex;align-items:center;gap:16px;padding:20px 22px;text-align:left}
+.svc-num{font-family:var(--font-d);font-size:15px;font-weight:700;color:#fff;background:var(--forest);width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex-shrink:0}
+.svc.open .svc-num{background:var(--clay)}
+.svc-head h3{font-family:var(--font-s);font-size:17px;font-weight:800;letter-spacing:-.01em;flex:1}
+.svc-head .plus{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line2);display:grid;place-items:center;font-size:20px;font-weight:400;flex-shrink:0;transition:transform .3s,background .3s,color .3s,border-color .3s}
+.svc.open .plus{transform:rotate(45deg);background:var(--forest);color:#fff;border-color:var(--forest)}
+.svc-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)}
+.svc-body-inner{padding:0 22px 22px 74px}
+.svc-body-inner p{font-size:15px;color:var(--muted);margin-bottom:14px}
+.svc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.svc-tags span{font-size:12.5px;font-weight:700;background:var(--paper);border:1px solid var(--line);padding:5px 12px;border-radius:100px}
+.svc-link{font-size:14px;font-weight:800;color:var(--clay-d);display:inline-flex;align-items:center;gap:6px}
+.svc-link:hover{gap:10px}
+/* Method */
+.method{background:var(--forest);color:#fff;border-radius:32px;margin:0 16px;position:relative;overflow:hidden}
+.method::before{content:"";position:absolute;top:-200px;right:-200px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(217,242,79,.14),transparent 65%);pointer-events:none}
+.method::after{content:"EP";position:absolute;bottom:-60px;left:20px;font-family:var(--font-d);font-size:240px;font-weight:700;color:rgba(255,255,255,.035);line-height:1;pointer-events:none}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px;position:relative;z-index:1}
+.step{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:28px 24px;position:relative;transition:background .2s,transform .2s}
+.step:hover{background:rgba(255,255,255,.09);transform:translateY(-4px)}
+.step-no{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.step h3{font-family:var(--font-s);font-size:18px;font-weight:800;margin-bottom:10px}
+.step p{font-size:14px;color:#B9C8C1}
+.step .step-time{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:700;background:rgba(217,242,79,.12);color:var(--lime);padding:5px 12px;border-radius:100px}
+.method-cta{display:flex;align-items:center;gap:16px;margin-top:36px;flex-wrap:wrap;position:relative;z-index:1}
+.method-note{font-size:14px;color:#B9C8C1}
+/* Configurator */
+.conf-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:start}
+.conf-main{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--shadow)}
+.conf-step{margin-bottom:30px}
+.conf-step:last-child{margin-bottom:0}
+.conf-label{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.conf-label b{width:26px;height:26px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;font-size:13px}
+.prop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.prop-opt{border:2px solid var(--line);border-radius:14px;background:#fff;padding:16px 10px;text-align:center;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:8px}
+.prop-opt svg{width:26px;height:26px}
+.prop-opt strong{font-size:13.5px}
+.prop-opt:hover{border-color:var(--forest)}
+.prop-opt.selected{border-color:var(--forest);background:var(--forest);color:#fff}
+.size-ctrl{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px}
+.size-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.size-top strong{font-size:15px}
+.size-top output{font-family:var(--font-d);font-size:30px;font-weight:700;color:var(--forest)}
+input[type=range]{width:100%;accent-color:var(--clay);height:28px;cursor:pointer}
+.size-scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:600}
+.chip-grid{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:2px solid var(--line);background:#fff;border-radius:100px;padding:11px 18px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:9px;transition:all .15s}
+.chip .tick{width:20px;height:20px;border-radius:50%;border:2px solid var(--line2);display:grid;place-items:center;font-size:12px;transition:all .15s;flex-shrink:0}
+.chip:hover{border-color:var(--forest)}
+.chip.selected{border-color:var(--forest);background:#EDF5F0}
+.chip.selected .tick{background:var(--emerald);border-color:var(--emerald);color:#fff}
+.freq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.freq{border:2px solid var(--line);border-radius:14px;padding:15px;text-align:center;transition:all .15s;background:#fff}
+.freq strong{display:block;font-size:14.5px}
+.freq span{font-size:12.5px;color:var(--muted)}
+.freq.selected{border-color:var(--clay);background:var(--clay-l)}
+.conf-side{position:sticky;top:110px;background:var(--forest);color:#fff;border-radius:24px;padding:30px;box-shadow:var(--shadow-l);overflow:hidden;position:sticky}
+.conf-side::before{content:"";position:absolute;top:-120px;right:-120px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(217,242,79,.16),transparent 65%)}
+.conf-side h3{font-family:var(--font-s);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin-bottom:8px}
+.conf-price{font-family:var(--font-d);font-size:52px;font-weight:700;line-height:1;margin:6px 0 2px}
+.conf-price small{font-family:var(--font-s);font-size:14px;font-weight:600;color:#B9C8C1}
+.conf-range{font-size:13.5px;color:#B9C8C1;margin-bottom:18px}
+.conf-list{list-style:none;margin:0 0 20px;display:flex;flex-direction:column;gap:9px;position:relative}
+.conf-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.conf-list li::before{content:"✓";color:var(--lime);font-weight:800;flex-shrink:0}
+.conf-side .btn{width:100%;margin-bottom:10px;position:relative}
+.conf-fine{font-size:12.5px;color:#9DB0A8;text-align:center}
+/* Seasons */
+.seasons{background:var(--ink);color:#fff;border-radius:32px;margin:0 16px;overflow:hidden;position:relative}
+.season-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:32px 0 28px}
+.season-tab{border:1.5px solid rgba(255,255,255,.18);background:transparent;color:#fff;border-radius:100px;padding:12px 22px;font-size:14.5px;font-weight:700;display:inline-flex;align-items:center;gap:10px;transition:all .2s}
+.season-tab i{font-style:normal;font-size:17px}
+.season-tab:hover{border-color:var(--lime)}
+.season-tab.active{background:var(--lime);color:var(--forest);border-color:var(--lime)}
+.season-panels{position:relative}
+.season-panel{display:none;grid-template-columns:1fr 1fr;gap:32px;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:36px;animation:fadeUp .45s ease}
+.season-panel.active{display:grid}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.season-panel h3{font-size:clamp(26px,3vw,36px);margin-bottom:6px}
+.season-when{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
+.season-panel p{color:#C4D1CB;font-size:15.5px;margin-bottom:18px}
+.season-check{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.season-check li{display:flex;gap:9px;font-size:14px;align-items:flex-start;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:10px 13px;border-radius:12px}
+.season-check li::before{content:"✓";color:var(--lime);font-weight:800}
+.season-visual{border-radius:18px;min-height:300px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:24px}
+.season-visual .sv-card{background:rgba(13,43,35,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px 18px;width:100%;font-size:13.5px}
+.season-visual .sv-card strong{display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:4px}
+.sv-winter{background:linear-gradient(160deg,#1B3A52 0%,#2C5F7E 45%,#DDE9F0 100%)}
+.sv-spring{background:linear-gradient(160deg,#17493A 0%,#2E8B5E 50%,#D9F24F 130%)}
+.sv-summer{background:linear-gradient(160deg,#E8A33D 0%,#E85A24 55%,#5A2A12 130%)}
+.sv-autumn{background:linear-gradient(160deg,#3A2A18 0%,#8A5A1E 50%,#E8C33D 120%)}
+.sv-deco{position:absolute;inset:0;opacity:.9}
+.yearline{display:flex;align-items:center;gap:0;margin-top:28px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 22px;overflow-x:auto}
+.yearline div{flex:1;min-width:110px;text-align:center;font-size:12.5px;position:relative;padding-top:16px;color:#9DB0A8}
+.yearline div::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:11px;height:11px;border-radius:50%;background:#3A4A45}
+.yearline div.on{color:#fff;font-weight:700}
+.yearline div.on::before{background:var(--lime);box-shadow:0 0 0 5px rgba(217,242,79,.18)}
+/* Benefits bento */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bcell{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px 28px;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.bcell:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.bcell.dark{background:var(--forest);color:#fff;border-color:var(--forest)}
+.bcell.tall{grid-row:span 2;display:flex;flex-direction:column}
+.bcell.wide{grid-column:span 2}
+.b-ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px}
+.b-ico svg{width:23px;height:23px}
+.bcell h3{font-family:var(--font-s);font-size:19px;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
+.bcell p{font-size:14.5px;color:var(--muted)}
+.bcell.dark p{color:#B9C8C1}
+.b-mini{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:13px}
+.b-mini-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line2);font-weight:600}
+.b-mini-row:last-child{border:none}
+.b-mini-row .ok{background:#DCF2E4;color:#0E6B3E;font-size:11.5px;font-weight:800;padding:3px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.04em}
+.bignum{font-family:var(--font-d);font-size:64px;line-height:1;color:var(--forest);margin:8px 0}
+.bignum small{font-size:26px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.vs div{border-radius:12px;padding:13px 14px;font-size:13px}
+.vs .no{background:#FDEEE6;border:1px solid #F3C9B4;color:#8A3A14}
+.vs .yes{background:#E3F5EA;border:1px solid #A9DDBC;color:#0E5E33}
+.vs strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+/* Live drift */
+.live-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:stretch}
+.live-side{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:32px;display:flex;flex-direction:column;justify-content:center}
+.live-feed{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow)}
+.feed-item{display:flex;gap:14px;padding:15px 4px;border-bottom:1px solid var(--line);align-items:flex-start}
+.feed-item:last-child{border:none}
+.feed-ico{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex-shrink:0;font-size:19px;font-weight:800}
+.feed-item strong{font-size:14.5px;display:block}
+.feed-item p{font-size:13.5px;color:var(--muted)}
+.feed-item time{font-size:12px;color:var(--muted2);font-weight:600;margin-left:auto;flex-shrink:0;background:var(--paper);padding:3px 10px;border-radius:100px}
+/* Customers */
+.cust-logos{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+.cust-logos span{font-size:13.5px;font-weight:800;letter-spacing:.02em;background:#fff;border:1px solid var(--line);padding:10px 18px;border-radius:100px;color:var(--ink2)}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+.case{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.case:hover{transform:translateY(-5px);box-shadow:var(--shadow-l)}
+.case-top{padding:22px 24px 0}
+.case-cat{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--emerald-d)}
+.case h3{font-family:var(--font-s);font-size:19px;font-weight:800;margin:8px 0 6px}
+.case-top p{font-size:14px;color:var(--muted)}
+.case-stats{display:grid;grid-template-columns:1fr 1fr;margin:18px 24px 22px;background:var(--forest);border-radius:14px;overflow:hidden}
+.case-stats div{padding:16px;text-align:center;color:#fff}
+.case-stats div:first-child{border-right:1px solid rgba(255,255,255,.12)}
+.case-stats b{display:block;font-family:var(--font-d);font-size:30px;color:var(--lime)}
+.case-stats span{font-size:12px;color:#B9C8C1;font-weight:600}
+.testi{position:relative;background:var(--paper2);border:1px solid var(--line);border-radius:24px;padding:8px;overflow:hidden}
+.testi-track{display:flex;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.testi-slide{min-width:100%;padding:34px 34px 28px}
+.testi-slide blockquote{font-family:var(--font-d);font-size:clamp(20px,2.6vw,29px);line-height:1.35;letter-spacing:-.01em;max-width:820px}
+.testi-who{display:flex;align-items:center;gap:14px;margin-top:20px}
+.testi-ava{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;font-size:17px;flex-shrink:0}
+.testi-who strong{display:block;font-size:15px}
+.testi-who span{font-size:13.5px;color:var(--muted)}
+.testi-nav{display:flex;align-items:center;gap:12px;padding:0 34px 30px}
+.testi-btn{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line2);background:#fff;font-size:20px;transition:all .15s;display:grid;place-items:center}
+.testi-btn:hover{background:var(--forest);color:#fff;border-color:var(--forest)}
+.testi-dots{display:flex;gap:8px;margin-left:8px}
+.testi-dots button{width:9px;height:9px;border-radius:100px;border:none;background:#C6C0AC;transition:all .2s}
+.testi-dots button.on{width:30px;background:var(--forest)}
+/* Pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+.price{background:#fff;border:1.5px solid var(--line);border-radius:24px;padding:32px 30px;display:flex;flex-direction:column;position:relative;transition:transform .2s,box-shadow .2s}
+.price:hover{transform:translateY(-5px);box-shadow:var(--shadow-l)}
+.price.pop{background:var(--forest);color:#fff;border-color:var(--forest);box-shadow:var(--shadow-l)}
+.price-flag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--clay);color:#fff;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:6px 18px;border-radius:100px;white-space:nowrap}
+.price h3{font-family:var(--font-s);font-size:20px;font-weight:800}
+.price .p-desc{font-size:14px;color:var(--muted);margin:6px 0 16px}
+.price.pop .p-desc{color:#B9C8C1}
+.price .p-from{font-size:13px;font-weight:700;color:var(--muted)}
+.price.pop .p-from{color:#9DB0A8}
+.price .p-val{font-family:var(--font-d);font-size:44px;font-weight:700;line-height:1.1}
+.price .p-val small{font-family:var(--font-s);font-size:14px;font-weight:600;color:var(--muted)}
+.price.pop .p-val small{color:#B9C8C1}
+.price ul{list-style:none;margin:20px 0 26px;display:flex;flex-direction:column;gap:11px;flex:1}
+.price ul li{display:flex;gap:10px;font-size:14.5px;align-items:flex-start}
+.price ul li::before{content:"✓";font-weight:800;color:var(--emerald);flex-shrink:0}
+.price.pop ul li::before{color:var(--lime)}
+.price ul li.off{opacity:.45}
+.price ul li.off::before{content:"—";color:inherit}
+.price-note{text-align:center;font-size:14px;color:var(--muted);margin-top:20px}
+/* Report flow */
+.report-box{background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow-l);overflow:hidden;display:grid;grid-template-columns:340px 1fr}
+.report-aside{background:var(--forest);color:#fff;padding:36px 30px;display:flex;flex-direction:column}
+.report-aside h3{font-size:26px;margin-bottom:8px}
+.report-aside p{font-size:14px;color:#B9C8C1;margin-bottom:26px}
+.rsteps{display:flex;flex-direction:column;gap:4px}
+.rstep{display:flex;gap:13px;align-items:center;padding:12px;border-radius:14px;font-size:14.5px;font-weight:600;color:#8FA39B;transition:all .2s}
+.rstep .rn{width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);display:grid;place-items:center;font-size:13.5px;font-weight:800;flex-shrink:0}
+.rstep.on{color:#fff;background:rgba(255,255,255,.08)}
+.rstep.on .rn{background:var(--lime);border-color:var(--lime);color:var(--forest)}
+.rstep.done{color:var(--lime)}
+.rstep.done .rn{background:var(--emerald);border-color:var(--emerald);color:#fff}
+.report-emergency{margin-top:auto;background:rgba(232,90,36,.14);border:1px solid rgba(232,90,36,.4);border-radius:14px;padding:15px 16px;font-size:13.5px}
+.report-emergency strong{color:#FF9D78;display:block;margin-bottom:2px}
+.report-emergency a{color:#fff;font-weight:800;font-size:16px}
+.report-main{padding:38px 40px;min-height:520px;display:flex;flex-direction:column}
+.r-progress{height:6px;background:var(--paper2);border-radius:100px;margin-bottom:28px;overflow:hidden}
+.r-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--emerald),var(--clay));border-radius:100px;transition:width .4s ease}
+.rpane{display:none;animation:fadeUp .35s ease}
+.rpane.on{display:block}
+.rpane h4{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px;font-family:var(--font-s)}
+.rpane .rsub{font-size:14.5px;color:var(--muted);margin-bottom:20px}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cat{border:2px solid var(--line);border-radius:16px;padding:20px 12px;background:#fff;text-align:center;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:8px}
+.cat svg{width:30px;height:30px}
+.cat strong{font-size:14px}
+.cat span{font-size:12px;color:var(--muted)}
+.cat:hover{border-color:var(--forest);transform:translateY(-2px)}
+.cat.selected{border-color:var(--forest);background:#EDF5F0;box-shadow:var(--shadow)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13.5px;font-weight:700}
+.field label small{font-weight:500;color:var(--muted)}
+.field input,.field select,.field textarea{font-family:inherit;font-size:15px;padding:13px 15px;border:1.5px solid var(--line2);border-radius:12px;background:#fff;transition:border-color .15s,box-shadow .15s;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--forest);box-shadow:0 0 0 3px rgba(18,58,46,.12)}
+.field textarea{min-height:110px;resize:vertical}
+.field .err-msg{display:none;font-size:12.5px;color:#B3261E;font-weight:600}
+.field.invalid input,.field.invalid textarea,.field.invalid select{border-color:#B3261E}
+.field.invalid .err-msg{display:block}
+.haste{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.haste button{border:2px solid var(--line);border-radius:12px;padding:13px;background:#fff;font-size:14px;font-weight:700;transition:all .15s}
+.haste button small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.haste button.selected{border-color:var(--clay);background:var(--clay-l)}
+.rnav{display:flex;justify-content:space-between;gap:12px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+.r-summary{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:8px}
+.r-summary dl{display:grid;grid-template-columns:150px 1fr;gap:8px 14px;font-size:14px}
+.r-summary dt{color:var(--muted);font-weight:600}
+.r-summary dd{font-weight:700}
+.r-success{text-align:center;padding:20px 0}
+.r-success .ok-ring{width:84px;height:84px;border-radius:50%;background:#DCF2E4;display:grid;place-items:center;font-size:38px;margin:0 auto 18px;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.r-success h4{font-size:26px}
+.case-no{display:inline-block;background:var(--forest);color:var(--lime);font-weight:800;font-size:16px;letter-spacing:.06em;padding:10px 24px;border-radius:100px;margin:14px 0 18px}
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;align-items:stretch}
+.contact-info{background:var(--forest);color:#fff;border-radius:24px;padding:38px 34px;position:relative;overflow:hidden}
+.contact-info::before{content:"";position:absolute;bottom:-140px;left:-140px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(217,242,79,.13),transparent 65%)}
+.c-row{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.c-row:last-of-type{border:none}
+.c-ico{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;flex-shrink:0}
+.c-ico svg{width:21px;height:21px}
+.c-row strong{display:block;font-size:15px}
+.c-row span,.c-row a{font-size:14px;color:#B9C8C1}
+.c-row a:hover{color:var(--lime)}
+.area-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.area-pills span{font-size:12.5px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:6px 13px;border-radius:100px}
+.contact-form-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:38px 34px;box-shadow:var(--shadow)}
+.contact-form-card h3{font-family:var(--font-s);font-size:24px;font-weight:800;letter-spacing:-.02em}
+.contact-form-card>p{font-size:14.5px;color:var(--muted);margin:6px 0 22px}
+.form-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px}
+.form-tabs button{border:2px solid var(--line);background:#fff;border-radius:12px;padding:11px 8px;font-size:13px;font-weight:800;transition:all .15s}
+.form-tabs button.selected{background:var(--forest);color:#fff;border-color:var(--forest)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);margin-top:14px}
+.consent input{margin-top:3px;width:17px;height:17px;accent-color:var(--emerald)}
+/* FAQ */
+.faq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq{border:1px solid var(--line);background:#fff;border-radius:16px;overflow:hidden}
+.faq button{width:100%;background:none;border:none;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:20px 24px;font-size:16px;font-weight:700;text-align:left}
+.faq button .plus{width:30px;height:30px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font-size:19px;flex-shrink:0;transition:transform .3s}
+.faq.open button .plus{transform:rotate(45deg);background:var(--forest);color:#fff}
+.faq .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq .faq-a p{padding:0 24px 22px;font-size:15px;color:var(--muted)}
+/* Final CTA */
+.final{background:linear-gradient(140deg,var(--forest) 0%,#0A211B 60%,#123A2E 100%);border-radius:32px;margin:0 16px 24px;color:#fff;text-align:center;padding:88px 32px;position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:640px;height:340px;background:radial-gradient(ellipse,rgba(217,242,79,.16),transparent 65%)}
+.final h2{font-size:clamp(32px,5vw,58px);max-width:760px;margin:16px auto}
+.final p{color:#B9C8C1;font-size:17px;max-width:560px;margin:0 auto 30px}
+.final-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.final-meta{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:26px;font-size:13.5px;color:#8FA39B;font-weight:600}
+/* Footer */
+footer{background:var(--ink);color:#C4D1CB;padding:64px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;margin-bottom:44px}
+.foot-grid h4{color:#fff;font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;font-family:var(--font-s)}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14.5px}
+.foot-grid ul a:hover{color:var(--lime)}
+.foot-brand p{font-size:14px;margin:14px 0 18px;max-width:280px}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:#8FA39B}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(13,25,21,.6);backdrop-filter:blur(6px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex;animation:fadeUp .25s ease}
+.modal{background:#fff;border-radius:24px;max-width:560px;width:100%;max-height:92vh;overflow-y:auto;padding:36px;position:relative}
+.modal-close{position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font-size:20px}
+.modal-close:hover{background:var(--ink);color:#fff}
+.modal h3{font-family:var(--font-s);font-size:25px;font-weight:800;letter-spacing:-.02em}
+.modal>p{font-size:14.5px;color:var(--muted);margin:6px 0 20px}
+/* Toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--forest);color:#fff;padding:15px 24px;border-radius:100px;font-size:14.5px;font-weight:700;z-index:200;transition:transform .4s cubic-bezier(.2,1,.3,1);box-shadow:var(--shadow-l);display:flex;align-items:center;gap:10px;max-width:90vw}
+.toast.show{transform:translate(-50%,0)}
+.toast .t-dot{width:10px;height:10px;border-radius:50%;background:var(--lime);flex-shrink:0}
+/* Responsive */
+@media(max-width:1080px){
+  .nav-links{display:none}
+  .nav-cta .btn-ghost{display:none}
+  .burger{display:flex}
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .float-1{right:6px}.float-2{left:6px}
+  .svc-layout,.conf-grid,.live-grid,.contact-grid{grid-template-columns:1fr}
+  .svc-sticky,.conf-side{position:static}
+  .steps{grid-template-columns:1fr 1fr}
+  .bento{grid-template-columns:1fr 1fr}
+  .cases,.price-grid{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}
+  .cases{margin-bottom:14px}
+  .report-box{grid-template-columns:1fr}
+  .report-aside{padding:28px}
+  .rsteps{flex-direction:row;overflow-x:auto}
+  .rstep{white-space:nowrap}
+  .report-emergency{margin-top:20px}
+  .season-panel{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .section{padding:64px 0}
+  .topbar-right{display:none}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat b{font-size:30px}
+  .steps{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .bcell.wide{grid-column:auto}
+  .prop-grid{grid-template-columns:1fr 1fr}
+  .freq-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr}
+  .conf-main{padding:22px}
+  .report-main{padding:24px 20px}
+  .r-summary dl{grid-template-columns:1fr;gap:2px}
+  .r-summary dd{margin-bottom:8px}
+  .haste{grid-template-columns:1fr}
+  .season-check{grid-template-columns:1fr}
+  .season-panel{padding:24px}
+  .testi-slide{padding:24px 20px 18px}
+  .testi-nav{padding:0 20px 22px}
+  .contact-info,.contact-form-card{padding:28px 22px}
+  .form-tabs{grid-template-columns:1fr}
+  .mobile-cta{grid-template-columns:1fr}
+  .hero{padding:40px 0 56px}
+  .hero-cta .btn{flex:1;justify-content:center}
+  .float-card{display:none}
+  .dash-foot{flex-direction:column}
+  .method,.seasons,.final{margin-left:8px;margin-right:8px;border-radius:24px}
+  .vs{grid-template-columns:1fr}
+  .rnav{flex-direction:column-reverse}
+  .rnav .btn{width:100%}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-left">
+      <span class="dot-live"><span class="pulse"></span> Alle roder i drift</span>
+      <span style="opacity:.5">|</span>
+      <span id="osloTime">Oslo —</span>
+    </div>
+    <div class="topbar-right">
+      <a href="tel:+4722004000">Vakttelefon 24/7: <strong>22 00 40 00</strong></a>
+      <a href="mailto:post@eiendomspartner.no">post@eiendomspartner.no</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo" aria-label="Eiendomspartner AS">
+      <span class="logo-mark">E</span>
+      <span class="logo-text"><strong>Eiendomspartner</strong><span>Vaktmester · Service</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Hovedmeny">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#avtaler">Serviceavtaler</a>
+      <a href="#metode">Slik jobber vi</a>
+      <a href="#sesong">Sesong</a>
+      <a href="#kunder">Kunder</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#meld-sak" class="btn btn-ghost btn-sm">Meld inn sak</a>
+      <button class="btn btn-clay btn-sm" data-open-modal>Få tilbud <span class="arr">→</span></button>
+      <button class="burger" id="burger" aria-label="Meny"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mlink" href="#tjenester">Tjenester <small>01</small></a>
+  <a class="mlink" href="#avtaler">Serviceavtaler <small>02</small></a>
+  <a class="mlink" href="#metode">Slik jobber vi <small>03</small></a>
+  <a class="mlink" href="#sesong">Sesong <small>04</small></a>
+  <a class="mlink" href="#kunder">Kunder <small>05</small></a>
+  <a class="mlink" href="#meld-sak">Meld inn sak <small>06</small></a>
+  <a class="mlink" href="#kontakt">Kontakt <small>07</small></a>
+  <div class="mobile-cta">
+    <button class="btn btn-lime" data-open-modal>Få tilbud →</button>
+    <a href="#meld-sak" class="btn btn-ghost-light">Meld inn sak</a>
+  </div>
+  <div class="mobile-contact">Vakttelefon 24/7: <strong style="color:#fff">22 00 40 00</strong><br>post@eiendomspartner.no · Oslo</div>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-badge reveal"><span class="tag">Oslo · Bærum · Lørenskog</span> Fast eiendomsservice siden 2014</div>
+      <h1 class="reveal">Eiendommen din.<br><span class="accent">Uten bekymringene.<svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M2 10 C60 3 180 3 298 8" stroke="#E85A24" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span></h1>
+      <p class="hero-sub reveal">Vi er den faste drifts­partneren for <strong>borettslag, sameier, næringsbygg og forvaltere</strong> — med egen vaktmester på huset, digital sakshåndtering og dokumentert tilsyn. Du får én kontakt, fast pris og full kontroll.</p>
+      <div class="hero-cta reveal">
+        <button class="btn btn-clay btn-lg" data-open-modal>Bestill befaring <span class="arr">→</span></button>
+        <a href="#meld-sak" class="btn btn-ghost btn-lg">Meld inn oppdrag</a>
+      </div>
+      <div class="hero-proof reveal">
+        <div class="avatars">
+          <span style="background:#0E5E3F">TK</span><span style="background:#E85A24">MH</span><span style="background:#2B4BCB">AS</span><span style="background:#8A5A1E">LB</span><span style="background:#0F1513">+</span>
+        </div>
+        <div class="hero-proof-text">
+          <span class="stars">★★★★★</span> <strong>4,9 av 5</strong> fra 210+ styreledere<br>
+          <span style="color:var(--muted)">340+ eiendommer i fast drift · 98 % fornyer avtalen</span>
+        </div>
+      </div>
+    </div>
+    <div class="dash reveal reveal-d1">
+      <div class="float-card float-1">
+        <span class="float-ico" style="background:#E3F5EA">✅</span>
+        <div><strong>Sak #4821 løst</strong><span>Lekkasje kjeller · 2t 10min</span></div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-top">
+          <div class="dash-top-left">
+            <div><span class="dash-live"><span class="pulse"></span> Live driftsstatus</span><div class="dash-title">Skøyenlia Borettslag</div></div>
+          </div>
+          <div class="dash-weather"><strong>-4° ❄</strong>Strøing utført 06:40</div>
+        </div>
+        <div class="dash-body">
+          <div class="dash-prop">
+            <button class="prop-chip active">Skøyenlia<small>124 enh. · Avtale Pluss</small></button>
+            <button class="prop-chip">Sørenga Brygge<small>86 enh. · Totaldrift</small></button>
+            <button class="prop-chip">Nydalen Park<small>4 200 m² næring</small></button>
+          </div>
+          <div class="task-row">
+            <span class="task-ico" style="background:#E3F5EA"><svg viewBox="0 0 24 24" fill="none" stroke="#0E6B3E" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div class="task-info"><strong>Snørydding &amp; strøing, alle gater</strong><span>Rode 3 · Kim A. · Ferdig 07:15</span></div>
+            <span class="status st-done">Utført</span>
+          </div>
+          <div class="task-row">
+            <span class="task-ico" style="background:#FFF3D6"><svg viewBox="0 0 24 24" fill="none" stroke="#9A6500" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+            <div class="task-info"><strong>Teknisk tilsyn fyrrom + sprinkler</strong><span>Månedskontroll · Under arbeid</span></div>
+            <span class="status st-progress">Pågår</span>
+          </div>
+          <div class="task-row">
+            <span class="task-ico" style="background:#EAF0FF"><svg viewBox="0 0 24 24" fill="none" stroke="#2B4BCB" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+            <div class="task-info"><strong>Vårklargjøring av gårdsrom</strong><span>Planlagt uke 16 · 2 dager</span></div>
+            <span class="status st-plan">Planlagt</span>
+          </div>
+          <div class="dash-progress">
+            <div class="dash-progress-top"><span>Driftsplan mars — fullført</span><span>86 %</span></div>
+            <div class="bar"><i id="heroBar"></i></div>
+          </div>
+          <div class="dash-foot">
+            <a href="#meld-sak" style="background:var(--forest);color:#fff">+ Meld ny sak</a>
+            <a href="#avtaler" style="background:var(--paper);border:1px solid var(--line)">Se driftsrapport</a>
+          </div>
+        </div>
+      </div>
+      <div class="float-card float-2">
+        <span class="float-ico" style="background:#0D2B23;color:#D9F24F"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+        <div><strong>Beredskap 24/7</strong><span>Responstid i natt: 38 min</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mqTrack">
+    <span class="mq-item"><i></i>Borettslag</span><span class="mq-item"><i></i>Sameier</span><span class="mq-item"><i></i>Næringsbygg</span><span class="mq-item"><i></i>Eiendomsforvaltere</span><span class="mq-item"><i></i>Snørydding 24/7</span><span class="mq-item"><i></i>Teknisk tilsyn</span><span class="mq-item"><i></i>Fast vaktmester</span><span class="mq-item"><i></i>Serviceavtaler</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats-sec">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><b><span class="counter" data-to="340">0</span><small>+</small></b><span>eiendommer i fast drift</span></div>
+    <div class="stat reveal reveal-d1"><b><span class="counter" data-to="98">0</span><small> %</small></b><span>fornyer avtalen hvert år</span></div>
+    <div class="stat reveal reveal-d2"><b><span class="counter" data-to="45">0</span><small> min</small></b><span>gj.snitt responstid beredskap</span></div>
+    <div class="stat reveal reveal-d3"><b><span class="counter" data-to="12">0</span><small> år</small></b><span>med fornøyde styrer og gårdeiere</span></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="tjenester">
+  <div class="wrap svc-layout">
+    <div class="svc-sticky">
+      <span class="eyebrow reveal">Våre tjenester</span>
+      <h2 class="reveal" style="font-size:clamp(30px,4vw,48px);margin:14px 0 16px">Alt du slipper<br>å tenke på.</h2>
+      <p class="reveal" style="color:var(--muted);font-size:16.5px;max-width:400px">Én partner for hele bygget — fra daglig tilsyn til snø, sesong og småreparasjoner. Klikk deg gjennom hva vi tar hånd om.</p>
+      <div class="num-big reveal" id="svcCount">08</div>
+      <p class="reveal" style="font-size:14px;color:var(--muted);font-weight:600">fagområder · én kontaktperson · én faktura</p>
+      <div class="reveal" style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-dark" data-open-modal>Be om fast avtale</button>
+        <a href="#sesong" class="btn btn-ghost">Se sesonghjul</a>
+      </div>
+    </div>
+    <div class="svc-list" id="svcList">
+      <div class="svc open reveal">
+        <button class="svc-head"><span class="svc-num">01</span><h3>Fast vaktmester på huset</h3><span class="plus">+</span></button>
+        <div class="svc-body"><div class="svc-body-inner">
+          <p>Din egen vaktmester med faste runder, kjent fjes for beboerne og ansvar for at alt fungerer i hverdagen — lys, låser, fellesarealer og småting før de blir store ting.</p>
+          <div class="svc-tags"><span>Faste ukerunder</span><span>Fellesarealer</span><span>Skilting &amp; lås</span><span>Beboerdialog</span></div>
+          <a class="svc-link" href="#avtaler">Inkludert i alle avtaler →</a>
+        </div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-head"><span class="svc-num">02</span><h3>Teknisk tilsyn &amp; kontroll</h3><span class="plus">+</span></button>
+        <div class="svc-body"><div class="svc-body-inner">
+          <p>Dokumentert kontroll av tekniske anlegg: fyrrom, ventilasjon, sprinkler, brannvarsling, heis-oppfølging og avlesing. Avvik logges med bilde og frist — styret får månedsrapport.</p>
+          <div class="svc-tags"><span>Brann &amp; sikkerhet</span><span>Fyrrom &amp; SD-anlegg</span><span>Månedsrapport</span><span>Avvikslogg</span></div>
+          <a class="svc-link" href="#avtaler">Se eksempel på rapport →</a>
+        </div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-head"><span class="svc-num">03</span><h3>Småreparasjoner &amp; vedlikehold</h3><span class="plus">+</span></button>
+        <div class="svc-body"><div class="svc-body-inner">
+          <p>Vi fikser det meste av enklere reparasjoner direkte på runden — dørpumper, listverk, tetting, malingsflikking og bytte av armatur. Større jobber koordinerer vi med godkjente fagfolk.</p>
+          <div class="svc-tags"><span>Tømrer &amp; maler småjobb</span><span>Dører &amp; beslag</span><span>Armatur</span><span>Underleverandør-oppfølging</span></div>
+          <a class="svc-link" href="#meld-sak">Meld inn reparasjon →</a>
+        </div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-head"><span class="svc-num">04</span><h3>Uteområder &amp; grøntanlegg</h3><span class="plus">+</span></button>
+        <div class="svc-body"><div class="svc-body-inner">
+          <p>Gårdsrom, plen, hekk, bed og lekeplass holdes pene hele sesongen. Luking, klipping, feiing, søppelplukk og enkel beplantning — med vår- og høstrunde inkludert.</p>
+          <div class="svc-tags"><span>Gressklipping</span><span>Hekk &amp; beskjæring</span><span>Feiing &amp; plukk</span><span>Lekeplasskontroll</span></div>
+          <a class="svc-link" href="#sesong">Se sommerstell →</a>
+        </div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-head"><span class="svc-num">05</span><h3>Snørydding, strøing &amp; beredskap</h3><span class="plus">+</span></button>
+        <div class="svc-body"><div class="svc-body-inner">
+          <p>Vinterberedskap med GPS-loggede roder, utkalling ved snøfall og strøing før kl. 07. Takras-vurdering og isfjerning ved behov. Dere sover — vi er ute.</p>
+          <div class="svc-tags"><span>Beredskap 24/7</span><span>GPS-logg</span><span>Strøing før 07</span><span>Taksnø &amp; is</span></div>
+          <a class="svc-link" href="#sesong">Se vinterdrift →</a>
+        </div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-head"><span class="svc-num">06</span><h3>Avfall &amp; gjenvinning</h3><span class="plus">+</span></button>
+        <div class="svc-body"><div class="svc-body-inner">
+          <p>Orden i avfallsrommet: ettersortering, renhold, vask av beholdere, skilt og dialog med renovatør. Vi rydder henslengt avfall og holder kjeller og loft ryddige.</p>
+          <div class="svc-tags"><span>Avfallsrom vask</span><span>Ettersortering</span><span>Grovavfall</span><span>Skilting</span></div>
+          <a class="svc-link" href="#avtaler">Legg til i avtale →</a>
+        </div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-head"><span class="svc-num">07</span><h3>Sesongvedlikehold året rundt</h3><span class="plus">+</span></button>
+        <div class="svc-body"><div class="svc-body-inner">
+          <p>Fast årshjul: takrenner og sluk om høsten, vårspyling og sjekk etter vinteren, sommerstell av grønt og fasade, og vinterklargjøring av alt utstyr. Planlagt — ikke brannslukking.</p>
+          <div class="svc-tags"><span>Takrenner &amp; sluk</span><span>Vårspyling</span><span>Fasade &amp; beslag</span><span>Årshjul</span></div>
+          <a class="svc-link" href="#sesong">Utforsk årshjulet →</a>
+        </div></div>
+      </div>
+      <div class="svc reveal">
+        <button class="svc-head"><span class="svc-num">08</span><h3>Serviceavtaler &amp; totaldrift</h3><span class="plus">+</span></button>
+        <div class="svc-body"><div class="svc-body-inner">
+          <p>Fast månedspris, fast kontaktperson og garantert responstid. Velg Basis, Pluss eller Totaldrift — eller bygg din egen avtale i kalkulatoren under. Alltid med oppsigelse på 3 måneder.</p>
+          <div class="svc-tags"><span>Fast pris</span><span>Garantert responstid</span><span>Digital rapport</span><span>3 mnd oppsigelse</span></div>
+          <a class="svc-link" href="#avtaler">Bygg din avtale →</a>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="method section" id="metode">
+  <div class="wrap" style="position:relative;z-index:1">
+    <span class="eyebrow on-dark reveal">Slik jobber vi</span>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+      <h2 class="reveal" style="font-size:clamp(30px,4.4vw,52px);margin:14px 0 0;max-width:620px">Fra første befaring til et bygg som bare fungerer.</h2>
+      <p class="reveal" style="color:#B9C8C1;max-width:340px;font-size:15.5px">En ryddig prosess uten overraskelser. De fleste er i gang innen to uker etter befaring.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-no">Steg 01 <span>→</span></div><h3>Gratis befaring</h3><p>Vi går gjennom bygget, uteområdene og tekniske rom sammen med styret eller forvalter. Tar bilder, noterer avvik og lytter til ønsker.</p><span class="step-time">60–90 min · uforpliktende</span></div>
+      <div class="step reveal reveal-d1"><div class="step-no">Steg 02 <span>→</span></div><h3>Fast driftsplan</h3><p>Dere får skriftlig tilbud med årshjul, faste runder, responstider og fast månedspris. Ingen skjulte tillegg.</p><span class="step-time">Tilbud innen 5 dager</span></div>
+      <div class="step reveal reveal-d2"><div class="step-no">Steg 03 <span>→</span></div><h3>Oppstart &amp; drift</h3><p>Fast vaktmester introduseres, nøkler og adganger registreres, og første runde gjennomføres. Saker meldes digitalt.</p><span class="step-time">I gang innen 2 uker</span></div>
+      <div class="step reveal reveal-d3"><div class="step-no">Steg 04 <span>→</span></div><h3>Rapport &amp; kontroll</h3><p>Månedlig driftsrapport med bilder, timer og avvik. Årlig gjennomgang med styret og justering av planen.</p><span class="step-time">Månedlig · med bilder</span></div>
+    </div>
+    <div class="method-cta reveal">
+      <button class="btn btn-lime btn-lg" data-open-modal>Bestill gratis befaring <span class="arr">→</span></button>
+      <span class="method-note">✓ Uforpliktende &nbsp; ✓ Svar innen 24 timer &nbsp; ✓ Oppmøte til avtalt tid</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIGURATOR -->
+<section class="section" id="avtaler">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Serviceavtaler</span>
+      <h2 class="reveal">Bygg din egen driftsavtale.</h2>
+      <p class="reveal">Velg eiendomstype, størrelse og tjenester — så får du et umiddelbart prisestimat. Endelig pris fastsettes alltid etter gratis befaring.</p>
+    </div>
+    <div class="conf-grid">
+      <div class="conf-main reveal">
+        <div class="conf-step">
+          <div class="conf-label"><b>1</b> Hva slags eiendom?</div>
+          <div class="prop-grid" id="propGrid">
+            <button class="prop-opt selected" data-type="borettslag" data-base="4500"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M9 10h.01M15 10h.01M12 10h.01"/></svg><strong>Borettslag</strong></button>
+            <button class="prop-opt" data-type="sameie" data-base="3800"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="7" height="18" rx="1"/><rect x="13" y="8" width="7" height="13" rx="1"/></svg><strong>Sameie</strong></button>
+            <button class="prop-opt" data-type="naring" data-base="6500"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V5l8-2v18M12 21V9l8 2v10M4 21h16M7 8h2M7 12h2M7 16h2"/></svg><strong>Næringsbygg</strong></button>
+            <button class="prop-opt" data-type="forvalter" data-base="5500"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 12h18"/></svg><strong>Forvalter</strong></button>
+          </div>
+        </div>
+        <div class="conf-step">
+          <div class="conf-label"><b>2</b> Hvor stort er det?</div>
+          <div class="size-ctrl">
+            <div class="size-top"><strong id="sizeLabel">Antall enheter</strong><output id="sizeOut">80</output></div>
+            <input type="range" id="sizeRange" min="10" max="300" value="80" step="5" aria-label="Størrelse">
+            <div class="size-scale"><span>10</span><span>100</span><span>200</span><span>300+</span></div>
+          </div>
+        </div>
+        <div class="conf-step">
+          <div class="conf-label"><b>3</b> Hvilke tjenester trenger dere? <span style="text-transform:none;letter-spacing:0;font-weight:500">(velg flere)</span></div>
+          <div class="chip-grid" id="chipGrid">
+            <button class="chip selected" data-price="1800" data-name="Fast vaktmester"><span class="tick">✓</span>Fast vaktmester</button>
+            <button class="chip selected" data-price="1200" data-name="Teknisk tilsyn"><span class="tick">✓</span>Teknisk tilsyn</button>
+            <button class="chip selected" data-price="2200" data-name="Snø &amp; strøing"><span class="tick">✓</span>Snø &amp; strøing</button>
+            <button class="chip" data-price="1500" data-name="Uteområder"><span class="tick">✓</span>Uteområder</button>
+            <button class="chip" data-price="1400" data-name="Småreparasjoner"><span class="tick">✓</span>Småreparasjoner</button>
+            <button class="chip" data-price="900" data-name="Avfall"><span class="tick">✓</span>Avfall</button>
+            <button class="chip" data-price="1100" data-name="Sesongvedlikehold"><span class="tick">✓</span>Sesongvedlikehold</button>
+            <button class="chip" data-price="1900" data-name="Beredskap 24/7"><span class="tick">✓</span>Beredskap 24/7</button>
+          </div>
+        </div>
+        <div class="conf-step">
+          <div class="conf-label"><b>4</b> Hvor ofte skal vi være innom?</div>
+          <div class="freq-grid" id="freqGrid">
+            <button class="freq" data-mult="1.25"><strong>Ukentlig</strong><span>Fast dag hver uke</span></button>
+            <button class="freq selected" data-mult="1"><strong>Annenhver uke</strong><span>Mest valgt ✓</span></button>
+            <button class="freq" data-mult="0.75"><strong>Månedlig</strong><span>Tilsyn + ved behov</span></button>
+          </div>
+        </div>
+      </div>
+      <aside class="conf-side reveal reveal-d1">
+        <h3>Ditt prisestimat</h3>
+        <div class="conf-price"><span id="confPrice">12 400</span><small> kr / mnd</small></div>
+        <div class="conf-range">Veil. eks. mva · Endelig pris etter befaring</div>
+        <ul class="conf-list" id="confList"></ul>
+        <button class="btn btn-lime" data-open-modal>Be om fast avtale <span class="arr">→</span></button>
+        <button class="btn btn-ghost-light btn-sm" data-open-modal style="width:100%">Bestill gratis befaring</button>
+        <p class="conf-fine" style="margin-top:12px">Ingen binding utover 3 mnd oppsigelse.<br>Svar innen 24 timer på virkedager.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- SEASONS -->
+<section class="seasons section" id="sesong">
+  <div class="wrap">
+    <span class="eyebrow on-dark reveal">Årshjul</span>
+    <h2 class="reveal" style="font-size:clamp(30px,4.4vw,52px);margin:14px 0 8px;max-width:680px">Riktig vedlikehold, til riktig tid.</h2>
+    <p class="reveal" style="color:#B9C8C1;max-width:560px;font-size:16px">Hver avtale følger et fast årshjul. Slik forebygger vi skader i stedet for å reparere dem.</p>
+    <div class="season-tabs reveal" role="tablist">
+      <button class="season-tab active" data-season="0" role="tab"><i>❄</i> Vinterdrift <small style="opacity:.6">nov–mar</small></button>
+      <button class="season-tab" data-season="1" role="tab"><i>🌱</i> Vårklargjøring <small style="opacity:.6">apr–mai</small></button>
+      <button class="season-tab" data-season="2" role="tab"><i>☀</i> Sommerstell <small style="opacity:.6">jun–aug</small></button>
+      <button class="season-tab" data-season="3" role="tab"><i>🍂</i> Høstvedlikehold <small style="opacity:.6">sep–okt</small></button>
+    </div>
+    <div class="season-panels reveal">
+      <div class="season-panel active" data-panel="0">
+        <div>
+          <div class="season-when">November – mars · Beredskap 24/7</div>
+          <h3>Vinterdrift uten bekymring.</h3>
+          <p>Når snøen kommer, er vi allerede ute. Faste roder med GPS-logg, strøing før kl. 07 og vakttelefon som faktisk svarer.</p>
+          <ul class="season-check">
+            <li>Snørydding alle gangveier</li>
+            <li>Strøing før kl. 07:00</li>
+            <li>GPS-logg til styret</li>
+            <li>Taksnø- &amp; iskontroll</li>
+            <li>Sluk- og kjellertilsyn</li>
+            <li>Vakttelefon hele døgnet</li>
+          </ul>
+        </div>
+        <div class="season-visual sv-winter"><svg class="sv-deco" viewBox="0 0 400 200"><g fill="rgba(255,255,255,.75)"><circle cx="40" cy="40" r="3"/><circle cx="120" cy="70" r="2"/><circle cx="200" cy="30" r="3.5"/><circle cx="280" cy="60" r="2"/><circle cx="350" cy="35" r="3"/><circle cx="80" cy="120" r="2.5"/><circle cx="170" cy="110" r="2"/><circle cx="250" cy="120" r="3"/><circle cx="330" cy="110" r="2.5"/></g><path d="M0 170 Q100 150 200 165 T400 160 V200 H0 Z" fill="rgba(255,255,255,.85)"/></svg>
+          <div class="sv-card"><strong>❄ Siste vinter hos oss</strong>1 240 utrykninger · 0 skader meldt grunnet glatt føre · snitt strøing kl. 05:50</div>
+        </div>
+      </div>
+      <div class="season-panel" data-panel="1">
+        <div>
+          <div class="season-when">April – mai · Etter vinteren</div>
+          <h3>Vårklargjøring som merkes.</h3>
+          <p>Vi rydder etter vinteren, sjekker skader og gjør bygget klart for utesesongen. Gårdsrommet blir et sted folk vil være.</p>
+          <ul class="season-check">
+            <li>Feiing &amp; vårspyling</li>
+            <li>Skadesjekk fasade/tak</li>
+            <li>Rens av sluk &amp; renner</li>
+            <li>Beplantning &amp; bark</li>
+            <li>Vask av fellesarealer</li>
+            <li>Sjekk av lekeplass</li>
+          </ul>
+        </div>
+        <div class="season-visual sv-spring"><svg class="sv-deco" viewBox="0 0 400 200"><circle cx="320" cy="45" r="24" fill="rgba(255,255,255,.85)"/><path d="M0 170 Q120 140 240 160 T400 150 V200 H0 Z" fill="rgba(13,43,35,.55)"/><g stroke="rgba(255,255,255,.7)" stroke-width="3" stroke-linecap="round"><path d="M60 165 v-40M60 140 l-12 -10M60 140 l12 -12"/><path d="M120 162 v-30M120 147 l-10 -8M120 147 l10 -9"/><path d="M180 165 v-44M180 143 l-13 -11M180 143 l13 -12"/></g></svg>
+          <div class="sv-card"><strong>🌱 Vårrunde uke 15–20</strong>Faste vårpakker for borettslag — bestill innen 1. mars for garantert plass.</div>
+        </div>
+      </div>
+      <div class="season-panel" data-panel="2">
+        <div>
+          <div class="season-when">Juni – august · Grønt &amp; trivsel</div>
+          <h3>Sommerstell hele sesongen.</h3>
+          <p>Løpende klipping, luking og stell av grøntanlegg — pluss småreparasjoner og malingsvedlikehold mens været er på vår side.</p>
+          <ul class="season-check">
+            <li>Gressklipping fast intervall</li>
+            <li>Luking &amp; kantklipp</li>
+            <li>Hekk- &amp; buskklipp</li>
+            <li>Vanning ved tørke</li>
+            <li>Maling &amp; småvedlikehold</li>
+            <li>Søppelplukk &amp; feiing</li>
+          </ul>
+        </div>
+        <div class="season-visual sv-summer"><svg class="sv-deco" viewBox="0 0 400 200"><circle cx="200" cy="70" r="34" fill="rgba(255,255,255,.9)"/><circle cx="200" cy="70" r="48" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2"/><path d="M0 175 Q150 155 300 170 T400 165 V200 H0 Z" fill="rgba(60,30,10,.5)"/></svg>
+          <div class="sv-card"><strong>☀ Grøntavtale mai–sep</strong>Fast intervall hver 7. eller 14. dag — med bilde­rapport etter hver runde.</div>
+        </div>
+      </div>
+      <div class="season-panel" data-panel="3">
+        <div>
+          <div class="season-when">September – oktober · Før frosten</div>
+          <h3>Høstvedlikehold forebygger.</h3>
+          <p>Høsten er den viktigste sesongen for å unngå vinterskader. Vi tømmer, renser, fester og kontrollerer — før frosten setter inn.</p>
+          <ul class="season-check">
+            <li>Tømming av takrenner</li>
+            <li>Løvrydding &amp; bortkjøring</li>
+            <li>Stenging av utekraner</li>
+            <li>Kontroll beslag &amp; tak</li>
+            <li>Smøring lås &amp; dører</li>
+            <li>Lagring av utemøbler</li>
+          </ul>
+        </div>
+        <div class="season-visual sv-autumn"><svg class="sv-deco" viewBox="0 0 400 200"><g fill="rgba(255,255,255,.6)"><ellipse cx="80" cy="80" rx="10" ry="6" transform="rotate(-20 80 80)"/><ellipse cx="150" cy="60" rx="9" ry="5" transform="rotate(15 150 60)"/><ellipse cx="230" cy="90" rx="10" ry="6" transform="rotate(-30 230 90)"/><ellipse cx="300" cy="65" rx="9" ry="5" transform="rotate(25 300 65)"/><ellipse cx="120" cy="120" rx="8" ry="5" transform="rotate(-10 120 120)"/></g><path d="M0 175 Q120 155 260 170 T400 165 V200 H0 Z" fill="rgba(30,20,10,.55)"/></svg>
+          <div class="sv-card"><strong>🍂 Høstpakke sep–okt</strong>Takrenner, løv og vinter­klargjøring samlet — én fast pris per bygg.</div>
+        </div>
+      </div>
+    </div>
+    <div class="yearline reveal">
+      <div>JAN</div><div>FEB</div><div>MAR</div><div>APR</div><div>MAI</div><div>JUN</div><div>JUL</div><div>AUG</div><div class="on">SEP ● dere er her</div><div>OKT</div><div>NOV</div><div>DES</div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section" id="fordeler">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Hvorfor fast avtale?</span>
+      <h2 class="reveal">Billigere enn brannslukking. Roligere enn dugnad.</h2>
+      <p class="reveal">Løse oppdrag koster mer og gir mindre. Med fast partner får dere forutsigbarhet, dokumentasjon og et bygg som holder verdien.</p>
+    </div>
+    <div class="bento">
+      <div class="bcell tall reveal">
+        <div class="b-ico" style="background:#EDF5F0"><svg viewBox="0 0 24 24" fill="none" stroke="#0E5E3F" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h3>Én fast vaktmester — som kjenner bygget</h3>
+        <p>Ikke tilfeldige folk hver gang. Deres vaktmester lærer byggets svakheter, kjenner beboerne og tar tak før dere rekker å melde.</p>
+        <div class="b-mini">
+          <div class="b-mini-row"><span>Kim A. · Rode Majorstuen</span><span class="ok">Fast</span></div>
+          <div class="b-mini-row"><span>Fast runde</span><span>Tirsdager</span></div>
+          <div class="b-mini-row"><span>Direktenummer</span><span>90 12 34 56</span></div>
+          <div class="b-mini-row"><span>Bygg kjent siden</span><span>2019</span></div>
+        </div>
+      </div>
+      <div class="bcell reveal reveal-d1">
+        <div class="b-ico" style="background:#FFF3D6"><svg viewBox="0 0 24 24" fill="none" stroke="#9A6500" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <h3>Alt digitalt — meld sak på 1 minutt</h3>
+        <p>Beboere og styret melder saker på nett. Dere følger status, bilder og frist i sanntid.</p>
+      </div>
+      <div class="bcell dark reveal reveal-d2">
+        <div class="b-ico" style="background:rgba(217,242,79,.15)"><svg viewBox="0 0 24 24" fill="none" stroke="#D9F24F" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Dokumentert tilsyn</h3>
+        <p>Hver runde logges med bilder. Perfekt for styret, forsikring og generalforsamling.</p>
+      </div>
+      <div class="bcell reveal">
+        <h3 style="font-family:var(--font-d);font-size:28px">−32 %</h3>
+        <p><strong style="color:var(--ink)">færre akuttsaker</strong> i snitt etter første år med fast avtale — fordi vi forebygger i stedet for å reparere.</p>
+        <div class="bar" style="margin-top:14px"><i class="bar-fill" data-w="68"></i></div>
+        <p style="font-size:12.5px;margin-top:8px">Målt på 120 borettslag, 2023–2025</p>
+      </div>
+      <div class="bcell wide reveal reveal-d1">
+        <h3>Uten fast avtale vs. med Eiendomspartner</h3>
+        <div class="vs">
+          <div class="no"><strong>✕ Uten avtale</strong>Jakte håndverkere · vente i kø · ukjent pris · ingen historikk · styret gjør alt</div>
+          <div class="yes"><strong>✓ Med avtale</strong>Fast pris · garantert responstid · digital logg · én kontakt · styret kan senke skuldrene</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DRIFT -->
+<section style="padding:0 0 96px">
+  <div class="wrap live-grid">
+    <div class="live-side reveal">
+      <span class="eyebrow">Sanntid</span>
+      <h2 style="font-size:clamp(28px,3.4vw,40px);margin:14px 0 12px">Slik ser en vanlig uke ut hos oss.</h2>
+      <p style="color:var(--muted);font-size:15.5px;margin-bottom:20px">Hver sak logges, fotograferes og kvitteres. Styret slipper å purre — dere ser fremdriften her.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="#meld-sak" class="btn btn-forest">Meld inn oppdrag <span class="arr">→</span></a>
+        <button class="btn btn-ghost" data-open-modal>Få tilbud</button>
+      </div>
+    </div>
+    <div class="live-feed reveal reveal-d1">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <strong style="font-size:15px">Siste oppdateringer · Rode Majorstuen</strong>
+        <span class="status st-progress">● Live</span>
+      </div>
+      <div class="feed-item"><span class="feed-ico" style="background:#E3F5EA">✓</span><div><strong>Byttet dørpumpe, oppgang B</strong><p>Skøyenlia 14 · Foto lagt ved · Utført av Kim A.</p></div><time>09:41</time></div>
+      <div class="feed-item"><span class="feed-ico" style="background:#FFF3D6">◷</span><div><strong>Tilsyn fyrrom + avlesing</strong><p>Sørenga Brygge · Månedskontroll pågår</p></div><time>09:15</time></div>
+      <div class="feed-item"><span class="feed-ico" style="background:#E3F5EA">✓</span><div><strong>Strøing gårdsplass og rampe</strong><p>Nydalen Park · GPS-logg 06:52</p></div><time>06:52</time></div>
+      <div class="feed-item"><span class="feed-ico" style="background:#EAF0FF">✚</span><div><strong>Ny sak: dryppende kran bod 2. etg</strong><p>Meldt av beboer · Frist: i morgen kl. 12</p></div><time>06:20</time></div>
+      <div class="feed-item"><span class="feed-ico" style="background:#E3F5EA">✓</span><div><strong>Vask av avfallsrom + ettersortering</strong><p>Skøyenlia 12–18 · Før/etter-bilder vedlagt</p></div><time>I går</time></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMERS -->
+<section class="section" id="kunder" style="background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Kunder &amp; resultater</span>
+      <h2 class="reveal">Stol på dem som stoler på oss.</h2>
+      <p class="reveal">Borettslag, sameier, gårdeiere og forvaltere over hele Oslo-området. Her er et lite utvalg — og hva samarbeidet har gitt.</p>
+    </div>
+    <div class="cust-logos reveal">
+      <span>Skøyenlia Borettslag</span><span>Sameiet Sørenga Brygge</span><span>Nydalen Næringspark</span><span>Forvaltning Nord AS</span><span>Stensparken Boligsameie</span><span>Gårdeier Løkka Invest</span>
+    </div>
+    <div class="cases">
+      <div class="case reveal">
+        <div class="case-top"><span class="case-cat">Borettslag · 124 enheter</span><h3>Skøyenlia: slutt på klagestormen</h3><p>«Før brukte styret kveldene på purringer. Nå sjekker vi bare månedsrapporten.» — Trine K., styreleder</p></div>
+        <div class="case-stats"><div><b>−38%</b><span>akuttsaker år 1</span></div><div><b>4,9★</b><span>beboer­tilfredshet</span></div></div>
+      </div>
+      <div class="case reveal reveal-d1">
+        <div class="case-top"><span class="case-cat">Næring · 4 200 m²</span><h3>Nydalen Park: null driftsstans</h3><p>«Teknisk tilsyn fanger avvik før leietakerne merker noe. Det er verdt hver krone.» — Morten H., driftssjef</p></div>
+        <div class="case-stats"><div><b>0</b><span>driftsstans i 2025</span></div><div><b>24/7</b><span>beredskap</span></div></div>
+      </div>
+      <div class="case reveal reveal-d2">
+        <div class="case-top"><span class="case-cat">Forvalter · 18 bygg</span><h3>Nord Forvaltning: én kontakt</h3><p>«Vi samlet 5 leverandører til én partner. Fakturering, rapporter og ansvar — alt på ett sted.» — Anders S.</p></div>
+        <div class="case-stats"><div><b>5→1</b><span>leverandører</span></div><div><b>−21%</b><span>drifts­kostnad</span></div></div>
+      </div>
+    </div>
+    <div class="testi reveal">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-slide"><blockquote>«Endelig en vaktmester som kommer når han skal, svarer når vi ringer og dokumenterer det han gjør. Generalforsamlingen har aldri vært roligere.»</blockquote><div class="testi-who"><span class="testi-ava" style="background:#0E5E3F">TK</span><div><strong>Trine Kristiansen</strong><span>Styreleder · Skøyenlia Borettslag, 124 enheter</span></div></div></div>
+        <div class="testi-slide"><blockquote>«Vinteren 2025 var den verste på ti år. Eiendomspartner strødde før klokka seks hver eneste dag. Ikke én fallskade, ikke én klage.»</blockquote><div class="testi-who"><span class="testi-ava" style="background:#E85A24">MH</span><div><strong>Morten Hansen</strong><span>Driftssjef · Nydalen Næringspark</span></div></div></div>
+        <div class="testi-slide"><blockquote>«Som forvalter trenger jeg partnere som gjør styrene trygge. Månedsrapportene med bilder er gull verdt — jeg anbefaler dem til alle nye kunder.»</blockquote><div class="testi-who"><span class="testi-ava" style="background:#2B4BCB">AS</span><div><strong>Anders Solberg</strong><span>Forretningsfører · Nord Forvaltning AS</span></div></div></div>
+      </div>
+      <div class="testi-nav">
+        <button class="testi-btn" id="testiPrev" aria-label="Forrige">←</button>
+        <button class="testi-btn" id="testiNext" aria-label="Neste">→</button>
+        <div class="testi-dots" id="testiDots"><button class="on"></button><button></button><button></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="priser">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow reveal" style="justify-content:center">Avtaletyper</span>
+      <h2 class="reveal">Tre avtaler. Én som passer dere.</h2>
+      <p class="reveal" style="margin:0 auto">Veiledende priser for borettslag 40–80 enheter. Alle avtaler tilpasses etter gratis befaring.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price reveal">
+        <h3>Basis tilsyn</h3><p class="p-desc">For mindre bygg som trenger jevnlig kontroll og noen å ringe.</p>
+        <span class="p-from">fra</span><div class="p-val">4 900 <small>kr/mnd</small></div>
+        <ul><li>Månedlig tilsynsrunde</li><li>Kontroll fellesarealer</li><li>Digital saksmelding</li><li>Årsrapport til styret</li><li class="off">Fast ukentlig vaktmester</li><li class="off">Beredskap 24/7</li></ul>
+        <button class="btn btn-ghost" data-open-modal style="width:100%">Velg Basis</button>
+      </div>
+      <div class="price pop reveal reveal-d1">
+        <span class="price-flag">Mest valgt</span>
+        <h3>Pluss drift</h3><p class="p-desc">Vår bestselger: fast vaktmester, sesong og beredskap samlet.</p>
+        <span class="p-from">fra</span><div class="p-val">9 800 <small>kr/mnd</small></div>
+        <ul><li>Fast vaktmester annenhver uke</li><li>Teknisk tilsyn + månedsrapport</li><li>Snø &amp; strøing inkludert</li><li>Sesongvedlikehold årshjul</li><li>Beredskap 24/7</li><li>Småreparasjoner t.o.m. 2t/mnd</li></ul>
+        <button class="btn btn-lime" data-open-modal style="width:100%">Velg Pluss <span class="arr">→</span></button>
+      </div>
+      <div class="price reveal reveal-d2">
+        <h3>Totaldrift</h3><p class="p-desc">For bygg og forvaltere som vil sette bort alt av drift.</p>
+        <span class="p-from">fra</span><div class="p-val">16 500 <small>kr/mnd</small></div>
+        <ul><li>Ukentlig fast vaktmester</li><li>Alt i Pluss inkludert</li><li>Uteområder full sesong</li><li>Avfall &amp; grovavfall</li><li>Garantert responstid 4 timer</li><li>Kvartalsmøte med styret</li></ul>
+        <button class="btn btn-dark" data-open-modal style="width:100%">Velg Totaldrift</button>
+      </div>
+    </div>
+    <p class="price-note reveal">Alle priser eks. mva. Næring og forvaltere får tilpasset tilbud. <a href="#avtaler" style="font-weight:800;color:var(--clay-d)">Eller bygg din egen avtale ↑</a></p>
+  </div>
+</section>
+
+<!-- REPORT -->
+<section class="section" id="meld-sak" style="padding-top:24px">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Digital saksmelding</span>
+      <h2 class="reveal">Meld inn sak på under to minutter.</h2>
+      <p class="reveal">For beboere, styremedlemmer og leietakere i bygg vi drifter — og for alle som vil teste hvor enkelt det er. Prøv demoen:</p>
+    </div>
+    <div class="report-box reveal">
+      <aside class="report-aside">
+        <h3>Meld inn sak</h3>
+        <p>Følg stegene — vi tar det derfra og gir tilbakemelding innen 4 timer på virkedager.</p>
+        <div class="rsteps">
+          <div class="rstep on" data-rs="0"><span class="rn">1</span> Type problem</div>
+          <div class="rstep" data-rs="1"><span class="rn">2</span> Beskriv feilen</div>
+          <div class="rstep" data-rs="2"><span class="rn">3</span> Kontaktinfo</div>
+          <div class="rstep" data-rs="3"><span class="rn">4</span> Bekreft</div>
+        </div>
+        <div class="report-emergency"><strong>⚠ Akutt? Vannlekkasje, strømbrudd, innelåst?</strong>Ring vakttelefonen direkte:<br><a href="tel:+4722004000">22 00 40 00</a> — døgnet rundt.</div>
+      </aside>
+      <div class="report-main">
+        <div class="r-progress"><i id="rBar" style="width:25%"></i></div>
+        <!-- Step 1 -->
+        <div class="rpane on" data-rp="0">
+          <h4>Hva gjelder det?</h4><p class="rsub">Velg kategorien som passer best.</p>
+          <div class="cat-grid" id="catGrid">
+            <button class="cat" data-cat="VVS / lekkasje"><svg viewBox="0 0 24 24" fill="none" stroke="#2B4BCB" stroke-width="1.8"><path d="M12 2.7S6 10 6 14a6 6 0 0012 0c0-4-6-11.3-6-11.3z"/></svg><strong>VVS / lekkasje</strong><span>Drypp, tett, vannskade</span></button>
+            <button class="cat" data-cat="Elektro / lys"><svg viewBox="0 0 24 24" fill="none" stroke="#E89B00" stroke-width="1.8"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg><strong>Elektro / lys</strong><span>Lamper, sikringer</span></button>
+            <button class="cat" data-cat="Dør / lås"><svg viewBox="0 0 24 24" fill="none" stroke="#0E5E3F" stroke-width="1.8"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4M12 15v2"/></svg><strong>Dør / lås</strong><span>Pumper, sylindere</span></button>
+            <button class="cat" data-cat="Uteområde"><svg viewBox="0 0 24 24" fill="none" stroke="#157A52" stroke-width="1.8"><path d="M12 22v-7M12 15c-4 0-7-2.5-7-7 4 0 7 2 7 7zm0 0c4 0 7-2.5 7-7-4 0-7 2-7 7z"/></svg><strong>Uteområde</strong><span>Grønt, søppel, lekeplass</span></button>
+            <button class="cat" data-cat="Snø / is"><svg viewBox="0 0 24 24" fill="none" stroke="#2B7FBF" stroke-width="1.8"><path d="M12 2v20M4 6l16 12M20 6L4 18M12 6l-2-2m2 2l2-2M12 18l-2 2m2-2l2 2"/></svg><strong>Snø / is</strong><span>Glatt, brøyting, takras</span></button>
+            <button class="cat" data-cat="Annet"><svg viewBox="0 0 24 24" fill="none" stroke="#5D6965" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 .5c0 1.5-2.5 2-2.5 3.5M12 17h.01"/></svg><strong>Annet</strong><span>Usikker? Velg denne</span></button>
+          </div>
+          <div class="rnav"><span></span><button class="btn btn-forest" id="rNext0">Fortsett <span class="arr">→</span></button></div>
+        </div>
+        <!-- Step 2 -->
+        <div class="rpane" data-rp="1">
+          <h4>Beskriv feilen</h4><p class="rsub">Jo mer konkret, desto raskere løser vi det. Bilder kan ettersendes på e-post.</p>
+          <div class="form-grid">
+            <div class="field"><label>Adresse på bygget</label><input id="rAddr" type="text" placeholder="f.eks. Skøyenveien 14, 0375 Oslo"></div>
+            <div class="field"><label>Hvor i bygget?</label><select id="rWhere"><option>Oppgang / trapp</option><option>Kjeller / loft</option><option>Uteområde / gårdsrom</option><option>Parkeringskjeller / garasje</option><option>Avfallsrom</option><option>Teknisk rom</option><option>Annet sted</option></select></div>
+            <div class="field full"><label>Beskrivelse <small>— hva skjer, når startet det, hvem er berørt?</small></label><textarea id="rDesc" placeholder="f.eks. Dørpumpen i oppgang B slår ikke igjen. Døren står åpen hele døgnet…"></textarea><span class="err-msg">Beskriv feilen med minst 10 tegn.</span></div>
+            <div class="field full"><label>Hvor hastig er det?</label>
+              <div class="haste" id="rHaste">
+                <button data-h="Normal" class="selected">Normal<small>Svar innen 2 virkedager</small></button>
+                <button data-h="Haster">Haster<small>Svar innen 4 timer</small></button>
+                <button data-h="Akutt">Akutt<small>Ring 22 00 40 00!</small></button>
+              </div>
+            </div>
+          </div>
+          <div class="rnav"><button class="btn btn-ghost" data-back>← Tilbake</button><button class="btn btn-forest" id="rNext1">Fortsett <span class="arr">→</span></button></div>
+        </div>
+        <!-- Step 3 -->
+        <div class="rpane" data-rp="2">
+          <h4>Hvem er du?</h4><p class="rsub">Vi bruker dette kun til å gi status på saken.</p>
+          <div class="form-grid">
+            <div class="field"><label>Fullt navn</label><input id="rName" type="text" placeholder="Ola Nordmann" autocomplete="name"></div>
+            <div class="field"><label>Rolle</label><select id="rRole"><option>Beboer / leietaker</option><option>Styremedlem</option><option>Forretningsfører / forvalter</option><option>Vaktmester / drift</option><option>Annen</option></select></div>
+            <div class="field"><label>Telefon</label><input id="rPhone" type="tel" placeholder="900 00 000" autocomplete="tel"><span class="err-msg">Oppgi et gyldig telefonnummer (8 siffer).</span></div>
+            <div class="field"><label>E-post</label><input id="rMail" type="email" placeholder="ola@epost.no" autocomplete="email"><span class="err-msg">Oppgi en gyldig e-postadresse.</span></div>
+          </div>
+          <div class="rnav"><button class="btn btn-ghost" data-back>← Tilbake</button><button class="btn btn-forest" id="rNext2">Se over saken <span class="arr">→</span></button></div>
+        </div>
+        <!-- Step 4 -->
+        <div class="rpane" data-rp="3">
+          <div id="rReview">
+            <h4>Stemmer dette?</h4><p class="rsub">Sjekk at alt er riktig før du sender.</p>
+            <div class="r-summary"><dl id="rSummaryDl"></dl></div>
+            <div class="rnav"><button class="btn btn-ghost" data-back>← Tilbake</button><button class="btn btn-clay" id="rSend">Send inn saken <span class="arr">→</span></button></div>
+          </div>
+          <div id="rDone" class="r-success" style="display:none">
+            <div class="ok-ring">✓</div>
+            <h4>Takk! Saken er mottatt.</h4>
+            <p style="color:var(--muted);font-size:15px;max-width:420px;margin:0 auto">Vi gir tilbakemelding innen oppgitt frist. Lagre saksnummeret — det kommer også på SMS.</p>
+            <div><span class="case-no" id="rCaseNo">EP-2026-0000</span></div>
+            <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+              <button class="btn btn-forest" id="rNew">Meld ny sak</button>
+              <a href="#kontakt" class="btn btn-ghost">Kontakt oss</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="kontakt" style="padding-top:24px">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Kontakt</span>
+      <h2 class="reveal">La oss ta en prat om bygget deres.</h2>
+      <p class="reveal">Ring, send e-post — eller fyll ut skjemaet så ringer vi tilbake innen 24 timer på virkedager.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3 style="font-size:24px;margin-bottom:6px">Eiendomspartner AS</h3>
+        <p style="color:#B9C8C1;font-size:14.5px;margin-bottom:14px">Fast vaktmester &amp; eiendomsservice · Org.nr. 931 234 567</p>
+        <div class="c-row"><span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#D9F24F" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.9.5 2.8.7a2 2 0 011.7 2z"/></svg></span><div><strong>Vakttelefon 24/7 — 22 00 40 00</strong><span>Kontor: 22 00 40 10 · man–fre 08–16</span></div></div>
+        <div class="c-row"><span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#D9F24F" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></span><div><strong>post@eiendomspartner.no</strong><span><a href="mailto:post@eiendomspartner.no">Send e-post</a> · svar innen 24 timer</span></div></div>
+        <div class="c-row"><span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#D9F24F" stroke-width="1.8"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><strong>Hausmanns gate 12, 0182 Oslo</strong><span>Besøk etter avtale · parkering i bakgård</span></div></div>
+        <div class="c-row"><span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#D9F24F" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span><div><strong>Dekningsområde</strong><div class="area-pills"><span>Oslo</span><span>Bærum</span><span>Asker</span><span>Lørenskog</span><span>Ski</span><span>+ omegn</span></div></div></div>
+      </div>
+      <div class="contact-form-card reveal reveal-d1">
+        <h3>Hva kan vi hjelpe med?</h3>
+        <p>Velg henvendelse — skjemaet tilpasser seg.</p>
+        <div class="form-tabs" id="contactTabs">
+          <button class="selected" data-ct="tilbud">Få tilbud</button>
+          <button data-ct="befaring">Bestill befaring</button>
+          <button data-ct="avtale">Fast avtale</button>
+        </div>
+        <form id="contactForm" novalidate>
+          <div class="form-grid">
+            <div class="field"><label>Navn *</label><input type="text" id="cName" placeholder="Ditt navn" autocomplete="name"><span class="err-msg">Oppgi navn.</span></div>
+            <div class="field"><label>Telefon *</label><input type="tel" id="cPhone" placeholder="900 00 000" autocomplete="tel"><span class="err-msg">Oppgi gyldig telefonnummer.</span></div>
+            <div class="field"><label>E-post *</label><input type="email" id="cMail" placeholder="navn@styret.no" autocomplete="email"><span class="err-msg">Oppgi gyldig e-post.</span></div>
+            <div class="field"><label>Eiendomstype</label><select><option>Borettslag</option><option>Sameie</option><option>Næringsbygg</option><option>Forvalter / flere bygg</option><option>Annet</option></select></div>
+            <div class="field full"><label>Melding * <small id="cHint">— fortell kort om bygget: adresse, antall enheter, hva dere trenger.</small></label><textarea id="cMsg" placeholder="f.eks. Borettslag på Majorstuen, 64 enheter. Ønsker fast vaktmester + snø…"></textarea><span class="err-msg">Skriv noen ord om behovet (minst 10 tegn).</span></div>
+          </div>
+          <label class="consent"><input type="checkbox" checked><span>Ja, Eiendomspartner AS kan kontakte meg om denne henvendelsen. Les personvernerklæringen i footeren.</span></label>
+          <button type="submit" class="btn btn-clay btn-lg" style="width:100%;margin-top:18px"><span id="cSubmitLabel">Få tilbud innen 5 dager</span> <span class="arr">→</span></button>
+          <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:12px">🔒 Uforpliktende · Ingen spam · Slettes på forespørsel</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="padding-top:24px" id="faq">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow reveal" style="justify-content:center">Spørsmål &amp; svar</span>
+      <h2 class="reveal">Det styret lurer på.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq open reveal"><button>Hva koster en fast avtale? <span class="plus">+</span></button><div class="faq-a"><p>Det avhenger av størrelse, tjenester og hyppighet. Et borettslag på 40–80 enheter ligger typisk på 5 000–15 000 kr/mnd eks. mva. Bruk avtale­byggeren over for et estimat — endelig pris får dere skriftlig etter gratis befaring, uten skjulte tillegg.</p></div></div>
+      <div class="faq reveal"><button>Hvor raskt rykker dere ut ved akutte saker? <span class="plus">+</span></button><div class="faq-a"><p>Med beredskapsavtale garanterer vi oppmøte innen 4 timer i Oslo-området — i snitt bruker vi 45 minutter. Vakttelefonen er bemannet hele døgnet, også i helger og på helligdager.</p></div></div>
+      <div class="faq reveal"><button>Får vi samme vaktmester hver gang? <span class="plus">+</span></button><div class="faq-a"><p>Ja. Hvert bygg får en fast vaktmester med faste runder, pluss en navngitt backup ved ferie og sykdom. Slik slipper dere å forklare alt på nytt hver gang.</p></div></div>
+      <div class="faq reveal"><button>Hvordan fungerer oppsigelse? <span class="plus">+</span></button><div class="faq-a"><p>Alle avtaler har 3 måneders gjensidig oppsigelse etter en oppstartsperiode på 3 måneder. Ingen binding, ingen gebyrer. 98 % av kundene fornyer likevel — det sier sitt.</p></div></div>
+      <div class="faq reveal"><button>Kan beboere melde saker direkte? <span class="plus">+</span></button><div class="faq-a"><p>Ja, det anbefaler vi. Beboere melder via nettskjema, og styret/forvalter ser all status i sanntid. Dere velger selv om saker skal godkjennes av styret før utførelse over en viss beløpsgrense.</p></div></div>
+      <div class="faq reveal"><button>Jobber dere med vår eksisterende forvalter? <span class="plus">+</span></button><div class="faq-a"><p>Absolutt — vi samarbeider med alle store forvaltere (OBOS, USBL, BORI m.fl.) og tilpasser rapportering og fakturering til deres rutiner. Mange forvaltere setter hele porteføljer bort til oss.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final reveal">
+  <span class="eyebrow on-dark" style="justify-content:center">Klar når dere er klare</span>
+  <h2>Et bygg som bare fungerer. Et styre som kan slappe av.</h2>
+  <p>Bli med 340+ eiendommer som har satt driften bort til oss. Gratis befaring — svar innen 24 timer.</p>
+  <div class="final-cta-row">
+    <button class="btn btn-lime btn-lg" data-open-modal>Bestill gratis befaring <span class="arr">→</span></button>
+    <a href="tel:+4722004000" class="btn btn-ghost-light btn-lg">📞 22 00 40 00</a>
+  </div>
+  <div class="final-meta"><span>✓ Uforpliktende befaring</span><span>✓ Fast pris — ingen overraskelser</span><span>✓ 3 mnd oppsigelse</span></div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="logo"><span class="logo-mark" style="background:rgba(255,255,255,.1)">E</span><span class="logo-text"><strong style="color:#fff">Eiendomspartner</strong><span>Vaktmester · Service</span></span></a>
+        <p>Fast vaktmester og eiendomsservice for borettslag, sameier, næringsbygg og forvaltere i Oslo-området. Én partner — null bekymringer.</p>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-ghost-light btn-sm" data-open-modal>Få tilbud</button>
+          <a href="#meld-sak" class="btn btn-ghost-light btn-sm">Meld sak</a>
+        </div>
+      </div>
+      <div><h4>Tjenester</h4><ul><li><a href="#tjenester">Fast vaktmester</a></li><li><a href="#tjenester">Teknisk tilsyn</a></li><li><a href="#tjenester">Snørydding &amp; strøing</a></li><li><a href="#tjenester">Uteområder</a></li><li><a href="#tjenester">Avfall &amp; gjenvinning</a></li><li><a href="#sesong">Sesongvedlikehold</a></li></ul></div>
+      <div><h4>Selskapet</h4><ul><li><a href="#metode">Slik jobber vi</a></li><li><a href="#avtaler">Serviceavtaler</a></li><li><a href="#kunder">Kunder</a></li><li><a href="#faq">Spørsmål &amp; svar</a></li><li><a href="#kontakt">Kontakt</a></li><li><a href="#">Jobb hos oss</a></li></ul></div>
+      <div><h4>Kontakt</h4><ul><li>Hausmanns gate 12<br>0182 Oslo</li><li><a href="tel:+4722004000"><strong style="color:#fff">22 00 40 00</strong> (24/7)</a></li><li><a href="mailto:post@eiendomspartner.no">post@eiendomspartner.no</a></li><li>Org.nr. 931 234 567</li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Eiendomspartner AS · Alle rettigheter reservert · <a href="#">Personvern</a> · <a href="#">Informasjonskapsler</a></span>
+      <span>Demo-nettside utviklet av webbyrå · Alt innhold er fiktivt</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Få tilbud">
+    <button class="modal-close" id="modalClose" aria-label="Lukk">✕</button>
+    <div id="modalForm">
+      <h3>Få tilbud — svar innen 24 timer.</h3>
+      <p>Legg igjen nummeret, så ringer en rådgiver tilbake og avtaler gratis befaring.</p>
+      <form id="modalFormEl" novalidate>
+        <div class="form-grid">
+          <div class="field full"><label>Navn *</label><input type="text" id="mName" placeholder="Ditt navn"><span class="err-msg">Oppgi navn.</span></div>
+          <div class="field"><label>Telefon *</label><input type="tel" id="mPhone" placeholder="900 00 000"><span class="err-msg">Oppgi gyldig telefon.</span></div>
+          <div class="field"><label>E-post *</label><input type="email" id="mMail" placeholder="navn@styret.no"><span class="err-msg">Oppgi gyldig e-post.</span></div>
+          <div class="field full"><label>Hva gjelder det?</label><select id="mTopic"><option>Gratis befaring + tilbud på fast avtale</option><option>Pris på snørydding / vinterberedskap</option><option>Engangsoppdrag / vårklargjøring</option><option>Samarbeid som forvalter</option><option>Annet</option></select></div>
+        </div>
+        <button type="submit" class="btn btn-clay btn-lg" style="width:100%;margin-top:18px">Ring meg tilbake <span class="arr">→</span></button>
+        <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:10px">Eller ring oss direkte: <a href="tel:+4722004000" style="font-weight:800;color:var(--forest)">22 00 40 00</a></p>
+      </form>
+    </div>
+    <div id="modalDone" style="display:none;text-align:center;padding:16px 0">
+      <div class="ok-ring" style="width:76px;height:76px;border-radius:50%;background:#DCF2E4;display:grid;place-items:center;font-size:34px;margin:0 auto 16px">✓</div>
+      <h3>Takk, <span id="modalName">venn</span>!</h3>
+      <p style="color:var(--muted);font-size:15px;margin:8px 0 20px">Vi ringer deg tilbake innen 24 timer på virkedager — som regel mye raskere.</p>
+      <button class="btn btn-forest" id="modalOk" style="width:100%">Lukk</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="t-dot"></span><span id="toastMsg">Sendt!</span></div>
+
+<script>
+(function(){
+"use strict";
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const fmt=n=>Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g," ");
+
+/* Marquee duplicate */
+const mq=$("#mqTrack"); mq.innerHTML+=mq.innerHTML;
+
+/* Oslo time */
+function tick(){try{$("#osloTime").textContent="Oslo — "+new Intl.DateTimeFormat("no-NO",{hour:"2-digit",minute:"2-digit",timeZone:"Europe/Oslo"}).format(new Date());}catch(e){}}
+tick(); setInterval(tick,30000);
+
+/* Nav scroll */
+const nav=$("#nav");
+addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>10),{passive:true});
+
+/* Mobile menu */
+const burger=$("#burger"),mm=$("#mobileMenu");
+burger.onclick=()=>{const o=mm.classList.toggle("open");burger.classList.toggle("open",o);document.body.style.overflow=o?"hidden":"";};
+$$(".mobile-menu a").forEach(a=>a.onclick=()=>{mm.classList.remove("open");burger.classList.remove("open");document.body.style.overflow="";});
+
+/* Reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target);}}),{threshold:.12});
+$$(".reveal").forEach(el=>io.observe(el));
+
+/* Hero bar + counters + bars */
+const heroBar=$("#heroBar");
+setTimeout(()=>heroBar.style.width="86%",400);
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return; cio.unobserve(e.target);
+  const to=+e.target.dataset.to,t0=performance.now();
+  (function step(t){const p=Math.min(1,(t-t0)/1400),v=Math.round(to*(1-Math.pow(1-p,3)));e.target.textContent=v;if(p<1)requestAnimationFrame(step);})(t0);
+}),{threshold:.5});
+$$(".counter").forEach(el=>cio.observe(el));
+const bio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.w+"%";bio.unobserve(e.target);}}),{threshold:.4});
+$$(".bar-fill").forEach(el=>bio.observe(el));
+
+/* Services accordion */
+$$("#svcList .svc").forEach(svc=>{
+  const head=$(".svc-head",svc),body=$(".svc-body",svc);
+  const set=()=>{body.style.maxHeight=svc.classList.contains("open")?body.scrollHeight+"px":"0px";};
+  set(); addEventListener("resize",set);
+  head.onclick=()=>{
+    const was=svc.classList.contains("open");
+    $$("#svcList .svc.open").forEach(o=>{o.classList.remove("open");$(".svc-body",o).style.maxHeight="0px";});
+    if(!was){svc.classList.add("open");body.style.maxHeight=body.scrollHeight+"px";}
+  };
+});
+
+/* FAQ */
+$$(".faq").forEach(f=>{
+  const a=$(".faq-a",f);
+  const set=()=>a.style.maxHeight=f.classList.contains("open")?a.scrollHeight+"px":"0px";
+  set(); addEventListener("resize",set);
+  $("button",f).onclick=()=>{f.classList.toggle("open");set();};
+});
+
+/* Dash chips */
+$$(".prop-chip").forEach(c=>c.onclick=()=>{$$(".prop-chip").forEach(x=>x.classList.remove("active"));c.classList.add("active");
+  const t=$(".dash-title"); if(t){t.textContent=c.textContent.replace(/\d+.*/,"").trim()||"Skøyenlia Borettslag";}});
+
+/* Configurator */
+const state={base:4500,type:"Borettslag",size:80,mult:1};
+const confPrice=$("#confPrice"),confList=$("#confList"),sizeRange=$("#sizeRange"),sizeOut=$("#sizeOut"),sizeLabel=$("#sizeLabel");
+const typeNames={borettslag:"Borettslag",sameie:"Sameie",naring:"Næringsbygg",forvalter:"Forvalter"};
+$$("#propGrid .prop-opt").forEach(b=>b.onclick=()=>{
+  $$("#propGrid .prop-opt").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");
+  state.base=+b.dataset.base;state.type=typeNames[b.dataset.type];
+  if(b.dataset.type==="naring"){sizeLabel.textContent="Areal (m²)";sizeRange.min=200;sizeRange.max=12000;sizeRange.step=100;sizeRange.value=2500;}
+  else{sizeLabel.textContent="Antall enheter";sizeRange.min=10;sizeRange.max=300;sizeRange.step=5;sizeRange.value=80;}
+  calc();
+});
+$$("#chipGrid .chip").forEach(ch=>ch.onclick=()=>{ch.classList.toggle("selected");calc();});
+$$("#freqGrid .freq").forEach(f=>f.onclick=()=>{$$("#freqGrid .freq").forEach(x=>x.classList.remove("selected"));f.classList.add("selected");state.mult=+f.dataset.mult;calc();});
+sizeRange.oninput=calc;
+function calc(){
+  const size=+sizeRange.value;state.size=size;sizeOut.textContent=fmt(size);
+  let perUnit=85; if(state.type==="Næringsbygg")perUnit=2.2; if(state.type==="Forvalter")perUnit=60;
+  let sum=state.base+size*perUnit;
+  const chosen=$$("#chipGrid .chip.selected");
+  chosen.forEach(c=>sum+=+c.dataset.price);
+  sum*=state.mult;
+  // animate number
+  const from=parseInt(confPrice.textContent.replace(/\D/g,""))||0,diff=sum-from,t0=performance.now();
+  (function step(t){const p=Math.min(1,(t-t0)/500);confPrice.textContent=fmt(from+diff*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);})(t0);
+  const freq=$("#freqGrid .freq.selected strong").textContent;
+  confList.innerHTML=`<li>${state.type} · ${fmt(size)} ${state.type==="Næringsbygg"?"m²":"enheter"}</li><li>${chosen.length} tjenester valgt · ${freq.toLowerCase()}</li>`+
+    chosen.slice(0,4).map(c=>`<li>${c.dataset.name}</li>`).join("")+(chosen.length>4?`<li>+ ${chosen.length-4} til …</li>`:"");
+  if(!chosen.length)confList.innerHTML+=`<li style="opacity:.7">Velg minst én tjeneste ↑</li>`;
+}
+calc();
+
+/* Seasons */
+const tabs=$$(".season-tab"),panels=$$(".season-panel");
+tabs.forEach(t=>t.onclick=()=>{tabs.forEach(x=>x.classList.remove("active"));t.classList.add("active");
+  panels.forEach(p=>p.classList.toggle("active",p.dataset.panel===t.dataset.season));});
+
+/* Testimonials */
+let ti=0;const track=$("#testiTrack"),dots=$$("#testiDots button");
+function goT(n){ti=(n+3)%3;track.style.transform=`translateX(-${ti*100}%)`;dots.forEach((d,i)=>d.classList.toggle("on",i===ti));}
+$("#testiPrev").onclick=()=>goT(ti-1);$("#testiNext").onclick=()=>goT(ti+1);
+dots.forEach((d,i)=>d.onclick=()=>goT(i));
+setInterval(()=>{if(document.visibilityState==="visible")goT(ti+1);},7000);
+
+/* Report wizard */
+let rStep=0,cat="",haste="Normal";
+const rPanes=$$(".rpane"),rSteps=$$(".rstep"),rBar=$("#rBar");
+function goR(n){rStep=Math.max(0,Math.min(3,n));
+  rPanes.forEach(p=>p.classList.toggle("on",+p.dataset.rp===rStep));
+  rSteps.forEach(s=>{const i=+s.dataset.rs;s.classList.toggle("on",i===rStep);s.classList.toggle("done",i<rStep);$(".rn",s).textContent=i<rStep?"✓":(i+1);});
+  rBar.style.width=((rStep+1)*25)+"%";
+  if(rStep===3)buildSummary();
+}
+$$("#catGrid .cat").forEach(c=>c.onclick=()=>{$$("#catGrid .cat").forEach(x=>x.classList.remove("selected"));c.classList.add("selected");cat=c.dataset.cat;});
+$$("#rHaste button").forEach(b=>b.onclick=e=>{e.preventDefault();$$("#rHaste button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");haste=b.dataset.h;});
+$("#rNext0").onclick=()=>{if(!cat){toast("Velg type problem først");return;}goR(1);};
+$("#rNext1").onclick=()=>{
+  const d=$("#rDesc");let ok=true;
+  if(d.value.trim().length<10){d.closest(".field").classList.add("invalid");ok=false;}else d.closest(".field").classList.remove("invalid");
+  if(!ok){toast("Beskriv feilen litt mer utfyllende");return;}
+  goR(2);
+};
+$("#rNext2").onclick=()=>{
+  let ok=true;
+  const ph=$("#rPhone"),ml=$("#rMail");
+  if(!/^[+\d][\d\s.]{7,}$/.test(ph.value.trim())){ph.closest(".field").classList.add("invalid");ok=false;}else ph.closest(".field").classList.remove("invalid");
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ml.value.trim())){ml.closest(".field").classList.add("invalid");ok=false;}else ml.closest(".field").classList.remove("invalid");
+  if(!ok){toast("Sjekk telefon og e-post");return;}
+  goR(3);
+};
+$$("[data-back]").forEach(b=>b.onclick=()=>goR(rStep-1));
+function buildSummary(){
+  $("#rSummaryDl").innerHTML=`
+    <dt>Kategori</dt><dd>${cat||"—"}</dd>
+    <dt>Adresse</dt><dd>${($("#rAddr").value.trim()||"Ikke oppgitt")}</dd>
+    <dt>Sted</dt><dd>${$("#rWhere").value}</dd>
+    <dt>Beskrivelse</dt><dd style="font-weight:500">${($("#rDesc").value.trim()||"—").slice(0,180)}</dd>
+    <dt>Hastegrad</dt><dd>${haste}</dd>
+    <dt>Navn</dt><dd>${($("#rName").value.trim()||"—")} · ${$("#rRole").value}</dd>
+    <dt>Kontakt</dt><dd>${$("#rPhone").value.trim()} · ${$("#rMail").value.trim()}</dd>`;
+}
+$("#rSend").onclick=()=>{
+  $("#rCaseNo").textContent="EP-2026-"+Math.floor(1000+Math.random()*9000);
+  $("#rReview").style.display="none";$("#rDone").style.display="block";
+  toast("Saken er sendt — kvittering på SMS");
+};
+$("#rNew").onclick=()=>{$("#rReview").style.display="block";$("#rDone").style.display="none";["rAddr","rDesc","rName","rPhone","rMail"].forEach(id=>$("#"+id).value="");goR(0);};
+
+/* Contact tabs */
+const hints={tilbud:"— fortell kort om bygget: adresse, antall enheter, hva dere trenger.",befaring:"— foreslå gjerne to tidspunkt som passer for befaring.",avtale:"— hvilke tjenester er aktuelle? Vi skreddersyr avtalen."};
+const labels={tilbud:"Få tilbud innen 5 dager",befaring:"Bestill befaring",avtale:"Be om fast avtale"};
+$$("#contactTabs button").forEach(b=>b.onclick=()=>{$$("#contactTabs button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");
+  $("#cHint").textContent=hints[b.dataset.ct];$("#cSubmitLabel").textContent=labels[b.dataset.ct];});
+
+/* Toast */
+let toastT;function toast(msg){$("#toastMsg").textContent=msg;$("#toast").classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("show"),3200);}
+
+/* Forms */
+function validField(el,test){const ok=test(el.value.trim());el.closest(".field").classList.toggle("invalid",!ok);return ok;}
+$("#contactForm").onsubmit=e=>{e.preventDefault();
+  const ok=[validField($("#cName"),v=>v.length>1),validField($("#cPhone"),v=>/^[+\d][\d\s.]{7,}$/.test(v)),validField($("#cMail"),v=>/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)),validField($("#cMsg"),v=>v.length>=10)].every(Boolean);
+  if(!ok){toast("Sjekk feltene markert med rødt");return;}
+  toast("Takk! Vi ringer tilbake innen 24 timer");
+  e.target.reset();
+};
+
+/* Modal */
+const overlay=$("#modalOverlay");
+function openModal(){$("#modalForm").style.display="block";$("#modalDone").style.display="none";overlay.classList.add("open");document.body.style.overflow="hidden";}
+function closeModal(){overlay.classList.remove("open");document.body.style.overflow="";}
+$$("[data-open-modal]").forEach(b=>b.onclick=openModal);
+$("#modalClose").onclick=closeModal;$("#modalOk").onclick=closeModal;
+overlay.onclick=e=>{if(e.target===overlay)closeModal();};
+addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+$("#modalFormEl").onsubmit=e=>{e.preventDefault();
+  const ok=[validField($("#mName"),v=>v.length>1),validField($("#mPhone"),v=>/^[+\d][\d\s.]{7,}$/.test(v)),validField($("#mMail"),v=>/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v))].every(Boolean);
+  if(!ok)return;
+  $("#modalName").textContent=$("#mName").value.trim().split(" ")[0]||"venn";
+  $("#modalForm").style.display="none";$("#modalDone").style.display="block";
+  toast("Forespørsel mottatt — vi ringer tilbake");
+};
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

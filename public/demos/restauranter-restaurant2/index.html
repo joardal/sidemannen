@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMBER Oslo — En restaurant for sanser</title>
+  <meta name="description" content="EMBER Oslo er en moderne, nordisk restaurant i hjertet av Oslo. Håndverk, flamme og atmosfære." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --ink: #0c0b0a;
+      --charcoal: #161412;
+      --warm-black: #1c1814;
+      --bone: #f2efe9;
+      --cream: #ebe7db;
+      --amber: #c2712b;
+      --amber-soft: #d4955c;
+      --amber-dim: #8a4f23;
+      --gold: #bfa36f;
+      --gold-dim: #7a6543;
+      --white: #fcfaf5;
+      --text-muted: #b0a898;
+      --border-subtle: rgba(242, 239, 233, 0.08);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --font-editorial: 'Instrument Serif', Georgia, serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: var(--font-body); background: var(--ink); color: var(--bone); line-height: 1.55; letter-spacing: -0.01em; overflow-x: hidden; }
+
+    ::selection { background: rgba(194, 113, 43, 0.22); color: var(--bone); }
+
+    img { display: block; max-width: 100%; height: auto; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Grain overlay */
+    .grain::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.028;
+      background-image: url("images/icon-01.svg");
+      background-size: 256px 256px;
+      background-repeat: repeat;
+    }
+
+    /* Utility */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: rgba(242,239,233,0.15); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(242,239,233,0.3); }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.35rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.5s ease, padding 0.4s ease, box-shadow 0.5s ease;
+      mix-blend-mode: difference;
+    }
+    .nav.scrolled { mix-blend-mode: normal; background: rgba(12,11,10,0.92); backdrop-filter: blur(14px) saturate(120%); padding: 0.9rem 5vw; box-shadow: 0 1px 0 rgba(242,239,233,0.06); }
+    .nav a { font-family: var(--font-body); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bone); opacity: 0.92; transition: opacity 0.25s; }
+    .nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--amber); text-decoration-thickness: 1px; }
+    .nav .logo { font-family: var(--font-display); font-weight: 300; font-size: 1.35rem; letter-spacing: 0.06em; color: var(--bone); }
+    .nav .logo strong { font-weight: 600; color: var(--amber-soft); }
+    .nav-mobile-btn { display: none; background: none; border: none; color: var(--bone); font-size: 1.3rem; cursor: pointer; }
+
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { white-space: nowrap; }
+
+    /* Mobile nav overlay */
+    .mobile-menu { position: fixed; inset: 0; z-index: 200; background: rgba(12,11,10,0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a { font-family: var(--font-display); font-size: 2.4rem; font-weight: 300; color: var(--bone); letter-spacing: 0.02em; }
+    .mobile-menu .close-btn { position: absolute; top: 1.3rem; right: 5vw; background: none; border: none; color: var(--bone); font-size: 1.5rem; cursor: pointer; }
+
+    @media (max-width: 820px) { .nav-links { display: none; } .nav-mobile-btn { display: block; } }
+
+    /* Hero */
+    .hero { position: relative; height: 100vh; overflow: hidden; display: flex; align-items: flex-end; }
+    .hero-media { position: absolute; inset: 0; z-index: 1; }
+    .hero-media img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.55) contrast(1.05); animation: slowZoom 18s ease-in-out infinite alternate; }
+    @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.06); } }
+    .hero-gradient { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(12,11,10,0.92) 0%, rgba(12,11,10,0.35) 45%, rgba(12,11,10,0.15) 100%); }
+    .hero-inner { position: relative; z-index: 3; padding: 0 5vw 10vh; max-width: 1400px; width: 100%; margin: 0 auto; }
+    .hero-eyebrow { font-family: var(--font-body); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber-soft); margin-bottom: 0.9rem; display: inline-block; border-bottom: 1px solid rgba(194,113,43,0.35); padding-bottom: 0.25rem; }
+    .hero h1 { font-family: var(--font-display); font-weight: 300; font-size: clamp(5rem, 14vw, 11rem); line-height: 0.82; letter-spacing: -0.04em; color: var(--bone); text-wrap: balance; }
+    .hero h1 .accent { font-style: italic; font-weight: 400; color: var(--amber-soft); }
+    .hero-sub { font-family: var(--font-editorial); font-size: clamp(1.15rem, 2.2vw, 1.6rem); color: var(--cream); margin-top: 1.1rem; max-width: 42ch; line-height: 1.35; font-style: italic; }
+    .hero-actions { display: flex; gap: 1rem; margin-top: 2.2rem; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.7rem; font-family: var(--font-body); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid rgba(242,239,233,0.18); transition: all 0.3s ease; cursor: pointer; }
+    .btn-primary { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+    .btn-primary:hover { background: var(--amber-soft); border-color: var(--amber-soft); }
+    .btn-secondary { background: rgba(242,239,233,0.06); color: var(--bone); border-color: rgba(242,239,233,0.18); }
+    .btn-secondary:hover { background: rgba(242,239,233,0.12); border-color: rgba(242,239,233,0.35); }
+    .hero-scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.35rem; opacity: 0.7; animation: bounce 2.2s ease-in-out infinite; }
+    .hero-scroll-hint span { font-family: var(--font-body); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; }
+    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-6px); } }
+
+    /* Section base */
+    section { position: relative; }
+
+    /* Intro / Story */
+    .intro { padding: 140px 5vw 100px; max-width: 1200px; margin: 0 auto; }
+    .intro-grid { display: grid; grid-template-columns: 0.55fr 1fr; gap: 8vw; align-items: start; }
+    .intro-label { font-family: var(--font-body); font-weight: 600; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.2rem; }
+    .intro h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(3rem, 6vw, 5rem); line-height: 0.92; letter-spacing: -0.03em; color: var(--bone); margin-bottom: 1.6rem; }
+    .intro p { font-family: var(--font-editorial); font-size: 1.2rem; line-height: 1.55; color: var(--cream); }
+    .intro p + p { margin-top: 1.2rem; }
+    .intro-image { position: relative; overflow: hidden; border-radius: 4px; }
+    .intro-image img { width: 100%; height: auto; filter: contrast(1.05) brightness(0.92); transition: transform 1.2s ease; }
+    .intro-image:hover img { transform: scale(1.03); }
+    @media (max-width: 920px) { .intro-grid { grid-template-columns: 1fr; gap: 3rem; } .intro-image { order: -1; } }
+
+    /* Signature dishes */
+    .signature { padding: 120px 5vw; max-width: 1400px; margin: 0 auto; }
+    .signature-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: 6vh; flex-wrap: wrap; }
+    .signature-header h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.4rem, 5vw, 4rem); line-height: 0.95; letter-spacing: -0.03em; }
+    .signature-header p { font-family: var(--font-editorial); font-size: 1.05rem; color: var(--text-muted); max-width: 36ch; font-style: italic; }
+
+    .dish-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    .dish { position: relative; }
+    .dish-media { position: relative; overflow: hidden; border-radius: 6px; aspect-ratio: 4/5; }
+    .dish-media img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05); transition: transform 1s ease, filter 0.6s ease; }
+    .dish:hover .dish-media img { transform: scale(1.05); filter: contrast(1.1) brightness(0.9); }
+    .dish-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,11,10,0.75) 0%, rgba(12,11,10,0.05) 55%, rgba(12,11,10,0.2) 100%); z-index: 2; }
+    .dish-content { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; padding: 1.5rem 1.4rem 1.4rem; }
+    .dish-content .label { font-family: var(--font-body); font-weight: 600; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber-soft); margin-bottom: 0.35rem; }
+    .dish-content h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1.05; color: var(--bone); margin-bottom: 0.35rem; }
+    .dish-content p { font-family: var(--font-body); font-size: 0.88rem; color: var(--cream); line-height: 1.35; }
+    .dish-content .price { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--gold); margin-top: 0.6rem; }
+
+    @media (max-width: 1020px) { .dish-cards { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 680px) { .dish-cards { grid-template-columns: 1fr; } }
+
+    /* Menu section */
+    .menu-section { background: linear-gradient(180deg, var(--charcoal) 0%, #12100f 100%); padding: 140px 5vw; }
+    .menu-inner { max-width: 1100px; margin: 0 auto; }
+    .menu-head { text-align: center; margin-bottom: 6vh; }
+    .menu-head h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.4rem, 5vw, 4rem); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 0.8rem; }
+    .menu-head p { font-family: var(--font-editorial); color: var(--text-muted); font-style: italic; font-size: 1.1rem; }
+
+    .menu-tabs { display: flex; justify-content: center; gap: 0.3rem; flex-wrap: wrap; margin-bottom: 4vh; }
+    .tab-btn { background: rgba(242,239,233,0.05); border: 1px solid rgba(242,239,233,0.1); color: var(--bone); padding: 0.55rem 1.1rem; font-family: var(--font-body); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; border-radius: 100px; }
+    .tab-btn.active, .tab-btn:hover { background: rgba(194,113,43,0.15); border-color: rgba(194,113,43,0.3); color: var(--amber-soft); }
+
+    .menu-panel { display: none; animation: fadeUp 0.5s ease; }
+    .menu-panel.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .menu-list { display: flex; flex-direction: column; gap: 0; }
+    .menu-item { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: baseline; padding: 1.6rem 0; border-bottom: 1px solid rgba(242,239,233,0.08); }
+    .menu-item:first-child { border-top: 1px solid rgba(242,239,233,0.08); }
+    .item-text h4 { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; line-height: 1.1; letter-spacing: -0.01em; color: var(--bone); margin-bottom: 0.3rem; }
+    .item-text p { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-muted); line-height: 1.35; }
+    .item-meta { text-align: right; white-space: nowrap; }
+    .item-price { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--gold); }
+    .item-note { font-family: var(--font-body); font-size: 0.7rem; color: var(--amber-soft); letter-spacing: 0.05em; text-transform: uppercase; }
+
+    @media (max-width: 720px) {
+      .menu-item { grid-template-columns: 1fr; gap: 0.3rem; padding: 1.2rem 0; }
+      .item-meta { text-align: left; }
+    }
+
+    /* Kitchen / Chefs */
+    .kitchen { padding: 120px 5vw; max-width: 1400px; margin: 0 auto; }
+    .kitchen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: center; }
+    .kitchen-img { position: relative; overflow: hidden; border-radius: 6px; }
+    .kitchen-img img { width: 100%; height: auto; filter: contrast(1.05) brightness(0.9); transition: transform 1.2s ease; }
+    .kitchen-img:hover img { transform: scale(1.04); }
+    .kitchen-text h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 1.2rem; }
+    .kitchen-text .label { font-family: var(--font-body); font-weight: 600; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.6rem; display: block; }
+    .kitchen-text p { font-family: var(--font-editorial); font-size: 1.1rem; color: var(--cream); line-height: 1.55; font-style: italic; }
+    .kitchen-text p + p { margin-top: 1.1rem; }
+    .chef-roll { display: flex; gap: 2.5rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .chef { text-align: center; max-width: 140px; }
+    .chef img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.7rem; border: 2px solid rgba(194,113,43,0.3); filter: grayscale(0.2) contrast(1.1); }
+    .chef h4 { font-family: var(--font-display); font-weight: 400; font-size: 1.05rem; margin-bottom: 0.15rem; }
+    .chef span { font-family: var(--font-body); font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.02em; }
+    @media (max-width: 900px) { .kitchen-grid { grid-template-columns: 1fr; } }
+
+    /* Horizontal atmosphere */
+    .atmosphere { padding: 100px 0; background: var(--ink); }
+    .atmosphere-inner { display: flex; gap: 2rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 5vw; scroll-padding-left: 5vw; scrollbar-width: thin; scrollbar-color: rgba(242,239,233,0.1) transparent; }
+    .atmosphere-inner::-webkit-scrollbar { height: 4px; }
+    .atmosphere-inner::-webkit-scrollbar-thumb { background: rgba(242,239,233,0.15); border-radius: 2px; }
+    .atmosphere-card { flex: 0 0 85vw; max-width: 560px; scroll-snap-align: start; position: relative; overflow: hidden; border-radius: 8px; aspect-ratio: 16/10; }
+    .atmosphere-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8) contrast(1.05); transition: transform 1.2s ease; }
+    .atmosphere-card:hover img { transform: scale(1.04); }
+    .atmosphere-card .card-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem 1.5rem 1.5rem; background: linear-gradient(to top, rgba(12,11,10,0.9) 0%, rgba(12,11,10,0) 100%); z-index: 2; }
+    .atmosphere-card h3 { font-family: var(--font-display); font-weight: 300; font-size: 1.6rem; line-height: 1; margin-bottom: 0.2rem; }
+    .atmosphere-card p { font-family: var(--font-body); font-size: 0.85rem; color: var(--cream); }
+    @media (min-width: 1200px) { .atmosphere-card { flex: 0 0 30vw; max-width: 420px; } }
+
+    /* Reviews */
+    .reviews { padding: 120px 5vw; max-width: 1000px; margin: 0 auto; text-align: center; }
+    .reviews h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2rem, 4vw, 3rem); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 3rem; }
+    .quote-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; text-align: left; }
+    .quote-card { border-top: 1px solid rgba(242,239,233,0.1); padding-top: 1.5rem; }
+    .quote-card blockquote { font-family: var(--font-editorial); font-size: 1.15rem; line-height: 1.45; color: var(--cream); font-style: italic; }
+    .quote-card .author { margin-top: 1rem; font-family: var(--font-body); font-size: 0.85rem; color: var(--bone); font-weight: 600; }
+    .quote-card .author span { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.78rem; }
+    @media (max-width: 720px) { .quote-cards { grid-template-columns: 1fr; } }
+
+    /* Reservation */
+    .reservation { padding: 140px 5vw; }
+    .reservation-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: start; }
+    .reservation-text h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.4rem, 5vw, 4rem); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 0.8rem; }
+    .reservation-text p { font-family: var(--font-editorial); color: var(--cream); font-style: italic; font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.5; }
+    .hours { display: flex; flex-direction: column; gap: 0.6rem; font-family: var(--font-body); font-size: 0.9rem; }
+    .hours .row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(242,239,233,0.08); padding-bottom: 0.3rem; }
+    .hours .row span:first-child { color: var(--bone); font-weight: 500; }
+    .hours .row span:last-child { color: var(--text-muted); }
+    .contact-info { margin-top: 2rem; font-family: var(--font-body); font-size: 0.9rem; color: var(--cream); }
+    .contact-info a { color: var(--amber-soft); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(194,113,43,0.3); }
+
+    .reservation-form { background: linear-gradient(175deg, rgba(28,24,20,0.95), rgba(12,11,10,0.98)); border: 1px solid rgba(242,239,233,0.08); border-radius: 10px; padding: 2.5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.5); position: sticky; top: 5rem; }
+    .reservation-form h3 { font-family: var(--font-display); font-weight: 300; font-size: 1.8rem; margin-bottom: 0.3rem; letter-spacing: -0.02em; }
+    .reservation-form .sub { font-family: var(--font-editorial); font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; display: block; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-row.full { grid-template-columns: 1fr; }
+    label { display: block; font-family: var(--font-body); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; font-weight: 600; }
+    input, select, textarea { width: 100%; padding: 0.8rem 0.9rem; background: rgba(242,239,233,0.05); border: 1px solid rgba(242,239,233,0.1); border-radius: 5px; color: var(--bone); font-family: var(--font-body); font-size: 0.9rem; transition: border-color 0.25s, background 0.25s; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: rgba(194,113,43,0.5); background: rgba(242,239,233,0.08); }
+    textarea { min-height: 90px; resize: vertical; }
+    .form-success { display: none; padding: 1rem; background: rgba(194,113,43,0.1); border: 1px solid rgba(194,113,43,0.3); border-radius: 6px; color: var(--amber-soft); font-family: var(--font-body); font-size: 0.9rem; margin-bottom: 1rem; }
+    @media (max-width: 1000px) { .reservation-inner { grid-template-columns: 1fr; } .reservation-form { position: static; } }
+
+    /* Footer */
+    .footer { padding: 80px 5vw 2rem; border-top: 1px solid rgba(242,239,233,0.06); max-width: 1400px; margin: 0 auto; }
+    .footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 4rem; }
+    .footer-brand .logo { font-family: var(--font-display); font-weight: 300; font-size: 2rem; letter-spacing: 0.05em; margin-bottom: 0.6rem; }
+    .footer-brand p { font-family: var(--font-editorial); font-style: italic; color: var(--text-muted); max-width: 30ch; line-height: 1.45; }
+    .footer-col h4 { font-family: var(--font-body); font-weight: 600; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+    .footer-col a { display: block; font-family: var(--font-body); font-size: 0.88rem; color: var(--cream); margin-bottom: 0.35rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--amber-soft); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid rgba(242,239,233,0.06); font-family: var(--font-body); font-size: 0.75rem; color: var(--text-muted); flex-wrap: wrap; gap: 0.5rem; }
+    @media (max-width: 800px) { .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; } .footer-bottom { flex-direction: column; align-items: flex-start; } }
+
+    /* Animations */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body class="grain">
+
+  <a href="#innhold" class="sr-only">Hopp til innhold</a>
+
+  <nav class="nav" id="nav" aria-label="Hovednavigasjon">
+    <a href="#" class="logo" aria-label="EMBER Oslo hjem">EMBER <strong>Oslo</strong></a>
+    <div class="nav-links" aria-label="Navigasjonslenker">
+      <a href="#historie">Historie</a>
+      <a href="#meny">Meny</a>
+      <a href="#kjoekken">Kjøkkenet</a>
+      <a href="#atmosfære">Atmosfære</a>
+      <a href="#bestill">Bestill bord</a>
+    </div>
+    <button class="nav-mobile-btn" onclick="document.getElementById('mobile-menu').classList.add('open')" aria-label="Åpne meny">&#9776;</button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobil navigasjon">
+    <button class="close-btn" onclick="document.getElementById('mobile-menu').classList.remove('open')" aria-label="Lukk meny">&times;</button>
+    <a href="#historie" onclick="document.getElementById('mobile-menu').classList.remove('open')">Historie</a>
+    <a href="#meny" onclick="document.getElementById('mobile-menu').classList.remove('open')">Meny</a>
+    <a href="#kjoekken" onclick="document.getElementById('mobile-menu').classList.remove('open')">Kjøkkenet</a>
+    <a href="#atmosfære" onclick="document.getElementById('mobile-menu').classList.remove('open')">Atmosfære</a>
+    <a href="#bestill" onclick="document.getElementById('mobile-menu').classList.remove('open')">Bestill bord</a>
+  </div>
+
+  <main id="innhold">
+    <!-- Hero -->
+    <section class="hero" aria-label="Hovedbilde">
+      <div class="hero-media" aria-hidden="true">
+        <img src="images/photo-06.jpg" alt="Elegant restaurantinteriør med varme lys og sten" loading="eager" />
+      </div>
+      <div class="hero-gradient" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <span class="hero-eyebrow">Oslo — Storgata 8</span>
+        <h1>EMBER <span class="accent">Oslo</span></h1>
+        <p class="hero-sub">Moderne nordisk kjøkken, håndverk og atmosfære. Der flammen møter roen, og hver rett forteller sin historie.</p>
+        <div class="hero-actions">
+          <a href="#meny" class="btn btn-primary">Se menyen</a>
+          <a href="#bestill" class="btn btn-secondary">Bestill bord</a>
+        </div>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>Utforsk</span>
+        <i class="fa-solid fa-arrow-down-long" style="font-size:1rem;color:var(--amber-soft);"></i>
+      </div>
+    </section>
+
+    <!-- Intro / Story -->
+    <section id="historie" class="intro" aria-label="Historie og filosofi">
+      <div class="intro-grid reveal">
+        <div>
+          <p class="intro-label">Historie</p>
+          <h2>Kokken bak <br><span style="font-style:italic;font-weight:300;color:var(--amber-soft);">flammen</span></h2>
+          <p>EMBER Oslo ble født fra et ønske om noe mer enn mat. Vår kjøkkensjef, <strong style="color:var(--bone);font-weight:500;">Anders Lillevik</strong>, vendte hjem fra år i Lyon og København med én idé: at ild skal være en samtaler, ikke bare en teknikk.</p>
+          <p>Vi bruker råvarer fra norske fjell, kyst og skog — og lar dem snakke for seg selv, uten unødvendig dekor. Hver rett er en balansegang mellom varme og stillhet, tekstur og overraske.</p>
+        </div>
+        <div class="intro-image" aria-label="Kokk i arbeid blant flammer">
+          <img src="images/photo-12.jpg" alt="Kokk som griller over flamme med konsentrasjon" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature dishes -->
+    <section class="signature" aria-label="Signaturretter">
+      <div class="signature-header reveal">
+        <div>
+          <h2>Signaturretter</h2>
+          <p>Utvalgte retter fra årets meny, håndlaget med råvarer fra norske produsenter.</p>
+        </div>
+        <a href="#meny" class="btn btn-secondary">Se hele menyen</a>
+      </div>
+
+      <div class="dish-cards">
+        <a href="#meny" class="dish reveal reveal-delay-1" aria-label="Røykt reinsdyrstek med syltet selleri">
+          <div class="dish-media">
+            <img src="images/photo-08.jpg" alt="Røykt reinsdyrstek på mørk tallerken" loading="lazy" />
+            <div class="dish-overlay"></div>
+          </div>
+          <div class="dish-content">
+            <div class="label">Hovedrett</div>
+            <h3>Røykt reinsdyrstek</h3>
+            <p>Syltet sellerirot, skogsur, røykt selleri, og en lett fløtesaus med timian.</p>
+            <div class="price">395 kr</div>
+          </div>
+        </a>
+
+        <a href="#meny" class="dish reveal reveal-delay-2" aria-label="Varmt hav av skalldyr">
+          <div class="dish-media">
+            <img src="images/photo-11.jpg" alt="Varmt hav av skalldyr i dyp tallerken" loading="lazy" />
+            <div class="dish-overlay"></div>
+          </div>
+          <div class="dish-content">
+            <div class="label">Forrett</div>
+            <h3>Varmt hav av skalldyr</h3>
+            <p>Muslinger, reker, blåskjell, dyp-fet sill, sitron og en håndlagd emulsjon av tang.</p>
+            <div class="price">285 kr</div>
+          </div>
+        </a>
+
+        <a href="#meny" class="dish reveal reveal-delay-3" aria-label="Dekadent sjokolade og bjørnebær">
+          <div class="dish-media">
+            <img src="images/photo-10.jpg" alt="Sjokolade- og bjørnebært dessert på mørk bakgrunn" loading="lazy" />
+            <div class="dish-overlay"></div>
+          </div>
+          <div class="dish-content">
+            <div class="label">Dessert</div>
+            <h3>Skogsbjørn og sjokolade</h3>
+            <p>Mørk sjokolade fra Lindt, rødbetgelé, bjørnebær, hasselnøtt og en lett vaniljesaus.</p>
+            <div class="price">165 kr</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="meny" class="menu-section" aria-label="Meny">
+      <div class="menu-inner">
+        <div class="menu-head reveal">
+          <p class="label" style="margin-bottom:0.4rem;color:var(--amber);font-weight:600;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;">Vår meny</p>
+          <h2>Fra kjøkkenet</h2>
+          <p>Alt er tilgjengelig på norsk, engelske og fransk — spør bare.</p>
+        </div>
+
+        <div class="menu-tabs reveal" role="tablist" aria-label="Meny-kategorier">
+          <button class="tab-btn active" onclick="showMenu('mat', this)" role="tab" aria-selected="true" aria-controls="panel-mat">Kjøkken</button>
+          <button class="tab-btn" onclick="showMenu('vin', this)" role="tab" aria-selected="false" aria-controls="panel-vin">Vin</button>
+          <button class="tab-btn" onclick="showMenu('amuse', this)" role="tab" aria-selected="false" aria-controls="panel-amuse">Amuse-bouche</button>
+        </div>
+
+        <div id="panel-mat" class="menu-panel active" role="tabpanel" aria-labelledby="tab-mat">
+          <div class="menu-list">
+            <article class="menu-item">
+              <div class="item-text">
+                <h4>Røykt reinsdyrstek</h4>
+                <p>Syltet sellerirot, skogsur, røykt selleri, timiansaus.</p>
+              </div>
+              <div class="item-meta">
+                <div class="item-price">395 kr</div>
+                <div class="item-note">Hovedrett</div>
+              </div>
+            </article>
+            <article class="menu-item">
+              <div class="item-text">
+                <h4>Varmt hav av skalldyr</h4>
+                <p>Muslinger, reker, blåskjell, dyp-fet sill, tang-emulsjon.</p>
+              </div>
+              <div class="item-meta">
+                <div class="item-price">285 kr</div>
+                <div class="item-note">Forrett</div>
+              </div>
+            </article>
+            <article class="menu-item">
+              <div class="item-text">
+                <h4>Høns med rotmos</h4>
+                <p>Langtidskokt høns, rødbetmos, sprø kål, rødvinssaus.</p>
+              </div>
+              <div class="item-meta">
+                <div class="item-price">345 kr</div>
+                <div class="item-note">Hovedrett</div>
+              </div>
+            </article>
+            <article class="menu-item">
+              <div class="item-text">
+                <h4>Stekt torsk med tang</h4>
+                <p>Frisk torsk fra Lofoten, tang, sitronsmør, fjellurt.</p>
+              </div>
+              <div class="item-meta">
+                <div class="item-price">320 kr</div>
+                <div class="item-note">Hovedrett</div>
+              </div>
+            </article>
+            <article class="menu-item">
+              <div class="item-text">
+                <h4>Skogsbjørn og sjokolade</h4>
+                <p>Mørk sjokolade, rødbetgelé, bjørnebær, vaniljesaus.</p>
+              </div>
+              <div class="item-meta">
+                <div class="item-price">165 kr</div>
+                <div class="item-note">Dessert</div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div id="panel-vin" class="menu-panel" role="tabpanel" aria-labelledby="tab-vin">
+          <div class="menu-list">
+            <article class="menu-item">
+              <div class="item-text"><h4>Bourgogne, Domaine de la Romanée-Conti</h4><p>Pinot Noir, 2018 — Dyp, jordaktig, kompleks.</p></div>
+              <div class="item-meta"><div class="item-price">4 850 kr</div><div class="item-note">Flaske</div></div>
+            </article>
+            <article class="menu-item">
+              <div class="item-text"><h4>Bordeaux, Château Margaux</h4><p>Cabernet Sauvignon, 2015 — Elegant, silkemyk.</p></div>
+              <div class="item-meta"><div class="item-price">3 200 kr</div><div class="item-note">Flaske</div></div>
+            </article>
+            <article class="menu-item">
+              <div class="item-text"><h4>Chablis, Domaine William Fèvre</h4><p>Chardonnay, 2020 — Sprø, mineralisk, havtil.</p></div>
+              <div class="item-meta"><div class="item-price">890 kr</div><div class="item-note">Flaske</div></div>
+            </article>
+            <article class="menu-item">
+              <div class="item-text"><h4>Champagne, Ruinart Blanc de Blancs</h4><p>Chardonnay, NV — Delikat, fin skum.</p></div>
+              <div class="item-meta"><div class="item-price">1 450 kr</div><div class="item-note">Flaske</div></div>
+            </article>
+          </div>
+        </div>
+
+        <div id="panel-amuse" class="menu-panel" role="tabpanel" aria-labelledby="tab-amuse">
+          <div class="menu-list">
+            <article class="menu-item">
+              <div class="item-text"><h4>Amuse-bouche: Røykt østers</h4><p>Med sitrongele, dill og tang.</p></div>
+              <div class="item-meta"><div class="item-price">95 kr</div><div class="item-note">Enkel</div></div>
+            </article>
+            <article class="menu-item">
+              <div class="item-text"><h4>Minitasting: Kyst og skog</h4><p>Tre småretter — fisk, kjøtt, grønt.</p></div>
+              <div class="item-meta"><div class="item-price">450 kr</div><div class="item-note">Tasting</div></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kitchen -->
+    <section id="kjoekken" class="kitchen" aria-label="Kjøkkenet og kokkene">
+      <div class="kitchen-grid reveal">
+        <div class="kitchen-img" aria-label="Kjøkken i arbeid med flammer">
+          <img src="images/photo-09.jpg" alt="Moderne restaurantkjøkken med varme lys" loading="lazy" />
+        </div>
+        <div class="kitchen-text">
+          <span class="label">Kjøkkenet</span>
+          <h2>Der varmen møter roen</h2>
+          <p>Vårt kjøkken er bygget rundt en enkelt ide: at ild skal være samtaler, ikke bare teknikk. Anders og teamet bruker tradisjonelle metoder — grilling over åpen flamme, langsom steking og håndlagde saucer — for å skape retter som føles både ukjente og umiddelbare.</p>
+          <p>Vi tror på transparens. Du ser hva som skjer bak disken, og du lukter det før det kommer til bordet. Det er vår måte å invitere deg inn.</p>
+          <div class="chef-roll" aria-label="Kokkene">
+            <div class="chef">
+              <img src="images/photo-04.jpg" alt="Anders Lillevik" loading="lazy" />
+              <h4>Anders Lillevik</h4>
+              <span>Kjøkkensjef</span>
+            </div>
+            <div class="chef">
+              <img src="images/photo-02.jpg" alt="Ingrid Holm" loading="lazy" />
+              <h4>Ingrid Holm</h4>
+              <span>Souschef</span>
+            </div>
+            <div class="chef">
+              <img src="images/photo-07.jpg" alt="Jonas West" loading="lazy" />
+              <h4>Jonas West</h4>
+              <span>Vinansvarlig</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Horizontal atmosphere -->
+    <section id="atmosfære" class="atmosphere" aria-label="Atmosfære og interiør">
+      <div class="atmosphere-inner" aria-label="Bildekarusell">
+        <a href="#" class="atmosphere-card reveal" aria-label="Vinrommet">
+          <img src="images/photo-05.jpg" alt="Vinrom med mørke flaskehyller" loading="lazy" />
+          <div class="card-text">
+            <h3>Vinrommet</h3>
+            <p>Over 350 etiketter, nøye kuratert av Jonas.</p>
+          </div>
+        </a>
+        <a href="#" class="atmosphere-card reveal reveal-delay-1" aria-label="Bord og lys">
+          <img src="images/photo-09.jpg" alt="Bord med stearinlys og elegante tallerkener" loading="lazy" />
+          <div class="card-text">
+            <h3>Bord og lys</h3>
+            <p>Intime rom med varmere lys, ulltepper og sten.</p>
+          </div>
+        </a>
+        <a href="#" class="atmosphere-card reveal reveal-delay-2" aria-label="Råvarer">
+          <img src="images/photo-03.jpg" alt="Norske råvarer på trebord" loading="lazy" />
+          <div class="card-text">
+            <h3>Råvarer</h3>
+            <p>Lokalprodusert, sesongbasert, alltid fersk.</p>
+          </div>
+        </a>
+        <a href="#" class="atmosphere-card reveal reveal-delay-3" aria-label="Baren">
+          <img src="images/photo-01.jpg" alt="Elegant cocktailbar med mørke flaskehyller" loading="lazy" />
+          <div class="card-text">
+            <h3>Baren</h3>
+            <p>Håndlagde cocktailer, øl fra lokale bryggerier.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews" aria-label="Omtaler">
+      <h2 class="reveal">Det sier gjestene</h2>
+      <div class="quote-cards">
+        <article class="quote-card reveal reveal-delay-1">
+          <blockquote>"En av de beste middagene jeg har hatt i Oslo. Atmosfæren er noe helt annet — rolig, varm, og maten er like godt som beskrivelsen."</blockquote>
+          <div class="author">Marthe Nordby <span>Restaurantkritiker, Dagens Næringsliv</span></div>
+        </article>
+        <article class="quote-card reveal reveal-delay-2">
+          <blockquote>"Vinen var uforglemmelig, men det var kjøkkenet som virkelig gjorde kvelden spesiell. Alt fra amusen til desserten føltes som en helhet."</blockquote>
+          <div class="author">Per Holm <span>Matentusiast, Oslo</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Reservation -->
+    <section id="bestill" class="reservation" aria-label="Bestill bord">
+      <div class="reservation-inner reveal">
+        <div class="reservation-text">
+          <h2>Bestill bord</h2>
+          <p>Vi tar imot reserveringer for både små og store selskaper. For grupper på 8+ eller spesielle ønsker, vennligst ring oss.</p>
+
+          <div class="hours" aria-label="Åpningstider">
+            <div class="row"><span>Mandag — Torsdag</span> <span>17:00 — 22:30</span></div>
+            <div class="row"><span>Fredag</span> <span>16:30 — 23:30</span></div>
+            <div class="row"><span>Lørdag</span> <span>16:00 — 23:30</span></div>
+            <div class="row"><span>Søndag</span> <span>17:00 — 21:30</span></div>
+          </div>
+
+          <div class="contact-info">
+            <p>Storgata 8, 0155 Oslo</p>
+            <p><a href="mailto:hei@emberoslo.no">hei@emberoslo.no</a> &nbsp;|&nbsp; <a href="tel:+4723123456">+47 231 23 456</a></p>
+          </div>
+        </div>
+
+        <form class="reservation-form" onsubmit="event.preventDefault(); document.getElementById('form-success').style.display='block'; this.reset(); setTimeout(()=>{document.getElementById('form-success').style.display='none';}, 6000);" aria-label="Bestill bord-skjema">
+          <h3>Reserver bord</h3>
+          <span class="sub">Vi bekrefter innen 2 timer.</span>
+
+          <div class="form-success" id="form-success" role="status">Takk! Vi tar kontakt for å bekrefte din reservering.</div>
+
+          <div class="form-row full">
+            <label for="navn">Navn</label>
+            <input type="text" id="navn" name="navn" placeholder="Ditt navn" required />
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="dato">Dato</label>
+              <input type="date" id="dato" name="dato" required />
+            </div>
+            <div>
+              <label for="tid">Tid</label>
+              <input type="time" id="tid" name="tid" value="19:00" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="gjester">Antall gjester</label>
+              <select id="gjester" name="gjester" required>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10+</option>
+              </select>
+            </div>
+            <div>
+              <label for="telefon">Telefon</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="+47..." required />
+            </div>
+          </div>
+
+          <div class="form-row full">
+            <label for="onsker">Spesialønsker / Allergier</label>
+            <textarea id="onsker" name="onsker" placeholder="Matallergier, feiringer, eller noe annet vi bør vite..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding: 1rem; font-size:0.9rem;">Bestill bord</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Kontakt og informasjon">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo" aria-label="EMBER Oslo hjem">EMBER <strong style="color:var(--amber-soft);">Oslo</strong></a>
+        <p>En restaurant for sanser. Håndverk, flamme og atmosfære i hjertet av Oslo.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <a href="mailto:hei@emberoslo.no">hei@emberoslo.no</a>
+        <a href="tel:+4723123456">+47 231 23 456</a>
+        <a href="#">Storgata 8, 0155 Oslo</a>
+      </div>
+      <div class="footer-col">
+        <h4>Åpningstider</h4>
+        <a href="#">Man – Tor: 17:00 – 22:30</a>
+        <a href="#">Fre: 16:30 – 23:30</a>
+        <a href="#">Lør: 16:00 – 23:30</a>
+        <a href="#">Søn: 17:00 – 21:30</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>EMBER Oslo — En fiktiv restaurant for portefølje.</span>
+      <span>Designet for moderne nettlesere. Ingen eksterne avhengigheter utover bilder.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Nav shadow + reveal
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    // Menu tabs
+    function showMenu(panelId, btn) {
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + panelId).classList.add('active');
+      document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
+    }
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Set min date to today for reservation
+    document.getElementById('dato').min = new Date().toISOString().split('T')[0];
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

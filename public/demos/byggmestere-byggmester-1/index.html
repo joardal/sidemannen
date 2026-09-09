@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andersen Bygg AS — Byggmester &amp; snekkeri i Oslo siden 1987</title>
+<meta name="description" content="Andersen Bygg AS er byggmesterfirmaet i Oslo for privatpersoner og bedrifter. Rehabilitering, tilbygg, terrasse, kjøkken, våtrom, fasade og tak. Fastpris, egne snekkere og 10 års arbeidsgaranti.">
+<link rel="icon" href="images/icon-01.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter+Tight:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ============ RESET & TOKENS ============ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#f2efe7;
+  --paper-2:#eae5d7;
+  --card:#faf8f2;
+  --ink:#14130f;
+  --coal:#1a1913;
+  --coal-2:#211f17;
+  --bone:#f4f1e9;
+  --accent:#c05a1d;
+  --accent-2:#e08a45;
+  --mut:rgba(20,19,15,.62);
+  --mut-bone:rgba(244,241,233,.62);
+  --line:rgba(20,19,15,.13);
+  --line-bone:rgba(244,241,233,.14);
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --r:3px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{
+  font-family:var(--sans);background:var(--paper);color:var(--ink);
+  font-size:16.5px;line-height:1.65;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body.no-scroll-init{overflow:hidden}
+body.menu-open .site-head{z-index:120;background:transparent;box-shadow:none}
+.pcard .pm,.pcard .pc-body{display:block}
+button.pcard,button.pfeat{text-align:left;width:100%}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.js [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
+.js [data-reveal].in{opacity:1;transform:none}
+.js [data-reveal="left"]{transform:translateX(-34px)}
+.js [data-reveal="right"]{transform:translateX(34px)}
+.js [data-reveal="scale"]{transform:scale(.94)}
+.skip{position:fixed;top:-60px;left:16px;z-index:9999;background:var(--ink);color:var(--bone);padding:10px 18px;border-radius:999px;transition:top .3s}
+.skip:focus{top:14px}
+
+/* grain */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;z-index:350;pointer-events:none;opacity:.05;
+  background-image:url("images/icon-02.svg");
+  animation:grain 9s steps(6) infinite;
+}
+@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}}
+
+/* ============ TYPO HELPERS ============ */
+.wrap{width:min(1240px,100% - 48px);margin-inline:auto}
+.sec{padding-block:clamp(88px,10.5vw,150px);position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.eyebrow .n{color:var(--mut);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.eyebrow::before{content:"";width:34px;height:1px;background:currentColor;opacity:.55}
+.sec-head{display:grid;grid-template-columns:1fr;gap:clamp(20px,3vw,34px);margin-bottom:clamp(46px,5.5vw,84px)}
+.sec-head.split{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:end}
+.h-xl{font-family:var(--serif);font-weight:380;letter-spacing:-.015em;line-height:1.03;font-size:clamp(2.35rem,5.1vw,4.6rem);font-variation-settings:'opsz' 120}
+.h-xl em,.serif-i{font-style:italic;font-weight:340}
+.h-xl .acc{color:var(--accent)}
+.h-m{font-family:var(--serif);font-weight:400;line-height:1.15;letter-spacing:-.01em;font-size:clamp(1.5rem,2.4vw,2.05rem)}
+.lede{color:var(--mut);max-width:46ch;font-size:clamp(1rem,1.15vw,1.11rem)}
+.dark .lede{color:var(--mut-bone)}
+.dark{background:var(--coal);color:var(--bone)}
+.dark .h-xl .acc{color:var(--accent-2)}
+
+/* ============ BUTTONS ============ */
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:16px 28px;border-radius:999px;
+  font-weight:600;font-size:.95rem;letter-spacing:.01em;line-height:1;overflow:hidden;white-space:nowrap;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),background .35s,color .35s,border-color .35s}
+.btn .arr{display:inline-flex;transition:transform .45s var(--ease)}
+.btn:hover .arr{transform:translateX(5px)}
+.btn:hover{transform:translateY(-2px)}
+.b-ink{background:var(--ink);color:var(--bone)}
+.b-ink:hover{background:var(--accent);color:#fff;box-shadow:0 18px 34px -18px rgba(192,90,29,.75)}
+.b-bone{background:var(--bone);color:var(--ink)}
+.b-bone:hover{background:#fff}
+.b-line{background:transparent;color:var(--ink);border:1px solid rgba(20,19,15,.25)}
+.b-line:hover{border-color:var(--ink);background:var(--ink);color:var(--bone)}
+.dark .b-line{color:var(--bone);border-color:rgba(244,241,233,.3)}
+.dark .b-line:hover{border-color:var(--bone);background:var(--bone);color:var(--ink)}
+.b-ghostlight{background:transparent;color:var(--bone);border:1px solid rgba(244,241,233,.28)}
+.b-ghostlight:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.txtlink{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:.98rem;border-bottom:1px solid currentColor;padding-bottom:3px;transition:color .3s,gap .4s var(--ease)}
+.txtlink:hover{gap:16px;color:var(--accent)}
+.dark .txtlink:hover{color:var(--accent-2)}
+.cta-pill{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-weight:600;
+  padding:12px 22px;border-radius:999px;font-size:.9rem;transition:background .3s,transform .4s var(--ease)}
+.cta-pill:hover{background:#a84a12;transform:translateY(-1px)}
+
+/* ============ LOADER ============ */
+#loader{position:fixed;inset:0;z-index:600;background:var(--ink);color:var(--bone);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:transform .9s var(--ease)}
+#loader.done{transform:translateY(-101%)}
+#loader .ld-word{display:flex;gap:.1em;font-family:var(--serif);font-size:clamp(1.9rem,5vw,3.2rem);font-weight:400;overflow:hidden}
+#loader .ld-word span{display:inline-block;transform:translateY(110%);transition:transform .8s var(--ease)}
+#loader.playing .ld-word span{transform:none}
+#loader .ld-word span:nth-child(2){transition-delay:.05s}
+#loader .ld-word span:nth-child(3){transition-delay:.1s}
+#loader .ld-word span:nth-child(4){transition-delay:.15s}
+#loader .ld-word span:nth-child(5){transition-delay:.2s}
+#loader .ld-word span:nth-child(6){transition-delay:.25s}
+#loader .ld-word span:nth-child(7){transition-delay:.3s}
+#loader .ld-word span:nth-child(8){transition-delay:.35s}
+#loader .ld-sub{font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:var(--mut-bone)}
+#loader .ld-line{width:min(240px,60vw);height:1px;background:rgba(244,241,233,.16);overflow:hidden;position:relative}
+#loader .ld-line i{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);background:var(--accent-2);transition:transform 1.15s var(--ease)}
+#loader.playing .ld-line i{transform:scaleX(1)}
+
+/* ============ HEADER ============ */
+.site-head{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;
+  padding:20px max(24px,calc((100vw - 1240px)/2));transition:background .5s,padding .5s,box-shadow .5s;
+  color:var(--bone)}
+.site-head.scrolled{background:rgba(20,19,15,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-block:12px;box-shadow:0 1px 0 var(--line-bone)}
+.logo{display:flex;align-items:center;gap:12px;line-height:1}
+.logo .lm{width:38px;height:38px;flex:none;border-radius:2px;background:var(--accent);display:grid;place-items:center;color:#fff;font-family:var(--serif);font-size:1.05rem;font-weight:500}
+.logo .lt{font-family:var(--serif);font-size:1.28rem;font-weight:500;letter-spacing:-.01em;display:flex;flex-direction:column;line-height:1.06}
+.logo .lt small{font-family:var(--sans);font-size:.55rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-2);margin-top:3px}
+.main-nav{display:flex;align-items:center;gap:clamp(20px,2.6vw,38px)}
+.main-nav a{position:relative;font-size:.9rem;font-weight:500;letter-spacing:.02em;padding-block:6px;opacity:.88;transition:opacity .3s}
+.main-nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.main-nav a:hover{opacity:1}
+.main-nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.head-cta{margin-left:6px}
+#burger{display:none;width:46px;height:46px;border-radius:50%;position:relative;z-index:101}
+#burger span{position:absolute;left:50%;top:50%;width:20px;height:1.6px;background:currentColor;transition:transform .45s var(--ease),opacity .3s}
+#burger span:nth-child(1){transform:translate(-50%,calc(-50% - 4.5px))}
+#burger span:nth-child(2){transform:translate(-50%,calc(-50% + 4.5px))}
+body.menu-open #burger span:nth-child(1){transform:translate(-50%,-50%) rotate(45deg)}
+body.menu-open #burger span:nth-child(2){transform:translate(-50%,-50%) rotate(-45deg)}
+body.menu-open{overflow:hidden}
+
+/* mobile menu */
+#mnav{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--bone);display:flex;flex-direction:column;
+  padding:110px 28px 40px;transform:translateY(-102%);transition:transform .75s var(--ease);overflow:auto}
+body.menu-open #mnav{transform:none}
+#mnav .mn-links{margin-top:auto;margin-bottom:auto}
+#mnav .mn-links a{display:flex;align-items:baseline;gap:18px;font-family:var(--serif);font-weight:380;
+  font-size:clamp(2.1rem,9vw,3.4rem);line-height:1.22;letter-spacing:-.01em;opacity:0;transform:translateY(26px);
+  transition:opacity .6s var(--ease),transform .7s var(--ease),color .3s}
+#mnav .mn-links a i{font-style:normal;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.2em;color:var(--accent-2)}
+#mnav .mn-links a:hover{color:var(--accent-2)}
+body.menu-open #mnav .mn-links a{opacity:1;transform:none}
+#mnav .mn-foot{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:.86rem;color:var(--mut-bone);padding-top:30px;border-top:1px solid var(--line-bone);margin-top:26px}
+#mnav .mn-foot a:hover{color:var(--bone)}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;color:var(--bone);
+  background:var(--ink);overflow:hidden}
+.hero-media{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-media img{width:100%;height:112%;object-fit:cover;object-position:center 30%;will-change:transform;
+  transform:scale(1.14);animation:heroIn 2.6s var(--ease) forwards}
+@keyframes heroIn{to{transform:scale(1.02)}}
+.js .hero-media img{animation-play-state:running}
+.hero-veil{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(180deg,rgba(10,10,8,.62) 0%,rgba(10,10,8,.12) 34%,rgba(10,10,8,.28) 62%,rgba(10,10,8,.82) 100%),
+  linear-gradient(90deg,rgba(10,10,8,.5) 0%,rgba(10,10,8,0) 46%)}
+.hero-in{position:relative;z-index:2;width:min(1240px,100% - 48px);margin-inline:auto;padding:170px 0 clamp(90px,11vh,120px)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:.74rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-2);margin-bottom:26px}
+.hero-eyebrow::before{content:"";width:40px;height:1px;background:currentColor}
+.hero h1{font-family:var(--serif);font-weight:380;font-size:clamp(2.9rem,8.1vw,7.9rem);line-height:.99;letter-spacing:-.022em;max-width:13ch}
+.hero h1 em{font-style:italic;font-weight:340;color:var(--accent-2)}
+.hero h1 .l1,.hero h1 .l2{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .l1 span,.hero h1 .l2 span{display:block;transform:translateY(112%);transition:transform 1.1s var(--ease)}
+body.loaded .hero h1 .l1 span{transform:none;transition-delay:.05s}
+body.loaded .hero h1 .l2 span{transform:none;transition-delay:.17s}
+.hero-sub-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:34px;margin-top:clamp(30px,4vh,48px)}
+.hero-sub{max-width:44ch;color:rgba(244,241,233,.82);font-size:clamp(1rem,1.2vw,1.13rem);opacity:0;transform:translateY(20px);transition:opacity .9s .5s var(--ease),transform .9s .5s var(--ease)}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:opacity .9s .62s var(--ease),transform .9s .62s var(--ease)}
+body.loaded .hero-sub,body.loaded .hero-ctas{opacity:1;transform:none}
+.hero-meta{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:clamp(44px,6vh,66px);
+  padding-top:18px;border-top:1px solid rgba(244,241,233,.18);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(244,241,233,.6);opacity:0;transition:opacity 1s .8s var(--ease)}
+body.loaded .hero-meta{opacity:1}
+.scrollhint{display:inline-flex;align-items:center;gap:12px}
+.scrollhint .wheel{width:1px;height:34px;background:rgba(244,241,233,.28);position:relative;overflow:hidden;display:inline-block}
+.scrollhint .wheel::after{content:"";position:absolute;inset:0;background:var(--accent-2);transform:translateY(-100%);animation:drip 2s var(--ease) infinite}
+@keyframes drip{55%,100%{transform:translateY(100%)}}
+.hero-side{position:absolute;z-index:2;top:50%;right:max(24px,calc((100vw - 1240px)/2));transform:translateY(-50%) rotate(90deg);transform-origin:center;font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(244,241,233,.5);display:flex;gap:18px;align-items:center;white-space:nowrap}
+.hero-side::before{content:"";width:46px;height:1px;background:rgba(244,241,233,.35)}
+
+/* ticker */
+.ticker{background:var(--ink);color:var(--bone);border-top:1px solid var(--line-bone);overflow:hidden;padding:17px 0;position:relative;z-index:3}
+.ticker-track{display:flex;width:max-content;animation:tick 36s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{display:flex;align-items:center;font-size:.8rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;white-space:nowrap;padding-right:14px}
+.ticker-track i{font-style:normal;color:var(--accent-2);padding-right:14px;font-size:.7rem}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ============ MANIFESTO / STATS ============ */
+.manifesto{padding-top:clamp(96px,12vw,170px)}
+.manifesto .m-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(30px,4vw,70px);align-items:start}
+.manifesto h2{font-family:var(--serif);font-weight:370;line-height:1.06;letter-spacing:-.015em;font-size:clamp(2rem,3.9vw,3.55rem);max-width:24ch}
+.manifesto h2 em{font-style:italic}
+.manifesto h2 .u{position:relative;white-space:nowrap}
+.manifesto h2 .u svg{position:absolute;left:0;bottom:-.06em;width:100%;height:.32em;color:var(--accent)}
+.manifesto h2 .u svg path{stroke:currentColor;stroke-width:6;fill:none;stroke-linecap:round;stroke-dasharray:340;stroke-dashoffset:340}
+.js .manifesto h2 .u.in svg path{animation:draw 1s .4s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.man-body{display:flex;flex-direction:column;gap:22px;padding-top:8px}
+.man-body p{color:var(--mut);font-size:1.06rem;max-width:52ch}
+.man-body .byline{display:flex;align-items:center;gap:16px;margin-top:14px}
+.man-body .byline .ava{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--paper)}
+.man-body .byline b{display:block;font-size:.98rem;letter-spacing:.01em}
+.man-body .byline span{font-size:.82rem;color:var(--mut)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);margin-top:clamp(64px,8vw,110px)}
+.stat{padding:clamp(26px,3vw,42px) 22px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{font-family:var(--serif);font-weight:430;font-size:clamp(2.3rem,4.6vw,3.9rem);line-height:1;display:flex;align-items:baseline;letter-spacing:-.02em}
+.stat b sup{font-size:.4em;color:var(--accent);font-weight:500;margin-left:2px;letter-spacing:0}
+.stat span{display:block;margin-top:10px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+
+/* ============ SERVICES ============ */
+.svcs{position:relative}
+.svcs .preview{position:absolute;z-index:5;width:min(340px,30vw);aspect-ratio:4/3;pointer-events:none;opacity:0;
+  transform:translate(-50%,-50%) rotate(-4deg) scale(.92);transition:opacity .4s,transform .4s var(--ease);
+  box-shadow:0 30px 60px -20px rgba(15,14,10,.45);border-radius:var(--r);overflow:hidden;will-change:transform;display:none}
+.svcs:hover .preview{display:block}
+.svcs .preview img{width:100%;height:100%;object-fit:cover}
+.svc-row{display:grid;grid-template-columns:minmax(46px,86px) minmax(0,1.6fr) minmax(0,1fr) auto;gap:clamp(16px,2.5vw,40px);
+  align-items:center;padding:clamp(24px,3vw,38px) clamp(14px,2vw,28px);border-top:1px solid var(--line);
+  position:relative;transition:background .5s,color .5s;border-radius:var(--r);cursor:pointer}
+.svc-row:last-of-type{border-bottom:1px solid var(--line)}
+.svc-row .no{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,1.6vw,1.5rem);color:var(--mut);transition:color .5s}
+.svc-row h3{font-family:var(--serif);font-weight:430;font-size:clamp(1.5rem,2.7vw,2.5rem);line-height:1.1;letter-spacing:-.01em;transition:transform .6s var(--ease)}
+.svc-row .d{color:var(--mut);font-size:.98rem;max-width:44ch;transition:color .5s}
+.svc-row .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.svc-row .tags i{font-style:normal;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:999px;padding:5px 12px;transition:border-color .5s,color .5s}
+.svc-row .go{width:clamp(44px,4.6vw,62px);height:clamp(44px,4.6vw,62px);flex:none;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--line);transition:background .5s,color .5s,border-color .5s,transform .6s var(--ease);color:var(--mut)}
+.svc-row:hover{background:var(--ink);color:var(--bone)}
+.svc-row:hover .no{color:var(--accent-2)}
+.svc-row:hover h3{transform:translateX(8px)}
+.svc-row:hover .d,.svc-row:hover .tags i{color:var(--mut-bone)}
+.svc-row:hover .tags i{border-color:var(--line-bone)}
+.svc-row:hover .go{background:var(--bone);color:var(--ink);border-color:var(--bone);transform:translateX(4px) rotate(-45deg)}
+.svc-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px;margin-top:clamp(34px,4vw,54px)}
+
+/* ============ PROJECTS ============ */
+.projects{background:var(--coal);color:var(--bone)}
+.projects .eyebrow{color:var(--accent-2)}
+.projects .eyebrow .n{color:var(--mut-bone)}
+.pfeat{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(26px,4vw,64px);align-items:stretch;margin-bottom:clamp(46px,5vw,80px)}
+.pfeat-media{position:relative;overflow:hidden;border-radius:var(--r);min-height:340px}
+.pfeat-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.pfeat:hover .pfeat-media img{transform:scale(1.045)}
+.pfeat-media .chip{position:absolute;top:18px;left:18px;z-index:2}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(20,19,15,.72);color:var(--bone);backdrop-filter:blur(6px);
+  font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px;border-radius:999px;border:1px solid rgba(244,241,233,.16)}
+.chip.light{background:rgba(244,241,233,.92);color:var(--ink)}
+.pfeat-tag{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-2);font-weight:600;display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.pfeat-tag::before{content:"";width:30px;height:1px;background:currentColor}
+.pfeat h3{font-family:var(--serif);font-weight:390;font-size:clamp(1.9rem,3.2vw,3.1rem);line-height:1.06;letter-spacing:-.015em;margin-bottom:16px}
+.pfeat .pdesc{color:var(--mut-bone);max-width:52ch;margin-bottom:26px;font-size:1.02rem}
+.pfeat .pmeta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line-bone);margin-bottom:30px}
+.pfeat .pmeta div{flex:1;min-width:130px;padding:18px 22px 18px 0;border-bottom:1px solid var(--line-bone);margin-right:22px}
+.pfeat .pmeta span{display:block;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut-bone);margin-bottom:6px}
+.pfeat .pmeta b{font-family:var(--serif);font-weight:430;font-size:1.08rem}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,28px)}
+.pcard{position:relative;text-align:left;border-radius:var(--r);overflow:hidden;background:var(--coal-2);display:flex;flex-direction:column;transition:transform .6s var(--ease)}
+.pcard .pm{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:var(--r)}
+.pcard .pm img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.pcard:hover{transform:translateY(-6px)}
+.pcard:hover .pm img{transform:scale(1.07)}
+.pcard .pm::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(10,10,8,.72));opacity:0;transition:opacity .5s}
+.pcard:hover .pm::after{opacity:1}
+.pcard .pchip{position:absolute;top:14px;left:14px;z-index:2}
+.pcard .year{position:absolute;top:14px;right:14px;z-index:2;background:rgba(244,241,233,.92);color:var(--ink);font-size:.66rem;font-weight:700;letter-spacing:.1em;padding:6px 11px;border-radius:999px}
+.pcard .arrgo{position:absolute;right:14px;bottom:12px;z-index:3;width:44px;height:44px;border-radius:50%;background:var(--bone);color:var(--ink);display:grid;place-items:center;opacity:0;transform:translateY(10px) rotate(-45deg);transition:opacity .45s,transform .55s var(--ease)}
+.pcard:hover .arrgo{opacity:1;transform:none}
+.pcard .pc-body{padding:20px 4px 6px}
+.pcard .pc-body h3{font-family:var(--serif);font-weight:430;font-size:1.28rem;line-height:1.15;letter-spacing:-.01em;transition:color .3s}
+.pcard:hover .pc-body h3{color:var(--accent-2)}
+.pcard .pc-body p{font-size:.82rem;color:var(--mut-bone);letter-spacing:.05em;text-transform:uppercase;margin-top:5px;display:flex;gap:8px;align-items:center}
+.pcard .pc-body p::before{content:"";width:14px;height:1px;background:var(--accent-2);flex:none}
+.proj-cta{display:flex;justify-content:center;margin-top:clamp(44px,5vw,64px)}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:stretch;justify-content:center;padding:0;background:rgba(12,11,8,.88);backdrop-filter:blur(10px)}
+.modal.open{display:flex}
+.modal-panel{position:relative;width:min(1120px,100%);max-height:100svh;overflow:auto;background:var(--paper);color:var(--ink);border-radius:0;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+.modal-main{position:relative;background:var(--ink);min-height:300px}
+.modal-main .stage{position:relative;height:100%;min-height:340px;overflow:hidden}
+.modal-main .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .55s}
+.modal-main .stage img.on{opacity:1}
+.modal-main .thumbs{position:absolute;left:14px;bottom:14px;display:flex;gap:8px;z-index:3}
+.modal-main .thumbs button{width:58px;height:44px;border-radius:2px;overflow:hidden;border:1.5px solid transparent;opacity:.65;transition:opacity .3s,border-color .3s}
+.modal-main .thumbs button.on{border-color:var(--accent-2);opacity:1}
+.modal-main .thumbs img{width:100%;height:100%;object-fit:cover}
+.modal-info{padding:clamp(26px,3.4vw,52px);display:flex;flex-direction:column;gap:18px}
+.modal-info h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.05;letter-spacing:-.015em}
+.modal-info .mloc{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.modal-info .mdesc{color:var(--mut);font-size:.99rem}
+.modal-info .mdesc strong{color:var(--ink)}
+.mmeta{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.mmeta div{padding:14px 16px}
+.mmeta div:nth-child(odd){border-right:1px solid var(--line)}
+.mmeta div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+.mmeta span{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:4px}
+.mmeta b{font-family:var(--serif);font-weight:470;font-size:1.02rem}
+.mquote{border-left:2px solid var(--accent);padding:4px 0 4px 18px;font-family:var(--serif);font-style:italic;font-size:1.06rem;line-height:1.5;color:var(--ink)}
+.modal-close{position:absolute;top:14px;right:14px;z-index:5;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(244,241,233,.9);color:var(--ink);transition:background .3s,transform .4s var(--ease)}
+.modal-close:hover{background:#fff;transform:rotate(90deg)}
+.modal-nav{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:auto;padding-top:8px}
+.modal-nav .mnb{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);transition:color .3s;padding:8px 0}
+.modal-nav .mnb:hover{color:var(--accent)}
+.modal-nav .cnt{font-size:.78rem;color:var(--mut);letter-spacing:.2em}
+
+/* ============ BEFORE / AFTER ============ */
+.ba-sec{background:var(--paper-2)}
+.ba-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:clamp(28px,4vw,64px);align-items:center}
+.ba-info .ba-list{margin:22px 0 30px;display:flex;flex-direction:column;gap:12px}
+.ba-info .ba-list li{display:flex;gap:12px;align-items:flex-start;font-size:.97rem;color:var(--mut)}
+.ba-info .ba-list li::before{content:"";width:7px;height:7px;background:var(--accent);border-radius:1px;margin-top:9px;flex:none;transform:rotate(45deg)}
+.ba-wrap{position:relative;user-select:none;touch-action:none;border-radius:var(--r);overflow:hidden;aspect-ratio:16/10.5;background:var(--ink);box-shadow:0 44px 90px -40px rgba(20,19,15,.55);cursor:ew-resize}
+.ba-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-before{clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+.ba-after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba-div{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:var(--bone);transform:translateX(-50%);z-index:4}
+.ba-div::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:var(--bone);box-shadow:0 8px 24px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
+.ba-div .glyph{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;width:52px;height:52px;display:grid;place-items:center;color:var(--ink);font-size:.8rem;letter-spacing:.02em;font-weight:700;background:radial-gradient(circle,var(--bone) 55%,transparent 56%)}
+.ba-label{position:absolute;top:14px;z-index:3;font-size:.64rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:7px 13px;border-radius:999px;backdrop-filter:blur(4px);transition:opacity .4s}
+.ba-before-label{left:14px;background:rgba(20,19,15,.6);color:var(--bone);border:1px solid rgba(244,241,233,.2)}
+.ba-after-label{right:14px;background:rgba(244,241,233,.92);color:var(--ink)}
+.ba-caption{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+
+/* ============ PROCESS ============ */
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2vw,30px);counter-reset:proc}
+.proc{position:relative;padding:clamp(26px,2.6vw,38px) 24px;border:1px solid var(--line);border-radius:var(--r);background:transparent;transition:background .5s,transform .6s var(--ease),border-color .5s;overflow:hidden}
+.proc:hover{background:var(--ink);color:var(--bone);transform:translateY(-6px);border-color:var(--ink)}
+.proc .pno{font-family:var(--serif);font-size:clamp(2.6rem,4.4vw,3.8rem);font-weight:330;line-height:1;color:var(--accent);letter-spacing:-.02em}
+.proc h3{margin:20px 0 10px;font-family:var(--serif);font-weight:450;font-size:1.3rem;letter-spacing:-.01em}
+.proc p{font-size:.9rem;color:var(--mut);transition:color .5s}
+.proc:hover p{color:var(--mut-bone)}
+.proc .ptag{display:inline-block;margin-top:16px;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid currentColor;border-radius:999px;padding:5px 12px}
+.proc:hover .ptag{color:var(--accent-2)}
+.proc::after{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.proc:hover::after{transform:scaleX(1)}
+
+/* ============ TESTIMONIALS ============ */
+.quotes{background:var(--coal);color:var(--bone);overflow:hidden}
+.quotes .q-view{position:relative}
+.q-track{display:flex;transition:transform .85s var(--ease)}
+.q-slide{flex:0 0 100%;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:center;padding-right:2px}
+.q-stars{display:flex;gap:5px;color:var(--accent-2);margin-bottom:clamp(22px,3vw,34px)}
+.q-stars svg{width:17px;height:17px}
+.q-quote{font-family:var(--serif);font-weight:350;font-size:clamp(1.45rem,2.7vw,2.3rem);line-height:1.28;letter-spacing:-.01em}
+.q-quote::before{content:"“";display:block;font-family:var(--serif);font-size:3.4em;line-height:.4;color:var(--accent-2);margin-bottom:.35em;font-style:italic}
+.q-who{display:flex;align-items:center;gap:16px;margin-top:30px}
+.q-ava{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-family:var(--serif);font-size:1.1rem;font-weight:500;flex:none}
+.q-who b{display:block;font-size:1rem}
+.q-who span{font-size:.8rem;color:var(--mut-bone);letter-spacing:.04em}
+.q-side{border-left:1px solid var(--line-bone);padding-left:clamp(24px,3vw,46px);display:flex;flex-direction:column;gap:22px}
+.q-side p{color:var(--mut-bone);font-size:.95rem;line-height:1.7}
+.q-side .mini-chips{display:flex;flex-wrap:wrap;gap:8px}
+.q-side .mini-chips i{font-style:normal;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line-bone);padding:6px 12px;border-radius:999px;color:var(--mut-bone)}
+.q-nav{display:flex;align-items:center;gap:18px;margin-top:clamp(40px,5vw,60px)}
+.q-arrow{width:52px;height:52px;border-radius:50%;border:1px solid rgba(244,241,233,.3);display:grid;place-items:center;transition:background .3s,color .3s,border-color .3s,transform .4s var(--ease)}
+.q-arrow:hover{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.q-arrow.next:hover{transform:translateX(3px)}
+.q-arrow.prev:hover{transform:translateX(-3px)}
+.q-dots{display:flex;gap:9px;margin-left:6px}
+.q-dots button{width:26px;height:4px;border-radius:2px;background:rgba(244,241,233,.22);transition:background .4s;position:relative;overflow:hidden}
+.q-dots button.on{background:var(--accent-2)}
+.q-count{margin-left:auto;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--mut-bone);letter-spacing:.06em}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,6vw,90px);align-items:center}
+.about-cols{position:relative;min-height:560px}
+.about-cols .ac-main{position:absolute;top:0;left:0;width:72%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);z-index:1;box-shadow:0 40px 80px -40px rgba(20,19,15,.5)}
+.about-cols .ac-1{position:absolute;right:0;bottom:0;width:46%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);z-index:2;border:8px solid var(--paper)}
+.about-cols .ac-2{position:absolute;top:8%;right:4%;width:26%;aspect-ratio:1;object-fit:cover;border-radius:50%;z-index:3;border:8px solid var(--paper)}
+.about-cols .exp{position:absolute;left:6%;bottom:-34px;z-index:4;background:var(--ink);color:var(--bone);padding:22px 26px;border-radius:var(--r);display:flex;flex-direction:column;gap:2px;box-shadow:0 26px 50px -24px rgba(20,19,15,.55)}
+.about-cols .exp b{font-family:var(--serif);font-size:2.1rem;font-weight:440;line-height:1;color:var(--accent-2)}
+.about-cols .exp span{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut-bone);margin-top:6px}
+.about-tx h2{margin-bottom:18px}
+.about-tx>p{color:var(--mut);margin-bottom:16px;max-width:56ch}
+.about-tx .vals{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--r);margin:26px 0 30px;overflow:hidden}
+.vals div{padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+.vals div:nth-child(odd){border-right:1px solid var(--line)}
+.vals div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+.vals .vi{width:34px;height:34px;flex:none;border-radius:50%;background:var(--ink);color:var(--bone);display:grid;place-items:center}
+.vals b{display:block;font-size:.94rem;font-weight:700;letter-spacing:-.01em}
+.vals p{font-size:.8rem;color:var(--mut);margin-top:3px;line-height:1.5}
+.sign-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.sig{font-family:var(--serif);font-style:italic;font-size:2rem;line-height:1;transform:rotate(-2deg);color:var(--ink);opacity:.85}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;padding-top:30px;border-top:1px solid var(--line)}
+.badges i{font-style:normal;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);padding:9px 16px;border-radius:999px;display:inline-flex;align-items:center;gap:9px}
+.badges i::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--accent);transform:rotate(45deg)}
+
+/* ============ CTA BAND ============ */
+.cta-band{background:var(--coal);color:var(--bone);position:relative;overflow:hidden;text-align:center}
+.cta-band::before{content:"";position:absolute;inset:auto -10% -55% -10%;height:90%;background:radial-gradient(50% 50% at 50% 100%,rgba(192,90,29,.4),transparent 70%);pointer-events:none}
+.cta-band h2{font-family:var(--serif);font-weight:370;font-size:clamp(2.7rem,8vw,7.4rem);line-height:.98;letter-spacing:-.02em;max-width:14ch;margin-inline:auto;position:relative}
+.cta-band h2 em{font-style:italic;color:var(--accent-2)}
+.cta-band .sub{color:var(--mut-bone);max-width:52ch;margin:26px auto 0;position:relative}
+.cta-band .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px;position:relative}
+.cta-band .tel{display:inline-flex;align-items:center;gap:12px;margin-top:26px;font-size:.9rem;color:var(--mut-bone);position:relative}
+.cta-band .tel a{font-weight:700;color:var(--bone);border-bottom:1px solid var(--line-bone);padding-bottom:2px;transition:color .3s,border-color .3s}
+.cta-band .tel a:hover{color:var(--accent-2);border-color:var(--accent-2)}
+
+/* ============ CONTACT ============ */
+.contact{background:var(--paper-2)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(34px,4.5vw,80px);align-items:start}
+.c-info h2{margin-bottom:18px}
+.c-info>p{color:var(--mut);max-width:44ch;margin-bottom:30px}
+.c-list{display:flex;flex-direction:column}
+.c-row{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:17px 0;border-top:1px solid var(--line)}
+.c-row:last-child{border-bottom:1px solid var(--line)}
+.c-row span{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);padding-top:4px}
+.c-row b{font-weight:600;font-size:1.02rem;display:block;line-height:1.45}
+.c-row a{transition:color .3s}
+.c-row a:hover{color:var(--accent)}
+.c-row small{color:var(--mut);font-size:.82rem}
+.socials{display:flex;gap:10px;margin-top:26px}
+.socials a{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:background .35s,color .35s,border-color .35s,transform .4s var(--ease)}
+.socials a:hover{background:var(--ink);color:var(--bone);border-color:var(--ink);transform:translateY(-3px)}
+.form-card{background:var(--card);border:1px solid rgba(20,19,15,.06);border-radius:10px;padding:clamp(26px,3vw,44px);box-shadow:0 40px 80px -46px rgba(20,19,15,.4);position:relative}
+.form-card h3{font-family:var(--serif);font-weight:420;font-size:clamp(1.5rem,2.2vw,1.9rem);letter-spacing:-.01em;margin-bottom:6px}
+.form-card .fc-sub{font-size:.88rem;color:var(--mut);margin-bottom:26px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f-field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.f-field label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.f-field label i{color:var(--accent);font-style:normal}
+.f-field input,.f-field select,.f-field textarea{width:100%;background:var(--paper);border:1px solid rgba(20,19,15,.14);border-radius:8px;
+  padding:13px 15px;font:inherit;font-size:.95rem;color:var(--ink);transition:border-color .3s,box-shadow .3s,background .3s;-webkit-appearance:none;appearance:none}
+.f-field select{background-image:url("images/icon-03.svg");background-repeat:no-repeat;background-position:right 15px center}
+.f-field textarea{min-height:110px;resize:vertical}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(192,90,29,.14)}
+.f-field.err input,.f-field.err select,.f-field.err textarea{border-color:#b3261e}
+.f-field .msg{font-size:.76rem;color:#b3261e;display:none}
+.f-field.err .msg{display:block}
+.f-check{display:flex;gap:12px;align-items:flex-start;margin:4px 0 22px;font-size:.86rem;color:var(--mut);cursor:pointer}
+.f-check input{width:18px;height:18px;margin-top:3px;accent-color:var(--accent);flex:none;cursor:pointer}
+.f-submit{width:100%;justify-content:center;padding:18px 28px;font-size:1rem}
+.form-note{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:16px;font-size:.78rem;color:var(--mut);flex-wrap:wrap}
+.form-note .lock{display:inline-flex;gap:7px;align-items:center}
+.form-ok{display:none;text-align:center;padding:clamp(30px,4vw,50px) 10px}
+.form-ok.show{display:block;animation:okIn .7s var(--ease)}
+@keyframes okIn{from{opacity:0;transform:translateY(16px)}}
+.ok-ring{width:86px;height:86px;margin:0 auto 22px;border-radius:50%;background:var(--ink);display:grid;place-items:center;position:relative}
+.ok-ring svg{width:40px;height:40px}
+.ok-ring path{stroke:var(--accent-2);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60}
+.form-ok.show .ok-ring path{animation:okDraw .8s .2s var(--ease) forwards}
+@keyframes okDraw{to{stroke-dashoffset:0}}
+.form-ok h4{font-family:var(--serif);font-weight:430;font-size:1.7rem;margin-bottom:10px}
+.form-ok p{color:var(--mut);max-width:38ch;margin:0 auto 24px;font-size:.96rem}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:var(--bone);position:relative;overflow:hidden}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:clamp(30px,4vw,60px);padding:clamp(60px,8vw,100px) 0 50px}
+.foot-brand .logo{margin-bottom:22px}
+.foot-brand p{color:var(--mut-bone);font-size:.9rem;max-width:34ch;margin-bottom:22px}
+.foot-col h4{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-2);margin-bottom:20px}
+.foot-col ul{display:flex;flex-direction:column;gap:11px}
+.foot-col a,.foot-col li{font-size:.92rem;color:rgba(244,241,233,.74);transition:color .3s,padding-left .4s var(--ease)}
+.foot-col a:hover{color:var(--bone);padding-left:5px}
+.foot-col address{font-style:normal;font-size:.92rem;color:rgba(244,241,233,.74);line-height:1.8}
+.foot-col address a:hover{color:var(--accent-2)}
+.foot-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;border-top:1px solid var(--line-bone);padding:26px 0 30px;font-size:.76rem;color:var(--mut-bone);letter-spacing:.04em}
+.foot-bot a:hover{color:var(--bone)}
+.foot-giant{pointer-events:none;user-select:none;line-height:.78;text-align:center;margin-bottom:-.14em;white-space:nowrap;overflow:hidden;
+  font-family:var(--serif);font-weight:330;font-size:clamp(4.6rem,13.4vw,15rem);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(244,241,233,.13)}
+
+/* back to top */
+#toTop{position:fixed;right:22px;bottom:22px;z-index:80;width:50px;height:50px;border-radius:50%;background:var(--bone);color:var(--ink);
+  display:grid;place-items:center;box-shadow:0 14px 30px -12px rgba(0,0,0,.4);opacity:0;transform:translateY(16px);pointer-events:none;
+  transition:opacity .4s,transform .5s var(--ease),background .3s}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}
+#toTop:hover{background:var(--accent);color:#fff}
+
+/* cursor */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:999;pointer-events:none;border-radius:50%;opacity:0;
+  transform:translate(-100px,-100px);mix-blend-mode:difference}
+.cursor-dot{width:6px;height:6px;background:#fff}
+.cursor-ring{width:38px;height:38px;border:1.5px solid rgba(255,255,255,.85);transition:width .35s var(--ease),height .35s var(--ease),opacity .3s}
+body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{opacity:1}
+body.cursor-grow .cursor-ring{width:66px;height:66px}
+@media (hover:hover) and (pointer:fine){
+  body.cursor-on,body.cursor-on a,body.cursor-on button,body.cursor-on label{cursor:none}
+  body.cursor-on input,body.cursor-on textarea,body.cursor-on select{cursor:auto}
+}
+@media (hover:none), (pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1080px){
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .proc-grid{grid-template-columns:repeat(2,1fr)}
+  .q-slide{grid-template-columns:1fr}
+  .q-side{border-left:0;padding-left:0;border-top:1px solid var(--line-bone);padding-top:24px}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .ba-grid{grid-template-columns:1fr}
+}
+@media(max-width:960px){
+  .main-nav,.head-cta{display:none}
+  #burger{display:block}
+  .hero-side{display:none}
+  .svc-row{grid-template-columns:44px 1fr auto}
+  .svc-row .d{grid-column:2/3}
+  .svc-row .go{grid-column:3/4;grid-row:1/3;align-self:center}
+  .svc-row .tags{grid-column:2/3}
+  .svc-row h3{grid-column:2/3}
+  .svc-row .no{grid-row:1}
+  .svcs .preview{display:none!important}
+  .contact-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:0}
+  .stat{border-top:1px solid var(--line)}
+  .stat:nth-child(1),.stat:nth-child(2){border-top:0}
+  .stat:nth-child(odd){border-left:0;padding-left:0}
+  .stat:nth-child(even){padding-left:22px}
+  .manifesto .m-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .about-cols{min-height:470px;max-width:520px}
+  .pfeat{grid-template-columns:1fr}
+  .modal-panel{grid-template-columns:1fr;overflow:auto;max-height:92svh;margin:4svh 0}
+  .modal-main .stage{min-height:280px}
+  .sec-head.split{grid-template-columns:1fr;align-items:start}
+}
+@media(max-width:640px){
+  body{font-size:15.5px}
+  .wrap{width:calc(100% - 40px)}
+  .pgrid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr;gap:0}
+  .foot-top{grid-template-columns:1fr}
+  .about-cols{min-height:400px}
+  .about-cols .ac-2{width:30%}
+  .q-quote{font-size:1.3rem}
+  .vals{grid-template-columns:1fr!important}
+  .vals div:nth-child(odd){border-right:0}
+  .vals div{border-bottom:1px solid var(--line)!important}
+  .vals div:last-child{border-bottom:0!important}
+  .hero h1{font-size:clamp(2.55rem,12.4vw,3.4rem)}
+  .pfeat-media{min-height:250px}
+  .c-row{grid-template-columns:1fr;gap:4px}
+  .c-row span{padding-top:0}
+  .modal-main .stage{min-height:230px}
+  .modal-close{top:10px;right:10px}
+  .ba-label{font-size:.58rem;padding:6px 10px}
+  .scrollhint{display:none}
+}
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}
+  .js [data-reveal]{opacity:1;transform:none}
+  .ticker-track{animation:none}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body class="no-scroll-init">
+
+<a class="skip" href="#main">Hopp til innhold</a>
+
+<!-- LOADER -->
+<div id="loader" aria-hidden="true">
+  <div class="ld-word" id="ldWord"><span>A</span><span>n</span><span>d</span><span>e</span><span>r</span><span>s</span><span>e</span><span>n</span></div>
+  <div class="ld-sub">Byggmester &amp; snekkeri — Oslo</div>
+  <div class="ld-line"><i></i></div>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header class="site-head" id="siteHead">
+  <a class="logo" href="#topp" aria-label="Andersen Bygg — til toppen">
+    <span class="lm">A</span>
+    <span class="lt">Andersen Bygg<small>Mester &amp; snekkeri</small></span>
+  </a>
+  <nav class="main-nav" aria-label="Hovedmeny">
+    <a href="#tjenester">Tjenester</a>
+    <a href="#prosjekter">Prosjekter</a>
+    <a href="#prosess">Slik jobber vi</a>
+    <a href="#om-oss">Om oss</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a class="cta-pill head-cta" href="#kontakt">Få tilbud
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button id="burger" aria-label="Åpne meny" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav id="mnav" aria-label="Mobilmeny">
+  <div class="mn-links">
+    <a href="#tjenester" style="transition-delay:.14s"><i>01</i>Tjenester</a>
+    <a href="#prosjekter" style="transition-delay:.2s"><i>02</i>Prosjekter</a>
+    <a href="#prosess" style="transition-delay:.26s"><i>03</i>Slik jobber vi</a>
+    <a href="#om-oss" style="transition-delay:.32s"><i>04</i>Om oss</a>
+    <a href="#kontakt" style="transition-delay:.38s"><i>05</i>Kontakt</a>
+  </div>
+  <div class="mn-foot">
+    <a href="tel:+4722604050">+47 22 60 40 50</a>
+    <a href="mailto:post@andersenbygg.no">post@andersenbygg.no</a>
+    <span>Man–fre 07.30–16.00</span>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="topp">
+  <div class="hero-media">
+    <img src="images/photo-31.jpg" alt="Moderne hus i tre og glass omgitt av skog" fetchpriority="high">
+  </div>
+  <div class="hero-veil"></div>
+  <div class="hero-side" aria-hidden="true">Sandakerveien 64 — Oslo</div>
+  <div class="hero-in">
+    <div class="hero-eyebrow">Byggmesterfirma &amp; snekkeri — siden 1987</div>
+    <h1>
+      <span class="l1"><span>Hjem som varer</span></span>
+      <span class="l2"><span>i <em>generasjoner</em>.</span></span>
+    </h1>
+    <div class="hero-sub-row">
+      <p class="hero-sub">Andersen Bygg leverer rehabilitering, tilbygg og skreddersydde løsninger til folk som ser forskjellen på håndverk og halvgjort arbeid. Fastpris. Egne snekkere. Skriftlig 10 års garanti.</p>
+      <div class="hero-ctas">
+        <a class="btn b-bone" href="#kontakt">Be om befaring
+          <span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="btn b-ghostlight" href="#prosjekter">Se prosjekter</a>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <span class="scrollhint"><span class="wheel"></span>Rull for å utforske</span>
+      <span>4,9 / 5 · 236 kundeomtaler</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Tilbygg<i>✦</i>Terrasse<i>✦</i>Kjøkken<i>✦</i>Våtrom<i>✦</i>Rehabilitering<i>✦</i>Fasade<i>✦</i>Tak<i>✦</i>Spesialsnekring<i>✦</i>Fast inventar<i>✦</i>Totalentreprise<i>✦</i></span>
+    <span>Tilbygg<i>✦</i>Terrasse<i>✦</i>Kjøkken<i>✦</i>Våtrom<i>✦</i>Rehabilitering<i>✦</i>Fasade<i>✦</i>Tak<i>✦</i>Spesialsnekring<i>✦</i>Fast inventar<i>✦</i>Totalentreprise<i>✦</i></span>
+  </div>
+</div>
+
+<!-- MANIFESTO + STATS -->
+<section class="sec manifesto">
+  <div class="wrap">
+    <div class="m-grid">
+      <h2 data-reveal>Vi er byggmesterne som fortsatt gjør alt med <em class="serif-i">egne, faste snekkere</em> — fra <span class="u">sveitservillaer<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 60 4, 140 4, 198 12"/></svg></span> til moderne trearkitektur.</h2>
+      <div class="man-body" data-reveal style="--d:.15s">
+        <p>Andersen Bygg ble grunnlagt i 1987 av mesteren Ole Andersen, og drives i dag av andre generasjon med samme krav: presise skjøter, rette linjer og materialer som tåler tidens tann. Vi påtar oss alt fra en ny terrasse til totalrehabilitering av hele boliger — alltid med fastpris i kontrakt og én ansvarlig kontaktperson hele veien.</p>
+        <p>Om lag 90 prosent av oppdragene våre kommer fra anbefalinger. Det er den statistikken vi er mest stolt av.</p>
+        <div class="byline">
+          <img class="ava" src="images/photo-24.jpg" alt="Portrett av daglig leder Jonas Andersen">
+          <div><b>Jonas Andersen</b><span>Daglig leder, snekker &amp; byggmester</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat" data-reveal><b><span data-count="39">0</span><sup>år</sup></b><span>Siden 1987 i Oslo</span></div>
+      <div class="stat" data-reveal style="--d:.08s"><b><span data-count="900">0</span><sup>+</sup></b><span>Fullførte prosjekter</span></div>
+      <div class="stat" data-reveal style="--d:.16s"><b><span data-count="12">0</span></b><span>Faste snekkere &amp; mestere</span></div>
+      <div class="stat" data-reveal style="--d:.24s"><b><span data-count="98">0</span><sup>%</sup></b><span>Anbefaler oss videre</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec svcs" id="tjenester">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow" data-reveal><span class="n">01</span> Våre tjenester</span>
+        <h2 class="h-xl" data-reveal style="--d:.08s;margin-top:20px">Alt i tre — <em>fra grunnmur til møne</em></h2>
+      </div>
+      <p class="lede" data-reveal style="--d:.16s">Én leverandør for hele prosessen: byggmeldingshjelp, tegning, utførelse og overlevering. Hvert oppdrag utføres av våre egne ansatte — aldri innleide firmaer.</p>
+    </div>
+    <div class="preview" id="svcPrev" aria-hidden="true"><img id="svcPrevImg" src="" alt=""></div>
+    <div id="svcList">
+
+      <div class="svc-row" data-reveal data-img="images/photo-02.jpg">
+        <span class="no">01</span>
+        <h3>Rehabilitering &amp; oppussing</h3>
+        <div class="d">
+          <p>Hele boliger eller enkeltrom — fra 70-tallsvillaer til eldre bygårder. Vi river, bygger opp, og etterlater deg et hjem som føles nytt, men beholder sjelen.</p>
+          <div class="tags"><i>Totalentreprise</i><i>Leiligheter</i><i>Hytter</i></div>
+        </div>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </div>
+
+      <div class="svc-row" data-reveal data-img="images/photo-14.jpg">
+        <span class="no">02</span>
+        <h3>Tilbygg &amp; påbygg</h3>
+        <div class="d">
+          <p>Nye rom til familien — uten å flytte. Vi håndterer søknad og byggmeldingshjelp, og bygger tilbygg i tre, glass og bindingsverk med presisjon i hver skjøt.</p>
+          <div class="tags"><i>Arkitektbistand</i><i>Søknad</i><i>Glassfasader</i></div>
+        </div>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </div>
+
+      <div class="svc-row" data-reveal data-img="images/photo-37.jpg">
+        <span class="no">03</span>
+        <h3>Kjøkken &amp; våtrom</h3>
+        <div class="d">
+          <p>Kjøkken bygget på mål etter kropp og bruk — og våtrom med fagbrev på membran og flis, utført etter gjeldende våtromsnorm. Alltid med garanti.</p>
+          <div class="tags"><i>Våtromsnorm</i><i>Målsnekring</i><i>Flis &amp; membran</i></div>
+        </div>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </div>
+
+      <div class="svc-row" data-reveal data-img="images/photo-28.jpg">
+        <span class="no">04</span>
+        <h3>Terrasse &amp; utemiljø</h3>
+        <div class="d">
+          <p>Terrasse i varmebehandlet eller tropisk tre, pergolaer, markiser og utekjøkken. Konstruert for norsk klima — med solide fundamenter og gjennomtenkte detaljer.</p>
+          <div class="tags"><i>Varmebehandlet tre</i><i>Pergola</i><i>Utekjøkken</i></div>
+        </div>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </div>
+
+      <div class="svc-row" data-reveal data-img="images/photo-09.jpg">
+        <span class="no">05</span>
+        <h3>Fasade &amp; vinduer</h3>
+        <div class="d">
+          <p>Nye fasader i trekledning, puss eller plater — med vindusbytte, beslag og overflatebehandling som holder. For sameier, næringsbygg og villaer.</p>
+          <div class="tags"><i>Sameier</i><i>Trekledning</i><i>Vindusbytte</i></div>
+        </div>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </div>
+
+      <div class="svc-row" data-reveal data-img="images/photo-12.jpg">
+        <span class="no">06</span>
+        <h3>Tak &amp; undertak</h3>
+        <div class="d">
+          <p>Nytt tak, undertak og takrenner — tettet, isolert og ventilert etter forskrift. Vi utfører også takopplett og innredning av loft under samme tak.</p>
+          <div class="tags"><i>Taktekking</i><i>Isolering</i><i>Loftsinuredning</i></div>
+        </div>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </div>
+
+      <div class="svc-row" data-reveal data-img="images/photo-16.jpg">
+        <span class="no">07</span>
+        <h3>Spesialtilpasset snekring</h3>
+        <div class="d">
+          <p>Fast inventar, trapper, panel, lister og møbler bygget på verkstedet vårt — etter dine mål, dine materialer og din smak. Det lille ekstra som gjør hjemmet personlig.</p>
+          <div class="tags"><i>Fast inventar</i><i>Trapper</i><i>Eik &amp; valnøtt</i></div>
+        </div>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </div>
+
+    </div>
+    <div class="svc-foot" data-reveal>
+      <p class="lede" style="max-width:40ch">Usikker på hva prosjektet ditt trenger? Vi besøker deg, vurderer og gir ærlige råd — <strong>gratis og uforpliktende</strong>.</p>
+      <a class="btn b-ink" href="#kontakt">Be om gratis befaring
+        <span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec projects" id="prosjekter">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow" data-reveal><span class="n">02</span> Utvalgte prosjekter</span>
+        <h2 class="h-xl" data-reveal style="--d:.08s;margin-top:20px">Arbeid vi er <em>stolte av</em></h2>
+      </div>
+      <p class="lede" data-reveal style="--d:.16s">Et utvalg av oppdrag utført for private hjem og sameier i Oslo og omega. Trykk på et prosjekt for å se bilder, omfang og resultat.</p>
+    </div>
+
+    <!-- featured -->
+    <button class="pfeat" data-open="0" data-reveal>
+      <div class="pfeat-media">
+        <span class="chip">Tilbygg &amp; kjøkken</span>
+        <img src="images/photo-20.jpg" alt="Villa Granåsen — nytt tilbygg i tre og stein om vinteren" loading="lazy">
+      </div>
+      <div class="pfeat-info" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="pfeat-tag">Prosjekt 01 — 2025</span>
+        <h3>Villa Granåsen</h3>
+        <p class="pdesc">Et 68 m² stort tilbygg i tre og glass med nytt kjøkken i eik — tegnet og bygget fra tomt tomt til ferdig rom. Familien fikk utsikten de drømte om, uten å flytte fra nabolaget.</p>
+        <div class="pmeta">
+          <div><span>Sted</span><b>Holmenkollen, Oslo</b></div>
+          <div><span>Omfang</span><b>68 m² tilbygg</b></div>
+          <div><span>Varighet</span><b>7 måneder</b></div>
+        </div>
+        <span class="txtlink" style="align-self:flex-start">Se hele prosjektet
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </button>
+
+    <!-- grid -->
+    <div class="pgrid">
+      <button class="pcard" data-open="1" data-reveal>
+        <span class="pm">
+          <span class="chip pchip">Totalrehabilitering</span>
+          <span class="year">2025</span>
+          <img src="images/photo-04.jpg" alt="Rehabilitert hytte på Norefjell" loading="lazy">
+          <span class="arrgo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </span>
+        <span class="pc-body">
+          <h3>Hytten på Norefjell</h3>
+          <p>Rehabilitering fra grunnmur til møne</p>
+        </span>
+      </button>
+
+      <button class="pcard" data-open="2" data-reveal style="--d:.07s">
+        <span class="pm">
+          <span class="chip pchip">Våtromsrehabilitering</span>
+          <span class="year">2024</span>
+          <img src="images/photo-35.jpg" alt="Nytt bad i 20-tallsvilla på Bygdøy" loading="lazy">
+          <span class="arrgo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </span>
+        <span class="pc-body">
+          <h3>Bad i 20-tallsvilla</h3>
+          <p>Våtrom i bevart stil — Bygdøy</p>
+        </span>
+      </button>
+
+      <button class="pcard" data-open="3" data-reveal style="--d:.14s">
+        <span class="pm">
+          <span class="chip pchip">Terrasse &amp; uteplass</span>
+          <span class="year">2024</span>
+          <img src="images/photo-29.jpg" alt="Terrasse i varmebehandlet tre med sjøutsikt" loading="lazy">
+          <span class="arrgo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </span>
+        <span class="pc-body">
+          <h3>Terrasse med sjøutsikt</h3>
+          <p>Varmebehandlet furu — Drøbak</p>
+        </span>
+      </button>
+
+      <button class="pcard" data-open="4" data-reveal>
+        <span class="pm">
+          <span class="chip pchip">Fasade &amp; tak</span>
+          <span class="year">2023</span>
+          <img src="images/photo-06.jpg" alt="Sveitservilla på Kjelsås med ny fasade" loading="lazy">
+          <span class="arrgo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </span>
+        <span class="pc-body">
+          <h3>Sveitservilla på Kjelsås</h3>
+          <p>Fasade, vinduer &amp; tak — 1924</p>
+        </span>
+      </button>
+
+      <button class="pcard" data-open="5" data-reveal style="--d:.07s">
+        <span class="pm">
+          <span class="chip pchip">Innvendig oppussing</span>
+          <span class="year">2025</span>
+          <img src="images/photo-25.jpg" alt="Ny stue i funkisleilighet på Frogner" loading="lazy">
+          <span class="arrgo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </span>
+        <span class="pc-body">
+          <h3>Funkisleilighet, Frogner</h3>
+          <p>Innvendig totaloppussing</p>
+        </span>
+      </button>
+    </div>
+
+    <div class="proj-cta" data-reveal>
+      <a class="btn b-bone" href="#kontakt">Fortell oss om ditt prosjekt
+        <span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="sec ba-sec" id="for-etter">
+  <div class="wrap">
+    <div class="ba-grid">
+      <div class="ba-info">
+        <span class="eyebrow" data-reveal><span class="n">03</span> Før &amp; etter</span>
+        <h2 class="h-xl" data-reveal style="--d:.08s;margin-top:20px">Kjøkken på Frogner — <em>før &amp; etter</em></h2>
+        <p class="lede" data-reveal style="--d:.14s;margin-top:18px">Et 1980-tallskjøkken ble til familiens nye midtpunkt: ny planløsning, eikefinér på mål, skjult teknikk og en kjøkkenøy i massiv eik. Dra i håndtaket for å sammenligne.</p>
+        <ul class="ba-list" data-reveal style="--d:.2s">
+          <li>Riving og ny planløsning med bærende konstruksjon</li>
+          <li>Kjøkkeninnredning bygget på mål i vår egen snekkeravdeling</li>
+          <li>Skjult kjøling, induksjon og ventilasjon integrert i eik</li>
+          <li>Levert på 9 uker — inkludert all elektriker- og rørleggerkoordinering</li>
+        </ul>
+        <a class="txtlink" data-reveal style="--d:.26s" href="#kontakt">Be om tilbud på lignende prosjekt
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div data-reveal style="--d:.1s">
+        <div class="ba-wrap" id="baWrap" role="slider" aria-label="Sammenlign før og etter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0" style="--pos:50%">
+          <img class="ba-before" src="images/photo-01.jpg" alt="Kjøkkenet før rehabilitering, under arbeid" loading="lazy" draggable="false">
+          <img class="ba-after" src="images/photo-33.jpg" alt="Kjøkkenet etter rehabilitering, ferdig resultat" loading="lazy" draggable="false">
+          <span class="ba-label ba-before-label">Før — 2024</span>
+          <span class="ba-label ba-after-label">Etter — 2025</span>
+          <div class="ba-div" aria-hidden="true"><span class="glyph">◂ ▸</span></div>
+        </div>
+        <div class="ba-caption"><span>Dra i håndtaket</span><span>Kjøkken — Frogner, Oslo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec" id="prosess">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow" data-reveal><span class="n">04</span> Slik jobber vi</span>
+        <h2 class="h-xl" data-reveal style="--d:.08s;margin-top:20px">En trygg vei fra idé til <em>ferdig nøkkel</em></h2>
+      </div>
+      <p class="lede" data-reveal style="--d:.16s">Vi vet at byggeprosjekter kan oppleves uoversiktlige. Derfor har vi bygget en prosess som gjør deg trygg — med faste holdepunkter, dokumentasjon og én kontaktperson gjennom hele løpet.</p>
+    </div>
+    <div class="proc-grid">
+      <div class="proc" data-reveal>
+        <div class="pno">01</div>
+        <h3>Befaring &amp; kartlegging</h3>
+        <p>Vi møter deg hjemme, måler, vurderer konstruksjon og lytter til hvordan dere faktisk bor. Du får ærlige råd — også når svaret er «dette trenger du ikke».</p>
+        <span class="ptag">Gratis · 60–90 min</span>
+      </div>
+      <div class="proc" data-reveal style="--d:.08s">
+        <div class="pno">02</div>
+        <h3>Skisse &amp; fastpris</h3>
+        <p>Du får skisser, materialvalg og én fast pris i kontrakt. Endringer underveis skjer kun skriftlig — og alltid med din godkjenning først.</p>
+        <span class="ptag">Tilbud innen 2 uker</span>
+      </div>
+      <div class="proc" data-reveal style="--d:.16s">
+        <div class="pno">03</div>
+        <h3>Bygging med egne folk</h3>
+        <p>Våre faste snekkere utfører arbeidet. Daglig rydding, ukentlige byggemøter og løpende bildedokumentasjon — du skal alltid vite hvor prosjektet står.</p>
+        <span class="ptag">Aldri innleie</span>
+      </div>
+      <div class="proc" data-reveal style="--d:.24s">
+        <div class="pno">04</div>
+        <h3>Overlevering &amp; garanti</h3>
+        <p>Vi går gjennom resultatet sammen, overleverer all dokumentasjon — og stiller med skriftlig 10 års arbeidsgaranti. Du har også vårt nummer etter at vi har dratt.</p>
+        <span class="ptag">10 års garanti</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec quotes" id="omtaler">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div>
+        <span class="eyebrow" data-reveal><span class="n">05</span> Kundeomtaler</span>
+        <h2 class="h-xl" data-reveal style="--d:.08s;margin-top:20px">Snakket om — <em>og snakket varmt om</em></h2>
+      </div>
+      <p class="lede" data-reveal style="--d:.16s">4,9 av 5 i gjennomsnitt på 236 verifiserte omtaler. Her er et lite utvalg fra kunder som har levd med oss gjennom hele prosessen.</p>
+    </div>
+    <div class="q-view" data-reveal style="--d:.1s">
+      <div class="q-track" id="qTrack">
+
+        <div class="q-slide">
+          <div>
+            <div class="q-stars" aria-label="5 av 5 stjerner">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg>
+            </div>
+            <blockquote class="q-quote">Vi ba om et tilbygg med store glassflater og et kjøkken familien kunne samles rundt. Andersen Bygg tegnet, bygde og fulgte opp alt — vi flyttet inn tre dager før planlagt. Resultatet er det fineste rommet i huset.</blockquote>
+            <div class="q-who">
+              <span class="q-ava">KH</span>
+              <div><b>Kaja &amp; Marius Holm</b><span>Tilbygg &amp; kjøkken — Holmenkollen, 2025</span></div>
+            </div>
+          </div>
+          <div class="q-side">
+            <p><strong>Kundens utfordring:</strong> Familien hadde vokst ut av huset, men ønsket ikke å flytte fra nabolaget, skolen og barnehagen.</p>
+            <p><strong>Vår løsning:</strong> Et to-etasjes tilbygg på 68 m² med nytt kjøkken i eik, integrert i eksisterende takform — utført i totalentreprise uten at familien flyttet ut.</p>
+            <div class="mini-chips"><i>Fastpris holdt</i><i>3 dager før frist</i><i>Ryddige folk</i></div>
+          </div>
+        </div>
+
+        <div class="q-slide">
+          <div>
+            <div class="q-stars" aria-label="5 av 5 stjerner">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg>
+            </div>
+            <blockquote class="q-quote">Som styreleder har jeg håndtert håndverkere i over 20 år. Ingen leverer som Andersen Bygg. De stilte når de skulle, ryddet hver eneste dag og dokumenterte alt. Fasaden vår fikk nytt liv — på budsjett.</blockquote>
+            <div class="q-who">
+              <span class="q-ava">AL</span>
+              <div><b>Anne Berit Lunde</b><span>Styreleder — Sameiet Møllerveien 12, Grünerløkka</span></div>
+            </div>
+          </div>
+          <div class="q-side">
+            <p><strong>Kundens utfordring:</strong> En 100 år gammel bygård med råteskader i vinduskarmer og slitt fasade — og 28 beboere med ulike meninger.</p>
+            <p><strong>Vår løsning:</strong> Fasadeoppgradering med ny vindtetting, trekledning og vindusbytte, gjennomført etasje for etasje med rigging som aldri blokkerte inngangen.</p>
+            <div class="mini-chips"><i>Sameiekompetanse</i><i>Under budsjett</i><i>30 års garanti på arbeid</i></div>
+          </div>
+        </div>
+
+        <div class="q-slide">
+          <div>
+            <div class="q-stars" aria-label="5 av 5 stjerner">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg>
+            </div>
+            <blockquote class="q-quote">Tilbudet var gjennomsiktig, prisen holdt seg, og fristen ble overholdt til dagen. Snekkermesteren kom med gode ideer underveis som faktisk sparte oss penger. Det har jeg aldri opplevd før.</blockquote>
+            <div class="q-who">
+              <span class="q-ava">PS</span>
+              <div><b>Pål &amp; Ingrid Strøm</b><span>Våtromsrehabilitering — Bygdøy, 2024</span></div>
+            </div>
+          </div>
+          <div class="q-side">
+            <p><strong>Kundens utfordring:</strong> Et bad fra 1980 med fuktskader, i en fredet 20-tallsvilla der alt måtte tilpasses eksisterende stil og bygningsvern.</p>
+            <p><strong>Vår løsning:</strong> Nytt våtrom etter forskrift, med metrofliser, badekar frittstående og skjult rørleggerarbeid — utført av våre egne våtromssnekkere.</p>
+            <div class="mini-chips"><i>Frist holdt</i><i>Bygningsvern</i><i>Fastpris</i></div>
+          </div>
+        </div>
+
+        <div class="q-slide">
+          <div>
+            <div class="q-stars" aria-label="5 av 5 stjerner">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.5 5.8 21l1.6-7L2 9.3l7.1-.7z"/></svg>
+            </div>
+            <blockquote class="q-quote">De rehabiliterte hytta vår fra grunnmuren og opp. Tømmerarbeidet og detaljene er utført med en presisjon jeg trodde var utdødd. Naboene har allerede bedt om deres nummer.</blockquote>
+            <div class="q-who">
+              <span class="q-ava">HR</span>
+              <div><b>Heidi Ramberg</b><span>Hytterehabilitering — Norefjell, 2025</span></div>
+            </div>
+          </div>
+          <div class="q-side">
+            <p><strong>Kundens utfordring:</strong> En hytte fra 1974 med setningsskader, dårlig isolasjon og en planløsning som ikke tålte tre generasjoner med gjester.</p>
+            <p><strong>Vår løsning:</strong> Løfting og ny fundamentering, etterisolering, ny panel og en åpen stue- og kjøkkenløsning i furu — utført i to sesonger med brukbar hytte i mellomtiden.</p>
+            <div class="mini-chips"><i>Totalt 14 måneder</i><i>Furu &amp; linolje</i><i>Anbefalt av 12 naboer</i></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="q-nav">
+        <button class="q-arrow prev" id="qPrev" aria-label="Forrige omtale"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+        <button class="q-arrow next" id="qNext" aria-label="Neste omtale"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <div class="q-dots" id="qDots" role="tablist" aria-label="Velg omtale"></div>
+        <span class="q-count" id="qCount">01 / 04</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="om-oss">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-cols" data-reveal="left">
+        <img class="ac-main" src="images/photo-23.jpg" alt="Jonas Andersen i verkstedet" loading="lazy">
+        <img class="ac-1" src="images/photo-17.jpg" alt="Snekker høvler et eikebord for hånd" loading="lazy">
+        <img class="ac-2" src="images/photo-15.jpg" alt="Nærbilde av håndverk og treverk" loading="lazy">
+        <div class="exp"><b>39</b><span>år med håndverk</span></div>
+      </div>
+      <div class="about-tx">
+        <span class="eyebrow" data-reveal><span class="n">06</span> Om Andersen Bygg</span>
+        <h2 class="h-xl" data-reveal style="--d:.08s;margin-top:20px">Et familieforetak med <em>mestertradisjon</em></h2>
+        <p data-reveal style="--d:.14s">Det startet i 1987 med én høvelbenk, én varebil og Ole Andersens overbevisning om at ordentlig arbeid ikke haster. I dag er vi 12 faste snekkere og mestere som deler den samme stoltheten: Skal det gjøres, skal det gjøres riktig.</p>
+        <p data-reveal style="--d:.18s">Vi er fremdeles et familieeid selskap. Det betyr at beslutninger tas raskt, at du snakker med dem som faktisk utfører arbeidet — og at vi aldri vokser raskere enn kvaliteten tillater.</p>
+        <div class="vals" data-reveal style="--d:.22s">
+          <div><span class="vi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>Fastpris i kontrakt</b><p>Prisen du får, er prisen du betaler.</p></div></div>
+          <div><span class="vi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>Egne ansatte</b><p>Aldri innleie. Kjente fjes på jobben.</p></div></div>
+          <div><span class="vi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>10 års garanti</b><p>Skriftlig arbeidsgaranti på alt vi bygger.</p></div></div>
+          <div><span class="vi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>Ryddige byggeplasser</b><p>Vi forlater aldri et rom uten å rydde.</p></div></div>
+        </div>
+        <div class="sign-row" data-reveal style="--d:.26s">
+          <span class="sig">Jonas Andersen</span>
+          <div><b style="display:block">Jonas Andersen</b><span style="font-size:.82rem;color:var(--mut)">Daglig leder — andre generasjon</span></div>
+        </div>
+        <div class="badges" data-reveal style="--d:.3s">
+          <i>Mesterbrev</i><i>Godkjent våtromsbedrift</i><i>Forsikret &amp; garantistilt</i><i>Startbank-godkjent</i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band sec">
+  <div class="wrap">
+    <h2 data-reveal>Klar til å bygge <em>noe som varer?</em></h2>
+    <p class="sub" data-reveal style="--d:.12s">Fortell oss om drømmen din — så kommer vi på gratis befaring, gir ærlige råd og en fast pris. Uten press, uten forpliktelser.</p>
+    <div class="btns" data-reveal style="--d:.2s">
+      <a class="btn b-bone" href="#kontakt">Be om gratis befaring
+        <span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="btn b-line" href="#prosjekter">Se flere referanser</a>
+    </div>
+    <p class="tel" data-reveal style="--d:.26s">Eller ring oss direkte: <a href="tel:+4722604050">+47 22 60 40 50</a></p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec contact" id="kontakt">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="c-info">
+        <span class="eyebrow" data-reveal><span class="n">07</span> Kontakt</span>
+        <h2 class="h-xl" data-reveal style="--d:.08s;margin-top:20px">La oss ta en <em>uforpliktende prat</em></h2>
+        <p data-reveal style="--d:.14s">Fyll inn skjemaet, så ringer vi deg innen én virkedag. Har du bilder eller tegninger, kan du nevne dem i meldingen — eller sende dem på e-post i etterkant.</p>
+        <div class="c-list" data-reveal style="--d:.2s">
+          <div class="c-row"><span>Besøk oss</span><b>Sandakerveien 64<br>0484 Oslo</b></div>
+          <div class="c-row"><span>Telefon</span><b><a href="tel:+4722604050">+47 22 60 40 50</a><br><small>Man–fre · 07.30–16.00</small></b></div>
+          <div class="c-row"><span>E-post</span><b><a href="mailto:post@andersenbygg.no">post@andersenbygg.no</a></b></div>
+          <div class="c-row"><span>Områder</span><b>Oslo, Bærum, Asker, Nordre Follo, Lillestrøm<small> — øvrige områder på forespørsel</small></b></div>
+        </div>
+        <div class="socials" data-reveal style="--d:.26s">
+          <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.6l.4-3h-3V9.1c0-.9.3-1.5 1.6-1.5h1.5V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9V11H8v3h2.5v7z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.8H3.2V21h3.3zM4.8 3a1.9 1.9 0 100 3.9 1.9 1.9 0 000-3.9zM13 8.8H9.8V21H13v-6.1c0-1.7.7-2.7 2.2-2.7 1.3 0 1.9.9 1.9 2.7V21h3.3v-6.9c0-3-1.7-4.6-4.1-4.6-1.9 0-2.8 1-3.3 1.9z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="form-card" data-reveal style="--d:.12s">
+        <form id="contactForm" novalidate>
+          <h3>Be om tilbud eller befaring</h3>
+          <p class="fc-sub">Gratis og uforpliktende. Vi svarer innen én virkedag.</p>
+          <div class="f-row">
+            <div class="f-field">
+              <label for="fNavn">Navn <i>*</i></label>
+              <input id="fNavn" name="navn" type="text" autocomplete="name" placeholder="Ola Nordmann">
+              <span class="msg">Skriv inn navnet ditt.</span>
+            </div>
+            <div class="f-field">
+              <label for="fTlf">Telefon</label>
+              <input id="fTlf" name="telefon" type="tel" autocomplete="tel" placeholder="+47 ...">
+              <span class="msg">Ugyldig telefonnummer.</span>
+            </div>
+          </div>
+          <div class="f-field">
+            <label for="fEpost">E-post <i>*</i></label>
+            <input id="fEpost" name="epost" type="email" autocomplete="email" placeholder="ola@eksempel.no">
+            <span class="msg">Skriv inn en gyldig e-postadresse.</span>
+          </div>
+          <div class="f-row">
+            <div class="f-field">
+              <label for="fType">Prosjekttype <i>*</i></label>
+              <select id="fType" name="type">
+                <option value="" selected disabled>Velg prosjekttype</option>
+                <option>Rehabilitering / oppussing</option>
+                <option>Tilbygg / påbygg</option>
+                <option>Kjøkken / våtrom</option>
+                <option>Terrasse / utemiljø</option>
+                <option>Fasade / vinduer</option>
+                <option>Takarbeid</option>
+                <option>Spesialtilpasset snekring</option>
+                <option>Annet / usikker</option>
+              </select>
+              <span class="msg">Velg en prosjekttype.</span>
+            </div>
+            <div class="f-field">
+              <label for="fBud">Omtrentlig budsjett</label>
+              <select id="fBud" name="budsjett">
+                <option value="" selected disabled>Velg størrelsesorden</option>
+                <option>Under 250 000 kr</option>
+                <option>250 000 – 750 000 kr</option>
+                <option>750 000 – 1,5 mill. kr</option>
+                <option>Over 1,5 mill. kr</option>
+                <option>Usikker / ønsker råd</option>
+              </select>
+            </div>
+          </div>
+          <div class="f-field">
+            <label for="fMsg">Fortell om prosjektet ditt</label>
+            <textarea id="fMsg" name="melding" placeholder="Hva ønsker du å bygge eller pusse opp? Hvor ligger eiendommen, og når ønsker du å starte?"></textarea>
+          </div>
+          <label class="f-check">
+            <input type="checkbox" id="fBefaring" checked>
+            <span>Ja, jeg ønsker også gratis befaring hos meg.</span>
+          </label>
+          <button class="btn b-ink f-submit" type="submit" id="fSend">
+            Send henvendelse
+            <span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </button>
+          <div class="form-note">
+            <span class="lock"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Dine opplysninger behandles konfidensielt</span>
+            <span>Behandlingstid: under 24 timer</span>
+          </div>
+        </form>
+        <div class="form-ok" id="formOk" role="status">
+          <div class="ok-ring"><svg viewBox="0 0 40 40"><path d="M10 21l7 7 14-16"/></svg></div>
+          <h4>Takk for henvendelsen!</h4>
+          <p>Vi har mottatt forespørselen din og ringer deg tilbake innen én virkedag. Ønsker du å komme i kontakt med oss med en gang, ring <a href="tel:+4722604050" style="color:var(--accent);font-weight:600">+47 22 60 40 50</a>.</p>
+          <button class="btn b-line" id="formAgain" type="button">Send ny henvendelse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="logo" href="#topp" aria-label="Andersen Bygg — til toppen">
+          <span class="lm">A</span>
+          <span class="lt">Andersen Bygg<small>Mester &amp; snekkeri</small></span>
+        </a>
+        <p>Byggmesterfirma i Oslo siden 1987. Vi bygger, pusser opp og reparerer med egne, faste snekkere — og står for resultatet i 10 år.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.6l.4-3h-3V9.1c0-.9.3-1.5 1.6-1.5h1.5V4.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9V11H8v3h2.5v7z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.8H3.2V21h3.3zM4.8 3a1.9 1.9 0 100 3.9 1.9 1.9 0 000-3.9zM13 8.8H9.8V21H13v-6.1c0-1.7.7-2.7 2.2-2.7 1.3 0 1.9.9 1.9 2.7V21h3.3v-6.9c0-3-1.7-4.6-4.1-4.6-1.9 0-2.8 1-3.3 1.9z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Navigasjon</h4>
+        <ul>
+          <li><a href="#tjenester">Tjenester</a></li>
+          <li><a href="#prosjekter">Prosjekter</a></li>
+          <li><a href="#for-etter">Før &amp; etter</a></li>
+          <li><a href="#prosess">Slik jobber vi</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Tjenester</h4>
+        <ul>
+          <li><a href="#tjenester">Rehabilitering</a></li>
+          <li><a href="#tjenester">Tilbygg &amp; påbygg</a></li>
+          <li><a href="#tjenester">Kjøkken &amp; våtrom</a></li>
+          <li><a href="#tjenester">Terrasse &amp; utemiljø</a></li>
+          <li><a href="#tjenester">Fasade &amp; tak</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <address>
+          Sandakerveien 64, 0484 Oslo<br>
+          <a href="tel:+4722604050">+47 22 60 40 50</a><br>
+          <a href="mailto:post@andersenbygg.no">post@andersenbygg.no</a><br>
+          Man–fre · 07.30–16.00
+        </address>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span id="year">2026</span> Andersen Bygg AS — Org.nr. 984 123 456 MVA</span>
+      <span>Mesterbrev · Garanti &amp; forsikring · Godkjent våtromsbedrift</span>
+      <a href="#topp">Til toppen ↑</a>
+    </div>
+  </div>
+  <div class="foot-giant" aria-hidden="true">ANDERSEN BYGG</div>
+</footer>
+
+<button id="toTop" aria-label="Til toppen"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+
+<!-- PROJECT MODAL -->
+<div class="modal" id="pModal" role="dialog" aria-modal="true" aria-label="Prosjektdetaljer">
+  <div class="modal-panel">
+    <div class="modal-main">
+      <div class="stage" id="mStage"></div>
+      <div class="thumbs" id="mThumbs"></div>
+      <button class="modal-close" id="mClose" aria-label="Lukk prosjekt"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-info" id="mInfo"></div>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   Andersen Bygg AS — site interactions
+===================================================== */
+(function(){
+"use strict";
+const $  = (s,c=document)=>c.querySelector(s);
+const $$ = (s,c=document)=>[...c.querySelectorAll(s)];
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePtr = matchMedia('(hover:hover) and (pointer:fine)').matches;
+const body = document.body;
+
+/* ---------- loader ---------- */
+const loader = $('#loader');
+let ldTimer;
+function finishLoader(){
+  loader.classList.add('playing');
+  clearTimeout(ldTimer);
+  body.classList.remove('no-scroll-init');
+  ldTimer = setTimeout(()=>{
+    loader.classList.add('done');
+    body.classList.add('loaded');
+    setTimeout(()=>loader.remove(), 1000);
+  }, reduced ? 150 : 1150);
+}
+window.addEventListener('load', finishLoader);
+setTimeout(finishLoader, 2600); // safety net
+
+/* ---------- header state ---------- */
+const head = $('#siteHead'), toTop = $('#toTop');
+function onScroll(){
+  const y = window.scrollY;
+  head.classList.toggle('scrolled', y > 40);
+  toTop.classList.toggle('show', y > 900);
+  // subtle hero parallax
+  const heroMedia = $('.hero-media');
+  if(heroMedia && y < window.innerHeight && !reduced){
+    heroMedia.style.transform = 'translateY(' + (y * .14) + 'px)';
+  }
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+$('#toTop').addEventListener('click', ()=>window.scrollTo({top:0, behavior: reduced?'auto':'smooth'}));
+
+/* ---------- mobile menu ---------- */
+const burger = $('#burger'), mnav = $('#mnav');
+function setMenu(open){
+  body.classList.toggle('menu-open', open);
+  burger.setAttribute('aria-expanded', open);
+  burger.setAttribute('aria-label', open ? 'Lukk meny' : 'Åpne meny');
+}
+burger.addEventListener('click', ()=> setMenu(!body.classList.contains('menu-open')));
+$$('#mnav a').forEach(a=>a.addEventListener('click', ()=>setMenu(false)));
+window.addEventListener('keydown', e=>{ if(e.key==='Escape'){ setMenu(false); closeModal(); }});
+
+/* ---------- reveal on scroll ---------- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add('in');
+      io.unobserve(en.target);
+    }
+  });
+},{threshold:.12, rootMargin:'0px 0px -7% 0px'});
+$$('[data-reveal]').forEach(el=>io.observe(el));
+// underline draw trigger
+const uIO = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); uIO.unobserve(e.target);} }),{threshold:.5});
+$$('.manifesto h2 .u').forEach(el=>uIO.observe(el));
+
+/* ---------- counters ---------- */
+function animateCount(el){
+  const target = +el.dataset.count;
+  const dur = 1600, t0 = performance.now();
+  const ease = t => 1 - Math.pow(1-t, 3);
+  function tick(now){
+    const p = Math.min((now - t0)/dur, 1);
+    el.textContent = Math.round(target * ease(p));
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const cIO = new IntersectionObserver((es)=>es.forEach(e=>{
+  if(e.isIntersecting){ animateCount(e.target); cIO.unobserve(e.target); }
+}),{threshold:.6});
+$$('[data-count]').forEach(el=>cIO.observe(el));
+
+/* ---------- service rows + floating preview ---------- */
+const svcPrev = $('#svcPrev'), svcPrevImg = $('#svcPrevImg');
+let svcTgt = null, svcX = 0, svcY = 0, px = 0, py = 0, pvOn = false, pvShown = false;
+function svcTick(){
+  px += (svcX - px) * .12;
+  py += (svcY - py) * .12;
+  if(svcPrev){
+    svcPrev.style.left = px + 'px';
+    svcPrev.style.top = py + 'px';
+  }
+  requestAnimationFrame(svcTick);
+}
+if(finePtr && svcPrev){
+  svcPrev.style.display = 'block';
+  requestAnimationFrame(svcTick);
+  const list = $('#svcList');
+  list.addEventListener('mouseenter', ()=>{ pvShown = true; svcPrev.style.opacity = 1; });
+  list.addEventListener('mouseleave', ()=>{ pvShown = false; svcPrev.style.opacity = 0; });
+  list.addEventListener('mousemove', e=>{
+    svcX = e.clientX; svcY = e.clientY;
+  });
+  $$('.svc-row', list).forEach(row=>{
+    row.addEventListener('mouseenter', ()=>{
+      svcPrevImg.src = row.dataset.img;
+      svcPrevImg.alt = row.querySelector('h3').textContent;
+    });
+  });
+}
+// rows navigate nowhere, but rows with .go should open contact? Keep decorative: make row click go to contact via its title? Use link to contact.
+$$('.svc-row').forEach(row=>{
+  row.setAttribute('tabindex','0');
+  row.setAttribute('role','link');
+  row.addEventListener('click', ()=>location.hash = '#kontakt');
+  row.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); location.hash='#kontakt'; }});
+});
+
+/* ---------- project modal ---------- */
+const PROJECTS = [
+  {
+    title:'Villa Granåsen', loc:'Holmenkollen, Oslo', cat:'Tilbygg & kjøkken', year:'2025',
+    scope:'68 m² tilbygg + nytt kjøkken', duration:'7 måneder', team:'3 snekkere + byggmester',
+    desc:'Familien hadde vokst ut av huset, men ønsket ikke å flytte fra nabolaget. Vi tegnet og bygde et to-etasjes tilbygg i tre og glass som føyer seg inn i eksisterende takform — med nytt kjøkken i eik som husets nye midtpunkt. Alt utført i totalentreprise, uten at familien flyttet ut.',
+    quote:'«Det fineste rommet i huset. Vi angrer på at vi ikke gjorde det for fem år siden.»',
+    imgs:[
+      'images/photo-19.jpg',
+      'images/photo-21.jpg',
+      'images/photo-38.jpg',
+      'images/photo-10.jpg'
+    ]
+  },
+  {
+    title:'Hytten på Norefjell', loc:'Norefjell, Krødsherad', cat:'Totalrehabilitering', year:'2025',
+    scope:'Helt rehabilitering, 120 m²', duration:'14 måneder (2 sesonger)', team:'4 snekkere + mester',
+    desc:'En hytte fra 1974 med setningsskader og dårlig isolasjon ble løftet, fundamentert på nytt og bygget opp igjen med etterisolering og åpen stue- og kjøkkenløsning i furu. Arbeidet ble planlagt i to sesonger slik at familien kunne bruke hytta også midt i byggeperioden.',
+    quote:'«Tømmerarbeidet er utført med en presisjon jeg trodde var utdødd.»',
+    imgs:[
+      'images/photo-05.jpg',
+      'images/photo-39.jpg',
+      'images/photo-03.jpg'
+    ]
+  },
+  {
+    title:'Bad i 20-tallsvilla', loc:'Bygdøy, Oslo', cat:'Våtromsrehabilitering', year:'2024',
+    scope:'Fullt våtrom, 9 m²', duration:'6 uker', team:'2 våtromssnekkere',
+    desc:'Et fuktskadet bad fra 1980-tallet ble revet og bygget opp etter gjeldende våtromsnorm — med metrofliser, frittstående badekar og skjult rørleggerarbeid. Alt ble tilpasset villaens klassiske stil og krav fra bygningsvern.',
+    quote:'«Fristen ble overholdt til dagen. Det har jeg aldri opplevd før.»',
+    imgs:[
+      'images/photo-36.jpg',
+      'images/photo-22.jpg',
+      'images/photo-27.jpg'
+    ]
+  },
+  {
+    title:'Terrasse med sjøutsikt', loc:'Drøbak, Frogn', cat:'Terrasse & uteplass', year:'2024',
+    scope:'Terrasse 54 m² + pergola', duration:'4 uker', team:'2 snekkere',
+    desc:'En skrånende, ubrukelig bakke ble til familiens nye uteplass: terrasse i varmebehandlet furu på skrudd fundament, med integrert belysning, pergola og plass til både spisebord og sittegruppe. Bygget for å tåle salt luft og norske vintre.',
+    quote:'«Nå spiser vi ute fra april til oktober.»',
+    imgs:[
+      'images/photo-30.jpg',
+      'images/photo-34.jpg',
+      'images/photo-11.jpg'
+    ]
+  },
+  {
+    title:'Sveitservilla på Kjelsås', loc:'Kjelsås, Oslo', cat:'Fasade, vinduer & tak', year:'2023',
+    scope:'Fasade 340 m² + 22 vinduer', duration:'10 uker', team:'4 snekkere + taktekker',
+    desc:'En sveitservilla fra 1924 fikk nytt liv: råteskader i vinduskarmer ble utbedret, fasaden fikk ny vindtetting og trekledning, og taket ble tekket med ny undertaksplate. Gjennomført i tett dialog med byantikvaren for å bevare husets karakter.',
+    quote:'«Naboene trodde vi hadde bygget nytt hus.»',
+    imgs:[
+      'images/photo-07.jpg',
+      'images/photo-13.jpg',
+      'images/photo-08.jpg'
+    ]
+  },
+  {
+    title:'Funkisleilighet, Frogner', loc:'Frogner, Oslo', cat:'Innvendig oppussing', year:'2025',
+    scope:'Totaloppussing, 86 m²', duration:'11 uker', team:'3 snekkere + elektriker',
+    desc:'En funkisleilighet fra 1930 ble pusset opp med respekt for originaldetaljene: nye gulv i eik, restaurerte dører og gerikter, nytt kjøkken og komplett overflatebehandling. Beboerne bodde i leiligheten gjennom hele prosessen — i én avsluttet sone om gangen.',
+    quote:'«De ryddet hver eneste kveld. Vi levde helt normalt under hele oppussingen.»',
+    imgs:[
+      'images/photo-26.jpg',
+      'images/photo-18.jpg',
+      'images/photo-32.jpg'
+    ]
+  }
+];
+const modal = $('#pModal'), mStage = $('#mStage'), mThumbs = $('#mThumbs'), mInfo = $('#mInfo');
+let curIdx = 0, curImg = 0, lastFocus = null;
+
+function renderModal(i){
+  const p = PROJECTS[i];
+  curImg = 0;
+  mStage.innerHTML = p.imgs.map((src,idx)=>'<img src="'+src+'" alt="'+p.title+' — bilde '+(idx+1)+'" class="'+(idx===0?'on':'')+'">').join('');
+  mThumbs.innerHTML = p.imgs.map((src,idx)=>'<button class="'+(idx===0?'on':'')+'" aria-label="Vis bilde '+(idx+1)+'"><img src="'+src+'" alt="" loading="lazy"></button>').join('');
+  $$('button', mThumbs).forEach((b,idx)=>b.addEventListener('click',()=>setImg(idx)));
+  mInfo.innerHTML =
+    '<span class="mloc">Prosjekt — '+p.year+' · '+p.loc+'</span>'+
+    '<h3>'+p.title+'</h3>'+
+    '<div class="mmeta">'+
+      '<div><span>Omfang</span><b>'+p.scope+'</b></div>'+
+      '<div><span>Kategori</span><b>'+p.cat+'</b></div>'+
+      '<div><span>Varighet</span><b>'+p.duration+'</b></div>'+
+      '<div><span>Mannskap</span><b>'+p.team+'</b></div>'+
+    '</div>'+
+    '<p class="mdesc">'+p.desc+'</p>'+
+    '<p class="mquote">'+p.quote+'</p>'+
+    '<div class="modal-nav">'+
+      '<button class="mnb" id="mPrevP"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Forrige</button>'+
+      '<span class="cnt">'+(i+1)+' / '+PROJECTS.length+'</span>'+
+      '<button class="mnb" id="mNextP">Neste <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>'+
+    '</div>'+
+    '<a class="btn b-ink" style="align-self:flex-start" href="#kontakt" id="mCta">Få tilbud på lignende prosjekt</a>';
+  $('#mPrevP',mInfo).addEventListener('click',()=>{ curIdx = (curIdx-1+PROJECTS.length)%PROJECTS.length; renderModal(curIdx); });
+  $('#mNextP',mInfo).addEventListener('click',()=>{ curIdx = (curIdx+1)%PROJECTS.length; renderModal(curIdx); });
+  $('#mCta',mInfo).addEventListener('click',closeModal);
+}
+function setImg(idx){
+  curImg = idx;
+  $$('img', mStage).forEach((im,i)=>im.classList.toggle('on', i===idx));
+  $$('button', mThumbs).forEach((b,i)=>b.classList.toggle('on', i===idx));
+}
+function openModal(i){
+  curIdx = i;
+  renderModal(i);
+  modal.classList.add('open');
+  body.classList.add('menu-open');
+  lastFocus = document.activeElement;
+  $('#mClose').focus();
+}
+function closeModal(){
+  modal.classList.remove('open');
+  body.classList.remove('menu-open');
+  if(lastFocus) lastFocus.focus();
+}
+$$('[data-open]').forEach(btn=>btn.addEventListener('click',()=>openModal(+btn.dataset.open)));
+$('#mClose').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+window.addEventListener('keydown',e=>{
+  if(!modal.classList.contains('open')) return;
+  if(e.key==='ArrowLeft'){ curIdx=(curIdx-1+PROJECTS.length)%PROJECTS.length; renderModal(curIdx); }
+  if(e.key==='ArrowRight'){ curIdx=(curIdx+1)%PROJECTS.length; renderModal(curIdx); }
+});
+
+/* ---------- before/after slider ---------- */
+const ba = $('#baWrap');
+if(ba){
+  let dragging = false;
+  function setPos(clientX){
+    const r = ba.getBoundingClientRect();
+    let p = (clientX - r.left) / r.width * 100;
+    p = Math.max(2, Math.min(98, p));
+    ba.style.setProperty('--pos', p + '%');
+    ba.setAttribute('aria-valuenow', Math.round(p));
+  }
+  const move = e => { if(dragging) setPos(e.touches ? e.touches[0].clientX : e.clientX); };
+  ba.addEventListener('pointerdown', e=>{ dragging = true; ba.setPointerCapture(e.pointerId); setPos(e.clientX); });
+  ba.addEventListener('pointermove', move);
+  ['pointerup','pointercancel'].forEach(ev=>ba.addEventListener(ev, ()=>{ dragging = false; }));
+  ba.addEventListener('keydown', e=>{
+    let p = parseFloat(ba.style.getPropertyValue('--pos')) || 50;
+    if(e.key==='ArrowLeft'){ p = Math.max(2, p-4); }
+    else if(e.key==='ArrowRight'){ p = Math.min(98, p+4); }
+    else return;
+    e.preventDefault();
+    ba.style.setProperty('--pos', p+'%');
+    ba.setAttribute('aria-valuenow', Math.round(p));
+  });
+}
+
+/* ---------- testimonials ---------- */
+const track = $('#qTrack'), slides = $$('.q-slide', track), dotsWrap = $('#qDots');
+let qIdx = 0, qTimer = null;
+slides.forEach((s,i)=>{
+  const d = document.createElement('button');
+  d.setAttribute('role','tab');
+  d.setAttribute('aria-label','Vis omtale '+(i+1));
+  d.addEventListener('click',()=>goQ(i,true));
+  dotsWrap.appendChild(d);
+});
+const dots = $$('button', dotsWrap);
+function goQ(i, manual){
+  qIdx = (i + slides.length) % slides.length;
+  track.style.transform = 'translateX(-' + (qIdx*100) + '%)';
+  dots.forEach((d,di)=>d.classList.toggle('on', di===qIdx));
+  $('#qCount').textContent = '0' + (qIdx+1) + ' / 0' + slides.length;
+  resetQTimer(manual);
+}
+function resetQTimer(manual){
+  clearInterval(qTimer);
+  if(manual || !reduced) qTimer = setInterval(()=>goQ(qIdx+1,false), 7000);
+  else clearInterval(qTimer);
+}
+$('#qNext').addEventListener('click',()=>goQ(qIdx+1,true));
+$('#qPrev').addEventListener('click',()=>goQ(qIdx-1,true));
+goQ(0,false);
+// swipe
+let tX = null;
+track.addEventListener('touchstart',e=>{ tX = e.touches[0].clientX; },{passive:true});
+track.addEventListener('touchend',e=>{
+  if(tX===null) return;
+  const dx = e.changedTouches[0].clientX - tX;
+  if(Math.abs(dx) > 48) goQ(qIdx + (dx < 0 ? 1 : -1), true);
+  tX = null;
+},{passive:true});
+
+/* ---------- contact form ---------- */
+const form = $('#contactForm'), formOk = $('#formOk');
+function setErr(field, on){
+  field.classList.toggle('err', on);
+  return !on;
+}
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const navn = $('#fNavn'), epost = $('#fEpost'), type = $('#fType'), tlf = $('#fTlf');
+  let ok = true;
+  ok = setErr(navn.closest('.f-field'), !navn.value.trim()) && ok;
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(epost.value.trim());
+  ok = setErr(epost.closest('.f-field'), !emailOk) && ok;
+  ok = setErr(type.closest('.f-field'), !type.value) && ok;
+  if(tlf.value.trim()){
+    ok = setErr(tlf.closest('.f-field'), !/^[+0-9\s-]{6,}$/.test(tlf.value.trim())) && ok;
+  } else setErr(tlf.closest('.f-field'), false);
+  if(!ok){
+    const first = $('.f-field.err input, .f-field.err select', form);
+    if(first) first.focus();
+    return;
+  }
+  const btn = $('#fSend');
+  const orig = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = 'Sender <span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 11-2.6-6.3"/></svg></span>';
+  const spin = btn.querySelector('.arr svg');
+  if(spin) spin.style.animation = 'spin 1s linear infinite';
+  const st = document.createElement('style');
+  st.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+  document.head.appendChild(st);
+  setTimeout(()=>{
+    form.style.display = 'none';
+    formOk.classList.add('show');
+    btn.disabled = false;
+    btn.innerHTML = orig;
+  }, 1100);
+});
+$('#formAgain').addEventListener('click', ()=>{
+  formOk.classList.remove('show');
+  form.style.display = '';
+  form.reset();
+  $('#fBefaring').checked = true;
+});
+// live clear error on input
+$$('#contactForm input, #contactForm select, #contactForm textarea').forEach(el=>{
+  el.addEventListener('input', ()=>el.closest('.f-field').classList.remove('err'));
+  el.addEventListener('change', ()=>el.closest('.f-field').classList.remove('err'));
+});
+
+/* ---------- custom cursor ---------- */
+const dot = $('.cursor-dot'), ring = $('.cursor-ring');
+if(finePtr && !reduced){
+  body.classList.add('cursor-on');
+  let mx=0, my=0, rx=0, ry=0, seen=false;
+  window.addEventListener('mousemove', e=>{
+    mx = e.clientX; my = e.clientY;
+    if(!seen){ seen = true; rx = mx; ry = my; }
+    dot.style.transform = 'translate(' + (mx-3) + 'px,' + (my-3) + 'px)';
+  });
+  (function ringLoop(){
+    rx += (mx-rx)*.16; ry += (my-ry)*.16;
+    ring.style.transform = 'translate(' + (rx-ring.offsetWidth/2) + 'px,' + (ry-ring.offsetHeight/2) + 'px)';
+    requestAnimationFrame(ringLoop);
+  })();
+  document.addEventListener('mouseover', e=>{
+    const hit = e.target.closest('a, button, .svc-row, [data-hover], input, textarea, select, label');
+    body.classList.toggle('cursor-grow', !!hit && !e.target.closest('input,textarea,select'));
+    if(e.target.closest('input,textarea,select')){
+      dot.style.opacity = 0; ring.style.opacity = 0;
+    } else {
+      dot.style.opacity = ''; ring.style.opacity = '';
+    }
+  });
+  document.addEventListener('mouseleave', ()=>{ dot.style.opacity = 0; ring.style.opacity = 0; });
+  document.addEventListener('mouseenter', ()=>{ dot.style.opacity = ''; ring.style.opacity = ''; });
+}
+
+/* ---------- year ---------- */
+$('#year').textContent = new Date().getFullYear();
+
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

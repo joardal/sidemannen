@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141a18">
+  <meta name="description" content="Elin Voss Photography — fotograf for bryllup, portrett, familie og merkevarer. Nære bilder med nordisk nerve.">
+  <title>Elin Voss Photography — historier med tyngde</title>
+  <style>
+    :root {
+      --ink: #18211f;
+      --night: #121917;
+      --night-2: #1d2925;
+      --paper: #f1eee7;
+      --paper-2: #e7e2d8;
+      --paper-3: #d8d1c3;
+      --warm: #c8613c;
+      --warm-light: #dd8360;
+      --sage: #aebbb0;
+      --fog: #c9d1cc;
+      --line: rgba(24, 33, 31, .22);
+      --line-light: rgba(241, 238, 231, .22);
+      --serif: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --ease: cubic-bezier(.22, .61, .36, 1);
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--paper); }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    body.is-locked { overflow: hidden; }
+    ::selection { background: var(--warm); color: var(--paper); }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    button { border: 0; cursor: pointer; }
+    img { display: block; max-width: 100%; }
+
+    .site-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      background: var(--night);
+      color: var(--paper);
+      transition: opacity .8s var(--ease), visibility .8s var(--ease);
+    }
+    .site-loader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-mark { display: flex; align-items: center; gap: .8rem; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; }
+    .loader-mark i { width: 7px; height: 7px; background: var(--warm); border-radius: 50%; animation: pulse 1s infinite alternate; }
+    @keyframes pulse { to { opacity: .2; transform: scale(.55); } }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+      padding: 0 clamp(1.2rem, 3vw, 3.4rem);
+      color: var(--paper);
+      mix-blend-mode: normal;
+      transition: color .5s var(--ease), background .5s var(--ease), border-color .5s var(--ease), transform .5s var(--ease);
+    }
+    .site-nav::after {
+      content: "";
+      position: absolute;
+      left: clamp(1.2rem, 3vw, 3.4rem);
+      right: clamp(1.2rem, 3vw, 3.4rem);
+      bottom: 0;
+      height: 1px;
+      background: currentColor;
+      opacity: .22;
+    }
+    .site-nav.nav-light { color: var(--ink); background: rgba(241, 238, 231, .72); backdrop-filter: blur(14px); }
+    .site-nav.nav-hidden { transform: translateY(-110%); }
+    .brand {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      font-size: .69rem;
+      line-height: 1.1;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warm); flex: 0 0 auto; }
+    .nav-links { display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 2.6rem); font-size: .68rem; text-transform: uppercase; letter-spacing: .14em; }
+    .nav-links a { position: relative; padding: .8rem 0; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: .35rem; height: 1px; background: currentColor; transition: right .45s var(--ease); }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after { right: 0; }
+    .nav-cta { border: 1px solid currentColor; padding: .74rem 1rem !important; border-radius: 999px; transition: background .35s var(--ease), color .35s var(--ease); }
+    .nav-cta::after { display: none; }
+    .nav-cta:hover, .nav-cta:focus-visible { background: var(--warm); color: var(--paper); border-color: var(--warm); }
+    .menu-toggle { display: none; position: relative; width: 46px; height: 46px; border: 1px solid currentColor; border-radius: 50%; color: inherit; background: transparent; }
+    .menu-toggle span, .menu-toggle span::after { content: ""; position: absolute; left: 14px; width: 17px; height: 1px; background: currentColor; transition: transform .35s var(--ease); }
+    .menu-toggle span { top: 19px; }
+    .menu-toggle span::after { left: 0; top: 7px; }
+    .menu-toggle.is-open span { transform: rotate(45deg); }
+    .menu-toggle.is-open span::after { top: 0; transform: rotate(-90deg); }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      color: var(--paper);
+      background: var(--night);
+    }
+    .hero-media { position: absolute; inset: 0; overflow: hidden; }
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(8, 14, 13, .8) 0%, rgba(8, 14, 13, .38) 42%, rgba(8, 14, 13, .18) 100%), linear-gradient(0deg, rgba(8, 14, 13, .74) 0%, transparent 43%, rgba(8, 14, 13, .18) 100%);
+    }
+    .hero-image { width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 1.8s var(--ease-out); }
+    .hero.is-ready .hero-image { transform: scale(1); }
+    .hero-gridline { position: absolute; top: 0; bottom: 0; left: 18%; width: 1px; background: rgba(241,238,231,.18); pointer-events: none; }
+    .hero-gridline::after { content: ""; position: absolute; top: 21%; left: 0; width: 41vw; height: 1px; background: rgba(241,238,231,.18); }
+    .hero-content { position: relative; z-index: 1; width: min(100%, 1400px); margin: 0 auto; padding: 0 clamp(1.2rem, 7vw, 9.5rem) clamp(2.4rem, 7vw, 7rem); }
+    .hero-overline { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.35rem; font-size: .66rem; text-transform: uppercase; letter-spacing: .2em; }
+    .hero-overline::before { content: ""; width: 46px; height: 1px; background: var(--warm-light); }
+    .hero h1 { max-width: 780px; margin: 0; font-size: clamp(4.5rem, 11vw, 11.5rem); font-weight: 400; letter-spacing: -.075em; line-height: .79; }
+    .hero h1 em { display: block; padding-left: clamp(2.6rem, 9vw, 9.5rem); color: #d8d8c9; font-style: normal; }
+    .hero-footer { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-top: clamp(2.7rem, 7vw, 6.5rem); }
+    .hero-note { max-width: 260px; color: rgba(241,238,231,.76); font-size: .79rem; line-height: 1.55; }
+    .hero-note strong { display: block; margin-bottom: .5rem; color: var(--paper); font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; }
+    .circle-link { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 132px; height: 132px; border: 1px solid rgba(241,238,231,.5); border-radius: 50%; color: var(--paper); font-size: .66rem; letter-spacing: .16em; text-align: center; text-transform: uppercase; transition: background .45s var(--ease), border-color .45s var(--ease), transform .45s var(--ease); }
+    .circle-link::after { content: "↘"; position: absolute; right: 21px; bottom: 15px; font-size: 1.2rem; line-height: 1; transition: transform .45s var(--ease); }
+    .circle-link:hover, .circle-link:focus-visible { background: var(--warm); border-color: var(--warm); transform: rotate(-8deg); }
+    .circle-link:hover::after, .circle-link:focus-visible::after { transform: translate(3px, 3px); }
+    .hero-index { position: absolute; top: 32%; right: clamp(1.2rem, 3.5vw, 4rem); z-index: 1; display: flex; align-items: center; gap: .7rem; font-size: .64rem; letter-spacing: .17em; opacity: .75; transform: rotate(90deg) translateX(50%); transform-origin: right top; }
+    .hero-index::before { content: ""; width: 36px; height: 1px; background: currentColor; }
+    .scroll-mark { position: absolute; bottom: 1.9rem; left: clamp(1.2rem, 3vw, 3.4rem); z-index: 2; display: flex; align-items: center; gap: .65rem; font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; opacity: .7; }
+    .scroll-mark i { display: block; width: 1px; height: 35px; background: currentColor; animation: scrollDrop 1.8s infinite ease-in-out; transform-origin: top; }
+    @keyframes scrollDrop { 0%, 100% { transform: scaleY(.25); opacity: .25; } 50% { transform: scaleY(1); opacity: 1; } }
+
+    .section { position: relative; padding: clamp(5.5rem, 11vw, 11rem) clamp(1.2rem, 6vw, 7rem); }
+    .section-inner { width: min(100%, 1400px); margin-inline: auto; }
+    .eyebrow { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.5rem; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 35px; height: 1px; background: currentColor; opacity: .65; }
+    .display { margin: 0; font-family: var(--serif); font-weight: 400; letter-spacing: -.055em; line-height: .94; }
+    .intro { min-height: 82vh; display: flex; align-items: center; background: var(--paper); }
+    .intro-layout { display: grid; grid-template-columns: minmax(100px, 1fr) minmax(0, 3fr); gap: clamp(2rem, 8vw, 10rem); align-items: start; }
+    .chapter-no { padding-top: .45rem; font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; }
+    .intro-copy { max-width: 930px; }
+    .intro h2 { max-width: 950px; font-size: clamp(3.1rem, 7.5vw, 8.5rem); }
+    .intro h2 em { color: var(--warm); font-style: normal; }
+    .intro-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: clamp(3.5rem, 8vw, 7rem); padding-left: clamp(0rem, 11vw, 12rem); }
+    .intro-bottom p { max-width: 350px; margin: 0; color: rgba(24,33,31,.74); font-size: .92rem; line-height: 1.7; }
+    .text-link { position: relative; justify-self: start; align-self: end; padding-bottom: .4rem; font-size: .67rem; text-transform: uppercase; letter-spacing: .16em; }
+    .text-link::after { content: "↘"; display: inline-block; margin-left: .8rem; color: var(--warm); font-size: 1.1rem; transition: transform .35s var(--ease); }
+    .text-link:hover::after { transform: translate(4px, 4px); }
+
+    .portfolio { background: var(--night); color: var(--paper); padding-top: clamp(5.5rem, 9vw, 9rem); }
+    .portfolio-head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); align-items: end; gap: 3rem; margin-bottom: clamp(3rem, 6vw, 6rem); }
+    .portfolio h2 { font-size: clamp(4rem, 10vw, 11.5rem); }
+    .portfolio-intro { max-width: 290px; justify-self: end; color: rgba(241,238,231,.66); font-size: .83rem; line-height: 1.6; }
+    .portfolio-intro .eyebrow { color: var(--paper); }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: .55rem; padding-top: 1.6rem; border-top: 1px solid var(--line-light); }
+    .filter-btn { padding: .72rem 1rem; border: 1px solid rgba(241,238,231,.28); border-radius: 999px; color: rgba(241,238,231,.74); background: transparent; font-size: .65rem; letter-spacing: .13em; text-transform: uppercase; transition: color .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease); }
+    .filter-btn:hover, .filter-btn:focus-visible, .filter-btn.is-active { color: var(--night); background: var(--paper); border-color: var(--paper); }
+    .portfolio-count { margin-left: auto; align-self: center; color: rgba(241,238,231,.45); font-family: var(--mono); font-size: .65rem; }
+    .gallery { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(1.4rem, 3.8vw, 4.7rem) clamp(1rem, 2.6vw, 2.7rem); align-items: start; }
+    .gallery-card { position: relative; grid-column: span 6; margin: 0; cursor: pointer; transition: opacity .55s var(--ease), transform .55s var(--ease); }
+    .gallery-card:nth-child(1) { grid-column: 1 / -1; }
+    .gallery-card:nth-child(2) { grid-column: 2 / span 4; margin-top: 2rem; }
+    .gallery-card:nth-child(3) { grid-column: 8 / span 4; margin-top: 11rem; }
+    .gallery-card:nth-child(4) { grid-column: 1 / span 8; margin-top: 1rem; }
+    .gallery-card:nth-child(5) { grid-column: 7 / -1; margin-top: 5rem; }
+    .gallery-card:nth-child(6) { grid-column: 2 / span 4; margin-top: -1rem; }
+    .gallery-card:nth-child(7) { grid-column: 8 / span 4; margin-top: 8rem; }
+    .gallery-card:nth-child(8) { grid-column: 1 / -1; margin-top: 1rem; }
+    .gallery-card.is-hidden { display: none; }
+    .gallery-image-wrap { position: relative; display: block; width: 100%; padding: 0; border: 0; overflow: hidden; background: var(--night-2); color: inherit; text-align: left; }
+    .gallery-card:nth-child(1) .gallery-image-wrap { aspect-ratio: 1.82 / 1; }
+    .gallery-card:nth-child(2) .gallery-image-wrap, .gallery-card:nth-child(3) .gallery-image-wrap, .gallery-card:nth-child(6) .gallery-image-wrap, .gallery-card:nth-child(7) .gallery-image-wrap { aspect-ratio: .68 / 1; }
+    .gallery-card:nth-child(4) .gallery-image-wrap, .gallery-card:nth-child(5) .gallery-image-wrap, .gallery-card:nth-child(8) .gallery-image-wrap { aspect-ratio: 1.72 / 1; }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease-out), filter .7s var(--ease); }
+    .gallery-card:nth-child(2) img { object-position: 50% 25%; }
+    .gallery-card:nth-child(3) img { object-position: 48% 35%; }
+    .gallery-card:nth-child(6) img { object-position: 50% 23%; }
+    .gallery-card:hover img, .gallery-card:focus-within img { transform: scale(1.055); filter: saturate(1.06); }
+    .gallery-hover { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(18,25,23,.24); opacity: 0; transition: opacity .45s var(--ease); }
+    .gallery-hover span { display: grid; place-items: center; width: 92px; height: 92px; border: 1px solid rgba(241,238,231,.8); border-radius: 50%; color: var(--paper); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; transform: scale(.7) rotate(-10deg); transition: transform .5s var(--ease); }
+    .gallery-card:hover .gallery-hover, .gallery-card:focus-within .gallery-hover { opacity: 1; }
+    .gallery-card:hover .gallery-hover span, .gallery-card:focus-within .gallery-hover span { transform: scale(1) rotate(0); }
+    .gallery-card figcaption { display: flex; justify-content: space-between; gap: 1rem; padding-top: .9rem; color: rgba(241,238,231,.72); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; }
+    .gallery-card figcaption strong { color: var(--paper); font-weight: 400; }
+    .gallery-card figcaption span:last-child { color: rgba(241,238,231,.42); }
+    .gallery-empty { display: none; grid-column: 1 / -1; padding: 4rem 0; color: rgba(241,238,231,.55); text-align: center; }
+    .gallery-empty.is-visible { display: block; }
+
+    .universes { padding-bottom: 0; background: var(--paper); }
+    .universes-head { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-bottom: clamp(3.5rem, 7vw, 7rem); }
+    .universes h2 { max-width: 760px; font-size: clamp(3.5rem, 8vw, 9rem); }
+    .universes-head p { max-width: 230px; margin: 0 0 .4rem; color: rgba(24,33,31,.65); font-size: .82rem; line-height: 1.6; }
+    .universe { position: relative; display: grid; min-height: min(75vh, 780px); margin-inline: calc(clamp(1.2rem, 6vw, 7rem) * -1); padding: clamp(2rem, 5vw, 5rem); overflow: hidden; }
+    .universe + .universe { margin-top: clamp(1rem, 3vw, 3rem); }
+    .universe-wedding { background: var(--night); color: var(--paper); grid-template-columns: 1fr 1.1fr; align-items: center; }
+    .universe-wedding::before { content: "01"; position: absolute; top: 2.2rem; left: clamp(2rem, 5vw, 5rem); color: rgba(241,238,231,.42); font-family: var(--mono); font-size: .7rem; }
+    .universe-wedding .universe-copy { grid-column: 1; grid-row: 1; z-index: 1; padding: clamp(3rem, 8vw, 8rem) 0 clamp(3rem, 8vw, 8rem) clamp(1rem, 4vw, 4rem); }
+    .universe-wedding .universe-image { grid-column: 2; grid-row: 1; height: 100%; min-height: 520px; margin-right: -5rem; }
+    .universe-image { position: relative; overflow: hidden; }
+    .universe-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+    .universe:hover .universe-image img { transform: scale(1.04); }
+    .universe-label { margin: 0 0 1.4rem; color: var(--warm-light); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; }
+    .universe h3 { max-width: 600px; margin: 0; font-family: var(--serif); font-size: clamp(3.7rem, 8vw, 8.8rem); font-weight: 400; letter-spacing: -.065em; line-height: .82; }
+    .universe-copy p { max-width: 260px; margin: 2.3rem 0 0; color: rgba(241,238,231,.7); font-size: .85rem; line-height: 1.65; }
+    .universe-link { display: inline-flex; align-items: center; gap: .7rem; margin-top: 2rem; font-size: .65rem; letter-spacing: .16em; text-transform: uppercase; }
+    .universe-link::after { content: "↗"; color: var(--warm-light); font-size: 1.1rem; transition: transform .35s var(--ease); }
+    .universe-link:hover::after { transform: translate(3px, -3px); }
+    .universe-portrait { grid-template-columns: minmax(240px, .85fr) 1.15fr; align-items: stretch; background: var(--warm); color: var(--ink); }
+    .universe-portrait::after { content: "02"; position: absolute; top: 2.2rem; right: clamp(2rem, 5vw, 5rem); color: rgba(24,33,31,.4); font-family: var(--mono); font-size: .7rem; }
+    .universe-portrait .universe-image { grid-column: 1; grid-row: 1; min-height: 620px; }
+    .universe-portrait .universe-copy { display: flex; flex-direction: column; justify-content: center; grid-column: 2; grid-row: 1; padding: clamp(3rem, 8vw, 8rem) clamp(1rem, 4vw, 5rem); }
+    .universe-portrait .universe-label { color: rgba(24,33,31,.58); }
+    .universe-portrait .universe-copy p { color: rgba(24,33,31,.72); }
+    .universe-portrait .universe-link::after { color: var(--ink); }
+    .universe-portrait blockquote { max-width: 420px; margin: 2.2rem 0 0; font-family: var(--serif); font-size: clamp(1.65rem, 3vw, 3rem); line-height: .98; letter-spacing: -.04em; }
+    .universe-family { grid-template-columns: 1.18fr .82fr; align-items: stretch; min-height: 70vh; background: var(--fog); color: var(--ink); }
+    .universe-family::before { content: "03"; position: absolute; top: 2.2rem; left: clamp(2rem, 5vw, 5rem); color: rgba(24,33,31,.42); font-family: var(--mono); font-size: .7rem; }
+    .universe-family .universe-copy { grid-column: 2; grid-row: 1; align-self: center; padding: clamp(3rem, 6vw, 6rem) clamp(1rem, 4vw, 4rem); }
+    .universe-family .universe-image { grid-column: 1; grid-row: 1; min-height: 540px; }
+    .universe-family .universe-copy p { color: rgba(24,33,31,.69); }
+    .universe-family .universe-link::after { color: var(--ink); }
+
+    .quote-band { background: var(--paper-2); overflow: hidden; padding: clamp(5rem, 10vw, 9rem) 0; }
+    .quote-band-inner { width: min(100%, 1400px); margin: 0 auto; padding: 0 clamp(1.2rem, 6vw, 7rem); }
+    .quote-band-top { display: flex; justify-content: space-between; align-items: center; gap: 2rem; margin-bottom: 3rem; }
+    .quote-band-top .eyebrow { margin: 0; }
+    .quote-band-top span { color: rgba(24,33,31,.48); font-family: var(--mono); font-size: .68rem; }
+    .quote-reel { display: flex; gap: clamp(1rem, 2vw, 2rem); width: max-content; animation: quoteScroll 42s linear infinite; }
+    .quote-reel:hover { animation-play-state: paused; }
+    .quote-card { flex: 0 0 clamp(280px, 34vw, 470px); min-height: 260px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(1.4rem, 3vw, 2.5rem); border: 1px solid rgba(24,33,31,.22); background: rgba(241,238,231,.35); }
+    .quote-card p { margin: 0; font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.55rem); letter-spacing: -.04em; line-height: .98; }
+    .quote-card footer { display: flex; align-items: center; gap: .7rem; color: rgba(24,33,31,.64); font-size: .64rem; letter-spacing: .13em; text-transform: uppercase; }
+    .quote-card footer::before { content: ""; width: 23px; height: 1px; background: var(--warm); }
+    @keyframes quoteScroll { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 1rem)); } }
+
+    .about { background: var(--night-2); color: var(--paper); overflow: hidden; }
+    .about-layout { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr); gap: clamp(3rem, 9vw, 10rem); align-items: center; }
+    .about-photo { position: relative; max-width: 465px; margin-left: clamp(1rem, 6vw, 6rem); }
+    .about-photo::before { content: "ELIN / 01"; position: absolute; left: -3.6rem; top: 2rem; color: rgba(241,238,231,.45); font-family: var(--mono); font-size: .64rem; letter-spacing: .11em; transform: rotate(-90deg); transform-origin: left top; }
+    .about-photo::after { content: ""; position: absolute; right: -1.5rem; bottom: -1.5rem; width: 48%; height: 48%; border-right: 1px solid var(--warm-light); border-bottom: 1px solid var(--warm-light); pointer-events: none; }
+    .about-photo img { position: relative; z-index: 1; width: 100%; aspect-ratio: .67 / 1; object-fit: cover; filter: saturate(.78); }
+    .about-copy .eyebrow { color: rgba(241,238,231,.68); }
+    .about h2 { max-width: 720px; font-size: clamp(3.4rem, 7.5vw, 8rem); }
+    .about h2 em { color: var(--warm-light); font-style: normal; }
+    .about-copy > p { max-width: 480px; margin: 2.4rem 0 0; color: rgba(241,238,231,.68); font-size: .92rem; line-height: 1.75; }
+    .about-facts { display: flex; flex-wrap: wrap; gap: 1.6rem 3rem; margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line-light); color: rgba(241,238,231,.55); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; }
+    .about-facts strong { display: block; margin-bottom: .35rem; color: var(--paper); font-weight: 400; }
+
+    .investment { background: var(--paper); }
+    .investment-layout { display: grid; grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr); gap: clamp(3rem, 8vw, 9rem); }
+    .investment h2 { max-width: 500px; font-size: clamp(3.6rem, 7vw, 7.7rem); }
+    .investment-aside { max-width: 270px; margin-top: 2.2rem; color: rgba(24,33,31,.67); font-size: .82rem; line-height: 1.65; }
+    .price-list { border-top: 1px solid var(--line); }
+    .price-item { border-bottom: 1px solid var(--line); }
+    .price-summary { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 1rem; align-items: center; width: 100%; padding: 1.5rem 0; color: var(--ink); background: transparent; text-align: left; }
+    .price-summary .num { color: var(--warm); font-family: var(--mono); font-size: .65rem; }
+    .price-summary h3 { margin: 0; font-family: var(--serif); font-size: clamp(1.65rem, 3vw, 2.7rem); font-weight: 400; letter-spacing: -.045em; }
+    .price-summary .price { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+    .price-summary .plus { display: inline-block; margin-left: .55rem; color: var(--warm); font-size: 1.3rem; transition: transform .4s var(--ease); }
+    .price-item.is-open .plus { transform: rotate(45deg); }
+    .price-detail { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--ease); }
+    .price-item.is-open .price-detail { grid-template-rows: 1fr; }
+    .price-detail-inner { overflow: hidden; }
+    .price-detail p { max-width: 560px; margin: 0 0 1.5rem 64px; color: rgba(24,33,31,.68); font-size: .84rem; line-height: 1.65; }
+    .investment-note { margin-top: 1.8rem; color: rgba(24,33,31,.55); font-family: var(--mono); font-size: .63rem; line-height: 1.6; }
+
+    .booking { background: var(--warm); color: var(--ink); }
+    .booking-layout { display: grid; grid-template-columns: minmax(240px, .8fr) minmax(0, 1.2fr); gap: clamp(3rem, 9vw, 10rem); align-items: start; }
+    .booking h2 { max-width: 620px; font-size: clamp(4rem, 9vw, 9rem); }
+    .booking-copy > p { max-width: 290px; margin: 2.2rem 0 0; color: rgba(24,33,31,.72); font-size: .88rem; line-height: 1.7; }
+    .booking-copy .eyebrow::before { background: var(--ink); }
+    .booking-aside { display: flex; justify-content: space-between; gap: 1rem; max-width: 315px; margin-top: 5rem; padding-top: 1rem; border-top: 1px solid rgba(24,33,31,.35); font-size: .64rem; letter-spacing: .13em; text-transform: uppercase; }
+    .booking-form { padding-top: .4rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 2.5rem); }
+    .field { position: relative; margin-bottom: 1.7rem; }
+    .field label { display: block; margin-bottom: .55rem; color: rgba(24,33,31,.63); font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; }
+    .field input, .field textarea { width: 100%; padding: .65rem 0 .9rem; border: 0; border-bottom: 1px solid rgba(24,33,31,.38); outline: 0; color: var(--ink); background: transparent; border-radius: 0; font-size: 1.02rem; transition: border-color .25s var(--ease); }
+    .field textarea { min-height: 86px; resize: vertical; line-height: 1.45; }
+    .field input:focus, .field textarea:focus { border-color: var(--ink); }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(24,33,31,.38); }
+    .choice-list { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .choice { position: relative; }
+    .choice input { position: absolute; opacity: 0; pointer-events: none; }
+    .choice label { display: block; margin: 0; padding: .72rem .95rem; border: 1px solid rgba(24,33,31,.35); border-radius: 999px; color: rgba(24,33,31,.75); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease); }
+    .choice input:checked + label, .choice label:hover { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+    .form-submit { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1rem; padding-top: 1.3rem; border-top: 1px solid rgba(24,33,31,.35); }
+    .form-submit small { max-width: 235px; color: rgba(24,33,31,.57); font-size: .64rem; line-height: 1.5; }
+    .submit-btn { display: inline-flex; align-items: center; gap: 1.1rem; padding: 1rem 1.25rem; color: var(--paper); background: var(--ink); font-size: .67rem; letter-spacing: .14em; text-transform: uppercase; transition: background .3s var(--ease), transform .3s var(--ease); }
+    .submit-btn::after { content: "↗"; color: var(--warm-light); font-size: 1rem; }
+    .submit-btn:hover, .submit-btn:focus-visible { background: var(--night); transform: translateY(-3px); }
+    .form-status { display: none; margin-top: 1rem; padding: .9rem 1rem; border: 1px solid rgba(24,33,31,.35); font-size: .76rem; line-height: 1.5; }
+    .form-status.is-visible { display: block; }
+
+    .contact-footer { background: var(--night); color: var(--paper); padding-bottom: 2rem; }
+    .contact-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 3rem; margin-bottom: clamp(5rem, 12vw, 12rem); }
+    .contact-top h2 { max-width: 960px; font-size: clamp(4.2rem, 11vw, 12rem); }
+    .contact-top h2 em { color: var(--warm-light); font-style: normal; }
+    .contact-arrow { flex: 0 0 auto; margin-top: 1.6rem; }
+    .contact-grid { display: grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 2rem; padding-top: 1.4rem; border-top: 1px solid var(--line-light); }
+    .contact-block { display: flex; flex-direction: column; gap: .65rem; }
+    .contact-label { color: rgba(241,238,231,.43); font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; }
+    .contact-block a, .contact-block span { font-size: .86rem; line-height: 1.5; }
+    .contact-block a:hover { color: var(--warm-light); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 2rem; margin-top: 6rem; color: rgba(241,238,231,.42); font-family: var(--mono); font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; }
+    .back-top { color: rgba(241,238,231,.67); }
+    .back-top:hover { color: var(--warm-light); }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .1s; }
+    .delay-2 { transition-delay: .2s; }
+    .delay-3 { transition-delay: .3s; }
+
+    .lightbox { position: fixed; inset: 0; z-index: 200; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 32vw); gap: 2rem; align-items: center; padding: clamp(1rem, 3vw, 3rem); color: var(--paper); background: rgba(11,16,15,.97); opacity: 0; visibility: hidden; transition: opacity .45s var(--ease), visibility .45s var(--ease); }
+    .lightbox.is-open { opacity: 1; visibility: visible; }
+    .lightbox-visual { position: relative; height: min(88vh, 900px); display: grid; place-items: center; overflow: hidden; }
+    .lightbox-visual img { width: 100%; height: 100%; object-fit: contain; opacity: 0; transform: scale(.96); transition: opacity .4s var(--ease), transform .6s var(--ease); }
+    .lightbox.is-open .lightbox-visual img { opacity: 1; transform: scale(1); }
+    .lightbox-info { align-self: end; padding-bottom: clamp(1rem, 4vw, 4rem); }
+    .lightbox-index { color: var(--warm-light); font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; }
+    .lightbox h3 { margin: 1rem 0 .8rem; font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 5.8rem); font-weight: 400; letter-spacing: -.06em; line-height: .88; }
+    .lightbox p { max-width: 280px; margin: 0; color: rgba(241,238,231,.6); font-size: .75rem; line-height: 1.6; }
+    .lightbox-close { position: absolute; top: 1.1rem; right: 1.1rem; z-index: 2; width: 48px; height: 48px; border: 1px solid rgba(241,238,231,.45); border-radius: 50%; color: var(--paper); background: transparent; font-size: 1.5rem; line-height: 1; transition: background .3s var(--ease), transform .3s var(--ease); }
+    .lightbox-close:hover { background: var(--warm); border-color: var(--warm); transform: rotate(90deg); }
+    .lightbox-nav { position: absolute; left: 1.1rem; right: calc(32vw + 2rem); bottom: 1.2rem; display: flex; justify-content: space-between; pointer-events: none; }
+    .lightbox-nav button { pointer-events: auto; color: var(--paper); background: transparent; font-family: var(--mono); font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; opacity: .7; }
+    .lightbox-nav button:hover { opacity: 1; color: var(--warm-light); }
+
+    @media (max-width: 900px) {
+      .site-nav { min-height: 68px; }
+      .nav-links { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1.3rem; padding: 6rem 1.4rem 2rem; color: var(--paper); background: var(--night); font-size: 1rem; letter-spacing: .12em; opacity: 0; visibility: hidden; transform: translateY(-12px); transition: opacity .35s var(--ease), visibility .35s var(--ease), transform .35s var(--ease); }
+      .nav-links.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+      .nav-links a { padding: .45rem 0; }
+      .nav-links a::after { bottom: .1rem; }
+      .nav-cta { margin-top: .7rem; padding: .85rem 1.15rem !important; }
+      .menu-toggle { display: block; z-index: 2; }
+      .hero-content { padding-bottom: 4.5rem; }
+      .hero h1 { font-size: clamp(4rem, 15vw, 8rem); }
+      .intro { min-height: 72vh; }
+      .intro-layout, .investment-layout, .booking-layout, .about-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .intro-bottom { padding-left: 0; }
+      .portfolio-head { grid-template-columns: 1fr; gap: 2rem; }
+      .portfolio-intro { justify-self: start; }
+      .gallery-card:nth-child(2), .gallery-card:nth-child(3), .gallery-card:nth-child(4), .gallery-card:nth-child(5), .gallery-card:nth-child(6), .gallery-card:nth-child(7), .gallery-card:nth-child(8) { grid-column: span 6; margin-top: 0; }
+      .gallery-card:nth-child(1) { grid-column: 1 / -1; }
+      .universe { margin-inline: -1.2rem; }
+      .universe-wedding, .universe-portrait, .universe-family { grid-template-columns: 1fr; min-height: 0; }
+      .universe-wedding .universe-copy, .universe-portrait .universe-copy, .universe-family .universe-copy { grid-column: 1; grid-row: 1; padding: 6rem 2rem 3rem; }
+      .universe-wedding .universe-image, .universe-portrait .universe-image, .universe-family .universe-image { grid-column: 1; grid-row: 2; min-height: 52vh; height: auto; margin: 0; }
+      .universe-wedding .universe-copy { padding-bottom: 4rem; }
+      .universe-family .universe-copy { padding-top: 5rem; }
+      .about-photo { margin-left: 2rem; max-width: 360px; }
+      .booking-aside { margin-top: 3rem; }
+      .lightbox { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; gap: 1rem; padding: 1rem; }
+      .lightbox-visual { height: min(67vh, 650px); }
+      .lightbox-info { align-self: start; padding: 0 2rem 1rem 0; }
+      .lightbox h3 { margin: .5rem 0; font-size: 3rem; }
+      .lightbox-nav { left: 1rem; right: 1rem; bottom: auto; top: calc(67vh + .1rem); transform: translateY(-100%); }
+    }
+
+    @media (max-width: 580px) {
+      .site-nav { padding-inline: 1rem; }
+      .site-nav::after { left: 1rem; right: 1rem; }
+      .brand { max-width: 190px; font-size: .62rem; }
+      .hero-gridline, .hero-index { display: none; }
+      .hero-content { padding-inline: 1.2rem; padding-bottom: 4.7rem; }
+      .hero h1 { font-size: clamp(3.9rem, 17vw, 6rem); line-height: .82; }
+      .hero h1 em { padding-left: 1.4rem; }
+      .hero-footer { align-items: flex-start; margin-top: 2.8rem; }
+      .hero-note { max-width: 180px; font-size: .74rem; }
+      .circle-link { width: 100px; height: 100px; font-size: .58rem; }
+      .circle-link::after { right: 14px; bottom: 10px; }
+      .scroll-mark { left: 1.2rem; bottom: 1.4rem; }
+      .section { padding-inline: 1.2rem; }
+      .intro-layout { gap: 1.8rem; }
+      .intro h2 { font-size: clamp(3rem, 14vw, 5rem); }
+      .intro-bottom { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 3rem; }
+      .portfolio h2, .universes h2, .about h2, .investment h2, .booking h2 { font-size: clamp(3.25rem, 15vw, 5.5rem); }
+      .filter-bar { gap: .4rem; }
+      .filter-btn { padding: .6rem .72rem; font-size: .58rem; }
+      .portfolio-count { width: 100%; margin-left: 0; }
+      .gallery { grid-template-columns: 1fr 1fr; gap: 2.3rem .75rem; }
+      .gallery-card, .gallery-card:nth-child(1), .gallery-card:nth-child(2), .gallery-card:nth-child(3), .gallery-card:nth-child(4), .gallery-card:nth-child(5), .gallery-card:nth-child(6), .gallery-card:nth-child(7), .gallery-card:nth-child(8) { grid-column: span 1; margin-top: 0; }
+      .gallery-card:nth-child(1), .gallery-card:nth-child(4), .gallery-card:nth-child(5), .gallery-card:nth-child(8) { grid-column: 1 / -1; }
+      .gallery-card:nth-child(2), .gallery-card:nth-child(3), .gallery-card:nth-child(6), .gallery-card:nth-child(7) { margin-top: 1.8rem; }
+      .gallery-card figcaption { display: block; padding-top: .6rem; font-size: .56rem; line-height: 1.5; }
+      .gallery-card figcaption span:last-child { display: block; margin-top: .1rem; }
+      .universe { min-height: 0; padding: 1.2rem; }
+      .universe-wedding .universe-copy, .universe-portrait .universe-copy, .universe-family .universe-copy { padding-inline: .7rem; }
+      .universe h3 { font-size: clamp(3.5rem, 16vw, 5.3rem); }
+      .universe-image { min-height: 58vh !important; }
+      .quote-band-inner { padding-inline: 1.2rem; }
+      .quote-card { min-height: 230px; flex-basis: 76vw; }
+      .about-photo { margin-left: 1.8rem; max-width: 300px; }
+      .about-photo::before { left: -2.6rem; }
+      .about-facts { gap: 1rem 1.3rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-submit { align-items: flex-start; flex-direction: column; }
+      .submit-btn { width: 100%; justify-content: space-between; }
+      .contact-top { flex-direction: column; margin-bottom: 4rem; }
+      .contact-arrow { margin-top: 0; }
+      .contact-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 1rem; }
+      .contact-block:first-child { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; gap: .7rem; margin-top: 4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+  <div class="site-loader" aria-hidden="true"><div class="loader-mark"><i></i><span>Elin Voss Photography</span></div></div>
+
+  <header class="site-nav" id="top">
+    <a class="brand" href="#top" aria-label="Elin Voss Photography, til toppen"><span class="brand-dot"></span><span>Elin Voss<br>Photography</span></a>
+    <nav class="nav-links" id="navLinks" aria-label="Hovedmeny">
+      <a href="#portfolio">Portefølje</a>
+      <a href="#universes">Arbeid</a>
+      <a href="#about">Om Elin</a>
+      <a class="nav-cta" href="#booking">Book fotografering</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-label="Åpne meny" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+  </header>
+
+  <main>
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-media"><img class="hero-image" src="images/image-01.jpg" alt="Brudepar på en mørk kyst i Lofoten"></div>
+      <div class="hero-gridline"></div>
+      <div class="hero-index">Oslo / Lofoten / hele Norge</div>
+      <div class="hero-content">
+        <div class="hero-overline">Fotograf &amp; visuell historieforteller</div>
+        <h1 id="hero-title">Historier<br><em>med tyngde.</em></h1>
+        <div class="hero-footer">
+          <p class="hero-note"><strong>Elin Voss Photography</strong>Rolige, rå og ekte bilder for mennesker og merkevarer som vil huske hvordan det faktisk føltes.</p>
+          <a class="circle-link" href="#portfolio">Se<br>portefølje</a>
+        </div>
+      </div>
+      <a class="scroll-mark" href="#intro" aria-label="Scroll ned"><i></i><span>Scroll for mer</span></a>
+    </section>
+
+    <section class="section intro" id="intro">
+      <div class="section-inner intro-layout">
+        <div class="chapter-no reveal">01 / nærvær</div>
+        <div class="intro-copy reveal delay-1">
+          <div class="eyebrow">Det jeg ser etter</div>
+          <h2 class="display">Det fineste du tar med deg hjem, er det som skjedde <em>mellom</em> bildene.</h2>
+          <div class="intro-bottom">
+            <p>Jeg fotograferer med blikket litt på skrå. Etter lyset som faller inn i rommet, hånden som finner en annen, og menneskene slik de er når de glemmer kameraet.</p>
+            <a class="text-link" href="#booking">Fortell meg om din idé</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="section-inner">
+        <div class="portfolio-head">
+          <div>
+            <div class="eyebrow reveal">Utvalgte historier / 2022—2026</div>
+            <h2 class="display reveal delay-1" id="portfolio-title">Selected<br>work.</h2>
+          </div>
+          <div class="portfolio-intro reveal delay-2"><div class="eyebrow">Se litt nærmere</div><p>Et utsnitt av bryllup, portrett, familie og visuelle oppdrag. Klikk på et bilde for å gå inn i historien.</p></div>
+        </div>
+        <div class="filter-bar reveal delay-2" role="toolbar" aria-label="Filtrer portefølje">
+          <button class="filter-btn is-active" type="button" data-filter="alle">Alle</button>
+          <button class="filter-btn" type="button" data-filter="bryllup">Bryllup</button>
+          <button class="filter-btn" type="button" data-filter="portrett">Portrett</button>
+          <button class="filter-btn" type="button" data-filter="familie">Familie</button>
+          <button class="filter-btn" type="button" data-filter="bedrift">Bedrift</button>
+          <button class="filter-btn" type="button" data-filter="kommersielt">Kommersielt</button>
+          <span class="portfolio-count" aria-live="polite">08 historier</span>
+        </div>
+
+        <div class="gallery" id="gallery">
+          <figure class="gallery-card reveal" data-cat="bryllup" data-title="Mellom fjell og løfter" data-meta="Lofoten / Bryllup 2025" data-copy="En dag i ytterkanten av kartet, med havet som gjest og vinden som eneste plan.">
+            <button class="gallery-image-wrap" type="button" aria-label="Åpne Mellom fjell og løfter"><img src="images/image-01.jpg" alt="Brudepar på en dramatisk kyst i Lofoten"><span class="gallery-hover"><span>Åpne</span></span></button>
+            <figcaption><strong>Mellom fjell og løfter</strong><span>Lofoten / bryllup</span></figcaption>
+          </figure>
+          <figure class="gallery-card reveal delay-1" data-cat="bryllup" data-title="Før alle kommer" data-meta="Oslo / Bryllup 2024" data-copy="De små ritualene før dørene åpnes. Silkestoff, morgenlys og en hånd som holder fast i øyeblikket.">
+            <button class="gallery-image-wrap" type="button" aria-label="Åpne Før alle kommer"><img src="images/image-02.jpg" alt="Brud som holder markblomster i mykt vinduslys"><span class="gallery-hover"><span>Åpne</span></span></button>
+            <figcaption><strong>Før alle kommer</strong><span>Oslo / bryllup</span></figcaption>
+          </figure>
+          <figure class="gallery-card reveal delay-2" data-cat="portrett" data-title="Rødt mot betong" data-meta="Oslo / Portrett 2025" data-copy="Et portrett med plass til både styrke og stillhet. For mennesket bak rollen.">
+            <button class="gallery-image-wrap" type="button" aria-label="Åpne Rødt mot betong"><img src="images/image-03.jpg" alt="Kvinne i rustfarget blazer mot en betongvegg"><span class="gallery-hover"><span>Åpne</span></span></button>
+            <figcaption><strong>Rødt mot betong</strong><span>Oslo / portrett</span></figcaption>
+          </figure>
+          <figure class="gallery-card reveal" data-cat="familie" data-title="Mellom tidevann" data-meta="Hvaler / Familie 2024" data-copy="Familiebilder trenger ikke være oppstilte. De kan være saltvann i buksekanten og latter ingen rekker å stoppe.">
+            <button class="gallery-image-wrap" type="button" aria-label="Åpne Mellom tidevann"><img src="images/image-04.jpg" alt="Familie som løper i vannkanten på en nordisk strand"><span class="gallery-hover"><span>Åpne</span></span></button>
+            <figcaption><strong>Mellom tidevann</strong><span>Hvaler / familie</span></figcaption>
+          </figure>
+          <figure class="gallery-card reveal delay-1" data-cat="kommersielt" data-title="Quiet architecture" data-meta="Oslo / Kommersiell 2026" data-copy="Visuelle rom for mennesker som bygger med omtanke. Produsert for Atelier Nord.">
+            <button class="gallery-image-wrap" type="button" aria-label="Åpne Quiet architecture"><img src="images/image-05.jpg" alt="Minimalistisk nordisk interiør i varmt sollys"><span class="gallery-hover"><span>Åpne</span></span></button>
+            <figcaption><strong>Quiet architecture</strong><span>Oslo / kommersielt</span></figcaption>
+          </figure>
+          <figure class="gallery-card reveal delay-2" data-cat="bedrift" data-title="Mennesket først" data-meta="Bergen / Bedrift 2025" data-copy="Portretter for en ny generasjon selskaper — tydelige, varme og helt uten stivt smil.">
+            <button class="gallery-image-wrap" type="button" aria-label="Åpne Mennesket først"><img src="images/image-06.jpg" alt="Kvinnelig gründer i mørkt studio"><span class="gallery-hover"><span>Åpne</span></span></button>
+            <figcaption><strong>Mennesket først</strong><span>Bergen / bedrift</span></figcaption>
+          </figure>
+          <figure class="gallery-card reveal delay-1" data-cat="bryllup" data-title="Morgenens speil" data-meta="Bergen / Bryllup 2023" data-copy="Den private timen før dagen blir kollektiv. Et blikk i speilet, en perle, et dypt pust.">
+            <button class="gallery-image-wrap" type="button" aria-label="Åpne Morgenens speil"><img src="images/image-07.jpg" alt="Brud som fester en øredobb foran et speil"><span class="gallery-hover"><span>Åpne</span></span></button>
+            <figcaption><strong>Morgenens speil</strong><span>Bergen / bryllup</span></figcaption>
+          </figure>
+          <figure class="gallery-card reveal" data-cat="portrett" data-title="Etter regnet" data-meta="Oslo / Portrett 2024" data-copy="En bykveld som fikk bli litt langsommere. To mennesker, våt brostein og et lys som ikke gjentar seg.">
+            <button class="gallery-image-wrap" type="button" aria-label="Åpne Etter regnet"><img src="images/image-08.jpg" alt="Par som går gjennom Oslo på en våt kveld"><span class="gallery-hover"><span>Åpne</span></span></button>
+            <figcaption><strong>Etter regnet</strong><span>Oslo / portrett</span></figcaption>
+          </figure>
+        </div>
+        <div class="gallery-empty" id="galleryEmpty">Ingen historier i denne kategorien akkurat nå.</div>
+      </div>
+    </section>
+
+    <section class="section universes" id="universes" aria-labelledby="universes-title">
+      <div class="section-inner">
+        <div class="universes-head">
+          <div><div class="eyebrow reveal">Tre måter å se på</div><h2 class="display reveal delay-1" id="universes-title">Ulike rom.<br>Samme blikk.</h2></div>
+          <p class="reveal delay-2">Ingen fotografering starter med en ferdig mal. Vi finner formen i menneskene, lyset og stedet.</p>
+        </div>
+        <article class="universe universe-wedding reveal">
+          <div class="universe-copy"><div class="universe-label">01 / bryllup</div><h3 class="display">Når alt<br>annet<br>forsvinner.</h3><p>For dere som vil ha mer enn en samling fine bilder. Jeg følger rytmen i dagen — fra de hemmelige minuttene til dansegulvet gir opp.</p><a class="universe-link" href="#booking">Se bryllup</a></div>
+          <div class="universe-image"><img src="images/image-01.jpg" alt="Brudepar med fjell og hav som bakgrunn"></div>
+        </article>
+        <article class="universe universe-portrait reveal">
+          <div class="universe-image"><img src="images/image-03.jpg" alt="Editorialt portrett av en kvinne i rustfarget jakke"></div>
+          <div class="universe-copy"><div class="universe-label">02 / portrett &amp; bedrift</div><h3 class="display">La rommet<br>jobbe<br>med deg.</h3><blockquote>«Bildene føltes mer som oss enn noe vi hadde brukt før.»</blockquote><a class="universe-link" href="#booking">Finn din form</a></div>
+        </article>
+        <article class="universe universe-family reveal">
+          <div class="universe-image"><img src="images/image-04.jpg" alt="Familie som leker ved havet i kveldslys"></div>
+          <div class="universe-copy"><div class="universe-label">03 / familie</div><h3 class="display">Det som<br>ikke kan<br>iscenesettes.</h3><p>En rolig time ute, med plass til fart, pauser, små krangler og den latteren som kommer når ingen ber om den.</p><a class="universe-link" href="#booking">Book familiefoto</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote-band" aria-label="Kundeomtaler">
+      <div class="quote-band-inner">
+        <div class="quote-band-top"><div class="eyebrow">Ord fra de som var der</div><span>04 / 06</span></div>
+        <div class="quote-reel">
+          <blockquote class="quote-card"><p>«Elin fikk oss til å glemme at hun var der. Det er akkurat derfor bildene føles så levende.»</p><footer>Maja &amp; Henrik / Lofoten</footer></blockquote>
+          <blockquote class="quote-card"><p>«Hele prosessen var trygg, presis og overraskende morsom. Vi fikk bilder med personlighet.»</p><footer>Silje, Atelier Nord</footer></blockquote>
+          <blockquote class="quote-card"><p>«Jeg har aldri likt å bli fotografert, men her kjentes det ikke som å posere. Bare som å være.»</p><footer>Amalie / portrett</footer></blockquote>
+          <blockquote class="quote-card"><p>«Elin fikk oss til å glemme at hun var der. Det er akkurat derfor bildene føles så levende.»</p><footer>Maja &amp; Henrik / Lofoten</footer></blockquote>
+          <blockquote class="quote-card"><p>«Hele prosessen var trygg, presis og overraskende morsom. Vi fikk bilder med personlighet.»</p><footer>Silje, Atelier Nord</footer></blockquote>
+          <blockquote class="quote-card"><p>«Jeg har aldri likt å bli fotografert, men her kjentes det ikke som å posere. Bare som å være.»</p><footer>Amalie / portrett</footer></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="section-inner about-layout">
+        <div class="about-photo reveal"><img src="images/image-06.jpg" alt="Elin Voss, fotograf, i et mørkt studio"></div>
+        <div class="about-copy reveal delay-1"><div class="eyebrow">Om fotografen</div><h2 class="display" id="about-title">Hei, jeg er <em>Elin.</em></h2><p>Jeg er fotograf, samler av øyeblikk og ganske svak for vær som skifter mening. Fra basen i Oslo reiser jeg dit historien er — ofte med en liten koffert, to analoge kameraer og god tid.</p><div class="about-facts"><span><strong>12 år</strong>bak kameraet</span><span><strong>35 mm</strong>favorittformat</span><span><strong>Oslo / Lofoten</strong>baser</span><span><strong>hele Norge</strong>og litt lenger</span></div></div>
+      </div>
+    </section>
+
+    <section class="section investment" id="investment" aria-labelledby="investment-title">
+      <div class="section-inner investment-layout">
+        <div><div class="eyebrow reveal">Investering</div><h2 class="display reveal delay-1" id="investment-title">Det skal føles riktig.</h2><p class="investment-aside reveal delay-2">Du trenger ikke ha en ferdig plan før du tar kontakt. Her er noen utgangspunkt — så bygger vi resten sammen.</p></div>
+        <div class="reveal delay-1">
+          <div class="price-list">
+            <div class="price-item is-open"><button class="price-summary" type="button" aria-expanded="true"><span class="num">01</span><h3>Bryllup</h3><span class="price">fra 28 500 kr <b class="plus">+</b></span></button><div class="price-detail"><div class="price-detail-inner"><p>6–10 timer, planleggingsmøte, personlig bildefortelling, visning og minimum 500 ferdig redigerte bilder i et privat galleri. Reise i Norge beregnes etter avtale.</p></div></div></div>
+            <div class="price-item"><button class="price-summary" type="button" aria-expanded="false"><span class="num">02</span><h3>Portrett &amp; familie</h3><span class="price">fra 4 900 kr <b class="plus">+</b></span></button><div class="price-detail"><div class="price-detail-inner"><p>En rolig fotografering på 60–90 minutter, hjemme, ute eller i studio. Inkluderer 20 høyoppløselige bilder og mulighet for å kjøpe flere.</p></div></div></div>
+            <div class="price-item"><button class="price-summary" type="button" aria-expanded="false"><span class="num">03</span><h3>Bedrift &amp; merkevare</h3><span class="price">fra 12 500 kr <b class="plus">+</b></span></button><div class="price-detail"><div class="price-detail-inner"><p>Halvdag fra 12 500 kr. Vi kan lage bedriftsfoto, portretter, arbeidsbilder, kampanjemateriell eller en komplett visuell retning for lanseringen din.</p></div></div></div>
+            <div class="price-item"><button class="price-summary" type="button" aria-expanded="false"><span class="num">04</span><h3>Skreddersydd</h3><span class="price">på forespørsel <b class="plus">+</b></span></button><div class="price-detail"><div class="price-detail-inner"><p>Har du et sted, et produkt eller en idé som ikke passer i en boks? Fortell meg hva du ser for deg, så setter vi sammen riktig team og format.</p></div></div></div>
+          </div>
+          <p class="investment-note">Alle priser er inkl. mva. og gjelder fotografering i Oslo-området. Digitale filer leveres i full oppløsning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section booking" id="booking" aria-labelledby="booking-title">
+      <div class="section-inner booking-layout">
+        <div class="booking-copy"><div class="eyebrow reveal">Neste steg</div><h2 class="display reveal delay-1" id="booking-title">La oss finne <br>formen.</h2><p class="reveal delay-2">Fortell litt om menneskene, stedet eller ideen. Jeg svarer vanligvis innen 24 timer.</p><div class="booking-aside reveal delay-3"><span>Ledig i 2026</span><span>Oslo + hele Norge</span></div></div>
+        <form class="booking-form reveal delay-1" id="bookingForm">
+          <div class="field"><label>Hva skal vi fotografere?</label><div class="choice-list"><div class="choice"><input id="choiceWedding" type="radio" name="type" value="Bryllup" checked><label for="choiceWedding">Bryllup</label></div><div class="choice"><input id="choicePortrait" type="radio" name="type" value="Portrett"><label for="choicePortrait">Portrett</label></div><div class="choice"><input id="choiceFamily" type="radio" name="type" value="Familie"><label for="choiceFamily">Familie</label></div><div class="choice"><input id="choiceBrand" type="radio" name="type" value="Bedrift / kommersielt"><label for="choiceBrand">Bedrift</label></div></div></div>
+          <div class="form-row"><div class="field"><label for="date">Dato eller periode</label><input id="date" name="date" type="date"></div><div class="field"><label for="place">Sted</label><input id="place" name="place" type="text" placeholder="Oslo, Lofoten …"></div></div>
+          <div class="form-row"><div class="field"><label for="name">Navn</label><input id="name" name="name" type="text" placeholder="Ditt navn" required></div><div class="field"><label for="email">E-post</label><input id="email" name="email" type="email" placeholder="navn@epost.no" required></div></div>
+          <div class="field"><label for="message">Hva ser du for deg?</label><textarea id="message" name="message" placeholder="Skriv gjerne litt om dere, idéen eller stemningen du ønsker …"></textarea></div>
+          <div class="form-submit"><small>Ved å sende forespørselen godtar du at Elin Voss Photography lagrer opplysningene for å kunne svare deg.</small><button class="submit-btn" type="submit">Send forespørsel</button></div>
+          <div class="form-status" id="formStatus" role="status">Takk — forespørselen din er registrert. Jeg gleder meg til å lese den.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section contact-footer" id="contact">
+    <div class="section-inner">
+      <div class="contact-top"><h2 class="display">Har du en idé<br>som skal <em>kjennes?</em></h2><a class="circle-link contact-arrow" href="#booking">Book<br>nå</a></div>
+      <div class="contact-grid">
+        <div class="contact-block"><span class="contact-label">Ta kontakt</span><a href="/cdn-cgi/l/email-protection#751d101c3510191c1b031a06065b1b1a"><span class="__cf_email__" data-cfemail="f9919c90b99c9590978f968a8ad79796">[email&#160;protected]</span></a><a href="tel:+4792441873">+47 92 44 18 73</a></div>
+        <div class="contact-block"><span class="contact-label">Studio</span><span>Oslo, Norge<br>Tilgjengelig overalt</span></div>
+        <div class="contact-block"><span class="contact-label">Følg med</span><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram ↗</a><a href="#portfolio">Portefølje ↗</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Elin Voss Photography</span><a class="back-top" href="#top">Til toppen ↑</a><span>Designet med vilje</span></div>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Lukk bilde">×</button>
+    <div class="lightbox-visual"><img id="lightboxImage" src="" alt=""></div>
+    <div class="lightbox-info"><div class="lightbox-index" id="lightboxIndex">01 / 08</div><h3 id="lightboxTitle"></h3><p id="lightboxCopy"></p><p id="lightboxMeta" style="margin-top:1rem;color:rgba(241,238,231,.4);font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;"></p></div>
+    <div class="lightbox-nav"><button type="button" id="prevImage">← Forrige</button><button type="button" id="nextImage">Neste →</button></div>
+  </div>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const nav = document.querySelector('.site-nav');
+      const hero = document.querySelector('.hero');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      const loader = document.querySelector('.site-loader');
+
+      window.addEventListener('load', () => {
+        setTimeout(() => { loader.classList.add('is-done'); hero.classList.add('is-ready'); }, 350);
+      });
+
+      menuToggle.addEventListener('click', () => {
+        const open = menuToggle.classList.toggle('is-open');
+        navLinks.classList.toggle('is-open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Lukk meny' : 'Åpne meny');
+        body.classList.toggle('is-locked', open);
+      });
+      navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        menuToggle.classList.remove('is-open'); navLinks.classList.remove('is-open'); body.classList.remove('is-locked'); menuToggle.setAttribute('aria-expanded', 'false');
+      }));
+
+      let lastScroll = 0;
+      const onScroll = () => {
+        const y = window.scrollY;
+        nav.classList.toggle('nav-light', y > window.innerHeight * .72);
+        if (y > lastScroll && y > 120) nav.classList.add('nav-hidden'); else nav.classList.remove('nav-hidden');
+        lastScroll = y;
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      if (window.matchMedia('(pointer: fine)').matches) {
+        window.addEventListener('pointermove', e => {
+          const rect = hero.getBoundingClientRect();
+          if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+          const x = (e.clientX / window.innerWidth - .5) * 8;
+          const y = (e.clientY / window.innerHeight - .5) * 5;
+          const image = hero.querySelector('.hero-image');
+          image.style.transform = `scale(1.035) translate(${x * -.18}px, ${y * -.18}px)`;
+        }, { passive: true });
+      }
+
+      const reveals = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); } });
+      }, { threshold: .12, rootMargin: '0px 0px -5% 0px' });
+      reveals.forEach(el => revealObserver.observe(el));
+
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const cards = [...document.querySelectorAll('.gallery-card')];
+      const count = document.querySelector('.portfolio-count');
+      const empty = document.getElementById('galleryEmpty');
+      filterButtons.forEach(button => button.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('is-active'));
+        button.classList.add('is-active');
+        const filter = button.dataset.filter;
+        let visible = 0;
+        cards.forEach(card => {
+          const show = filter === 'alle' || card.dataset.cat === filter;
+          card.classList.toggle('is-hidden', !show);
+          if (show) visible++;
+        });
+        count.textContent = String(visible).padStart(2, '0') + ' historier';
+        empty.classList.toggle('is-visible', visible === 0);
+      }));
+
+      const priceItems = document.querySelectorAll('.price-item');
+      priceItems.forEach(item => {
+        item.querySelector('.price-summary').addEventListener('click', () => {
+          const open = item.classList.toggle('is-open');
+          item.querySelector('.price-summary').setAttribute('aria-expanded', String(open));
+        });
+      });
+
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxTitle = document.getElementById('lightboxTitle');
+      const lightboxCopy = document.getElementById('lightboxCopy');
+      const lightboxMeta = document.getElementById('lightboxMeta');
+      const lightboxIndex = document.getElementById('lightboxIndex');
+      let activeIndex = 0;
+      let lastFocused = null;
+      const getVisibleCards = () => cards.filter(card => !card.classList.contains('is-hidden'));
+      function showLightbox(index) {
+        const visibleCards = getVisibleCards();
+        if (!visibleCards.length) return;
+        activeIndex = (index + visibleCards.length) % visibleCards.length;
+        const card = visibleCards[activeIndex];
+        const image = card.querySelector('img');
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxTitle.textContent = card.dataset.title;
+        lightboxCopy.textContent = card.dataset.copy;
+        lightboxMeta.textContent = card.dataset.meta;
+        lightboxIndex.textContent = String(activeIndex + 1).padStart(2, '0') + ' / ' + String(visibleCards.length).padStart(2, '0');
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        body.classList.add('is-locked');
+        document.querySelector('.lightbox-close').focus();
+      }
+      function closeLightbox() {
+        lightbox.classList.remove('is-open'); lightbox.setAttribute('aria-hidden', 'true'); body.classList.remove('is-locked');
+        if (lastFocused) lastFocused.focus();
+      }
+      cards.forEach(card => card.querySelector('.gallery-image-wrap').addEventListener('click', () => { lastFocused = card.querySelector('.gallery-image-wrap'); showLightbox(getVisibleCards().indexOf(card)); }));
+      document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+      document.getElementById('prevImage').addEventListener('click', () => showLightbox(activeIndex - 1));
+      document.getElementById('nextImage').addEventListener('click', () => showLightbox(activeIndex + 1));
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', e => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showLightbox(activeIndex - 1);
+        if (e.key === 'ArrowRight') showLightbox(activeIndex + 1);
+      });
+
+      const dateInput = document.getElementById('date');
+      const today = new Date();
+      const isoToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+      dateInput.min = isoToday;
+      const form = document.getElementById('bookingForm');
+      const status = document.getElementById('formStatus');
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        status.textContent = name ? `Takk, ${name} — forespørselen din er registrert. Jeg gleder meg til å lese den.` : 'Takk — forespørselen din er registrert. Jeg gleder meg til å lese den.';
+        status.classList.add('is-visible');
+        form.querySelector('.submit-btn').textContent = 'Sendt ✓';
+        form.querySelector('.submit-btn').style.background = '#32423a';
+      });
+    })();
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

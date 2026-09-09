@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Velværeklinikken — Massasje, fotterapi og rådgivning i Oslo</title>
+<meta name="description" content="Velværeklinikken er et behandlingshus i Oslo for massasje, fotterapi og ærlig rådgivning. Faglig presisjon, rolig atmosfære og behandlere som tar seg tid. Bestill time online.">
+<meta name="theme-color" content="#F4F2EB">
+<meta property="og:title" content="Velværeklinikken — Massasje, fotterapi og rådgivning i Oslo">
+<meta property="og:description" content="Ro i kroppen. Klar i hodet. Bestill time hos behandlere som tar seg tid.">
+<meta property="og:type" content="website">
+<link rel="icon" href="images/image-09.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+/* ============ GRUNNLAG ============ */
+:root{
+  --paper:#F4F2EB; --paper-2:#ECE9DE; --card:#FBFAF5;
+  --ink:#182720; --ink-soft:#51604F;
+  --pine:#1C3529; --pine-mid:#254534; --pine-deep:#122419;
+  --ember:#C06B3C; --ember-deep:#9A4E25;
+  --sage:#8AA192;
+  --paper-txt:#F2EFE6; --paper-mut:#AEC0AF;
+  --line:rgba(24,39,32,.15); --line-l:rgba(242,239,230,.16);
+  --fd:'Fraunces',Georgia,'Times New Roman',serif;
+  --fb:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,.61,.2,1);
+  --rad:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--fb); background:var(--paper); color:var(--ink);
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer;background:none;border:none;color:inherit}
+::selection{background:var(--pine);color:var(--paper-txt)}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:2px}
+section{scroll-margin-top:88px}
+.container{width:min(1240px,100% - clamp(40px,8vw,112px));margin-inline:auto}
+/* korn/tekstur */
+.grain{position:fixed;inset:-40px;z-index:120;pointer-events:none;opacity:.05;
+  background-image:url("images/image-10.svg");
+}
+/* typografi */
+.kicker{display:flex;align-items:center;gap:12px;font-size:.72rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--ember-deep)}
+.kicker::before{content:"";width:28px;height:1px;background:var(--ember-deep);flex:none}
+.kicker .idx{color:var(--ink-soft);font-weight:500;letter-spacing:.08em}
+h1,h2,h3{font-family:var(--fd);font-weight:480;letter-spacing:-.015em;line-height:1.06}
+.h2{font-size:clamp(2.05rem,4.6vw,3.35rem)}
+.it{font-style:italic;font-weight:430;color:var(--ember-deep)}
+.on-dark .it{color:var(--ember)}
+.lead{font-size:clamp(1rem,1.4vw,1.14rem);color:var(--ink-soft);max-width:56ch}
+.on-dark{color:var(--paper-txt)}
+.on-dark .lead{color:var(--paper-mut)}
+.on-dark .kicker{color:var(--ember)}
+.on-dark .kicker::before{background:var(--ember)}
+/* knapper */
+.btn{display:inline-flex;align-items:center;gap:.65em;padding:1em 1.7em;border-radius:999px;
+  font-weight:600;font-size:.93rem;letter-spacing:.01em;text-decoration:none;border:1px solid transparent;
+  transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease)}
+.btn .ar{transition:transform .35s var(--ease);font-family:var(--fb)}
+.btn:hover .ar{transform:translateX(4px)}
+.btn-primary{background:var(--ember-deep);color:var(--paper-txt)}
+.btn-primary:hover{background:var(--pine)}
+.btn-ghost{border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-light{background:var(--paper-txt);color:var(--pine-deep)}
+.btn-light:hover{background:var(--ember);color:var(--paper-txt)}
+.btn-sm{padding:.72em 1.3em;font-size:.85rem}
+/* reveal */
+[data-rv]{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+[data-rv].in{opacity:1;transform:none}
+/* ============ HEADER ============ */
+#hdr{position:fixed;top:0;left:0;right:0;z-index:90;transition:background .4s var(--ease),box-shadow .4s var(--ease),padding .4s var(--ease);padding:20px 0}
+#hdr.scrolled{background:var(--paper);box-shadow:0 1px 0 var(--line);padding:12px 0}
+.hdr-in{display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;margin-right:auto}
+.brand svg{width:34px;height:34px;flex:none}
+.brand b{font-family:var(--fd);font-weight:560;font-size:1.22rem;letter-spacing:-.01em}
+.main-nav{display:flex;gap:26px}
+.main-nav a{font-size:.86rem;font-weight:600;text-decoration:none;position:relative;padding:4px 0}
+.main-nav a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:100%;background:var(--ember-deep);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.main-nav a:hover::after{transform:scaleX(1);transform-origin:left}
+#menuBtn{display:none;flex-direction:column;gap:6px;padding:8px;z-index:101}
+#menuBtn span{width:24px;height:2px;background:var(--ink);transition:transform .4s var(--ease),opacity .3s}
+body.menu-open #menuBtn span:nth-child(1){transform:translateY(4px) rotate(45deg)}
+body.menu-open #menuBtn span:nth-child(2){transform:translateY(-4px) rotate(-45deg)}
+body.menu-open #menuBtn span{background:var(--paper-txt)}
+#mobileMenu{position:fixed;inset:0;z-index:100;background:var(--pine-deep);color:var(--paper-txt);display:flex;flex-direction:column;justify-content:center;padding:32px clamp(24px,7vw,64px);
+  clip-path:inset(0 0 100% 0);transition:clip-path .6s var(--ease);visibility:hidden}
+body.menu-open #mobileMenu{clip-path:inset(0 0 0% 0);visibility:visible}
+#mobileMenu a.mm-link{font-family:var(--fd);font-size:clamp(1.9rem,7.5vw,2.8rem);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--line-l);display:flex;justify-content:space-between;align-items:center;
+  opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+#mobileMenu a.mm-link i{font-style:normal;font-family:var(--fb);font-size:.8rem;color:var(--ember)}
+body.menu-open #mobileMenu a.mm-link{opacity:1;transform:none}
+body.menu-open #mobileMenu a.mm-link:nth-child(1){transition-delay:.15s}
+body.menu-open #mobileMenu a.mm-link:nth-child(2){transition-delay:.22s}
+body.menu-open #mobileMenu a.mm-link:nth-child(3){transition-delay:.29s}
+body.menu-open #mobileMenu a.mm-link:nth-child(4){transition-delay:.36s}
+body.menu-open #mobileMenu a.mm-link:nth-child(5){transition-delay:.43s}
+.mm-foot{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:.9rem;color:var(--paper-mut)}
+body.menu-open{overflow:hidden}
+/* ============ HERO ============ */
+.hero{padding:clamp(118px,16vh,168px) 0 0}
+.hero .kicker{margin-bottom:26px}
+.hero h1{font-size:clamp(2.9rem,8vw,5.6rem);max-width:14ch}
+.hero h1 em{display:block}
+.hero-grid{display:grid;gap:clamp(36px,5vw,72px);margin-top:clamp(30px,4vw,54px);align-items:start}
+.hero-copy .lead{margin-bottom:30px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:.5em 1em;font-size:.8rem;font-weight:600;background:var(--card)}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--sage);flex:none}
+.chip .dot.live{background:#3E8E5A;animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,142,90,.45)}70%{box-shadow:0 0 0 8px rgba(62,142,90,0)}100%{box-shadow:0 0 0 0 rgba(62,142,90,0)}}
+.hero-visual{position:relative}
+.hero-frame{aspect-ratio:4/4.6;overflow:hidden;border-radius:var(--rad)}
+.hero-frame img{width:100%;height:100%;object-fit:cover;object-position:42% 52%}
+.kb img{animation:kb 22s var(--ease) infinite alternate;transform-origin:center}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.08) translate(1.4%,-1.2%)}}
+.hero-card{position:absolute;left:clamp(-14px,0px,0px);bottom:26px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;display:flex;gap:12px;align-items:center;box-shadow:0 18px 40px -22px rgba(18,36,25,.35)}
+.hero-card .dot{width:8px;height:8px;border-radius:50%;background:#3E8E5A;animation:pulse 2.2s infinite;flex:none}
+.hero-card small{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+.hero-card b{font-size:.95rem;font-weight:700}
+.hero-cap{position:absolute;right:14px;top:14px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-txt);background:rgba(18,36,25,.55);padding:.5em .9em;border-radius:999px;font-weight:600}
+/* ============ TICKER ============ */
+.ticker{border-block:1px solid var(--line);margin-top:clamp(60px,9vw,110px);overflow:hidden;padding:15px 0;background:var(--paper)}
+.tick{display:flex;gap:0;width:max-content;animation:tick 42s linear infinite}
+.ticker:hover .tick{animation-play-state:paused}
+.tick span{font-family:var(--fd);font-style:italic;font-size:1.02rem;color:var(--ink-soft);padding:0 1.4rem;white-space:nowrap;display:flex;align-items:center;gap:2.8rem}
+.tick span::after{content:"·";font-style:normal;color:var(--ember);font-size:1.3rem}
+@keyframes tick{to{transform:translateX(-50%)}}
+/* ============ INTRO ============ */
+.intro{padding:clamp(78px,11vw,150px) 0 0}
+.intro-grid{display:grid;gap:clamp(28px,4vw,64px)}
+.intro h2{max-width:22ch}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;margin-top:clamp(44px,6vw,72px)}
+.stat{background:var(--card);padding:clamp(22px,3vw,36px)}
+.stat b{font-family:var(--fd);font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:520;letter-spacing:-.02em;display:block;line-height:1}
+.stat b sup{font-size:.45em;color:var(--ember-deep)}
+.stat span{font-size:.82rem;color:var(--ink-soft);font-weight:600;letter-spacing:.02em}
+/* ============ VEIVISER ============ */
+.guide{padding:clamp(78px,11vw,150px) 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:18px 40px;margin-bottom:clamp(34px,5vw,56px)}
+.sec-head .lead{max-width:44ch}
+.guide-box{background:var(--card);border:1px solid var(--line);border-radius:calc(var(--rad) + 6px);padding:clamp(24px,4.5vw,56px);position:relative;overflow:hidden}
+.guide-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--pine),var(--ember))}
+.g-prog{display:flex;gap:10px;margin-bottom:clamp(24px,3.5vw,40px)}
+.g-prog span{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:10px;opacity:.4;transition:opacity .4s}
+.g-prog span::before{content:"";width:22px;height:2px;background:currentColor}
+.g-prog span.done,.g-prog span.now{opacity:1}
+.g-prog span.now{color:var(--ember-deep)}
+.g-step{transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.g-step.hide{display:none}
+.g-step h3{font-size:clamp(1.25rem,2.2vw,1.7rem);margin-bottom:20px}
+.g-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.g-opt{border:1px solid var(--line);border-radius:12px;padding:18px 16px;text-align:left;display:flex;flex-direction:column;gap:12px;align-items:flex-start;background:var(--paper);transition:border-color .3s,transform .3s var(--ease),background .3s,color .3s}
+.g-opt svg{width:26px;height:26px;stroke:var(--pine);transition:stroke .3s}
+.g-opt b{font-size:.92rem;font-weight:700;line-height:1.3}
+.g-opt:hover{border-color:var(--pine);transform:translateY(-3px)}
+.g-opt.sel{background:var(--pine);border-color:var(--pine);color:var(--paper-txt)}
+.g-opt.sel svg{stroke:var(--ember)}
+.g-back{margin-top:22px;font-size:.82rem;font-weight:700;color:var(--ink-soft);text-decoration:underline;text-underline-offset:4px}
+.g-back:hover{color:var(--ember-deep)}
+/* resultater */
+.g-res{display:grid;gap:14px}
+.g-res-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.g-card{border:1px solid var(--line);border-radius:var(--rad);background:var(--paper);padding:clamp(20px,3vw,30px);display:grid;gap:14px;position:relative;overflow:hidden;animation:riseIn .6s var(--ease) both}
+.g-card:nth-child(2){animation-delay:.08s}.g-card:nth-child(3){animation-delay:.16s}
+@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.g-card.top::before{content:"Beste match";position:absolute;top:14px;right:-1px;background:var(--ember-deep);color:var(--paper-txt);font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:.45em 1em .45em 1.2em;border-radius:999px 0 0 999px}
+.g-card .row1{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.g-card h4{font-family:var(--fd);font-size:1.3rem;font-weight:520}
+.g-card .meta{font-size:.82rem;font-weight:700;color:var(--ember-deep)}
+.g-card p{font-size:.92rem;color:var(--ink-soft);max-width:62ch}
+.g-card .acts{display:flex;gap:12px;flex-wrap:wrap}
+.link-more{font-size:.85rem;font-weight:700;text-decoration:underline;text-underline-offset:4px;color:var(--ink-soft)}
+.link-more:hover{color:var(--ember-deep)}
+/* ============ BEHANDLINGER ============ */
+.tx-sec{padding:clamp(40px,6vw,80px) 0 clamp(78px,11vw,150px)}
+#txList{border-top:1px solid var(--line)}
+.tx{border-bottom:1px solid var(--line)}
+.tx-head{width:100%;display:grid;grid-template-columns:auto 1fr auto auto;gap:clamp(14px,3vw,36px);align-items:center;padding:clamp(20px,3vw,30px) 4px;text-align:left;transition:padding .35s var(--ease)}
+.tx-head:hover{padding-left:14px}
+.tx-num{font-size:.78rem;font-weight:700;color:var(--ink-soft);letter-spacing:.1em}
+.tx-title h3{font-size:clamp(1.3rem,2.6vw,1.9rem);font-weight:500;transition:color .3s}
+.tx-head:hover .tx-title h3{color:var(--ember-deep)}
+.tx-title p{font-size:.88rem;color:var(--ink-soft);margin-top:3px}
+.tx-meta{font-size:.82rem;font-weight:700;color:var(--ink-soft);white-space:nowrap}
+.tx-plus{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:transform .45s var(--ease),background .3s,border-color .3s;flex:none}
+.tx-plus::before,.tx-plus::after{content:"";position:absolute;width:12px;height:1.6px;background:currentColor}
+.tx-plus::after{transform:rotate(90deg)}
+.tx-plus{position:relative}
+.tx.open .tx-plus,.fq.open .tx-plus{transform:rotate(45deg);background:var(--pine);border-color:var(--pine);color:var(--paper-txt)}
+.tx-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.tx.open .tx-body{grid-template-rows:1fr}
+.tx-inner{overflow:hidden}
+.tx-cols{display:grid;gap:clamp(20px,3.5vw,48px);padding:6px 4px clamp(26px,3.5vw,40px)}
+.tx-cols p{color:var(--ink-soft);max-width:60ch;font-size:.97rem}
+.tx-for{list-style:none;margin-top:14px;display:grid;gap:8px}
+.tx-for li{font-size:.9rem;display:flex;gap:10px;align-items:baseline}
+.tx-for li::before{content:"—";color:var(--ember-deep);font-weight:700}
+.tx-img{border-radius:12px;overflow:hidden;aspect-ratio:16/10}
+.tx-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.tx.open .tx-img img{transform:scale(1.04)}
+.tx-acts{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:20px}
+.tx-price{font-size:.85rem;font-weight:700;color:var(--ink-soft)}
+/* ============ INTERLUDE ============ */
+.interlude{position:relative;min-height:clamp(440px,72vh,640px);display:grid;place-items:center;overflow:hidden;background:var(--pine-deep)}
+.interlude .plx{position:absolute;inset:-12% 0;will-change:transform}
+.interlude img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.interlude::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,36,25,.55),rgba(18,36,25,.75))}
+.interlude blockquote{position:relative;z-index:2;text-align:center;padding:0 22px;max-width:22ch}
+.interlude blockquote p{font-family:var(--fd);font-style:italic;font-size:clamp(1.6rem,3.8vw,2.7rem);line-height:1.25;color:var(--paper-txt)}
+.interlude cite{display:block;margin-top:22px;font-style:normal;font-size:.82rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ember)}
+/* ============ BEHANDLERE ============ */
+.team{padding:clamp(78px,11vw,150px) 0}
+.team-grid{display:grid;gap:clamp(28px,4vw,56px)}
+.th .th-photo{border-radius:var(--rad);overflow:hidden;aspect-ratio:4/4.7;position:relative}
+.th .th-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;transition:transform 1.2s var(--ease)}
+.th:hover .th-photo img{transform:scale(1.05)}
+.th-tag{position:absolute;left:14px;bottom:14px;background:var(--paper);border-radius:999px;padding:.45em 1em;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pine)}
+.th h3{font-size:1.55rem;margin-top:18px}
+.th .role{font-size:.85rem;font-weight:700;color:var(--ember-deep);margin-top:2px}
+.th .bio{font-size:.92rem;color:var(--ink-soft);margin-top:10px;max-width:42ch}
+.th .quote{font-family:var(--fd);font-style:italic;font-size:1.05rem;color:var(--ink);margin-top:14px;padding-left:16px;border-left:2px solid var(--ember)}
+.th .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.th .tags span{font-size:.72rem;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:.4em .9em;color:var(--ink-soft)}
+.th .th-act{margin-top:16px}
+/* ============ OMTALER ============ */
+.quotes{background:var(--pine-deep);padding:clamp(78px,11vw,150px) 0;overflow:hidden}
+.q-sum{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(30px,4vw,50px)}
+.q-sum b{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4rem);font-weight:520;color:var(--paper-txt)}
+.q-sum .stars{color:var(--ember);letter-spacing:.15em;font-size:1.1rem}
+.q-sum span.txt{color:var(--paper-mut);font-size:.9rem;font-weight:600}
+.q-clip{overflow:hidden}
+.q-track{display:flex;transition:transform .7s var(--ease)}
+.q-slide{min-width:100%;padding-right:clamp(0px,6vw,120px)}
+.q-slide p{font-family:var(--fd);font-style:italic;font-size:clamp(1.4rem,3.2vw,2.2rem);line-height:1.35;color:var(--paper-txt);max-width:30ch}
+.q-slide footer{margin-top:26px;display:flex;align-items:center;gap:14px}
+.q-ava{width:44px;height:44px;border-radius:50%;background:var(--pine-mid);display:grid;place-items:center;font-weight:800;font-size:.85rem;color:var(--ember);letter-spacing:.05em}
+.q-slide footer b{display:block;color:var(--paper-txt);font-size:.95rem}
+.q-slide footer span{color:var(--paper-mut);font-size:.82rem}
+.q-nav{display:flex;align-items:center;gap:18px;margin-top:clamp(30px,4vw,46px)}
+.q-btn{width:48px;height:48px;border:1px solid var(--line-l);border-radius:50%;display:grid;place-items:center;color:var(--paper-txt);transition:background .3s,border-color .3s}
+.q-btn:hover{background:var(--ember-deep);border-color:var(--ember-deep)}
+.q-dots{display:flex;gap:8px}
+.q-dots i{width:26px;height:2px;background:var(--line-l);transition:background .3s}
+.q-dots i.on{background:var(--ember)}
+/* ============ CTA BAND ============ */
+.cta-band{padding:clamp(78px,11vw,150px) 0}
+.band{background:var(--pine);border-radius:calc(var(--rad) + 8px);padding:clamp(36px,6vw,72px);display:grid;gap:30px;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;right:-70px;top:-70px;width:280px;height:280px;border:1px solid var(--line-l);border-radius:50%}
+.band::after{content:"";position:absolute;right:-20px;top:-20px;width:180px;height:180px;border:1px solid var(--line-l);border-radius:50%}
+.band h2{color:var(--paper-txt);max-width:18ch}
+.band .lead{color:var(--paper-mut)}
+.band-acts{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.band .tel{color:var(--paper-txt);font-weight:700;text-decoration:none;font-size:1.05rem;border-bottom:1px solid var(--ember);padding-bottom:2px}
+/* ============ KONTAKT/INFO ============ */
+.info{padding:0 0 clamp(78px,11vw,150px)}
+.info-grid{display:grid;gap:clamp(20px,3vw,32px)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:clamp(24px,3.4vw,38px)}
+.panel h3{font-size:1.35rem;margin-bottom:18px}
+.hrow{display:flex;justify-content:space-between;padding:11px 2px;border-bottom:1px solid var(--line);font-size:.92rem}
+.hrow:last-child{border:none}
+.hrow span:first-child{font-weight:600}
+.hrow.today span:first-child{color:var(--ember-deep);font-weight:800}
+.hrow.today::after{content:"i dag";font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-txt);background:var(--ember-deep);border-radius:999px;padding:.3em .8em;align-self:center}
+.hrow .closed{color:var(--ink-soft)}
+.c-row{display:flex;gap:12px;align-items:baseline;padding:9px 0;font-size:.95rem}
+.c-row b{min-width:74px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.c-row a{font-weight:700;text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .3s,color .3s}
+.c-row a:hover{color:var(--ember-deep);border-color:var(--ember-deep)}
+.map-box{border-radius:var(--rad);overflow:hidden;border:1px solid var(--line)}
+.map-box svg{display:block;width:100%;height:auto}
+/* ============ FAQ ============ */
+.faq{padding:0 0 clamp(84px,11vw,160px)}
+.faq-list{border-top:1px solid var(--line);max-width:820px}
+.fq{border-bottom:1px solid var(--line)}
+.fq-head{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 4px;text-align:left;font-family:var(--fd);font-size:1.15rem;font-weight:500}
+.fq-head:hover{color:var(--ember-deep)}
+.fq-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.fq.open .fq-body{grid-template-rows:1fr}
+.fq-body>div{overflow:hidden}
+.fq-body p{padding:0 4px 24px;color:var(--ink-soft);font-size:.95rem;max-width:64ch}
+/* ============ FOOTER ============ */
+footer.site{background:var(--pine-deep);color:var(--paper-mut);padding:clamp(60px,8vw,100px) 0 34px}
+.f-word{font-family:var(--fd);font-size:clamp(2.4rem,7.5vw,5.4rem);color:var(--paper-txt);letter-spacing:-.02em;line-height:1;border-bottom:1px solid var(--line-l);padding-bottom:clamp(28px,4vw,48px)}
+.f-word em{color:var(--ember)}
+.f-grid{display:grid;gap:34px;padding:clamp(30px,4vw,52px) 0}
+.f-grid h4{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-bottom:16px;font-weight:800}
+.f-grid a{display:block;text-decoration:none;padding:4px 0;font-size:.92rem;color:var(--paper-mut);transition:color .3s}
+.f-grid a:hover{color:var(--paper-txt)}
+.f-grid p{font-size:.92rem}
+.f-bot{border-top:1px solid var(--line-l);padding-top:26px;display:flex;flex-wrap:wrap;gap:10px 28px;font-size:.78rem}
+/* ============ BOOKING ============ */
+#bk{position:fixed;inset:0;z-index:110;display:none}
+#bk.open{display:block}
+.bk-back{position:absolute;inset:0;background:rgba(14,28,20,.6)}
+.bk-panel{position:absolute;inset:0;background:var(--paper);display:flex;flex-direction:column;animation:bkIn .45s var(--ease)}
+@keyframes bkIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.bk-head{display:flex;align-items:center;gap:16px;padding:18px clamp(18px,4vw,36px);border-bottom:1px solid var(--line)}
+.bk-head .t{font-family:var(--fd);font-size:1.25rem;font-weight:540;margin-right:auto}
+.bk-prog{display:flex;gap:6px}
+.bk-prog span{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);opacity:.4;padding:6px 10px;border-radius:999px}
+.bk-prog span.now{opacity:1;background:var(--pine);color:var(--paper-txt)}
+.bk-prog span.done{opacity:.85;color:var(--ember-deep)}
+#bkClose{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:1.1rem;transition:background .3s,color .3s;flex:none}
+#bkClose:hover{background:var(--pine);color:var(--paper-txt)}
+.bk-body{flex:1;overflow-y:auto;padding:clamp(20px,4vw,40px) clamp(18px,4vw,36px)}
+.bk-step{animation:riseIn .45s var(--ease)}
+.bk-step h3{font-size:clamp(1.3rem,2.4vw,1.7rem);margin-bottom:6px}
+.bk-step .sub{color:var(--ink-soft);font-size:.92rem;margin-bottom:22px}
+.bk-tr{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--card);transition:border-color .3s,background .3s;margin-bottom:10px}
+.bk-tr:hover{border-color:var(--pine)}
+.bk-tr.sel{border-color:var(--pine);background:var(--pine);color:var(--paper-txt)}
+.bk-tr b{font-size:1rem}
+.bk-tr small{grid-column:1;color:var(--ink-soft);font-size:.82rem}
+.bk-tr.sel small{color:var(--paper-mut)}
+.bk-tr .pr{font-weight:800;font-size:.85rem;color:var(--ember-deep);white-space:nowrap}
+.bk-tr.sel .pr{color:var(--ember)}
+.dur-row{display:flex;gap:8px;flex-wrap:wrap;margin:-2px 0 14px}
+.dur-row button{border:1px solid var(--line);border-radius:999px;padding:.5em 1.1em;font-size:.8rem;font-weight:700;transition:all .25s}
+.dur-row button.sel{background:var(--ember-deep);border-color:var(--ember-deep);color:var(--paper-txt)}
+.th-row{display:flex;gap:12px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--card);transition:border-color .3s;margin-bottom:10px}
+.th-row img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 20%}
+.th-row .ini{width:52px;height:52px;border-radius:50%;background:var(--pine);color:var(--ember);display:grid;place-items:center;font-weight:800;flex:none}
+.th-row b{display:block;font-size:.95rem}
+.th-row small{color:var(--ink-soft);font-size:.8rem}
+.th-row.sel{border-color:var(--pine);box-shadow:inset 0 0 0 1px var(--pine)}
+.day-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;margin-bottom:16px;scrollbar-width:thin}
+.day-chip{flex:none;border:1px solid var(--line);border-radius:12px;padding:10px 16px;text-align:center;background:var(--card);transition:all .25s}
+.day-chip b{display:block;font-size:.9rem}
+.day-chip small{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+.day-chip.sel{background:var(--pine);border-color:var(--pine);color:var(--paper-txt)}
+.day-chip.sel small{color:var(--paper-mut)}
+.slot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
+.slot{border:1px solid var(--line);border-radius:10px;padding:.65em 0;text-align:center;font-size:.88rem;font-weight:700;background:var(--card);transition:all .25s}
+.slot:hover:not(:disabled){border-color:var(--pine)}
+.slot.sel{background:var(--ember-deep);border-color:var(--ember-deep);color:var(--paper-txt)}
+.slot:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.bk-sum{display:grid;gap:2px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:18px 20px;margin-bottom:20px}
+.bk-sum div{display:flex;justify-content:space-between;gap:16px;font-size:.92rem;padding:5px 0}
+.bk-sum div b{font-weight:700}
+.bk-sum div span{color:var(--ink-soft)}
+.f-field{margin-bottom:16px}
+.f-field label{display:block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.f-field input{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:14px 16px;font:inherit;font-size:.95rem;transition:border-color .3s}
+.f-field input:focus{outline:none;border-color:var(--pine)}
+.f-err{color:var(--ember-deep);font-size:.8rem;font-weight:700;margin-top:6px;display:none}
+.f-field.err .f-err{display:block}
+.f-field.err input{border-color:var(--ember-deep)}
+.bk-foot{display:flex;align-items:center;gap:14px;padding:16px clamp(18px,4vw,36px);border-top:1px solid var(--line);background:var(--card)}
+.bk-foot .sum{margin-right:auto;font-size:.85rem;font-weight:700;color:var(--ink-soft);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#bkNext:disabled{opacity:.4;cursor:not-allowed}
+/* suksess */
+.bk-done{text-align:center;padding:clamp(20px,5vw,60px) 0;display:grid;justify-items:center;gap:8px}
+.bk-done svg{width:76px;height:76px;margin-bottom:10px}
+.bk-done circle{stroke:var(--pine);stroke-width:1.5;fill:none;stroke-dasharray:230;stroke-dashoffset:230;animation:draw 1s .1s var(--ease) forwards}
+.bk-done path{stroke:var(--ember-deep);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw .6s .7s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.bk-done h3{font-size:clamp(1.5rem,3vw,2.1rem)}
+.bk-done .ref{font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ember-deep);margin-top:6px}
+.bk-done p{color:var(--ink-soft);max-width:46ch;font-size:.94rem}
+.bk-done .demo-note{font-size:.75rem;color:var(--ink-soft);opacity:.75;margin-top:14px}
+/* ============ RESPONSIVT ============ */
+@media (min-width:640px){
+  .tx-cols{grid-template-columns:1.2fr .8fr;align-items:center}
+  .info-grid{grid-template-columns:1fr 1fr}
+  .map-box{grid-column:1/-1}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .th:nth-child(even){transform:translateY(48px)}
+  .team-grid{padding-bottom:48px}
+}
+@media (min-width:900px){
+  .hero-grid{grid-template-columns:1.05fr .95fr}
+  .hero-card{left:-28px}
+  .intro-grid{grid-template-columns:1.1fr .9fr;align-items:end}
+  .stats{grid-template-columns:repeat(4,1fr)}
+  .info-grid{grid-template-columns:1fr 1fr 1.2fr}
+  .map-box{grid-column:auto}
+  .f-grid{grid-template-columns:1.4fr 1fr 1fr 1fr}
+  .band{grid-template-columns:1.2fr .8fr;align-items:center}
+  .bk-panel{top:clamp(16px,3vh,40px);left:0;right:0;margin-inline:auto;width:min(1040px,calc(100% - 32px));height:min(760px,calc(100% - 60px));border-radius:18px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(10,22,15,.5)}
+}
+@media (max-width:899px){
+  .main-nav{display:none}
+  #menuBtn{display:flex}
+  .hdr-cta{display:none}
+  .bk-prog{display:none}
+}
+@media (max-width:560px){
+  .tx-head{grid-template-columns:auto 1fr auto}
+  .tx-meta{display:none}
+  .tx.open .tx-meta{display:block;grid-column:2;font-size:.78rem}
+  .hero-frame{aspect-ratio:4/4.2}
+  .hero-card{left:12px;right:12px;bottom:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  [data-rv]{opacity:1;transform:none}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="container hdr-in">
+    <a class="brand" href="#" aria-label="Velværeklinikken – til toppen">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1C3529"/><path d="M18 19l14 27 14-27" fill="none" stroke="#F4F2EB" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <b>Velværeklinikken</b>
+    </a>
+    <nav class="main-nav" aria-label="Hovedmeny">
+      <a href="#veiviser">Veiviser</a>
+      <a href="#behandlinger">Behandlinger</a>
+      <a href="#behandlere">Behandlere</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <button class="btn btn-primary btn-sm hdr-cta" data-book>Bestill time</button>
+    <button id="menuBtn" aria-label="Meny" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- MOBILMENY -->
+<div id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobilmeny">
+    <a class="mm-link" href="#veiviser">Veiviser <i>01</i></a>
+    <a class="mm-link" href="#behandlinger">Behandlinger <i>02</i></a>
+    <a class="mm-link" href="#behandlere">Behandlere <i>03</i></a>
+    <a class="mm-link" href="#kontakt">Kontakt <i>04</i></a>
+    <a class="mm-link" href="#" data-book>Bestill time <i>→</i></a>
+  </nav>
+  <div class="mm-foot">
+    <span>Skovveien 8, Oslo</span> · <span>+47 22 83 46 00</span>
+  </div>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <p class="kicker" data-rv>Massasje · Fotterapi · Rådgivning <span class="idx">— Oslo</span></p>
+    <h1 data-rv>Ro i kroppen. <em class="it">Klar i hodet.</em></h1>
+    <div class="hero-grid">
+      <div class="hero-copy" data-rv>
+        <p class="lead">Velværeklinikken er et behandlingshus i Skovveien – for deg som vil ha faglig presisjon, ikke quick fixes. Rolige rom, erfarne hender og behandlere som faktisk lytter.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" data-book>Bestill time <span class="ar">→</span></button>
+          <a class="btn btn-ghost" href="#veiviser">Finn riktig behandling</a>
+          <a class="link-more" href="#behandlinger">Se behandlinger ↓</a>
+        </div>
+        <div class="hero-meta">
+          <span class="chip" id="statusChip"><span class="dot"></span>Sjekker åpningstid …</span>
+          <span class="chip"><span class="dot" style="background:var(--ember)"></span>Skovveien 8, Oslo</span>
+          <span class="chip">★ 4,9 · 214 anmeldelser</span>
+        </div>
+      </div>
+      <div class="hero-visual" data-rv>
+        <div class="hero-frame kb"><img src="images/image-01.jpg" alt="Behandlingsrom i morgenlys med massasjebenk, eikegulv og myke tekstiler" fetchpriority="high"></div>
+        <span class="hero-cap">Behandlingsrom 2 · kl. 08.12</span>
+        <div class="hero-card"><span class="dot"></span><div><small>Neste ledige time</small><b id="nextFree">…</b></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true">
+    <div class="tick">
+      <span>Klassisk massasje</span><span>Idrettsmassasje</span><span>Triggerpunktbehandling</span><span>Nakke &amp; skuldre</span><span>Fotterapi</span><span>Fotpleie</span><span>Rådgivning</span><span>Restitusjon</span>
+      <span>Klassisk massasje</span><span>Idrettsmassasje</span><span>Triggerpunktbehandling</span><span>Nakke &amp; skuldre</span><span>Fotterapi</span><span>Fotpleie</span><span>Rådgivning</span><span>Restitusjon</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="om">
+  <div class="container">
+    <div class="intro-grid">
+      <div data-rv>
+        <p class="kicker"><span class="idx">( 01 )</span> Velkommen inn</p>
+        <h2 class="h2" style="margin-top:20px">Vi tror ikke på mirakelkurer. Vi tror på <span class="it">fagfolk som tar seg tid.</span></h2>
+      </div>
+      <p class="lead" data-rv>Siden 2014 har vi hjulpet oslofolk med stive nakker, vonde rygger og slitne føtter. Hos oss møter du autoriserte behandlere, ærlige anbefalinger og en atmosfære som senker pulsen før behandlingen egentlig har begynt.</p>
+    </div>
+    <div class="stats" data-rv>
+      <div class="stat"><b><span data-count="12">0</span></b><span>år i Skovveien</span></div>
+      <div class="stat"><b><span data-count="38400">0</span><sup>+</sup></b><span>gjennomførte behandlinger</span></div>
+      <div class="stat"><b><span data-count="4.9" data-dec="1">0</span></b><span>snittrangering · 214 anmeldelser</span></div>
+      <div class="stat"><b><span data-count="98">0</span><sup>%</sup></b><span>anbefaler oss videre</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VEIVISER -->
+<section class="guide" id="veiviser">
+  <div class="container">
+    <div class="sec-head">
+      <div data-rv>
+        <p class="kicker"><span class="idx">( 02 )</span> Veiviser</p>
+        <h2 class="h2" style="margin-top:18px">Hva trenger <span class="it">kroppen din</span> i dag?</h2>
+      </div>
+      <p class="lead" data-rv>Svar på tre spørsmål, så peker vi på behandlingene som passer deg best. Ingen forpliktelser – bare retning.</p>
+    </div>
+    <div class="guide-box" data-rv>
+      <div class="g-prog" aria-hidden="true"><span data-p="1" class="now">Behov</span><span data-p="2">Tid</span><span data-p="3">Intensitet</span></div>
+      <div id="gWrap"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEHANDLINGER -->
+<section class="tx-sec" id="behandlinger">
+  <div class="container">
+    <div class="sec-head">
+      <div data-rv>
+        <p class="kicker"><span class="idx">( 03 )</span> Behandlinger</p>
+        <h2 class="h2" style="margin-top:18px">En meny, ikke <span class="it">en prisliste.</span></h2>
+      </div>
+      <p class="lead" data-rv>Trykk på en behandling for å se hva den gjør, hvem den passer for og hva den koster. Usikker? Start med veiviseren over.</p>
+    </div>
+    <div id="txList" data-rv>
+
+      <article class="tx" id="tx-klassisk">
+        <button class="tx-head" aria-expanded="false">
+          <span class="tx-num">01</span>
+          <div class="tx-title"><h3>Klassisk massasje</h3><p>Hele kroppen, rolig tempo, full tilstedeværelse.</p></div>
+          <span class="tx-meta">60–90 min · fra 890 kr</span>
+          <span class="tx-plus" aria-hidden="true"></span>
+        </button>
+        <div class="tx-body"><div class="tx-inner"><div class="tx-cols">
+          <div>
+            <p>Vår grunnstamme. En gjennomarbeidet helkroppsmassasje med varierende grep og trykk – tilpasset deg, ikke en oppskrift. Rolige bevegelser, varm olje av høy kvalitet og tid til de områdene som trenger det mest.</p>
+            <ul class="tx-for">
+              <li>Deg som trenger å senke skuldrene – bokstavelig talt</li>
+              <li>Urolig søvn og generell stivhet</li>
+              <li>Første besøk? Start her.</li>
+            </ul>
+            <div class="tx-acts"><button class="btn btn-primary btn-sm" data-book data-treatment="klassisk">Bestill time</button><span class="tx-price">60 min · 890 kr &nbsp;/&nbsp; 90 min · 1 240 kr</span></div>
+          </div>
+          <div class="tx-img"><img src="images/image-02.jpg" alt="Terapeuthender som masserer skulder" loading="lazy"></div>
+        </div></div></div>
+      </article>
+
+      <article class="tx" id="tx-muskel">
+        <button class="tx-head" aria-expanded="false">
+          <span class="tx-num">02</span>
+          <div class="tx-title"><h3>Muskelspenninger &amp; triggerpunkt</h3><p>Dypere arbeid der det sitter.</p></div>
+          <span class="tx-meta">60 min · 990 kr</span>
+          <span class="tx-plus" aria-hidden="true"></span>
+        </button>
+        <div class="tx-body"><div class="tx-inner"><div class="tx-cols">
+          <div>
+            <p>Konsentrert behandling av vonde knuter og stramme bånd i nakke, skuldre og rygg. Vi kombinerer triggerpunktbehandling, dypvevsgrep og tøying – og forklarer underveis hva vi gjør og hvorfor.</p>
+            <ul class="tx-for">
+              <li>Nakke og skuldre som «alltid er stive»</li>
+              <li>Spenninger i kjeve og hodebunn</li>
+              <li>Deg som sitter mye foran skjerm</li>
+            </ul>
+            <div class="tx-acts"><button class="btn btn-primary btn-sm" data-book data-treatment="muskel">Bestill time</button><span class="tx-price">60 min · 990 kr</span></div>
+          </div>
+        </div></div></div>
+      </article>
+
+      <article class="tx" id="tx-idrett">
+        <button class="tx-head" aria-expanded="false">
+          <span class="tx-num">03</span>
+          <div class="tx-title"><h3>Idrettsmassasje</h3><p>For kroppen som jobber hardt.</p></div>
+          <span class="tx-meta">60 min · 940 kr</span>
+          <span class="tx-plus" aria-hidden="true"></span>
+        </button>
+        <div class="tx-body"><div class="tx-inner"><div class="tx-cols">
+          <div>
+            <p>Målrettet massasje for deg som trener jevnlig – før konkurranse, etter harde økter eller for å holde kroppen i balanse. Høyere tempo, dypere trykk og fokus på belastede områder.</p>
+            <ul class="tx-for">
+              <li>Løpere, syklister og styrkeutøvere</li>
+              <li>Stølhet som ikke gir seg</li>
+              <li>Skadeforebygging i sesong</li>
+            </ul>
+            <div class="tx-acts"><button class="btn btn-primary btn-sm" data-book data-treatment="idrett">Bestill time</button><span class="tx-price">60 min · 940 kr</span></div>
+          </div>
+        </div></div></div>
+      </article>
+
+      <article class="tx" id="tx-nakke">
+        <button class="tx-head" aria-expanded="false">
+          <span class="tx-num">04</span>
+          <div class="tx-title"><h3>Nakke &amp; skuldre</h3><p>Konsentrert økt på problemsonen.</p></div>
+          <span class="tx-meta">30 min · 540 kr</span>
+          <span class="tx-plus" aria-hidden="true"></span>
+        </button>
+        <div class="tx-body"><div class="tx-inner"><div class="tx-cols">
+          <div>
+            <p>En kort, konsentrert økt for deg med lite tid og mye spenning. Vi jobber med nakke, skuldre og øvre rygg – og gir deg to–enkle øvelser med på veien.</p>
+            <ul class="tx-for">
+              <li>Lunsjpausen som faktisk betyr noe</li>
+              <li>Akutt stivhet</li>
+              <li>Oppfølging mellom lengre timer</li>
+            </ul>
+            <div class="tx-acts"><button class="btn btn-primary btn-sm" data-book data-treatment="nakke">Bestill time</button><span class="tx-price">30 min · 540 kr</span></div>
+          </div>
+        </div></div></div>
+      </article>
+
+      <article class="tx" id="tx-fotterapi">
+        <button class="tx-head" aria-expanded="false">
+          <span class="tx-num">05</span>
+          <div class="tx-title"><h3>Fotterapi</h3><p>Klinisk behandling for føtter som bærer deg.</p></div>
+          <span class="tx-meta">60 min · 950 kr</span>
+          <span class="tx-plus" aria-hidden="true"></span>
+        </button>
+        <div class="tx-body"><div class="tx-inner"><div class="tx-cols">
+          <div>
+            <p>Autorisert fotterapeut behandler inngrodde negler, hard hud, sprekk i hæl og fotvorter – grundig og smertefritt, med tid til råd om forebygging.</p>
+            <ul class="tx-for">
+              <li>Negle- og hudproblemer</li>
+              <li>Deg med diabetes – vi har spesialkompetanse</li>
+              <li>Hælsmerter og belastningsskader</li>
+            </ul>
+            <div class="tx-acts"><button class="btn btn-primary btn-sm" data-book data-treatment="fotterapi">Bestill time</button><span class="tx-price">60 min · 950 kr</span></div>
+          </div>
+          <div class="tx-img"><img src="images/image-03.jpg" alt="Fotterapeut behandler en fot" loading="lazy"></div>
+        </div></div></div>
+      </article>
+
+      <article class="tx" id="tx-fotpleie">
+        <button class="tx-head" aria-expanded="false">
+          <span class="tx-num">06</span>
+          <div class="tx-title"><h3>Fotpleie</h3><p>Velgjørende pleie fra tå til hæl.</p></div>
+          <span class="tx-meta">50 min · 790 kr</span>
+          <span class="tx-plus" aria-hidden="true"></span>
+        </button>
+        <div class="tx-body"><div class="tx-inner"><div class="tx-cols">
+          <div>
+            <p>En mykere variant: stell av negler, fjerning av hard hud, peeling og massasje av fot og legg. Føttene dine bærer deg hele dagen – gi dem en pause.</p>
+            <ul class="tx-for">
+              <li>Deg som står mye på jobb</li>
+              <li>Før sandalsesongen</li>
+              <li>Som gave til noen du er glad i</li>
+            </ul>
+            <div class="tx-acts"><button class="btn btn-primary btn-sm" data-book data-treatment="fotpleie">Bestill time</button><span class="tx-price">50 min · 790 kr</span></div>
+          </div>
+        </div></div></div>
+      </article>
+
+      <article class="tx" id="tx-radgivning">
+        <button class="tx-head" aria-expanded="false">
+          <span class="tx-num">07</span>
+          <div class="tx-title"><h3>Rådgivning &amp; helseveiledning</h3><p>Samtaler som setter kroppen i system.</p></div>
+          <span class="tx-meta">45 min · 690 kr</span>
+          <span class="tx-plus" aria-hidden="true"></span>
+        </button>
+        <div class="tx-body"><div class="tx-inner"><div class="tx-cols">
+          <div>
+            <p>En-til-en med fysioterapeut: kartlegging av plager, arbeidsstilling, søvn og belastning – med en konkret plan du faktisk kan følge. Ikke pekefingre, bare retning.</p>
+            <ul class="tx-for">
+              <li>Tilbakevendende plager uten klar årsak</li>
+              <li>Ergonomi og hverdagsvaner</li>
+              <li>Opptrening etter skade</li>
+            </ul>
+            <div class="tx-acts"><button class="btn btn-primary btn-sm" data-book data-treatment="radgivning">Bestill time</button><span class="tx-price">45 min · 690 kr</span></div>
+          </div>
+        </div></div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- INTERLUDE -->
+<section class="interlude" aria-label="Sitat">
+  <div class="plx"><img src="images/image-04.jpg" alt="" loading="lazy"></div>
+  <blockquote data-rv>
+    <p>«Det er ikke luksus å ta vare på kroppen sin. Det er vedlikehold.»</p>
+    <cite>Henrik Dahl · fysioterapeut</cite>
+  </blockquote>
+</section>
+
+<!-- BEHANDLERE -->
+<section class="team" id="behandlere">
+  <div class="container">
+    <div class="sec-head">
+      <div data-rv>
+        <p class="kicker"><span class="idx">( 04 )</span> Behandlere</p>
+        <h2 class="h2" style="margin-top:18px">Hendene bak <span class="it">resultatene.</span></h2>
+      </div>
+      <p class="lead" data-rv>Fire faste behandlere, én felles standard: grundig kartlegging før første grep, og ærlighet om hva vi kan – og ikke kan – hjelpe deg med.</p>
+    </div>
+    <div class="team-grid">
+      <article class="th" data-rv>
+        <div class="th-photo"><img src="images/image-05.jpg" alt="Portrett av Ingrid Solheim" loading="lazy"><span class="th-tag">Massasjeterapeut</span></div>
+        <h3>Ingrid Solheim</h3>
+        <p class="role">Massasjeterapeut · 14 års erfaring</p>
+        <p class="bio">Ingrid er klinikkens ankerpunkt for kroniske nakke- og skulderplager. Rolig, metodisk og nådeløst god til å finne knuten du har båret på siden 2019.</p>
+        <p class="quote">«De fleste skuldre senker seg når de endelig blir tatt på alvor.»</p>
+        <div class="tags"><span>Triggerpunkt</span><span>Nakke &amp; skuldre</span><span>Klassisk massasje</span></div>
+        <div class="th-act"><button class="btn btn-ghost btn-sm" data-book data-therapist="ingrid">Bestill hos Ingrid</button></div>
+      </article>
+      <article class="th" data-rv>
+        <div class="th-photo"><img src="images/image-06.jpg" alt="Portrett av Jonas Berg" loading="lazy"><span class="th-tag">Idrettsmassør</span></div>
+        <h3>Jonas Berg</h3>
+        <p class="role">Idrettsmassør · tidl. langrennsløper</p>
+        <p class="bio">Jonas vet hva hard trening gjør med en kropp, og hva som skal til for at den henter seg igjen. Høyt tempo, dype grep og ærlige råd om restitusjon.</p>
+        <p class="quote">«Restitusjon er ikke en belønning. Det er halve treningen.»</p>
+        <div class="tags"><span>Idrettsmassasje</span><span>Restitusjon</span><span>Belastningsskader</span></div>
+        <div class="th-act"><button class="btn btn-ghost btn-sm" data-book data-therapist="jonas">Bestill hos Jonas</button></div>
+      </article>
+      <article class="th" data-rv>
+        <div class="th-photo"><img src="images/image-07.jpg" alt="Portrett av Anne-Lise Vik" loading="lazy"><span class="th-tag">Fotterapeut</span></div>
+        <h3>Anne-Lise Vik</h3>
+        <p class="role">Autorisert fotterapeut · 22 års erfaring</p>
+        <p class="bio">Anne-Lise har sett det meste en fot kan utsettes for, og fikser det med ro og presisjon. Spesialkompetanse på diabetesføtter og hælsmerter.</p>
+        <p class="quote">«Føttene forteller mer om helsa di enn du tror.»</p>
+        <div class="tags"><span>Klinisk fotterapi</span><span>Diabetesføtter</span><span>Hælsmerter</span></div>
+        <div class="th-act"><button class="btn btn-ghost btn-sm" data-book data-therapist="annelise">Bestill hos Anne-Lise</button></div>
+      </article>
+      <article class="th" data-rv>
+        <div class="th-photo"><img src="images/image-08.jpg" alt="Portrett av Henrik Dahl" loading="lazy"><span class="th-tag">Fysioterapeut</span></div>
+        <h3>Henrik Dahl</h3>
+        <p class="role">Fysioterapeut &amp; helseveileder</p>
+        <p class="bio">Henrik setter plagene dine i system: arbeidsstilling, søvn, belastning og vaner. Du går hjem med en plan – ikke en bekymring.</p>
+        <p class="quote">«Små justeringer i hverdagen slår dyre behandlinger over tid.»</p>
+        <div class="tags"><span>Rådgivning</span><span>Arbeidsrelaterte plager</span><span>Opptrening</span></div>
+        <div class="th-act"><button class="btn btn-ghost btn-sm" data-book data-therapist="henrik">Bestill hos Henrik</button></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- OMTALER -->
+<section class="quotes on-dark" id="omtaler">
+  <div class="container">
+    <p class="kicker" data-rv><span class="idx">( 05 )</span> Fra gjesteboka</p>
+    <div class="q-sum" data-rv style="margin-top:20px">
+      <b>4,9</b><span class="stars" aria-label="4,9 av 5 stjerner">★★★★★</span><span class="txt">basert på 214 anmeldelser på Google</span>
+    </div>
+    <div class="q-clip" data-rv>
+      <div class="q-track" id="qTrack">
+        <div class="q-slide"><p>«Jeg har gått til Ingrid i tre år. Nakken min har aldri vært bedre – og jeg har prøvd det meste.»</p><footer><span class="q-ava">ML</span><div><b>Marte L.</b><span>Arkitekt · fast kunde</span></div></footer></div>
+        <div class="q-slide"><p>«Fra støl maratonløper til å gå ned trappen igjen etter to økter med Jonas. Mannen vet hva han driver med.»</p><footer><span class="q-ava">KA</span><div><b>Kristoffer A.</b><span>Løper · Oslo</span></div></footer></div>
+        <div class="q-slide"><p>«Rolig, grundig og helt uten spa-klisjeer. Dette er stedet som tar faget sitt på alvor.»</p><footer><span class="q-ava">ST</span><div><b>Simen T.</b><span>Konsulent · Frogner</span></div></footer></div>
+        <div class="q-slide"><p>«Anne-Lise fikk føttene mine klare til sommeren. Klinisk, grundig og overraskende hyggelig.»</p><footer><span class="q-ava">BH</span><div><b>Berit H.</b><span>Pensjonist · Skøyen</span></div></footer></div>
+        <div class="q-slide"><p>«Booket fotpleie på impuls – nå har jeg time hver måned. Det sier vel alt.»</p><footer><span class="q-ava">NE</span><div><b>Nora E.</b><span>Sykepleier · Oslo</span></div></footer></div>
+      </div>
+    </div>
+    <div class="q-nav" data-rv>
+      <button class="q-btn" id="qPrev" aria-label="Forrige anmeldelse">←</button>
+      <button class="q-btn" id="qNext" aria-label="Neste anmeldelse">→</button>
+      <div class="q-dots" id="qDots" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="container">
+    <div class="band on-dark" data-rv>
+      <div>
+        <h2 class="h2">Klar for en time som <span class="it">faktisk merkes?</span></h2>
+        <p class="lead" style="margin-top:16px">Bestill online på under minuttet, eller ring oss – vi svarer i åpningstiden.</p>
+      </div>
+      <div class="band-acts">
+        <button class="btn btn-light" data-book>Bestill time <span class="ar">→</span></button>
+        <a class="btn btn-ghost" style="border-color:var(--line-l);color:var(--paper-txt)" href="#kontakt">Kontakt klinikken</a>
+        <a class="tel" href="tel:+4722834600">+47 22 83 46 00</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT / INFO -->
+<section class="info" id="kontakt">
+  <div class="container">
+    <div class="sec-head">
+      <div data-rv>
+        <p class="kicker"><span class="idx">( 06 )</span> Praktisk</p>
+        <h2 class="h2" style="margin-top:18px">Finn fram, <span class="it">fall til ro.</span></h2>
+      </div>
+      <p class="lead" data-rv>To minutter fra Skøyen stasjon, heis til tredje etasje og ro rett innenfor døra.</p>
+    </div>
+    <div class="info-grid">
+      <div class="panel" data-rv>
+        <h3>Åpningstider</h3>
+        <div id="hoursTable">
+          <div class="hrow" data-day="1"><span>Mandag</span><span>09–17</span></div>
+          <div class="hrow" data-day="2"><span>Tirsdag</span><span>09–19</span></div>
+          <div class="hrow" data-day="3"><span>Onsdag</span><span>09–17</span></div>
+          <div class="hrow" data-day="4"><span>Torsdag</span><span>09–19</span></div>
+          <div class="hrow" data-day="5"><span>Fredag</span><span>09–16</span></div>
+          <div class="hrow" data-day="6"><span>Lørdag</span><span>10–15</span></div>
+          <div class="hrow" data-day="0"><span>Søndag</span><span class="closed">Stengt</span></div>
+        </div>
+      </div>
+      <div class="panel" data-rv>
+        <h3>Kontakt</h3>
+        <div class="c-row"><b>Besøk</b><span>Skovveien 8, 3. etg · 0257 Oslo</span></div>
+        <div class="c-row"><b>Telefon</b><a href="tel:+4722834600">+47 22 83 46 00</a></div>
+        <div class="c-row"><b>E-post</b><a href="mailto:hei@velvaereklinikken.no">hei@velvaereklinikken.no</a></div>
+        <div class="c-row"><b>Framme</b><span>Trikk 13 til Skøyen · P-hus i nabobygget</span></div>
+        <div style="margin-top:20px"><button class="btn btn-primary btn-sm" data-book>Bestill time <span class="ar">→</span></button></div>
+      </div>
+      <div class="map-box" data-rv aria-label="Kart over Skovveien 8, Oslo">
+        <svg viewBox="0 0 600 380" role="img">
+          <rect width="600" height="380" fill="#E8E5D9"/>
+          <g stroke="#FBFAF5" stroke-width="14" stroke-linecap="round">
+            <path d="M-20 300 L620 120"/>
+            <path d="M140 -20 L240 400"/>
+            <path d="M-20 90 L620 40"/>
+            <path d="M420 -20 L520 400"/>
+          </g>
+          <g stroke="#FBFAF5" stroke-width="6">
+            <path d="M-20 200 L620 90"/>
+            <path d="M320 -20 L400 400"/>
+          </g>
+          <g fill="#DCD8C8">
+            <rect x="60" y="130" width="70" height="52" rx="6"/>
+            <rect x="270" y="60" width="60" height="44" rx="6"/>
+            <rect x="450" y="180" width="80" height="60" rx="6"/>
+            <rect x="80" y="320" width="90" height="46" rx="6"/>
+          </g>
+          <circle cx="330" cy="196" r="34" fill="#C06B3C" opacity=".18"/>
+          <circle cx="330" cy="196" r="10" fill="#9A4E25"/>
+          <circle cx="330" cy="196" r="3.5" fill="#F4F2EB"/>
+          <g font-family="Schibsted Grotesk, sans-serif">
+            <rect x="252" y="226" width="156" height="34" rx="17" fill="#122419"/>
+            <text x="330" y="248" fill="#F2EFE6" font-size="14" font-weight="700" text-anchor="middle">Velværeklinikken</text>
+          </g>
+          <text x="36" y="356" fill="#51604F" font-size="12" font-weight="600" font-family="Schibsted Grotesk, sans-serif">Skovveien 8 · Skøyen, Oslo</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="sec-head">
+      <div data-rv>
+        <p class="kicker"><span class="idx">( 07 )</span> Spørsmål</p>
+        <h2 class="h2" style="margin-top:18px">Lurt å vite <span class="it">før første besøk.</span></h2>
+      </div>
+    </div>
+    <div class="faq-list" data-rv>
+      <div class="fq"><button class="fq-head" aria-expanded="false">Trenger jeg henvisning for å bestille?<span class="tx-plus" aria-hidden="true"></span></button><div class="fq-body"><div><p>Nei. Du booker direkte online eller på telefon. Har du pågående sykdom eller akutte smerter, anbefaler vi likevel at du først rådfører deg med lege.</p></div></div></div>
+      <div class="fq"><button class="fq-head" aria-expanded="false">Hva gjelder ved avbestilling?<span class="tx-plus" aria-hidden="true"></span></button><div class="fq-body"><div><p>Time kan flyttes eller avbestilles kostnadsfritt inntil 24 timer før. Ved senere avbestilling eller uteblivelse faktureres 50 % av behandlingens pris.</p></div></div></div>
+      <div class="fq"><button class="fq-head" aria-expanded="false">Dekker forsikringen behandlingen?<span class="tx-plus" aria-hidden="true"></span></button><div class="fq-body"><div><p>Mange private helseforsikringer dekker massasje og fotterapi hos godkjente behandlere. Vi er registret hos de største forsikringsselskapene – sjekk vilkårene dine, så ordner vi dokumentasjonen.</p></div></div></div>
+      <div class="fq"><button class="fq-head" aria-expanded="false">Kan jeg komme gravid?<span class="tx-plus" aria-hidden="true"></span></button><div class="fq-body"><div><p>Ja. Vi tilpasser stilling, trykk og varighet etter trimester og behov. Fra andre trimester anbefaler vi sidestilling med puter – trygt og behagelig.</p></div></div></div>
+      <div class="fq"><button class="fq-head" aria-expanded="false">Har dere gavekort?<span class="tx-plus" aria-hidden="true"></span></button><div class="fq-body"><div><p>Ja – digitale gavekort med valgfritt beløp får du på e-post i løpet av minutter, eller fysisk i resepsjonen. Gyldig i 12 måneder.</p></div></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site on-dark">
+  <div class="container">
+    <p class="f-word">Velvære<em>klinikken</em></p>
+    <div class="f-grid">
+      <div>
+        <h4>Velkommen</h4>
+        <p>Et behandlingshus for massasje, fotterapi og rådgivning – i Skovveien 8 siden 2014. Rolig faglighet, ærlige anbefalinger.</p>
+      </div>
+      <div>
+        <h4>Besøk oss</h4>
+        <p>Skovveien 8, 3. etg<br>0257 Oslo<br><a href="tel:+4722834600">+47 22 83 46 00</a><a href="mailto:hei@velvaereklinikken.no">hei@velvaereklinikken.no</a></p>
+      </div>
+      <div>
+        <h4>Snarveier</h4>
+        <a href="#veiviser">Finn riktig behandling</a>
+        <a href="#behandlinger">Se behandlinger</a>
+        <a href="#behandlere">Møt behandlerne</a>
+        <a href="#kontakt">Åpningstider &amp; kontakt</a>
+      </div>
+      <div>
+        <h4>Åpningstider</h4>
+        <p>Man–fre 09–17 (ti/to til 19)<br>Lørdag 10–15<br>Søndag stengt</p>
+      </div>
+    </div>
+    <div class="f-bot">
+      <span>© <span id="year">2026</span> Velværeklinikken AS · Org.nr 923 456 789</span>
+      <span>Demoprosjekt for porteføljebruk – alle data er fiktive.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BOOKING -->
+<div id="bk" role="dialog" aria-modal="true" aria-label="Bestill time">
+  <div class="bk-back" data-bkclose></div>
+  <div class="bk-panel">
+    <div class="bk-head">
+      <span class="t">Bestill time</span>
+      <div class="bk-prog" id="bkProg"><span data-s="1">Behandling</span><span data-s="2">Behandler</span><span data-s="3">Tidspunkt</span><span data-s="4">Bekreft</span></div>
+      <button id="bkClose" aria-label="Lukk booking">✕</button>
+    </div>
+    <div class="bk-body" id="bkBody"></div>
+    <div class="bk-foot">
+      <span class="sum" id="bkSum">Velg behandling for å starte</span>
+      <button class="btn btn-ghost btn-sm" id="bkBack" style="display:none">← Tilbake</button>
+      <button class="btn btn-primary btn-sm" id="bkNext" disabled>Videre →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ---------- data ---------- */
+var TREATMENTS=[
+ {id:"klassisk",name:"Klassisk massasje",durs:[[60,890],[90,1240]]},
+ {id:"muskel",name:"Muskelspenninger & triggerpunkt",durs:[[60,990]]},
+ {id:"idrett",name:"Idrettsmassasje",durs:[[60,940]]},
+ {id:"nakke",name:"Nakke & skuldre",durs:[[30,540]]},
+ {id:"fotterapi",name:"Fotterapi",durs:[[60,950]]},
+ {id:"fotpleie",name:"Fotpleie",durs:[[50,790]]},
+ {id:"radgivning",name:"Rådgivning & helseveiledning",durs:[[45,690]]}
+];
+var THERAPISTS=[
+ {id:"ingrid",name:"Ingrid Solheim",role:"Massasjeterapeut",treats:["klassisk","muskel","nakke"]},
+ {id:"jonas",name:"Jonas Berg",role:"Idrettsmassør",treats:["idrett","klassisk","muskel"]},
+ {id:"annelise",name:"Anne-Lise Vik",role:"Fotterapeut",treats:["fotterapi","fotpleie"]},
+ {id:"henrik",name:"Henrik Dahl",role:"Fysioterapeut",treats:["radgivning","muskel","klassisk"]}
+];
+var THIMG={ingrid:"images/image-05.jpg",jonas:"images/image-06.jpg",annelise:"images/image-07.jpg",henrik:"images/image-08.jpg"};
+var HOURS=[null,[9,17],[9,19],[9,17],[9,19],[9,16],[10,15]];
+var DAYS_S=["søn","man","tir","ons","tor","fre","lør"];
+var MONTHS=["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des"];
+function T(id){for(var i=0;i<TREATMENTS.length;i++)if(TREATMENTS[i].id===id)return TREATMENTS[i];return TREATMENTS[0];}
+function TH(id){for(var i=0;i<THERAPISTS.length;i++)if(THERAPISTS[i].id===id)return THERAPISTS[i];return null;}
+function kr(n){return n.toLocaleString("nb-NO")+" kr";}
+/* ---------- hjelpere ---------- */
+function $(s,c){return (c||document).querySelector(s);}
+function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));}
+function dkey(d){return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();}
+function hash(s){var h=1779033703;for(var i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),3432918353);h=h<<13|h>>>19;}return h>>>0;}
+function rnd(seed){var a=hash(seed);return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* ---------- åpningstid / ledige timer ---------- */
+function slotList(date){
+  var h=HOURS[date.getDay()];if(!h)return[];
+  var out=[],m=h[0]*60,end=h[1]*60-60;
+  while(m<=end){out.push(m);m+=45;}
+  return out;
+}
+function mins2t(m){var h=Math.floor(m/60),mm=m%60;return (h<10?"0":"")+h+":"+(mm<10?"0":"")+mm;}
+function isBusy(dk,thId,slot){return rnd(dk+"|"+thId+"|"+slot)()<0.42;}
+function poolFor(trId,thId){
+  if(thId&&thId!=="any")return [TH(thId)];
+  return THERAPISTS.filter(function(t){return t.treats.indexOf(trId)>-1;});
+}
+function slotFree(dk,trId,thId,slot){
+  var pool=poolFor(trId,thId);
+  return pool.some(function(t){return !isBusy(dk,t.id,slot);});
+}
+function nextDays(n){
+  var out=[],d=new Date();
+  for(var i=0;i<21&&out.length<n;i++){
+    var dd=new Date(d.getFullYear(),d.getMonth(),d.getDate()+i);
+    if(HOURS[dd.getDay()])out.push(dd);
+  }
+  return out;
+}
+function fmtDay(d){return DAYS_S[d.getDay()]+" "+d.getDate()+". "+MONTHS[d.getMonth()];}
+function nextAvailable(){
+  var days=nextDays(10);
+  for(var i=0;i<days.length;i++){
+    var slots=slotList(days[i]);
+    for(var j=0;j<slots.length;j++){
+      var now=new Date();
+      if(i===0&&slots[j]<=now.getHours()*60+now.getMinutes()+30)continue;
+      if(slotFree(dkey(days[i]),"klassisk","any",slots[j])){
+        var lbl;
+        if(i===0)lbl="i dag kl. "+mins2t(slots[j]);
+        else if(i===1)lbl="i morgen kl. "+mins2t(slots[j]);
+        else lbl=fmtDay(days[i])+" kl. "+mins2t(slots[j]);
+        return lbl;
+      }
+    }
+  }
+  return "ta kontakt";
+}
+function openStatus(){
+  var now=new Date(),d=now.getDay(),h=HOURS[d],m=now.getHours()*60+now.getMinutes();
+  if(h&&m>=h[0]*60&&m<h[1]*60)return{open:true,txt:"Åpent nå · til "+(h[1]<10?"0":"")+h[1]+":00"};
+  for(var i=0;i<8;i++){
+    var dd=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i),hh=HOURS[dd.getDay()];
+    if(!hh)continue;
+    if(i===0&&m>=hh[1]*60)continue;
+    if(i===0&&m<hh[0]*60)return{open:false,txt:"Stengt · åpner i dag "+(hh[0]<10?"0":"")+hh[0]+":00"};
+    if(i>0)return{open:false,txt:"Stengt · åpner "+(i===1?"i morgen":DAYS_S[dd.getDay()])+" "+(hh[0]<10?"0":"")+hh[0]+":00"};
+  }
+  return{open:false,txt:"Stengt"};
+}
+/* ---------- header / meny ---------- */
+var hdr=$("#hdr");
+addEventListener("scroll",function(){hdr.classList.toggle("scrolled",scrollY>14);},{passive:true});
+var menuBtn=$("#menuBtn");
+menuBtn.addEventListener("click",function(){
+  var open=document.body.classList.toggle("menu-open");
+  menuBtn.setAttribute("aria-expanded",open);
+  $("#mobileMenu").setAttribute("aria-hidden",!open);
+});
+$$("#mobileMenu a").forEach(function(a){a.addEventListener("click",function(){document.body.classList.remove("menu-open");menuBtn.setAttribute("aria-expanded","false");});});
+/* ---------- reveal ---------- */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+$$("[data-rv]").forEach(function(el){io.observe(el);});
+/* ---------- tellere ---------- */
+var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  var el=e.target,target=parseFloat(el.getAttribute("data-count")),dec=parseInt(el.getAttribute("data-dec")||"0",10),t0=null;
+  function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1400);p=1-Math.pow(1-p,3);
+    var v=target*p;
+    el.textContent=dec?v.toFixed(dec).replace(".",","):Math.round(v).toLocaleString("nb-NO");
+    if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+});},{threshold:.5});
+$$("[data-count]").forEach(function(el){cio.observe(el);});
+/* ---------- status + neste time ---------- */
+var st=openStatus();
+$("#statusChip").innerHTML='<span class="dot'+(st.open?" live":"")+'"></span>'+st.txt;
+$("#nextFree").textContent=nextAvailable();
+var todayRow=$('#hoursTable .hrow[data-day="'+new Date().getDay()+'"]');if(todayRow)todayRow.classList.add("today");
+/* ---------- parallaxe ---------- */
+var plx=$(".plx");
+if(plx&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
+  var ticking=false;
+  addEventListener("scroll",function(){
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(function(){
+      var r=plx.parentElement.getBoundingClientRect();
+      var off=(r.top+r.height/2-innerHeight/2)*-0.12;
+      plx.style.transform="translateY("+off+"px)";
+      ticking=false;
+    });
+  },{passive:true});
+}
+/* ---------- accordions ---------- */
+function accordion(rootSel,headSel,itemSel){
+  var root=$(rootSel);if(!root)return;
+  $$(headSel,root).forEach(function(head){
+    head.addEventListener("click",function(){
+      var item=head.closest(itemSel),open=item.classList.contains("open");
+      $$(itemSel,root).forEach(function(i){i.classList.remove("open");var b=$(headSel,i);if(b)b.setAttribute("aria-expanded","false");});
+      if(!open){item.classList.add("open");head.setAttribute("aria-expanded","true");}
+    });
+  });
+}
+accordion("#txList",".tx-head",".tx");
+accordion(".faq-list",".fq-head",".fq");
+/* åpne første behandling som demo */
+var firstTx=$("#tx-klassisk .tx-head");if(firstTx)firstTx.click();
+/* ---------- omtaler-karusell ---------- */
+(function(){
+  var track=$("#qTrack"),slides=$$(".q-slide",track),i=0,timer=null;
+  var dots=$("#qDots");
+  slides.forEach(function(_,k){var d=document.createElement("i");if(k===0)d.className="on";dots.appendChild(d);});
+  function go(n){i=(n+slides.length)%slides.length;track.style.transform="translateX(-"+(i*100)+"%)";
+    $$("i",dots).forEach(function(d,k){d.classList.toggle("on",k===i);});}
+  function auto(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;clearInterval(timer);timer=setInterval(function(){go(i+1);},7000);}
+  $("#qPrev").addEventListener("click",function(){go(i-1);auto();});
+  $("#qNext").addEventListener("click",function(){go(i+1);auto();});
+  var sx=null;
+  track.parentElement.addEventListener("touchstart",function(e){sx=e.touches[0].clientX;},{passive:true});
+  track.parentElement.addEventListener("touchend",function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(dx>44)go(i-1);else if(dx<-44)go(i+1);sx=null;auto();},{passive:true});
+  track.parentElement.addEventListener("mouseenter",function(){clearInterval(timer);});
+  track.parentElement.addEventListener("mouseleave",auto);
+  auto();
+})();
+/* ---------- veiviser ---------- */
+var CONCERNS=[
+ {id:"nakke",t:"Stiv nakke og skuldre",icon:'<circle cx="12" cy="7" r="3"/><path d="M5 20c1-4 3.5-6 7-6s6 2 7 6"/>'},
+ {id:"rygg",t:"Ryggplager",icon:'<path d="M12 3v18"/><path d="M9 7h6M9 11h6M9 15h6M9 19h6"/>'},
+ {id:"restitusjon",t:"Restitusjon etter trening",icon:'<path d="M3 12h4l2-5 4 10 2-5h6"/>'},
+ {id:"fotter",t:"Slitne føtter",icon:'<path d="M10 3c2 0 3 1.8 3 4v6c2 1 5 1.8 5 4s-2 3-5 3H8.5C6.5 20 5 18.6 5 16.6 5 13.6 7 12.8 7 10V7c0-2.2 1-4 3-4z"/>'},
+ {id:"stress",t:"Stress og uro",icon:'<path d="M4 9c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 6 2"/><path d="M4 15c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 6 2"/>'},
+ {id:"velvare",t:"Generell velvære",icon:'<circle cx="12" cy="12" r="3.5"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>'}
+];
+var REASONS={
+ nakke:{muskel:"Dyp, presis jobb med triggerpunkter i nakke og skulderblader – der stivheten sitter.",klassisk:"Rolig helkroppsmassasje som senker spenningen i hele skulderpartiet.",nakke:"30 minutter med fullt fokus på nakke, skuldre og øvre rygg."},
+ rygg:{muskel:"Dypvevsgrep som løsner stramme bånd langs rygg og sete.",klassisk:"Gjennomarbeidet helkropp som gir ryggen rom til å bevege seg fritt.",radgivning:"Kartlegging av hva som egentlig belaster ryggen din – med en plan framover."},
+ restitusjon:{idrett:"Høyere tempo og dypere trykk som setter fart på sirkulasjon og restitusjon.",klassisk:"Roligere variant for deg som trenger nedtur, ikke oppkjøring."},
+ fotter:{fotterapi:"Klinisk blikk på det som virkelig plager føttene – negler, hud og heler.",fotpleie:"Myk, velgjørende pleie med massasje av fot og legg."},
+ stress:{klassisk:"En time uten skjerm, lyd og mas – kroppen husker hvordan ro kjennes.",radgivning:"En samtale som rydder i hva som tapper deg, og hva som gir energi."},
+ velvare:{klassisk:"Den klassiske grunnen: en time som gjør godt fra topp til tå.",fotpleie:"Lett og hyggelig inngang til klinikken – perfekt som første time.",radgivning:"Sjekk hvor skoen trykker, og få en plan som varer."}
+};
+var gState={step:1,concern:null,time:null,intensity:null};
+var gWrap=$("#gWrap");
+function gProg(){ $$(".g-prog span").forEach(function(s){var p=+s.getAttribute("data-p");s.classList.toggle("now",p===gState.step);s.classList.toggle("done",p<gState.step);}); }
+function gOptRow(step,opts,current,cb){
+  var html='<div class="g-step"><h3>'+(step===1?"Velg det som passer best nå":step===2?"Hvor mye tid har du?":"Hvilket trykk foretrekker du?")+"</h3><div class='g-opts'>";
+  opts.forEach(function(o){html+="<button class='g-opt"+(current===o.id?" sel":"")+"' data-id='"+o.id+"'>"+(o.icon?"<svg viewBox='0 0 24 24' fill='none' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'>"+o.icon+"</svg>":"")+"<b>"+o.t+"</b></button>";});
+  html+="</div>";
+  if(step>1)html+="<button class='g-back' data-back>← Forrige spørsmål</button>";
+  html+="</div>";
+  gWrap.innerHTML=html;
+  $$(".g-opt",gWrap).forEach(function(b){b.addEventListener("click",function(){
+    $$(".g-opt",gWrap).forEach(function(x){x.classList.remove("sel");});b.classList.add("sel");
+    setTimeout(function(){cb(b.getAttribute("data-id"));},260);
+  });});
+  var bk=$("[data-back]",gWrap);if(bk)bk.addEventListener("click",function(){gState.step--;gRender();});
+}
+function gResults(){
+  var c=gState.concern,t=gState.time,it=gState.intensity;
+  var recs=Object.keys(REASONS[c]);
+  var scored=recs.map(function(id){
+    var s=recs.indexOf(id)*-1+10;
+    var tr=T(id),minD=tr.durs[0][0];
+    if(t==="kort")s+=minD<=30?3:minD<=50?2:0;
+    if(t==="lang")s+=tr.durs.some(function(d){return d[0]>=90;})?2:0;
+    if(it==="dyp")s+=(id==="muskel"||id==="idrett")?3:0;
+    if(it==="mild")s+=(id==="klassisk"||id==="fotpleie")?2:(id==="fotterapi"?1:0);
+    return{id:id,s:s};
+  }).sort(function(a,b){return b.s-a.s;}).slice(0,3);
+  var html="<div class='g-res'><div class='g-res-head'><h3 style='font-size:clamp(1.25rem,2.2vw,1.7rem)'>Dine anbefalinger</h3><button class='g-back' id='gRestart' style='margin-top:0'>Start på nytt ↺</button></div>";
+  scored.forEach(function(r,k){
+    var tr=T(r.id),dur=tr.durs[0];
+    if(t==="lang"&&tr.durs.length>1)dur=tr.durs[tr.durs.length-1];
+    if(t==="kort")dur=tr.durs[0];
+    html+="<div class='g-card"+(k===0?" top":"")+"'><div class='row1'><h4>"+tr.name+"</h4><span class='meta'>"+dur[0]+" min · "+kr(dur[1])+"</span></div><p>"+REASONS[c][r.id]+"</p><div class='acts'><button class='btn btn-primary btn-sm' data-book data-treatment='"+r.id+"' data-dur='"+dur[0]+"'>Bestill denne</button><button class='link-more' data-goto-tx='"+r.id+"'>Les mer om behandlingen</button></div></div>";
+  });
+  html+="</div>";
+  gWrap.innerHTML=html;
+  $("#gRestart").addEventListener("click",function(){gState={step:1,concern:null,time:null,intensity:null};gRender();});
+  bindBookButtons(gWrap);
+  $$("[data-goto-tx]",gWrap).forEach(function(b){b.addEventListener("click",function(){
+    var id=b.getAttribute("data-goto-tx"),art=$("#tx-"+id);
+    if(art){if(!art.classList.contains("open"))$(".tx-head",art).click();art.scrollIntoView({behavior:"smooth",block:"center"});}
+  });});
+}
+function gRender(){
+  gProg();
+  if(gState.step===1)gOptRow(1,CONCERNS,gState.concern,function(id){gState.concern=id;gState.step=2;gRender();});
+  else if(gState.step===2)gOptRow(2,[{id:"kort",t:"30–50 minutter"},{id:"vanlig",t:"Ca. 60 minutter"},{id:"lang",t:"90 minutter eller mer"}],gState.time,function(id){gState.time=id;gState.step=3;gRender();});
+  else if(gState.step===3)gOptRow(3,[{id:"mild",t:"Mildt og rolig"},{id:"dyp",t:"Dytt skikkelig"},{id:"begge",t:"Spiller ingen rolle"}],gState.intensity,function(id){gState.intensity=id;gState.step=4;gProg();gResults();});
+  else gResults();
+}
+gRender();
+/* ---------- booking ---------- */
+var bk=$("#bk"),bkBody=$("#bkBody"),bkNext=$("#bkNext"),bkBack=$("#bkBack"),bkSum=$("#bkSum");
+var B={step:1,tr:null,dur:null,th:"any",date:null,slot:null,name:"",phone:"",done:false,lastFocus:null};
+function bkOpen(opts){
+  opts=opts||{};
+  B={step:1,tr:opts.treatment||null,dur:opts.dur||null,th:opts.therapist||"any",date:null,slot:null,name:"",phone:"",done:false,lastFocus:document.activeElement};
+  if(B.tr){var tr=T(B.tr);B.dur=B.dur||tr.durs[0][0];if(opts.therapist&&TH(opts.therapist)&&TH(opts.therapist).treats.indexOf(B.tr)<0)B.th="any";B.step=opts.therapist?2:2;}
+  bk.classList.add("open");document.body.style.overflow="hidden";
+  bkRender();$("#bkClose").focus();
+}
+function bkClose(){bk.classList.remove("open");document.body.style.overflow="";if(B.lastFocus)B.lastFocus.focus();}
+$("#bkClose").addEventListener("click",bkClose);
+$$("[data-bkclose]").forEach(function(el){el.addEventListener("click",bkClose);});
+addEventListener("keydown",function(e){if(e.key==="Escape"&&bk.classList.contains("open"))bkClose();});
+function bkSumTxt(){
+  var p=[];
+  if(B.tr)p.push(T(B.tr).name+(B.dur?" "+B.dur+" min":""));
+  if(B.step>2||B.th!=="any")p.push(B.th==="any"?"Første ledige":TH(B.th).name.split(" ")[0]);
+  if(B.date&&B.slot!==null)p.push(fmtDay(B.date)+" kl. "+mins2t(B.slot));
+  return p.length?p.join(" · "):"Velg behandling for å starte";
+}
+function bkFoot(){
+  bkSum.textContent=B.done?"":bkSumTxt();
+  bkBack.style.display=(B.step>1&&!B.done)?"":"none";
+  bkNext.style.display=B.done?"none":"";
+  var valid=false;
+  if(B.step===1)valid=!!(B.tr&&B.dur);
+  if(B.step===2)valid=!!B.tr;
+  if(B.step===3)valid=B.slot!==null;
+  if(B.step===4)valid=true;
+  bkNext.disabled=!valid;
+  bkNext.innerHTML=B.step===4?"Bekreft booking ✓":"Videre →";
+  $$("#bkProg span").forEach(function(s){var n=+s.getAttribute("data-s");s.classList.toggle("now",n===B.step);s.classList.toggle("done",n<B.step);});
+}
+function bkRender(){
+  var h="";
+  if(B.done){bkDone();bkFoot();return;}
+  if(B.step===1){
+    h+="<div class='bk-step'><h3>Velg behandling</h3><p class='sub'>Alle behandlinger inkluderer en kort kartlegging før vi starter.</p>";
+    TREATMENTS.forEach(function(tr){
+      var sel=B.tr===tr.id;
+      h+="<button class='bk-tr"+(sel?" sel":"")+"' data-tr='"+tr.id+"'><b>"+tr.name+"</b><span class='pr'>fra "+kr(tr.durs[0][1])+"</span><small>"+tr.durs.map(function(d){return d[0]+" min";}).join(" / ")+"</small></button>";
+      if(sel&&tr.durs.length>1){
+        h+="<div class='dur-row'>"+tr.durs.map(function(d){return "<button data-dur='"+d[0]+"' class='"+(B.dur===d[0]?"sel":"")+"'>"+d[0]+" min · "+kr(d[1])+"</button>";}).join("")+"</div>";
+      }
+    });
+    h+="</div>";
+  }else if(B.step===2){
+    var pool=poolFor(B.tr,null);
+    h+="<div class='bk-step'><h3>Velg behandler</h3><p class='sub'>For "+T(B.tr).name+". Usikker? Velg første ledige.</p>";
+    h+="<button class='th-row"+(B.th==="any"?" sel":"")+"' data-th='any'><span class='ini'>VK</span><div><b>Første ledige behandler</b><small>Størst fleksibilitet på tid</small></div></button>";
+    pool.forEach(function(t){
+      h+="<button class='th-row"+(B.th===t.id?" sel":"")+"' data-th='"+t.id+"'><img src='"+THIMG[t.id]+"' alt=''><div><b>"+t.name+"</b><small>"+t.role+"</small></div></button>";
+    });
+    h+="</div>";
+  }else if(B.step===3){
+    var days=nextDays(8);
+    if(!B.date||!days.some(function(d){return dkey(d)===dkey(B.date);}))B.date=days[0];
+    h+="<div class='bk-step'><h3>Velg tidspunkt</h3><p class='sub'>Grå tider er opptatt. Vi bekrefter per SMS innen én time i åpningstiden.</p>";
+    h+="<div class='day-row'>"+days.map(function(d){return "<button class='day-chip"+(dkey(d)===dkey(B.date)?" sel":"")+"' data-day='"+dkey(d)+"' data-dow='"+d.getDay()+"' data-dom='"+d.getDate()+"' data-mon='"+d.getMonth()+"'><small>"+DAYS_S[d.getDay()]+"</small><b>"+d.getDate()+". "+MONTHS[d.getMonth()]+"</b></button>";}).join("")+"</div>";
+    var slots=slotList(B.date);
+    var now=new Date(),isToday=dkey(B.date)===dkey(now);
+    h+="<div class='slot-grid'>"+slots.map(function(m){
+      var busy=!slotFree(dkey(B.date),B.tr,B.th,m)||(isToday&&m<=now.getHours()*60+now.getMinutes()+30);
+      return "<button class='slot"+(B.slot===m?" sel":"")+"' data-slot='"+m+"'"+(busy?" disabled":"")+">"+mins2t(m)+"</button>";
+    }).join("")+"</div>";
+    if(!slots.some(function(m){return slotFree(dkey(B.date),B.tr,B.th,m);}))h+="<p class='sub' style='margin-top:14px'>Ingen ledige timer denne dagen – prøv en annen dag.</p>";
+    h+="</div>";
+  }else if(B.step===4){
+    var thName=B.th==="any"?"Første ledige behandler":TH(B.th).name;
+    var price=0;T(B.tr).durs.forEach(function(d){if(d[0]===B.dur)price=d[1];});
+    h+="<div class='bk-step'><h3>Bekreft bookingen</h3><p class='sub'>Se over detaljene, så holder vi av timen.</p>";
+    h+="<div class='bk-sum'><div><span>Behandling</span><b>"+T(B.tr).name+"</b></div><div><span>Varighet</span><b>"+B.dur+" min</b></div><div><span>Behandler</span><b>"+thName+"</b></div><div><span>Tidspunkt</span><b>"+fmtDay(B.date)+" kl. "+mins2t(B.slot)+"</b></div><div><span>Pris</span><b>"+kr(price)+"</b></div></div>";
+    h+="<div class='f-field' id='fName'><label for='inName'>Navn</label><input id='inName' autocomplete='name' placeholder='Fornavn og etternavn' value='"+B.name.replace(/'/g,"")+"'><p class='f-err'>Skriv inn navnet ditt.</p></div>";
+    h+="<div class='f-field' id='fPhone'><label for='inPhone'>Mobilnummer</label><input id='inPhone' autocomplete='tel' inputmode='tel' placeholder='9xx xx xxx' value='"+B.phone.replace(/'/g,"")+"'><p class='f-err'>Skriv inn et gyldig mobilnummer.</p></div>";
+    h+="</div>";
+  }
+  bkBody.innerHTML=h;bkBody.scrollTop=0;
+  /* bind */
+  $$("[data-tr]",bkBody).forEach(function(b){b.addEventListener("click",function(){
+    B.tr=b.getAttribute("data-tr");var tr=T(B.tr);if(!B.dur||!tr.durs.some(function(d){return d[0]===B.dur;}))B.dur=tr.durs[0][0];
+    if(B.th!=="any"&&TH(B.th).treats.indexOf(B.tr)<0)B.th="any";
+    bkRender();});});
+  $$("[data-dur]",bkBody).forEach(function(b){b.addEventListener("click",function(){B.dur=+b.getAttribute("data-dur");bkRender();});});
+  $$("[data-th]",bkBody).forEach(function(b){b.addEventListener("click",function(){B.th=b.getAttribute("data-th");bkRender();});});
+  $$("[data-day]",bkBody).forEach(function(b){b.addEventListener("click",function(){
+    var p=b.getAttribute("data-day").split("-");B.date=new Date(+p[0],+p[1]-1,+p[2]);B.slot=null;bkRender();});});
+  $$("[data-slot]",bkBody).forEach(function(b){b.addEventListener("click",function(){B.slot=+b.getAttribute("data-slot");bkRender();});});
+  var inN=$("#inName"),inP=$("#inPhone");
+  if(inN)inN.addEventListener("input",function(){B.name=inN.value;});
+  if(inP)inP.addEventListener("input",function(){B.phone=inP.value;});
+  bkFoot();
+}
+function bkDone(){
+  var ref="VK-"+Math.random().toString(36).slice(2,6).toUpperCase();
+  bkBody.innerHTML="<div class='bk-step bk-done'><svg viewBox='0 0 80 80'><circle cx='40' cy='40' r='36'/><path d='M26 41l10 10 19-21'/></svg><h3>Takk, "+(B.name.split(" ")[0]||"du")+"!</h3><p style='margin-top:8px'><b>"+T(B.tr).name+"</b> · "+B.dur+" min<br>"+(B.th==="any"?"Første ledige behandler":TH(B.th).name)+"<br>"+fmtDay(B.date)+" kl. "+mins2t(B.slot)+"</p><p class='ref'>Referanse "+ref+"</p><p style='margin-top:10px'>Du får en bekreftelse på SMS og e-post. Time kan flyttes kostnadsfritt inntil 24 timer før.</p><p class='demo-note'>Dette er en demonstrasjon – ingen reell time er bestilt.</p><div style='margin-top:22px'><button class='btn btn-primary' id='bkDoneClose'>Ferdig</button></div></div>";
+  $("#bkDoneClose").addEventListener("click",bkClose);
+  bkSum.textContent="";
+}
+bkNext.addEventListener("click",function(){
+  if(B.step===4){
+    var okN=B.name.trim().length>=2,okP=B.phone.replace(/\D/g,"").length>=8;
+    $("#fName").classList.toggle("err",!okN);$("#fPhone").classList.toggle("err",!okP);
+    if(!okN||!okP)return;
+    B.done=true;bkRender();return;
+  }
+  B.step++;bkRender();
+});
+bkBack.addEventListener("click",function(){B.step--;bkRender();});
+function bindBookButtons(root){
+  $$("[data-book]",root||document).forEach(function(b){
+    if(b.__bound)return;b.__bound=true;
+    b.addEventListener("click",function(e){
+      e.preventDefault();
+      var opts={treatment:b.getAttribute("data-treatment")||null,therapist:b.getAttribute("data-therapist")||null};
+      var d=b.getAttribute("data-dur");if(d)opts.dur=+d;
+      document.body.classList.remove("menu-open");
+      bkOpen(opts);
+    });
+  });
+}
+bindBookButtons();
+/* årstall */
+$("#year").textContent=new Date().getFullYear();
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

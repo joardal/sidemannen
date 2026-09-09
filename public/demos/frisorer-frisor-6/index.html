@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#282b23">
+  <meta name="description" content="Studio Andersen er et fiktivt, moderne fris&oslash;rstudio p&aring; Gr&uuml;nerl&oslash;kka. Oppdag personlig klipp, farge og balayage, og pr&oslash;v v&aring;r bookingopplevelse.">
+  
+  <meta property="og:title" content="Studio Andersen | Godt h&aring;r. Helt deg.">
+  <meta property="og:description" content="Personlig h&aring;ndverk. Et friskt blikk. Din neste gode h&aring;rdag. En portef&oslash;ljedemo.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="nb_NO">
+  <meta property="og:image" content="images/photo-1438795.jpg">
+  <title>Studio Andersen | Godt h&aring;r. Helt deg.</title>
+  <link rel="icon" href="images/icon-01.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&amp;family=Manrope:wght@400..700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      --paper: #f4f1e9;
+      --paper-deep: #eae6dc;
+      --ink: #282b23;
+      --muted: #6d6e61;
+      --lime: #e3e9bc;
+      --line: rgba(40, 43, 35, .19);
+      --gutter: clamp(24px, 5.2vw, 88px);
+      --serif: 'Bodoni Moda', Georgia, serif;
+      --sans: 'Manrope', Arial, sans-serif;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 105px; scrollbar-gutter: stable; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; -webkit-font-smoothing: antialiased; }
+    body.modal-open { overflow: hidden; }
+    ::selection { background: var(--ink); color: var(--lime); }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    button { color: inherit; cursor: pointer; }
+    button, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+    button { border: 0; }
+    button:disabled { cursor: not-allowed; }
+    img { display: block; max-width: 100%; }
+    figure, blockquote, h1, h2, h3, p, dl, dd { margin: 0; }
+    h1, h2, h3 { font-weight: 400; }
+    ul, ol { margin: 0; padding: 0; list-style: none; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .skip-link { position: fixed; top: 12px; left: 12px; z-index: 150; transform: translateY(-150%); padding: 14px 22px; background: var(--lime); color: var(--ink); }
+    .skip-link:focus { transform: translateY(0); }
+    .icon { width: 22px; height: 22px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .section-pad { padding-left: var(--gutter); padding-right: var(--gutter); }
+    .eyebrow { font-size: 10px; font-weight: 600; line-height: 1.6; letter-spacing: .16em; text-transform: uppercase; }
+    .serif { font-family: var(--serif); font-weight: 400; letter-spacing: -.055em; }
+    .section-title { font-family: var(--serif); font-size: clamp(44px, 4.8vw, 72px); font-weight: 400; line-height: 1.08; letter-spacing: -.055em; }
+    .section-title em { font-weight: 400; }
+    .body-copy { color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .text-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; padding: 10px 0; border-bottom: 1px solid currentColor; background: transparent; font-size: 12px; font-weight: 550; line-height: 1.5; }
+    .text-link .icon { width: 18px; height: 18px; transition: transform .35s var(--ease); }
+    .text-link:hover .icon { transform: translate(3px, -3px); }
+    .button { position: relative; display: inline-flex; justify-content: space-between; align-items: center; gap: 38px; min-height: 56px; padding: 17px 24px; border: 1px solid transparent; border-radius: 0; background: var(--ink); color: var(--paper); font-size: 12px; font-weight: 600; line-height: 1.5; transition: background .3s, color .3s, border-color .3s; }
+    .button .icon { width: 19px; height: 19px; transition: transform .4s var(--ease); }
+    .button:hover { background: #434a37; }
+    .button:hover .icon { transform: translate(3px, -3px); }
+    .button-lime { background: var(--lime); color: var(--ink); }
+    .button-lime:hover { background: var(--paper); color: var(--ink); }
+    .button:disabled { background: #dedfd5; color: #77796e; }
+    .circle-button { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; flex-shrink: 0; padding: 0; background: transparent; border: 1px solid var(--line); border-radius: 50%; transition: background .3s, color .3s, border-color .3s; }
+    .circle-button:hover { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+    .circle-button:disabled { opacity: .3; background: transparent; color: inherit; }
+    .will-reveal { opacity: 0; transform: translateY(32px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+    .will-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* The header stays quiet so the photograph and wordmark lead. */
+    .site-header { position: fixed; inset: 0 0 auto; z-index: 40; color: var(--paper); transition: color .35s, background .35s; }
+    .header-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 98px; margin: 0 var(--gutter); border-bottom: 1px solid rgba(244,241,233,.28); transition: min-height .35s, border-color .35s; }
+    .brand { display: inline-flex; flex-direction: column; align-items: flex-start; width: fit-content; }
+    .brand-small { padding-left: 2px; font-size: 8px; line-height: 1.6; letter-spacing: .3em; text-transform: uppercase; }
+    .brand-name { font-family: var(--serif); font-size: 29px; line-height: 1.1; letter-spacing: -.055em; }
+    .desktop-nav { display: flex; align-items: center; gap: 32px; }
+    .desktop-nav a { position: relative; padding: 12px 0; font-size: 11px; font-weight: 500; }
+    .desktop-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 5px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+    .desktop-nav a:hover::after, .desktop-nav a[aria-current="location"]::after { transform: scaleX(1); }
+    .header-actions { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
+    .header-book { min-height: 44px; padding: 12px 19px; gap: 28px; background: var(--paper); color: var(--ink); font-size: 11px; }
+    .header-book:hover { background: var(--lime); color: var(--ink); }
+    .header-book .icon { width: 16px; height: 16px; }
+    .menu-toggle { display: none; width: 42px; height: 44px; background: transparent; padding: 10px 6px; }
+    .menu-toggle span { display: block; height: 1px; margin: 6px 0; background: currentColor; }
+    .site-header.is-scrolled { color: var(--ink); background: var(--paper); }
+    .site-header.is-scrolled .header-inner { min-height: 78px; border-color: var(--line); }
+    .site-header.is-scrolled .header-book { background: var(--ink); color: var(--paper); }
+    .site-header.is-scrolled .header-book:hover { background: #434a37; }
+
+    .hero { position: relative; isolation: isolate; min-height: 760px; height: 100svh; max-height: 1100px; overflow: hidden; background: #51483d; color: var(--paper); }
+    .hero-media { position: absolute; z-index: -3; inset: -5% 0; transform: translate3d(0, var(--parallax, 0px), 0); }
+    .hero-image { width: 100%; height: 100%; object-fit: cover; object-position: 64% 45%; filter: saturate(.65) sepia(.12) brightness(.87); animation: photo-arrive 2.2s var(--ease) both; }
+    .hero::before { content: ''; position: absolute; z-index: -2; inset: 0; background: linear-gradient(90deg, rgba(25,26,22,.77) 0%, rgba(26,27,22,.50) 29%, rgba(26,27,22,.06) 72%), linear-gradient(180deg, rgba(25,26,22,.23), transparent 30%, rgba(25,26,22,.14)); }
+    .hero-content { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; height: 100%; padding-top: 162px; padding-bottom: 86px; }
+    .hero-title { font-family: var(--serif); font-size: clamp(110px, 11.8vw, 185px); font-weight: 400; line-height: .91; letter-spacing: -.068em; }
+    .hero-title span { display: block; }
+    .hero-title .title-line { overflow: hidden; padding: 0 .13em .11em 0; margin-bottom: -.11em; }
+    .hero-title .title-line > span { animation: type-arrive 1.35s var(--ease) both; }
+    .hero-title .title-line:last-child > span { animation-delay: .14s; }
+    .hero-title em { font-style: italic; font-weight: 400; }
+    .hero-tagline { margin-top: 35px; font-size: 20px; font-weight: 450; letter-spacing: -.03em; animation: content-arrive 1s .4s both; }
+    .hero-description { max-width: 320px; margin-top: 12px; color: rgba(244,241,233,.83); font-size: 12px; line-height: 1.85; animation: content-arrive 1s .5s both; }
+    .hero-ctas { display: flex; align-items: center; gap: 34px; margin-top: 30px; animation: content-arrive 1s .65s both; }
+    .hero-ctas .button { min-width: 183px; }
+    .hero-ctas .text-link { font-size: 11px; border-color: rgba(244,241,233,.55); }
+    .hero-ctas .text-link:hover .icon { transform: translateY(4px); }
+    @keyframes photo-arrive { from { transform: scale(1.075); } to { transform: scale(1); } }
+    @keyframes type-arrive { from { transform: translateY(110%); } to { transform: translateY(0); } }
+    @keyframes content-arrive { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+    .intro { display: grid; grid-template-columns: 1.6fr 1fr; gap: 10%; padding-top: 122px; padding-bottom: 122px; }
+    .intro .eyebrow { margin-bottom: 29px; }
+    .intro-title { font-family: var(--serif); font-size: clamp(48px, 5.05vw, 76px); line-height: 1.12; letter-spacing: -.052em; }
+    .intro-copy { align-self: end; max-width: 365px; padding-bottom: 4px; }
+    .intro-copy .text-link { margin-top: 22px; }
+    .intro-copy .body-copy { font-size: 14px; }
+
+    .treatments { padding-bottom: 112px; }
+    .section-rule { border-top: 1px solid var(--line); padding-top: 43px; }
+    .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 50px; }
+    .section-heading .eyebrow { margin-bottom: 24px; }
+    .section-heading > .body-copy { max-width: 300px; padding-bottom: 6px; }
+    .treatment-layout { display: grid; grid-template-columns: 43% 1fr; gap: 9%; align-items: start; margin-top: 61px; }
+    .treatment-visual { position: sticky; top: 108px; }
+    .treatment-photo { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #d5cec0; }
+    .treatment-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.045); filter: saturate(.75); transition: opacity .65s ease, transform 1s var(--ease); }
+    .treatment-photo img.is-active { opacity: 1; transform: scale(1); }
+    .treatment-caption { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-top: 16px; color: var(--muted); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    .treatment-caption span:last-child { font-family: var(--serif); font-size: 21px; font-style: italic; line-height: 1; letter-spacing: -.04em; text-transform: none; }
+    .service-list { border-top: 1px solid var(--line); }
+    .service { border-bottom: 1px solid var(--line); }
+    .service summary { display: grid; grid-template-columns: 25px 1fr auto 24px; align-items: center; gap: 14px; padding: 24px 0; cursor: pointer; list-style: none; }
+    .service summary::-webkit-details-marker { display: none; }
+    .service-number { align-self: center; color: var(--muted); font-size: 9px; }
+    .service-name { font-family: var(--serif); font-size: clamp(27px, 2.55vw, 39px); line-height: 1.15; letter-spacing: -.05em; transition: transform .35s var(--ease); }
+    .service summary:hover .service-name { transform: translateX(4px); }
+    .service-price { white-space: nowrap; font-size: 10px; }
+    .service summary .icon { width: 19px; height: 19px; margin-left: 5px; transition: transform .3s var(--ease); }
+    .service[open] summary .icon { transform: rotate(45deg); }
+    .service-content { padding: 0 35px 27px 39px; animation: content-arrive .4s var(--ease) both; }
+    .service-content p { font-size: 13px; line-height: 1.85; color: var(--muted); }
+    .service-content .service-duration { margin-top: 13px; font-size: 9px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+    .service-content .text-link { margin-top: 11px; font-size: 10px; }
+    .consultation-link { display: flex; align-items: center; justify-content: space-between; gap: 28px; width: 100%; padding: 24px 0 17px; text-align: left; background: transparent; }
+    .consultation-link span { font-size: 12px; line-height: 1.8; }
+    .consultation-link small { display: block; color: var(--muted); font-size: 10px; }
+    .consultation-link .icon { transition: transform .35s var(--ease); }
+    .consultation-link:hover .icon { transform: translate(3px,-3px); }
+    .price-note { margin-top: 19px; max-width: 450px; color: var(--muted); font-size: 10px; line-height: 1.85; }
+
+    .inspiration { padding-top: 97px; padding-bottom: 80px; overflow: hidden; background: var(--ink); color: var(--paper); }
+    .inspiration .section-heading { margin-bottom: 54px; }
+    .inspiration .eyebrow { color: #b6bea4; }
+    .gallery-intro { max-width: 268px; }
+    .gallery-intro .body-copy { color: #c2c3b6; font-size: 12px; }
+    .gallery-controls { display: flex; align-items: center; gap: 10px; margin-top: 25px; }
+    .inspiration .circle-button { border-color: rgba(244,241,233,.3); }
+    .inspiration .circle-button:hover:not(:disabled) { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+    .gallery-track { display: flex; align-items: flex-start; gap: 27px; overflow-x: auto; overscroll-behavior-x: contain; padding: 0 var(--gutter) 18px; scroll-snap-type: x mandatory; scroll-padding-left: var(--gutter); scrollbar-width: none; }
+    .gallery-track::-webkit-scrollbar { display: none; }
+    .look { flex: 0 0 36%; min-width: 0; scroll-snap-align: start; }
+    .look:nth-child(2) { flex-basis: 28%; margin-top: 80px; }
+    .look:nth-child(3) { flex-basis: 35%; }
+    .look:nth-child(4) { flex-basis: 29%; margin-top: 80px; }
+    .look-button { display: block; width: 100%; padding: 0; background: transparent; color: inherit; text-align: left; }
+    .look-image { display: block; height: clamp(360px, 41vw, 615px); overflow: hidden; background: #45463d; }
+    .look:nth-child(even) .look-image { height: clamp(310px, 34vw, 510px); }
+    .look-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.68); transition: transform 1s var(--ease), filter .8s; }
+    .look-button:hover img { transform: scale(1.045); filter: saturate(.95); }
+    .look-caption { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 18px; }
+    .look-name { font-family: var(--serif); font-size: 27px; letter-spacing: -.045em; }
+    .look-caption .icon { width: 20px; height: 20px; transition: transform .4s var(--ease); }
+    .look-button:hover .look-caption .icon { transform: translate(3px,-3px); }
+    .look-category { display: block; margin-top: 5px; color: #b6b9a8; font-size: 9px; line-height: 1.6; letter-spacing: .11em; text-transform: uppercase; }
+    .gallery-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 29px; color: #b6b9a8; }
+    .gallery-bottom p { font-size: 9px; letter-spacing: .04em; }
+    .gallery-position { display: flex; align-items: center; gap: 13px; font-size: 9px; }
+    .gallery-progress { width: 120px; height: 1px; background: #5e6253; }
+    .gallery-progress span { display: block; width: 25%; height: 1px; background: var(--paper); transition: width .4s ease; }
+
+    .team { padding-top: 115px; padding-bottom: 123px; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 33px; margin-top: 58px; }
+    .person:nth-child(2) { margin-top: 95px; }
+    .person:nth-child(3) { margin-top: 45px; }
+    .person-photo { display: block; position: relative; width: 100%; aspect-ratio: 3 / 4; padding: 0; overflow: hidden; background: #d9d6cb; }
+    .person-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; filter: grayscale(1) contrast(.94); transition: transform .9s var(--ease), filter .8s; }
+    .person-photo:hover img { transform: scale(1.035); filter: grayscale(.45) contrast(.95); }
+    .person-photo::after { content: ''; position: absolute; inset: 0; background: rgba(89,79,48,.08); pointer-events: none; }
+    .person-info { padding-top: 23px; }
+    .person-info h3 { font-family: var(--serif); font-size: 31px; line-height: 1.2; letter-spacing: -.05em; }
+    .person-role { margin-top: 8px; font-size: 9px; font-weight: 600; line-height: 1.7; letter-spacing: .1em; text-transform: uppercase; }
+    .person-bio { max-width: 310px; margin-top: 15px; font-size: 12px; line-height: 1.9; color: var(--muted); }
+    .person-info .text-link { margin-top: 17px; font-size: 10px; }
+
+    .reviews { padding-top: 87px; padding-bottom: 80px; background: var(--paper-deep); text-align: center; }
+    .reviews .eyebrow { margin-bottom: 20px; }
+    .quote-mark { height: 70px; font-family: var(--serif); font-size: 115px; line-height: 1; color: #777d62; }
+    .review-content { min-height: 235px; max-width: 870px; margin: 0 auto; }
+    .review-quote { font-family: var(--serif); font-size: clamp(30px, 3.4vw, 48px); line-height: 1.26; letter-spacing: -.037em; text-wrap: pretty; }
+    .review-author { margin-top: 27px; font-size: 10px; line-height: 1.9; }
+    .review-author span { display: block; color: var(--muted); font-size: 9px; }
+    .review-controls { display: flex; justify-content: center; align-items: center; gap: 25px; margin-top: 24px; }
+    .review-counter { min-width: 40px; font-size: 9px; letter-spacing: .1em; }
+    .review-controls .circle-button { width: 42px; height: 42px; }
+
+    .booking-band { display: grid; grid-template-columns: 1.9fr 1fr; align-items: end; gap: 80px; padding-top: 103px; padding-bottom: 106px; background: var(--lime); }
+    .booking-band .eyebrow { margin-bottom: 25px; }
+    .booking-band .section-title { font-size: clamp(52px, 5.8vw, 88px); line-height: 1.04; }
+    .booking-band-copy { max-width: 310px; padding-bottom: 5px; }
+    .booking-band-copy p { font-size: 13px; line-height: 1.9; }
+    .booking-band-copy .button { width: 100%; margin-top: 24px; }
+
+    .studio { display: grid; grid-template-columns: 1fr 1fr; }
+    .studio-image { position: relative; min-height: 760px; overflow: hidden; background: #c8c1b3; }
+    .studio-image img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: 52% center; filter: saturate(.55) brightness(.96); }
+    .studio-copy { padding: 78px var(--gutter) 73px 13%; }
+    .studio-copy .eyebrow { margin-bottom: 23px; }
+    .studio-copy .section-title { font-size: clamp(48px, 4.5vw, 68px); }
+    .studio-copy > .body-copy { max-width: 335px; margin-top: 22px; font-size: 12px; }
+    .contact-address { margin-top: 29px; font-style: normal; font-size: 12px; line-height: 1.9; }
+    .contact-address a:not(.text-link):hover { text-decoration: underline; text-underline-offset: 4px; }
+    .contact-address .text-link { margin-top: 9px; font-size: 10px; }
+    .contact-methods { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; margin-top: 18px; }
+    .contact-methods a { overflow-wrap: anywhere; }
+    .opening-hours { margin-top: 32px; max-width: 350px; }
+    .opening-hours h3 { margin-bottom: 12px; font-size: 9px; font-weight: 600; line-height: 1.6; letter-spacing: .14em; text-transform: uppercase; }
+    .hours-row { display: flex; justify-content: space-between; gap: 20px; padding: 7px 0; color: var(--muted); font-size: 11px; }
+    .hours-row.is-today { color: var(--ink); font-weight: 650; }
+    .contact-note { margin-top: 19px; font-size: 9px; color: var(--muted); }
+
+    .site-footer { overflow: hidden; padding-top: 47px; padding-bottom: 25px; background: var(--ink); color: var(--paper); }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; gap: 35px; }
+    .footer-top p { color: #bfc2b2; font-size: 10px; }
+    .footer-top-links { display: flex; gap: 28px; }
+    .footer-top-links a, .footer-top-links button { padding: 8px 0; background: transparent; font-size: 10px; }
+    .footer-top-links a:hover, .footer-top-links button:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .footer-wordmark { margin: 50px -3px 35px; font-family: var(--serif); font-size: 11.2vw; line-height: 1; letter-spacing: -.065em; white-space: nowrap; }
+    .footer-wordmark em { font-weight: 400; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: flex-start; gap: 25px; padding-top: 21px; border-top: 1px solid rgba(244,241,233,.2); color: #bfc2b2; font-size: 8px; line-height: 1.8; }
+    .footer-bottom button { padding: 0; background: transparent; font-size: inherit; text-align: right; }
+    .footer-bottom button:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .mobile-bookbar { display: none; }
+
+    /* Native dialogs keep keyboard focus and the background properly isolated. */
+    dialog { color: var(--ink); background: var(--paper); padding: 0; border: 0; overscroll-behavior: contain; }
+    dialog::backdrop { background: rgba(20,23,18,.68); backdrop-filter: blur(5px); }
+    dialog[open] { animation: dialog-arrive .35s var(--ease) both; }
+    dialog .circle-button { width: 42px; height: 42px; }
+    @keyframes dialog-arrive { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    .menu-dialog { width: 100%; max-width: none; height: 100svh; max-height: none; margin: 0; padding: 22px var(--gutter) 35px; background: var(--ink); color: var(--paper); }
+    .menu-dialog[open] { display: flex; flex-direction: column; }
+    .menu-top { display: flex; justify-content: space-between; align-items: center; }
+    .menu-top .circle-button { border-color: rgba(244,241,233,.3); }
+    .menu-nav { display: flex; flex: 1; flex-direction: column; justify-content: center; gap: 10px; padding: 30px 0; }
+    .menu-nav a { display: flex; align-items: baseline; gap: 20px; padding: 10px 0; font-family: var(--serif); font-size: clamp(36px, 8vw, 64px); line-height: 1.1; letter-spacing: -.05em; }
+    .menu-nav a span { font-family: var(--sans); font-size: 9px; letter-spacing: 0; color: #aeb59a; }
+    .menu-bottom { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid rgba(244,241,233,.2); }
+    .menu-bottom p { color: #bfc2b2; font-size: 10px; line-height: 1.8; }
+    .menu-bottom .button { padding: 15px 18px; gap: 25px; font-size: 11px; }
+
+    .booking-dialog { width: min(1100px, calc(100% - 64px)); max-width: none; height: min(860px, calc(100svh - 64px)); max-height: none; margin: auto; }
+    .booking-dialog[open] { display: flex; flex-direction: column; }
+    .booking-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-shrink: 0; padding: 22px 30px; border-bottom: 1px solid var(--line); }
+    .booking-top-brand { font-family: var(--serif); font-size: 27px; letter-spacing: -.045em; }
+    .booking-top .eyebrow { margin-left: auto; margin-right: 16px; font-size: 8px; color: var(--muted); }
+    .booking-layout { display: grid; grid-template-columns: 270px minmax(0, 1fr); flex: 1; min-height: 0; }
+    .booking-summary { display: flex; flex-direction: column; padding: 35px 30px; background: var(--paper-deep); }
+    .booking-summary > .eyebrow { font-size: 8px; }
+    .summary-title { margin: 24px 0 28px; font-family: var(--serif); font-size: 68px; line-height: .98; letter-spacing: -.055em; }
+    .summary-list { margin-top: 5px; }
+    .summary-list > div { padding: 17px 0; border-top: 1px solid var(--line); }
+    .summary-list dt { margin-bottom: 6px; color: var(--muted); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+    .summary-list dd { font-size: 11px; line-height: 1.8; }
+    .summary-price { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 21px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 10px; }
+    .summary-price strong { font-family: var(--serif); font-size: 30px; font-weight: 400; letter-spacing: -.04em; }
+    .summary-note { margin-top: auto; padding-top: 30px; color: var(--muted); font-size: 9px; line-height: 1.8; }
+    .booking-content { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+    .booking-steps { display: flex; gap: 13px; padding: 26px 35px 0; }
+    .booking-steps li { flex: 1; padding-top: 10px; border-top: 2px solid #d9dacf; color: #7c7e70; font-size: 9px; white-space: nowrap; }
+    .booking-steps li.is-active { border-color: var(--ink); color: var(--ink); }
+    .booking-steps li.is-done { border-color: #8b9571; color: #586348; }
+    .booking-steps li span { margin-right: 5px; }
+    .booking-heading { padding: 29px 35px 21px; }
+    .booking-heading h2 { font-family: var(--serif); font-size: 37px; line-height: 1.12; letter-spacing: -.05em; }
+    .booking-heading p { margin-top: 10px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .mobile-booking-summary { display: none; }
+    #booking-form { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 35px 26px; scrollbar-width: thin; scrollbar-color: #a0a58b transparent; }
+    #booking-form fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+    .choice-row { position: relative; display: flex; align-items: center; gap: 17px; min-height: 72px; padding: 13px 12px; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .2s; }
+    .choice-row:first-child { border-top: 1px solid var(--line); }
+    .choice-row:hover { background: #eeede3; }
+    .choice-row:has(input:checked) { background: #e7ebd4; }
+    .choice-row input, .date-choice input, .time-choice input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .choice-row:has(input:focus-visible), .date-choice:has(input:focus-visible), .time-choice:has(input:focus-visible) { outline: 2px solid var(--ink); outline-offset: -2px; }
+    .choice-copy { display: block; flex: 1; }
+    .choice-copy strong { display: block; font-size: 12px; font-weight: 600; line-height: 1.6; }
+    .choice-copy small { display: block; margin-top: 3px; color: var(--muted); font-size: 10px; line-height: 1.6; }
+    .choice-price { font-family: var(--serif); font-size: 22px; letter-spacing: -.04em; white-space: nowrap; }
+    .choice-price small { margin-right: 4px; font-family: var(--sans); font-size: 8px; letter-spacing: 0; }
+    .radio-mark { display: flex; justify-content: center; align-items: center; flex-shrink: 0; width: 17px; height: 17px; border: 1px solid #a5a995; border-radius: 50%; }
+    .choice-row input:checked ~ .radio-mark { border-color: var(--ink); }
+    .choice-row input:checked ~ .radio-mark::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+    .choice-avatar { flex-shrink: 0; width: 53px; height: 61px; object-fit: cover; object-position: center 28%; filter: grayscale(1); }
+    .any-avatar { display: flex; justify-content: center; align-items: center; background: var(--paper-deep); font-family: var(--serif); font-size: 37px; font-style: italic; }
+    .staff-choice { min-height: 84px; }
+    .booking-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-shrink: 0; min-height: 89px; padding: 18px 35px; border-top: 1px solid var(--line); background: var(--paper); }
+    .booking-back { display: inline-flex; align-items: center; gap: 8px; padding: 12px 0; background: transparent; font-size: 11px; }
+    .booking-back .icon { width: 16px; height: 16px; }
+    .booking-back:disabled { visibility: hidden; }
+    .booking-footer .button { min-height: 49px; padding: 14px 19px; gap: 25px; font-size: 11px; }
+    .booking-error { padding: 0 35px 12px; color: #9a3c2c; font-size: 11px; line-height: 1.7; }
+    .calendar-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 19px; }
+    .calendar-month { font-family: var(--serif); font-size: 24px; line-height: 1.3; letter-spacing: -.03em; text-transform: capitalize; }
+    .calendar-nav { display: flex; gap: 7px; }
+    .calendar-nav .circle-button { width: 34px; height: 34px; }
+    .calendar-nav .icon { width: 16px; height: 16px; }
+    .date-options { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
+    .date-choice { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; min-height: 75px; border: 1px solid var(--line); cursor: pointer; transition: background .2s; }
+    .date-choice:has(input:checked) { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .date-choice:has(input:disabled) { opacity: .32; cursor: not-allowed; }
+    .date-choice span { font-size: 8px; text-transform: uppercase; }
+    .date-choice strong { font-family: var(--serif); font-size: 25px; font-weight: 400; line-height: 1; }
+    .time-label { margin-top: 26px; margin-bottom: 12px; font-size: 10px; font-weight: 600; line-height: 1.6; }
+    .time-options { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .time-choice { position: relative; display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px; border: 1px solid var(--line); font-size: 11px; cursor: pointer; transition: background .2s; }
+    .time-choice:has(input:checked) { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .time-choice:has(input:disabled) { opacity: .3; text-decoration: line-through; cursor: not-allowed; }
+    .availability-note { margin-top: 18px; color: var(--muted); font-size: 9px; line-height: 1.8; }
+    .no-times { padding: 25px 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .customer-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 19px 16px; }
+    .field { display: block; min-width: 0; }
+    .field-full { grid-column: 1 / -1; }
+    .field > span { display: block; margin-bottom: 8px; font-size: 10px; font-weight: 600; }
+    .field > span small { font-weight: 400; color: var(--muted); }
+    .field input, .field textarea { width: 100%; border: 1px solid #bebfb0; border-radius: 0; padding: 13px; background: transparent; color: var(--ink); font-size: 12px; outline-offset: 2px; }
+    .field input { height: 46px; }
+    .field input::placeholder, .field textarea::placeholder { color: #898b7c; }
+    .field textarea { min-height: 84px; resize: vertical; }
+    .field input:user-invalid { border-color: #9a3c2c; }
+    .final-booking-recap { display: none; }
+    .consent-row { display: flex; align-items: flex-start; gap: 12px; margin-top: 22px; font-size: 10px; line-height: 1.8; cursor: pointer; }
+    .consent-row input { width: 17px; height: 17px; flex-shrink: 0; margin-top: 2px; accent-color: var(--ink); }
+    .privacy-note { margin-top: 14px; font-size: 9px; line-height: 1.8; color: var(--muted); }
+    .booking-success { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100%; padding: 15px 0 20px; text-align: center; }
+    .success-check { display: flex; justify-content: center; align-items: center; width: 69px; height: 69px; margin-bottom: 23px; border: 1px solid #87946d; border-radius: 50%; background: #e6ebd4; }
+    .success-check .icon { width: 29px; height: 29px; stroke-width: 1.25; }
+    .booking-success h3 { font-family: var(--serif); font-size: 42px; line-height: 1.1; letter-spacing: -.04em; overflow-wrap: anywhere; }
+    .booking-success > p { max-width: 340px; margin-top: 16px; color: var(--muted); font-size: 11px; line-height: 1.9; }
+    .confirmation-recap { width: 100%; max-width: 340px; margin-top: 23px; padding: 17px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 11px; line-height: 1.9; }
+    .confirmation-recap strong { display: block; font-weight: 600; }
+    .booking-success .text-link { margin-top: 18px; font-size: 10px; }
+
+    .profile-dialog { width: min(870px, calc(100% - 64px)); max-width: none; max-height: calc(100svh - 64px); margin: auto; overflow-y: auto; }
+    .profile-dialog[open] { display: grid; grid-template-columns: 43% 1fr; }
+    .profile-dialog-photo { width: 100%; height: 100%; min-height: 590px; object-fit: cover; object-position: center 32%; filter: grayscale(1); }
+    .profile-dialog-content { position: relative; padding: 77px 39px 40px; }
+    .dialog-close { position: absolute; top: 21px; right: 23px; }
+    .profile-dialog-content .eyebrow { font-size: 8px; }
+    .profile-dialog-content h2 { margin-top: 23px; font-family: var(--serif); font-size: 48px; line-height: 1.05; letter-spacing: -.05em; }
+    .profile-dialog-content .body-copy { margin-top: 24px; font-size: 12px; }
+    .profile-specialty { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .profile-specialty dt { margin-bottom: 9px; font-size: 8px; letter-spacing: .12em; text-transform: uppercase; }
+    .profile-specialty dd { font-size: 11px; line-height: 1.8; }
+    .profile-dialog-content .button { margin-top: 30px; width: 100%; font-size: 11px; gap: 20px; }
+    .look-dialog { width: min(1040px, calc(100% - 64px)); max-width: none; max-height: calc(100svh - 64px); margin: auto; overflow-y: auto; }
+    .look-dialog[open] { display: grid; grid-template-columns: 1.15fr 1fr; }
+    .look-dialog-image { width: 100%; height: min(750px, calc(100svh - 64px)); min-height: 480px; object-fit: cover; filter: saturate(.8); }
+    .look-dialog-copy { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 70px 44px 40px; }
+    .look-dialog-copy h2 { margin-top: 23px; font-family: var(--serif); font-size: 53px; line-height: 1.1; letter-spacing: -.05em; }
+    .look-dialog-copy .body-copy { margin-top: 25px; font-size: 12px; }
+    .look-dialog-copy > .button { margin-top: 29px; font-size: 11px; }
+    .look-dialog-nav { display: flex; align-items: center; gap: 12px; margin-top: 37px; }
+    .look-dialog-nav > span { margin: 0 10px; font-size: 9px; }
+    .look-dialog-note { margin-top: 24px; font-size: 9px; line-height: 1.7; color: var(--muted); }
+    .info-dialog { width: min(620px, calc(100% - 40px)); max-width: none; max-height: calc(100svh - 50px); margin: auto; padding: 65px 45px 45px; overflow-y: auto; }
+    .info-dialog h2 { font-family: var(--serif); font-size: 44px; line-height: 1.1; letter-spacing: -.045em; }
+    .info-dialog h3 { margin: 25px 0 8px; font-size: 12px; font-weight: 650; }
+    .info-dialog p { margin-top: 17px; color: var(--muted); font-size: 12px; line-height: 1.95; }
+    .info-dialog a { text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (min-width: 1700px) {
+      .hero-content { padding-left: max(var(--gutter), calc((100vw - 1600px) / 2)); }
+      .section-pad { padding-left: max(var(--gutter), calc((100vw - 1600px) / 2)); padding-right: max(var(--gutter), calc((100vw - 1600px) / 2)); }
+    }
+    @media (max-width: 1100px) {
+      .desktop-nav { gap: 23px; }
+      .hero { min-height: 720px; }
+      .hero-title { font-size: clamp(100px, 13vw, 155px); }
+      .intro { gap: 7%; }
+      .treatment-layout { gap: 6%; grid-template-columns: 42% 1fr; }
+      .service summary { gap: 10px; grid-template-columns: 20px 1fr auto 22px; }
+      .service-name { font-size: 30px; }
+      .service-content { padding-left: 30px; padding-right: 15px; }
+      .booking-band { gap: 45px; }
+      .studio-copy { padding-left: 11%; }
+      .booking-dialog { width: calc(100% - 40px); height: calc(100svh - 40px); }
+      .booking-layout { grid-template-columns: 230px minmax(0,1fr); }
+      .booking-summary { padding: 30px 24px; }
+      .booking-steps { padding-left: 27px; padding-right: 27px; }
+      .booking-heading { padding-left: 27px; padding-right: 27px; }
+      #booking-form { padding-left: 27px; padding-right: 27px; }
+      .booking-footer { padding-left: 27px; padding-right: 27px; }
+    }
+    @media (max-width: 800px) {
+      .header-inner { grid-template-columns: 1fr 1fr; min-height: 83px; }
+      .desktop-nav { display: none; }
+      .menu-toggle { display: block; }
+      .header-actions { gap: 17px; }
+      .hero { min-height: 730px; max-height: 1000px; }
+      .hero-title { font-size: clamp(98px, 16vw, 135px); }
+      .hero::before { background: linear-gradient(90deg, rgba(25,26,22,.67), rgba(25,26,22,.15) 90%), linear-gradient(0deg, rgba(25,26,22,.5), transparent 70%); }
+      .intro { padding-top: 87px; padding-bottom: 87px; gap: 40px; }
+      .intro-title { font-size: 51px; }
+      .intro-copy .body-copy { font-size: 12px; }
+      .section-title { font-size: 51px; }
+      .section-heading > .body-copy { max-width: 235px; font-size: 12px; }
+      .treatment-layout { grid-template-columns: 38% 1fr; gap: 6%; margin-top: 42px; }
+      .treatment-photo { aspect-ratio: 3 / 5; }
+      .treatment-caption span:last-child { display: none; }
+      .service summary { padding-top: 22px; padding-bottom: 22px; grid-template-columns: 1fr auto 18px; }
+      .service-number { display: none; }
+      .service-name { font-size: 28px; }
+      .service-price { font-size: 9px; }
+      .service-content { padding-left: 0; }
+      .service-content p { font-size: 11px; }
+      .treatments { padding-bottom: 85px; }
+      .inspiration { padding-top: 76px; padding-bottom: 58px; }
+      .gallery-intro { max-width: 218px; }
+      .gallery-track { gap: 22px; }
+      .look { flex-basis: 51%; }
+      .look:nth-child(2), .look:nth-child(4) { flex-basis: 43%; margin-top: 55px; }
+      .look:nth-child(3) { flex-basis: 49%; }
+      .look-image { height: 465px; }
+      .look:nth-child(even) .look-image { height: 390px; }
+      .team { padding-top: 84px; padding-bottom: 90px; }
+      .team-grid { gap: 20px; }
+      .person:nth-child(2) { margin-top: 65px; }
+      .person:nth-child(3) { margin-top: 30px; }
+      .person-info h3 { font-size: 25px; }
+      .person-role { font-size: 8px; }
+      .person-bio { font-size: 11px; }
+      .person-info .text-link { gap: 15px; font-size: 9px; }
+      .reviews { padding-top: 68px; padding-bottom: 64px; }
+      .review-content { min-height: 205px; }
+      .booking-band { padding-top: 80px; padding-bottom: 82px; grid-template-columns: 1.45fr 1fr; gap: 38px; }
+      .booking-band .section-title { font-size: 54px; }
+      .booking-band-copy p { font-size: 11px; }
+      .studio-copy { padding: 59px 10% 55px; }
+      .studio-image { min-height: 765px; }
+      .studio-copy .section-title { font-size: 49px; }
+      .studio-copy > .body-copy { font-size: 11px; }
+      .contact-address { font-size: 11px; }
+      .footer-top { gap: 20px; }
+      .footer-top-links { gap: 18px; }
+      .booking-layout { grid-template-columns: 1fr; }
+      .booking-summary { display: none; }
+      .mobile-booking-summary { display: block; font-size: 9px !important; }
+      .final-booking-recap { display: block; margin-bottom: 23px; padding: 15px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 12px; line-height: 1.9; }
+      .final-booking-recap strong { font-weight: 600; }
+      .final-booking-recap p + p { color: var(--muted); font-size: 11px; }
+      .booking-heading { padding-top: 23px; padding-bottom: 18px; }
+      .booking-steps li { font-size: 10px; }
+      .profile-dialog { width: calc(100% - 40px); }
+      .profile-dialog-content { padding: 74px 27px 30px; }
+      .profile-dialog-content h2 { font-size: 42px; }
+      .look-dialog { width: calc(100% - 40px); grid-template-columns: 1fr 1fr; }
+      .look-dialog-copy { padding: 70px 28px 30px; }
+      .look-dialog-copy h2 { font-size: 44px; }
+      .look-dialog-copy > .button { padding: 15px 17px; gap: 16px; font-size: 10px; }
+    }
+    @media (max-width: 600px) {
+      :root { --gutter: 23px; }
+      html { scroll-padding-top: 92px; scrollbar-gutter: auto; }
+      .header-inner { min-height: 78px; }
+      .brand-small { font-size: 7px; }
+      .brand-name { font-size: 25px; }
+      .header-actions { gap: 14px; }
+      .header-book { min-height: 44px; padding: 12px 13px; font-size: 11px; gap: 16px; }
+      .header-book .icon { width: 14px; height: 14px; }
+      .menu-toggle { width: 30px; padding-left: 2px; padding-right: 2px; }
+      .site-header.is-scrolled .header-inner { min-height: 69px; }
+      .hero { height: 100svh; min-height: 690px; max-height: 950px; }
+      .hero-media { inset: 0; }
+      .hero-image { object-position: 61% 38%; filter: saturate(.62) sepia(.12) brightness(.86); }
+      .hero::before { background: linear-gradient(0deg, rgba(23,25,20,.84) 0%, rgba(23,25,20,.50) 32%, rgba(23,25,20,.06) 75%), linear-gradient(90deg, rgba(23,25,20,.23), transparent 80%), linear-gradient(180deg, rgba(23,25,20,.28), transparent 22%); }
+      .hero-content { justify-content: flex-end; padding-top: 150px; padding-bottom: 57px; }
+      .hero-title { font-size: clamp(80px, 21.8vw, 130px); line-height: .94; letter-spacing: -.064em; }
+      .hero-tagline { margin-top: 28px; font-size: 18px; }
+      .hero-description { max-width: 310px; font-size: 12px; line-height: 1.85; margin-top: 10px; }
+      .hero-ctas { width: 100%; gap: 24px; margin-top: 27px; }
+      .hero-ctas .button { min-width: 161px; min-height: 52px; padding: 16px 18px; gap: 25px; font-size: 12px; }
+      .hero-ctas .text-link { gap: 13px; font-size: 11px; }
+      .hero-ctas .text-link .icon { width: 15px; height: 15px; }
+      .eyebrow { font-size: 9px; }
+      .section-title { font-size: 46px; line-height: 1.1; }
+      .intro { grid-template-columns: 1fr; gap: 29px; padding-top: 69px; padding-bottom: 71px; }
+      .intro .eyebrow { margin-bottom: 24px; }
+      .intro-title { font-size: clamp(44px, 11.8vw, 65px); }
+      .intro-copy { margin-left: 14%; max-width: 330px; }
+      .intro-copy .body-copy { font-size: 14px; }
+      .intro-copy .text-link { margin-top: 17px; font-size: 11px; }
+      .section-rule { padding-top: 31px; }
+      .section-heading { display: block; }
+      .section-heading .eyebrow { margin-bottom: 21px; }
+      .section-heading > .body-copy { max-width: 320px; margin-top: 23px; padding-bottom: 0; font-size: 13px; }
+      .treatment-layout { display: flex; flex-direction: column; gap: 31px; margin-top: 34px; }
+      .treatment-visual { position: static; width: 100%; }
+      .treatment-photo { aspect-ratio: 1.12 / 1; }
+      .treatment-photo img { object-position: center 37%; }
+      .treatment-caption { margin-top: 13px; font-size: 8px; }
+      .treatment-caption span:last-child { display: block; font-size: 19px; }
+      .treatment-menu { width: 100%; }
+      .service summary { grid-template-columns: 21px 1fr auto 21px; gap: 8px; padding: 23px 0; }
+      .service-number { display: block; font-size: 8px; }
+      .service-name { font-size: 30px; }
+      .service-price { font-size: 9px; }
+      .service-content { padding-left: 29px; padding-right: 10px; }
+      .service-content p { font-size: 13px; }
+      .service-content .text-link { font-size: 12px; }
+      .consultation-link { padding-top: 24px; }
+      .consultation-link span { font-size: 12px; }
+      .consultation-link small { font-size: 11px; }
+      .price-note { font-size: 10px; margin-top: 13px; }
+      .treatments { padding-bottom: 68px; }
+      .inspiration { padding-top: 66px; padding-bottom: 45px; }
+      .inspiration .section-heading { position: relative; margin-bottom: 34px; }
+      .inspiration .section-title { font-size: 43px; }
+      .gallery-intro { max-width: none; margin-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+      .gallery-intro .body-copy { max-width: 225px; font-size: 12px; }
+      .gallery-controls { margin-top: 0; gap: 7px; }
+      .gallery-controls .circle-button { width: 44px; height: 44px; }
+      .gallery-controls .icon { width: 17px; height: 17px; }
+      .gallery-track { gap: 17px; }
+      .look, .look:nth-child(2), .look:nth-child(3), .look:nth-child(4) { flex-basis: 83%; margin-top: 0; }
+      .look-image, .look:nth-child(even) .look-image { height: auto; aspect-ratio: 3 / 4; }
+      .look-caption { margin-top: 15px; }
+      .look-name { font-size: 27px; }
+      .look-category { font-size: 8px; }
+      .gallery-bottom { margin-top: 18px; gap: 20px; }
+      .gallery-bottom p { font-size: 8px; max-width: 190px; line-height: 1.7; }
+      .gallery-progress { width: 63px; }
+      .team { padding-top: 70px; padding-bottom: 70px; }
+      .team-grid { grid-template-columns: 1fr; gap: 46px; margin-top: 35px; }
+      .person, .person:nth-child(2), .person:nth-child(3) { margin-top: 0; }
+      .person { width: 87%; }
+      .person:nth-child(2) { margin-left: auto; }
+      .person-photo { aspect-ratio: 4 / 4.8; }
+      .person-info { padding-top: 19px; }
+      .person-info h3 { font-size: 33px; }
+      .person-role { margin-top: 7px; font-size: 8px; }
+      .person-bio { max-width: 310px; margin-top: 13px; font-size: 13px; }
+      .person-info .text-link { margin-top: 13px; font-size: 12px; gap: 28px; }
+      .reviews { padding-top: 57px; padding-bottom: 49px; }
+      .reviews .eyebrow { font-size: 8px; }
+      .quote-mark { height: 60px; font-size: 101px; }
+      .review-content { min-height: 277px; }
+      .review-quote { font-size: clamp(28px, 7.5vw, 38px); line-height: 1.32; }
+      .review-author { margin-top: 22px; font-size: 10px; }
+      .review-author span { font-size: 8px; }
+      .review-controls { margin-top: 19px; }
+      .booking-band { grid-template-columns: 1fr; gap: 30px; padding-top: 65px; padding-bottom: 66px; }
+      .booking-band .eyebrow { margin-bottom: 24px; }
+      .booking-band .section-title { font-size: clamp(47px, 12.9vw, 69px); }
+      .booking-band-copy { max-width: 370px; }
+      .booking-band-copy p { max-width: 310px; font-size: 13px; }
+      .booking-band-copy .button { max-width: none; margin-top: 22px; min-height: 55px; font-size: 12px; }
+      .studio { grid-template-columns: 1fr; }
+      .studio-image { min-height: 0; aspect-ratio: 1.13 / 1; }
+      .studio-image img { object-position: center; }
+      .studio-copy { padding: 58px var(--gutter) 55px; }
+      .studio-copy .section-title { font-size: 52px; }
+      .studio-copy > .body-copy { max-width: 320px; font-size: 13px; }
+      .contact-address { margin-top: 28px; font-size: 13px; }
+      .contact-methods { margin-top: 19px; gap: 5px; }
+      .opening-hours { margin-top: 31px; max-width: none; }
+      .hours-row { padding: 9px 0; font-size: 12px; }
+      .contact-note { font-size: 8px; line-height: 1.7; }
+      .site-footer { padding-top: 37px; padding-bottom: 28px; }
+      .footer-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer-top p { font-size: 9px; }
+      .footer-top-links { gap: 25px; }
+      .footer-top-links a, .footer-top-links button { font-size: 9px; }
+      .footer-wordmark { margin-top: 34px; margin-bottom: 30px; font-size: 11.1vw; }
+      .footer-bottom { flex-direction: column; gap: 9px; font-size: 8px; padding-top: 17px; }
+      .footer-bottom button { text-align: left; }
+      .mobile-bookbar { display: flex; position: fixed; z-index: 35; bottom: 0; left: 0; right: 0; justify-content: space-between; align-items: center; gap: 20px; padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--paper); transform: translateY(110%); visibility: hidden; transition: transform .4s var(--ease), visibility .4s; }
+      .mobile-bookbar.is-visible { visibility: visible; transform: translateY(0); }
+      .modal-open .mobile-bookbar { visibility: hidden; transform: translateY(110%); }
+      .mobile-bookbar p { font-family: var(--serif); font-size: 22px; letter-spacing: -.04em; }
+      .mobile-bookbar .button { min-height: 44px; padding: 12px 17px; font-size: 10px; gap: 25px; }
+      .booking-dialog { width: 100%; height: 100dvh; margin: 0; max-height: none; }
+      .booking-top { padding: 15px 21px; gap: 15px; }
+      .booking-top-brand { font-size: 25px; }
+      .booking-top .eyebrow { margin-right: 0; font-size: 8px; }
+      .booking-top-detail { display: none; }
+      .booking-top .circle-button { width: 36px; height: 36px; }
+      .booking-top .circle-button .icon { width: 18px; height: 18px; }
+      .booking-steps { padding: 22px 22px 0; gap: 9px; }
+      .booking-steps li { font-size: 8px; padding-top: 9px; }
+      .booking-steps li span { margin-right: 3px; }
+      .booking-heading { padding: 24px 22px 20px; }
+      .booking-heading h2 { font-size: 34px; }
+      .booking-heading p { margin-top: 9px; font-size: 10px; }
+      #booking-form { padding: 0 22px 24px; }
+      .choice-row { min-height: 70px; padding-left: 10px; padding-right: 10px; gap: 12px; }
+      .choice-copy strong { font-size: 12px; }
+      .choice-copy small { font-size: 10px; }
+      .choice-price { font-size: 21px; }
+      .choice-price small { font-size: 7px; }
+      .radio-mark { width: 16px; height: 16px; }
+      .choice-avatar { width: 46px; height: 54px; }
+      .booking-footer { min-height: 83px; padding: 15px 22px calc(15px + env(safe-area-inset-bottom)); gap: 12px; }
+      .booking-footer .button { gap: 18px; padding: 14px 17px; font-size: 10px; }
+      .booking-back { font-size: 10px; }
+      .booking-error { padding-left: 22px; padding-right: 22px; font-size: 10px; }
+      .calendar-month { font-size: 24px; }
+      .calendar-nav .circle-button { width: 44px; height: 44px; }
+      .calendar-heading { margin-bottom: 16px; }
+      .date-options { gap: 4px; }
+      .date-choice { min-height: 68px; gap: 7px; }
+      .date-choice span { font-size: 7px; }
+      .date-choice strong { font-size: 23px; }
+      .time-options { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+      .time-choice { min-height: 44px; }
+      .customer-fields { grid-template-columns: 1fr; gap: 17px; }
+      .field input, .field textarea { font-size: 16px; }
+      .field > span { font-size: 10px; }
+      .profile-dialog { width: calc(100% - 28px); max-height: calc(100dvh - 28px); }
+      .profile-dialog[open] { display: block; }
+      .profile-dialog-photo { height: 280px; min-height: 0; object-position: center 27%; }
+      .profile-dialog-content { padding: 29px 25px 30px; }
+      .profile-dialog .dialog-close { position: fixed; top: 15px; right: 15px; background: var(--paper); }
+      .profile-dialog-content h2 { margin-top: 18px; font-size: 43px; }
+      .profile-dialog-content .body-copy { margin-top: 18px; font-size: 12px; }
+      .profile-specialty { margin-top: 20px; padding-top: 17px; }
+      .profile-dialog-content .button { margin-top: 24px; }
+      .look-dialog { width: calc(100% - 28px); max-height: calc(100dvh - 28px); }
+      .look-dialog[open] { display: block; }
+      .look-dialog-image { height: 365px; min-height: 0; object-position: center 32%; }
+      .look-dialog-copy { padding: 30px 25px; }
+      .look-dialog .dialog-close { position: fixed; top: 15px; right: 15px; background: var(--paper); }
+      .look-dialog-copy h2 { margin-top: 16px; font-size: 43px; }
+      .look-dialog-copy .body-copy { margin-top: 18px; }
+      .look-dialog-copy > .button { margin-top: 22px; min-height: 51px; width: 100%; }
+      .look-dialog-nav { margin-top: 23px; }
+      .look-dialog-note { margin-top: 18px; }
+      .info-dialog { padding: 69px 26px 31px; }
+      .info-dialog h2 { font-size: 37px; }
+    }
+    @media (max-width: 370px) {
+      :root { --gutter: 19px; }
+      .header-book { gap: 10px; }
+      .header-actions { gap: 12px; }
+      .hero { min-height: 650px; }
+      .hero-title { font-size: 21.5vw; }
+      .hero-ctas { gap: 18px; }
+      .hero-ctas .button { min-width: 143px; gap: 20px; padding: 15px; }
+      .hero-ctas .text-link { font-size: 9px; gap: 8px; }
+      .section-title, .inspiration .section-title { font-size: 41px; }
+      .gallery-intro .body-copy { max-width: 185px; font-size: 10px; }
+      .gallery-controls .circle-button { width: 40px; height: 40px; }
+      .service-name { font-size: 27px; }
+      .service-price { font-size: 8px; }
+      .booking-top .eyebrow { font-size: 7px; }
+      .booking-steps li { font-size: 7px; }
+      .booking-heading h2 { font-size: 31px; }
+      .booking-footer { padding-left: 18px; padding-right: 18px; }
+      .choice-copy strong { font-size: 11px; }
+      .choice-price { font-size: 19px; }
+      .choice-row { gap: 9px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+      .will-reveal { opacity: 1; transform: none; }
+      .hero-media { transform: none !important; }
+    }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+  <a class="skip-link" href="#hovedinnhold">Hopp til innhold</a>
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+    <symbol id="arrow-up-right" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
+    <symbol id="arrow-right" viewBox="0 0 24 24"><path d="M4 12h16m-7-7 7 7-7 7"/></symbol>
+    <symbol id="arrow-left" viewBox="0 0 24 24"><path d="M20 12H4m7-7-7 7 7 7"/></symbol>
+    <symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 4v16m-7-7 7 7 7-7"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+  </svg>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#hjem" aria-label="Studio Andersen, til toppen">
+        <span class="brand-small">Studio</span><span class="brand-name">Andersen</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Hovedmeny">
+        <a href="#behandlinger">Behandlinger</a>
+        <a href="#frisorer">V&aring;re fris&oslash;rer</a>
+        <a href="#studioet">Studioet</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <div class="header-actions">
+        <button class="button header-book" data-book id="header-book">Bestill time <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="&Aring;pne meny" aria-haspopup="dialog" aria-controls="menu-dialog"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="hovedinnhold">
+    <section class="hero" id="hjem" aria-labelledby="hero-title">
+      <div class="hero-media" id="hero-media">
+        <img class="hero-image" src="images/photo-1438795.jpg" srcset="images/photo-1438795.jpg 1200w, images/photo-1438795.jpg 2400w" sizes="100vw" alt="Editorialportrett med langt, b&oslash;lgende h&aring;r og naturlig tekstur" width="2400" height="1254" fetchpriority="high" decoding="async">
+      </div>
+      <div class="hero-content section-pad">
+        <h1 class="hero-title" id="hero-title" aria-label="Studio Andersen"><span class="title-line"><span>Studio</span></span><span class="title-line"><span><em>Andersen</em></span></span></h1>
+        <p class="hero-tagline">Godt h&aring;r. Helt deg.</p>
+        <p class="hero-description">Personlig h&aring;ndverk. Et friskt blikk.<br>Ditt lille fris&oslash;rstudio p&aring; Gr&uuml;nerl&oslash;kka.</p>
+        <div class="hero-ctas">
+          <button class="button button-lime" data-book>Bestill time <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button>
+          <a class="text-link" href="#behandlinger">Se behandlinger <svg class="icon" aria-hidden="true"><use href="#arrow-down"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro section-pad" aria-labelledby="intro-title">
+      <div class="reveal">
+        <p class="eyebrow">Et studio. Din signatur.</p>
+        <h2 class="intro-title" id="intro-title">Ikke en ny deg.<br>Bare <em>enda mer deg.</em></h2>
+      </div>
+      <div class="intro-copy reveal">
+        <p class="body-copy">Vi tror de fineste frisyrene starter med en god samtale. Derfor tar vi oss tid. Til &aring; lytte, til &aring; bli kjent og til &aring; finne h&aring;ret som passer livet ditt. Ikke bare bildet du tok med.</p>
+        <a class="text-link" href="#frisorer">Finn din fris&oslash;r <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a>
+      </div>
+    </section>
+
+    <section class="treatments section-pad" id="behandlinger" aria-labelledby="treatment-title">
+      <div class="section-heading section-rule reveal">
+        <div><p class="eyebrow">01 / Behandlinger</p><h2 class="section-title" id="treatment-title">Godt h&aring;ndverk.<br><em>Din signatur.</em></h2></div>
+        <p class="body-copy">En liten oppfriskning eller noe helt nytt?<br>Vi finner uttrykket. Du finner f&oslash;lelsen.</p>
+      </div>
+      <div class="treatment-layout">
+        <figure class="treatment-visual reveal">
+          <div class="treatment-photo">
+            <img class="is-active" data-service-image="cut" src="images/photo-4078809.jpg" alt="Langt h&aring;r med myk form og naturlig bevegelse" width="800" height="1200" loading="lazy" decoding="async">
+            <img data-service-image="color" src="images/photo-12285002.jpg" alt="Et varmt, kobberfarget h&aring;ruttrykk" width="800" height="1200" loading="lazy" decoding="async" aria-hidden="true">
+            <img data-service-image="balayage" src="images/photo-7440132.jpg" alt="Lyst h&aring;r med myke fargeoverganger" width="800" height="1200" loading="lazy" decoding="async" aria-hidden="true">
+            <img data-service-image="styling" src="images/photo-6100174.jpg" alt="Definerte kr&oslash;ller og en personlig styling" width="800" height="1200" loading="lazy" decoding="async" aria-hidden="true">
+            <img data-service-image="care" src="images/photo-7195799.jpg" alt="Et rolig sted for h&aring;rvask og pleie" width="1200" height="627" loading="lazy" decoding="async" aria-hidden="true">
+          </div>
+          <figcaption class="treatment-caption"><span id="treatment-caption">Form, tekstur &amp; bevegelse</span><span>Med omtanke.</span></figcaption>
+        </figure>
+        <div class="treatment-menu reveal">
+          <div class="service-list">
+            <details class="service" data-service="cut" open>
+              <summary><span class="service-number">01</span><span class="service-name">Klipp &amp; form</span><span class="service-price">fra 990,-</span><svg class="icon" aria-hidden="true"><use href="#plus"/></svg></summary>
+              <div class="service-content"><p>En klipp som spiller p&aring; lag med ansiktet, teksturen og hverdagen din. Alltid med en god konsultasjon, deilig h&aring;rvask og styling som viser deg mulighetene.</p><p class="service-duration">60 min / Vask, klipp og f&oslash;n</p><button class="text-link" data-book data-service="cut">Bestill klipp <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div>
+            </details>
+            <details class="service" data-service="color">
+              <summary><span class="service-number">02</span><span class="service-name">Farge &amp; glans</span><span class="service-price">fra 1 690,-</span><svg class="icon" aria-hidden="true"><use href="#plus"/></svg></summary>
+              <div class="service-content"><p>En rikere tone, en ny nyanse eller en oppfriskning av det du allerede elsker. Vi skreddersyr fargen og avslutter med pleie og f&oslash;n.</p><p class="service-duration">120 min / Farge, vask og f&oslash;n</p><button class="text-link" data-book data-service="color">Bestill farge <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div>
+            </details>
+            <details class="service" data-service="balayage">
+              <summary><span class="service-number">03</span><span class="service-name">Balayage</span><span class="service-price">fra 2 790,-</span><svg class="icon" aria-hidden="true"><use href="#plus"/></svg></summary>
+              <div class="service-content"><p>H&aring;ndmalte striper, myke overganger og lys akkurat der det kler deg. Et naturlig spill som vokser vakkert ut. Nyansering, pleie og f&oslash;n er inkludert.</p><p class="service-duration">180 min / Lysning, nyansering og f&oslash;n</p><button class="text-link" data-book data-service="balayage">Bestill balayage <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div>
+            </details>
+            <details class="service" data-service="styling">
+              <summary><span class="service-number">04</span><span class="service-name">Styling &amp; f&oslash;n</span><span class="service-price">fra 690,-</span><svg class="icon" aria-hidden="true"><use href="#plus"/></svg></summary>
+              <div class="service-content"><p>Uanstrengt volum, definerte b&oslash;lger eller en skikkelig god f&oslash;n. For den store kvelden, det lille &oslash;yeblikket eller bare en ekstra fin fredag.</p><p class="service-duration">45 min / Vask og styling</p><button class="text-link" data-book data-service="styling">Bestill styling <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div>
+            </details>
+            <details class="service" data-service="care">
+              <summary><span class="service-number">05</span><span class="service-name">Pleie &amp; ro</span><span class="service-price">fra 490,-</span><svg class="icon" aria-hidden="true"><use href="#plus"/></svg></summary>
+              <div class="service-content"><p>En liten pause med stor effekt. En tilpasset h&aring;rkur, varm h&aring;ndduk og hodebunnsmassasje gir h&aring;ret ny energi og skuldrene lov til &aring; senke seg.</p><p class="service-duration">30 min / Kur, massasje og enkel t&oslash;rk</p><button class="text-link" data-book data-service="care">Bestill litt egentid <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div>
+            </details>
+          </div>
+          <button class="consultation-link" data-book data-service="consult"><span>Usikker p&aring; hva h&aring;ret ditt trenger?<small>Start med en gratis konsultasjon. 20 minutter, bare deg og oss.</small></span><svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button>
+          <p class="price-note">Alle priser er fra-priser i NOK, inkludert mva. Endelig pris avtales f&oslash;r vi starter. Vi priser etter tid og h&aring;rlengde, ikke kj&oslash;nn.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="inspiration" id="inspirasjon" aria-labelledby="inspiration-title">
+      <div class="section-heading section-pad reveal">
+        <div><p class="eyebrow">02 / I v&aring;rt blikk</p><h2 class="section-title" id="inspiration-title">Litt inspirasjon.<br><em>Mange muligheter.</em></h2></div>
+        <div class="gallery-intro"><p class="body-copy">Myke kontraster. Levende tekstur.<br>Uttrykk vi har litt ekstra sansen for.</p><div class="gallery-controls"><button class="circle-button" id="gallery-prev" aria-label="Forrige inspirasjonsbilde" aria-controls="gallery-track" disabled><svg class="icon" aria-hidden="true"><use href="#arrow-left"/></svg></button><button class="circle-button" id="gallery-next" aria-label="Neste inspirasjonsbilde" aria-controls="gallery-track"><svg class="icon" aria-hidden="true"><use href="#arrow-right"/></svg></button></div></div>
+      </div>
+      <div class="gallery-track" id="gallery-track" role="region" aria-label="H&aring;rinspirasjon, sveip for &aring; se flere" tabindex="0">
+        <figure class="look"><button class="look-button" data-look="0" aria-label="Se inspirasjon: Solkysset"><span class="look-image"><img src="images/photo-7440132.jpg" alt="Myke, lyse b&oslash;lger med naturlige fargeoverganger" width="800" height="1200" loading="lazy" decoding="async"></span><span class="look-caption"><span class="look-name">Solkysset.</span><svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></span><span class="look-category">Balayage / Myke overganger</span></button></figure>
+        <figure class="look"><button class="look-button" data-look="1" aria-label="Se inspirasjon: En ny form"><span class="look-image"><img src="images/photo-8182243.jpg" alt="En kort, formsterk frisyre mot en varm bakgrunn" width="800" height="1200" loading="lazy" decoding="async"></span><span class="look-caption"><span class="look-name">En ny form.</span><svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></span><span class="look-category">Klipp / Ren personlighet</span></button></figure>
+        <figure class="look"><button class="look-button" data-look="2" aria-label="Se inspirasjon: Fri tekstur"><span class="look-image"><img src="images/photo-6100174.jpg" alt="M&oslash;rke, definerte kr&oslash;ller med naturlig volum" width="800" height="1200" loading="lazy" decoding="async"></span><span class="look-caption"><span class="look-name">Fri tekstur.</span><svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></span><span class="look-category">Styling / Plass til bevegelse</span></button></figure>
+        <figure class="look"><button class="look-button" data-look="3" aria-label="Se inspirasjon: Varm gl&oslash;d"><span class="look-image"><img src="images/photo-12285002.jpg" alt="Kobberr&oslash;dt h&aring;r med en rik, varm tone" width="800" height="1200" loading="lazy" decoding="async"></span><span class="look-caption"><span class="look-name">Varm gl&oslash;d.</span><svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></span><span class="look-category">Farge / Litt mer karakter</span></button></figure>
+      </div>
+      <div class="gallery-bottom section-pad"><p>Et kuratert moodboard. Finn noe som f&oslash;les som deg.</p><div class="gallery-position" aria-hidden="true"><span id="gallery-number">01</span><span class="gallery-progress"><span id="gallery-progress"></span></span><span>04</span></div></div>
+    </section>
+
+    <section class="team section-pad" id="frisorer" aria-labelledby="team-title">
+      <div class="section-heading reveal"><div><p class="eyebrow">03 / Menneskene bak</p><h2 class="section-title" id="team-title">Dyktige hender.<br><em>Fine folk.</em></h2></div><p class="body-copy">Tre ulike blikk. Samme kj&aelig;rlighet for godt h&aring;r. Og for menneskene som sitter i stolen.</p></div>
+      <div class="team-grid">
+        <article class="person reveal"><button class="person-photo" data-profile="sofie" aria-label="Bli kjent med Sofie Andersen"><img src="images/photo-26759527.jpg" alt="Illustrasjonsportrett av Sofie, kreativ leder i Studio Andersen" width="800" height="1200" loading="lazy" decoding="async"></button><div class="person-info"><h3>Sofie Andersen</h3><p class="person-role">Grunnlegger / Farge &amp; balayage</p><p class="person-bio">Fargekunstner med et &oslash;ye for det naturlige. Svak for myke overganger og en god espresso.</p><button class="text-link" data-profile="sofie">Bli kjent med Sofie <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div></article>
+        <article class="person reveal"><button class="person-photo" data-profile="emma" aria-label="Bli kjent med Emma Berg"><img src="images/photo-37952576.jpg" alt="Illustrasjonsportrett av Emma, fris&oslash;r med sans for personlige uttrykk" width="800" height="1200" loading="lazy" decoding="async"></button><div class="person-info"><h3>Emma Berg</h3><p class="person-role">Fris&oslash;r / Klipp &amp; naturlig tekstur</p><p class="person-bio">Elsker tekstur, kr&oslash;ller og klipper som faller fint. Ogs&aring; n&aring;r du styler selv.</p><button class="text-link" data-profile="emma">Bli kjent med Emma <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div></article>
+        <article class="person reveal"><button class="person-photo" data-profile="jonas" aria-label="Bli kjent med Jonas Lund"><img src="images/photo-11158639.jpg" alt="Illustrasjonsportrett av Jonas, fris&oslash;r med sans for detaljer" width="800" height="1200" loading="lazy" decoding="async"></button><div class="person-info"><h3>Jonas Lund</h3><p class="person-role">Fris&oslash;r / Korte klipper &amp; styling</p><p class="person-bio">Presise linjer, korte klipper og avslappet styling. Alltid med blikk for detaljene.</p><button class="text-link" data-profile="jonas">Bli kjent med Jonas <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div></article>
+      </div>
+    </section>
+
+    <section class="reviews section-pad" aria-labelledby="review-title">
+      <div class="reveal"><h2 class="eyebrow" id="review-title">F&oslash;lelsen etterp&aring;</h2><div class="quote-mark" aria-hidden="true">&ldquo;</div><figure class="review-content" id="review-content" aria-live="polite" aria-atomic="true"><blockquote><p class="review-quote" id="review-quote">Endelig en fris&oslash;r som skj&oslash;nner hva jeg mener, ogs&aring; n&aring;r jeg ikke helt klarer &aring; forklare det. Har aldri f&oslash;lt meg mer som meg.</p></blockquote><figcaption class="review-author"><strong id="review-name" style="font-weight:600">Ingrid M.</strong><span id="review-service">Klipp og balayage hos Sofie / 5 av 5</span></figcaption></figure><div class="review-controls"><button class="circle-button" id="review-prev" aria-label="Forrige kundeomtale"><svg class="icon" aria-hidden="true"><use href="#arrow-left"/></svg></button><span class="review-counter" id="review-counter" aria-hidden="true">01 / 03</span><button class="circle-button" id="review-next" aria-label="Neste kundeomtale"><svg class="icon" aria-hidden="true"><use href="#arrow-right"/></svg></button></div></div>
+    </section>
+
+    <section class="booking-band section-pad" id="bestill" aria-labelledby="booking-band-title"><div class="reveal"><p class="eyebrow">Litt tid til deg selv</p><h2 class="section-title" id="booking-band-title">Din neste gode<br>h&aring;rdag <em>starter her.</em></h2></div><div class="booking-band-copy reveal"><p>Du trenger ikke ha en plan.<br>Bare et &oslash;nske om &aring; f&oslash;le deg litt ekstra bra. Vi tar det derfra.</p><button class="button" data-book>Finn din neste time <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div></section>
+
+    <section class="studio" id="studioet" aria-labelledby="studio-title">
+      <div class="studio-image"><img src="images/photo-7750108.jpg" alt="Et lyst, moderne salonginteri&oslash;r med store speil og rolige materialer" width="1200" height="627" loading="lazy" decoding="async"></div>
+      <div class="studio-copy" id="kontakt"><div class="reveal"><p class="eyebrow">04 / Ditt lille pusterom</p><h2 class="section-title" id="studio-title">Senk skuldrene.<br><em>Kom som du er.</em></h2><p class="body-copy">Dagslys, god kaffe og tid til deg. Midt p&aring; Gr&uuml;nerl&oslash;kka har vi skapt et lite fristed for store og sm&aring; forandringer.</p><address class="contact-address"><p>Markveien 42<br>0554 Oslo, Gr&uuml;nerl&oslash;kka</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Markveien+42+0554+Oslo" target="_blank" rel="noopener noreferrer" aria-label="Se demo-adressen i Google Maps, &aring;pnes i ny fane">Finn veien hit <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></a><div class="contact-methods"><a href="tel:+4722000000">+47 22 00 00 00</a><a href="mailto:hei@studioandersen.example">hei@studioandersen.example</a></div></address><div class="opening-hours"><h3>&Aring;pningstider</h3><dl><div class="hours-row" data-days="1,2,3"><dt>Mandag &ndash; onsdag</dt><dd>10:00 &ndash; 18:00</dd></div><div class="hours-row" data-days="4"><dt>Torsdag</dt><dd>10:00 &ndash; 20:00</dd></div><div class="hours-row" data-days="5"><dt>Fredag</dt><dd>10:00 &ndash; 18:00</dd></div><div class="hours-row" data-days="6"><dt>L&oslash;rdag</dt><dd>10:00 &ndash; 16:00</dd></div><div class="hours-row" data-days="0"><dt>S&oslash;ndag</dt><dd>Hviledag</dd></div></dl></div><p class="contact-note">Fiktiv salong og kontaktinformasjon. Dette er en portef&oslash;ljedemo.</p></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-pad" id="sidefot"><div class="footer-top"><p>Personlig h&aring;ndverk. Gode samtaler. Fint h&aring;r.</p><div class="footer-top-links"><a href="#behandlinger">Behandlinger</a><a href="#frisorer">Menneskene</a><button data-info="visit">F&oslash;r bes&oslash;ket</button></div></div><p class="footer-wordmark">Studio <em>Andersen</em></p><div class="footer-bottom"><p>&copy; <span id="copyright-year">2026</span> Studio Andersen</p><p>Et fiktivt studio. En ekte god f&oslash;lelse.<br>Personer, priser og omtaler er illustrasjoner.</p><button data-info="privacy">Personvern &amp; om demoen <span aria-hidden="true">/</span></button></div></footer>
+
+  <div class="mobile-bookbar" id="mobile-bookbar" aria-hidden="true" inert><p>Tid til deg.</p><button class="button" data-book>Bestill time <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div>
+
+  <dialog class="menu-dialog" id="menu-dialog" aria-label="Hovedmeny"><div class="menu-top"><a class="brand" href="#hjem"><span class="brand-small">Studio</span><span class="brand-name">Andersen</span></a><button class="circle-button" data-close="menu-dialog" aria-label="Lukk meny"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button></div><nav class="menu-nav" aria-label="Mobilmeny"><a href="#behandlinger"><span>01</span>Behandlinger</a><a href="#inspirasjon"><span>02</span>Inspirasjon</a><a href="#frisorer"><span>03</span>V&aring;re fris&oslash;rer</a><a href="#studioet"><span>04</span>Studioet</a><a href="#kontakt"><span>05</span>Kontakt</a></nav><div class="menu-bottom"><p>Godt h&aring;r. Helt deg.<br>Gr&uuml;nerl&oslash;kka, Oslo.</p><button class="button button-lime" data-book>Bestill time <svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div></dialog>
+
+  <dialog class="booking-dialog" id="booking-dialog" aria-labelledby="booking-step-title">
+    <div class="booking-top"><span class="booking-top-brand">Studio Andersen</span><p class="eyebrow">Demobooking<span class="booking-top-detail"> / Ingen betaling</span></p><button class="circle-button" data-close="booking-dialog" aria-label="Lukk booking"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button></div>
+    <div class="booking-layout"><aside class="booking-summary" aria-label="Din bestilling"><p class="eyebrow">En god h&aring;rdag begynner her</p><p class="summary-title">Tid til<br><em>deg.</em></p><dl class="summary-list"><div><dt>Din behandling</dt><dd id="summary-service">Hva frister i dag?</dd></div><div><dt>Din fris&oslash;r</dt><dd id="summary-stylist">Vi finner den rette</dd></div><div><dt>Ditt tidspunkt</dt><dd id="summary-date">En tid som passer deg</dd></div></dl><div class="summary-price"><span>Pris fra</span><strong id="summary-price">Velg f&oslash;rst</strong></div><p class="summary-note">Dette er en portef&oslash;ljedemo. Ingen ekte time reserveres, og opplysningene dine verken sendes eller lagres.</p></aside><div class="booking-content"><ol class="booking-steps" id="booking-steps" aria-label="Bestillingssteg"><li class="is-active" aria-current="step"><span>01</span>Behandling</li><li><span>02</span>Fris&oslash;r</li><li><span>03</span>Tidspunkt</li><li><span>04</span>Detaljer</li></ol><div class="booking-heading"><h2 id="booking-step-title" tabindex="-1">Hva kan vi gj&oslash;re for deg?</h2><p id="booking-step-description">Velg litt vedlikehold, en forandring eller bare en pause.</p><p class="mobile-booking-summary" id="mobile-booking-summary"></p></div><form id="booking-form" novalidate></form><p class="booking-error" id="booking-error" role="alert" hidden></p><div class="booking-footer"><button class="booking-back" id="booking-back" type="button" disabled><svg class="icon" aria-hidden="true"><use href="#arrow-left"/></svg>Tilbake</button><button class="button" id="booking-next" type="submit" form="booking-form" disabled><span>Velg fris&oslash;r</span><svg class="icon" aria-hidden="true"><use href="#arrow-right"/></svg></button></div></div></div>
+  </dialog>
+
+  <dialog class="profile-dialog" id="profile-dialog" aria-labelledby="profile-name"><img class="profile-dialog-photo" id="profile-image" alt="" width="800" height="1200"><div class="profile-dialog-content"><button class="circle-button dialog-close" data-close="profile-dialog" aria-label="Lukk fris&oslash;rprofil"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button><p class="eyebrow" id="profile-role"></p><h2 id="profile-name" tabindex="-1"></h2><p class="body-copy" id="profile-bio"></p><dl class="profile-specialty"><dt>Litt ekstra glad i</dt><dd id="profile-specialties"></dd></dl><button class="button" id="profile-book" data-book><span>Bestill time</span><svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button></div></dialog>
+
+  <dialog class="look-dialog" id="look-dialog" aria-labelledby="look-title"><img class="look-dialog-image" id="look-dialog-image" alt="" width="800" height="1200"><div class="look-dialog-copy"><button class="circle-button dialog-close" data-close="look-dialog" aria-label="Lukk inspirasjonsbilde"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button><p class="eyebrow" id="look-category"></p><h2 id="look-title" tabindex="-1"></h2><p class="body-copy" id="look-description"></p><button class="button" id="look-book" data-book><span>Finn ditt uttrykk</span><svg class="icon" aria-hidden="true"><use href="#arrow-up-right"/></svg></button><div class="look-dialog-nav"><button class="circle-button" id="look-prev" aria-label="Forrige look"><svg class="icon" aria-hidden="true"><use href="#arrow-left"/></svg></button><span id="look-counter" aria-live="polite"></span><button class="circle-button" id="look-next" aria-label="Neste look"><svg class="icon" aria-hidden="true"><use href="#arrow-right"/></svg></button></div><p class="look-dialog-note">Bildene er inspirasjon, ikke dokumentasjon av salongarbeid.</p></div></dialog>
+
+  <dialog class="info-dialog" id="info-dialog" aria-labelledby="info-title"><button class="circle-button dialog-close" data-close="info-dialog" aria-label="Lukk informasjon"><svg class="icon" aria-hidden="true"><use href="#close"/></svg></button><h2 id="info-title" tabindex="-1"></h2><div id="info-content"></div></dialog>
+
+  <noscript><style>[data-book], .person-info [data-profile], .gallery-controls, .review-controls, .menu-toggle, .mobile-bookbar, [data-info] { display: none !important; }.person-photo, .look-button { pointer-events: none; }</style><div style="padding:25px;background:#e3e9bc;color:#282b23;text-align:center">Bestilling og interaktive visninger i denne demoen krever JavaScript. Innhold, priser og kontaktinformasjon er tilgjengelig uten.</div></noscript>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const $ = (selector, parent = document) => parent.querySelector(selector);
+      const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const icon = (name) => `<svg class="icon" aria-hidden="true"><use href="#${name}"/></svg>`;
+      const mediaMap = {"1438795":"images/photo-1438795.jpg","4078809":"images/photo-4078809.jpg","6100174":"images/photo-6100174.jpg","7195799":"images/photo-7195799.jpg","7440132":"images/photo-7440132.jpg","7750108":"images/photo-7750108.jpg","8182243":"images/photo-8182243.jpg","11158639":"images/photo-11158639.jpg","12285002":"images/photo-12285002.jpg","26759527":"images/photo-26759527.jpg","37952576":"images/photo-37952576.jpg"};
+      const media = (id) => mediaMap[id] || '';
+      const price = (value) => value === 0 ? 'Gratis' : `${new Intl.NumberFormat('nb-NO').format(value)},-`;
+      const pad = (value) => String(value).padStart(2, '0');
+      const serviceData = [
+        { id: 'cut', name: 'Klipp & form', price: 990, duration: 60, detail: 'Vask, klipp og f\u00f8n', caption: 'Form, tekstur & bevegelse' },
+        { id: 'color', name: 'Farge & glans', price: 1690, duration: 120, detail: 'Farge, vask og f\u00f8n', caption: 'Nyanser som kler deg' },
+        { id: 'balayage', name: 'Balayage', price: 2790, duration: 180, detail: 'Lysning, nyansering og f\u00f8n', caption: 'Lys, spill & myke overganger' },
+        { id: 'styling', name: 'Styling & f\u00f8n', price: 690, duration: 45, detail: 'Vask og styling', caption: 'En litt ekstra god h\u00e5rdag' },
+        { id: 'care', name: 'Pleie & ro', price: 490, duration: 30, detail: 'Kur, massasje og enkel t\u00f8rk', caption: 'En liten pause. Ny energi.' },
+        { id: 'consult', name: 'En god samtale', price: 0, duration: 20, detail: 'Uforpliktende konsultasjon', caption: 'Vi starter med \u00e5 lytte' }
+      ];
+      const staffData = [
+        { id: 'sofie', name: 'Sofie Andersen', firstName: 'Sofie', role: 'Grunnlegger / Farge & balayage', image: 26759527, bio: 'For Sofie handler godt h\u00e5r om mer enn teknikk. Det handler om \u00e5 se mennesket. Etter 12 \u00e5r i faget \u00e5pnet hun studioet hun selv savnet: varmt, rolig og med plass til \u00e5 v\u00e6re seg selv. Hun elsker naturlige fargespill og den lille forandringen som gj\u00f8r hele forskjellen.', specialties: 'Balayage, fargekorrigering og naturlige blondtoner. Gode samtaler og altfor sterk kaffe.' },
+        { id: 'emma', name: 'Emma Berg', firstName: 'Emma', role: 'Fris\u00f8r / Klipp & naturlig tekstur', image: 37952576, bio: 'Emma tror at den beste klippen er den du trives med ogs\u00e5 p\u00e5 en helt vanlig tirsdag. Med 8 \u00e5rs erfaring og et eget blikk for kr\u00f8ller og tekstur finner hun formen som allerede ligger i h\u00e5ret ditt. Du f\u00e5r alltid med deg noen enkle tips hjem.', specialties: 'Kr\u00f8ller, myke lag og personlige bob-klipper. Sm\u00e5 konserter og store keramikkopper.' },
+        { id: 'jonas', name: 'Jonas Lund', firstName: 'Jonas', role: 'Fris\u00f8r / Korte klipper & styling', image: 11158639, bio: 'Jonas er detaljmennesket v\u00e5rt. Han har brukt 9 \u00e5r p\u00e5 \u00e5 finpusse h\u00e5ndverket, fra knivskarpe linjer til styling som ser helt uanstrengt ut. I stolen hans er stemningen avslappet, spillelisten god og ingen sp\u00f8rsm\u00e5l for sm\u00e5.', specialties: 'Korte klipper, presise former og styling til store dager. Vinylplater og gode nabolagssteder.' }
+      ];
+      const looks = [
+        { name: 'Solkysset.', category: 'Balayage / Myke overganger', image: 7440132, alt: 'Lange, lyse b\u00f8lger med naturlige fargeoverganger', service: 'balayage', description: 'Lys som fanger bevegelsen. Varme og kj\u00f8lige toner i en myk balanse. Vi h\u00e5ndmaler fargen der den gir mest liv, slik at uttrykket f\u00f8les naturlig og vokser vakkert ut.' },
+        { name: 'En ny form.', category: 'Klipp / Ren personlighet', image: 8182243, alt: 'En kort, formsterk frisyre mot en varm bakgrunn', service: 'cut', description: 'Noen ganger er det en ny silhuett som skal til. En tydelig form, myke detaljer og akkurat nok kant. Sammen finner vi klippen som kler ansiktet og passer hverdagen din.' },
+        { name: 'Fri tekstur.', category: 'Styling / Plass til bevegelse', image: 6100174, alt: 'M\u00f8rke, naturlige kr\u00f8ller med definisjon og volum', service: 'styling', description: 'La kr\u00f8llene f\u00e5 ta plass. Vi jobber med h\u00e5rets egen bevegelse, riktig fukt og en lett h\u00e5nd. Resultatet? Mer liv, mindre arbeid og tekstur som er helt din.' },
+        { name: 'Varm gl\u00f8d.', category: 'Farge / Litt mer karakter', image: 12285002, alt: 'Kobberr\u00f8dt h\u00e5r med en varm, levende tone', service: 'color', description: 'Kobber, kanel og varme refleksjoner. En rik farge med dybde, tilpasset huden og personligheten din. Vi finner nyansen du ikke visste at du savnet.' }
+      ];
+      const reviews = [
+        { quote: 'Endelig en fris\u00f8r som skj\u00f8nner hva jeg mener, ogs\u00e5 n\u00e5r jeg ikke helt klarer \u00e5 forklare det. Har aldri f\u00f8lt meg mer som meg.', name: 'Ingrid M.', service: 'Klipp og balayage hos Sofie / 5 av 5' },
+        { quote: 'Emma fikk frem kr\u00f8ller jeg nesten hadde glemt at jeg hadde. En klipp som faktisk er like fin etter at jeg har vasket h\u00e5ret hjemme.', name: 'Julie K.', service: 'Klipp og pleie hos Emma / 5 av 5' },
+        { quote: 'Rolig stemning, skikkelig god kaffe og en fris\u00f8r som tar seg tid. Jonas traff p\u00e5 f\u00f8rste fors\u00f8k. Dette blir mitt faste sted.', name: 'Martin H.', service: 'Klipp og styling hos Jonas / 5 av 5' }
+      ];
+
+      const dialogs = $$('dialog');
+      const dialogTriggers = new WeakMap();
+      function openDialog(dialog, focusElement) {
+        const trigger = document.activeElement;
+        const previousDialog = trigger ? trigger.closest('dialog') : null;
+        const returnTarget = previousDialog ? dialogTriggers.get(previousDialog) || trigger : trigger;
+        dialogs.forEach((other) => { if (other.open && other !== dialog) other.close(); });
+        dialogTriggers.set(dialog, returnTarget);
+        document.body.classList.add('modal-open');
+        if (!dialog.open) dialog.showModal();
+        if (focusElement) focusElement.focus({ preventScroll: true });
+      }
+      dialogs.forEach((dialog) => {
+        dialog.addEventListener('click', (event) => {
+          if (event.target !== dialog) return;
+          const rect = dialog.getBoundingClientRect();
+          if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+        });
+        dialog.addEventListener('close', () => {
+          if (dialog.id === 'booking-dialog' && !dialog.open) {
+            booking = newBooking();
+            $('#booking-form').replaceChildren();
+          }
+          if (!dialogs.some((other) => other.open)) {
+            document.body.classList.remove('modal-open');
+            const trigger = dialogTriggers.get(dialog);
+            if (trigger && trigger.isConnected && trigger.getClientRects().length) trigger.focus({ preventScroll: true });
+            else $('#header-book').focus({ preventScroll: true });
+          }
+        });
+      });
+
+      $('#menu-toggle').addEventListener('click', () => openDialog($('#menu-dialog'), $('#menu-dialog [data-close]')));
+      $$('#menu-dialog a').forEach((link) => link.addEventListener('click', () => $('#menu-dialog').close()));
+
+      document.addEventListener('click', (event) => {
+        const closeButton = event.target.closest('[data-close]');
+        if (closeButton) { document.getElementById(closeButton.dataset.close).close(); return; }
+        const bookButton = event.target.closest('[data-book]');
+        if (bookButton) { openBooking(bookButton.dataset.service, bookButton.dataset.stylist); return; }
+        const profileButton = event.target.closest('[data-profile]');
+        if (profileButton) { showProfile(profileButton.dataset.profile); return; }
+        const lookButton = event.target.closest('[data-look]');
+        if (lookButton) { showLook(Number(lookButton.dataset.look), true); return; }
+        const infoButton = event.target.closest('[data-info]');
+        if (infoButton) showInfo(infoButton.dataset.info);
+      });
+
+      $$('.service').forEach((details) => {
+        details.addEventListener('toggle', () => {
+          if (!details.open) return;
+          $$('.service').forEach((other) => { if (other !== details) other.open = false; });
+          const service = serviceData.find((item) => item.id === details.dataset.service);
+          $$('[data-service-image]').forEach((image) => {
+            const active = image.dataset.serviceImage === service.id;
+            image.classList.toggle('is-active', active);
+            image.setAttribute('aria-hidden', String(!active));
+          });
+          $('#treatment-caption').textContent = service.caption;
+        });
+      });
+
+      const galleryTrack = $('#gallery-track');
+      const galleryItems = $$('.look', galleryTrack);
+      let galleryIndex = 0;
+      function updateGallery() {
+        const left = galleryTrack.scrollLeft;
+        const max = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+        const start = galleryItems[0].offsetLeft;
+        galleryIndex = galleryItems.reduce((best, item, index) => Math.abs(item.offsetLeft - start - left) < Math.abs(galleryItems[best].offsetLeft - start - left) ? index : best, 0);
+        $('#gallery-prev').disabled = left < 4;
+        $('#gallery-next').disabled = left >= max - 4;
+        $('#gallery-number').textContent = pad(left >= max - 4 ? looks.length : galleryIndex + 1);
+        $('#gallery-progress').style.width = `${25 + (max > 0 ? left / max : 1) * 75}%`;
+      }
+      function moveGallery(direction) {
+        const index = Math.max(0, Math.min(galleryItems.length - 1, galleryIndex + direction));
+        galleryTrack.scrollTo({ left: galleryItems[index].offsetLeft - galleryItems[0].offsetLeft, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+      }
+      galleryTrack.addEventListener('scroll', updateGallery, { passive: true });
+      $('#gallery-prev').addEventListener('click', () => moveGallery(-1));
+      $('#gallery-next').addEventListener('click', () => moveGallery(1));
+      galleryTrack.addEventListener('keydown', (event) => {
+        if (event.target !== galleryTrack) return;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); moveGallery(event.key === 'ArrowRight' ? 1 : -1); }
+      });
+      window.addEventListener('resize', updateGallery, { passive: true });
+      updateGallery();
+
+      let lookIndex = 0;
+      function showLook(index, shouldOpen = false) {
+        lookIndex = (index + looks.length) % looks.length;
+        const look = looks[lookIndex];
+        $('#look-dialog-image').src = media(look.image);
+        $('#look-dialog-image').alt = look.alt;
+        $('#look-title').textContent = look.name;
+        $('#look-category').textContent = look.category;
+        $('#look-description').textContent = look.description;
+        $('#look-book').dataset.service = look.service;
+        $('#look-counter').textContent = `${pad(lookIndex + 1)} / ${pad(looks.length)}`;
+        if (shouldOpen) openDialog($('#look-dialog'), $('#look-title'));
+      }
+      $('#look-prev').addEventListener('click', () => showLook(lookIndex - 1));
+      $('#look-next').addEventListener('click', () => showLook(lookIndex + 1));
+      $('#look-dialog').addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); showLook(lookIndex + (event.key === 'ArrowRight' ? 1 : -1)); }
+      });
+      function showProfile(id) {
+        const person = staffData.find((item) => item.id === id);
+        if (!person) return;
+        $('#profile-image').src = media(person.image);
+        $('#profile-image').alt = `Illustrasjonsportrett av ${person.name}`;
+        $('#profile-role').textContent = person.role;
+        $('#profile-name').textContent = person.name;
+        $('#profile-bio').textContent = person.bio;
+        $('#profile-specialties').textContent = person.specialties;
+        $('#profile-book').dataset.stylist = person.id;
+        $('#profile-book span').textContent = `Bestill med ${person.firstName}`;
+        openDialog($('#profile-dialog'), $('#profile-name'));
+      }
+      let reviewIndex = 0;
+      let reviewAnimation;
+      function changeReview(direction) {
+        reviewIndex = (reviewIndex + direction + reviews.length) % reviews.length;
+        const review = reviews[reviewIndex];
+        $('#review-quote').textContent = review.quote;
+        $('#review-name').textContent = review.name;
+        $('#review-service').textContent = review.service;
+        $('#review-counter').textContent = `${pad(reviewIndex + 1)} / ${pad(reviews.length)}`;
+        if (!reducedMotion.matches && $('#review-content').animate) {
+          if (reviewAnimation) reviewAnimation.cancel();
+          reviewAnimation = $('#review-content').animate([{ opacity: 0, transform: 'translateY(9px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 420, easing: 'cubic-bezier(.22,1,.36,1)' });
+        }
+      }
+      $('#review-prev').addEventListener('click', () => changeReview(-1));
+      $('#review-next').addEventListener('click', () => changeReview(1));
+
+      function showInfo(type) {
+        const content = {
+          privacy: {
+            title: 'Personvern & om demoen',
+            html: `<p>Studio Andersen er en fiktiv salong. Denne nettsiden er laget som en portef\u00f8ljedemo. Navn, adresser, priser, omtaler og tilgjengelige timer er illustrasjoner, ikke et reelt tjenestetilbud.</p>
+              <h3>En booking, bare p\u00e5 liksom</h3><p>Skjemaet kj\u00f8res kun i nettleseren. Ingen personopplysninger sendes til en server, lagres i nettleserlagring eller brukes til e-post. Det du skriver slettes fra skjemaet n\u00e5r du lukker bestillingen eller laster siden p\u00e5 nytt. Bruk gjerne oppdiktede opplysninger.</p>
+              <h3>Ingen analyse eller markedsf\u00f8ring</h3><p>Demoen setter ingen egne informasjonskapsler og bruker ingen analyseverkt\u00f8y. Skriftene lastes fra Google Fonts, bildene fra Pexels og CSS-verkt\u00f8yet fra jsDelivr. Disse tjenestene mottar vanlige nettverksopplysninger, som IP-adresse, n\u00e5r nettleseren henter filene.</p>
+              <h3>Foto og kalender</h3><p>Bildene er illustrasjonsbilder fra <a href="https://www.pexels.com/license/" target="_blank" rel="noopener noreferrer">Pexels</a>. Modellene er ikke de fiktive fris\u00f8rene, og inspirasjonsbildene viser ikke arbeid utf\u00f8rt av Studio Andersen. En eventuell kalenderfil merkes tydelig som DEMO og inneholder ikke opplysningene fra bestillingsskjemaet.</p>`
+          },
+          visit: {
+            title: 'F\u00f8r du setter deg i stolen.',
+            html: `<p>Den fineste starten er en god samtale. Ta gjerne med bilder du liker, men du trenger ikke ha alle svarene. Vi finner uttrykket sammen.</p>
+              <h3>Hva er inkludert?</h3><p>Klipp inkluderer konsultasjon, vask og f\u00f8n. Ved farge og balayage er pleie og f\u00f8n inkludert, mens klipp avtales i tillegg. Har du langt eller tykt h\u00e5r, kan behandlingen kreve mer tid.</p>
+              <h3>Pris uten overraskelser</h3><p>Prisene er fra-priser, inkludert mva. Endelig pris og forventet tidsbruk avtales f\u00f8r behandlingen starter. Vi priser etter tid og h\u00e5rlengde, ikke kj\u00f8nn.</p>
+              <h3>En liten planendring?</h3><p>I en ekte booking ville du kunnet endre eller avbestille inntil 24 timer f\u00f8r avtalen. I denne demoen blir ingen time reservert, og det er derfor ingenting \u00e5 avbestille.</p>
+              <h3>Usikker p\u00e5 behandling?</h3><p>Velg den kostnadsfrie konsultasjonen i bestillingen. Den setter av 20 minutter til \u00e5 snakke om h\u00e5ret ditt, mulighetene og veien videre. Ogs\u00e5 denne bestillingen er kun en demo.</p>`
+          }
+        };
+        const info = content[type] || content.privacy;
+        $('#info-title').textContent = info.title;
+        $('#info-content').innerHTML = info.html;
+        openDialog($('#info-dialog'), $('#info-title'));
+      }
+
+      /* Calendar math is based on salon time, not the visitor's time zone. */
+      const osloFormatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Oslo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+      function osloNow() {
+        const parts = Object.fromEntries(osloFormatter.formatToParts(new Date()).filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
+        return { key: `${parts.year}-${parts.month}-${parts.day}`, minutes: Number(parts.hour) * 60 + Number(parts.minute) };
+      }
+      function dateFromKey(key) { const [year, month, day] = key.split('-').map(Number); return new Date(year, month - 1, day, 12); }
+      function dateKey(date) { return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`; }
+      function addDays(key, days) { const date = dateFromKey(key); date.setDate(date.getDate() + days); return dateKey(date); }
+      function formatDate(key, options = { weekday: 'long', day: 'numeric', month: 'long' }) { return new Intl.DateTimeFormat('nb-NO', options).format(dateFromKey(key)); }
+      function minutesToTime(minutes) { return `${pad(Math.floor(minutes / 60))}:${pad(minutes % 60)}`; }
+      function timeToMinutes(time) { const [hour, minute] = time.split(':').map(Number); return hour * 60 + minute; }
+      function closingTime(key) { const day = dateFromKey(key).getDay(); return day === 0 ? 0 : day === 6 ? 960 : day === 4 ? 1200 : 1080; }
+      function availableStaff(key, minute) {
+        const now = osloNow();
+        if (key < now.key || (key === now.key && minute < now.minutes + 90)) return [];
+        const date = dateFromKey(key);
+        return staffData.filter((person, index) => {
+          const seed = (date.getDate() * 7 + date.getMonth() * 11 + index * 3 + Math.floor(minute / 30)) % 7;
+          return seed !== 0 && seed !== 3;
+        });
+      }
+      function slotsFor(key, serviceId, stylistId) {
+        const service = serviceData.find((item) => item.id === serviceId);
+        if (!service || !key || !closingTime(key)) return [];
+        const result = [];
+        for (let minute = 600; minute + service.duration <= closingTime(key); minute += 30) {
+          const people = availableStaff(key, minute);
+          result.push({ time: minutesToTime(minute), people, available: stylistId === 'any' ? people.length > 0 : people.some((person) => person.id === stylistId) });
+        }
+        return result;
+      }
+      function newBooking() {
+        return { step: 0, service: null, stylist: 'any', date: null, time: null, weekOffset: 0, startDate: osloNow().key, customer: { name: '', email: '', phone: '', note: '', consent: false }, reference: null, assignedStylist: null };
+      }
+      let booking = newBooking();
+      const bookingDialog = $('#booking-dialog');
+      const bookingForm = $('#booking-form');
+      const stepTitles = ['Hva kan vi gj\u00f8re for deg?', 'Hvem vil du sitte hos?', 'En tid som passer deg.', 'Snart din tur.'];
+      const stepDescriptions = ['Velg litt vedlikehold, en forandring eller bare en pause.', 'Velg favoritten din, eller la oss finne f\u00f8rste ledige.', 'Velg en dag og et tidspunkt. Vi setter av god tid.', 'Bruk gjerne fiktive opplysninger. Ingenting sendes.'];
+      const nextLabels = ['Velg fris\u00f8r', 'Finn et tidspunkt', 'Til dine detaljer', 'Bekreft demotime'];
+
+      function openBooking(serviceId, stylistId) {
+        booking = newBooking();
+        if (serviceData.some((service) => service.id === serviceId)) booking.service = serviceId;
+        if (staffData.some((person) => person.id === stylistId)) booking.stylist = stylistId;
+        renderBooking();
+        openDialog(bookingDialog, $('#booking-step-title'));
+      }
+      function updateSummary() {
+        const service = serviceData.find((item) => item.id === booking.service);
+        const person = staffData.find((item) => item.id === (booking.assignedStylist || booking.stylist));
+        $('#summary-service').textContent = service ? `${service.name} / ${service.duration} min` : 'Hva frister i dag?';
+        $('#summary-stylist').textContent = person ? person.name : 'F\u00f8rste ledige fris\u00f8r';
+        $('#summary-date').textContent = booking.date ? `${formatDate(booking.date)}${booking.time ? ` kl. ${booking.time}` : ''}` : 'En tid som passer deg';
+        $('#summary-price').textContent = service ? price(service.price) : 'Velg f\u00f8rst';
+        $('#mobile-booking-summary').textContent = service ? `${service.name} / ${service.price ? 'fra ' : ''}${price(service.price)} / ${service.duration} min` : 'Demobooking. Ingen ekte reservasjon.';
+      }
+      function canContinue() {
+        if (booking.step === 0) return !!booking.service;
+        if (booking.step === 1) return !!booking.stylist;
+        if (booking.step === 2) return !!booking.date && !!booking.time;
+        return true;
+      }
+      function updateNext() { $('#booking-next').disabled = !canContinue(); }
+      function clearBookingError() { $('#booking-error').hidden = true; $('#booking-error').textContent = ''; }
+      function showBookingError(message) { $('#booking-error').textContent = message; $('#booking-error').hidden = false; }
+      function chooseFirstDate() {
+        const start = addDays(booking.startDate, booking.weekOffset * 7);
+        for (let day = 0; day < 7; day++) {
+          const key = addDays(start, day);
+          if (slotsFor(key, booking.service, booking.stylist).some((slot) => slot.available)) { booking.date = key; return; }
+        }
+        booking.date = null;
+      }
+      function renderBooking() {
+        clearBookingError();
+        const complete = booking.step === 4;
+        $('#booking-steps').hidden = complete;
+        $$('#booking-steps li').forEach((item, index) => {
+          item.classList.toggle('is-active', index === booking.step);
+          item.classList.toggle('is-done', index < booking.step);
+          if (index === booking.step) item.setAttribute('aria-current', 'step'); else item.removeAttribute('aria-current');
+        });
+        $('#booking-step-title').textContent = complete ? 'En god f\u00f8lelse.' : stepTitles[booking.step];
+        $('#booking-step-description').textContent = complete ? 'Du har akkurat pr\u00f8vd v\u00e5r bookingopplevelse.' : stepDescriptions[booking.step];
+        $('#booking-back').disabled = booking.step === 0 || complete;
+        $('#booking-next span').textContent = complete ? 'Tilbake til studioet' : nextLabels[booking.step];
+        if (booking.step === 0) renderServices();
+        else if (booking.step === 1) renderStaff();
+        else if (booking.step === 2) renderCalendar();
+        else if (booking.step === 3) renderCustomer();
+        else renderConfirmation();
+        updateSummary();
+        updateNext();
+        bookingForm.scrollTop = 0;
+        if (bookingDialog.open && !reducedMotion.matches && bookingForm.animate) {
+          bookingForm.animate([{ opacity: 0, transform: 'translateY(7px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 300, easing: 'cubic-bezier(.22,1,.36,1)' });
+        }
+      }
+      function renderServices() {
+        bookingForm.innerHTML = `<fieldset><legend class="sr-only">Velg behandling</legend>${serviceData.map((service) => `<label class="choice-row"><input type="radio" name="service" value="${service.id}" ${booking.service === service.id ? 'checked' : ''}><span class="choice-copy"><strong>${service.name}</strong><small>${service.duration} min / ${service.detail}</small></span><span class="choice-price">${service.price ? '<small>fra</small>' : ''}${price(service.price)}</span><span class="radio-mark" aria-hidden="true"></span></label>`).join('')}</fieldset><p class="availability-note">Konsultasjon er inkludert i alle behandlinger. Endelig pris avtales i stolen. Ved st\u00f8rre forandringer anbefaler vi en gratis samtale f\u00f8rst.</p>`;
+      }
+      function renderStaff() {
+        bookingForm.innerHTML = `<fieldset><legend class="sr-only">Velg fris\u00f8r</legend><label class="choice-row staff-choice"><input type="radio" name="stylist" value="any" ${booking.stylist === 'any' ? 'checked' : ''}><span class="choice-avatar any-avatar" aria-hidden="true">a</span><span class="choice-copy"><strong>F\u00f8rste ledige</strong><small>Fine folk. Dyktige hender. Du er i trygge hender.</small></span><span class="radio-mark" aria-hidden="true"></span></label>${staffData.map((person) => `<label class="choice-row staff-choice"><input type="radio" name="stylist" value="${person.id}" ${booking.stylist === person.id ? 'checked' : ''}><img class="choice-avatar" src="${media(person.image)}" alt=""><span class="choice-copy"><strong>${person.name}</strong><small>${person.role}</small></span><span class="radio-mark" aria-hidden="true"></span></label>`).join('')}</fieldset><p class="availability-note">Samme fra-pris hos alle v\u00e5re fris\u00f8rer. Alle behersker behandlingene, men har sine egne favorittomr\u00e5der.</p>`;
+      }
+      function renderCalendar() {
+        if (!booking.date) chooseFirstDate();
+        const start = addDays(booking.startDate, booking.weekOffset * 7);
+        const end = addDays(start, 6);
+        const firstMonth = formatDate(start, { month: 'long' });
+        const lastMonth = formatDate(end, { month: 'long' });
+        const firstYear = dateFromKey(start).getFullYear();
+        const lastYear = dateFromKey(end).getFullYear();
+        const monthLabel = firstYear !== lastYear ? `${firstMonth} ${firstYear} / ${lastMonth} ${lastYear}` : `${firstMonth === lastMonth ? firstMonth : `${firstMonth} / ${lastMonth}`} ${lastYear}`;
+        const today = osloNow().key;
+        bookingForm.innerHTML = `<div class="calendar-heading"><p class="calendar-month">${monthLabel}</p><div class="calendar-nav"><button class="circle-button" type="button" data-week="-1" ${booking.weekOffset === 0 ? 'disabled' : ''} aria-label="Forrige sju dager">${icon('arrow-left')}</button><button class="circle-button" type="button" data-week="1" ${booking.weekOffset === 3 ? 'disabled' : ''} aria-label="Neste sju dager">${icon('arrow-right')}</button></div></div><fieldset><legend class="sr-only">Velg en dato</legend><div class="date-options">${Array.from({ length: 7 }, (_, day) => {
+          const key = addDays(start, day);
+          const available = slotsFor(key, booking.service, booking.stylist).some((slot) => slot.available);
+          const weekday = key === today ? 'I dag' : formatDate(key, { weekday: 'short' }).replace('.', '');
+          const date = dateFromKey(key);
+          return `<label class="date-choice"><input type="radio" name="date" value="${key}" aria-label="${formatDate(key)}${!available ? closingTime(key) ? ', ingen ledige timer' : ', stengt' : ''}" ${key === booking.date ? 'checked' : ''} ${!available ? 'disabled' : ''}><span>${weekday}</span><strong>${date.getDate()}</strong></label>`;
+        }).join('')}</div></fieldset><div id="time-section"></div>`;
+        renderTimes();
+      }
+      function renderTimes() {
+        const section = $('#time-section');
+        if (!section) return;
+        if (!booking.date) { section.innerHTML = '<p class="no-times">Ingen ledige demotimer denne uken. Pr\u00f8v neste uke eller en annen fris\u00f8r.</p>'; return; }
+        const slots = slotsFor(booking.date, booking.service, booking.stylist);
+        section.innerHTML = `<p class="time-label">Ledige tidspunkt ${formatDate(booking.date, { day: 'numeric', month: 'long' })}</p><fieldset><legend class="sr-only">Velg et tidspunkt</legend><div class="time-options">${slots.map((slot) => `<label class="time-choice"><input type="radio" name="time" value="${slot.time}" aria-label="Klokken ${slot.time}${slot.available ? '' : ', utilgjengelig'}" ${slot.available ? '' : 'disabled'} ${booking.time === slot.time ? 'checked' : ''}><span>${slot.time}</span></label>`).join('')}</div></fieldset><p class="availability-note">Alle tider er norsk tid (Europe/Oslo). Overstr\u00f8kne tider er utilgjengelige. Dager og timer er illustrative, og det gj\u00f8res ingen ekte reservasjon.</p>`;
+      }
+      function renderCustomer() {
+        const service = serviceData.find((item) => item.id === booking.service);
+        const person = staffData.find((item) => item.id === booking.stylist);
+        bookingForm.innerHTML = `<div class="final-booking-recap"><p><strong>${formatDate(booking.date)} kl. ${booking.time}</strong></p><p>${service.name} / ${person ? person.name : 'F\u00f8rste ledige fris\u00f8r'}</p><p>${service.duration} min / ${service.price ? 'fra ' : ''}${price(service.price)}</p></div>
+          <div class="customer-fields">
+            <label class="field field-full"><span>Fornavn og etternavn *</span><input name="name" id="customer-name" autocomplete="name" placeholder="Ditt navn" maxlength="80" minlength="2" required></label>
+            <label class="field"><span>E-post *</span><input type="email" name="email" id="customer-email" autocomplete="email" placeholder="deg@eksempel.no" maxlength="150" required></label>
+            <label class="field"><span>Mobilnummer *</span><input type="tel" name="phone" id="customer-phone" autocomplete="tel" inputmode="tel" placeholder="123 45 678" maxlength="20" required></label>
+            <label class="field field-full"><span>Noe vi b\u00f8r vite? <small>Valgfritt</small></span><textarea name="note" id="customer-note" placeholder="For eksempel langt h\u00e5r, eller en look du har lyst til \u00e5 pr\u00f8ve." maxlength="600" rows="3"></textarea></label>
+          </div>
+          <label class="consent-row"><input type="checkbox" name="consent" id="customer-consent" required><span>Jeg forst\u00e5r at dette er en demo, og at ingen ekte time blir bestilt. *</span></label>
+          <p class="privacy-note">Ingen betaling. Ingen e-post. Opplysningene finnes bare i denne \u00e5pne bestillingen og slettes n\u00e5r den lukkes. Unng\u00e5 \u00e5 skrive sensitive opplysninger.</p>`;
+        ['name', 'email', 'phone', 'note'].forEach((key) => { $(`#customer-${key}`).value = booking.customer[key]; });
+        $('#customer-consent').checked = booking.customer.consent;
+      }
+      function renderConfirmation() {
+        const service = serviceData.find((item) => item.id === booking.service);
+        const person = staffData.find((item) => item.id === booking.assignedStylist);
+        bookingForm.innerHTML = `<div class="booking-success"><div class="success-check" aria-hidden="true">${icon('check')}</div><h3 id="confirmation-name"></h3><p>Dette var en demobooking. Ingen time er reservert, ingen opplysninger er sendt, og du vil ikke motta e-post.</p><div class="confirmation-recap"><strong>${formatDate(booking.date)} kl. ${booking.time}</strong>${service.name} hos ${person.firstName}<br>${service.duration} min / ${service.price ? 'fra ' : ''}${price(service.price)}<br><small>Demoreferanse: ${booking.reference}</small></div><button class="text-link" type="button" id="download-calendar">Legg demotimen i kalender ${icon('arrow-down')}</button></div>`;
+        $('#confirmation-name').textContent = `Takk, ${booking.customer.name.trim().split(/\s+/)[0]}!`;
+        $('#download-calendar').addEventListener('click', downloadCalendar);
+      }
+
+      bookingForm.addEventListener('change', (event) => {
+        const target = event.target;
+        if (target.name === 'service') { booking.service = target.value; booking.date = null; booking.time = null; booking.weekOffset = 0; }
+        else if (target.name === 'stylist') { booking.stylist = target.value; booking.date = null; booking.time = null; booking.weekOffset = 0; }
+        else if (target.name === 'date') { booking.date = target.value; booking.time = null; renderTimes(); }
+        else if (target.name === 'time') booking.time = target.value;
+        else if (target.name === 'consent') booking.customer.consent = target.checked;
+        clearBookingError();
+        updateSummary();
+        updateNext();
+      });
+      bookingForm.addEventListener('input', (event) => {
+        const target = event.target;
+        if (['name', 'email', 'phone', 'note'].includes(target.name)) {
+          booking.customer[target.name] = target.value;
+          target.setCustomValidity('');
+        }
+      });
+      bookingForm.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-week]');
+        if (!button || button.disabled) return;
+        booking.weekOffset = Math.min(3, Math.max(0, booking.weekOffset + Number(button.dataset.week)));
+        booking.date = null;
+        booking.time = null;
+        renderCalendar();
+        updateSummary();
+        updateNext();
+        const selected = $('input[name="date"]:checked', bookingForm);
+        if (selected) selected.focus({ preventScroll: true });
+      });
+      $('#booking-back').addEventListener('click', () => {
+        if (booking.step > 0 && booking.step < 4) {
+          booking.step--;
+          renderBooking();
+          $('#booking-step-title').focus({ preventScroll: true });
+        }
+      });
+      bookingForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (booking.step === 4) { bookingDialog.close(); return; }
+        if (!canContinue()) return;
+        if (booking.step === 3) {
+          const nameInput = $('#customer-name');
+          const phoneInput = $('#customer-phone');
+          nameInput.setCustomValidity(nameInput.value.trim().length >= 2 ? '' : 'Skriv inn navnet ditt.');
+          const phoneDigits = phoneInput.value.replace(/\D/g, '');
+          const validPhone = /^\+?[\d ()-]+$/.test(phoneInput.value.trim()) && phoneDigits.length >= 8 && phoneDigits.length <= 15;
+          phoneInput.setCustomValidity(validPhone ? '' : 'Skriv et gyldig mobilnummer med minst 8 sifre.');
+          if (!bookingForm.reportValidity()) return;
+          ['name', 'email', 'phone', 'note'].forEach((key) => { booking.customer[key] = $(`#customer-${key}`).value; });
+          booking.customer.consent = $('#customer-consent').checked;
+          const validSlot = slotsFor(booking.date, booking.service, booking.stylist).find((slot) => slot.time === booking.time && slot.available);
+          if (!validSlot) {
+            booking.step = 2;
+            booking.time = null;
+            renderBooking();
+            showBookingError('Denne demotimen er ikke lenger tilgjengelig. Velg et nytt tidspunkt.');
+            $('#booking-step-title').focus({ preventScroll: true });
+            return;
+          }
+          booking.assignedStylist = booking.stylist === 'any' ? validSlot.people[0].id : booking.stylist;
+          booking.reference = `SA-${String(Date.now()).slice(-6)}`;
+        }
+        booking.step++;
+        renderBooking();
+        $('#booking-step-title').focus({ preventScroll: true });
+      });
+
+      function downloadCalendar() {
+        if (booking.step !== 4) return;
+        const service = serviceData.find((item) => item.id === booking.service);
+        const date = booking.date.replace(/-/g, '');
+        const start = booking.time.replace(':', '') + '00';
+        const end = minutesToTime(timeToMinutes(booking.time) + service.duration).replace(':', '') + '00';
+        const escapeICS = (text) => text.replace(/\\/g, '\\\\').replace(/\r?\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
+        const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+        const lines = [
+          'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Studio Andersen//Portfolio Demo//NB', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+          'BEGIN:VTIMEZONE', 'TZID:Europe/Oslo',
+          'BEGIN:DAYLIGHT', 'TZOFFSETFROM:+0100', 'TZOFFSETTO:+0200', 'TZNAME:CEST', 'DTSTART:19700329T020000', 'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU', 'END:DAYLIGHT',
+          'BEGIN:STANDARD', 'TZOFFSETFROM:+0200', 'TZOFFSETTO:+0100', 'TZNAME:CET', 'DTSTART:19701025T030000', 'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU', 'END:STANDARD', 'END:VTIMEZONE',
+          'BEGIN:VEVENT', `UID:${booking.reference}-${Date.now()}@studioandersen.example`, `DTSTAMP:${stamp}`, `DTSTART;TZID=Europe/Oslo:${date}T${start}`, `DTEND;TZID=Europe/Oslo:${date}T${end}`,
+          `SUMMARY:${escapeICS(`[DEMO] ${service.name} - Studio Andersen`)}`, 'DESCRIPTION:Kun en portefoljedemo. Ingen faktisk time er reservert.', 'LOCATION:Fiktivt Studio Andersen - ikke en ekte avtale', 'STATUS:TENTATIVE', 'TRANSP:TRANSPARENT', 'END:VEVENT', 'END:VCALENDAR'
+        ];
+        const url = URL.createObjectURL(new Blob([lines.join('\r\n') + '\r\n'], { type: 'text/calendar;charset=utf-8' }));
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'studio-andersen-demotime.ics';
+        bookingDialog.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      }
+
+      const header = $('#site-header');
+      const hero = $('#hjem');
+      const heroMedia = $('#hero-media');
+      let scrollScheduled = false;
+      function updateScroll() {
+        const y = window.scrollY;
+        header.classList.toggle('is-scrolled', y > 35);
+        const parallaxEnabled = !reducedMotion.matches && window.matchMedia('(pointer: fine)').matches && window.innerWidth > 600 && y < hero.offsetHeight;
+        heroMedia.style.setProperty('--parallax', parallaxEnabled ? `${Math.min(y * .09, 68)}px` : '0px');
+        scrollScheduled = false;
+      }
+      window.addEventListener('scroll', () => { if (!scrollScheduled) { scrollScheduled = true; requestAnimationFrame(updateScroll); } }, { passive: true });
+      window.addEventListener('resize', updateScroll, { passive: true });
+      reducedMotion.addEventListener('change', updateScroll);
+      updateScroll();
+
+      if ('IntersectionObserver' in window) {
+        if (!reducedMotion.matches) {
+          const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } });
+          }, { threshold: .08, rootMargin: '0px 0px -25px 0px' });
+          $$('.reveal').forEach((element) => {
+            if (element.getBoundingClientRect().top > window.innerHeight - 40) { element.classList.add('will-reveal'); revealObserver.observe(element); }
+          });
+        }
+        const mobileBar = $('#mobile-bookbar');
+        const barVisibility = { hero: true, band: false, footer: false };
+        const barObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const key = entry.target.id === 'hjem' ? 'hero' : entry.target.id === 'bestill' ? 'band' : 'footer';
+            barVisibility[key] = entry.isIntersecting;
+          });
+          const visible = !barVisibility.hero && !barVisibility.band && !barVisibility.footer;
+          mobileBar.classList.toggle('is-visible', visible);
+          mobileBar.setAttribute('aria-hidden', String(!visible));
+          mobileBar.inert = !visible;
+        }, { threshold: 0 });
+        [hero, $('#bestill'), $('#sidefot')].forEach((element) => barObserver.observe(element));
+        const navObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            $$('.desktop-nav a').forEach((link) => {
+              if (link.getAttribute('href') === `#${entry.target.id}`) link.setAttribute('aria-current', 'location');
+              else link.removeAttribute('aria-current');
+            });
+          });
+        }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+        ['behandlinger', 'frisorer', 'studioet', 'kontakt'].forEach((id) => navObserver.observe(document.getElementById(id)));
+      }
+      const day = dateFromKey(osloNow().key).getDay();
+      $$('[data-days]').forEach((row) => row.classList.toggle('is-today', row.dataset.days.split(',').includes(String(day))));
+      $('#copyright-year').textContent = dateFromKey(osloNow().key).getFullYear();
+    })();
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="nb-NO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andersen Regnskap AS — Vi tar tallene. Du tar styringen.</title>
+<meta name="description" content="Andersen Regnskap AS er et moderne regnskapsfirma i Oslo for små og mellomstore bedrifter. Bokføring, lønn, MVA, årsoppgjør og rådgivning med fast pris og fast rådgiver.">
+<link rel="icon" href="images/icon-01.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AccountingService","name":"Andersen Regnskap AS","address":{"@type":"PostalAddress","streetAddress":"Dronning Eufemias gate 16","postalCode":"0191","addressLocality":"Oslo","addressCountry":"NO"},"telephone":"+4722004000","email":"post@andersen-regnskap.no","priceRange":"1490-6990 NOK","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"212"}}
+</script>
+<style>
+  :root{
+    --paper:#F5F3ED; --paper-deep:#EAE7DC; --card:#FFFFFF;
+    --ink:#0B1512; --pine:#0E3B2C; --pine-deep:#082A20; --pine-soft:#E4EDE6;
+    --lime:#D9FF4B; --lime-deep:#BFE83A; --sage:#9DB8A8; --muted:#5B6B63;
+    --line:rgba(11,21,18,.1); --line-light:rgba(255,255,255,.12);
+  }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Inter Tight',system-ui,sans-serif; background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  .font-display{ font-family:'Fraunces',Georgia,serif; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+  ::selection{ background:var(--lime); color:var(--ink); }
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:var(--paper); }
+  ::-webkit-scrollbar-thumb{ background:#0E3B2C; border-radius:99px; border:2px solid var(--paper); }
+
+  .noise{ position:fixed; inset:0; z-index:80; pointer-events:none; opacity:.05; mix-blend-mode:multiply;
+    background-image:url("images/icon-02.svg"); }
+
+  .grid-bg{
+    background-image:linear-gradient(rgba(11,21,18,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(11,21,18,.055) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 40%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 40%,transparent 100%);
+  }
+  .grid-bg-dark{
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 80% 80% at 50% 20%,black 30%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 20%,black 30%,transparent 100%);
+  }
+
+  /* Reveal on scroll */
+  .rv{ opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1); }
+  .rv.in{ opacity:1; transform:none; }
+  .rv-l{ opacity:0; transform:translateX(-32px); transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1); }
+  .rv-l.in{ opacity:1; transform:none; }
+  .rv-s{ opacity:0; transform:scale(.94); transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1); }
+  .rv-s.in{ opacity:1; transform:scale(1); }
+
+  /* Marquee */
+  @keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .marquee-track{ display:flex; width:max-content; animation:marquee 32s linear infinite; }
+  .marquee-track.slow{ animation-duration:48s; }
+  .marquee-track:hover{ animation-play-state:paused; }
+
+  @keyframes floaty{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-12px); } }
+  .floaty{ animation:floaty 5s ease-in-out infinite; }
+  .floaty-d{ animation:floaty 6.5s ease-in-out infinite; animation-delay:1.2s; }
+
+  @keyframes pulse-dot{ 0%,100%{ box-shadow:0 0 0 0 rgba(20,160,90,.5); } 50%{ box-shadow:0 0 0 7px rgba(20,160,90,0); } }
+  .live-dot{ animation:pulse-dot 2s ease-in-out infinite; }
+
+  @keyframes tickerGlow{ 0%,100%{ opacity:1;} 50%{ opacity:.55;} }
+
+  /* Buttons */
+  .btn{ position:relative; display:inline-flex; align-items:center; gap:.65rem; font-weight:600; border-radius:999px; transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s,background .25s,color .25s,border-color .25s; will-change:transform; }
+  .btn:active{ transform:scale(.97); }
+  .btn-dark{ background:var(--ink); color:#fff; }
+  .btn-dark:hover{ background:var(--pine); box-shadow:0 12px 32px -10px rgba(8,42,32,.5); transform:translateY(-2px); }
+  .btn-lime{ background:var(--lime); color:var(--ink); }
+  .btn-lime:hover{ background:#fff; box-shadow:0 12px 32px -10px rgba(217,255,75,.6); transform:translateY(-2px); }
+  .btn-ghost{ border:1.5px solid var(--line); color:var(--ink); background:transparent; }
+  .btn-ghost:hover{ border-color:var(--ink); background:var(--ink); color:#fff; transform:translateY(-2px); }
+  .btn-ghost-light{ border:1.5px solid rgba(255,255,255,.25); color:#fff; }
+  .btn-ghost-light:hover{ border-color:var(--lime); color:var(--lime); transform:translateY(-2px); }
+  .btn .arr{ display:inline-flex; align-items:center; justify-content:center; width:1.9rem; height:1.9rem; border-radius:99px; background:rgba(255,255,255,.14); transition:transform .3s cubic-bezier(.22,1,.36,1),background .3s; }
+  .btn-lime .arr{ background:rgba(11,21,18,.12); }
+  .btn:hover .arr{ transform:translateX(4px) rotate(-8deg); }
+  .btn-dark:hover .arr{ background:var(--lime); color:var(--ink); }
+
+  /* Cards */
+  .lift{ transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .35s,opacity .6s cubic-bezier(.22,1,.36,1); }
+  .lift:hover{ transform:translateY(-6px); box-shadow:0 24px 48px -20px rgba(11,21,18,.22); }
+
+  .svc-card{ transition:opacity .4s,transform .45s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .35s,background .3s; }
+  .svc-card:hover{ transform:translateY(-6px); box-shadow:0 24px 48px -20px rgba(11,21,18,.22); border-color:rgba(14,59,44,.35); }
+  .svc-card:hover .svc-arrow{ transform:translate(4px,-4px); background:var(--lime); color:var(--ink); border-color:var(--lime); }
+  .svc-arrow{ transition:all .3s cubic-bezier(.22,1,.36,1); }
+  .svc-card.hide{ display:none; }
+  .svc-card.fading{ opacity:0 !important; transform:scale(.92) !important; pointer-events:none; }
+
+  .filter-pill{ transition:all .25s; }
+  .filter-pill.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  /* Range sliders */
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:99px; background:linear-gradient(to right,var(--pine) var(--fill,50%),#DCD8CB var(--fill,50%)); outline:none; cursor:pointer; }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:26px; height:26px; border-radius:99px; background:var(--ink); border:4px solid var(--lime); box-shadow:0 4px 14px rgba(11,21,18,.35); transition:transform .2s; }
+  input[type=range]::-webkit-slider-thumb:hover{ transform:scale(1.15); }
+  input[type=range]::-moz-range-thumb{ width:22px; height:22px; border-radius:99px; background:var(--ink); border:4px solid var(--lime); box-shadow:0 4px 14px rgba(11,21,18,.35); }
+
+  /* Chips (checkbox/radio) */
+  .chip input{ position:absolute; opacity:0; pointer-events:none; }
+  .chip span{ display:inline-flex; align-items:center; gap:.45rem; padding:.6rem 1.05rem; border-radius:999px; border:1.5px solid var(--line); font-size:.85rem; font-weight:600; cursor:pointer; transition:all .25s; background:#fff; user-select:none; }
+  .chip span:hover{ border-color:var(--ink); transform:translateY(-1px); }
+  .chip input:checked + span{ background:var(--ink); color:#fff; border-color:var(--ink); box-shadow:0 8px 20px -8px rgba(11,21,18,.5); }
+  .chip input:checked + span .dot{ background:var(--lime); }
+  .chip .dot{ width:8px; height:8px; border-radius:99px; background:#C9C4B6; transition:background .25s; }
+  .chip input:focus-visible + span{ outline:2px solid var(--pine); outline-offset:2px; }
+
+  /* Accordion */
+  .acc-body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .45s cubic-bezier(.22,1,.36,1); }
+  .acc-item.open .acc-body{ grid-template-rows:1fr; }
+  .acc-inner{ overflow:hidden; }
+  .acc-icon{ transition:transform .4s cubic-bezier(.22,1,.36,1),background .3s,color .3s; }
+  .acc-item.open .acc-icon{ transform:rotate(45deg); background:var(--ink); color:var(--lime); }
+  .acc-item{ transition:border-color .3s,box-shadow .3s; }
+  .acc-item.open{ border-color:rgba(14,59,44,.4); box-shadow:0 16px 40px -24px rgba(11,21,18,.3); }
+
+  /* Testimonial slider */
+  #tSlider{ transition:transform .6s cubic-bezier(.22,1,.36,1); }
+  .t-dot{ transition:all .3s; }
+  .t-dot.active{ width:2rem; background:var(--ink); }
+
+  /* Portal tabs */
+  .ptab{ transition:all .3s; }
+  .ptab.active{ background:var(--lime); color:var(--ink); border-color:var(--lime); }
+  .ppanel{ display:none; }
+  .ppanel.active{ display:block; animation:panelIn .5s cubic-bezier(.22,1,.36,1); }
+  @keyframes panelIn{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+
+  /* Nav */
+  #navInner{ transition:background .35s,box-shadow .35s,border-color .35s,backdrop-filter .35s; border:1.5px solid transparent; }
+  #navWrap.scrolled #navInner{ background:rgba(245,243,237,.86); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-color:var(--line); box-shadow:0 12px 32px -16px rgba(11,21,18,.25); }
+
+  /* Mobile menu */
+  #mobileMenu{ transition:opacity .35s,visibility .35s; opacity:0; visibility:hidden; }
+  #mobileMenu.open{ opacity:1; visibility:visible; }
+  #mobileMenu .m-link{ opacity:0; transform:translateY(20px); transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1); }
+  #mobileMenu.open .m-link{ opacity:1; transform:none; }
+
+  /* Modal */
+  #modal{ transition:opacity .3s; opacity:0; pointer-events:none; }
+  #modal.open{ opacity:1; pointer-events:auto; }
+  #modalCard{ transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .35s; transform:translateY(28px) scale(.97); opacity:0; }
+  #modal.open #modalCard{ transform:none; opacity:1; }
+  .slot{ transition:all .25s; }
+  .slot.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  /* Toast */
+  #toast{ transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .35s; transform:translate(-50%,120%); opacity:0; }
+  #toast.show{ transform:translate(-50%,0); opacity:1; }
+
+  /* Floating bars */
+  #mobileCta{ transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .35s; transform:translateY(120%); opacity:0; }
+  #mobileCta.show{ transform:none; opacity:1; }
+  #toTop{ transition:all .35s; opacity:0; transform:translateY(12px); pointer-events:none; }
+  #toTop.show{ opacity:1; transform:none; pointer-events:auto; }
+
+  /* Success check draw */
+  .check-path{ stroke-dasharray:60; stroke-dashoffset:60; }
+  .success-anim .check-path{ animation:draw .7s .3s cubic-bezier(.65,0,.45,1) forwards; }
+  .success-anim .check-circle{ animation:pop .5s cubic-bezier(.22,1,.36,1) forwards; transform-origin:center; }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes pop{ from{ transform:scale(.6); opacity:0; } to{ transform:scale(1); opacity:1; } }
+
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .spinner{ animation:spin .8s linear infinite; }
+
+  @keyframes shake{ 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-6px)} 40%,80%{transform:translateX(6px)} }
+  .shake{ animation:shake .45s; border-color:#DC2626 !important; }
+
+  .tilt{ transform-style:preserve-3d; transition:transform .3s ease-out; }
+
+  .team-img{ filter:grayscale(1) contrast(1.05); transition:filter .5s,transform .6s cubic-bezier(.22,1,.36,1); }
+  .team-card:hover .team-img{ filter:grayscale(0); transform:scale(1.04); }
+
+  .outline-word{ -webkit-text-stroke:1.5px rgba(255,255,255,.14); color:transparent; }
+
+  .link-u{ position:relative; }
+  .link-u::after{ content:''; position:absolute; left:0; bottom:-3px; height:1.5px; width:0; background:currentColor; transition:width .3s cubic-bezier(.22,1,.36,1); }
+  .link-u:hover::after{ width:100%; }
+
+  input,select,textarea{ font-family:inherit; }
+  .field{ width:100%; border-radius:1rem; border:1.5px solid var(--line); background:#fff; padding:.85rem 1.1rem; font-size:.95rem; transition:border-color .25s,box-shadow .25s; color:var(--ink); }
+  .field:focus{ outline:none; border-color:var(--pine); box-shadow:0 0 0 4px rgba(14,59,44,.1); }
+  .field::placeholder{ color:#9AA6A0; }
+  select.field{ appearance:none; background-image:url("images/icon-03.svg"); background-repeat:no-repeat; background-position:right 1rem center; padding-right:2.75rem; }
+
+  #chartTip{ transition:opacity .2s; }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+
+<body class="bg-[#F5F3ED] text-[#0B1512]">
+
+<div class="noise"></div>
+<div id="progressBar" class="fixed top-0 left-0 h-[3px] bg-[#0E3B2C] z-[90] w-0"></div>
+
+<!-- Announcement -->
+<div class="bg-[#0B1512] text-white text-center text-[13px] font-medium py-2.5 px-4 relative z-40">
+  <span class="inline-flex items-center gap-2 flex-wrap justify-center">
+    <span class="w-1.5 h-1.5 rounded-full bg-[#D9FF4B] live-dot inline-block"></span>
+    <span class="mono uppercase tracking-wider text-[11px] text-[#D9FF4B]">Nyhet</span>
+    <span class="text-white/85">Bytt til Andersen før <span id="annFrist" class="text-white font-semibold">MVA-fristen</span> — vi flytter alt gratis.</span>
+    <a href="#bytt" class="underline underline-offset-2 decoration-[#D9FF4B] hover:text-[#D9FF4B] transition-colors font-semibold">Les mer</a>
+  </span>
+</div>
+
+<!-- NAV -->
+<div id="navWrap" class="sticky top-0 z-50 px-3 sm:px-4 pt-3">
+  <nav id="navInner" class="max-w-7xl mx-auto rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+    <a href="#topp" class="flex items-center gap-2.5 group shrink-0" aria-label="Andersen Regnskap - til toppen">
+      <span class="w-10 h-10 rounded-xl bg-[#0B1512] flex items-center justify-center relative overflow-hidden group-hover:bg-[#0E3B2C] transition-colors">
+        <span class="font-display italic text-[#D9FF4B] text-2xl leading-none pb-0.5">A</span>
+      </span>
+      <span class="leading-none">
+        <span class="block font-bold text-[17px] tracking-tight">Andersen</span>
+        <span class="block mono text-[10px] uppercase tracking-[0.18em] text-[#5B6B63]">Regnskap AS</span>
+      </span>
+    </a>
+    <div class="hidden lg:flex items-center gap-7 text-[15px] font-medium">
+      <a href="#tjenester" class="link-u text-[#0B1512]/80 hover:text-[#0B1512]">Tjenester</a>
+      <a href="#prosess" class="link-u text-[#0B1512]/80 hover:text-[#0B1512]">Slik fungerer det</a>
+      <a href="#priser" class="link-u text-[#0B1512]/80 hover:text-[#0B1512]">Priser</a>
+      <a href="#kunder" class="link-u text-[#0B1512]/80 hover:text-[#0B1512]">Kunder</a>
+      <a href="#team" class="link-u text-[#0B1512]/80 hover:text-[#0B1512]">Om oss</a>
+      <a href="#faq" class="link-u text-[#0B1512]/80 hover:text-[#0B1512]">FAQ</a>
+    </div>
+    <div class="flex items-center gap-2.5">
+      <a href="tel:+4722004000" class="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-[#0B1512]/80 hover:text-[#0B1512] mr-1">
+        <i data-lucide="phone" class="w-4 h-4"></i> 22 00 40 00
+      </a>
+      <button data-open-modal class="btn btn-ghost hidden sm:inline-flex text-sm px-5 py-2.5">Bestill møte</button>
+      <a href="#kontakt" class="btn btn-dark text-sm px-5 py-2.5">Få tilbud <span class="arr !w-6 !h-6"><i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span></a>
+      <button id="burger" class="lg:hidden w-11 h-11 rounded-xl border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white hover:border-[#0B1512] transition-all" aria-label="Åpne meny">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="fixed inset-0 z-[70] bg-[#0B1512] text-white flex flex-col">
+  <div class="flex items-center justify-between px-5 py-5">
+    <div class="flex items-center gap-2.5">
+      <span class="w-10 h-10 rounded-xl bg-[#D9FF4B] flex items-center justify-center"><span class="font-display italic text-[#0B1512] text-2xl leading-none pb-0.5">A</span></span>
+      <span class="leading-none"><span class="block font-bold text-[17px]">Andersen</span><span class="block mono text-[10px] uppercase tracking-[0.18em] text-white/60">Regnskap AS</span></span>
+    </div>
+    <button id="menuClose" class="w-11 h-11 rounded-xl border border-white/20 flex items-center justify-center hover:bg-white hover:text-[#0B1512] transition-all" aria-label="Lukk meny"><i data-lucide="x" class="w-5 h-5"></i></button>
+  </div>
+  <nav class="flex-1 flex flex-col justify-center px-7 gap-1 overflow-y-auto">
+    <a href="#tjenester" class="m-link menu-link font-display text-4xl py-2.5 hover:text-[#D9FF4B] transition-colors" style="transition-delay:.05s">Tjenester</a>
+    <a href="#prosess" class="m-link menu-link font-display text-4xl py-2.5 hover:text-[#D9FF4B] transition-colors" style="transition-delay:.1s">Slik fungerer det</a>
+    <a href="#priser" class="m-link menu-link font-display text-4xl py-2.5 hover:text-[#D9FF4B] transition-colors" style="transition-delay:.15s">Priser</a>
+    <a href="#kunder" class="m-link menu-link font-display text-4xl py-2.5 hover:text-[#D9FF4B] transition-colors" style="transition-delay:.2s">Kunder</a>
+    <a href="#team" class="m-link menu-link font-display text-4xl py-2.5 hover:text-[#D9FF4B] transition-colors" style="transition-delay:.25s">Om oss</a>
+    <a href="#kontakt" class="m-link menu-link font-display italic text-4xl py-2.5 text-[#D9FF4B]" style="transition-delay:.3s">Få tilbud →</a>
+  </nav>
+  <div class="m-link px-7 pb-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70" style="transition-delay:.35s">
+    <a href="tel:+4722004000" class="flex items-center gap-2 hover:text-white"><i data-lucide="phone" class="w-4 h-4"></i> 22 00 40 00</a>
+    <a href="mailto:post@andersen-regnskap.no" class="flex items-center gap-2 hover:text-white"><i data-lucide="mail" class="w-4 h-4"></i> post@andersen-regnskap.no</a>
+  </div>
+</div>
+
+<main id="topp">
+
+  <!-- ============ HERO ============ -->
+  <section class="relative overflow-hidden">
+    <div class="grid-bg absolute inset-0"></div>
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full bg-[#D9FF4B]/40 blur-[140px] pointer-events-none"></div>
+    <div class="absolute top-40 -right-40 w-[500px] h-[500px] rounded-full bg-[#0E3B2C]/10 blur-[120px] pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 lg:pt-20 pb-14 lg:pb-24 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <!-- Left -->
+      <div class="lg:col-span-7">
+        <div class="rv inline-flex items-center gap-2.5 bg-white border border-[#0B1512]/10 rounded-full pl-2 pr-4 py-1.5 shadow-sm mb-7">
+          <span class="bg-[#0B1512] text-[#D9FF4B] mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full font-semibold">Autorisert</span>
+          <span class="text-[13px] font-medium text-[#0B1512]/75">Regnskapsførerselskap · Tilsyn av Finanstilsynet</span>
+        </div>
+
+        <h1 class="rv text-[clamp(2.7rem,6.5vw,5.2rem)] font-bold leading-[1.02] tracking-[-0.03em]" style="transition-delay:.08s">
+          Vi tar tallene.<br>
+          Du tar <span class="font-display italic font-medium text-[#0E3B2C]">styringen.</span>
+        </h1>
+
+        <p class="rv mt-6 text-lg sm:text-xl text-[#0B1512]/65 leading-relaxed max-w-xl" style="transition-delay:.16s">
+          Andersen Regnskap er regnskapsfører for ambisiøse små og mellomstore bedrifter. Fast pris, fast rådgiver og full oversikt — på mobilen, hver dag.
+        </p>
+
+        <div class="rv mt-8 flex flex-col sm:flex-row gap-3" style="transition-delay:.24s">
+          <a href="#kontakt" class="btn btn-dark px-7 py-4 text-[15px] justify-center">Få tilbud innen 24 timer <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></a>
+          <a href="#kalkulator" class="btn btn-ghost px-7 py-4 text-[15px] justify-center"><i data-lucide="calculator" class="w-4.5 h-4.5"></i> Beregn din pris</a>
+        </div>
+
+        <div class="rv mt-9 flex flex-wrap items-center gap-x-7 gap-y-4" style="transition-delay:.32s">
+          <div class="flex items-center gap-3">
+            <div class="flex -space-x-2.5">
+              <span class="w-9 h-9 rounded-full bg-[#0E3B2C] text-white text-[11px] font-bold flex items-center justify-center border-2 border-[#F5F3ED]">KL</span>
+              <span class="w-9 h-9 rounded-full bg-[#D9FF4B] text-[#0B1512] text-[11px] font-bold flex items-center justify-center border-2 border-[#F5F3ED]">JB</span>
+              <span class="w-9 h-9 rounded-full bg-[#0B1512] text-white text-[11px] font-bold flex items-center justify-center border-2 border-[#F5F3ED]">AY</span>
+              <span class="w-9 h-9 rounded-full bg-white text-[#0B1512] text-[10px] font-bold flex items-center justify-center border-2 border-[#F5F3ED]">+480</span>
+            </div>
+            <div class="text-sm leading-tight">
+              <div class="flex gap-0.5 text-[#E8A100]">
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+              </div>
+              <p class="font-semibold mt-1">4,9 av 5 <span class="font-normal text-[#0B1512]/55">· 212 anmeldelser</span></p>
+            </div>
+          </div>
+          <div class="hidden sm:block w-px h-10 bg-[#0B1512]/10"></div>
+          <div class="flex items-center gap-5 text-[13px] font-medium text-[#0B1512]/70">
+            <span class="flex items-center gap-1.5"><i data-lucide="zap" class="w-4 h-4 text-[#0E3B2C]"></i> Svar innen 24 t</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-[#0E3B2C]"></i> Fornøyd-garanti</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: live dashboard -->
+      <div class="lg:col-span-5 relative rv-s" style="transition-delay:.2s" id="dashZone">
+        <div class="absolute -inset-6 bg-gradient-to-br from-[#D9FF4B]/50 via-transparent to-[#0E3B2C]/15 rounded-[2.5rem] blur-2xl pointer-events-none"></div>
+
+        <div id="dashCard" class="tilt relative bg-white rounded-[1.75rem] border border-[#0B1512]/10 shadow-[0_40px_80px_-30px_rgba(11,21,18,.35)] overflow-hidden">
+          <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-[#0B1512]/8">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-lg bg-[#0B1512] flex items-center justify-center"><span class="font-display italic text-[#D9FF4B] text-lg leading-none">A</span></span>
+              <div class="leading-tight">
+                <p class="text-sm font-bold">Min Andersen</p>
+                <p class="mono text-[10px] uppercase tracking-widest text-[#5B6B63]">Fjord &amp; Form AS</p>
+              </div>
+            </div>
+            <span class="flex items-center gap-1.5 text-[12px] font-semibold text-[#14805A] bg-[#14805A]/10 px-3 py-1.5 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#14805A] live-dot"></span> Live
+            </span>
+          </div>
+
+          <div class="px-5 sm:px-6 pt-5">
+            <p class="mono text-[11px] uppercase tracking-[0.15em] text-[#5B6B63]">Omsetning hittil i år</p>
+            <div class="flex items-end gap-3 mt-1">
+              <p class="text-[2rem] sm:text-4xl font-bold tracking-tight tabular-nums">4 823 500 <span class="text-base font-semibold text-[#0B1512]/50">kr</span></p>
+              <span class="mb-1.5 text-[13px] font-bold text-[#14805A] bg-[#14805A]/10 px-2 py-0.5 rounded-lg">+18,2 %</span>
+            </div>
+          </div>
+
+          <div class="px-3 sm:px-4 pt-2 relative">
+            <canvas id="heroChart" class="w-full h-[190px]" aria-label="Graf over omsetning siste 12 måneder"></canvas>
+            <div id="chartTip" class="absolute opacity-0 pointer-events-none bg-[#0B1512] text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg whitespace-nowrap z-10 -translate-x-1/2 -translate-y-full"></div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 px-5 sm:px-6 py-4">
+            <div class="bg-[#F5F3ED] rounded-2xl p-3.5 border border-[#0B1512]/5">
+              <div class="flex items-center gap-1.5 text-[12px] font-semibold text-[#0B1512]/60"><i data-lucide="calendar-check" class="w-3.5 h-3.5"></i> MVA <span id="mvaTerm" class="mono">2. termin</span></div>
+              <p class="text-2xl font-bold mt-1 tabular-nums"><span id="mvaDays">12</span> <span class="text-xs font-semibold text-[#0B1512]/50">dager igjen</span></p>
+              <div class="h-1.5 bg-[#0B1512]/10 rounded-full mt-2 overflow-hidden"><div id="mvaBar" class="h-full w-[68%] bg-[#0E3B2C] rounded-full"></div></div>
+            </div>
+            <div class="bg-[#0B1512] text-white rounded-2xl p-3.5">
+              <div class="flex items-center gap-1.5 text-[12px] font-semibold text-white/60"><i data-lucide="receipt" class="w-3.5 h-3.5"></i> Fakturaer</div>
+              <p class="text-2xl font-bold mt-1 tabular-nums">28 <span class="text-xs font-semibold text-[#D9FF4B]">betalt ✓</span></p>
+              <p class="text-[12px] text-white/60 mt-1 font-medium">3 forfalte · <span class="text-[#FF9D8A]">purring sendes i dag</span></p>
+            </div>
+          </div>
+
+          <div class="mx-5 sm:mx-6 mb-5 bg-[#0E3B2C] text-white rounded-2xl p-4 flex gap-3 items-start">
+            <span class="w-9 h-9 shrink-0 rounded-xl bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center"><i data-lucide="bot" class="w-5 h-5"></i></span>
+            <div class="text-[13.5px] leading-relaxed">
+              <p><span class="font-bold">Hei Jonas!</span> 3 bilag mangler kvittering. Ta et bilde — jeg bokfører resten.</p>
+              <div class="mt-2.5 flex items-center gap-2 bg-white/10 rounded-full pl-4 pr-1.5 py-1.5">
+                <span class="text-white/50 text-[13px] flex-1">Last opp bilag…</span>
+                <span class="w-8 h-8 rounded-full bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center"><i data-lucide="scan-line" class="w-4 h-4"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-5 sm:px-6 py-3.5 border-t border-[#0B1512]/8 flex items-center justify-between text-[12px] font-medium text-[#0B1512]/55 bg-[#FAF9F5]">
+            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#14805A] live-dot"></span> Synkronisert med Tripletex</span>
+            <span class="mono tabular-nums"><span id="bilagToday">47</span> bilag i dag</span>
+          </div>
+        </div>
+
+        <!-- Floating badges -->
+        <div class="floaty absolute -top-5 -right-2 sm:-right-5 bg-white rounded-2xl shadow-xl border border-[#0B1512]/10 px-4 py-3 flex items-center gap-2.5 z-10">
+          <span class="w-9 h-9 rounded-xl bg-[#14805A]/12 text-[#14805A] flex items-center justify-center"><i data-lucide="badge-check" class="w-5 h-5"></i></span>
+          <div class="leading-tight"><p class="text-[13px] font-bold">Lønn kjørt</p><p class="text-[12px] text-[#0B1512]/55 font-medium">14 ansatte · April</p></div>
+        </div>
+        <div class="floaty-d absolute -bottom-5 -left-2 sm:-left-6 bg-[#0B1512] text-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2.5 z-10">
+          <span class="w-9 h-9 rounded-xl bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center"><i data-lucide="trending-up" class="w-5 h-5"></i></span>
+          <div class="leading-tight"><p class="text-[13px] font-bold">Margin +4,2 %</p><p class="text-[12px] text-white/55 font-medium">vs. forrige kvartal</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ticker -->
+    <div class="relative bg-[#D9FF4B] border-y-[1.5px] border-[#0B1512] py-3 overflow-hidden -rotate-[0.4deg] scale-[1.01]">
+      <div class="marquee-track gap-0 font-semibold text-[14px] text-[#0B1512]">
+        <div class="flex items-center gap-8 pr-8 shrink-0" id="tickA"></div>
+        <div class="flex items-center gap-8 pr-8 shrink-0" id="tickB"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOGOS ============ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-4">
+    <p class="rv text-center mono text-[11px] uppercase tracking-[0.2em] text-[#5B6B63]">Vi jobber i systemene du allerede bruker</p>
+    <div class="rv mt-6 relative overflow-hidden" style="transition-delay:.1s; mask-image:linear-gradient(90deg,transparent,black 12%,black 88%,transparent); -webkit-mask-image:linear-gradient(90deg,transparent,black 12%,black 88%,transparent);">
+      <div class="marquee-track slow items-center text-[#0B1512]/40 font-bold text-lg whitespace-nowrap py-2">
+        <div class="flex items-center gap-14 pr-14">
+          <span>Tripletex</span><span class="font-display italic font-medium">Fiken</span><span>PowerOffice Go</span><span class="font-display italic font-medium">Visma</span><span>Xledger</span><span class="font-display italic font-medium">DNB Regnskap</span><span>SpareBank 1</span><span class="font-display italic font-medium">BankID</span>
+        </div>
+        <div class="flex items-center gap-14 pr-14" aria-hidden="true">
+          <span>Tripletex</span><span class="font-display italic font-medium">Fiken</span><span>PowerOffice Go</span><span class="font-display italic font-medium">Visma</span><span>Xledger</span><span class="font-display italic font-medium">DNB Regnskap</span><span>SpareBank 1</span><span class="font-display italic font-medium">BankID</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    <div class="rv grid grid-cols-2 lg:grid-cols-4 rounded-[1.75rem] border-[1.5px] border-[#0B1512]/10 bg-white overflow-hidden divide-x divide-y lg:divide-y-0 divide-[#0B1512]/10">
+      <div class="p-6 sm:p-8 text-center">
+        <p class="mono text-3xl sm:text-4xl font-semibold tracking-tight tabular-nums"><span class="counter" data-count="480" data-suffix="+">0</span></p>
+        <p class="mt-2 text-sm font-medium text-[#0B1512]/55">aktive kundefirmaer<br>over hele Norge</p>
+      </div>
+      <div class="p-6 sm:p-8 text-center">
+        <p class="mono text-3xl sm:text-4xl font-semibold tracking-tight tabular-nums"><span class="counter" data-count="1.2" data-decimals="1" data-suffix=" mrd">0</span></p>
+        <p class="mt-2 text-sm font-medium text-[#0B1512]/55">kroner bokført<br>for kundene i fjor</p>
+      </div>
+      <div class="p-6 sm:p-8 text-center">
+        <p class="mono text-3xl sm:text-4xl font-semibold tracking-tight tabular-nums"><span class="counter" data-count="98" data-suffix=" %">0</span></p>
+        <p class="mt-2 text-sm font-medium text-[#0B1512]/55">av kundene fornyer<br>avtalen hvert år</p>
+      </div>
+      <div class="p-6 sm:p-8 text-center">
+        <p class="mono text-3xl sm:text-4xl font-semibold tracking-tight tabular-nums"><span class="counter" data-count="24" data-suffix=" t">0</span></p>
+        <p class="mt-2 text-sm font-medium text-[#0B1512]/55">garantert svartid<br>på alle henvendelser</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TJENESTER ============ -->
+  <section id="tjenester" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+      <div class="rv">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#0E3B2C] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#0E3B2C]"></span> Tjenester</p>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-bold tracking-[-0.02em] leading-[1.05]">Alt innen økonomi.<br><span class="font-display italic font-medium text-[#0E3B2C]">Én fast partner.</span></h2>
+      </div>
+      <p class="rv max-w-md text-[#0B1512]/60 text-[17px] leading-relaxed" style="transition-delay:.1s">Slipp å sjonglere regnskapsfører, lønnsbyrå og rådgiver. Hos oss får du alt samlet — med én kontaktperson som kjenner bedriften din.</p>
+    </div>
+
+    <div class="rv flex flex-wrap gap-2.5 mb-8" id="svcFilters" style="transition-delay:.15s">
+      <button data-filter="alle" class="filter-pill active text-sm font-semibold px-5 py-2.5 rounded-full border-[1.5px] border-[#0B1512]/15 bg-white">Alle tjenester</button>
+      <button data-filter="drift" class="filter-pill text-sm font-semibold px-5 py-2.5 rounded-full border-[1.5px] border-[#0B1512]/15 bg-white">Daglig drift</button>
+      <button data-filter="lonn" class="filter-pill text-sm font-semibold px-5 py-2.5 rounded-full border-[1.5px] border-[#0B1512]/15 bg-white">Lønn &amp; HR</button>
+      <button data-filter="skatt" class="filter-pill text-sm font-semibold px-5 py-2.5 rounded-full border-[1.5px] border-[#0B1512]/15 bg-white">Skatt &amp; årsoppgjør</button>
+      <button data-filter="vekst" class="filter-pill text-sm font-semibold px-5 py-2.5 rounded-full border-[1.5px] border-[#0B1512]/15 bg-white">Vekst &amp; rådgivning</button>
+    </div>
+
+    <div class="relative grid md:grid-cols-6 gap-4" id="svcGrid">
+      <!-- Featured: Bokføring -->
+      <article data-cat="drift" class="svc-card rv relative md:col-span-4 bg-[#0B1512] text-white rounded-[1.75rem] p-7 sm:p-9 overflow-hidden border border-[#0B1512]">
+        <div class="grid-bg-dark absolute inset-0"></div>
+        <div class="absolute -top-24 -right-24 w-72 h-72 bg-[#D9FF4B]/20 blur-[100px] rounded-full"></div>
+        <div class="relative flex flex-col sm:flex-row gap-8">
+          <div class="flex-1">
+            <span class="w-12 h-12 rounded-2xl bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center"><i data-lucide="receipt" class="w-6 h-6"></i></span>
+            <h3 class="mt-5 text-2xl sm:text-[1.7rem] font-bold tracking-tight">Bokføring &amp; regnskap</h3>
+            <p class="mt-2.5 text-white/65 leading-relaxed text-[15.5px]">Løpende bokføring, avstemming og rapportering — helautomatisert der det er mulig, kvalitetssikret av mennesker der det teller. Du godkjenner på mobilen.</p>
+            <div class="mt-5 flex flex-wrap gap-2 text-[12.5px] font-semibold">
+              <span class="bg-white/10 px-3 py-1.5 rounded-full">Bilag på bilde</span><span class="bg-white/10 px-3 py-1.5 rounded-full">Bankintegrasjon</span><span class="bg-white/10 px-3 py-1.5 rounded-full">Månedsrapport</span>
+            </div>
+            <a href="#kontakt" class="mt-6 inline-flex items-center gap-2 text-[#D9FF4B] font-semibold text-[15px] link-u">Få fastpris på bokføring <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+          <div class="sm:w-60 shrink-0 bg-white/[.06] border border-white/10 rounded-2xl p-4 backdrop-blur">
+            <p class="mono text-[10px] uppercase tracking-widest text-white/50 mb-3">April 2026 · Status</p>
+            <div class="space-y-3 text-[13px] font-medium">
+              <div><div class="flex justify-between mb-1.5"><span>Bilag bokført</span><span class="text-[#D9FF4B]">214/214</span></div><div class="h-1.5 bg-white/10 rounded-full"><div class="h-full w-full bg-[#D9FF4B] rounded-full"></div></div></div>
+              <div><div class="flex justify-between mb-1.5"><span>Bank avstemt</span><span class="text-[#D9FF4B]">100 %</span></div><div class="h-1.5 bg-white/10 rounded-full"><div class="h-full w-full bg-[#D9FF4B] rounded-full"></div></div></div>
+              <div><div class="flex justify-between mb-1.5"><span>MVA kontrollert</span><span class="text-white/60">Pågår</span></div><div class="h-1.5 bg-white/10 rounded-full"><div class="h-full w-[70%] bg-white/50 rounded-full"></div></div></div>
+            </div>
+            <div class="mt-4 flex items-center gap-2 text-[12px] text-white/60"><span class="w-1.5 h-1.5 rounded-full bg-[#D9FF4B] live-dot"></span> Oppdatert for 4 min siden</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Lønn -->
+      <article data-cat="lonn" class="svc-card rv relative md:col-span-2 bg-white rounded-[1.75rem] p-7 border-[1.5px] border-[#0B1512]/10" style="transition-delay:.05s">
+        <div class="flex items-start justify-between">
+          <span class="w-12 h-12 rounded-2xl bg-[#0E3B2C] text-[#D9FF4B] flex items-center justify-center"><i data-lucide="wallet" class="w-6 h-6"></i></span>
+          <span class="svc-arrow w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-4.5 h-4.5"></i></span>
+        </div>
+        <h3 class="mt-5 text-xl font-bold tracking-tight">Lønn &amp; personal</h3>
+        <p class="mt-2 text-[15px] text-[#0B1512]/60 leading-relaxed">Komplett lønnskjøring, feriepenger, sykefravær og a-melding. Ansatte får egen app med lønnsslipper.</p>
+        <p class="mt-4 mono text-[11px] uppercase tracking-widest text-[#0E3B2C]">Fra 149 kr / ansatt</p>
+      </article>
+
+      <!-- MVA -->
+      <article data-cat="skatt" class="svc-card rv relative md:col-span-2 bg-white rounded-[1.75rem] p-7 border-[1.5px] border-[#0B1512]/10">
+        <div class="flex items-start justify-between">
+          <span class="w-12 h-12 rounded-2xl bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center"><i data-lucide="landmark" class="w-6 h-6"></i></span>
+          <span class="svc-arrow w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-4.5 h-4.5"></i></span>
+        </div>
+        <h3 class="mt-5 text-xl font-bold tracking-tight">MVA &amp; skatt</h3>
+        <p class="mt-2 text-[15px] text-[#0B1512]/60 leading-relaxed">Terminoppgaver, skattemelding og fradrag — levert i tide, hver gang. Vi varsler deg i god tid før alle frister.</p>
+        <p class="mt-4 mono text-[11px] uppercase tracking-widest text-[#0E3B2C]">Aldri gebyr igjen</p>
+      </article>
+
+      <!-- Årsoppgjør -->
+      <article data-cat="skatt" class="svc-card rv relative md:col-span-2 bg-white rounded-[1.75rem] p-7 border-[1.5px] border-[#0B1512]/10" style="transition-delay:.05s">
+        <div class="flex items-start justify-between">
+          <span class="w-12 h-12 rounded-2xl bg-[#0B1512] text-white flex items-center justify-center"><i data-lucide="file-text" class="w-6 h-6"></i></span>
+          <span class="svc-arrow w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-4.5 h-4.5"></i></span>
+        </div>
+        <h3 class="mt-5 text-xl font-bold tracking-tight">Årsoppgjør</h3>
+        <p class="mt-2 text-[15px] text-[#0B1512]/60 leading-relaxed">Årsregnskap, ligningspapirer og generalforsamling — inkludert strategimøte om fjoråret og veien videre.</p>
+        <p class="mt-4 mono text-[11px] uppercase tracking-widest text-[#0E3B2C]">Inkl. i Vekst &amp; Skala</p>
+      </article>
+
+      <!-- Fakturering -->
+      <article data-cat="drift" class="svc-card rv relative md:col-span-2 bg-white rounded-[1.75rem] p-7 border-[1.5px] border-[#0B1512]/10" style="transition-delay:.1s">
+        <div class="flex items-start justify-between">
+          <span class="w-12 h-12 rounded-2xl bg-[#0E3B2C] text-[#D9FF4B] flex items-center justify-center"><i data-lucide="send" class="w-6 h-6"></i></span>
+          <span class="svc-arrow w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-4.5 h-4.5"></i></span>
+        </div>
+        <h3 class="mt-5 text-xl font-bold tracking-tight">Fakturering &amp; purring</h3>
+        <p class="mt-2 text-[15px] text-[#0B1512]/60 leading-relaxed">Vi sender fakturaer, følger opp betaling og håndterer purringer — så pengene kommer inn 9 dager raskere.</p>
+        <p class="mt-4 mono text-[11px] uppercase tracking-widest text-[#0E3B2C]">−9 dager betalingstid</p>
+      </article>
+
+      <!-- Rådgivning -->
+      <article data-cat="vekst" class="svc-card rv relative md:col-span-3 bg-[#E4EDE6] rounded-[1.75rem] p-7 sm:p-8 border-[1.5px] border-[#0E3B2C]/15">
+        <div class="flex items-start justify-between">
+          <span class="w-12 h-12 rounded-2xl bg-[#0B1512] text-[#D9FF4B] flex items-center justify-center"><i data-lucide="trending-up" class="w-6 h-6"></i></span>
+          <span class="svc-arrow w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/20 flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-4.5 h-4.5"></i></span>
+        </div>
+        <h3 class="mt-5 text-xl font-bold tracking-tight">Rådgivning &amp; CFO for leie</h3>
+        <p class="mt-2 text-[15px] text-[#0B1512]/65 leading-relaxed">Budsjett, likviditetsprognoser, prising og lønnsomhetsanalyser. En økonomisjef i lomma — uten å ansette en.</p>
+        <div class="mt-4 flex flex-wrap gap-2 text-[12.5px] font-semibold">
+          <span class="bg-white/70 px-3 py-1.5 rounded-full">Likviditetsprognose</span><span class="bg-white/70 px-3 py-1.5 rounded-full">Styremøter</span><span class="bg-white/70 px-3 py-1.5 rounded-full">Finansiering</span>
+        </div>
+      </article>
+
+      <!-- Stiftelse + oppfølging -->
+      <article data-cat="vekst" class="svc-card rv relative md:col-span-3 bg-white rounded-[1.75rem] p-7 sm:p-8 border-[1.5px] border-[#0B1512]/10" style="transition-delay:.05s">
+        <div class="flex items-start justify-between">
+          <span class="w-12 h-12 rounded-2xl bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center"><i data-lucide="rocket" class="w-6 h-6"></i></span>
+          <span class="svc-arrow w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center"><i data-lucide="arrow-up-right" class="w-4.5 h-4.5"></i></span>
+        </div>
+        <h3 class="mt-5 text-xl font-bold tracking-tight">Selskapsstiftelse &amp; oppstart</h3>
+        <p class="mt-2 text-[15px] text-[#0B1512]/60 leading-relaxed">Fra idé til AS på 5 dager: stiftelsesdokumenter, aksjekapital, Brønnøysund og bank — vi ordner alt for 4 900 kr.</p>
+        <div class="mt-4 flex flex-wrap gap-2 text-[12.5px] font-semibold">
+          <span class="bg-[#F5F3ED] px-3 py-1.5 rounded-full">AS på 5 dager</span><span class="bg-[#F5F3ED] px-3 py-1.5 rounded-full">ENK gratis*</span><span class="bg-[#F5F3ED] px-3 py-1.5 rounded-full">Valg av selskapsform</span>
+        </div>
+      </article>
+    </div>
+    <p id="svcEmpty" class="hidden text-center text-[#0B1512]/55 py-10">Ingen tjenester i denne kategorien.</p>
+  </section>
+
+  <!-- ============ PROSESS ============ -->
+  <section id="prosess" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5">
+        <div class="lg:sticky lg:top-32">
+          <p class="rv mono text-[11px] uppercase tracking-[0.2em] text-[#0E3B2C] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#0E3B2C]"></span> Slik fungerer det</p>
+          <h2 class="rv mt-3 text-4xl sm:text-5xl font-bold tracking-[-0.02em] leading-[1.05]" style="transition-delay:.05s">Fra kaos til kontroll på <span class="font-display italic font-medium text-[#0E3B2C]">30 dager.</span></h2>
+          <p class="rv mt-5 text-[#0B1512]/60 text-[17px] leading-relaxed max-w-md" style="transition-delay:.1s">En fast, utprøvd prosess som har tatt over 480 bedrifter fra perm og panikk til full oversikt — uten at du mister nattesøvnen underveis.</p>
+          <div class="rv mt-7 flex flex-col sm:flex-row gap-3" style="transition-delay:.15s">
+            <a href="#kontakt" class="btn btn-dark px-6 py-3.5 text-[15px] justify-center">Start med gratis samtale <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></a>
+          </div>
+          <div class="rv mt-8 hidden lg:block" style="transition-delay:.2s">
+            <div class="flex justify-between mono text-[11px] uppercase tracking-widest text-[#5B6B63] mb-2"><span>Fremdrift</span><span id="procPct">0 %</span></div>
+            <div class="h-2 bg-[#0B1512]/10 rounded-full overflow-hidden"><div id="procBar" class="h-full w-0 bg-gradient-to-r from-[#0E3B2C] to-[#BFE83A] rounded-full transition-[width] duration-150"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 relative" id="procSteps">
+        <div class="absolute left-[27px] sm:left-[31px] top-4 bottom-4 w-[2px] bg-[#0B1512]/10 rounded-full overflow-hidden"><div id="procLine" class="w-full bg-[#0E3B2C] rounded-full" style="height:0%"></div></div>
+        <div class="space-y-4">
+          <div class="rv relative flex gap-5 sm:gap-6 bg-white rounded-[1.5rem] border-[1.5px] border-[#0B1512]/10 p-6 sm:p-8 lift">
+            <span class="shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#0B1512] text-[#D9FF4B] font-display italic text-2xl flex items-center justify-center relative z-10">01</span>
+            <div>
+              <p class="mono text-[11px] uppercase tracking-widest text-[#0E3B2C] font-semibold">Dag 0 · Gratis 30 min</p>
+              <h3 class="mt-1.5 text-xl sm:text-2xl font-bold tracking-tight">Kartleggingssamtale</h3>
+              <p class="mt-2 text-[#0B1512]/60 leading-relaxed text-[15.5px]">Vi blir kjent med bedriften din, går gjennom dagens rutiner og avdekker hvor du lekker tid og penger. Du får ærlig råd — også om du ikke blir kunde.</p>
+              <ul class="mt-4 flex flex-wrap gap-2 text-[13px] font-semibold"><li class="flex items-center gap-1.5 bg-[#F5F3ED] px-3 py-1.5 rounded-full"><i data-lucide="check" class="w-3.5 h-3.5 text-[#0E3B2C]"></i> Video eller kaffe i Bjørvika</li><li class="flex items-center gap-1.5 bg-[#F5F3ED] px-3 py-1.5 rounded-full"><i data-lucide="check" class="w-3.5 h-3.5 text-[#0E3B2C]"></i> Fastpris-tilbud samme uke</li></ul>
+            </div>
+          </div>
+          <div class="rv relative flex gap-5 sm:gap-6 bg-white rounded-[1.5rem] border-[1.5px] border-[#0B1512]/10 p-6 sm:p-8 lift" style="transition-delay:.05s">
+            <span class="shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#0E3B2C] text-[#D9FF4B] font-display italic text-2xl flex items-center justify-center relative z-10">02</span>
+            <div>
+              <p class="mono text-[11px] uppercase tracking-widest text-[#0E3B2C] font-semibold">Uke 1 · Vi gjør jobben</p>
+              <h3 class="mt-1.5 text-xl sm:text-2xl font-bold tracking-tight">Oppsett &amp; overføring</h3>
+              <p class="mt-2 text-[#0B1512]/60 leading-relaxed text-[15.5px]">Vi henter alt fra forrige byrå, kobler bank og systemer, og setter opp automatikk skreddersydd for din bransje. Du signerer med BankID — vi tar resten.</p>
+              <ul class="mt-4 flex flex-wrap gap-2 text-[13px] font-semibold"><li class="flex items-center gap-1.5 bg-[#F5F3ED] px-3 py-1.5 rounded-full"><i data-lucide="check" class="w-3.5 h-3.5 text-[#0E3B2C]"></i> Bank- &amp; systemkobling</li><li class="flex items-center gap-1.5 bg-[#F5F3ED] px-3 py-1.5 rounded-full"><i data-lucide="check" class="w-3.5 h-3.5 text-[#0E3B2C]"></i> Historikk flyttes trygt</li></ul>
+            </div>
+          </div>
+          <div class="rv relative flex gap-5 sm:gap-6 bg-white rounded-[1.5rem] border-[1.5px] border-[#0B1512]/10 p-6 sm:p-8 lift" style="transition-delay:.05s">
+            <span class="shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#D9FF4B] text-[#0B1512] font-display italic text-2xl flex items-center justify-center relative z-10">03</span>
+            <div>
+              <p class="mono text-[11px] uppercase tracking-widest text-[#0E3B2C] font-semibold">Løpende · Hverdagen</p>
+              <h3 class="mt-1.5 text-xl sm:text-2xl font-bold tracking-tight">Du godkjenner på mobilen</h3>
+              <p class="mt-2 text-[#0B1512]/60 leading-relaxed text-[15.5px]">Ta bilde av kvitteringer, godkjenn fakturaer med ett trykk og følg lønnsomheten live. Alt annet skjer i bakgrunnen — av oss.</p>
+              <ul class="mt-4 flex flex-wrap gap-2 text-[13px] font-semibold"><li class="flex items-center gap-1.5 bg-[#F5F3ED] px-3 py-1.5 rounded-full"><i data-lucide="check" class="w-3.5 h-3.5 text-[#0E3B2C]"></i> Egen rådgiver på chat</li><li class="flex items-center gap-1.5 bg-[#F5F3ED] px-3 py-1.5 rounded-full"><i data-lucide="check" class="w-3.5 h-3.5 text-[#0E3B2C]"></i> Varsler før alle frister</li></ul>
+            </div>
+          </div>
+          <div class="rv relative flex gap-5 sm:gap-6 bg-[#0B1512] text-white rounded-[1.5rem] p-6 sm:p-8 lift overflow-hidden" style="transition-delay:.05s">
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-[#D9FF4B]/15 blur-[80px] rounded-full"></div>
+            <span class="shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#D9FF4B] text-[#0B1512] font-display italic text-2xl flex items-center justify-center relative z-10">04</span>
+            <div class="relative">
+              <p class="mono text-[11px] uppercase tracking-widest text-[#D9FF4B] font-semibold">Hver måned · Innsikt</p>
+              <h3 class="mt-1.5 text-xl sm:text-2xl font-bold tracking-tight">Månedsrapport du faktisk leser</h3>
+              <p class="mt-2 text-white/65 leading-relaxed text-[15.5px]">Én side med det som betyr noe: margin, likviditet og tre konkrete anbefalinger. Pluss kvartalsmøte med rådgiveren din.</p>
+              <ul class="mt-4 flex flex-wrap gap-2 text-[13px] font-semibold"><li class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full"><i data-lucide="check" class="w-3.5 h-3.5 text-[#D9FF4B]"></i> Margin &amp; likviditet live</li><li class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full"><i data-lucide="check" class="w-3.5 h-3.5 text-[#D9FF4B]"></i> Kvartalsmøte inkludert</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KALKULATOR ============ -->
+  <section id="kalkulator" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="rv bg-white rounded-[2rem] border-[1.5px] border-[#0B1512]/10 overflow-hidden shadow-[0_30px_60px_-30px_rgba(11,21,18,.2)]">
+      <div class="grid lg:grid-cols-2">
+        <div class="p-7 sm:p-10 lg:p-12">
+          <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#0E3B2C] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#0E3B2C]"></span> Priskalkulator</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[1.08]">Hva koster det <span class="font-display italic font-medium text-[#0E3B2C]">for deg?</span></h2>
+          <p class="mt-3 text-[#0B1512]/60 text-[16px]">Dra i glidebryterne — se prisen live. Ingen e-post required, ingen selgere som ringer.</p>
+
+          <div class="mt-8 space-y-7">
+            <div>
+              <div class="flex justify-between items-baseline mb-3">
+                <label for="rngBilag" class="font-bold text-[15px]">Bilag per måned</label>
+                <span class="mono text-sm font-semibold bg-[#F5F3ED] px-3 py-1 rounded-lg tabular-nums"><span id="outBilag">60</span> stk</span>
+              </div>
+              <input type="range" id="rngBilag" min="5" max="400" value="60" step="5" aria-label="Bilag per måned">
+              <div class="flex justify-between mono text-[11px] text-[#0B1512]/40 mt-1.5"><span>5</span><span>400+</span></div>
+            </div>
+            <div>
+              <div class="flex justify-between items-baseline mb-3">
+                <label for="rngAnsatte" class="font-bold text-[15px]">Ansatte med lønn</label>
+                <span class="mono text-sm font-semibold bg-[#F5F3ED] px-3 py-1 rounded-lg tabular-nums"><span id="outAnsatte">3</span> pers</span>
+              </div>
+              <input type="range" id="rngAnsatte" min="0" max="40" value="3" step="1" aria-label="Ansatte med lønn">
+              <div class="flex justify-between mono text-[11px] text-[#0B1512]/40 mt-1.5"><span>Kun eier</span><span>40+</span></div>
+            </div>
+            <div>
+              <label for="selOmsetning" class="font-bold text-[15px] block mb-3">Årlig omsetning</label>
+              <select id="selOmsetning" class="field font-medium">
+                <option value="0">Under 1 million</option>
+                <option value="0" selected>1 – 5 millioner</option>
+                <option value="500">5 – 20 millioner</option>
+                <option value="1000">Over 20 millioner</option>
+              </select>
+            </div>
+            <div>
+              <p class="font-bold text-[15px] mb-3">Tilleggstjenester</p>
+              <div class="flex flex-wrap gap-2.5">
+                <label class="chip relative"><input type="checkbox" id="chkLonn" checked><span><span class="dot"></span> Lønnskjøring</span></label>
+                <label class="chip relative"><input type="checkbox" id="chkFakt"><span><span class="dot"></span> Fakturaoppfølging</span></label>
+                <label class="chip relative"><input type="checkbox" id="chkCfo"><span><span class="dot"></span> CFO-rådgivning</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#0B1512] text-white p-7 sm:p-10 lg:p-12 relative overflow-hidden flex flex-col">
+          <div class="grid-bg-dark absolute inset-0"></div>
+          <div class="absolute -top-24 -right-24 w-80 h-80 bg-[#D9FF4B]/15 blur-[100px] rounded-full"></div>
+          <div class="relative flex-1">
+            <div class="flex items-center justify-between">
+              <p class="mono text-[11px] uppercase tracking-[0.2em] text-white/50">Din anbefaling</p>
+              <span class="flex items-center gap-1.5 text-[12px] font-semibold text-[#D9FF4B]"><span class="w-1.5 h-1.5 rounded-full bg-[#D9FF4B] live-dot"></span> Oppdateres live</span>
+            </div>
+            <div class="mt-4 inline-flex items-center gap-2 bg-[#D9FF4B] text-[#0B1512] font-bold px-4 py-2 rounded-full text-[15px]">
+              <i data-lucide="sparkles" class="w-4 h-4"></i> Pakke: <span id="resTier">Vekst</span>
+            </div>
+            <div class="mt-5 flex items-end gap-2">
+              <p class="text-[3.2rem] sm:text-6xl font-bold tracking-tight tabular-nums leading-none"><span id="resPrice">3 937</span></p>
+              <p class="text-white/50 font-medium mb-1.5">kr / mnd<br><span class="text-[12px]">eks. mva</span></p>
+            </div>
+            <div id="resBreak" class="mt-6 space-y-2.5 text-[14px] border-t border-white/10 pt-5"></div>
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <div class="bg-white/[.07] border border-white/10 rounded-2xl p-4">
+                <p class="mono text-2xl font-semibold text-[#D9FF4B] tabular-nums">~<span id="resTime">14</span> t</p>
+                <p class="text-[12.5px] text-white/60 font-medium mt-1">spart hver måned</p>
+              </div>
+              <div class="bg-white/[.07] border border-white/10 rounded-2xl p-4">
+                <p class="mono text-2xl font-semibold text-[#D9FF4B] tabular-nums">−15 %</p>
+                <p class="text-[12.5px] text-white/60 font-medium mt-1">med årsavtale</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative mt-7">
+            <a href="#kontakt" class="btn btn-lime w-full justify-center px-7 py-4 text-[15px]">Få eksakt tilbud på e-post <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></a>
+            <p class="mt-3 text-center text-[12.5px] text-white/45">Veiledende pris · Fastpris uten overraskelser · Ingen binding første 3 mnd</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRISER ============ -->
+  <section id="priser" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="rv mono text-[11px] uppercase tracking-[0.2em] text-[#0E3B2C] flex items-center justify-center gap-2"><span class="w-2 h-2 rounded-full bg-[#0E3B2C]"></span> Pakker &amp; priser</p>
+      <h2 class="rv mt-3 text-4xl sm:text-5xl font-bold tracking-[-0.02em] leading-[1.05]" style="transition-delay:.05s">Én fast pris.<br><span class="font-display italic font-medium text-[#0E3B2C]">Null overraskelser.</span></h2>
+      <p class="rv mt-4 text-[#0B1512]/60 text-[17px]" style="transition-delay:.1s">Velg pakken som passer der du er i dag. Oppgrader eller nedgrader når som helst.</p>
+      <div class="rv mt-6 inline-flex items-center gap-3 bg-white border-[1.5px] border-[#0B1512]/10 rounded-full p-1.5 pl-5" style="transition-delay:.15s">
+        <span id="lblMnd" class="text-sm font-bold">Månedlig</span>
+        <button id="billingToggle" role="switch" aria-checked="false" aria-label="Bytt mellom månedlig og årlig fakturering" class="w-14 h-8 rounded-full bg-[#0B1512] relative transition-colors">
+          <span id="toggleKnob" class="absolute top-1 left-1 w-6 h-6 rounded-full bg-[#D9FF4B] transition-transform duration-300"></span>
+        </button>
+        <span id="lblAar" class="text-sm font-bold text-[#0B1512]/45">Årlig <span class="text-[11px] font-bold bg-[#D9FF4B] text-[#0B1512] px-2 py-0.5 rounded-full ml-1">−15 %</span></span>
+      </div>
+    </div>
+
+    <div class="mt-10 grid lg:grid-cols-3 gap-4 items-stretch">
+      <!-- Start -->
+      <div class="rv bg-white rounded-[1.75rem] border-[1.5px] border-[#0B1512]/10 p-8 flex flex-col lift">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#5B6B63]">For deg som starter</p>
+        <h3 class="mt-2 text-2xl font-bold">Start</h3>
+        <p class="mt-1.5 text-[14.5px] text-[#0B1512]/55">ENK og små AS med lite volum.</p>
+        <p class="mt-6"><span class="text-5xl font-bold tracking-tight tabular-nums"><span class="price" data-m="1 490" data-y="1 265">1 490</span></span> <span class="text-[#0B1512]/50 font-medium">kr/mnd</span></p>
+        <p class="bill-note mt-1 text-[13px] text-[#0B1512]/45">eks. mva · månedlig fakturering</p>
+        <ul class="mt-7 space-y-3 text-[15px] font-medium flex-1">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> Bokføring, opptil 25 bilag/mnd</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> MVA-oppgaver &amp; fristvarsler</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> Skattemelding for selskapet</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> App for bilag &amp; godkjenning</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> E-postsupport, svar innen 24 t</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost w-full justify-center px-6 py-3.5 mt-8 text-[15px]">Velg Start</a>
+      </div>
+
+      <!-- Vekst -->
+      <div class="rv relative bg-[#0B1512] text-white rounded-[1.75rem] p-8 flex flex-col overflow-hidden lg:scale-[1.04] shadow-[0_40px_80px_-30px_rgba(11,21,18,.5)] border border-[#0B1512]" style="transition-delay:.08s">
+        <div class="grid-bg-dark absolute inset-0"></div>
+        <div class="absolute -top-28 left-1/2 -translate-x-1/2 w-72 h-72 bg-[#D9FF4B]/20 blur-[90px] rounded-full"></div>
+        <div class="relative flex-1 flex flex-col">
+          <div class="flex items-center justify-between">
+            <p class="mono text-[11px] uppercase tracking-[0.2em] text-white/50">For AS i vekst</p>
+            <span class="bg-[#D9FF4B] text-[#0B1512] text-[12px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Mest valgt</span>
+          </div>
+          <h3 class="mt-2 text-2xl font-bold">Vekst</h3>
+          <p class="mt-1.5 text-[14.5px] text-white/55">Alt et AS i drift trenger — samlet.</p>
+          <p class="mt-6"><span class="text-5xl font-bold tracking-tight tabular-nums"><span class="price" data-m="3 490" data-y="2 965">3 490</span></span> <span class="text-white/50 font-medium">kr/mnd</span></p>
+          <p class="bill-note mt-1 text-[13px] text-white/40">eks. mva · månedlig fakturering</p>
+          <ul class="mt-7 space-y-3 text-[15px] font-medium flex-1">
+            <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#D9FF4B] shrink-0 mt-0.5"></i> Bokføring, opptil 120 bilag/mnd</li>
+            <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#D9FF4B] shrink-0 mt-0.5"></i> Lønn for opptil 5 ansatte</li>
+            <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#D9FF4B] shrink-0 mt-0.5"></i> Årsoppgjør &amp; skattemelding inkludert</li>
+            <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#D9FF4B] shrink-0 mt-0.5"></i> Fast rådgiver + kvartalsmøte</li>
+            <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#D9FF4B] shrink-0 mt-0.5"></i> Månedsrapport med anbefalinger</li>
+            <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#D9FF4B] shrink-0 mt-0.5"></i> Fakturering &amp; purring</li>
+          </ul>
+          <a href="#kontakt" class="btn btn-lime w-full justify-center px-6 py-4 mt-8 text-[15px]">Velg Vekst <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></a>
+        </div>
+      </div>
+
+      <!-- Skala -->
+      <div class="rv bg-white rounded-[1.75rem] border-[1.5px] border-[#0B1512]/10 p-8 flex flex-col lift" style="transition-delay:.16s">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#5B6B63]">For større &amp; krevende</p>
+        <h3 class="mt-2 text-2xl font-bold">Skala</h3>
+        <p class="mt-1.5 text-[14.5px] text-[#0B1512]/55">Høyere volum + økonomisjef-støtte.</p>
+        <p class="mt-6"><span class="text-5xl font-bold tracking-tight tabular-nums"><span class="price" data-m="6 990" data-y="5 940">6 990</span></span> <span class="text-[#0B1512]/50 font-medium">kr/mnd</span></p>
+        <p class="bill-note mt-1 text-[13px] text-[#0B1512]/45">eks. mva · månedlig fakturering</p>
+        <ul class="mt-7 space-y-3 text-[15px] font-medium flex-1">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> Bokføring, opptil 400 bilag/mnd</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> Lønn for opptil 20 ansatte</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> CFO-rådgiver &amp; styremøter</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> Budsjett &amp; likviditetsprognose</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-5 h-5 text-[#0E3B2C] shrink-0 mt-0.5"></i> Prioritert support på chat &amp; telefon</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost w-full justify-center px-6 py-3.5 mt-8 text-[15px]">Snakk med oss</a>
+      </div>
+    </div>
+    <p class="rv text-center mt-8 text-[14.5px] text-[#0B1512]/55">Alle priser eks. mva · 3 måneders oppsigelse · <button data-open-modal class="font-semibold text-[#0B1512] link-u">Usikker? Bestill gratis behovssamtale</button></p>
+  </section>
+
+  <!-- ============ PORTAL (dark) ============ -->
+  <section id="portal" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="rv bg-[#0B1512] text-white rounded-[2rem] overflow-hidden relative">
+      <div class="grid-bg-dark absolute inset-0"></div>
+      <div class="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[#0E3B2C] blur-[120px] rounded-full opacity-80"></div>
+      <div class="absolute -bottom-32 -right-24 w-[420px] h-[420px] bg-[#D9FF4B]/10 blur-[110px] rounded-full"></div>
+
+      <div class="relative grid lg:grid-cols-12 gap-10 p-7 sm:p-10 lg:p-14">
+        <div class="lg:col-span-5 flex flex-col justify-center">
+          <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#D9FF4B] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#D9FF4B] live-dot"></span> Kundeportal · Min Andersen</p>
+          <h2 class="mt-3 text-3xl sm:text-[2.75rem] font-bold tracking-[-0.02em] leading-[1.08]">Hele økonomien.<br><span class="font-display italic font-medium text-[#D9FF4B]">I lomma.</span></h2>
+          <p class="mt-4 text-white/60 text-[16.5px] leading-relaxed">Alle kunder får tilgang til Min Andersen — der du godkjenner, laster opp og følger med. Prøv fanene og se hvordan det føles.</p>
+          <ul class="mt-7 space-y-4 text-[15px] font-medium">
+            <li class="flex gap-3"><span class="w-9 h-9 shrink-0 rounded-xl bg-white/10 flex items-center justify-center"><i data-lucide="fingerprint" class="w-4.5 h-4.5 text-[#D9FF4B]"></i></span><span class="pt-1.5">Logg inn med BankID — banknivå sikkerhet</span></li>
+            <li class="flex gap-3"><span class="w-9 h-9 shrink-0 rounded-xl bg-white/10 flex items-center justify-center"><i data-lucide="zap" class="w-4.5 h-4.5 text-[#D9FF4B]"></i></span><span class="pt-1.5">Godkjenn fakturaer og lønn med ett trykk</span></li>
+            <li class="flex gap-3"><span class="w-9 h-9 shrink-0 rounded-xl bg-white/10 flex items-center justify-center"><i data-lucide="bell" class="w-4.5 h-4.5 text-[#D9FF4B]"></i></span><span class="pt-1.5">Varsler før frister — aldri purregebyr igjen</span></li>
+          </ul>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <button data-open-modal class="btn btn-lime px-6 py-3.5 text-[15px] justify-center">Se live demo <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <button data-ptab="oversikt" class="ptab active text-[13.5px] font-bold px-5 py-2.5 rounded-full border-[1.5px] border-white/15">Oversikt</button>
+            <button data-ptab="faktura" class="ptab text-[13.5px] font-bold px-5 py-2.5 rounded-full border-[1.5px] border-white/15">Fakturaer</button>
+            <button data-ptab="lonn" class="ptab text-[13.5px] font-bold px-5 py-2.5 rounded-full border-[1.5px] border-white/15">Lønn</button>
+            <button data-ptab="rapport" class="ptab text-[13.5px] font-bold px-5 py-2.5 rounded-full border-[1.5px] border-white/15">Rapporter</button>
+          </div>
+
+          <div class="bg-[#F5F3ED] text-[#0B1512] rounded-[1.5rem] overflow-hidden shadow-2xl">
+            <div class="flex items-center gap-2 px-5 py-3.5 bg-white border-b border-[#0B1512]/8">
+              <span class="w-3 h-3 rounded-full bg-[#E85D5D]"></span><span class="w-3 h-3 rounded-full bg-[#E8B93D]"></span><span class="w-3 h-3 rounded-full bg-[#3DBE6E]"></span>
+              <span class="ml-3 mono text-[12px] text-[#0B1512]/45 bg-[#F5F3ED] px-3 py-1 rounded-lg flex items-center gap-1.5"><i data-lucide="lock" class="w-3 h-3"></i> min.andersen-regnskap.no</span>
+            </div>
+
+            <!-- Oversikt -->
+            <div data-ppanel="oversikt" class="ppanel active p-5 sm:p-7">
+              <div class="grid grid-cols-3 gap-3">
+                <div class="bg-white rounded-2xl p-4 border border-[#0B1512]/8"><p class="mono text-[10px] uppercase tracking-widest text-[#5B6B63]">Saldo</p><p class="text-lg sm:text-2xl font-bold tabular-nums mt-1">842 300</p><p class="text-[12px] font-bold text-[#14805A]">+12 %</p></div>
+                <div class="bg-white rounded-2xl p-4 border border-[#0B1512]/8"><p class="mono text-[10px] uppercase tracking-widest text-[#5B6B63]">Utestående</p><p class="text-lg sm:text-2xl font-bold tabular-nums mt-1">196 400</p><p class="text-[12px] font-bold text-[#B7791F]">3 forfalte</p></div>
+                <div class="bg-white rounded-2xl p-4 border border-[#0B1512]/8"><p class="mono text-[10px] uppercase tracking-widest text-[#5B6B63]">Margin</p><p class="text-lg sm:text-2xl font-bold tabular-nums mt-1">34,2 %</p><p class="text-[12px] font-bold text-[#14805A]">+4,2 pp</p></div>
+              </div>
+              <div class="mt-3 bg-white rounded-2xl p-4 sm:p-5 border border-[#0B1512]/8">
+                <div class="flex items-center justify-between mb-4"><p class="font-bold text-[15px]">Omsetning per måned</p><span class="mono text-[11px] text-[#0B1512]/45">2026 · NOK</span></div>
+                <div class="flex items-end gap-2 sm:gap-3 h-32 sm:h-36">
+                  <div class="flex-1 bg-[#E4EDE6] rounded-t-lg" style="height:42%"></div><div class="flex-1 bg-[#E4EDE6] rounded-t-lg" style="height:55%"></div><div class="flex-1 bg-[#E4EDE6] rounded-t-lg" style="height:48%"></div><div class="flex-1 bg-[#E4EDE6] rounded-t-lg" style="height:66%"></div><div class="flex-1 bg-[#E4EDE6] rounded-t-lg" style="height:58%"></div><div class="flex-1 bg-[#E4EDE6] rounded-t-lg" style="height:74%"></div><div class="flex-1 bg-[#E4EDE6] rounded-t-lg" style="height:69%"></div><div class="flex-1 bg-[#E4EDE6] rounded-t-lg" style="height:82%"></div><div class="flex-1 bg-[#0E3B2C] rounded-t-lg relative" style="height:95%"><span class="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#0B1512] text-white mono text-[10px] px-2 py-1 rounded-md whitespace-nowrap">486k</span></div>
+                </div>
+                <div class="flex gap-2 sm:gap-3 mt-2 mono text-[10px] text-[#0B1512]/40 text-center"><span class="flex-1">Jan</span><span class="flex-1">Feb</span><span class="flex-1">Mar</span><span class="flex-1">Apr</span><span class="flex-1">Mai</span><span class="flex-1">Jun</span><span class="flex-1">Jul</span><span class="flex-1">Aug</span><span class="flex-1 font-bold text-[#0B1512]">Sep</span></div>
+              </div>
+            </div>
+
+            <!-- Faktura -->
+            <div data-ppanel="faktura" class="ppanel p-5 sm:p-7">
+              <div class="flex items-center justify-between mb-4"><p class="font-bold text-[15px]">Til godkjenning <span class="ml-1 text-[12px] bg-[#0B1512] text-white px-2 py-0.5 rounded-full">3</span></p><button class="text-[13px] font-bold text-[#0E3B2C] flex items-center gap-1" onclick="showToast('Ny faktura opprettet — kladd lagret')"><i data-lucide="plus" class="w-4 h-4"></i> Ny faktura</button></div>
+              <div class="space-y-2.5" id="invoiceList">
+                <div class="inv-row bg-white rounded-2xl p-4 border border-[#0B1512]/8 flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-xl bg-[#0E3B2C]/10 text-[#0E3B2C] flex items-center justify-center shrink-0 font-bold text-sm">NF</span>
+                  <div class="flex-1 min-w-0"><p class="font-bold text-[14.5px] truncate">Nordfjell Elektro AS</p><p class="mono text-[11.5px] text-[#0B1512]/45">Fakt. 1042 · Forfall 12. sep</p></div>
+                  <p class="font-bold tabular-nums text-[14.5px]">48 750</p>
+                  <button class="inv-ok text-[12.5px] font-bold bg-[#0B1512] text-white px-3.5 py-2 rounded-full hover:bg-[#0E3B2C] transition-colors">Godkjenn</button>
+                </div>
+                <div class="inv-row bg-white rounded-2xl p-4 border border-[#0B1512]/8 flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-xl bg-[#B7791F]/12 text-[#B7791F] flex items-center justify-center shrink-0 font-bold text-sm">BH</span>
+                  <div class="flex-1 min-w-0"><p class="font-bold text-[14.5px] truncate">Berg &amp; Havn Drift</p><p class="mono text-[11.5px] text-[#0B1512]/45">Fakt. 1043 · Forfall 15. sep</p></div>
+                  <p class="font-bold tabular-nums text-[14.5px]">12 300</p>
+                  <button class="inv-ok text-[12.5px] font-bold bg-[#0B1512] text-white px-3.5 py-2 rounded-full hover:bg-[#0E3B2C] transition-colors">Godkjenn</button>
+                </div>
+                <div class="inv-row bg-white rounded-2xl p-4 border border-[#0B1512]/8 flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-xl bg-[#0E3B2C]/10 text-[#0E3B2C] flex items-center justify-center shrink-0 font-bold text-sm">SK</span>
+                  <div class="flex-1 min-w-0"><p class="font-bold text-[14.5px] truncate">Sentralen Kontorhotell</p><p class="mono text-[11.5px] text-[#0B1512]/45">Fakt. 1044 · Forfall 18. sep</p></div>
+                  <p class="font-bold tabular-nums text-[14.5px]">9 880</p>
+                  <button class="inv-ok text-[12.5px] font-bold bg-[#0B1512] text-white px-3.5 py-2 rounded-full hover:bg-[#0E3B2C] transition-colors">Godkjenn</button>
+                </div>
+              </div>
+              <p class="mt-4 text-[13px] text-[#0B1512]/50 flex items-center gap-1.5"><i data-lucide="info" class="w-4 h-4"></i> Tips: Trykk «Godkjenn» — slik fungerer det for kundene våre også.</p>
+            </div>
+
+            <!-- Lønn -->
+            <div data-ppanel="lonn" class="ppanel p-5 sm:p-7">
+              <div class="bg-[#0E3B2C] text-white rounded-2xl p-5 flex items-center justify-between">
+                <div><p class="mono text-[10px] uppercase tracking-widest text-white/50">Neste lønnskjøring</p><p class="text-xl font-bold mt-1">25. september</p><p class="text-[13px] text-white/60">14 ansatte · klart til godkjenning 23. sep</p></div>
+                <span class="w-12 h-12 rounded-2xl bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center shrink-0"><i data-lucide="wallet" class="w-6 h-6"></i></span>
+              </div>
+              <div class="mt-3 grid grid-cols-2 gap-3">
+                <div class="bg-white rounded-2xl p-4 border border-[#0B1512]/8"><p class="mono text-[10px] uppercase tracking-widest text-[#5B6B63]">Brutto lønn</p><p class="text-xl font-bold tabular-nums mt-1">742 500 kr</p></div>
+                <div class="bg-white rounded-2xl p-4 border border-[#0B1512]/8"><p class="mono text-[10px] uppercase tracking-widest text-[#5B6B63]">Arb.giveravgift</p><p class="text-xl font-bold tabular-nums mt-1">104 640 kr</p></div>
+              </div>
+              <div class="mt-3 space-y-2">
+                <div class="bg-white rounded-2xl px-4 py-3 border border-[#0B1512]/8 flex items-center gap-3 text-[14px]"><i data-lucide="check" class="w-4.5 h-4.5 text-[#14805A]"></i><span class="font-semibold">A-melding august levert</span><span class="ml-auto mono text-[11px] text-[#0B1512]/40">05. sep</span></div>
+                <div class="bg-white rounded-2xl px-4 py-3 border border-[#0B1512]/8 flex items-center gap-3 text-[14px]"><i data-lucide="check" class="w-4.5 h-4.5 text-[#14805A]"></i><span class="font-semibold">Feriepenger avsatt korrekt</span><span class="ml-auto mono text-[11px] text-[#0B1512]/40">Auto</span></div>
+              </div>
+            </div>
+
+            <!-- Rapport -->
+            <div data-ppanel="rapport" class="ppanel p-5 sm:p-7">
+              <div class="space-y-2.5">
+                <div class="bg-white rounded-2xl p-4 border border-[#0B1512]/8 flex items-center gap-3">
+                  <span class="w-11 h-11 rounded-xl bg-[#0B1512] text-[#D9FF4B] flex items-center justify-center shrink-0"><i data-lucide="file-text" class="w-5 h-5"></i></span>
+                  <div class="flex-1 min-w-0"><p class="font-bold text-[14.5px]">Månedsrapport · August</p><p class="text-[12.5px] text-[#0B1512]/50">Margin 34,2 % · 3 anbefalinger</p></div>
+                  <button class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" onclick="showToast('Månedsrapport lastet ned (demo)')" aria-label="Last ned rapport"><i data-lucide="download" class="w-4.5 h-4.5"></i></button>
+                </div>
+                <div class="bg-white rounded-2xl p-4 border border-[#0B1512]/8 flex items-center gap-3">
+                  <span class="w-11 h-11 rounded-xl bg-[#0E3B2C] text-[#D9FF4B] flex items-center justify-center shrink-0"><i data-lucide="landmark" class="w-5 h-5"></i></span>
+                  <div class="flex-1 min-w-0"><p class="font-bold text-[14.5px]">MVA 3. termin · Utkast</p><p class="text-[12.5px] text-[#0B1512]/50">Til godkjenning innen 28. aug</p></div>
+                  <span class="text-[12px] font-bold bg-[#B7791F]/12 text-[#8a5f16] px-3 py-1.5 rounded-full">Venter deg</span>
+                </div>
+                <div class="bg-white rounded-2xl p-4 border border-[#0B1512]/8 flex items-center gap-3">
+                  <span class="w-11 h-11 rounded-xl bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center shrink-0"><i data-lucide="trending-up" class="w-5 h-5"></i></span>
+                  <div class="flex-1 min-w-0"><p class="font-bold text-[14.5px]">Likviditetsprognose · Q4</p><p class="text-[12.5px] text-[#0B1512]/50">Oppdatert av rådgiver 20. aug</p></div>
+                  <button class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" onclick="showToast('Prognose lastet ned (demo)')" aria-label="Last ned prognose"><i data-lucide="download" class="w-4.5 h-4.5"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mt-3 text-center mono text-[11px] uppercase tracking-widest text-white/35">Demo-illustrasjon · Tallene er fiktive</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BYTT ============ -->
+  <section id="bytt" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="grid lg:grid-cols-2 gap-6 items-stretch">
+      <div class="rv flex flex-col justify-center">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#0E3B2C] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#0E3B2C]"></span> Bytt regnskapsfører</p>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-bold tracking-[-0.02em] leading-[1.05]">Bytt på 14 dager — <span class="font-display italic font-medium text-[#0E3B2C]">uten å løfte en finger.</span></h2>
+        <p class="mt-5 text-[#0B1512]/60 text-[17px] leading-relaxed">De fleste gruer seg til å bytte. Derfor har vi gjort det til vår spesialitet: du signerer én fullmakt, så henter vi alt — bilag, historikk, lønn og avtaler.</p>
+        <ul class="mt-7 space-y-3.5 text-[16px] font-medium">
+          <li class="flex gap-3"><span class="w-7 h-7 shrink-0 rounded-full bg-[#0E3B2C] text-[#D9FF4B] flex items-center justify-center mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span> Vi sier opp og henter alt fra forrige byrå for deg</li>
+          <li class="flex gap-3"><span class="w-7 h-7 shrink-0 rounded-full bg-[#0E3B2C] text-[#D9FF4B] flex items-center justify-center mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span> Ingen nedetid — lønn og MVA går som normalt</li>
+          <li class="flex gap-3"><span class="w-7 h-7 shrink-0 rounded-full bg-[#0E3B2C] text-[#D9FF4B] flex items-center justify-center mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span> Gratis bytte ved årsavtale (verdi 4 900 kr)</li>
+          <li class="flex gap-3"><span class="w-7 h-7 shrink-0 rounded-full bg-[#0E3B2C] text-[#D9FF4B] flex items-center justify-center mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></span> Fornøyd-garanti: ikke happy etter 3 mnd? Pengene tilbake.</li>
+        </ul>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#kontakt" class="btn btn-dark px-7 py-4 text-[15px] justify-center">Start byttet nå <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></a>
+          <button data-open-modal class="btn btn-ghost px-7 py-4 text-[15px] justify-center">Bestill byttesamtale</button>
+        </div>
+      </div>
+
+      <div class="rv bg-white rounded-[1.75rem] border-[1.5px] border-[#0B1512]/10 p-7 sm:p-9 relative overflow-hidden" style="transition-delay:.1s">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#5B6B63]">Din bytteplan · 14 dager</p>
+        <div class="mt-6 space-y-0">
+          <div class="flex gap-5 group">
+            <div class="flex flex-col items-center"><span class="mono text-[11px] font-semibold bg-[#0B1512] text-white px-2.5 py-1 rounded-lg">DAG 1</span><span class="w-[2px] flex-1 bg-[#0B1512]/10 my-1"></span></div>
+            <div class="pb-7"><p class="font-bold text-[16.5px]">Fullmakt signeres med BankID</p><p class="text-[14.5px] text-[#0B1512]/55 mt-1">Tar 2 minutter. Vi kontakter forrige byrå samme dag.</p></div>
+          </div>
+          <div class="flex gap-5">
+            <div class="flex flex-col items-center"><span class="mono text-[11px] font-semibold bg-[#0E3B2C] text-white px-2.5 py-1 rounded-lg">DAG 3</span><span class="w-[2px] flex-1 bg-[#0B1512]/10 my-1"></span></div>
+            <div class="pb-7"><p class="font-bold text-[16.5px]">Alt overføres og kvalitetssjekkes</p><p class="text-[14.5px] text-[#0B1512]/55 mt-1">Bilag, regnskapshistorikk og lønnsdata flyttes trygt.</p></div>
+          </div>
+          <div class="flex gap-5">
+            <div class="flex flex-col items-center"><span class="mono text-[11px] font-semibold bg-[#0E3B2C] text-white px-2.5 py-1 rounded-lg">DAG 7</span><span class="w-[2px] flex-1 bg-[#0B1512]/10 my-1"></span></div>
+            <div class="pb-7"><p class="font-bold text-[16.5px]">Du møter din faste rådgiver</p><p class="text-[14.5px] text-[#0B1512]/55 mt-1">Gjennomgang av rutiner + opplæring i Min Andersen.</p></div>
+          </div>
+          <div class="flex gap-5">
+            <div class="flex flex-col items-center"><span class="mono text-[11px] font-semibold bg-[#D9FF4B] text-[#0B1512] px-2.5 py-1 rounded-lg border border-[#0B1512]/10">DAG 14</span></div>
+            <div><p class="font-bold text-[16.5px]">Ferdig — du er i gang ✓</p><p class="text-[14.5px] text-[#0B1512]/55 mt-1">Første månedsrapport leveres. Pust lettet ut.</p></div>
+          </div>
+        </div>
+        <div class="mt-4 bg-[#F5F3ED] rounded-2xl p-5 flex gap-4 items-center border border-[#0B1512]/8">
+          <span class="w-12 h-12 shrink-0 rounded-2xl bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center"><i data-lucide="shield-check" class="w-6 h-6"></i></span>
+          <p class="text-[14px] leading-relaxed"><span class="font-bold">Fornøyd-garanti.</span> <span class="text-[#0B1512]/60">Er du ikke fornøyd etter 3 måneder, refunderer vi siste måneds honorar. Uten spørsmål.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KUNDER ============ -->
+  <section id="kunder" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+      <div class="rv">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#0E3B2C] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#0E3B2C]"></span> Kunder</p>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-bold tracking-[-0.02em] leading-[1.05]">Bedrifter som sover<br><span class="font-display italic font-medium text-[#0E3B2C]">godt om natta.</span></h2>
+      </div>
+      <div class="rv flex items-center gap-3" style="transition-delay:.1s">
+        <button id="tPrev" class="w-12 h-12 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white hover:border-[#0B1512] transition-all" aria-label="Forrige omtale"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+        <button id="tNext" class="w-12 h-12 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white hover:border-[#0B1512] transition-all" aria-label="Neste omtale"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-4">
+      <!-- Case card -->
+      <div class="rv relative rounded-[1.75rem] overflow-hidden min-h-[320px] lg:min-h-0 group">
+        <img src="images/photo-04.jpg" alt="Eier av Kaffehuset Sol på jobb i kafeen" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0B1512] via-[#0B1512]/45 to-transparent"></div>
+        <div class="relative h-full flex flex-col justify-end p-7 text-white">
+          <span class="mono text-[11px] uppercase tracking-[0.2em] bg-[#D9FF4B] text-[#0B1512] self-start px-3 py-1.5 rounded-full font-semibold">Kundecase</span>
+          <h3 class="mt-4 text-2xl font-bold leading-tight">Slik kuttet Kaffehuset Sol 80 % av papirarbeidet</h3>
+          <p class="mt-2 text-white/70 text-[14.5px]">Tre kafeer · 22 ansatte · Kunde siden 2022</p>
+          <button onclick="showToast('Case sendes til din e-post — legg igjen den i skjemaet under')" class="mt-4 inline-flex items-center gap-2 font-semibold text-[#D9FF4B] link-u self-start">Les hele caset <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+
+      <!-- Slider -->
+      <div class="rv lg:col-span-2 bg-white rounded-[1.75rem] border-[1.5px] border-[#0B1512]/10 overflow-hidden flex flex-col" style="transition-delay:.08s" id="tWrap">
+        <div class="overflow-hidden flex-1">
+          <div id="tSlider" class="flex h-full">
+
+            <figure class="w-full shrink-0 p-7 sm:p-10 flex flex-col">
+              <div class="flex items-center justify-between">
+                <div class="flex gap-1 text-[#E8A100]"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                <i data-lucide="quote" class="w-8 h-8 text-[#0E3B2C]/15"></i>
+              </div>
+              <blockquote class="mt-5 font-display text-[1.45rem] sm:text-[1.7rem] leading-[1.3] flex-1">«Andersen frigjorde to fulle arbeidsdager i måneden for oss. Nå ser jeg marginene live — før måtte jeg vente til kvartalet var over.»</blockquote>
+              <figcaption class="mt-7 flex items-center gap-4 flex-wrap">
+                <span class="w-12 h-12 rounded-full bg-[#0E3B2C] text-white font-bold flex items-center justify-center">KL</span>
+                <div><p class="font-bold">Kari Lunde</p><p class="text-[13.5px] text-[#0B1512]/55">Daglig leder · Byggmester Lunde AS</p></div>
+                <span class="ml-auto text-[13px] font-bold bg-[#14805A]/10 text-[#14805A] px-3.5 py-2 rounded-full">+31 % dekningsbidrag</span>
+              </figcaption>
+            </figure>
+
+            <figure class="w-full shrink-0 p-7 sm:p-10 flex flex-col">
+              <div class="flex items-center justify-between">
+                <div class="flex gap-1 text-[#E8A100]"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                <i data-lucide="quote" class="w-8 h-8 text-[#0E3B2C]/15"></i>
+              </div>
+              <blockquote class="mt-5 font-display text-[1.45rem] sm:text-[1.7rem] leading-[1.3] flex-1">«Byttet tok ni dager. De hentet alt fra forrige byrå, og lønna gikk som normalt hele veien. Skulle ønske vi gjorde det før.»</blockquote>
+              <figcaption class="mt-7 flex items-center gap-4 flex-wrap">
+                <span class="w-12 h-12 rounded-full bg-[#0B1512] text-[#D9FF4B] font-bold flex items-center justify-center">JB</span>
+                <div><p class="font-bold">Jonas Bakken</p><p class="text-[13.5px] text-[#0B1512]/55">Gründer · Fjord &amp; Form AS</p></div>
+                <span class="ml-auto text-[13px] font-bold bg-[#0E3B2C]/10 text-[#0E3B2C] px-3.5 py-2 rounded-full">Byttet på 9 dager</span>
+              </figcaption>
+            </figure>
+
+            <figure class="w-full shrink-0 p-7 sm:p-10 flex flex-col">
+              <div class="flex items-center justify-between">
+                <div class="flex gap-1 text-[#E8A100]"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                <i data-lucide="quote" class="w-8 h-8 text-[#0E3B2C]/15"></i>
+              </div>
+              <blockquote class="mt-5 font-display text-[1.45rem] sm:text-[1.7rem] leading-[1.3] flex-1">«Endelig en regnskapsfører som forklarer ting på norsk. Månedsrapporten leser jeg faktisk — den er på én side og gir mening.»</blockquote>
+              <figcaption class="mt-7 flex items-center gap-4 flex-wrap">
+                <span class="w-12 h-12 rounded-full bg-[#D9FF4B] text-[#0B1512] font-bold flex items-center justify-center border border-[#0B1512]/10">AY</span>
+                <div><p class="font-bold">Amina Yusuf</p><p class="text-[13.5px] text-[#0B1512]/55">Eier · Kaffehuset Sol AS</p></div>
+                <span class="ml-auto text-[13px] font-bold bg-[#B7791F]/12 text-[#8a5f16] px-3.5 py-2 rounded-full">Kunde siden 2022</span>
+              </figcaption>
+            </figure>
+
+            <figure class="w-full shrink-0 p-7 sm:p-10 flex flex-col">
+              <div class="flex items-center justify-between">
+                <div class="flex gap-1 text-[#E8A100]"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                <i data-lucide="quote" class="w-8 h-8 text-[#0E3B2C]/15"></i>
+              </div>
+              <blockquote class="mt-5 font-display text-[1.45rem] sm:text-[1.7rem] leading-[1.3] flex-1">«Vi vokste fra 4 til 18 ansatte på to år. Andersen skalerte lønn, rutiner og rapportering i samme tempo — helt uten friksjon.»</blockquote>
+              <figcaption class="mt-7 flex items-center gap-4 flex-wrap">
+                <span class="w-12 h-12 rounded-full bg-[#0E3B2C] text-[#D9FF4B] font-bold flex items-center justify-center">ES</span>
+                <div><p class="font-bold">Erik Solheim</p><p class="text-[13.5px] text-[#0B1512]/55">CEO · GreenByte AS</p></div>
+                <span class="ml-auto text-[13px] font-bold bg-[#0B1512] text-white px-3.5 py-2 rounded-full">4 → 18 ansatte</span>
+              </figcaption>
+            </figure>
+
+          </div>
+        </div>
+        <div class="px-7 sm:px-10 pb-7 flex items-center gap-3">
+          <div class="flex gap-2" id="tDots"></div>
+          <p class="ml-auto mono text-[12px] text-[#0B1512]/40 tabular-nums"><span id="tNow">01</span> / 04</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv mt-4 flex flex-wrap justify-center gap-2.5 text-[13.5px] font-semibold text-[#0B1512]/55">
+      <span class="bg-white border border-[#0B1512]/10 px-4 py-2 rounded-full">Byggmester Lunde</span>
+      <span class="bg-white border border-[#0B1512]/10 px-4 py-2 rounded-full">Fjord &amp; Form</span>
+      <span class="bg-white border border-[#0B1512]/10 px-4 py-2 rounded-full">Kaffehuset Sol</span>
+      <span class="bg-white border border-[#0B1512]/10 px-4 py-2 rounded-full">GreenByte</span>
+      <span class="bg-white border border-[#0B1512]/10 px-4 py-2 rounded-full">Studio Nord</span>
+      <span class="bg-white border border-[#0B1512]/10 px-4 py-2 rounded-full">Fjellheim Elektro</span>
+      <span class="bg-[#0B1512] text-white px-4 py-2 rounded-full">+ 473 til</span>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section id="team" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+      <div class="rv">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#0E3B2C] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#0E3B2C]"></span> Folka bak tallene</p>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-bold tracking-[-0.02em] leading-[1.05]">Møt rådgiverne<br><span class="font-display italic font-medium text-[#0E3B2C]">dine.</span></h2>
+      </div>
+      <p class="rv max-w-md text-[#0B1512]/60 text-[17px] leading-relaxed" style="transition-delay:.1s">14 autoriserte regnskapsførere og rådgivere på kontoret i Bjørvika. Du får én fast kontaktperson — som faktisk tar telefonen.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <article class="rv team-card bg-white rounded-[1.75rem] border-[1.5px] border-[#0B1512]/10 overflow-hidden lift">
+        <div class="aspect-[4/4.4] overflow-hidden bg-[#E4EDE6]"><img src="images/photo-03.jpg" alt="Jonas Andersen, daglig leder" class="team-img w-full h-full object-cover" loading="lazy"></div>
+        <div class="p-6">
+          <p class="mono text-[10.5px] uppercase tracking-[0.16em] text-[#0E3B2C] font-semibold">Daglig leder · Autorisert</p>
+          <h3 class="mt-1 text-xl font-bold">Jonas Andersen</h3>
+          <p class="mt-1 text-[13.5px] text-[#0B1512]/55">Vekst, strategi &amp; selskapsstruktur</p>
+          <div class="mt-4 flex gap-2">
+            <a href="mailto:jonas@andersen-regnskap.no" class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" aria-label="Send e-post til Jonas"><i data-lucide="mail" class="w-4 h-4"></i></a>
+            <a href="tel:+4722004001" class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" aria-label="Ring Jonas"><i data-lucide="phone" class="w-4 h-4"></i></a>
+            <button onclick="showToast('Jonas er ledig for møte tirsdag 09:30 — book via «Bestill møte»')" class="ml-auto text-[13px] font-bold flex items-center gap-1.5 text-[#0E3B2C]"><span class="w-2 h-2 rounded-full bg-[#14805A] live-dot"></span> Ledig nå</button>
+          </div>
+        </div>
+      </article>
+      <article class="rv team-card bg-white rounded-[1.75rem] border-[1.5px] border-[#0B1512]/10 overflow-hidden lift" style="transition-delay:.06s">
+        <div class="aspect-[4/4.4] overflow-hidden bg-[#E4EDE6]"><img src="images/photo-05.jpg" alt="Ingrid Solberg, fagleder lønn" class="team-img w-full h-full object-cover" loading="lazy"></div>
+        <div class="p-6">
+          <p class="mono text-[10.5px] uppercase tracking-[0.16em] text-[#0E3B2C] font-semibold">Fagleder lønn</p>
+          <h3 class="mt-1 text-xl font-bold">Ingrid Solberg</h3>
+          <p class="mt-1 text-[13.5px] text-[#0B1512]/55">Lønn, personal &amp; arbeidsgiveravgift</p>
+          <div class="mt-4 flex gap-2">
+            <a href="mailto:ingrid@andersen-regnskap.no" class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" aria-label="Send e-post til Ingrid"><i data-lucide="mail" class="w-4 h-4"></i></a>
+            <a href="tel:+4722004002" class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" aria-label="Ring Ingrid"><i data-lucide="phone" class="w-4 h-4"></i></a>
+            <span class="ml-auto text-[13px] font-bold text-[#0B1512]/40">12 års erfaring</span>
+          </div>
+        </div>
+      </article>
+      <article class="rv team-card bg-white rounded-[1.75rem] border-[1.5px] border-[#0B1512]/10 overflow-hidden lift" style="transition-delay:.12s">
+        <div class="aspect-[4/4.4] overflow-hidden bg-[#E4EDE6]"><img src="images/photo-02.jpg" alt="Emilie Hagen, seniorrådgiver" class="team-img w-full h-full object-cover" loading="lazy"></div>
+        <div class="p-6">
+          <p class="mono text-[10.5px] uppercase tracking-[0.16em] text-[#0E3B2C] font-semibold">Seniorrådgiver</p>
+          <h3 class="mt-1 text-xl font-bold">Emilie Hagen</h3>
+          <p class="mt-1 text-[13.5px] text-[#0B1512]/55">MVA, skatt &amp; årsoppgjør</p>
+          <div class="mt-4 flex gap-2">
+            <a href="mailto:emilie@andersen-regnskap.no" class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" aria-label="Send e-post til Emilie"><i data-lucide="mail" class="w-4 h-4"></i></a>
+            <a href="tel:+4722004003" class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" aria-label="Ring Emilie"><i data-lucide="phone" class="w-4 h-4"></i></a>
+            <span class="ml-auto text-[13px] font-bold text-[#0B1512]/40">Siviløkonom NHH</span>
+          </div>
+        </div>
+      </article>
+      <article class="rv team-card bg-white rounded-[1.75rem] border-[1.5px] border-[#0B1512]/10 overflow-hidden lift" style="transition-delay:.18s">
+        <div class="aspect-[4/4.4] overflow-hidden bg-[#E4EDE6]"><img src="images/photo-01.jpg" alt="Sander Vik, rådgiver onboarding" class="team-img w-full h-full object-cover" loading="lazy"></div>
+        <div class="p-6">
+          <p class="mono text-[10.5px] uppercase tracking-[0.16em] text-[#0E3B2C] font-semibold">Rådgiver · Onboarding</p>
+          <h3 class="mt-1 text-xl font-bold">Sander Vik</h3>
+          <p class="mt-1 text-[13.5px] text-[#0B1512]/55">Oppstart, bytte &amp; systemoppsett</p>
+          <div class="mt-4 flex gap-2">
+            <a href="mailto:sander@andersen-regnskap.no" class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" aria-label="Send e-post til Sander"><i data-lucide="mail" class="w-4 h-4"></i></a>
+            <a href="tel:+4722004004" class="w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" aria-label="Ring Sander"><i data-lucide="phone" class="w-4 h-4"></i></a>
+            <span class="ml-auto text-[13px] font-bold text-[#0B1512]/40">300+ bytter</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="rv mt-4 relative rounded-[1.75rem] overflow-hidden group min-h-[220px]">
+      <img src="images/photo-06.jpg" alt="Kontoret til Andersen Regnskap i Bjørvika, Oslo" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0B1512]/90 via-[#0B1512]/55 to-transparent"></div>
+      <div class="relative p-7 sm:p-10 flex flex-col sm:flex-row sm:items-center gap-6 text-white">
+        <div class="flex-1">
+          <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#D9FF4B]">Besøk oss i Bjørvika</p>
+          <h3 class="mt-2 text-2xl sm:text-3xl font-bold tracking-tight">Kom innom for en kaffe —<br class="hidden sm:block"> vi tar en uforpliktende prat.</h3>
+          <p class="mt-2 text-white/65">Dronning Eufemias gate 16 · 5 min fra Oslo S</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+          <a href="#kontakt" class="btn btn-lime px-6 py-3.5 text-[15px] justify-center">Avtal besøk <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></a>
+          <a href="https://maps.google.com/?q=Dronning+Eufemias+gate+16+Oslo" target="_blank" rel="noopener" class="btn btn-ghost-light px-6 py-3.5 text-[15px] justify-center"><i data-lucide="map-pin" class="w-4.5 h-4.5"></i> Veibeskrivelse</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="max-w-3xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="text-center mb-8">
+      <p class="rv mono text-[11px] uppercase tracking-[0.2em] text-[#0E3B2C] flex items-center justify-center gap-2"><span class="w-2 h-2 rounded-full bg-[#0E3B2C]"></span> Ofte stilte spørsmål</p>
+      <h2 class="rv mt-3 text-4xl sm:text-5xl font-bold tracking-[-0.02em]" style="transition-delay:.05s">Det du <span class="font-display italic font-medium text-[#0E3B2C]">lurer på.</span></h2>
+    </div>
+    <div class="space-y-3" id="faqList">
+      <div class="rv acc-item bg-white rounded-2xl border-[1.5px] border-[#0B1512]/10">
+        <button class="acc-btn w-full flex items-center gap-4 text-left p-5 sm:p-6 font-bold text-[16.5px]">
+          <span class="flex-1">Hva koster en regnskapsfører for et lite AS?</span>
+          <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-[#F5F3ED] flex items-center justify-center"><i data-lucide="plus" class="w-4.5 h-4.5"></i></span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-5 sm:px-6 pb-6 text-[#0B1512]/60 leading-relaxed text-[15.5px]">De fleste av kundene våre med AS betaler mellom 2 500 og 5 000 kr/mnd eks. mva. Vekst-pakken til 3 490 kr dekker bokføring, lønn for 5 ansatte, MVA og årsoppgjør. Bruk <a href="#kalkulator" class="font-semibold text-[#0B1512] underline underline-offset-2">priskalkulatoren</a> for å se hva det blir for akkurat deg — eller få fastpris på e-post innen 24 timer.</p></div></div>
+      </div>
+      <div class="rv acc-item bg-white rounded-2xl border-[1.5px] border-[#0B1512]/10" style="transition-delay:.05s">
+        <button class="acc-btn w-full flex items-center gap-4 text-left p-5 sm:p-6 font-bold text-[16.5px]">
+          <span class="flex-1">Hvordan fungerer byttet fra forrige byrå?</span>
+          <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-[#F5F3ED] flex items-center justify-center"><i data-lucide="plus" class="w-4.5 h-4.5"></i></span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-5 sm:px-6 pb-6 text-[#0B1512]/60 leading-relaxed text-[15.5px]">Du signerer én fullmakt med BankID — så gjør vi resten. Vi sier opp avtalen, henter bilag og historikk, kobler bank og systemer, og sørger for at lønn og MVA går som normalt hele veien. Normalt er alt på plass innen 14 dager, og byttet er gratis ved årsavtale.</p></div></div>
+      </div>
+      <div class="rv acc-item bg-white rounded-2xl border-[1.5px] border-[#0B1512]/10" style="transition-delay:.1s">
+        <button class="acc-btn w-full flex items-center gap-4 text-left p-5 sm:p-6 font-bold text-[16.5px]">
+          <span class="flex-1">Hvilke regnskapssystemer bruker dere?</span>
+          <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-[#F5F3ED] flex items-center justify-center"><i data-lucide="plus" class="w-4.5 h-4.5"></i></span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-5 sm:px-6 pb-6 text-[#0B1512]/60 leading-relaxed text-[15.5px]">Vi er sertifiserte partnere på Tripletex, Fiken, PowerOffice Go og Xledger — og jobber i det systemet du allerede bruker. Usikker på hva som passer? Vi anbefaler og setter opp riktig system for din bransje og størrelse, uten ekstra kostnad.</p></div></div>
+      </div>
+      <div class="rv acc-item bg-white rounded-2xl border-[1.5px] border-[#0B1512]/10" style="transition-delay:.15s">
+        <button class="acc-btn w-full flex items-center gap-4 text-left p-5 sm:p-6 font-bold text-[16.5px]">
+          <span class="flex-1">Får vi en fast rådgiver å forholde oss til?</span>
+          <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-[#F5F3ED] flex items-center justify-center"><i data-lucide="plus" class="w-4.5 h-4.5"></i></span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-5 sm:px-6 pb-6 text-[#0B1512]/60 leading-relaxed text-[15.5px]">Ja — alltid. Du får en navngitt rådgiver som kjenner bedriften din, pluss en backup-person ved ferie og sykdom. Du når rådgiveren direkte på telefon, e-post og chat i Min Andersen, med garantert svar innen 24 timer på hverdager.</p></div></div>
+      </div>
+      <div class="rv acc-item bg-white rounded-2xl border-[1.5px] border-[#0B1512]/10" style="transition-delay:.2s">
+        <button class="acc-btn w-full flex items-center gap-4 text-left p-5 sm:p-6 font-bold text-[16.5px]">
+          <span class="flex-1">Kan dere hjelpe ved bokettersyn eller kontroll fra Skatteetaten?</span>
+          <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-[#F5F3ED] flex items-center justify-center"><i data-lucide="plus" class="w-4.5 h-4.5"></i></span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-5 sm:px-6 pb-6 text-[#0B1512]/60 leading-relaxed text-[15.5px]">Ja, og det er inkludert for alle kunder på Vekst og Skala. Vi stiller med dokumentasjon, svarer Skatteetaten på dine vegne og blir med på møter ved behov. Våre rutiner er bygget for å tåle kontroll — det er en del av tryggheten du kjøper.</p></div></div>
+      </div>
+      <div class="rv acc-item bg-white rounded-2xl border-[1.5px] border-[#0B1512]/10" style="transition-delay:.25s">
+        <button class="acc-btn w-full flex items-center gap-4 text-left p-5 sm:p-6 font-bold text-[16.5px]">
+          <span class="flex-1">Hva skjer hvis vi vil si opp avtalen?</span>
+          <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-[#F5F3ED] flex items-center justify-center"><i data-lucide="plus" class="w-4.5 h-4.5"></i></span>
+        </button>
+        <div class="acc-body"><div class="acc-inner"><p class="px-5 sm:px-6 pb-6 text-[#0B1512]/60 leading-relaxed text-[15.5px]">Da hjelper vi deg videre — like profesjonelt som da du kom. 3 måneders oppsigelse, full eksport av alle data i standardformater, og ryddig overlevering til nytt byrå. Ingen skjulte gebyrer, ingen drama. (Men 98 % blir — bare så du vet det.)</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KONTAKT ============ -->
+  <section id="kontakt" class="max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-16 scroll-mt-28">
+    <div class="grid lg:grid-cols-5 gap-4 items-stretch">
+      <!-- Info -->
+      <div class="rv lg:col-span-2 bg-[#0B1512] text-white rounded-[2rem] p-8 sm:p-10 relative overflow-hidden flex flex-col">
+        <div class="grid-bg-dark absolute inset-0"></div>
+        <div class="absolute -bottom-28 -left-24 w-80 h-80 bg-[#0E3B2C] blur-[100px] rounded-full"></div>
+        <div class="relative flex-1">
+          <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#D9FF4B] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#D9FF4B] live-dot"></span> Kontakt</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[1.08]">Få tilbud innen <span class="font-display italic font-medium text-[#D9FF4B]">24 timer.</span></h2>
+          <p class="mt-3 text-white/60 text-[15.5px] leading-relaxed">Fyll ut skjemaet — så ringer eller mailer vi deg med fastpris og forslag til oppstart. Helt uforpliktende.</p>
+          <div class="mt-7 space-y-4 text-[15px]">
+            <a href="tel:+4722004000" class="flex items-center gap-4 group">
+              <span class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-[#D9FF4B] group-hover:text-[#0B1512] transition-all"><i data-lucide="phone" class="w-5 h-5"></i></span>
+              <span><span class="block text-[12px] mono uppercase tracking-widest text-white/45">Telefon · man–fre 08–16</span><span class="font-bold text-lg">22 00 40 00</span></span>
+            </a>
+            <a href="mailto:post@andersen-regnskap.no" class="flex items-center gap-4 group">
+              <span class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-[#D9FF4B] group-hover:text-[#0B1512] transition-all"><i data-lucide="mail" class="w-5 h-5"></i></span>
+              <span><span class="block text-[12px] mono uppercase tracking-widest text-white/45">E-post · svar innen 24 t</span><span class="font-bold">post@andersen-regnskap.no</span></span>
+            </a>
+            <div class="flex items-center gap-4">
+              <span class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center shrink-0"><i data-lucide="map-pin" class="w-5 h-5"></i></span>
+              <span><span class="block text-[12px] mono uppercase tracking-widest text-white/45">Besøksadresse</span><span class="font-bold">Dronning Eufemias gate 16, 0191 Oslo</span></span>
+            </div>
+          </div>
+          <div class="mt-8 bg-white/[.06] border border-white/10 rounded-2xl p-5">
+            <div class="flex items-center gap-3">
+              <span class="w-11 h-11 rounded-full bg-[#D9FF4B] text-[#0B1512] font-bold flex items-center justify-center text-sm">SV</span>
+              <div><p class="font-bold text-[14.5px]">Sander Vik</p><p class="text-[12.5px] text-white/50">Tar imot alle nye henvendelser</p></div>
+              <span class="ml-auto flex items-center gap-1.5 text-[12px] font-bold text-[#D9FF4B]"><span class="w-1.5 h-1.5 rounded-full bg-[#D9FF4B] live-dot"></span> På jobb</span>
+            </div>
+            <p class="mt-3 text-[13.5px] text-white/60 italic">«Jeg svarer personlig på alle henvendelser — som regel samme dag.»</p>
+          </div>
+        </div>
+        <p class="relative mt-7 mono text-[11px] text-white/35">Org.nr 923 456 789 · Autorisert av Finanstilsynet</p>
+      </div>
+
+      <!-- Form -->
+      <div class="rv lg:col-span-3 bg-white rounded-[2rem] border-[1.5px] border-[#0B1512]/10 p-7 sm:p-10 relative overflow-hidden" style="transition-delay:.1s">
+        <form id="leadForm" novalidate>
+          <div class="flex items-center justify-between flex-wrap gap-3">
+            <h3 class="text-2xl font-bold tracking-tight">Be om tilbud</h3>
+            <span class="mono text-[11px] uppercase tracking-widest text-[#0B1512]/45 flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> Tar ca. 60 sekunder</span>
+          </div>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="fNavn" class="block text-[13.5px] font-bold mb-1.5">Fullt navn *</label>
+              <input id="fNavn" name="navn" type="text" class="field" placeholder="Ola Nordmann" autocomplete="name" required>
+            </div>
+            <div>
+              <label for="fFirma" class="block text-[13.5px] font-bold mb-1.5">Firmanavn</label>
+              <input id="fFirma" name="firma" type="text" class="field" placeholder="Nordmann AS" autocomplete="organization">
+            </div>
+            <div>
+              <label for="fEpost" class="block text-[13.5px] font-bold mb-1.5">E-post *</label>
+              <input id="fEpost" name="epost" type="email" class="field" placeholder="ola@firma.no" autocomplete="email" required>
+            </div>
+            <div>
+              <label for="fTlf" class="block text-[13.5px] font-bold mb-1.5">Telefon *</label>
+              <input id="fTlf" name="telefon" type="tel" class="field" placeholder="900 00 000" autocomplete="tel" required>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <p class="text-[13.5px] font-bold mb-2.5">Selskapsform *</p>
+            <div class="flex flex-wrap gap-2.5" id="selskapChips">
+              <label class="chip relative"><input type="radio" name="selskap" value="AS" checked><span><span class="dot"></span> AS</span></label>
+              <label class="chip relative"><input type="radio" name="selskap" value="ENK"><span><span class="dot"></span> ENK</span></label>
+              <label class="chip relative"><input type="radio" name="selskap" value="ANS/DA"><span><span class="dot"></span> ANS / DA</span></label>
+              <label class="chip relative"><input type="radio" name="selskap" value="Forening"><span><span class="dot"></span> Forening / stiftelse</span></label>
+              <label class="chip relative"><input type="radio" name="selskap" value="Skal starte"><span><span class="dot"></span> Skal starte selskap</span></label>
+            </div>
+          </div>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="fAnsatte" class="block text-[13.5px] font-bold mb-1.5">Antall ansatte</label>
+              <select id="fAnsatte" name="ansatte" class="field font-medium">
+                <option>Bare meg</option><option>1 – 5 ansatte</option><option selected>6 – 20 ansatte</option><option>Over 20 ansatte</option>
+              </select>
+            </div>
+            <div>
+              <label for="fOmsetning" class="block text-[13.5px] font-bold mb-1.5">Årlig omsetning</label>
+              <select id="fOmsetning" name="omsetning" class="field font-medium">
+                <option>Under 1 mill</option><option selected>1 – 5 mill</option><option>5 – 20 mill</option><option>Over 20 mill</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <p class="text-[13.5px] font-bold mb-2.5">Hva trenger du hjelp med? <span class="font-normal text-[#0B1512]/45">(velg gjerne flere)</span></p>
+            <div class="flex flex-wrap gap-2.5">
+              <label class="chip relative"><input type="checkbox" name="behov" value="Bokføring" checked><span><span class="dot"></span> Bokføring</span></label>
+              <label class="chip relative"><input type="checkbox" name="behov" value="Lønn"><span><span class="dot"></span> Lønn</span></label>
+              <label class="chip relative"><input type="checkbox" name="behov" value="MVA"><span><span class="dot"></span> MVA &amp; skatt</span></label>
+              <label class="chip relative"><input type="checkbox" name="behov" value="Årsoppgjør"><span><span class="dot"></span> Årsoppgjør</span></label>
+              <label class="chip relative"><input type="checkbox" name="behov" value="Fakturering"><span><span class="dot"></span> Fakturering</span></label>
+              <label class="chip relative"><input type="checkbox" name="behov" value="Bytte"><span><span class="dot"></span> Bytte byrå</span></label>
+              <label class="chip relative"><input type="checkbox" name="behov" value="Stiftelse"><span><span class="dot"></span> Stifte selskap</span></label>
+              <label class="chip relative"><input type="checkbox" name="behov" value="Rådgivning"><span><span class="dot"></span> Rådgivning</span></label>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <div class="flex justify-between items-baseline mb-1.5">
+              <label for="fMsg" class="text-[13.5px] font-bold">Fortell kort om behovet ditt</label>
+              <span class="mono text-[11px] text-[#0B1512]/40 tabular-nums"><span id="msgCount">0</span>/500</span>
+            </div>
+            <textarea id="fMsg" name="melding" rows="3" maxlength="500" class="field resize-none" placeholder="F.eks: Vi er et AS med 4 ansatte som vil bytte regnskapsfører før neste MVA-termin …"></textarea>
+          </div>
+
+          <label class="mt-5 flex items-start gap-3 cursor-pointer text-[13.5px] text-[#0B1512]/60 leading-relaxed">
+            <input id="fSamtykke" type="checkbox" class="mt-1 w-4.5 h-4.5 w-[18px] h-[18px] accent-[#0E3B2C]" checked>
+            <span>Ja, Andersen Regnskap kan kontakte meg om denne henvendelsen. Vi deler aldri opplysningene dine. Les <span class="underline underline-offset-2 font-semibold text-[#0B1512]">personvernerklæringen</span>.</span>
+          </label>
+
+          <button type="submit" id="submitBtn" class="btn btn-dark w-full justify-center px-7 py-4 mt-6 text-[16px]">
+            <span id="submitLabel" class="flex items-center gap-2.5">Send forespørsel <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></span>
+          </button>
+          <p class="mt-3 text-center text-[13px] text-[#0B1512]/45 flex items-center justify-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5"></i> Kryptert og trygt · Uforpliktende · Svar innen 24 timer</p>
+        </form>
+
+        <!-- Success -->
+        <div id="formSuccess" class="hidden text-center py-10">
+          <svg class="w-24 h-24 mx-auto" viewBox="0 0 64 64" fill="none">
+            <circle class="check-circle" cx="32" cy="32" r="29" fill="#0E3B2C"/>
+            <path class="check-path" d="M21 33l8 8 14-16" stroke="#D9FF4B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3 class="mt-6 text-3xl font-bold tracking-tight">Takk, <span id="succNavn" class="font-display italic text-[#0E3B2C]">venn</span>!</h3>
+          <p class="mt-3 text-[#0B1512]/60 text-[16px] max-w-md mx-auto leading-relaxed">Forespørselen din er mottatt. Sander ringer deg innen <span class="font-bold text-[#0B1512]">24 timer på hverdager</span> — som regel mye raskere.</p>
+          <div class="mt-6 inline-flex items-center gap-2 bg-[#F5F3ED] border border-[#0B1512]/10 rounded-full px-5 py-2.5 mono text-[13px]">
+            <span class="text-[#0B1512]/50">Referanse:</span> <span id="succRef" class="font-semibold">AR-2026-0000</span>
+            <button onclick="copyRef()" class="ml-1 text-[#0E3B2C] hover:scale-110 transition-transform" aria-label="Kopier referanse"><i data-lucide="copy" class="w-4 h-4"></i></button>
+          </div>
+          <div class="mt-7 flex flex-col sm:flex-row justify-center gap-3">
+            <button data-open-modal class="btn btn-dark px-6 py-3.5 text-[15px] justify-center">Book møte med én gang</button>
+            <button id="formReset" class="btn btn-ghost px-6 py-3.5 text-[15px] justify-center">Send ny henvendelse</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-14">
+    <div class="rv relative bg-[#D9FF4B] rounded-[2rem] p-8 sm:p-12 lg:p-16 overflow-hidden">
+      <div class="absolute -top-20 -right-20 w-96 h-96 bg-white/40 blur-[100px] rounded-full"></div>
+      <p class="font-display italic text-[clamp(4rem,12vw,9rem)] leading-none absolute -bottom-6 right-4 text-[#0B1512]/[.06] select-none pointer-events-none font-semibold">2026</p>
+      <div class="relative flex flex-col lg:flex-row lg:items-center gap-8">
+        <div class="flex-1">
+          <p class="mono text-[11px] uppercase tracking-[0.2em] font-semibold">Klar når du er klar</p>
+          <h2 class="mt-3 text-3xl sm:text-5xl font-bold tracking-[-0.02em] leading-[1.05]">God økonomi starter med<br class="hidden sm:block"> én <span class="font-display italic font-medium">samtale.</span></h2>
+          <p class="mt-4 text-[#0B1512]/65 text-[17px] max-w-lg">30 minutter, gratis og uforpliktende. Verste som kan skje? Du lærer noe nytt om egen bedrift.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0 lg:w-72">
+          <a href="#kontakt" class="btn btn-dark px-7 py-4 text-[15px] justify-center">Få tilbud <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></a>
+          <button data-open-modal class="btn px-7 py-4 text-[15px] justify-center bg-[#0B1512]/10 hover:bg-[#0B1512] hover:text-white">Bestill gratis møte</button>
+          <a href="tel:+4722004000" class="text-center font-bold text-[15px] link-u self-center">eller ring 22 00 40 00</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-[#0B1512] text-white rounded-t-[2rem]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-8">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-4">
+        <div class="flex items-center gap-2.5">
+          <span class="w-10 h-10 rounded-xl bg-[#D9FF4B] flex items-center justify-center"><span class="font-display italic text-[#0B1512] text-2xl leading-none pb-0.5">A</span></span>
+          <span class="leading-none"><span class="block font-bold text-[17px]">Andersen</span><span class="block mono text-[10px] uppercase tracking-[0.18em] text-white/50">Regnskap AS</span></span>
+        </div>
+        <p class="mt-4 text-white/55 text-[15px] leading-relaxed max-w-xs">Moderne regnskapsfører for små og mellomstore bedrifter. Autorisert regnskapsførerselskap under tilsyn av Finanstilsynet.</p>
+        <div class="mt-5 flex gap-2">
+          <a href="#" class="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-[#D9FF4B] hover:text-[#0B1512] hover:border-[#D9FF4B] transition-all" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-4.5 h-4.5"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-[#D9FF4B] hover:text-[#0B1512] hover:border-[#D9FF4B] transition-all" aria-label="Facebook"><i data-lucide="facebook" class="w-4.5 h-4.5"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-[#D9FF4B] hover:text-[#0B1512] hover:border-[#D9FF4B] transition-all" aria-label="Instagram"><i data-lucide="instagram" class="w-4.5 h-4.5"></i></a>
+        </div>
+      </div>
+      <div class="md:col-span-2">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-white/40 font-semibold">Tjenester</p>
+        <ul class="mt-4 space-y-2.5 text-[15px] font-medium text-white/75">
+          <li><a href="#tjenester" class="hover:text-[#D9FF4B] transition-colors">Bokføring</a></li>
+          <li><a href="#tjenester" class="hover:text-[#D9FF4B] transition-colors">Lønn</a></li>
+          <li><a href="#tjenester" class="hover:text-[#D9FF4B] transition-colors">MVA &amp; skatt</a></li>
+          <li><a href="#tjenester" class="hover:text-[#D9FF4B] transition-colors">Årsoppgjør</a></li>
+          <li><a href="#tjenester" class="hover:text-[#D9FF4B] transition-colors">Rådgivning</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-2">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-white/40 font-semibold">Selskap</p>
+        <ul class="mt-4 space-y-2.5 text-[15px] font-medium text-white/75">
+          <li><a href="#team" class="hover:text-[#D9FF4B] transition-colors">Om oss</a></li>
+          <li><a href="#kunder" class="hover:text-[#D9FF4B] transition-colors">Kunder</a></li>
+          <li><a href="#priser" class="hover:text-[#D9FF4B] transition-colors">Priser</a></li>
+          <li><a href="#faq" class="hover:text-[#D9FF4B] transition-colors">FAQ</a></li>
+          <li><a href="#kontakt" class="hover:text-[#D9FF4B] transition-colors">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-4">
+        <p class="mono text-[11px] uppercase tracking-[0.2em] text-white/40 font-semibold">Kontakt</p>
+        <ul class="mt-4 space-y-2.5 text-[15px] font-medium text-white/75">
+          <li class="flex items-center gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-[#D9FF4B]"></i> Dronning Eufemias gate 16, 0191 Oslo</li>
+          <li><a href="tel:+4722004000" class="flex items-center gap-2.5 hover:text-[#D9FF4B] transition-colors"><i data-lucide="phone" class="w-4 h-4 text-[#D9FF4B]"></i> 22 00 40 00</a></li>
+          <li><a href="mailto:post@andersen-regnskap.no" class="flex items-center gap-2.5 hover:text-[#D9FF4B] transition-colors"><i data-lucide="mail" class="w-4 h-4 text-[#D9FF4B]"></i> post@andersen-regnskap.no</a></li>
+          <li class="flex items-center gap-2.5"><i data-lucide="clock" class="w-4 h-4 text-[#D9FF4B]"></i> Man–fre 08:00–16:00 · <span class="tabular-nums">Oslo <span id="osloClock">--:--</span></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3 text-[13px] text-white/40">
+      <p>© 2026 Andersen Regnskap AS · Org.nr 923 456 789</p>
+      <div class="sm:ml-auto flex items-center gap-5">
+        <a href="#" class="hover:text-white transition-colors">Personvern</a>
+        <a href="#" class="hover:text-white transition-colors">Informasjonskapsler</a>
+        <a href="#" class="hover:text-white transition-colors">Oppdragsavtale</a>
+      </div>
+    </div>
+  </div>
+  <div class="overflow-hidden select-none pointer-events-none" aria-hidden="true">
+    <p class="outline-word font-bold text-[clamp(4rem,14.5vw,13rem)] leading-[0.85] text-center tracking-tight whitespace-nowrap translate-y-[12%]">ANDERSEN</p>
+  </div>
+</footer>
+
+<!-- Mobile sticky CTA -->
+<div id="mobileCta" class="fixed bottom-3 inset-x-3 z-40 md:hidden">
+  <div class="bg-[#0B1512]/95 backdrop-blur border border-white/10 rounded-2xl p-2.5 flex gap-2.5 shadow-2xl">
+    <a href="tel:+4722004000" class="flex-1 btn justify-center bg-white/10 text-white px-4 py-3 text-[14.5px]" aria-label="Ring oss"><i data-lucide="phone" class="w-4.5 h-4.5"></i> Ring</a>
+    <a href="#kontakt" class="flex-[2] btn btn-lime justify-center px-4 py-3 text-[14.5px]">Få tilbud <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+  </div>
+</div>
+
+<!-- Back to top -->
+<button id="toTop" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-[#0B1512] text-[#D9FF4B] shadow-xl items-center justify-center hover:bg-[#0E3B2C] hidden md:flex" aria-label="Tilbake til toppen"><i data-lucide="arrow-up" class="w-5 h-5 mx-auto"></i></button>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 left-1/2 z-[90] bg-[#0B1512] text-white text-[14px] font-semibold px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-2.5 max-w-[90vw]">
+  <span class="w-7 h-7 rounded-full bg-[#D9FF4B] text-[#0B1512] flex items-center justify-center shrink-0"><i data-lucide="check" class="w-4 h-4"></i></span>
+  <span id="toastMsg">Lagret</span>
+</div>
+
+<!-- ============ MODAL: Bestill møte ============ -->
+<div id="modal" class="fixed inset-0 z-[75] flex items-end sm:items-center justify-center p-0 sm:p-6">
+  <div id="modalBg" class="absolute inset-0 bg-[#0B1512]/70 backdrop-blur-sm"></div>
+  <div id="modalCard" class="relative bg-[#F5F3ED] w-full sm:max-w-lg rounded-t-[1.75rem] sm:rounded-[1.75rem] p-7 sm:p-9 max-h-[92vh] overflow-y-auto">
+    <button id="modalClose" class="absolute top-5 right-5 w-10 h-10 rounded-full border-[1.5px] border-[#0B1512]/15 flex items-center justify-center hover:bg-[#0B1512] hover:text-white transition-all" aria-label="Lukk"><i data-lucide="x" class="w-5 h-5"></i></button>
+
+    <div id="modalMain">
+      <p class="mono text-[11px] uppercase tracking-[0.2em] text-[#0E3B2C] font-semibold">Gratis 30 minutter</p>
+      <h3 class="mt-2 text-3xl font-bold tracking-tight">Bestill møte</h3>
+      <p class="mt-2 text-[#0B1512]/60 text-[15px]">Video eller kaffe i Bjørvika. Velg tid som passer deg:</p>
+
+      <p class="mt-6 text-[13.5px] font-bold mb-2.5">1. Velg dag</p>
+      <div id="daySlots" class="grid grid-cols-5 gap-2"></div>
+
+      <p class="mt-5 text-[13.5px] font-bold mb-2.5">2. Velg tidspunkt</p>
+      <div id="timeSlots" class="grid grid-cols-4 gap-2">
+        <button class="slot text-[13.5px] font-bold border-[1.5px] border-[#0B1512]/15 bg-white rounded-xl py-2.5 hover:border-[#0B1512]" data-time="09:00">09:00</button>
+        <button class="slot text-[13.5px] font-bold border-[1.5px] border-[#0B1512]/15 bg-white rounded-xl py-2.5 hover:border-[#0B1512]" data-time="10:30">10:30</button>
+        <button class="slot text-[13.5px] font-bold border-[1.5px] border-[#0B1512]/15 bg-white rounded-xl py-2.5 hover:border-[#0B1512]" data-time="13:00">13:00</button>
+        <button class="slot text-[13.5px] font-bold border-[1.5px] border-[#0B1512]/15 bg-white rounded-xl py-2.5 hover:border-[#0B1512]" data-time="14:30">14:30</button>
+      </div>
+
+      <p class="mt-5 text-[13.5px] font-bold mb-2.5">3. Dine opplysninger</p>
+      <div class="grid grid-cols-2 gap-3">
+        <input id="mNavn" type="text" class="field" placeholder="Navn *" autocomplete="name">
+        <input id="mTlf" type="tel" class="field" placeholder="Telefon *" autocomplete="tel">
+      </div>
+      <div class="flex gap-2.5 mt-3">
+        <label class="chip relative flex-1"><input type="radio" name="mtype" value="Video" checked><span class="w-full justify-center"><i data-lucide="video" class="w-4 h-4"></i> Video</span></label>
+        <label class="chip relative flex-1"><input type="radio" name="mtype" value="Oppmøte"><span class="w-full justify-center"><i data-lucide="coffee" class="w-4 h-4"></i> Oppmøte</span></label>
+      </div>
+
+      <button id="mSubmit" class="btn btn-dark w-full justify-center px-6 py-4 mt-6 text-[15px]">Bekreft møte <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span></button>
+      <p class="mt-3 text-center text-[12.5px] text-[#0B1512]/45">Du får kalenderinvitasjon på SMS umiddelbart.</p>
+    </div>
+
+    <div id="modalSuccess" class="hidden text-center py-6">
+      <svg class="w-20 h-20 mx-auto" viewBox="0 0 64 64" fill="none">
+        <circle class="check-circle" cx="32" cy="32" r="29" fill="#0E3B2C"/>
+        <path class="check-path" d="M21 33l8 8 14-16" stroke="#D9FF4B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3 class="mt-5 text-2xl font-bold">Møtet er booket!</h3>
+      <p class="mt-2 text-[#0B1512]/60 text-[15px]">Vi gleder oss til å treffe deg.</p>
+      <div class="mt-5 bg-white border-[1.5px] border-[#0B1512]/10 rounded-2xl p-5 flex items-center gap-4 text-left">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-[#0B1512] text-[#D9FF4B] flex items-center justify-center"><i data-lucide="calendar-check" class="w-6 h-6"></i></span>
+        <div><p id="mConfirmWhen" class="font-bold">Tirsdag 9. sep · 10:30</p><p id="mConfirmHow" class="text-[13.5px] text-[#0B1512]/55">Video · lenke sendes på SMS</p></div>
+      </div>
+      <button id="modalDone" class="btn btn-dark w-full justify-center px-6 py-3.5 mt-5 text-[15px]">Ferdig</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= Helpers ================= */
+const $ = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+const fmt = n => Math.round(n).toLocaleString('nb-NO').replace(/,/g, ' ');
+lucide.createIcons();
+
+/* ================= Toast ================= */
+let toastT;
+function showToast(msg){
+  $('#toastMsg').textContent = msg;
+  $('#toast').classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(()=> $('#toast').classList.remove('show'), 3200);
+}
+function copyRef(){
+  const t = $('#succRef').textContent;
+  if(navigator.clipboard) navigator.clipboard.writeText(t).then(()=>showToast('Referanse kopiert'));
+  else showToast('Referanse: ' + t);
+}
+
+/* ================= Nav / progress / floats ================= */
+const navWrap = $('#navWrap'), progressBar = $('#progressBar'),
+      mobileCta = $('#mobileCta'), toTop = $('#toTop');
+let kontaktVisible = false;
+function onScroll(){
+  const y = window.scrollY;
+  navWrap.classList.toggle('scrolled', y > 24);
+  const h = document.documentElement.scrollHeight - innerHeight;
+  progressBar.style.width = (h > 0 ? (y/h)*100 : 0) + '%';
+  mobileCta.classList.toggle('show', y > 650 && !kontaktVisible);
+  toTop.classList.toggle('show', y > 800);
+}
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+toTop.addEventListener('click', ()=> scrollTo({top:0, behavior:'smooth'}));
+new IntersectionObserver(e=>{ kontaktVisible = e[0].isIntersecting; onScroll(); }, {threshold:.12})
+  .observe($('#kontakt'));
+
+/* ================= Mobile menu ================= */
+const mm = $('#mobileMenu');
+$('#burger').addEventListener('click', ()=>{ mm.classList.add('open'); document.body.style.overflow='hidden'; });
+function closeMenu(){ mm.classList.remove('open'); document.body.style.overflow=''; }
+$('#menuClose').addEventListener('click', closeMenu);
+$$('.menu-link').forEach(a=> a.addEventListener('click', closeMenu));
+addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMenu(); closeModal(); } });
+
+/* ================= Reveal on scroll ================= */
+const io = new IntersectionObserver(es=> es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+$$('.rv,.rv-l,.rv-s').forEach(el=> io.observe(el));
+
+/* ================= Counters ================= */
+const cio = new IntersectionObserver(es=> es.forEach(e=>{
+  if(!e.isIntersecting) return;
+  const el = e.target; cio.unobserve(el);
+  const target = parseFloat(el.dataset.count), dec = +(el.dataset.decimals||0), suf = el.dataset.suffix||'';
+  const t0 = performance.now(), dur = 1600;
+  (function tick(t){
+    const p = Math.min((t-t0)/dur, 1), ease = 1-Math.pow(1-p,3);
+    const v = target*ease;
+    el.textContent = (dec ? v.toFixed(dec).replace('.',',') : fmt(v)) + suf;
+    if(p<1) requestAnimationFrame(tick);
+  })(t0);
+}), {threshold:.5});
+$$('.counter').forEach(el=> cio.observe(el));
+
+/* ================= MVA frist (norske terminer) ================= */
+(function(){
+  const terms = [ // [mnd(1-12), dag, navn]
+    [2,10,'6. termin'],[4,10,'1. termin'],[6,10,'2. termin'],
+    [8,31,'3. termin'],[10,10,'4. termin'],[12,10,'5. termin']
+  ];
+  const now = new Date(); now.setHours(0,0,0,0);
+  let next=null;
+  for(let k=0;k<2 && !next;k++){
+    for(const [m,d,n] of terms){
+      const dt = new Date(now.getFullYear()+k, m-1, d);
+      if(dt >= now){ next={dt,n}; break; }
+    }
+  }
+  const days = Math.max(0, Math.round((next.dt-now)/864e5));
+  const label = next.dt.toLocaleDateString('nb-NO',{day:'numeric',month:'long'});
+  $('#mvaDays').textContent = days;
+  $('#mvaTerm').textContent = next.n;
+  $('#annFrist').textContent = 'MVA-fristen ' + label;
+  const pct = Math.min(96, Math.max(6, 100 - (days/62)*100));
+  $('#mvaBar').style.width = pct + '%';
+
+  const items = [
+    'MVA-frist '+label+' · '+days+' dager igjen',
+    'Skattemelding 31. mai ✓ levert for alle kunder',
+    'Bytt før neste termin — vi flytter alt gratis',
+    'Fastpris fra 1 490 kr/mnd',
+    'Svar innen 24 timer — garantert',
+    '4,9/5 fra 212 anmeldelser'
+  ];
+  const html = items.map(t=>
+    `<span class="flex items-center gap-8"><span class="whitespace-nowrap">${t}</span><span class="w-2 h-2 rounded-full bg-[#0B1512] shrink-0"></span></span>`
+  ).join('');
+  $('#tickA').innerHTML = html; $('#tickB').innerHTML = html;
+})();
+
+/* ================= Bilag-teller (live feel) ================= */
+(function(){
+  let n = 47;
+  setInterval(()=>{ n += Math.random() > .45 ? 1 : 0; $('#bilagToday').textContent = n; }, 4000);
+})();
+
+/* ================= Hero chart ================= */
+(function(){
+  const cv = $('#heroChart'), tip = $('#chartTip');
+  const labels = ['Okt','Nov','Des','Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep'];
+  const vals = [310,335,298,362,388,371,412,438,425,461,478,486];
+  let pts=[], W,H, prog=0, drawn=false;
+  const dpr = Math.min(devicePixelRatio||1, 2);
+
+  function size(){
+    const r = cv.getBoundingClientRect();
+    W = r.width; H = r.height;
+    cv.width = W*dpr; cv.height = H*dpr;
+    cv.getContext('2d').setTransform(dpr,0,0,dpr,0,0);
+    compute(); draw(prog);
+  }
+  function compute(){
+    const padL=8, padR=8, padT=14, padB=22;
+    const min=260, max=520;
+    pts = vals.map((v,i)=>({
+      x: padL + (W-padL-padR)*(i/(vals.length-1)),
+      y: padT + (H-padT-padB)*(1-(v-min)/(max-min)), v, l: labels[i]
+    }));
+  }
+  function path(ctx, upto){
+    ctx.beginPath();
+    const n = Math.max(2, Math.floor(upto*pts.length));
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for(let i=1;i<n;i++){
+      const p0=pts[i-1], p1=pts[i];
+      const mx=(p0.x+p1.x)/2;
+      ctx.bezierCurveTo(mx,p0.y, mx,p1.y, p1.x,p1.y);
+    }
+    if(upto<1 && n<pts.length){
+      const p0=pts[n-1], p1=pts[n], f=(upto*pts.length)-(n-1);
+      ctx.lineTo(p0.x+(p1.x-p0.x)*f, p0.y+(p1.y-p0.y)*f);
+    }
+  }
+  function draw(p){
+    const ctx = cv.getContext('2d');
+    ctx.clearRect(0,0,W,H);
+    // grid
+    ctx.strokeStyle='rgba(11,21,18,.07)'; ctx.lineWidth=1;
+    ctx.fillStyle='rgba(11,21,18,.35)'; ctx.font='10px JetBrains Mono';
+    for(let g=0; g<4; g++){
+      const y = 14 + (H-36)*(g/3);
+      ctx.beginPath(); ctx.moveTo(8,y); ctx.lineTo(W-8,y); ctx.stroke();
+    }
+    // labels
+    ctx.fillStyle='rgba(11,21,18,.4)';
+    pts.forEach((pt,i)=>{ if(i%3===0) ctx.fillText(pt.l, pt.x-8, H-6); });
+    if(p<=0.01) return;
+    // fill
+    const grad = ctx.createLinearGradient(0,14,0,H);
+    grad.addColorStop(0,'rgba(14,59,44,.28)'); grad.addColorStop(1,'rgba(14,59,44,0)');
+    path(ctx,p);
+    ctx.save();
+    const lastX = pts[Math.min(pts.length-1, Math.floor(p*pts.length))].x;
+    ctx.lineTo(lastX,H-22); ctx.lineTo(pts[0].x,H-22); ctx.closePath();
+    ctx.fillStyle=grad; ctx.fill(); ctx.restore();
+    // line
+    path(ctx,p);
+    ctx.strokeStyle='#0E3B2C'; ctx.lineWidth=2.5; ctx.lineCap='round'; ctx.stroke();
+    // end dot
+    const ei = Math.min(pts.length-1, Math.floor(p*(pts.length-1)+.0001));
+    const e = pts[p>=1?pts.length-1:ei];
+    ctx.beginPath(); ctx.arc(e.x,e.y,4.5,0,7); ctx.fillStyle='#0E3B2C'; ctx.fill();
+    ctx.beginPath(); ctx.arc(e.x,e.y,8.5,0,7); ctx.fillStyle='rgba(14,59,44,.18)'; ctx.fill();
+  }
+  new IntersectionObserver((es,obs)=>{ if(es[0].isIntersecting){ obs.disconnect(); drawn=true;
+    const t0=performance.now();
+    (function a(t){ prog=Math.min(1,(t-t0)/1400); draw(1-Math.pow(1-prog,3)); if(prog<1) requestAnimationFrame(a); })(t0);
+  }},{threshold:.4}).observe(cv);
+  addEventListener('resize', size); size();
+
+  cv.addEventListener('mousemove', e=>{
+    if(!drawn) return;
+    const r = cv.getBoundingClientRect(), mx = e.clientX-r.left;
+    let best=pts[0], bd=1e9;
+    pts.forEach(p=>{ const d=Math.abs(p.x-mx); if(d<bd){bd=d;best=p;} });
+    tip.style.opacity=1; tip.style.left=best.x+'px'; tip.style.top=(best.y-10)+'px';
+    tip.textContent = best.l+' · '+best.v+'k kr';
+    const ctx=cv.getContext('2d'); draw(1);
+    ctx.beginPath(); ctx.moveTo(best.x,14); ctx.lineTo(best.x,H-22);
+    ctx.strokeStyle='rgba(11,21,18,.2)'; ctx.setLineDash([4,4]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.arc(best.x,best.y,5,0,7); ctx.fillStyle='#0B1512'; ctx.fill();
+    ctx.beginPath(); ctx.arc(best.x,best.y,5,0,7); ctx.strokeStyle='#D9FF4B'; ctx.lineWidth=2.5; ctx.stroke();
+  });
+  cv.addEventListener('mouseleave', ()=>{ tip.style.opacity=0; draw(1); });
+})();
+
+/* ================= Tilt on dashboard ================= */
+(function(){
+  const zone=$('#dashZone'), card=$('#dashCard');
+  if(!zone || matchMedia('(hover:none)').matches) return;
+  zone.addEventListener('mousemove', e=>{
+    const r=zone.getBoundingClientRect();
+    const rx=((e.clientY-r.top)/r.height-.5)*-7, ry=((e.clientX-r.left)/r.width-.5)*9;
+    card.style.transform=`perspective(1100px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+  zone.addEventListener('mouseleave', ()=> card.style.transform='perspective(1100px)');
+})();
+
+/* ================= Tjenester filter ================= */
+$$('#svcFilters button').forEach(btn=> btn.addEventListener('click', ()=>{
+  $$('#svcFilters button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  let visible=0;
+  $$('#svcGrid [data-cat]').forEach(card=>{
+    const show = f==='alle' || card.dataset.cat===f;
+    if(show){
+      visible++;
+      if(card.classList.contains('hide')){
+        card.classList.remove('hide');
+        card.classList.add('fading');
+        requestAnimationFrame(()=> requestAnimationFrame(()=> card.classList.remove('fading')));
+      } else {
+        card.classList.remove('fading');
+      }
+    } else {
+      card.classList.add('fading');
+      setTimeout(()=>{ if(card.classList.contains('fading')) card.classList.add('hide'); }, 240);
+    }
+  });
+  $('#svcEmpty').classList.toggle('hidden', visible>0);
+}));
+
+/* ================= Prosess progress ================= */
+(function(){
+  const sec=$('#prosess'), bar=$('#procBar'), line=$('#procLine'), pct=$('#procPct');
+  function upd(){
+    const r=sec.getBoundingClientRect();
+    const p=Math.min(1,Math.max(0,(innerHeight*.65-r.top)/(r.height*.8)));
+    if(bar) bar.style.width=(p*100)+'%';
+    if(line) line.style.height=(p*100)+'%';
+    if(pct) pct.textContent=Math.round(p*100)+' %';
+  }
+  addEventListener('scroll', upd, {passive:true}); upd();
+})();
+
+/* ================= Kalkulator ================= */
+(function(){
+  const bilag=$('#rngBilag'), ans=$('#rngAnsatte'), oms=$('#selOmsetning'),
+        cLonn=$('#chkLonn'), cFakt=$('#chkFakt'), cCfo=$('#chkCfo');
+  let curPrice=0;
+  function fill(el){ el.style.setProperty('--fill', ((el.value-el.min)/(el.max-el.min)*100)+'%'); }
+  function animatePrice(to){
+    const el=$('#resPrice'), from=curPrice, t0=performance.now();
+    (function a(t){ const p=Math.min(1,(t-t0)/500), e=1-Math.pow(1-p,3);
+      el.textContent=fmt(from+(to-from)*e); if(p<1) requestAnimationFrame(a); })(t0);
+    curPrice=to;
+  }
+  function calc(){
+    fill(bilag); fill(ans);
+    const b=+bilag.value, a=+ans.value;
+    $('#outBilag').textContent=b+(b>=400?'+':'');
+    $('#outAnsatte').textContent=a;
+    let tier, base, incl;
+    if(b<=25 && a<=1){ tier='Start'; base=1490; incl=25; }
+    else if(b<=120 && a<=10){ tier='Vekst'; base=3490; incl=120; }
+    else { tier='Skala'; base=6990; incl=400; }
+    const perExtra = tier==='Start'?35 : tier==='Vekst'?22 : 15;
+    const extra = Math.max(0, b-incl)*perExtra;
+    const lonn = cLonn.checked ? a*149 : 0;
+    const fakt = cFakt.checked ? 499 : 0;
+    const cfo = cCfo.checked ? 1490 : 0;
+    const om = +oms.value;
+    const total = base+extra+lonn+fakt+cfo+om;
+    $('#resTier').textContent=tier;
+    animatePrice(total);
+    const rows=[
+      [tier+'-pakke (inkl. '+incl+' bilag)', base],
+    ];
+    if(extra>0) rows.push(['+ '+(b-incl)+' ekstra bilag à '+perExtra+' kr', extra]);
+    if(cLonn.checked && a>0) rows.push(['Lønn · '+a+' ansatte à 149 kr', lonn]);
+    if(fakt) rows.push(['Fakturaoppfølging', fakt]);
+    if(cfo) rows.push(['CFO-rådgivning', cfo]);
+    if(om) rows.push(['Tillegg høy omsetning', om]);
+    $('#resBreak').innerHTML = rows.map(([t,v])=>
+      `<div class="flex justify-between gap-3"><span class="text-white/60">${t}</span><span class="font-bold tabular-nums whitespace-nowrap">${fmt(v)} kr</span></div>`
+    ).join('');
+    $('#resTime').textContent = Math.max(2, Math.round(b*0.09 + a*1.6 + 4));
+  }
+  [bilag,ans,oms,cLonn,cFakt,cCfo].forEach(el=> el.addEventListener('input', calc));
+  calc();
+})();
+
+/* ================= Pris-toggle ================= */
+(function(){
+  const t=$('#billingToggle'), knob=$('#toggleKnob');
+  let yearly=false;
+  t.addEventListener('click', ()=>{
+    yearly=!yearly;
+    t.setAttribute('aria-checked', yearly);
+    knob.style.transform = yearly?'translateX(24px)':'translateX(0)';
+    $('#lblMnd').classList.toggle('text-[#0B1512]/45', yearly);
+    $('#lblAar').classList.toggle('text-[#0B1512]/45', !yearly);
+    $$('.price').forEach(el=> el.textContent = yearly?el.dataset.y:el.dataset.m);
+    $$('.bill-note').forEach(el=> el.textContent = yearly?'eks. mva · årlig fakturering (−15 %)':'eks. mva · månedlig fakturering');
+    showToast(yearly?'Årlig fakturering: du sparer 15 %':'Månedlig fakturering valgt');
+  });
+})();
+
+/* ================= Portal tabs ================= */
+$$('[data-ptab]').forEach(btn=> btn.addEventListener('click', ()=>{
+  $$('[data-ptab]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  $$('[data-ppanel]').forEach(p=> p.classList.toggle('active', p.dataset.ppanel===btn.dataset.ptab));
+}));
+$$('.inv-ok').forEach(b=> b.addEventListener('click', ()=>{
+  b.textContent='Godkjent ✓'; b.disabled=true;
+  b.classList.remove('bg-[#0B1512]'); b.classList.add('bg-[#14805A]');
+  b.closest('.inv-row').style.opacity='.55';
+  showToast('Faktura godkjent og sendt til betaling');
+}));
+
+/* ================= Testimonials slider ================= */
+(function(){
+  const track=$('#tSlider'), n=track.children.length, dots=$('#tDots');
+  let i=0, timer;
+  for(let k=0;k<n;k++){
+    const d=document.createElement('button');
+    d.className='t-dot w-2.5 h-2.5 rounded-full bg-[#0B1512]/20';
+    d.setAttribute('aria-label','Gå til omtale '+(k+1));
+    d.addEventListener('click',()=>go(k,true));
+    dots.appendChild(d);
+  }
+  function go(k, manual){
+    i=(k+n)%n;
+    track.style.transform=`translateX(-${i*100}%)`;
+    $$('.t-dot',dots).forEach((d,j)=>d.classList.toggle('active', j===i));
+    $('#tNow').textContent=String(i+1).padStart(2,'0');
+    if(manual) restart();
+  }
+  function restart(){ clearInterval(timer); timer=setInterval(()=>go(i+1),6500); }
+  $('#tPrev').addEventListener('click',()=>go(i-1,true));
+  $('#tNext').addEventListener('click',()=>go(i+1,true));
+  $('#tWrap').addEventListener('mouseenter',()=>clearInterval(timer));
+  $('#tWrap').addEventListener('mouseleave',restart);
+  let sx=null;
+  track.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+  track.addEventListener('touchend',e=>{
+    if(sx===null) return;
+    const dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>45) go(i+(dx<0?1:-1),true);
+    sx=null;
+  },{passive:true});
+  go(0); restart();
+})();
+
+/* ================= FAQ ================= */
+$$('.acc-item').forEach(item=>{
+  $('.acc-btn',item).addEventListener('click',()=>{
+    const open=item.classList.contains('open');
+    $$('.acc-item.open').forEach(o=>o.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  });
+});
+
+/* ================= Skjema ================= */
+$('#fMsg').addEventListener('input', e=> $('#msgCount').textContent=e.target.value.length);
+$('#leadForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  let ok=true;
+  const req=[$('#fNavn'),$('#fEpost'),$('#fTlf')];
+  req.forEach(f=>{
+    f.classList.remove('shake');
+    let valid=f.value.trim().length>1;
+    if(f.type==='email') valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim());
+    if(f.type==='tel') valid=f.value.replace(/\D/g,'').length>=8;
+    if(!valid){ ok=false; void f.offsetWidth; f.classList.add('shake'); }
+  });
+  if(!ok){ showToast('Sjekk at navn, e-post og telefon er fylt ut'); return; }
+  const btn=$('#submitBtn');
+  btn.disabled=true;
+  $('#submitLabel').innerHTML='<svg class="spinner w-5 h-5" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity=".25" stroke-width="3"/><path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg> Sender …';
+  setTimeout(()=>{
+    const navn=$('#fNavn').value.trim().split(' ')[0];
+    $('#succNavn').textContent=navn.charAt(0).toUpperCase()+navn.slice(1);
+    $('#succRef').textContent='AR-2026-'+Math.floor(1000+Math.random()*9000);
+    $('#leadForm').classList.add('hidden');
+    const s=$('#formSuccess');
+    s.classList.remove('hidden'); s.classList.add('success-anim');
+    lucide.createIcons();
+    showToast('Forespørsel sendt — vi ringer innen 24 timer');
+    s.scrollIntoView({behavior:'smooth', block:'center'});
+  },1500);
+});
+$('#formReset').addEventListener('click', ()=>{
+  $('#formSuccess').classList.add('hidden');
+  $('#leadForm').classList.remove('hidden');
+  $('#submitBtn').disabled=false;
+  $('#submitLabel').innerHTML='Send forespørsel <span class="arr"><i data-lucide="arrow-right" class="w-4 h-4"></i></span>';
+  lucide.createIcons();
+});
+
+/* ================= Modal ================= */
+const modal=$('#modal');
+let selDay=null, selTime=null;
+(function(){
+  const wrap=$('#daySlots'), days=['Søn','Man','Tir','Ons','Tor','Fre','Lør'];
+  const months=['jan','feb','mar','apr','mai','jun','jul','aug','sep','okt','nov','des'];
+  let added=0, d=new Date();
+  while(added<5){
+    d.setDate(d.getDate()+1);
+    const wd=d.getDay();
+    if(wd===0||wd===6) continue;
+    const label=days[wd]+' '+d.getDate()+'. '+months[d.getMonth()];
+    const b=document.createElement('button');
+    b.className='slot border-[1.5px] border-[#0B1512]/15 bg-white rounded-xl py-2.5 px-1 hover:border-[#0B1512]'+(added===0?' active':'');
+    b.innerHTML=`<span class="block text-[11px] mono uppercase text-current opacity-50">${days[wd]}</span><span class="block text-[15px] font-bold">${d.getDate()}.${d.getMonth()+1}</span>`;
+    b.dataset.day=label;
+    if(added===0) selDay=label;
+    b.addEventListener('click',()=>{ $$('#daySlots .slot').forEach(x=>x.classList.remove('active')); b.classList.add('active'); selDay=b.dataset.day; });
+    wrap.appendChild(b); added++;
+  }
+})();
+$$('#timeSlots .slot').forEach(b=> b.addEventListener('click',()=>{
+  $$('#timeSlots .slot').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); selTime=b.dataset.time;
+}));
+function openModal(){
+  $('#modalMain').classList.remove('hidden');
+  $('#modalSuccess').classList.add('hidden');
+  modal.classList.add('open'); document.body.style.overflow='hidden';
+}
+function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+$$('[data-open-modal]').forEach(b=> b.addEventListener('click',()=>{ closeMenu(); openModal(); }));
+$('#modalClose').addEventListener('click', closeModal);
+$('#modalBg').addEventListener('click', closeModal);
+$('#modalDone').addEventListener('click', closeModal);
+$('#mSubmit').addEventListener('click', ()=>{
+  const n=$('#mNavn'), t=$('#mTlf');
+  [n,t].forEach(f=>f.classList.remove('shake'));
+  let ok=true;
+  if(n.value.trim().length<2){ n.classList.add('shake'); ok=false; }
+  if(t.value.replace(/\D/g,'').length<8){ t.classList.add('shake'); ok=false; }
+  if(!selTime){ showToast('Velg et tidspunkt først'); ok=false; }
+  if(!ok) return;
+  const how=$('input[name="mtype"]:checked').value;
+  $('#mConfirmWhen').textContent = selDay.charAt(0).toUpperCase()+selDay.slice(1)+' · '+(selTime||'10:30');
+  $('#mConfirmHow').textContent = how==='Video' ? 'Video · lenke sendes på SMS' : 'Oppmøte · Dronning Eufemias gate 16';
+  $('#modalMain').classList.add('hidden');
+  const s=$('#modalSuccess');
+  s.classList.remove('hidden'); s.classList.add('success-anim');
+  lucide.createIcons();
+  showToast('Møte booket — invitasjon sendt på SMS');
+});
+
+/* ================= Oslo-klokke ================= */
+(function(){
+  function tick(){
+    try{
+      $('#osloClock').textContent=new Intl.DateTimeFormat('nb-NO',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Oslo'}).format(new Date());
+    }catch(e){ $('#osloClock').textContent=''; }
+  }
+  tick(); setInterval(tick,30000);
+})();
+
+/* Anchor offset fix for sticky nav is handled via scroll-mt classes */
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

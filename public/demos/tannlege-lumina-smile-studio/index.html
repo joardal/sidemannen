@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMINA Smile Studio | Estetisk tannklinikk i Oslo</title>
+<meta name="description" content="LUMINA Smile Studio Frogner - Smile design, veneers, Invisalign og implantat. Se ditt nye smil i 3D.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<style>
+:root{
+  --bg:#060A15; --bg2:#0B1326; --card:#101A32; --line:rgba(255,255,255,.1);
+  --gold:#E9C67E; --gold2:#F7E3B0; --mint:#5EEAD4; --txt:#EDF2F7; --mut:#93A3B8;
+  --r:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Space Grotesk',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+h1,h2{font-family:'Fraunces',serif;letter-spacing:-.03em;line-height:.95}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+/* bg glow */
+.bg-glow{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(800px 500px at 70% 5%, rgba(233,198,126,.14), transparent 60%),
+  radial-gradient(700px 500px at 10% 20%, rgba(94,234,212,.12), transparent 60%),
+  radial-gradient(900px 600px at 50% 100%, rgba(91,77,255,.12), transparent 60%);}
+nav{position:sticky;top:14px;z-index:50;margin:14px auto 0;max-width:1200px}
+.nav-pill{display:flex;align-items:center;justify-content:space-between;padding:12px 12px 12px 20px;background:rgba(11,19,38,.72);border:1px solid var(--line);border-radius:999px;backdrop-filter:blur(18px)}
+.logo{display:flex;gap:12px;align-items:center;font-weight:700;font-size:20px;letter-spacing:.02em}
+.logo-mark{width:42px;height:42px;border-radius:50%;background:conic-gradient(from 0deg,#F7E3B0,#E9C67E,#5EEAD4,#F7E3B0);display:grid;place-items:center;color:#0B1326;font-size:22px;box-shadow:0 0 30px rgba(233,198,126,.5)}
+.logo small{display:block;font-size:10px;letter-spacing:.22em;color:var(--gold);font-weight:600}
+.links{display:flex;gap:26px;font-size:14.5px;color:#C3D0DF;font-weight:500}
+.links a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:999px;font-weight:700;border:0;cursor:pointer;transition:.25s;font-size:15px}
+.btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1A1305;box-shadow:0 10px 30px rgba(233,198,126,.35)}
+.btn-gold:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 18px 40px rgba(233,198,126,.45)}
+.btn-ghost{border:1px solid var(--line);color:#fff;background:rgba(255,255,255,.06)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.burger{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+/* hero */
+.hero{position:relative;z-index:1;padding:50px 0 20px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(233,198,126,.35);background:rgba(233,198,126,.08);padding:8px 16px 8px 8px;border-radius:999px;font-size:13.5px}
+.pill b{background:var(--gold);color:#1A1305;padding:4px 11px;border-radius:999px;font-size:12px}
+.hero h1{font-size:clamp(48px,6.5vw,88px);margin:20px 0 18px}
+.hero h1 em{font-style:italic;background:linear-gradient(90deg,var(--gold2),var(--gold),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mut);font-size:18.5px;max-width:520px}
+.cta{display:flex;gap:12px;margin:28px 0;flex-wrap:wrap}
+.mini-stats{display:flex;gap:28px;margin-top:8px}
+.mini-stats strong{font-size:26px;display:block;font-family:'Fraunces',serif}
+.mini-stats span{font-size:13px;color:var(--mut)}
+.stage{position:relative;background:radial-gradient(650px 420px at 50% 32%, #3D171C 0%, #1C0E12 48%, #080509 100%);border:1px solid var(--line);border-radius:32px;overflow:hidden;min-height:560px;display:flex;flex-direction:column}
+.stage::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(0,0,0,.55) 100%)}
+#tooth3d{width:100%;height:440px;display:block;cursor:grab;touch-action:none}
+#tooth3d:active{cursor:grabbing}
+.stage-top{display:flex;justify-content:space-between;align-items:center;padding:18px 20px 0;font-size:13px;color:var(--mut)}
+.live{display:flex;align-items:center;gap:8px;font-weight:700;color:#7CFFD4}
+.live i{width:9px;height:9px;background:#2BFFB8;border-radius:50%;box-shadow:0 0 0 6px rgba(43,255,184,.2);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 2px rgba(43,255,184,.1)}}
+.lab{margin:0 16px 16px;background:rgba(6,10,21,.72);border:1px solid var(--line);border-radius:20px;padding:18px;backdrop-filter:blur(12px)}
+.lab h4{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.lab-row{display:flex;gap:14px;align-items:center;margin-top:12px;flex-wrap:wrap}
+input[type=range]{flex:1;accent-color:var(--gold);min-width:160px;height:28px}
+.shade-dots{display:flex;gap:8px}
+.shade-dots button{width:32px;height:32px;border-radius:50%;border:2px solid transparent;cursor:pointer}
+.shade-dots button.active{border-color:#fff;transform:scale(1.15)}
+.float-card{position:absolute;background:rgba(255,255,255,.92);color:#0B1326;border-radius:16px;padding:10px 14px;font-size:13.5px;font-weight:700;box-shadow:0 16px 40px rgba(0,0,0,.35);backdrop-filter:blur(8px);animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;overflow:hidden;white-space:nowrap;margin:30px 0 0;background:rgba(255,255,255,.02);position:relative;z-index:1}
+.marquee span{font-family:'Fraunces',serif;font-size:22px;margin:0 18px;color:#D7DEE8;font-style:italic}
+.marquee span b{color:var(--gold);font-style:normal}
+/* sections */
+section{padding:80px 0;position:relative;z-index:1}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+h2.t{font-size:clamp(34px,4.5vw,56px);margin:12px 0 14px}
+.sub{color:var(--mut);font-size:17.5px;max-width:680px}
+/* bento */
+.bento{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:280px 280px;gap:16px;margin-top:36px}
+.tile{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:26px;padding:28px;position:relative;overflow:hidden;transition:.35s;transform-style:preserve-3d}
+.tile:hover{border-color:rgba(233,198,126,.5);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.tile h3{font-size:24px;margin:14px 0 8px;font-family:'Fraunces',serif}
+.tile p{color:var(--mut);font-size:15px}
+.tile .num{font-size:13px;color:var(--gold);letter-spacing:.15em;font-weight:700}
+.tile.big{grid-row:span 2;background:radial-gradient(500px 300px at 50% 0%,rgba(233,198,126,.18),transparent),linear-gradient(180deg,#16203C,#0B1326)}
+.tile-img{margin-top:18px;border-radius:18px;height:220px;background:linear-gradient(135deg,#1B2545,#0B4A5E),url('images/image-01.jpg');background-size:cover;background-position:center;border:1px solid var(--line)}
+.price{position:absolute;top:22px;right:22px;background:rgba(233,198,126,.14);border:1px solid rgba(233,198,126,.35);color:var(--gold2);padding:6px 13px;border-radius:999px;font-size:13px;font-weight:700}
+/* before after */
+.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:32px;align-items:start}
+.ba{position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--line);height:440px;user-select:none;background:#111;touch-action:none}
+.ba-layer{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;padding:20px}
+.ba-after{clip-path:inset(0 0 0 50%);border-left:0}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;box-shadow:0 0 20px rgba(0,0,0,.5)}
+.ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;background:#fff;color:#111;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:20px;box-shadow:0 10px 30px rgba(0,0,0,.4);cursor:ew-resize}
+.ba-label{position:absolute;top:16px;padding:7px 14px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:.08em}
+.calc{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:30px}
+.calc h3{font-family:'Fraunces',serif;font-size:28px}
+.opt{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08);gap:12px}
+.opt small{display:block;color:var(--mut);font-weight:400}
+.switch{width:54px;height:30px;background:rgba(255,255,255,.12);border-radius:999px;position:relative;cursor:pointer;flex:0 0 54px;transition:.25s;border:1px solid var(--line)}
+.switch::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.25s}
+.switch.on{background:var(--gold)}
+.switch.on::after{left:27px;background:#1A1305}
+.total{display:flex;justify-content:space-between;align-items:end;margin:20px 0}
+.total strong{font-family:'Fraunces',serif;font-size:48px;color:var(--gold2);line-height:1}
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.step{border:1px solid var(--line);border-radius:22px;padding:24px;background:rgba(255,255,255,.03)}
+.step span{font-family:'Fraunces',serif;font-size:46px;color:transparent;-webkit-text-stroke:1.5px var(--gold);line-height:1}
+.step h4{margin:12px 0 8px;font-size:17px}
+.step p{font-size:14px;color:var(--mut)}
+/* reviews */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.rev{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:22px;padding:26px}
+.rev p{font-size:15.5px;color:#D7DEE8}
+.rev-meta{display:flex;gap:12px;align-items:center;margin-top:18px}
+.rev-meta div:first-child{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#0B1326}
+/* booking */
+.book{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;margin-top:30px}
+.info{background:linear-gradient(135deg,#1B2545,#0B1326);border:1px solid rgba(233,198,126,.25);border-radius:26px;padding:34px}
+.form{background:#F7F4EC;color:#111;border-radius:26px;padding:34px}
+.form input,.form select,.form textarea{width:100%;padding:14px 16px;border-radius:14px;border:1.5px solid #DDD5C2;background:#fff;margin-bottom:12px;font-size:15px;font-family:inherit;outline:none}
+.form input:focus{border-color:#B8933F;box-shadow:0 0 0 4px rgba(233,198,126,.25)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+footer{border-top:1px solid var(--line);padding:40px 0 90px;color:var(--mut);font-size:14px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(28px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+.reveal.v{opacity:1;transform:none}
+.mobile-cta{display:none;position:fixed;bottom:12px;left:12px;right:12px;z-index:60;gap:10px}
+.mobile-cta a{flex:1;text-align:center;padding:15px;border-radius:999px;font-weight:800}
+@media(max-width:980px){
+  .hero-grid,.ba-wrap,.book{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .tile.big{grid-column:1/-1;grid-row:auto}
+  .steps,.rev-grid{grid-template-columns:1fr 1fr}
+  .links{display:none}
+  .burger{display:block}
+}
+@media(max-width:640px){
+  .bento,.steps,.rev-grid,.grid2{grid-template-columns:1fr}
+  .mobile-cta{display:flex}
+  #tooth3d{height:340px}
+  .stage{min-height:500px}
+  section{padding:56px 0}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<div class="bg-glow"></div>
+
+<nav><div class="container">
+<div class="nav-pill">
+  <a href="#topp" class="logo"><div class="logo-mark">✦</div><div>LUMINA<small>SMILE STUDIO · FROGNER</small></div></a>
+  <div class="links"><a href="#behandlinger">Behandlinger</a><a href="#studio">3D Smile Lab</a><a href="#for-etter">Før / etter</a><a href="#priser">Priskalkulator</a><a href="#bestill">Bestill</a></div>
+  <div style="display:flex;gap:10px;align-items:center"><a href="#bestill" class="btn btn-gold">Bestill 3D-scan</a><button class="burger" onclick="document.querySelector('.links').style.display=document.querySelector('.links').style.display==='flex'?'none':'flex'">☰</button></div>
+</div></div></nav>
+
+<div class="hero container" id="topp">
+<div class="hero-grid">
+  <div>
+    <div class="pill"><b>NYHET</b> Digital Smile Design i 3D – se resultatet før vi starter</div>
+    <h1>Vi designer smil som <em>lyser opp rommet.</em></h1>
+    <p class="lead">Veneers, Invisalign og implantat med mikroskop-presisjon. Dra, roter og blek tannen til høyre – det er slik vi planlegger ditt smil, i 3D.</p>
+    <div class="cta"><a href="#bestill" class="btn btn-gold">✦ Book gratis 3D-konsultasjon</a><a href="#studio" class="btn btn-ghost">Test 3D-labben ↓</a></div>
+    <div class="mini-stats"><div><strong>4.9★</strong><span>980+ Google-anmeldelser</span></div><div><strong>3 200+</strong><span>smil designet digitalt</span></div><div><strong>7 år</strong><span>garanti på veneers</span></div></div>
+  </div>
+  <div class="stage">
+    <div class="stage-top"><div class="live"><i></i> LIVE 3D – INTERAKTIV</div><div>Dra for å rotere tannen</div></div>
+    <canvas id="tooth3d"></canvas>
+    <div class="float-card" style="top:88px;left:16px">★ 4.9 · Beste tannklinikk 2025</div>
+    <div class="float-card" style="top:150px;right:16px;animation-delay:1s">◍ Invisalign Diamond Provider</div>
+    <div class="lab" id="studio">
+      <h4>◍ Smile Lab – prøv bleking i 3D</h4>
+      <div class="lab-row">
+        <span style="font-size:13px;color:var(--mut)">Naturlig</span>
+        <input type="range" id="white" min="0" max="100" value="85">
+        <span style="font-size:13px;color:var(--gold2);font-weight:700">Hollywood-hvit</span>
+      </div>
+      <div class="lab-row">
+        <div class="shade-dots">
+          <button data-w="20" style="background:#D9C192" title="A3"></button>
+          <button data-w="55" style="background:#EFE2C4" title="A1"></button>
+          <button data-w="85" class="active" style="background:#FFFFFF" title="B1"></button>
+          <button data-w="100" style="background:#F4FBFF;box-shadow:0 0 14px #5EEAD4" title="Hollywood"></button>
+        </div>
+        <span id="shadeLabel" style="font-size:13px;color:var(--mut)">Farge: B1 – Naturlig hvit (din nåværende)</span>
+        <button class="btn btn-gold" style="margin-left:auto;padding:10px 18px;font-size:13.5px" onclick="document.getElementById('bestill').scrollIntoView({behavior:'smooth'})">Jeg vil ha denne →</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="marquee"><div id="mq"><span>Smile Design <b>✦</b></span><span>Veneers <b>✦</b></span><span>Invisalign <b>✦</b></span><span>Implantat <b>✦</b></span><span>Tannbleking <b>✦</b></span><span>3D-printede kroner <b>✦</b></span><span>Smile Design <b>✦</b></span><span>Veneers <b>✦</b></span><span>Invisalign <b>✦</b></span><span>Implantat <b>✦</b></span></div></div>
+
+<section id="behandlinger"><div class="container">
+<div class="reveal"><div class="eyebrow">Behandlinger · Estetikk & funksjon</div><h2 class="t">Alt annet enn vanlig tannlege.</h2><p class="sub">Mørkt, rolig studio. Hodetelefoner med din musikk. Vektteppe. Og et team som kun gjør smile-estetikk, hele dagen.</p></div>
+<div class="bento">
+  <div class="tile big reveal"><div class="num">01 — MEST POPULÆR</div><div class="price">fra 4 900 / tann</div><h3>Porcelain Veneers & Smile Design</h3><p>Digitalt designet skallfasetter i E-max porselen. Se 3D-preview før vi toucher tennene. Ofte uten boring.</p><div class="tile-img" style="background-image:url('images/image-01.jpg')"></div><div style="margin-top:16px;display:flex;gap:10px"><a href="#bestill" class="btn btn-gold">Se om jeg passer →</a></div></div>
+  <div class="tile reveal"><div class="num">02</div><h3>Invisalign</h3><p>Usynlig regulering på 4–9 mnd. Gratis 3D-simulering av ditt resultat.</p><div class="price">fra 29 900</div></div>
+  <div class="tile reveal"><div class="num">03</div><h3>Implantat</h3><p>Guidet kirurgi med 3D-printet sjablong. Tann på dagen ved behov.</p><div class="price">fra 18 900</div></div>
+  <div class="tile reveal"><div class="num">04</div><h3>Zoom! Bleking</h3><p>Opp til 8 nyanser på 60 min. Uten ising, med emaljebeskyttelse.</p><div class="price">3 400</div></div>
+  <div class="tile reveal"><div class="num">05</div><h3>Kompositt-bonding</h3><p>Reparer flis, mellomrom og slitasje på ett besøk. Fra 1 900 kr.</p><div class="price">1 900</div></div>
+</div>
+</div></section>
+
+<section id="for-etter" style="padding-top:0"><div class="container">
+<div class="reveal"><div class="eyebrow">Før / etter · Dra i håndtaket</div><h2 class="t">Ekte pasienter. Ekte transformasjoner.</h2></div>
+<div class="ba-wrap">
+  <div class="ba reveal" id="ba1">
+    <div class="ba-layer" style="background:radial-gradient(500px 300px at 50% 30%,#4A2E28,#1A1210)">
+      <div style="text-align:center">
+        <svg width="320" height="210" viewBox="0 0 320 210" style="max-width:100%">
+          <ellipse cx="160" cy="105" rx="135" ry="82" fill="#8C4A44"/>
+          <ellipse cx="160" cy="105" rx="135" ry="82" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
+          <ellipse cx="160" cy="102" rx="112" ry="62" fill="#2A0E0E"/>
+          <g>
+            <rect x="58" y="60" width="24" height="52" rx="6" fill="#C9AC72" stroke="#7A6234" stroke-width="1.5"/>
+            <rect x="84" y="58" width="26" height="58" rx="6" fill="#D1B67E" stroke="#7A6234" stroke-width="1.5"/>
+            <rect x="112" y="57" width="26" height="60" rx="6" fill="#B89A5E" stroke="#7A6234" stroke-width="1.5"/>
+            <rect x="140" y="57" width="20" height="60" rx="5" fill="#D1B67E" stroke="#7A6234" stroke-width="1.5"/>
+            <rect x="162" y="57" width="20" height="60" rx="5" fill="#C2A36A" stroke="#7A6234" stroke-width="1.5"/>
+            <rect x="184" y="57" width="26" height="60" rx="6" fill="#D1B67E" stroke="#7A6234" stroke-width="1.5"/>
+            <rect x="212" y="58" width="26" height="58" rx="6" fill="#B89A5E" stroke="#7A6234" stroke-width="1.5"/>
+            <rect x="240" y="60" width="24" height="52" rx="6" fill="#C9AC72" stroke="#7A6234" stroke-width="1.5"/>
+            <rect x="112" y="57" width="26" height="14" rx="6" fill="rgba(90,60,20,.45)"/>
+            <rect x="184" y="95" width="26" height="12" rx="5" fill="rgba(90,60,20,.4)"/>
+            <rect x="70" y="125" width="180" height="22" rx="11" fill="#fff" opacity=".08"/>
+          </g>
+          <ellipse cx="160" cy="168" rx="58" ry="12" fill="#A85D57" opacity=".9"/>
+        </svg>
+        <div style="margin-top:10px;color:#E8C9A0;font-size:14px;font-weight:600">Slitt · misfarget · ujevnt mellomrom</div>
+        <div style="color:#8A6F5A;font-size:72px;line-height:.8;margin-top:4px">☹</div>
+      </div>
+    </div>
+    <div class="ba-layer ba-after" style="background:radial-gradient(500px 300px at 50% 30%,#2A4A5E,#0B1326)">
+      <div style="text-align:center">
+        <svg width="320" height="210" viewBox="0 0 320 210" style="max-width:100%;filter:drop-shadow(0 12px 30px rgba(94,234,212,.35))">
+          <ellipse cx="160" cy="105" rx="135" ry="82" fill="#C96A62"/>
+          <ellipse cx="160" cy="105" rx="135" ry="82" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+          <ellipse cx="160" cy="102" rx="112" ry="62" fill="#3A0E0E"/>
+          <g>
+            <rect x="58" y="60" width="24" height="52" rx="7" fill="#FFFFFF" stroke="#CBE4DE" stroke-width="1.5"/>
+            <rect x="84" y="58" width="26" height="58" rx="7" fill="#FFFFFF" stroke="#CBE4DE" stroke-width="1.5"/>
+            <rect x="112" y="57" width="26" height="60" rx="7" fill="#FFFFFF" stroke="#CBE4DE" stroke-width="1.5"/>
+            <rect x="140" y="57" width="20" height="60" rx="6" fill="#FFFFFF" stroke="#CBE4DE" stroke-width="1.5"/>
+            <rect x="162" y="57" width="20" height="60" rx="6" fill="#FFFFFF" stroke="#CBE4DE" stroke-width="1.5"/>
+            <rect x="184" y="57" width="26" height="60" rx="7" fill="#FFFFFF" stroke="#CBE4DE" stroke-width="1.5"/>
+            <rect x="212" y="58" width="26" height="58" rx="7" fill="#FFFFFF" stroke="#CBE4DE" stroke-width="1.5"/>
+            <rect x="240" y="60" width="24" height="52" rx="7" fill="#FFFFFF" stroke="#CBE4DE" stroke-width="1.5"/>
+            <rect x="90" y="62" width="8" height="28" rx="4" fill="#fff" opacity=".9"/>
+            <rect x="118" y="61" width="8" height="30" rx="4" fill="#EAF6F3" opacity=".9"/>
+            <rect x="190" y="61" width="8" height="30" rx="4" fill="#EAF6F3" opacity=".9"/>
+          </g>
+          <ellipse cx="160" cy="168" rx="58" ry="12" fill="#E88A82"/>
+        </svg>
+        <div style="margin-top:10px;color:#7CFFD4;font-size:14px;font-weight:700">✦ 6 veneers · B1 hvit · Symmetrisk smil</div>
+        <div style="color:#FFD76A;font-size:22px;margin-top:2px">★★★★★</div>
+      </div>
+    </div>
+    <div class="ba-label" style="left:16px;background:rgba(0,0,0,.6);color:#fff">FØR</div>
+    <div class="ba-label" style="right:16px;background:var(--gold);color:#111">ETTER · 6 veneers</div>
+    <div class="ba-handle"><div class="ba-knob">↔</div></div>
+  </div>
+  <div class="calc reveal" id="priser">
+    <div class="eyebrow">Interaktiv priskalkulator</div>
+    <h3>Bygg ditt smil – se pris live.</h3>
+    <p style="color:var(--mut);font-size:14.5px;margin:6px 0 10px">Veiledende. Fast pris får du etter gratis 3D-scan.</p>
+    <div class="opt"><div><strong>Gratis 3D-scan + smile-design</strong><small>Verdi 1 900 kr – gratis i september</small></div><div class="switch on" data-price="0" data-on="1"></div></div>
+    <div class="opt"><div><strong>Veneers E-max</strong><small>4 900 kr per tann · <span id="venCount">6</span> tenner</small><br><input type="range" id="venRange" min="2" max="10" value="6" style="width:180px"></div><div class="switch on" data-price="4900" data-mult="ven"></div></div>
+    <div class="opt"><div><strong>Zoom bleking</strong><small>60 min på klinikk</small></div><div class="switch" data-price="3400"></div></div>
+    <div class="opt"><div><strong>Invisalign Light</strong><small>Inkl. bleking + retainer</small></div><div class="switch" data-price="29900"></div></div>
+    <div class="total"><div><div style="font-size:13px;letter-spacing:.12em;color:var(--mut)">DIN PRIS</div><strong id="totalPrice">29 400 kr</strong><div style="font-size:13px;color:var(--mut)">eller <b style="color:#fff">1 225 kr/mnd</b> rentefritt</div></div><a href="#bestill" class="btn btn-gold">Lås denne prisen →</a></div>
+  </div>
+</div>
+</div></section>
+
+<section style="padding-top:0"><div class="container">
+<div class="reveal"><div class="eyebrow">Slik fungerer det</div><h2 class="t">Fra 3D-scan til nytt smil på 2 besøk.</h2></div>
+<div class="steps">
+  <div class="step reveal"><span>01</span><h4>3D-scan (15 min, gratis)</h4><p>Vi scanner smilet ditt – ingen avtrykk. Du ser 3D-forslag umiddelbart på skjerm.</p></div>
+  <div class="step reveal"><span>02</span><h4>Smile-try-in</h4><p>Test et midlertidig smile hjemme i 3 dager. Juster form og farge med oss.</p></div>
+  <div class="step reveal"><span>03</span><h4>Presis behandling</h4><p>Skånsom prep med mikroskop, ofte uten bedøvelse. Hodetelefoner + Netflix.</p></div>
+  <div class="step reveal"><span>04</span><h4>Avduking + garanti</h4><p>Ferdig resultat + natt-skinne, foto og 7 års skriftlig garanti.</p></div>
+</div>
+</div></section>
+
+<section style="padding-top:0"><div class="container">
+<div class="reveal"><div class="eyebrow">Anmeldelser</div><h2 class="t">Oslo snakker. Vi lytter.</h2></div>
+<div class="rev-grid">
+  <div class="rev reveal"><div style="color:var(--gold)">★★★★★</div><p>“Føltes mer som et spa enn tannlege. 3D-previewen solgte meg – resultatet ble enda bedre enn simuleringen.”</p><div class="rev-meta"><div style="background:var(--gold)">MH</div><div><strong>Maria H.</strong><br><small style="color:var(--mut)">8 veneers · Frogner</small></div></div></div>
+  <div class="rev reveal"><div style="color:var(--gold)">★★★★★</div><p>“Hadde tannlegeskrekk i 10 år. Her sovnet jeg med vektteppe og Lofi i ørene. Null smerte.”</p><div class="rev-meta"><div style="background:var(--mint)">TA</div><div><strong>Thomas A.</strong><br><small style="color:var(--mut)">Implantat + krone</small></div></div></div>
+  <div class="rev reveal"><div style="color:var(--gold)">★★★★★</div><p>“Invisalign på 6 måneder. Fulgte alt i app, slapp unna regulering i metall før bryllupet.”</p><div class="rev-meta"><div style="background:#B9A6FF">SK</div><div><strong>Sara K.</strong><br><small style="color:var(--mut)">Invisalign · Grünerløkka</small></div></div></div>
+</div>
+</div></section>
+
+<section id="bestill" style="padding-top:0"><div class="container">
+<div class="reveal"><div class="eyebrow">Bestill · Gratis 3D-konsultasjon</div><h2 class="t">Klar for å se ditt nye smil i 3D?</h2></div>
+<div class="book">
+  <div class="info reveal">
+    <h3 style="font-family:'Fraunces',serif;font-size:30px">LUMINA Frogner</h3>
+    <p style="color:var(--mut);margin:8px 0 18px">Bygdøy allé 25, 0265 Oslo · 5 min fra Nationaltheatret. Kveldstimer tir & tor til 20:00.</p>
+    <div style="display:grid;gap:10px;margin:18px 0">
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:10px 0"><span>Man – Fre</span><b>08 – 18 (tir/tor til 20)</b></div>
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:10px 0"><span>Lørdag</span><b>10 – 15</b></div>
+      <div style="display:flex;justify-content:space-between;padding:10px 0"><span>Akuttvakt</span><b style="color:var(--gold)">22 88 44 00</b></div>
+    </div>
+    <a href="tel:22884400" class="btn btn-gold" style="width:100%;justify-content:center">☎ 22 88 44 00</a>
+    <p style="margin-top:14px;font-size:13.5px;color:var(--mut)">✓ Gratis avbestilling 24t før ✓ HELFO-refusjon ✓ Rentefri delbetaling</p>
+  </div>
+  <div class="form reveal">
+    <h3 style="font-size:24px;margin-bottom:6px">Reserver gratis 3D-scan (verdi 1 900 kr)</h3>
+    <p style="color:#6B7280;margin-bottom:16px;font-size:14.5px">Igjen i september: <b>7 plasser</b>. Vi svarer innen 1 time.</p>
+    <form id="bf"><div class="grid2"><input placeholder="Fullt navn *" required><input placeholder="Mobil *" required></div><input placeholder="E-post" type="email"><div class="grid2"><select><option>Jeg ønsker: Veneers / smile design</option><option>Invisalign</option><option>Bleking</option><option>Implantat</option></select><select><option>Tid: Kveld</option><option>Tid: Dag</option><option>Tid: Lørdag</option><option>Tid: Så fort som mulig</option></select></div><button class="btn btn-gold" style="width:100%;justify-content:center;padding:16px;font-size:16px;background:#111;color:#fff">Reserver min 3D-time →</button></form>
+    <div id="bs" style="display:none;background:#ECFDF5;border:1.5px solid #10B981;border-radius:14px;padding:16px;margin-top:12px;font-weight:600">Takk! Plassen din er midlertidig holdt. Vi ringer deg for å bekrefte. Sjekk SMS.</div>
+  </div>
+</div>
+</div></section>
+
+<footer><div class="container foot"><div><b style="color:#fff">LUMINA Smile Studio</b><br>Bygdøy allé 25, Oslo · post@lumina-smile.no<br>Org 931 222 456</div><div>© 2026 Lumina. Alle rettigheter reservert.<br>Personvern · Vilkår</div></div></footer>
+<div class="mobile-cta"><a href="tel:22884400" style="background:var(--gold);color:#111">☎ Ring</a><a href="#bestill" style="background:#fff;color:#111">3D-time</a></div>
+
+<script>
+document.getElementById('bf').addEventListener('submit',e=>{e.preventDefault();e.target.style.display='none';document.getElementById('bs').style.display='block';});
+// before/after drag
+(()=>{const ba=document.getElementById('ba1');const after=ba.querySelector('.ba-after');const h=ba.querySelector('.ba-handle');let down=false;const set=x=>{const r=ba.getBoundingClientRect();let p=(x-r.left)/r.width*100;p=Math.max(5,Math.min(95,p));after.style.clipPath=`inset(0 0 0 ${p}%)`;h.style.left=p+'%';};ba.addEventListener('pointerdown',e=>{down=true;ba.setPointerCapture(e.pointerId);set(e.clientX)});ba.addEventListener('pointermove',e=>{if(down)set(e.clientX)});addEventListener('pointerup',()=>down=false);})();
+// calculator
+(()=>{const sw=[...document.querySelectorAll('.switch')];const vr=document.getElementById('venRange');const vc=document.getElementById('venCount');const tp=document.getElementById('totalPrice');function calc(){let t=0;sw.forEach(s=>{if(!s.classList.contains('on'))return;let p=+s.dataset.price;if(s.dataset.mult==='ven')p=p*(+vr.value);t+=p;});tp.textContent=t.toLocaleString('no-NO')+' kr';}sw.forEach(s=>s.onclick=()=>{s.classList.toggle('on');calc();});vr.oninput=()=>{vc.textContent=vr.value;calc();};calc();})();
+// marquee anim
+(()=>{let x=0;const mq=document.getElementById('mq');setInterval(()=>{x-=1;if(x<-1200)x=0;mq.style.transform=`translateX(${x}px)`;},20);})();
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// tilt
+document.querySelectorAll('.tile').forEach(t=>{t.addEventListener('mousemove',e=>{const r=t.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;t.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`;});t.addEventListener('mouseleave',()=>t.style.transform='');});
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+const canvas=document.getElementById('tooth3d');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.1;
+const scene=new THREE.Scene();
+scene.environment=new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(),0.04).texture;
+const camera=new THREE.PerspectiveCamera(30,1,0.1,100); camera.position.set(0,0.1,8.4);
+
+const toothMat=new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:0.22,metalness:0.0,clearcoat:1,clearcoatRoughness:0.12,reflectivity:0.6,sheen:0.4,sheenColor:new THREE.Color(0xfff2d0)});
+
+// KLASSISK TANNSILHUETT - extrudert til 3D, ser ut som en tann fra alle vinkler forfra
+const s=new THREE.Shape();
+s.moveTo(0,1.32);
+s.bezierCurveTo(-0.22,1.40, -0.42,1.38, -0.62,1.28);
+s.bezierCurveTo(-0.92,1.12, -1.14,0.82, -1.10,0.35);
+s.bezierCurveTo(-1.07,0.02, -0.90,-0.20, -0.78,-0.32);
+s.bezierCurveTo(-0.72,-0.62, -0.70,-0.95, -0.62,-1.18);
+s.quadraticCurveTo(-0.56,-1.36, -0.38,-1.34);
+s.quadraticCurveTo(-0.22,-1.32, -0.18,-1.02);
+s.quadraticCurveTo(-0.14,-0.62, -0.02,-0.42);
+s.quadraticCurveTo(0,-0.38, 0.02,-0.42);
+s.quadraticCurveTo(0.14,-0.62, 0.18,-1.02);
+s.quadraticCurveTo(0.22,-1.32, 0.38,-1.34);
+s.quadraticCurveTo(0.56,-1.36, 0.62,-1.18);
+s.bezierCurveTo(0.70,-0.95, 0.72,-0.62, 0.78,-0.32);
+s.bezierCurveTo(0.90,-0.20, 1.07,0.02, 1.10,0.35);
+s.bezierCurveTo(1.14,0.82, 0.92,1.12, 0.62,1.28);
+s.bezierCurveTo(0.42,1.38, 0.22,1.40, 0,1.32);
+
+const geo=new THREE.ExtrudeGeometry(s,{depth:0.75,bevelEnabled:true,bevelThickness:0.42,bevelSize:0.30,bevelOffset:0,bevelSegments:12,steps:1,curveSegments:36});
+geo.center();
+const tooth=new THREE.Mesh(geo,toothMat);
+tooth.scale.setScalar(0.82);
+// svak glans-flekk for emalje-følelse
+const shine=new THREE.Mesh(new THREE.SphereGeometry(0.18,24,24),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0.85}));
+shine.position.set(-0.55,0.75,0.85); shine.scale.set(0.7,1.1,0.4);
+tooth.add(shine);
+const group=new THREE.Group(); group.add(tooth); scene.add(group);
+
+// myk klinikk-belysning, ikke verdensrom
+scene.add(new THREE.HemisphereLight(0xfff6e0,0x1a2a3a,0.9));
+const key=new THREE.DirectionalLight(0xffffff,2.0); key.position.set(2.5,3.5,4); scene.add(key);
+const fill=new THREE.DirectionalLight(0xBDEFFF,0.7); fill.position.set(-3,1,2.5); scene.add(fill);
+const back=new THREE.DirectionalLight(0xE9C67E,1.1); back.position.set(0,2,-3); scene.add(back);
+
+// myk skygge under tannen
+const cv=document.createElement('canvas'); cv.width=cv.height=256; const cx=cv.getContext('2d');
+const grd=cx.createRadialGradient(128,128,8,128,128,128); grd.addColorStop(0,'rgba(0,0,0,0.5)'); grd.addColorStop(0.6,'rgba(0,0,0,0.2)'); grd.addColorStop(1,'rgba(0,0,0,0)');
+cx.fillStyle=grd; cx.fillRect(0,0,256,256);
+const shadow=new THREE.Mesh(new THREE.PlaneGeometry(3.2,3.2),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cv),transparent:true,depthWrite:false}));
+shadow.rotation.x=-Math.PI/2; shadow.position.y=-1.55; scene.add(shadow);
+// dempet rød munn-glow bak tannen - ingen stjerner/støv
+const cv2=document.createElement('canvas'); cv2.width=cv2.height=256; const cx2=cv2.getContext('2d');
+const g2=cx2.createRadialGradient(128,128,10,128,128,128); g2.addColorStop(0,'rgba(150,45,52,0.5)'); g2.addColorStop(0.55,'rgba(90,25,32,0.22)'); g2.addColorStop(1,'rgba(90,25,32,0)');
+cx2.fillStyle=g2; cx2.fillRect(0,0,256,256);
+const glow=new THREE.Mesh(new THREE.PlaneGeometry(5.2,5.2),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cv2),transparent:true,depthWrite:false}));
+glow.position.z=-2.4; scene.add(glow);
+
+function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
+addEventListener('resize',resize); resize();
+
+// interaksjon - kun rotasjon, ingen zoom
+let targetRY=0, targetRX=0, dragging=false, px=0, py=0;
+canvas.addEventListener('pointerdown',e=>{dragging=true;px=e.clientX;py=e.clientY;canvas.setPointerCapture(e.pointerId);});
+canvas.addEventListener('pointermove',e=>{if(!dragging)return;targetRY+=(e.clientX-px)*0.010;targetRY=Math.max(-0.9,Math.min(0.9,targetRY));targetRX+=(e.clientY-py)*0.005;targetRX=Math.max(-0.35,Math.min(0.35,targetRX));px=e.clientX;py=e.clientY;});
+addEventListener('pointerup',()=>dragging=false);
+
+const whiteSlider=document.getElementById('white'), shadeLabel=document.getElementById('shadeLabel');
+const cA=new THREE.Color(0xC9AD7A), cB=new THREE.Color(0xffffff), cC=new THREE.Color(0xF2FDFF);
+function setWhite(v){const w=v/100;let c;if(w<0.6)c=cA.clone().lerp(cB,w/0.6);else c=cB.clone().lerp(cC,(w-0.6)/0.4);toothMat.color.copy(c);
+  const names=[[30,'A3 – Naturlig / litt gulnet'],[60,'A1 – Lys naturlig'],[90,'B1 – Naturlig hvit (din nåværende)'],[101,'Hollywood – Ekstra hvit']];
+  shadeLabel.textContent='Farge: '+(names.find(n=>v<n[0])?.[1]||names[0][1]);}
+whiteSlider.addEventListener('input',e=>{setWhite(+e.target.value);document.querySelectorAll('.shade-dots button').forEach(b=>b.classList.toggle('active',+b.dataset.w===+e.target.value));});
+document.querySelectorAll('.shade-dots button').forEach(b=>b.onclick=()=>{whiteSlider.value=b.dataset.w;setWhite(+b.dataset.w);document.querySelectorAll('.shade-dots button').forEach(x=>x.classList.remove('active'));b.classList.add('active');});
+setWhite(85);
+
+const clock=new THREE.Clock();
+(function loop(){
+  const t=clock.getElapsedTime();
+  // rolig svev + myk auto-rotasjon når man ikke drar
+  if(!dragging) targetRY+=Math.sin(t*0.6)*0.0012;
+  group.rotation.y+=(targetRY-group.rotation.y)*0.08;
+  group.rotation.x+=(targetRX-group.rotation.x)*0.08;
+  group.position.y=Math.sin(t*1.1)*0.08;
+  renderer.render(scene,camera); requestAnimationFrame(loop);
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

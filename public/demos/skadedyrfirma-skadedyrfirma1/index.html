@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TryggSkade AS — Skadedyrkontroll du kan stole på</title>
+<meta name="description" content="Profesjonell skadedyrkontroll for hjem, borettslag og bedrifter. Rask respons, fagkompetanse og diskresjon. Bestill inspeksjon i dag.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#181a18;
+  --bark:#2d322e;
+  --moss:#3f5240;
+  --sage:#6e7d6e;
+  --mist:#eaece8;
+  --frost:#f5f6f2;
+  --cream:#f9f8f4;
+  --sand:#f0ede6;
+  --limestone:#e3ddd3;
+  --copper:#a8774e;
+  --rust:#8c5a3c;
+  --pearl:#fdfcf9;
+  --charcoal:#333733;
+  --snow:#fcfcfb;
+  --radius:28px;
+  --radius-sm:14px;
+  --font-editorial:'Cormorant Garamond', Georgia, serif;
+  --font-body:'Instrument Sans', system-ui, sans-serif;
+  --font-mono:'IBM Plex Mono', ui-monospace, monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:92px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img,picture{display:block;max-width:100%;height:auto}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+::selection{background:#d8ddd0;color:#181a18}
+
+/* Utilities */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+.container{width:min(1280px,94vw);margin-inline:auto;padding-inline:3vw}
+@media(min-width:1100px){.container{padding-inline:4vw}}
+
+/* Typography scale */
+h1,h2,h3,h4{font-family:var(--font-editorial);font-weight:300;line-height:0.92;letter-spacing:-0.03em;color:var(--ink);}
+h1{font-size:clamp(3.2rem,9vw,7rem);}
+h2{font-size:clamp(2rem,5vw,3.4rem);}
+h3{font-size:clamp(1.3rem,2.8vw,1.7rem);font-weight:400;line-height:1.15;}
+p{font-family:var(--font-body);font-size:1.05rem;line-height:1.65;color:var(--charcoal);}
+small, .label{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:1000;background:rgba(249,248,244,0.82);backdrop-filter:saturate(140%) blur(22px);-webkit-backdrop-filter:saturate(140%) blur(22px);border-bottom:1px solid rgba(0,0,0,0.06);transition:box-shadow .3s ease}
+.site-header.scrolled{box-shadow:0 12px 40px rgba(0,0,0,0.06)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:84px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{width:38px;height:38px;border-radius:10px;background:var(--moss);display:grid;place-items:center;box-shadow:0 2px 10px rgba(63,82,64,0.25)}
+.brand-mark svg{width:20px;height:20px;color:#fff}
+.brand-text{line-height:1.1}
+.brand-text span{display:block;font-family:var(--font-editorial);font-size:1.25rem;font-weight:600;letter-spacing:-0.02em;color:var(--ink)}
+.brand-text small{font-family:var(--font-mono);font-size:0.65rem;color:var(--sage);letter-spacing:0.14em;text-transform:uppercase}
+
+.nav-desktop{display:none}
+.nav-desktop a{font-family:var(--font-body);font-weight:500;font-size:0.9rem;color:var(--ink);padding:6px 4px;position:relative}
+.nav-desktop a::after{content:'';position:absolute;left:0;bottom:-2px;width:100%;height:1.5px;background:var(--moss);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.nav-desktop a:hover::after{transform:scaleX(1)}
+
+.header-cta{display:none;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;padding:10px 20px;border-radius:100px;background:var(--ink);color:#fff;border:1px solid transparent;transition:background .2s, transform .2s}
+.header-cta:hover{background:var(--bark);transform:translateY(-1px)}
+
+.menu-btn{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:100px;border:1px solid rgba(0,0,0,0.1);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);background:rgba(255,255,255,0.6);backdrop-filter:blur(6px)}
+.menu-btn .dot{width:6px;height:6px;border-radius:50%;background:var(--moss);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* Mobile nav overlay */
+.nav-overlay{position:fixed;inset:0;z-index:1100;background:rgba(249,248,244,0.96);backdrop-filter:blur(30px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.nav-overlay.open{opacity:1;pointer-events:auto}
+.nav-overlay a{font-family:var(--font-editorial);font-size:2rem;color:var(--ink)}
+.close-overlay{position:absolute;top:28px;right:28px;padding:10px;color:var(--ink)}
+
+@media(min-width:1000px){
+  .nav-desktop{display:flex;align-items:center;gap:28px}
+  .header-cta{display:inline-block}
+  .menu-btn{display:none}
+}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#f5f6f2 0%,#ebece8 60%,#eae5db 100%);padding-top:140px;padding-bottom:120px}
+.hero-inner{display:grid;gap:60px;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--moss);margin-bottom:22px}
+.hero-eyebrow .line{flex:1;height:1px;background:var(--limestone);max-width:60px}
+.hero h1{margin-bottom:26px;max-width:14ch}
+.hero h1 em{font-style:italic;color:var(--moss);font-weight:300}
+.hero p.lead{font-size:1.25rem;line-height:1.55;color:var(--bark);max-width:42ch;margin-bottom:36px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:48px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-weight:600;font-size:0.95rem;padding:16px 28px;border-radius:100px;transition:transform .15s ease, box-shadow .2s ease, background .2s}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:0 12px 30px rgba(24,26,24,0.2)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(24,26,24,0.25)}
+.btn-secondary{background:#fff;color:var(--ink);border:1.5px solid rgba(0,0,0,0.12);box-shadow:0 4px 20px rgba(0,0,0,0.05)}
+.btn-secondary:hover{border-color:rgba(0,0,0,0.35);transform:translateY(-1px)}
+
+.trust-band{display:flex;flex-wrap:wrap;gap:32px 48px;margin-top:10px}
+.trust-item{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:0.77rem;color:var(--sage);letter-spacing:0.02em}
+.trust-item strong{font-family:var(--font-body);font-weight:600;color:var(--ink);font-size:0.95rem}
+
+.hero-visual{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.12), 0 8px 30px rgba(0,0,0,0.08);aspect-ratio:4/3}
+.hero-visual img{width:100%;height:100%;object-fit:cover;filter:brightness(0.92) contrast(1.05)}
+.hero-visual .tag{position:absolute;bottom:24px;right:24px;background:rgba(249,248,244,0.92);backdrop-filter:blur(14px);padding:10px 18px;border-radius:100px;font-family:var(--font-mono);font-size:0.7rem;color:var(--ink);box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+
+@media(min-width:1000px){
+  .hero-inner{grid-template-columns:1fr 1fr;gap:80px}
+  .hero{padding-top:160px;padding-bottom:140px}
+}
+
+/* Section headers */
+.section-header{margin-bottom:72px;display:grid;gap:14px}
+.section-header h2{max-width:28ch}
+.section-header p{max-width:48ch;color:var(--charcoal)}
+
+/* Topics / pests */
+.pest-section{background:var(--cream);padding:120px 0 140px}
+.pest-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.pest-card{position:relative;background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius-sm);padding:36px 30px;transition:transform .3s ease, box-shadow .3s ease;cursor:pointer;overflow:hidden}
+.pest-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--moss),var(--copper));opacity:0;transition:opacity .3s}
+.pest-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.08)}
+.pest-card:hover::before{opacity:1}
+.pest-card .icon-circle{width:56px;height:56px;border-radius:50%;background:var(--mist);display:grid;place-items:center;margin-bottom:22px;transition:background .3s}
+.pest-card:hover .icon-circle{background:var(--sage);color:#fff}
+.pest-card h3{margin-bottom:6px;font-weight:400;font-size:1.35rem}
+.pest-card p{font-size:0.9rem;color:var(--sage);line-height:1.45}
+.pest-card .meta{margin-top:14px;font-family:var(--font-mono);font-size:0.65rem;color:var(--copper);letter-spacing:0.06em}
+
+@media(min-width:980px){
+  .pest-grid{grid-template-columns:repeat(4,1fr)}
+}
+
+/* Interactive wizard */
+.wizard-section{background:var(--ink);color:#f0ede6;padding:120px 0 140px;position:relative;overflow:hidden}
+.wizard-section::before{content:'';position:absolute;inset:0;background:url("images/icon-01.svg");pointer-events:none;opacity:0.5}
+
+.wizard-inner{display:grid;gap:60px;position:relative;z-index:1}
+@media(min-width:1000px){
+  .wizard-inner{grid-template-columns:1fr 1.15fr;gap:100px;align-items:start}
+}
+
+.wizard-heading h2{color:#fff;margin-bottom:16px}
+.wizard-heading p{color:#c7cdc4;max-width:40ch}
+
+/* Wizard form */
+.wizard-form{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:36px 32px}
+.wizard-form h3{color:#fff;margin-bottom:6px;font-size:1.3rem;font-family:var(--font-editorial)}
+.wizard-form .sub{font-family:var(--font-mono);font-size:0.7rem;color:#8a8f87;letter-spacing:0.06em;margin-bottom:28px}
+
+.steps{display:flex;gap:12px;margin-bottom:28px}
+.step-dot{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,0.15);position:relative;overflow:hidden;transition:background .3s}
+.step-dot.active{background:rgba(168,119,78,0.6)}
+.step-dot.active::after{content:'';position:absolute;left:0;top:0;height:100%;width:100%;background:var(--copper);animation:fillStep 0.8s ease forwards;border-radius:3px}
+@keyframes fillStep{from{width:0}to{width:100%}}
+
+.option-grid{display:grid;gap:12px}
+.option-btn{width:100%;text-align:left;padding:16px 18px;border-radius:14px;border:1.5px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#eaece8;font-family:var(--font-body);font-size:0.95rem;transition:all .2s ease}
+.option-btn:hover{border-color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.1)}
+.option-btn.selected{border-color:var(--copper);background:rgba(168,119,78,0.1);color:#fff}
+.option-btn .label{font-family:var(--font-mono);font-size:0.65rem;color:#8a8f87;letter-spacing:0.08em;display:block;margin-bottom:4px}
+
+.wizard-nav{display:flex;justify-content:space-between;gap:14px;margin-top:28px}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:100px;border:1.5px solid rgba(255,255,255,0.2);color:#f0ede6;font-family:var(--font-body);font-weight:500;font-size:0.9rem;transition:all .2s}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.06)}
+.btn-ghost:disabled{opacity:0.35;pointer-events:none}
+.btn-solid{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:100px;background:var(--copper);color:#fff;font-family:var(--font-body);font-weight:600;font-size:0.9rem;box-shadow:0 8px 24px rgba(168,119,78,0.3);transition:transform .15s, box-shadow .2s}
+.btn-solid:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(168,119,78,0.4)}
+
+.result-card{margin-top:28px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:26px;display:none}
+.result-card.show{display:block}
+.result-card h4{font-family:var(--font-editorial);font-weight:400;color:#fff;font-size:1.3rem;margin-bottom:6px}
+.result-card p{color:#c7cdc4;font-size:0.95rem;margin-bottom:18px}
+.result-card .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Process */
+.process-section{background:var(--snow);padding:120px 0 140px}
+.process-grid{display:grid;gap:48px}
+@media(min-width:900px){
+  .process-grid{grid-template-columns:repeat(4,1fr);gap:24px}
+}
+.process-card{position:relative;padding-top:24px}
+.process-card .num{font-family:var(--font-editorial);font-size:4rem;line-height:1;color:var(--limestone);position:absolute;top:-10px;left:-8px;z-index:0;font-weight:300}
+.process-card h3{position:relative;z-index:1;margin-bottom:12px;font-family:var(--font-editorial);font-weight:400;font-size:1.35rem}
+.process-card p{position:relative;z-index:1;font-size:0.95rem;color:var(--charcoal)}
+.process-card .line{width:48px;height:2px;background:var(--moss);margin-top:18px;border-radius:1px}
+
+/* Knowledge / articles */
+.knowledge-section{background:var(--frost);padding:120px 0 140px}
+.knowledge-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.article-card{background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius-sm);overflow:hidden;transition:box-shadow .3s, transform .3s;display:flex;flex-direction:column}
+.article-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.07)}
+.article-card .thumb{position:relative;height:240px;overflow:hidden}
+.article-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.article-card:hover .thumb img{transform:scale(1.04)}
+.article-card .thumb .cat{position:absolute;top:16px;left:16px;background:rgba(249,248,244,0.92);backdrop-filter:blur(8px);padding:6px 12px;border-radius:100px;font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;color:var(--moss);text-transform:uppercase}
+.article-card .body{padding:28px 28px 30px;flex:1;display:flex;flex-direction:column}
+.article-card h3{font-family:var(--font-editorial);font-weight:400;font-size:1.25rem;margin-bottom:10px;line-height:1.15}
+.article-card p{font-size:0.9rem;color:var(--sage);margin-bottom:18px;flex:1}
+.article-card a.read-more{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);border-bottom:1px solid rgba(168,119,78,0.3);padding-bottom:2px;transition:border-color .2s}
+.article-card a.read-more:hover{border-color:var(--copper)}
+
+/* Review / testimonial spotlight */
+.review-section{background:var(--cream);padding:120px 0 140px}
+.review-hero{max-width:900px;margin:0 auto;text-align:center;margin-bottom:72px}
+.review-hero h2{margin-bottom:16px}
+.review-hero p{color:var(--charcoal);max-width:52ch;margin-inline:auto}
+
+.review-grid{display:grid;gap:28px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.review-card{background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius-sm);padding:36px;position:relative;transition:box-shadow .3s,transform .3s}
+.review-card:hover{box-shadow:0 24px 60px rgba(0,0,0,0.07);transform:translateY(-4px)}
+.review-card .quote-mark{font-family:var(--font-editorial);font-size:5rem;line-height:0;color:var(--limestone);position:absolute;top:20px;right:28px;pointer-events:none;user-select:none}
+.review-card blockquote{font-family:var(--font-editorial);font-size:1.15rem;line-height:1.4;color:var(--ink);margin-bottom:24px;position:relative;z-index:1}
+.review-card .author{display:flex;align-items:center;gap:14px}
+.review-card .author img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--mist)}
+.review-card .author .name{font-family:var(--font-body);font-weight:600;font-size:0.95rem;color:var(--ink)}
+.review-card .author .role{font-family:var(--font-mono);font-size:0.7rem;color:var(--sage);letter-spacing:0.04em}
+.review-card .rating{display:flex;gap:3px;margin-top:10px}
+.review-card .rating span{color:var(--copper);font-size:1.1rem;line-height:1}
+
+/* Contact / CTA */
+.contact-section{background:linear-gradient(170deg,#f5f6f2 0%,#ebece8 60%,#e8e4d9 100%);padding:120px 0 140px}
+.contact-inner{display:grid;gap:64px;align-items:start}
+@media(min-width:1000px){
+  .contact-inner{grid-template-columns:1.1fr 1fr;gap:80px}
+}
+
+.contact-heading h2{margin-bottom:14px}
+.contact-heading p{max-width:40ch;color:var(--charcoal);margin-bottom:36px}
+
+.phone-strip{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius-sm);padding:22px 24px;margin-bottom:28px;box-shadow:0 6px 30px rgba(0,0,0,0.04)}
+.phone-strip .icon-circle{width:48px;height:48px;border-radius:50%;background:var(--moss);display:grid;place-items:center;color:#fff;flex-shrink:0}
+.phone-strip .label{font-family:var(--font-mono);font-size:0.7rem;color:var(--sage);letter-spacing:0.08em}
+.phone-strip .number{font-family:var(--font-editorial);font-size:1.6rem;color:var(--ink);line-height:1}
+.phone-strip a{font-family:var(--font-body);font-weight:500;font-size:0.9rem;color:var(--moss);border-bottom:1px solid rgba(63,82,64,0.3)}
+.phone-strip a:hover{border-color:var(--moss)}
+
+.open-hours{background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:var(--radius-sm);padding:24px 28px}
+.open-hours h4{font-family:var(--font-editorial);font-weight:400;font-size:1.1rem;margin-bottom:14px}
+.open-hours .row{display:flex;justify-content:space-between;font-family:var(--font-body);font-size:0.9rem;padding:8px 0;border-bottom:1px dashed rgba(0,0,0,0.08);color:var(--charcoal)}
+.open-hours .row .day{font-weight:500}
+.open-hours .row .hours{font-family:var(--font-mono);font-size:0.8rem;color:var(--moss)}
+.open-hours .note{margin-top:12px;font-family:var(--font-mono);font-size:0.72rem;color:var(--sage)}
+
+.contact-form{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:var(--radius);padding:36px;box-shadow:0 20px 60px rgba(0,0,0,0.06)}
+.contact-form h3{font-family:var(--font-editorial);font-weight:400;font-size:1.3rem;margin-bottom:6px}
+.contact-form .sub{font-family:var(--font-mono);font-size:0.7rem;color:var(--sage);letter-spacing:0.06em;margin-bottom:24px}
+.form-row{display:grid;gap:14px;margin-bottom:14px}
+.form-row.dual{grid-template-columns:1fr 1fr}
+@media(max-width:640px){.form-row.dual{grid-template-columns:1fr}}
+.form-row input, .form-row textarea{width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid rgba(0,0,0,0.1);font-family:var(--font-body);font-size:0.95rem;background:#fdfcf9;color:var(--ink);transition:border-color .2s, box-shadow .2s}
+.form-row input:focus, .form-row textarea:focus{outline:none;border-color:var(--moss);box-shadow:0 0 0 3px rgba(63,82,64,0.12)}
+.form-row textarea{min-height:120px;resize:vertical}
+.form-row label{display:block;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;color:var(--sage);margin-bottom:6px}
+
+/* Footer */
+.site-footer{background:var(--ink);color:#c7cdc4;padding:80px 0 30px}
+.footer-inner{display:grid;gap:60px}
+@media(min-width:900px){
+  .footer-inner{grid-template-columns:repeat(3,1fr);gap:40px}
+}
+.footer-brand h3{font-family:var(--font-editorial);font-weight:300;color:#fff;font-size:1.6rem;margin-bottom:6px}
+.footer-brand p{font-size:0.9rem;color:#9aa098;margin-bottom:18px;max-width:32ch}
+.footer-brand .socials{display:flex;gap:10px}
+.footer-brand .socials a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.06);display:grid;place-items:center;color:#eaece8;transition:background .2s, color .2s}
+.footer-brand .socials a:hover{background:var(--copper);color:#fff}
+
+.footer-links h4{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.14em;color:#8a8f87;text-transform:uppercase;margin-bottom:18px}
+.footer-links ul li{margin-bottom:10px}
+.footer-links ul li a{font-family:var(--font-body);font-size:0.95rem;color:#c7cdc4;transition:color .2s}
+.footer-links ul li a:hover{color:#fff}
+
+.footer-legal{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;margin-top:60px;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:space-between}
+@media(min-width:800px){
+  .footer-legal{flex-direction:row}
+}
+.footer-legal p{font-family:var(--font-mono);font-size:0.7rem;color:#8a8f87}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* Subtle decorative divider */
+.divider{width:60px;height:2px;background:linear-gradient(90deg,var(--copper),var(--moss));border-radius:1px;margin:0 auto}
+
+/* Mobile tweaks */
+@media(max-width:640px){
+  .hero{padding-top:120px;padding-bottom:80px}
+  .section-header{margin-bottom:48px}
+  .contact-form{padding:24px}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero-visual .tag{animation:none}
+  .step-dot.active::after{animation:none;width:100%}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<header class="site-header" id="header" role="banner" aria-label="Hovedmeny">
+  <div class="container header-inner">
+    <a href="#" class="brand" aria-label="TryggSkade AS — tilbake til forsiden">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </span>
+      <span class="brand-text"><span>TryggSkade</span><small>AS — Skadedyrkontroll</small></span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Hovednavigasjon">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#hva-fant">Hva har du funnet?</a>
+      <a href="#prosess">Prosess</a>
+      <a href="#wiser">Identifiser</a>
+      <a href="#kunnskap">Råd</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <a href="#kontakt" class="header-cta">Bestill inspeksjon</a>
+
+    <button class="menu-btn" onclick="openNav()" aria-label="Åpne meny" aria-expanded="false" aria-controls="navOverlay">
+      <span class="dot" aria-hidden="true"></span> Meny
+    </button>
+  </div>
+</header>
+
+<nav id="navOverlay" class="nav-overlay" aria-label="Mobilmeny" aria-modal="true" role="dialog" aria-label="Mobil navigasjon">
+  <button class="close-overlay" onclick="closeNav()" aria-label="Lukk meny">✕</button>
+  <a href="#tjenester" onclick="closeNav()">Tjenester</a>
+  <a href="#hva-fant" onclick="closeNav()">Hva har du funnet?</a>
+  <a href="#prosess" onclick="closeNav()">Prosess</a>
+  <a href="#wiser" onclick="closeNav()">Identifiser problemet</a>
+  <a href="#kunnskap" onclick="closeNav()">Råd</a>
+  <a href="#kontakt" onclick="closeNav()">Kontakt</a>
+</nav>
+
+<main id="main-content">
+
+<!-- Hero -->
+<section class="hero" aria-label="Introduksjon">
+  <div class="container hero-inner">
+    <div>
+      <div class="hero-eyebrow" role="text"><span class="line" aria-hidden="true"></span>Profesjonell skadedyrkontroll siden 1998 <span class="line" aria-hidden="true"></span></div>
+      <h1>Skadedyr er ikke din skyld.<br><em>Men det er vårt ansvar.</em></h1>
+      <p class="lead">Vi hjelper privatpersoner, borettslag og bedrifter med rask, diskré og faglig fundert kontroll. Fra første inspeksjon til varig forebygging — uten alarmistisk retorikk, bare kompetanse.</p>
+      <div class="hero-actions" role="group" aria-label="Hovedhandlinger">
+        <a href="#wiser" class="btn btn-primary">Identifiser problemet <span aria-hidden="true">→</span></a>
+        <a href="#kontakt" class="btn btn-secondary">Bestill inspeksjon</a>
+      </div>
+      <div class="trust-band" aria-label="Tillitsindikatorer">
+        <div class="trust-item"><strong>24/7</strong> Akutt respons</div>
+        <div class="trust-item"><strong>Fagbrev</strong> Godkjent</div>
+        <div class="trust-item"><strong>5 år</strong> Garanti på behandling</div>
+        <div class="trust-item"><strong>Diskresjon</strong> Garanti</div>
+      </div>
+    </div>
+
+    <figure class="hero-visual" aria-label="Profesjonell skadedyrtekniker i arbeid">
+      <img src="images/photo-07.jpg" alt="Tekniker undersøker et område med faglig verktøy i rolig, naturlig lys" loading="eager" decoding="async">
+      <figcaption class="tag">Rask inspeksjon — ofte samme dag</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Pests / What did you find -->
+<section id="hva-fant" class="pest-section" aria-label="Hva har du funnet">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Skadedyr</span>
+      <h2>Hva har du funnet?</h2>
+      <p>Ulike skadedyr etterlater ulike spor. Her er de vanligste vi håndterer — fra små insekter til større gnagere. Velg for å lære mer, eller gå direkte til veiviseren.</p>
+    </div>
+
+    <div class="pest-grid" role="list" aria-label="Liste over skadedyr">
+      <article class="pest-card reveal reveal-delay-1" role="listitem" tabindex="0" onclick="filterWizard('mus')" aria-label="Mus — mer informasjon">
+        <div class="icon-circle" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+        <h3>Mus</h3>
+        <p>Liten, rask, ofte nattaktiv. Spor av gnagede kabler, kornrester og små, mørke pelletkuler.</p>
+        <div class="meta">Gnager · Innendørs · Rask respons</div>
+      </article>
+
+      <article class="pest-card reveal reveal-delay-2" role="listitem" tabindex="0" onclick="filterWizard('rotte')" aria-label="Rotte — mer informasjon">
+        <div class="icon-circle" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 15c-2 2-4 3-6 3M18 15c2 2 4 3 6 3"/></svg></div>
+        <h3>Rotter</h3>
+        <p>Større enn mus, sterkere gnagere. Ofte i kjellere, garasjer og avfallsrom. Krever grundig sanering.</p>
+        <div class="meta">Gnager · Struktur · Profesjonell</div>
+      </article>
+
+      <article class="pest-card reveal reveal-delay-3" role="listitem" tabindex="0" onclick="filterWizard('maur')" aria-label="Maur — mer informasjon">
+        <div class="icon-circle" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6h6l-4.5 3.5L18 18l-6-4.5L6 18l2.5-6.5L4 8h6z"/></svg></div>
+        <h3>Maur</h3>
+        <p>Små, systematiske stier. Svært vanlige i kjøkken og rundt vannrør. Lett å overse helt til kolonien vokser.</p>
+        <div class="meta">Insekt · Systematisk · Rask</div>
+      </article>
+
+      <article class="pest-card reveal reveal-delay-3" role="listitem" tabindex="0" onclick="filterWizard('veggedyr')" aria-label="Veggedyr — mer informasjon">
+        <div class="icon-circle" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M6 10l3 3-3 3M12 10l3 3-3 3"/></svg></div>
+        <h3>Veggedyr</h3>
+        <p>Skjuler seg i madrasser, lister og sprekker. Bit gir røde, kløende utslett. Krever varmebehandling eller spesialmiddel.</p>
+        <div class="meta">Insekt · Skjult · Diskresjon</div>
+      </article>
+
+      <article class="pest-card reveal reveal-delay-2" role="listitem" tabindex="0" onclick="filterWizard('skjeggkre')" aria-label="Skjeggkre — mer informasjon">
+        <div class="icon-circle" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M8 12l3-4 3 4M8 12l3 4 3-4"/></svg></div>
+        <h3>Skjeggkre</h3>
+        <p>Små, sølvfargede insekter som trives i fuktige rom. Vanlig på bad og i kjeller. Ofte et tegn på iboende fukt.</p>
+        <div class="meta">Insekt · Fukt · Forebygging</div>
+      </article>
+
+      <article class="pest-card reveal reveal-delay-1" role="listitem" tabindex="0" onclick="filterWizard('veps')" aria-label="Veps — mer informasjon">
+        <div class="icon-circle" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v2m-3 8l3-3 3 3m-6 6h6"/></svg></div>
+        <h3>Veps</h3>
+        <p>Bygger reir på loft, i vegger eller under terrasser. Aggressive når reiret forstyrres. Vi fjerner reiret trygt.</p>
+        <div class="meta">Insekt · Sesong · Akutt</div>
+      </article>
+
+      <article class="pest-card reveal reveal-delay-1" role="listitem" tabindex="0" onclick="filterWizard('moll')" aria-label="Møll — mer informasjon">
+        <div class="icon-circle" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4c4 4 8 8 8 12s-4 6-8 6-8-2-8-6 4-8 8-12z"/></svg></div>
+        <h3>Møll</h3>
+        <p>Klesmøll og matmøll ødelegger tekstiler og matvarer. Larver etterlater silkebåter og små hull i klær.</p>
+        <div class="meta">Insekt · Tekstil · Forebygging</div>
+      </article>
+
+      <article class="pest-card reveal reveal-delay-2" role="listitem" tabindex="0" onclick="filterWizard('andre')" aria-label="Andre skadedyr — mer informasjon">
+        <div class="icon-circle" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l4-4 4 4M12 8v8"/></svg></div>
+        <h3>Andre skadedyr</h3>
+        <p>Kakerlakker, sølvkre, edderkopper og mer. Hvis du er usikker, kan vi hjelpe deg å identifisere — raskt og uten press.</p>
+        <div class="meta">Ukjent · Rådgivning · Trygg</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="tjenester" class="pest-section" style="background:var(--snow);padding-top:100px" aria-label="Våre tjenester">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Tjenester</span>
+      <h2>Fra inspeksjon til varig løsning</h2>
+      <p>Vi tilbyr ikke bare behandling — vi tilbyr en plan. Inspeksjon, identifisering, målrettet sanering og forebygging som varer.</p>
+    </div>
+
+    <div style="display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+      <article class="pest-card reveal reveal-delay-1" role="listitem" style="padding:32px 28px">
+        <h3 style="margin-bottom:8px">Inspeksjon</h3>
+        <p style="font-size:0.95rem">Grundig kartlegging av omfang, inngangsårsak og skjulesteder. Vi dokumenterer alt for deg.</p>
+      </article>
+      <article class="pest-card reveal reveal-delay-2" role="listitem" style="padding:32px 28px">
+        <h3 style="margin-bottom:8px">Identifisering</h3>
+        <p style="font-size:0.95rem">Vi finner ut nøyaktig hva som er til stede — og hva som ikke er. Ingen unødvendig bruk av middel.</p>
+      </article>
+      <article class="pest-card reveal reveal-delay-3" role="listitem" style="padding:32px 28px">
+        <h3 style="margin-bottom:8px">Behandling</h3>
+        <p style="font-size:0.95rem">Målrettet, faglig fundert og med respekt for miljø og beboere. Inkluderer oppfølging ved behov.</p>
+      </article>
+      <article class="pest-card reveal reveal-delay-1" role="listitem" style="padding:32px 28px">
+        <h3 style="margin-bottom:8px">Forebygging</h3>
+        <p style="font-size:0.95rem">Råd om fukt, lagring, tetting av sprekker og vedlikehold. Vi vil at problemet ikke skal komme tilbake.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Wizard -->
+<section id="wiser" class="wizard-section" aria-label="Identifiser skadedyr - veiviser">
+  <div class="container wizard-inner">
+    <div class="wizard-heading reveal">
+      <span class="label" style="color:#8a8f87">Interaktiv</span>
+      <h2>Identifiser problemet</h2>
+      <p>Tre korte spørsmål gir et første inntrykk av hva du kan stå overfor — og hva som er neste steg. Dette er ikke en diagnose, men et utgangspunkt for samtalen.</p>
+    </div>
+
+    <form class="wizard-form" id="wizardForm" aria-label="Veiviser for skadedyridentifisering" onsubmit="event.preventDefault(); submitWizard();">
+      <h3>Hva har du sett?</h3>
+      <p class="sub">Steg <span id="stepNum">1</span> av 3</p>
+
+      <div class="steps" aria-label="Fremdrift" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" aria-label="Progress">
+        <div class="step-dot active" aria-label="Steg 1 aktiv"></div>
+        <div class="step-dot" aria-label="Steg 2"></div>
+        <div class="step-dot" aria-label="Steg 3"></div>
+      </div>
+
+      <div id="wizardContent" class="option-grid" aria-live="polite">
+        <button type="button" class="option-btn" onclick="chooseOption('mus', 'pest')" aria-label="Mus — liten gnager, ofte nattaktiv">
+          <span class="label">Valg 1</span>
+          Mus — liten, rask gnager med små pelletkuler og gnagede kabler
+        </button>
+        <button type="button" class="option-btn" onclick="chooseOption('rotte', 'pest')" aria-label="Rotte — større gnager i kjeller eller garasje">
+          <span class="label">Valg 2</span>
+          Rotte — større, ofte i kjeller, garasje eller avfallsrom
+        </button>
+        <button type="button" class="option-btn" onclick="chooseOption('maur', 'pest')" aria-label="Maur — små systematiske stier">
+          <span class="label">Valg 3</span>
+          Maur — små, systematiske stier i kjøkken eller ved vannrør
+        </button>
+        <button type="button" class="option-btn" onclick="chooseOption('veggedyr', 'pest')" aria-label="Veggedyr — skjult i madrasser og sprekker">
+          <span class="label">Valg 4</span>
+          Veggedyr — skjult i madrasser, lister, sprekker; bit gir utslett
+        </button>
+        <button type="button" class="option-btn" onclick="chooseOption('skjeggkre', 'pest')" aria-label="Skjeggkre — sølvfarget, fuktige rom">
+          <span class="label">Valg 5</span>
+          Skjeggkre — sølvfargede, ofte på bad eller i kjeller
+        </button>
+        <button type="button" class="option-btn" onclick="chooseOption('veps', 'pest')" aria-label="Veps — reir på loft, vegger eller terrasser">
+          <span class="label">Valg 6</span>
+          Veps — reir på loft, i vegger eller under terrasser
+        </button>
+        <button type="button" class="option-btn" onclick="chooseOption('moll', 'pest')" aria-label="Møll — tekstil- eller matmøll">
+          <span class="label">Valg 7</span>
+          Møll — klesmøll eller matmøll, silkebåter og hull i klær
+        </button>
+        <button type="button" class="option-btn" onclick="chooseOption('andre', 'pest')" aria-label="Usikker — ikke helt sikker på hva det er">
+          <span class="label">Valg 8</span>
+          Usikker / noe annet — vi hjelper deg å identifisere
+        </button>
+      </div>
+
+      <div id="wizardNav" class="wizard-nav">
+        <button type="button" class="btn-ghost" onclick="prevStep()" id="btnPrev" disabled>Tilbake</button>
+        <button type="button" class="btn-solid" onclick="nextStep()" id="btnNext">Neste step</button>
+      </div>
+
+      <div id="wizardResult" class="result-card" role="region" aria-label="Resultat fra veiviser">
+        <h4 id="resTitle">Inspeksjon anbefalt</h4>
+        <p id="resText">Basert på dine svar vil vi anbefale en inspeksjon. Våre teknikere har erfaring med akkurat denne typen problem. Vi gjør det raskt, diskré og uten unødvendig stress.</p>
+        <div class="cta-row">
+          <a href="#kontakt" class="btn btn-primary" style="font-size:0.9rem;padding:12px 20px">Bestill inspeksjon</a>
+          <a href="#kontakt" class="btn btn-secondary" style="font-size:0.9rem;padding:12px 20px">Kontakt skadedyrtekniker</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Process -->
+<section id="prosess" class="process-section" aria-label="Vår prosess">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center;max-width:640px;margin-inline:auto">
+      <span class="label">Prosess</span>
+      <h2>Fra inspeksjon til forutsigbarhet</h2>
+      <p>Vi gjør det enkelt. Ingen skjulte ledd, ingen overflødige tillegg. Bare en tydelig vei fra problem til løsning.</p>
+    </div>
+
+    <div class="process-grid" role="list" aria-label="Vår arbeidsprosess">
+      <article class="process-card reveal" role="listitem" aria-label="Steg 1: Inspeksjon">
+        <span class="num" aria-hidden="true">01</span>
+        <h3>Inspeksjon</h3>
+        <p>Vi undersøker området grundig, kartlegger inngangsårsak og dokumenterer omfanget. Ingen skjulte overraskelser.</p>
+        <div class="line" aria-hidden="true"></div>
+      </article>
+      <article class="process-card reveal reveal-delay-1" role="listitem" aria-label="Steg 2: Identifisering">
+        <span class="num" aria-hidden="true">02</span>
+        <h3>Identifisering</h3>
+        <p>Eksakt hva er til stede — og hva som ikke er. Vi bruker kun det som trengs. Ingen unødvendig bruk av middel.</p>
+        <div class="line" aria-hidden="true"></div>
+      </article>
+      <article class="process-card reveal reveal-delay-2" role="listitem" aria-label="Steg 3: Behandling">
+        <span class="num" aria-hidden="true">03</span>
+        <h3>Behandling</h3>
+        <p>Målrettet, faglig fundert og med respekt for miljø og beboere. Vi informerer før alt starter.</p>
+        <div class="line" aria-hidden="true"></div>
+      </article>
+      <article class="process-card reveal reveal-delay-3" role="listitem" aria-label="Steg 4: Forebygging">
+        <span class="num" aria-hidden="true">04</span>
+        <h3>Forebygging</h3>
+        <p>Råd om fukt, lagring, tetting og vedlikehold. Målet er at du ikke skal trenge oss igjen.</p>
+        <div class="line" aria-hidden="true"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Knowledge -->
+<section id="kunnskap" class="knowledge-section" aria-label="Kunnskap og råd">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">Råd</span>
+      <h2>Hva bør du se etter?</h2>
+      <p>Korte, praktiske innblikk i tegn på de vanligste skadedyr, og hva du bør gjøre — og ikke gjøre — før teknikeren kommer.</p>
+    </div>
+
+    <div class="knowledge-grid" role="list" aria-label="Artikler og råd">
+      <article class="article-card reveal" role="listitem">
+        <div class="thumb">
+          <img src="images/photo-03.jpg" alt="Kontorlandskap med rolig naturlig lys" loading="lazy" decoding="async">
+          <span class="cat">Mus</span>
+        </div>
+        <div class="body">
+          <h3>Te tegn på mus i hjemmet</h3>
+          <p>Små pelletkuler, gnagede kabler, spor av matrester og en svak, moseaktig lukt. Se etter gnagskader på skap og under kjøkkenbenk.</p>
+          <a href="#" class="read-more" onclick="event.preventDefault(); alert('Artikkelen vil være tilgjengelig etter publisering.');">Les mer →</a>
+        </div>
+      </article>
+
+      <article class="article-card reveal reveal-delay-1" role="listitem">
+        <div class="thumb">
+          <img src="images/photo-04.jpg" alt="Nærbilde av elektronikk og kretskort" loading="lazy" decoding="async">
+          <span class="cat">Veggedyr</span>
+        </div>
+        <div class="body">
+          <h3>Hvordan oppdage veggedyr tidlig</h3>
+          <p>Røde, kløende utslett i linjer på huden, små svarte flekker på laken og skjulesteder i madrassømmer. De er mest aktive om natten.</p>
+          <a href="#" class="read-more" onclick="event.preventDefault(); alert('Artikkelen vil være tilgjengelig etter publisering.');">Les mer →</a>
+        </div>
+      </article>
+
+      <article class="article-card reveal reveal-delay-2" role="listitem">
+        <div class="thumb">
+          <img src="images/photo-06.jpg" alt="Moderne hus med grønne omgivelser" loading="lazy" decoding="async">
+          <span class="cat">Forebygging</span>
+        </div>
+        <div class="body">
+          <h3>Fukt er den vanligste årsaken</h3>
+          <p>Skjeggkre, skjeggkrekker og noen maur trives i fuktige miljøer. Tetting av sprekker, god ventilasjon og rask reparasjon av lekkasjer er det beste grepet.</p>
+          <a href="#" class="read-more" onclick="event.preventDefault(); alert('Artikkelen vil være tilgjengelig etter publisering.');">Les mer →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="review-section" aria-label="Kundeomtaler">
+  <div class="container">
+    <div class="review-hero reveal">
+      <span class="label">Omtaler</span>
+      <h2>Hva sier kundene?</h2>
+      <p>Vi er stolte av den tilliten vi får — ikke fordi vi sier det selv, men fordi kunder forteller det videre.</p>
+    </div>
+
+    <div class="review-grid" role="list" aria-label="Kundeanmeldelser">
+      <article class="review-card reveal" role="listitem">
+        <div class="quote-mark" aria-hidden="true">“</div>
+        <blockquote>"Vi hadde maur i kjøkkenet i over et halvt år. TryggSkade fant kilden på første inspeksjon — og løste det på to dager. Sakte, grundig, uten panikk."</blockquote>
+        <div class="author">
+          <img src="images/photo-01.jpg" alt="Portrett av Maren Solberg" loading="lazy" decoding="async">
+          <div>
+            <div class="name">Maren Solberg</div>
+            <div class="role">Borettslag, Oslo</div>
+          </div>
+        </div>
+        <div class="rating" aria-label="5 av 5 stjerner"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      </article>
+
+      <article class="review-card reveal reveal-delay-1" role="listitem">
+        <div class="quote-mark" aria-hidden="true">“</div>
+        <blockquote>"Profesjonell fra første samtale til siste oppfølging. De forklarte hva de gjorde og hvorfor — og kom på avtalt tid. Det er sjeldent."</blockquote>
+        <div class="author">
+          <img src="images/photo-02.jpg" alt="Portrett av Øyvind Haugland" loading="lazy" decoding="async">
+          <div>
+            <div class="name">Øyvind Haugland</div>
+            <div class="role">Bedrift, Bergen</div>
+          </div>
+        </div>
+        <div class="rating" aria-label="5 av 5 stjerner"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      </article>
+
+      <article class="review-card reveal reveal-delay-2" role="listitem">
+        <div class="quote-mark" aria-hidden="true">“</div>
+        <blockquote>"Diskresjon er viktig for oss — vi hadde veggedyr på et kontor. De kom uten merking, gjorde jobben stille og ga oss tydelig informasjon etterpå."</blockquote>
+        <div class="author">
+          <img src="images/photo-05.jpg" alt="Portrett av Ida Nordli" loading="lazy" decoding="async">
+          <div>
+            <div class="name">Ida Nordli</div>
+            <div class="role">Kontorledelse, Trondheim</div>
+          </div>
+        </div>
+        <div class="rating" aria-label="5 av 5 stjerner"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="kontakt" class="contact-section" aria-label="Kontakt oss">
+  <div class="container contact-inner">
+    <div class="contact-heading reveal">
+      <span class="label">Kontakt</span>
+      <h2>Få hjelp nå — eller planlegg inspeksjon</h2>
+      <p>For akutte situasjoner: ring oss direkte. For planlagt inspeksjon: fyll ut skjemaet, eller bestill via telefon. Vi svarer innen to timer på virkedager.</p>
+
+      <div class="phone-strip" aria-label="Telefonkontakt">
+        <div class="icon-circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div>
+          <div class="label">Akutt / Rådgivning</div>
+          <a href="tel:+4722401234" class="number" aria-label="Ring 22 40 12 34">22 40 12 34</a>
+        </div>
+        <a href="tel:+4722401234" class="btn btn-primary" style="font-size:0.8rem;padding:10px 18px;white-space:nowrap">Ring nå</a>
+      </div>
+
+      <div class="open-hours" aria-label="Åpningstider">
+        <h4>Åpningstider</h4>
+        <div class="row"><span class="day">Mandag — fredag</span><span class="hours">07:00 — 20:00</span></div>
+        <div class="row"><span class="day">Lørdag</span><span class="hours">09:00 — 16:00</span></div>
+        <div class="row"><span class="day">Søndag</span><span class="hours">Akutt — ring</span></div>
+        <p class="note">Akutte henvendelser utenom åpningstid: vi tar telefonen uansett.</p>
+      </div>
+    </div>
+
+    <form class="contact-form reveal reveal-delay-1" id="contactForm" aria-label="Kontakt skjema" onsubmit="event.preventDefault(); submitContact();">
+      <h3>Send melding</h3>
+      <p class="sub">Vi svarer innen to timer på virkedager</p>
+      <div class="form-row dual">
+        <div>
+          <label for="name">Navn</label>
+          <input id="name" type="text" placeholder="Ditt navn" required aria-required="true">
+        </div>
+        <div>
+          <label for="email">E-post</label>
+          <input id="email" type="email" placeholder="epost@eksempel.no" required aria-required="true">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="subject">Hva gjelder det?</label>
+        <input id="subject" type="text" placeholder="F.eks. mus i kjøkken, veggedyr på soverom..." aria-label="Tema for melding">
+      </div>
+      <div class="form-row">
+        <label for="msg">Melding</label>
+        <textarea id="msg" placeholder="Beskriv kort hva du har sett, hvor det er og hvor omfattende det virker." aria-label="Melding"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send melding</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo" aria-label="Bunntekst">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <h3>TryggSkade AS</h3>
+      <p>Profesjonell skadedyrkontroll for privatpersoner, borettslag og bedrifter. Rask respons, fagkompetanse og diskresjon.</p>
+      <div class="socials" aria-label="Sosiale medier">
+        <a href="#" aria-label="LinkedIn" onclick="event.preventDefault(); alert('LinkedIn-profil kommer snart.');">in</a>
+        <a href="#" aria-label="Facebook" onclick="event.preventDefault(); alert('Facebook-side kommer snart.');">f</a>
+      </div>
+    </div>
+
+    <nav class="footer-links" aria-label="Snarveier i bunntekst">
+      <h4>Tjenester</h4>
+      <ul>
+        <li><a href="#hva-fant">Mus og rotter</a></li>
+        <li><a href="#hva-fant">Maur og insekter</a></li>
+        <li><a href="#hva-fant">Veggedyr</a></li>
+        <li><a href="#hva-fant">Veps og reir</a></li>
+        <li><a href="#tjenester">Forebygging</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-links" aria-label="Kontakt og informasjon">
+      <h4>Kontakt</h4>
+      <ul>
+        <li><a href="tel:+4722401234">22 40 12 34</a></li>
+        <li><a href="mailto:post@tryggskade.no">post@tryggskade.no</a></li>
+        <li><a href="#kontakt">Bestill inspeksjon</a></li>
+        <li><a href="#wiser">Identifiser problemet</a></li>
+        <li><a href="#">Personvern</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container footer-legal">
+    <p>© 2026 TryggSkade AS. Organisasjonsnummer 987 654 321. Autorisert skadedyrbekjempelse.</p>
+    <p>Designet og levert for portefølje — ikke et faktisk selskap.</p>
+  </div>
+</footer>
+
+<script>
+/* Mobile nav */
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.querySelector('.menu-btn').setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.querySelector('.menu-btn').setAttribute('aria-expanded','false');document.body.style.overflow='';}
+
+/* Header shadow */
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{if(window.scrollY>60)header.classList.add('scrolled');else header.classList.remove('scrolled');},{passive:true});
+
+/* Scroll reveal */
+const revealObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target);}});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+/* Wizard state */
+let wizardStep=1;
+let wizardData={pest:'',loc:'',sev:''};
+
+function filterWizard(pest){document.getElementById('wiser').scrollIntoView({behavior:'smooth',block:'start'});wizardData.pest=pest;updateWizardUI();}
+
+function chooseOption(val,field){
+  wizardData[field]=val;
+  // If pest selected and we're on step 1, move to step 2
+  if(field==='pest' && wizardStep===1){wizardStep=2;updateWizardUI();}
+  else if(field==='loc' && wizardStep===2){wizardStep=3;updateWizardUI();}
+  else if(field==='sev' && wizardStep===3){submitWizard();}
+}
+
+function updateWizardUI(){
+  // Update progress
+  document.querySelectorAll('.step-dot').forEach((dot,i)=>dot.classList.toggle('active',i<wizardStep));
+  document.getElementById('stepNum').textContent=wizardStep;
+  document.querySelector('.wizard-form .sub').innerHTML='Steg <span id="stepNum">'+wizardStep+'</span> av 3';
+
+  document.getElementById('btnPrev').disabled = wizardStep <= 1;
+  document.getElementById('btnNext').style.display = wizardStep >= 3 ? 'none' : 'inline-flex';
+
+  // Change button text for step 3
+  if(wizardStep===3){document.getElementById('btnNext').textContent='Se resultater';}
+  else{document.getElementById('btnNext').textContent='Neste step';}
+
+  // Step content
+  const content=document.getElementById('wizardContent');
+  if(wizardStep===1){
+    content.innerHTML=`
+      <button type="button" class="option-btn ${wizardData.pest==='mus'?'selected':''}" onclick="chooseOption('mus','pest')" aria-label="Mus"><span class="label">Valg 1</span>Mus — liten, rask gnager</button>
+      <button type="button" class="option-btn ${wizardData.pest==='rotte'?'selected':''}" onclick="chooseOption('rotte','pest')" aria-label="Rotte"><span class="label">Valg 2</span>Rotte — større gnager</button>
+      <button type="button" class="option-btn ${wizardData.pest==='maur'?'selected':''}" onclick="chooseOption('maur','pest')" aria-label="Maur"><span class="label">Valg 3</span>Maur — små stier</button>
+      <button type="button" class="option-btn ${wizardData.pest==='veggedyr'?'selected':''}" onclick="chooseOption('veggedyr','pest')" aria-label="Veggedyr"><span class="label">Valg 4</span>Veggedyr — skjult i madrasser</button>
+      <button type="button" class="option-btn ${wizardData.pest==='skjeggkre'?'selected':''}" onclick="chooseOption('skjeggkre','pest')" aria-label="Skjeggkre"><span class="label">Valg 5</span>Skjeggkre — sølvfarget</button>
+      <button type="button" class="option-btn ${wizardData.pest==='veps'?'selected':''}" onclick="chooseOption('veps','pest')" aria-label="Veps"><span class="label">Valg 6</span>Veps — reir på loft</button>
+      <button type="button" class="option-btn ${wizardData.pest==='moll'?'selected':''}" onclick="chooseOption('moll','pest')" aria-label="Møll"><span class="label">Valg 7</span>Møll — tekstil eller mat</button>
+      <button type="button" class="option-btn ${wizardData.pest==='andre'?'selected':''}" onclick="chooseOption('andre','pest')" aria-label="Usikker"><span class="label">Valg 8</span>Usikker / noe annet</button>`;
+  }
+  else if(wizardStep===2){
+    content.innerHTML=`
+      <button type="button" class="option-btn ${wizardData.loc==='kjokken'?'selected':''}" onclick="chooseOption('kjokken','loc')" aria-label="Kjøkken eller matområde"><span class="label">Valg 1</span>Kjøkken eller matområde</button>
+      <button type="button" class="option-btn ${wizardData.loc==='soverom'?'selected':''}" onclick="chooseOption('soverom','loc')" aria-label="Soverom eller bad"><span class="label">Valg 2</span>Soverom eller bad</button>
+      <button type="button" class="option-btn ${wizardData.loc==='kjeller'?'selected':''}" onclick="chooseOption('kjeller','loc')" aria-label="Kjeller, garasje eller avfallsrom"><span class="label">Valg 3</span>Kjeller, garasje eller avfallsrom</button>
+      <button type="button" class="option-btn ${wizardData.loc==='kontor'?'selected':''}" onclick="chooseOption('kontor','loc')" aria-label="Kontor, butikk eller fellesskap"><span class="label">Valg 4</span>Kontor, butikk eller fellesskap</button>`;
+  }
+  else if(wizardStep===3){
+    content.innerHTML=`
+      <button type="button" class="option-btn ${wizardData.sev==='lite'?'selected':''}" onclick="chooseOption('lite','sev')" aria-label="Lite — noen få spor, ikke gjentatt"><span class="label">Valg 1</span>Lite — noen få spor, ikke gjentatt</button>
+      <button type="button" class="option-btn ${wizardData.sev==='middels'?'selected':''}" onclick="chooseOption('middels','sev')" aria-label="Middels — tydelige spor, regelmessig"><span class="label">Valg 2</span>Middels — tydelige spor, regelmessig</button>
+      <button type="button" class="option-btn ${wizardData.sev==='omfattende'?'selected':''}" onclick="chooseOption('omfattende','sev')" aria-label="Omfattende — mange steder, føles utrygt"><span class="label">Valg 3</span>Omfattende — mange steder, føles utrygt</button>`;
+  }
+}
+
+function nextStep(){if(wizardStep<3){wizardStep++;updateWizardUI();}else{submitWizard();}}
+function prevStep(){if(wizardStep>1){wizardStep--;updateWizardUI();}}
+
+function submitWizard(){
+  const result=document.getElementById('wizardResult');
+  const title=document.getElementById('resTitle');
+  const text=document.getElementById('resText');
+
+  let msg='';
+  if(wizardData.pest==='mus' || wizardData.pest==='rotte') msg='Basert på dine svar vil vi anbefale en inspeksjon for gnagere. Vi kartlegger skjulesteder, inngangsårsak og gir en tydelig plan for sanering og forebygging.';
+  else if(wizardData.pest==='maur' || wizardData.pest==='moll') msg='Insekter som maur eller møll kan ofte løses raskt med riktig identifisering. Vi vil undersøke om det er en kolonibygger eller spredt aktivitet.';
+  else if(wizardData.pest==='veggedyr') msg='Veggedyr krever oftest varmebehandling eller spesialmiddel. Vi kommer raskt, diskret og gir deg tydelig informasjon før alt starter.';
+  else if(wizardData.pest==='skjeggkre') msg='Skjeggkre er ofte et tegn på fukt. Vi undersøker kilder, gir råd om ventilasjon og behandler ved behov.';
+  else if(wizardData.pest==='veps') msg='Veps reir fjernes trygt og effektivt. Vi kommer på avtalt tid, fjerner hele reiret og gir deg råd om fremtidig forebygging.';
+  else msg='Uansett hva du har sett, er vi her for å hjelpe. Vi anbefaler en inspeksjon slik at vi kan gi deg en tydelig plan — uten unødvendig press.';
+
+  title.textContent = 'Inspeksjon anbefalt';
+  text.textContent = msg;
+  result.classList.add('show');
+  result.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function submitContact(){
+  const btn=document.querySelector('#contactForm button');
+  const original=btn.textContent;
+  btn.textContent='Melding sendt';
+  btn.style.background='var(--moss)';
+  setTimeout(()=>{btn.textContent=original;btn.style.background='';document.getElementById('contactForm').reset();},2500);
+}
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

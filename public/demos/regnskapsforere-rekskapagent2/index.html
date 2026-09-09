@@ -1,0 +1,2583 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Andersen Regnskap AS – Regnskap, lønn og rådgivning for bedrifter som vil vokse</title>
+<meta name="description" content="Andersen Regnskap AS er et autorisert regnskapsbyrå i Oslo. Fast månedspris, digital bokføring, lønn, MVA, årsoppgjør og rådgivning. Få tilbud på to minutter.">
+<meta name="theme-color" content="#F5F2EB">
+<meta property="og:title" content="Andersen Regnskap AS – Regnskapet ditt, i orden. Hver måned.">
+<meta property="og:description" content="Autorisert regnskapsbyrå i Oslo. Fast pris, fast kontaktperson og regnskap du faktisk forstår.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="images/image-01.svg">
+<style>
+/* ============================================================
+   ANDERSEN REGNSKAP AS  ·  Designsystem
+   ============================================================ */
+:root{
+  --paper:#F5F2EB;
+  --paper-2:#FBFAF6;
+  --paper-3:#EDE8DC;
+  --ink:#0B1F17;
+  --ink-2:#3A4A42;
+  --ink-3:#6E7D75;
+  --line:#DFD8C9;
+  --line-2:#EDE7DA;
+  --forest:#0B1F17;
+  --forest-2:#123324;
+  --forest-3:#1B4632;
+  --moss:#3E6B4F;
+  --lime:#C8F24A;
+  --lime-2:#B2E22F;
+  --amber:#D9A441;
+  --clay:#B5563C;
+  --white:#fff;
+  --dark-text:#EAF0E9;
+  --dark-dim:#9DB0A4;
+  --dark-line:rgba(234,240,233,.14);
+  --dark-card:rgba(255,255,255,.045);
+
+  --serif:"Instrument Serif","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"Geist Mono","SFMono-Regular",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-2:cubic-bezier(.65,.05,.36,1);
+  --r-s:10px; --r-m:16px; --r-l:22px; --r-xl:30px;
+  --shadow-1:0 1px 2px rgba(11,31,23,.05), 0 8px 24px -12px rgba(11,31,23,.16);
+  --shadow-2:0 2px 4px rgba(11,31,23,.04), 0 30px 60px -30px rgba(11,31,23,.30);
+  --shadow-3:0 40px 90px -40px rgba(11,31,23,.45);
+  --wrap:1240px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html:focus-within{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.62;
+  font-weight:450;
+  letter-spacing:-.006em;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer;padding:0}
+h1,h2,h3,h4,h5{margin:0;font-weight:600;letter-spacing:-.028em;line-height:1.04}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+::selection{background:var(--lime);color:var(--ink)}
+:focus-visible{outline:2.5px solid var(--forest-3);outline-offset:3px;border-radius:4px}
+
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(20px,5vw,56px)}
+section{position:relative}
+.sec{padding:clamp(72px,9vw,132px) 0}
+.eyebrow{
+  font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--moss);display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:currentColor;opacity:.6}
+.eyebrow.on-dark{color:var(--lime)}
+.h-l{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;line-height:1.06;font-size:clamp(34px,5.2vw,62px)}
+.h-m{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.1;font-size:clamp(26px,3.3vw,40px)}
+.h-s{font-size:clamp(19px,2vw,23px);letter-spacing:-.02em;font-weight:650}
+em.ital{font-style:italic;color:var(--moss)}
+.lead{font-size:clamp(17px,1.35vw,20px);color:var(--ink-2);line-height:1.6;max-width:60ch}
+.muted{color:var(--ink-3)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.hr{height:1px;background:var(--line);border:0;margin:0}
+
+/* --- Knapper --- */
+.btn{
+  --bg:var(--forest);--fg:#F7FBF6;
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 26px;border-radius:100px;background:var(--bg);color:var(--fg);
+  font-size:15.5px;font-weight:650;letter-spacing:-.012em;white-space:nowrap;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),background .3s ease,color .3s ease;
+  box-shadow:0 1px 0 rgba(255,255,255,.14) inset, 0 12px 26px -14px rgba(11,31,23,.7);
+  will-change:transform;overflow:hidden;isolation:isolate;
+}
+.btn::after{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--forest-3);
+  transform:translateY(101%);transition:transform .5s var(--ease);border-radius:inherit;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px -16px rgba(11,31,23,.65)}
+.btn:hover::after{transform:translateY(0)}
+.btn:active{transform:translateY(0) scale(.985)}
+.btn--lime{--bg:var(--lime);--fg:#0A1A12;box-shadow:0 12px 30px -14px rgba(150,200,30,.9)}
+.btn--lime::after{background:var(--lime-2)}
+.btn--ghost{--bg:transparent;--fg:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn--ghost::after{background:var(--ink)}
+.btn--ghost:hover{color:var(--paper);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn--dark-ghost{--bg:transparent;--fg:var(--dark-text);box-shadow:inset 0 0 0 1.5px var(--dark-line)}
+.btn--dark-ghost::after{background:var(--dark-text)}
+.btn--dark-ghost:hover{color:var(--forest)}
+.btn--sm{padding:12px 20px;font-size:14.5px}
+.btn--full{width:100%}
+.btn .arw{transition:transform .4s var(--ease)}
+.btn:hover .arw{transform:translateX(4px)}
+
+.link-u{
+  position:relative;display:inline-flex;align-items:center;gap:8px;font-weight:650;font-size:15px;
+  letter-spacing:-.01em;padding-bottom:3px;
+}
+.link-u::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:100%;background:currentColor;transform-origin:right;transform:scaleX(1);transition:transform .5s var(--ease)}
+.link-u:hover::after{transform:scaleX(0);transform-origin:left}
+.link-u .arw{transition:transform .4s var(--ease)}
+.link-u:hover .arw{transform:translate(3px,-3px)}
+
+.chip{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:100px;
+  background:rgba(11,31,23,.045);border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink-2);
+}
+.chip.on-dark{background:rgba(200,242,74,.1);border-color:rgba(200,242,74,.28);color:var(--lime)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--lime-2);flex:none;position:relative}
+.dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid currentColor;opacity:.45;animation:ping 2.4s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(.6);opacity:.7}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+
+/* --- Bakgrunn / tekstur --- */
+.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-fx::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(900px 620px at 82% -8%, rgba(200,242,74,.20), transparent 62%),
+    radial-gradient(760px 560px at 6% 12%, rgba(62,107,79,.13), transparent 60%),
+    radial-gradient(1100px 700px at 50% 108%, rgba(217,164,65,.14), transparent 65%);
+}
+.bg-fx::after{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(var(--line-2) 1px,transparent 1px),linear-gradient(90deg,var(--line-2) 1px,transparent 1px);
+  background-size:96px 96px;
+  mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 72%);
+  -webkit-mask-image:radial-gradient(circle at 50% 0%,#000 0%,transparent 72%);
+}
+.noise{
+  position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+  background-image:url("images/image-02.svg");
+}
+main,header,footer{position:relative;z-index:1}
+
+/* --- Reveal --- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .95s var(--ease),transform .95s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+/* --- Scroll progress --- */
+#progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:left;z-index:1200;background:linear-gradient(90deg,var(--moss),var(--lime));opacity:.9}
+
+/* ============ HEADER ============ */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  transition:background .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.hdr.stuck{background:rgba(245,242,235,.82);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-color:var(--line)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
+.brand{display:flex;align-items:center;gap:12px;flex:none}
+.brand-mark{width:38px;height:38px;border-radius:11px;background:var(--forest);display:grid;place-items:center;flex:none;transition:transform .6s var(--ease)}
+.brand:hover .brand-mark{transform:rotate(-8deg) scale(1.05)}
+.brand-txt{display:flex;flex-direction:column;line-height:1.05}
+.brand-txt b{font-family:var(--serif);font-weight:400;font-size:21px;letter-spacing:-.015em}
+.brand-txt span{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{
+  position:relative;padding:9px 15px;border-radius:100px;font-size:14.5px;font-weight:600;color:var(--ink-2);
+  transition:color .3s ease,background .3s ease;
+}
+.nav a:hover{color:var(--ink);background:rgba(11,31,23,.05)}
+.nav a.active{color:var(--ink);background:rgba(11,31,23,.07)}
+.hdr-cta{display:flex;align-items:center;gap:12px;flex:none}
+.hdr-tel{font-family:var(--mono);font-size:13.5px;font-weight:500;letter-spacing:-.02em;color:var(--ink-2);display:flex;align-items:center;gap:8px}
+.hdr-tel svg{opacity:.6}
+.burger{display:none;width:44px;height:44px;border-radius:12px;box-shadow:inset 0 0 0 1.5px var(--line);place-items:center}
+.burger i{display:block;width:18px;height:1.6px;background:var(--ink);position:relative;transition:transform .4s var(--ease)}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0;width:18px;height:1.6px;background:var(--ink);transition:transform .4s var(--ease)}
+.burger i::before{top:-6px}.burger i::after{top:6px}
+body.menu-open .burger i{transform:rotate(45deg)}
+body.menu-open .burger i::before{transform:translateY(6px) rotate(-90deg)}
+body.menu-open .burger i::after{opacity:0}
+
+.mobile-menu{
+  position:fixed;inset:0;z-index:999;background:var(--paper);padding:96px 24px 40px;
+  transform:translateY(-101%);transition:transform .7s var(--ease);overflow-y:auto;
+}
+body.menu-open .mobile-menu{transform:translateY(0)}
+.mobile-menu a.m-link{
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 0;
+  border-bottom:1px solid var(--line-2);font-family:var(--serif);font-size:30px;letter-spacing:-.02em;
+  opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+body.menu-open .mobile-menu a.m-link{opacity:1;transform:none}
+.mobile-menu a.m-link span{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.mm-foot{margin-top:28px;display:grid;gap:12px}
+
+/* ============ HERO ============ */
+.hero{padding:clamp(120px,16vh,170px) 0 clamp(48px,6vw,80px);position:relative}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(32px,4vw,64px);align-items:center}
+.hero h1{margin:20px 0 0}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line > span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease)}
+.ready .hero h1 .line > span{transform:none}
+.hero h1 .line:nth-child(2) > span{transition-delay:.09s}
+.hero h1 .line:nth-child(3) > span{transition-delay:.18s}
+.hero-sub{margin-top:26px;font-size:clamp(16.5px,1.4vw,19px);color:var(--ink-2);max-width:47ch}
+.hero-sub b{color:var(--ink);font-weight:700}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;padding-top:26px;border-top:1px solid var(--line)}
+.hero-trust li{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.hero-trust svg{flex:none}
+.hero-anim{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease) .3s,transform .9s var(--ease) .3s}
+.ready .hero-anim{opacity:1;transform:none}
+
+/* Dashboard-kort */
+.dash{
+  position:relative;background:var(--forest);color:var(--dark-text);border-radius:var(--r-xl);
+  padding:22px;box-shadow:var(--shadow-3);transform-style:preserve-3d;
+  border:1px solid rgba(255,255,255,.08);
+}
+.dash::before{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(150deg,rgba(200,242,74,.45),transparent 38%,transparent 62%,rgba(255,255,255,.16));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+.dash-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.dash-title{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:650;letter-spacing:-.01em}
+.dash-badge{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dark-dim);display:flex;align-items:center;gap:7px}
+.kpi-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.kpi{background:var(--dark-card);border:1px solid var(--dark-line);border-radius:16px;padding:13px 14px;transition:background .3s ease,border-color .3s ease}
+.kpi:hover{background:rgba(255,255,255,.08);border-color:rgba(200,242,74,.35)}
+.kpi .k-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-dim);font-family:var(--mono)}
+.kpi .k-val{font-size:clamp(20px,2.1vw,25px);font-weight:700;letter-spacing:-.03em;margin-top:5px;font-variant-numeric:tabular-nums}
+.kpi .k-delta{font-size:11.5px;margin-top:3px;color:var(--lime);font-weight:650;display:flex;align-items:center;gap:5px}
+.kpi .k-delta.down{color:#F0A48B}
+.chart-card{margin-top:12px;background:var(--dark-card);border:1px solid var(--dark-line);border-radius:18px;padding:16px;position:relative}
+.chart-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
+.chart-head .t{font-size:12.5px;font-weight:650}
+.chart-head .l{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-dim)}
+.chart-wrap{position:relative;height:158px}
+#cashChart{width:100%;height:100%;overflow:visible;cursor:crosshair}
+.chart-tip{
+  position:absolute;z-index:5;pointer-events:none;opacity:0;transform:translate(-50%,-140%) scale(.94);
+  transition:opacity .2s ease,transform .25s var(--ease);
+  background:var(--paper);color:var(--ink);border-radius:11px;padding:8px 11px;min-width:104px;
+  box-shadow:0 16px 30px -14px rgba(0,0,0,.7);
+}
+.chart-tip.show{opacity:1;transform:translate(-50%,-130%) scale(1)}
+.chart-tip .m{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.chart-tip .v{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.dash-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--dark-line)}
+.dash-foot .txt{font-size:12px;color:var(--dark-dim);line-height:1.4}
+.dash-foot .txt b{color:var(--dark-text);font-weight:650}
+.float-card{
+  position:absolute;background:var(--paper-2);color:var(--ink);border-radius:18px;padding:13px 15px;
+  box-shadow:var(--shadow-2);border:1px solid var(--line);z-index:4;
+}
+.fc-1{left:-34px;bottom:78px;width:212px;animation:float1 7s ease-in-out infinite}
+.fc-2{right:-26px;top:-26px;animation:float2 8.5s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+.fc-row{display:flex;align-items:center;gap:10px}
+.fc-ic{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;flex:none}
+.fc-t{font-size:12.5px;font-weight:700;letter-spacing:-.01em}
+.fc-s{font-size:11px;color:var(--ink-3);font-family:var(--mono);letter-spacing:-.01em}
+.mini-ring{--p:72;width:44px;height:44px;flex:none}
+
+/* ============ MARQUEE ============ */
+.marq{padding:34px 0;border-block:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.5),transparent);overflow:hidden}
+.marq-label{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin-bottom:22px}
+.marq-track{display:flex;gap:0;width:max-content;animation:marq 44s linear infinite}
+.marq:hover .marq-track{animation-play-state:paused}
+@keyframes marq{to{transform:translateX(-50%)}}
+.marq-item{display:flex;align-items:center;gap:12px;padding:0 clamp(24px,3vw,44px);color:var(--ink-2);opacity:.72;transition:opacity .3s ease,color .3s ease}
+.marq-item:hover{opacity:1;color:var(--ink)}
+.marq-item .nm{font-size:clamp(16px,1.6vw,20px);font-weight:650;letter-spacing:-.02em;white-space:nowrap}
+.marq-item .sub{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ============ STATS ============ */
+.stats{padding:clamp(56px,7vw,96px) 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.stat{padding:30px 26px 8px 0;border-right:1px solid var(--line);position:relative}
+.stat:last-child{border-right:0}
+.stat .n{font-family:var(--serif);font-size:clamp(38px,4.6vw,58px);line-height:1;letter-spacing:-.03em;display:flex;align-items:baseline;gap:2px}
+.stat .n .suf{font-size:.42em;color:var(--moss);font-family:var(--sans);font-weight:700;letter-spacing:-.01em}
+.stat .l{margin-top:10px;font-size:14px;color:var(--ink-2);max-width:22ch;line-height:1.45}
+.stat .tag{position:absolute;top:26px;right:26px;font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.1em}
+
+/* ============ TJENESTER ============ */
+.sec-head{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,4vw,60px);align-items:end;margin-bottom:clamp(36px,4.5vw,60px)}
+.sec-head h2{margin-top:18px}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden}
+.svc{
+  position:relative;background:var(--paper);padding:30px 26px 34px;min-height:290px;
+  display:flex;flex-direction:column;overflow:hidden;isolation:isolate;
+  transition:color .45s var(--ease);
+}
+.svc::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--forest);
+  transform:translateY(101%);transition:transform .6s var(--ease);
+}
+.svc:hover{color:var(--dark-text)}
+.svc:hover::before{transform:translateY(0)}
+.svc .idx{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--ink-3);transition:color .45s var(--ease)}
+.svc:hover .idx{color:var(--lime)}
+.svc-ic{width:46px;height:46px;margin:22px 0 auto;border-radius:13px;display:grid;place-items:center;background:rgba(11,31,23,.05);transition:background .45s var(--ease),transform .6s var(--ease)}
+.svc:hover .svc-ic{background:rgba(200,242,74,.16);transform:translateY(-3px)}
+.svc-ic svg{stroke:var(--forest);transition:stroke .45s var(--ease)}
+.svc:hover .svc-ic svg{stroke:var(--lime)}
+.svc h3{font-size:20px;margin-top:22px;letter-spacing:-.025em}
+.svc p{margin-top:9px;font-size:14.2px;line-height:1.55;color:var(--ink-2);transition:color .45s var(--ease)}
+.svc:hover p{color:var(--dark-dim)}
+.svc-more{margin-top:16px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--forest);opacity:0;transform:translateY(6px);transition:all .45s var(--ease)}
+.svc:hover .svc-more{opacity:1;transform:none;color:var(--lime)}
+
+/* ============ PROSESS ============ */
+.proc{background:var(--paper-2);border-block:1px solid var(--line)}
+.proc-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(28px,5vw,80px);align-items:start}
+.proc-sticky{position:sticky;top:118px}
+.proc-visual{
+  margin-top:30px;border-radius:var(--r-l);background:var(--forest);color:var(--dark-text);
+  padding:26px;box-shadow:var(--shadow-2);border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden;
+}
+.pv-stage{display:none;animation:pvIn .6s var(--ease) both}
+.pv-stage.on{display:block}
+@keyframes pvIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pv-num{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--lime);text-transform:uppercase}
+.pv-title{font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);margin-top:8px;letter-spacing:-.015em}
+.pv-list{margin-top:18px;display:grid;gap:11px}
+.pv-list li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--dark-dim);line-height:1.5}
+.pv-list li b{color:var(--dark-text);font-weight:650}
+.pv-list .chk{flex:none;width:19px;height:19px;border-radius:50%;background:rgba(200,242,74,.16);display:grid;place-items:center;margin-top:2px}
+.pv-bar{margin-top:22px;height:5px;border-radius:100px;background:rgba(255,255,255,.1);overflow:hidden}
+.pv-bar i{display:block;height:100%;width:33%;background:linear-gradient(90deg,var(--moss),var(--lime));border-radius:100px;transition:width .8s var(--ease)}
+.pv-meta{display:flex;justify-content:space-between;margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-dim)}
+.pv-art{margin-top:22px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--dark-line);padding:16px}
+.pv-art svg{width:100%;height:auto}
+.steps{display:grid;gap:clamp(16px,2vw,22px)}
+.step{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r-l);padding:clamp(22px,2.6vw,32px);
+  transition:border-color .4s var(--ease),box-shadow .4s var(--ease),transform .4s var(--ease);
+}
+.step.on{border-color:var(--forest-3);box-shadow:var(--shadow-1);transform:translateX(4px)}
+.step-top{display:flex;align-items:center;gap:14px}
+.step-n{
+  width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-family:var(--mono);font-size:13px;font-weight:600;background:rgba(11,31,23,.05);
+  transition:background .4s var(--ease),color .4s var(--ease);
+}
+.step.on .step-n{background:var(--forest);color:var(--lime)}
+.step h3{font-size:clamp(20px,2.1vw,25px);font-family:var(--serif);font-weight:400;letter-spacing:-.015em}
+.step .dur{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.step p{margin-top:14px;color:var(--ink-2);font-size:15.4px;max-width:52ch}
+.step-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+
+/* ============ KALKULATOR ============ */
+.calc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,3vw,40px);align-items:start;margin-top:clamp(30px,3.6vw,48px)}
+.card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--shadow-1)}
+.calc-form{padding:clamp(22px,2.6vw,34px)}
+.field{padding:20px 0;border-bottom:1px solid var(--line-2)}
+.field:first-child{padding-top:0}
+.field:last-of-type{border-bottom:0}
+.f-label{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:13px}
+.f-label span{font-size:14.5px;font-weight:700;letter-spacing:-.012em}
+.f-label .val{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--forest);background:rgba(200,242,74,.28);padding:3px 10px;border-radius:100px;white-space:nowrap}
+.seg{position:relative;display:flex;gap:6px;background:rgba(11,31,23,.05);padding:5px;border-radius:100px;flex-wrap:wrap}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{
+  position:relative;z-index:2;flex:1;text-align:center;padding:9px 12px;border-radius:100px;cursor:pointer;
+  font-size:13.5px;font-weight:650;color:var(--ink-3);transition:color .35s var(--ease);white-space:nowrap;
+}
+.seg label small{display:block;font-size:10.5px;font-weight:500;opacity:.75;letter-spacing:.02em}
+.seg input:checked + label{color:var(--paper);box-shadow:0 6px 16px -8px rgba(11,31,23,.8)}
+.seg input:checked + label{background:var(--forest)}
+.seg input:focus-visible + label{outline:2.5px solid var(--forest-3);outline-offset:2px}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;cursor:grab;
+}
+input[type=range]:active{cursor:grabbing}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:100px;background:linear-gradient(90deg,var(--forest) var(--fill,40%),rgba(11,31,23,.12) var(--fill,40%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-9px;border-radius:50%;background:var(--paper-2);border:2px solid var(--forest);box-shadow:0 6px 14px -6px rgba(11,31,23,.7);transition:transform .25s var(--ease)}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.12)}
+input[type=range]::-moz-range-track{height:6px;border-radius:100px;background:rgba(11,31,23,.12)}
+input[type=range]::-moz-range-progress{height:6px;border-radius:100px;background:var(--forest)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--paper-2);border:2px solid var(--forest)}
+.scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.06em;margin-top:2px}
+.opts{display:flex;flex-wrap:wrap;gap:9px}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts label{
+  display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border-radius:100px;cursor:pointer;
+  box-shadow:inset 0 0 0 1.5px var(--line);font-size:13.5px;font-weight:600;color:var(--ink-2);
+  transition:all .35s var(--ease);
+}
+.opts label .bx{width:16px;height:16px;border-radius:5px;box-shadow:inset 0 0 0 1.5px var(--line);display:grid;place-items:center;transition:all .3s var(--ease)}
+.opts label:hover{box-shadow:inset 0 0 0 1.5px var(--ink-3);color:var(--ink)}
+.opts input:checked + label{background:rgba(200,242,74,.24);box-shadow:inset 0 0 0 1.5px var(--forest-3);color:var(--ink)}
+.opts input:checked + label .bx{background:var(--forest);box-shadow:none}
+.opts input:checked + label .bx svg{opacity:1}
+.opts .bx svg{opacity:0;transition:opacity .25s ease}
+.opts input:focus-visible + label{outline:2.5px solid var(--forest-3);outline-offset:2px}
+.add-price{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+
+.calc-out{position:sticky;top:110px;overflow:hidden}
+.calc-price{background:var(--forest);color:var(--dark-text);padding:clamp(24px,2.8vw,34px);position:relative;overflow:hidden}
+.calc-price::after{content:"";position:absolute;width:340px;height:340px;right:-140px;top:-160px;border-radius:50%;background:radial-gradient(circle,rgba(200,242,74,.22),transparent 66%)}
+.cp-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dark-dim)}
+.cp-big{display:flex;align-items:baseline;gap:8px;margin-top:10px}
+.cp-big .n{font-family:var(--serif);font-size:clamp(48px,6vw,72px);line-height:.94;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.cp-big .u{font-size:15px;color:var(--dark-dim);font-weight:600}
+.cp-sub{margin-top:10px;font-size:13.5px;color:var(--dark-dim);display:flex;flex-wrap:wrap;gap:6px 16px}
+.cp-sub b{color:var(--lime);font-weight:650}
+.calc-body{padding:clamp(20px,2.4vw,28px);display:grid;gap:2px}
+.brk{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.brk:last-child{border-bottom:0}
+.brk .l{display:flex;align-items:center;gap:10px;color:var(--ink-2)}
+.brk .l i{width:7px;height:7px;border-radius:2px;background:var(--moss);flex:none}
+.brk .r{font-family:var(--mono);font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.brk.total{border-top:1px solid var(--line);margin-top:6px;padding-top:15px;font-weight:700}
+.brk.total .l{color:var(--ink);font-weight:700}
+.brk.total .r{font-size:16px;color:var(--forest)}
+.save-box{margin:18px 0 0;background:rgba(200,242,74,.2);border:1px solid rgba(62,107,79,.28);border-radius:16px;padding:16px 18px}
+.save-box .t{font-size:13px;font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.save-box .d{font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.5}
+.bar-cmp{margin-top:14px;display:grid;gap:9px}
+.bar-row{display:grid;grid-template-columns:96px 1fr auto;align-items:center;gap:12px;font-size:12px}
+.bar-row .bl{color:var(--ink-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+.bar{height:9px;border-radius:100px;background:rgba(11,31,23,.08);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:100px;width:0;transition:width .9s var(--ease)}
+.bar-row .bv{font-family:var(--mono);font-size:11.5px;font-weight:600;white-space:nowrap}
+.calc-cta{padding:0 clamp(20px,2.4vw,28px) clamp(22px,2.6vw,30px)}
+.disclaim{font-size:11.5px;color:var(--ink-3);line-height:1.5;margin-top:12px;text-align:center}
+
+/* ============ PRISER ============ */
+.prices{background:var(--forest);color:var(--dark-text);position:relative;overflow:hidden}
+.prices::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 500px at 88% 0%,rgba(200,242,74,.13),transparent 62%),radial-gradient(700px 500px at 0% 100%,rgba(217,164,65,.12),transparent 60%)}
+.prices > *{position:relative}
+.prices .lead{color:var(--dark-dim)}
+.prices .h-l,.prices .h-m{color:var(--dark-text)}
+.ptoggle{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.07);padding:5px;border-radius:100px;border:1px solid var(--dark-line)}
+.ptoggle button{padding:9px 18px;border-radius:100px;font-size:13.5px;font-weight:650;color:var(--dark-dim);transition:all .35s var(--ease);white-space:nowrap}
+.ptoggle button.on{background:var(--lime);color:var(--ink)}
+.ptoggle .save{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--lime);padding-left:6px}
+.ptoggle button.on .save{color:var(--forest-3)}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,20px);margin-top:clamp(30px,3.6vw,46px)}
+.p-card{
+  border:1px solid var(--dark-line);border-radius:var(--r-l);padding:clamp(22px,2.4vw,30px);
+  background:rgba(255,255,255,.035);display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:transform .55s var(--ease),border-color .45s var(--ease),background .45s var(--ease);
+}
+.p-card:hover{transform:translateY(-6px);border-color:rgba(200,242,74,.4);background:rgba(255,255,255,.06)}
+.p-card.feat{background:var(--paper);color:var(--ink);border-color:transparent}
+.p-card.feat:hover{background:var(--paper)}
+.p-flag{position:absolute;top:0;right:0;background:var(--lime);color:var(--ink);font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-bottom-left-radius:14px;font-weight:600}
+.p-name{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--lime)}
+.p-card.feat .p-name{color:var(--moss)}
+.p-for{margin-top:14px;font-size:14.5px;color:var(--dark-dim);min-height:44px;line-height:1.5}
+.p-card.feat .p-for{color:var(--ink-2)}
+.p-amt{display:flex;align-items:baseline;gap:7px;margin-top:18px}
+.p-amt .n{font-family:var(--serif);font-size:clamp(38px,4.4vw,52px);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;transition:opacity .25s ease}
+.p-amt .kr{font-size:15px;font-weight:700}
+.p-amt .per{font-size:13px;color:var(--dark-dim)}
+.p-card.feat .p-amt .per{color:var(--ink-3)}
+.p-note{font-size:12px;color:var(--dark-dim);margin-top:6px;font-family:var(--mono);letter-spacing:-.01em}
+.p-card.feat .p-note{color:var(--ink-3)}
+.p-list{margin:22px 0 26px;display:grid;gap:11px;flex:1}
+.p-list li{display:flex;gap:11px;font-size:14px;line-height:1.5;color:var(--dark-dim)}
+.p-card.feat .p-list li{color:var(--ink-2)}
+.p-list li b{font-weight:650;color:var(--dark-text)}
+.p-card.feat .p-list li b{color:var(--ink)}
+.p-list .pi{flex:none;margin-top:3px}
+.addons{margin-top:clamp(30px,3.4vw,44px);border-top:1px solid var(--dark-line);padding-top:clamp(24px,3vw,34px);display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(20px,3vw,50px);align-items:start}
+.addon{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--dark-line);font-size:14.5px}
+.addon:last-child{border-bottom:0}
+.addon .l{display:flex;align-items:center;gap:12px;color:var(--dark-dim)}
+.addon .l b{color:var(--dark-text);font-weight:650}
+.addon .r{font-family:var(--mono);font-size:13.5px;color:var(--lime);white-space:nowrap}
+
+/* ============ MÅLEPUNKTER / DASH 2 ============ */
+.inside-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(22px,2.6vw,34px);align-items:start;margin-top:clamp(30px,3.6vw,48px)}
+.panel{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-l);padding:clamp(20px,2.4vw,28px);box-shadow:var(--shadow-1)}
+.panel-h{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+.panel-h .t{font-size:15px;font-weight:700;letter-spacing:-.015em}
+.panel-h .s{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.bars{display:grid;gap:15px}
+.b-item .bt{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:7px}
+.b-item .bt b{font-weight:650}
+.b-item .bt span{font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.b-item .bar{background:rgba(11,31,23,.07)}
+.ring-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+.ring-item{text-align:center}
+.ring-item svg{margin-inline:auto}
+.ring-item .rl{font-size:12px;color:var(--ink-3);margin-top:9px;line-height:1.35}
+.feed{display:grid;gap:2px}
+.feed li{display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid var(--line-2)}
+.feed li:last-child{border-bottom:0}
+.feed .fi{width:34px;height:34px;border-radius:11px;flex:none;display:grid;place-items:center}
+.feed .ft{font-size:13.5px;font-weight:650;letter-spacing:-.01em}
+.feed .fs{font-size:11.5px;color:var(--ink-3);font-family:var(--mono)}
+.feed .fa{margin-left:auto;font-family:var(--mono);font-size:12.5px;font-weight:600;white-space:nowrap}
+.feed .fa.pos{color:var(--moss)}
+.deadline{display:flex;gap:14px;align-items:center;background:var(--forest);color:var(--dark-text);border-radius:18px;padding:18px 20px;margin-top:16px}
+.deadline .dl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
+.deadline .dt{font-size:15px;font-weight:700;margin-top:4px}
+.deadline .dd{font-size:12.5px;color:var(--dark-dim);margin-top:2px}
+
+/* ============ OMTALER ============ */
+.quotes{background:var(--paper-2);border-block:1px solid var(--line);overflow:hidden}
+.q-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(28px,3.4vw,44px)}
+.q-nav{display:flex;gap:9px}
+.q-nav button{width:48px;height:48px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--line);display:grid;place-items:center;transition:all .4s var(--ease)}
+.q-nav button:hover{background:var(--forest);box-shadow:none}
+.q-nav button:hover svg{stroke:var(--lime)}
+.q-nav svg{stroke:var(--ink);transition:stroke .3s ease}
+.q-track-wrap{overflow:hidden;cursor:grab;margin-inline:calc(clamp(20px,5vw,56px) * -1);padding-inline:clamp(20px,5vw,56px)}
+.q-track-wrap.drag{cursor:grabbing}
+.q-track{display:flex;gap:clamp(14px,1.6vw,20px);transition:transform .8s var(--ease);will-change:transform}
+.q-track-wrap.drag .q-track{transition:none}
+.q-card{
+  flex:0 0 clamp(290px,31%,400px);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-l);
+  padding:clamp(22px,2.4vw,30px);display:flex;flex-direction:column;user-select:none;
+  transition:box-shadow .4s var(--ease),transform .4s var(--ease),border-color .4s var(--ease);
+}
+.q-card:hover{box-shadow:var(--shadow-1);transform:translateY(-4px);border-color:var(--moss)}
+.stars{display:flex;gap:3px}
+.q-mark{font-family:var(--serif);font-size:52px;line-height:.6;color:var(--line);margin-bottom:6px}
+.q-text{font-size:16px;line-height:1.6;letter-spacing:-.012em;flex:1}
+.q-person{display:flex;align-items:center;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-2)}
+.q-av{width:42px;height:42px;border-radius:50%;flex:none;overflow:hidden}
+.q-pn{font-size:14px;font-weight:700;letter-spacing:-.012em}
+.q-pr{font-size:12.5px;color:var(--ink-3)}
+.q-dots{display:flex;gap:7px;justify-content:center;margin-top:26px}
+.q-dots button{width:8px;height:8px;border-radius:100px;background:var(--line);transition:all .4s var(--ease)}
+.q-dots button.on{width:26px;background:var(--forest)}
+
+/* ============ TEAM ============ */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,22px);margin-top:clamp(30px,3.6vw,48px)}
+.t-card{position:relative}
+.t-photo{
+  aspect-ratio:4/4.6;border-radius:var(--r-l);overflow:hidden;position:relative;
+  background:var(--paper-3);transition:transform .6s var(--ease);
+}
+.t-card:hover .t-photo{transform:translateY(-6px)}
+.t-photo svg{width:100%;height:100%;transition:transform .8s var(--ease)}
+.t-card:hover .t-photo svg{transform:scale(1.05)}
+.t-badge{
+  position:absolute;left:14px;bottom:14px;background:rgba(245,242,235,.92);backdrop-filter:blur(8px);
+  border-radius:100px;padding:6px 12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  transform:translateY(8px);opacity:0;transition:all .5s var(--ease);
+}
+.t-card:hover .t-badge{transform:none;opacity:1}
+.t-name{margin-top:16px;font-size:17.5px;font-weight:700;letter-spacing:-.02em}
+.t-role{font-size:13px;color:var(--ink-3);margin-top:3px}
+.t-desc{font-size:13.5px;color:var(--ink-2);margin-top:10px;line-height:1.5}
+
+/* ============ NYTTIG ============ */
+.news{background:var(--paper-2);border-block:1px solid var(--line)}
+.n-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,22px);margin-top:clamp(30px,3.6vw,48px)}
+.n-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+}
+.n-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-1);border-color:var(--moss)}
+.n-img{aspect-ratio:16/9.4;position:relative;overflow:hidden}
+.n-img svg{width:100%;height:100%;transition:transform .9s var(--ease)}
+.n-card:hover .n-img svg{transform:scale(1.06)}
+.n-tag{position:absolute;top:14px;left:14px;background:var(--paper);border-radius:100px;padding:6px 12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase}
+.n-body{padding:22px 22px 26px;display:flex;flex-direction:column;flex:1}
+.n-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.n-card h3{margin-top:12px;font-family:var(--serif);font-weight:400;font-size:clamp(20px,2.1vw,25px);letter-spacing:-.015em;line-height:1.18}
+.n-card p{margin-top:10px;font-size:14px;color:var(--ink-2);line-height:1.55;flex:1}
+.n-link{margin-top:18px}
+
+/* ============ FAQ ============ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,64px);align-items:start}
+.faq-list{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;text-align:left;font-size:clamp(16.5px,1.7vw,19.5px);font-weight:650;letter-spacing:-.02em;transition:color .3s ease}
+.faq-q:hover{color:var(--moss)}
+.faq-ic{width:30px;height:30px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1.4px var(--line);display:grid;place-items:center;transition:all .45s var(--ease);position:relative}
+.faq-ic::before,.faq-ic::after{content:"";position:absolute;background:var(--ink);border-radius:2px;transition:transform .45s var(--ease),background .3s ease}
+.faq-ic::before{width:11px;height:1.6px}
+.faq-ic::after{width:1.6px;height:11px}
+.faq-item.open .faq-ic{background:var(--forest);box-shadow:none}
+.faq-item.open .faq-ic::before,.faq-item.open .faq-ic::after{background:var(--lime)}
+.faq-item.open .faq-ic::after{transform:rotate(90deg) scaleX(0)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-a > div{overflow:hidden}
+.faq-a p{padding-bottom:24px;color:var(--ink-2);font-size:15.4px;max-width:64ch}
+.faq-a p + p{padding-top:0}
+
+/* ============ CTA-BÅND ============ */
+.band{background:var(--lime);color:var(--ink);padding:clamp(48px,6vw,80px) 0;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0;opacity:.35;background-image:linear-gradient(rgba(11,31,23,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(11,31,23,.14) 1px,transparent 1px);background-size:64px 64px}
+.band-in{position:relative;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.band h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.4vw,54px);letter-spacing:-.02em;line-height:1.05;max-width:20ch}
+.band .sub{margin-top:12px;font-size:15.5px;max-width:44ch;color:rgba(11,31,23,.72)}
+.band .btn{--bg:var(--forest);--fg:var(--paper)}
+.band .btn::after{background:var(--forest-2)}
+
+/* ============ KONTAKT ============ */
+.contact-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(24px,3.4vw,50px);align-items:start;margin-top:clamp(30px,3.6vw,48px)}
+form.cf{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-l);padding:clamp(22px,2.8vw,36px);box-shadow:var(--shadow-1);position:relative;overflow:hidden}
+.f-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.inp{display:block;margin-top:16px}
+.inp > span{display:block;font-size:12.5px;font-weight:700;letter-spacing:.01em;color:var(--ink-2);margin-bottom:7px}
+.inp input,.inp textarea,.inp select{
+  width:100%;padding:14px 16px;border-radius:13px;background:var(--paper);
+  box-shadow:inset 0 0 0 1.5px var(--line);border:0;font-size:15px;transition:box-shadow .3s ease,background .3s ease;
+  font-family:inherit;
+}
+.inp textarea{resize:vertical;min-height:110px}
+.inp input:hover,.inp textarea:hover{box-shadow:inset 0 0 0 1.5px var(--ink-3)}
+.inp input:focus,.inp textarea:focus,.inp select:focus{outline:none;box-shadow:inset 0 0 0 2px var(--forest);background:var(--white)}
+.inp input::placeholder,.inp textarea::placeholder{color:#A7B2AB}
+.inp.err input,.inp.err textarea{box-shadow:inset 0 0 0 2px var(--clay)}
+.err-msg{display:none;font-size:12px;color:var(--clay);margin-top:6px;font-weight:600}
+.inp.err .err-msg{display:block}
+.form-seg{margin-top:16px}
+.form-seg .seg{background:rgba(11,31,23,.05)}
+.consent{display:flex;gap:12px;align-items:flex-start;margin-top:20px;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.consent input{position:absolute;opacity:0;pointer-events:none}
+.consent label{display:flex;gap:12px;cursor:pointer;align-items:flex-start}
+.consent .bx{width:19px;height:19px;border-radius:6px;box-shadow:inset 0 0 0 1.5px var(--line);flex:none;margin-top:1px;display:grid;place-items:center;transition:all .3s var(--ease)}
+.consent input:checked + label .bx{background:var(--forest);box-shadow:none}
+.consent input:checked + label .bx svg{opacity:1}
+.consent .bx svg{opacity:0}
+.consent input:focus-visible + label .bx{outline:2.5px solid var(--forest-3);outline-offset:2px}
+.consent.err .bx{box-shadow:inset 0 0 0 2px var(--clay)}
+.consent .err-msg.c-err{display:none}
+.consent.err .err-msg.c-err{display:block}
+form.cf.shake{animation:shake .5s cubic-bezier(.36,.07,.19,.97)}
+@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-6px)}40%,60%{transform:translateX(6px)}}
+.form-note{font-size:11.5px;color:var(--ink-3);margin-top:12px;line-height:1.5}
+.cf-success{
+  position:absolute;inset:0;background:var(--forest);color:var(--dark-text);padding:clamp(26px,3vw,44px);
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:14px;
+  opacity:0;visibility:hidden;transform:translateY(14px);transition:all .6s var(--ease);z-index:5;
+}
+.cf-success.on{opacity:1;visibility:visible;transform:none}
+.cf-success .tick{width:56px;height:56px;border-radius:50%;background:rgba(200,242,74,.16);display:grid;place-items:center}
+.cf-success h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,36px);letter-spacing:-.015em}
+.cf-success p{color:var(--dark-dim);font-size:15px;max-width:38ch}
+.cf-ref{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--lime);background:rgba(200,242,74,.12);padding:7px 13px;border-radius:100px}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;width:7px;height:11px;border-radius:2px;top:-20px;animation:fall 2.6s var(--ease-2) forwards}
+@keyframes fall{to{transform:translateY(560px) rotate(540deg);opacity:0}}
+
+.cinfo{display:grid;gap:14px}
+.ci-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-l);padding:22px 24px;display:flex;gap:16px;align-items:flex-start;transition:border-color .4s var(--ease),transform .4s var(--ease)}
+.ci-card:hover{border-color:var(--moss);transform:translateY(-3px)}
+.ci-ic{width:40px;height:40px;border-radius:12px;background:rgba(11,31,23,.05);display:grid;place-items:center;flex:none}
+.ci-card h4{font-size:15.5px;letter-spacing:-.015em}
+.ci-card p{font-size:14px;color:var(--ink-2);margin-top:4px;line-height:1.5}
+.ci-card .mono{font-size:14px;color:var(--ink)}
+.hours{display:grid;gap:0;margin-top:10px}
+.hours div{display:flex;justify-content:space-between;font-size:13.5px;padding:7px 0;border-bottom:1px dashed var(--line);color:var(--ink-2)}
+.hours div:last-child{border-bottom:0}
+.hours b{font-weight:650;color:var(--ink);font-family:var(--mono);font-size:12.5px}
+.map-card{border-radius:var(--r-l);overflow:hidden;border:1px solid var(--line);background:var(--paper-3);position:relative}
+.map-card svg{width:100%;height:auto;display:block}
+.map-pin{position:absolute;left:52%;top:46%;width:14px;height:14px;border-radius:50%;background:var(--clay);box-shadow:0 0 0 5px rgba(181,86,60,.24);animation:pinp 2.6s ease-in-out infinite}
+@keyframes pinp{0%,100%{box-shadow:0 0 0 5px rgba(181,86,60,.24)}50%{box-shadow:0 0 0 13px rgba(181,86,60,0)}}
+
+/* ============ FOOTER ============ */
+.ftr{background:var(--forest);color:var(--dark-text);padding:clamp(56px,6vw,84px) 0 0;position:relative;overflow:hidden}
+.ftr::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 420px at 10% 0%,rgba(200,242,74,.1),transparent 60%)}
+.ftr > *{position:relative}
+.ftr-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:clamp(24px,3vw,48px);padding-bottom:clamp(40px,5vw,64px)}
+.ftr h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dark-dim);font-weight:500;margin-bottom:18px}
+.ftr-links li{margin-bottom:11px}
+.ftr-links a{font-size:14.5px;color:var(--dark-dim);transition:color .3s ease,padding-left .3s var(--ease)}
+.ftr-links a:hover{color:var(--lime);padding-left:5px}
+.ftr-brand p{font-size:14.5px;color:var(--dark-dim);margin-top:18px;max-width:34ch;line-height:1.6}
+.ftr-news{display:flex;gap:8px;margin-top:18px;max-width:340px}
+.ftr-news input{flex:1;padding:13px 16px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid var(--dark-line);color:var(--dark-text);font-size:14px;min-width:0}
+.ftr-news input::placeholder{color:var(--dark-dim)}
+.ftr-news input:focus{outline:none;border-color:var(--lime)}
+.ftr-news button{width:46px;height:46px;flex:none;border-radius:50%;background:var(--lime);display:grid;place-items:center;transition:transform .4s var(--ease)}
+.ftr-news button:hover{transform:translateX(3px) scale(1.05)}
+.ftr-bot{border-top:1px solid var(--dark-line);padding:24px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ftr-bot p{font-size:12.5px;color:var(--dark-dim)}
+.ftr-legal{display:flex;gap:20px;flex-wrap:wrap}
+.ftr-legal a{font-size:12.5px;color:var(--dark-dim);transition:color .3s ease}
+.ftr-legal a:hover{color:var(--lime)}
+.ftr-wordmark{font-family:var(--serif);font-size:clamp(58px,15vw,190px);line-height:.82;letter-spacing:-.03em;color:rgba(234,240,233,.07);white-space:nowrap;text-align:center;padding-bottom:8px;user-select:none}
+.demo-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dark-dim);border:1px solid var(--dark-line);padding:7px 13px;border-radius:100px}
+
+/* ============ FLOATING UI ============ */
+.to-top{
+  position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;background:var(--forest);
+  display:grid;place-items:center;z-index:900;opacity:0;visibility:hidden;transform:translateY(14px) scale(.9);
+  transition:all .5s var(--ease);box-shadow:var(--shadow-2);
+}
+.to-top.on{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--forest-3);transform:translateY(-3px)}
+.mbar{
+  position:fixed;left:12px;right:12px;bottom:12px;z-index:950;display:none;align-items:center;gap:10px;
+  background:rgba(11,31,23,.94);backdrop-filter:blur(14px);border-radius:100px;padding:8px 8px 8px 18px;
+  box-shadow:var(--shadow-2);transform:translateY(140%);transition:transform .6s var(--ease);
+}
+.mbar.on{transform:none}
+.mbar .mt{color:var(--dark-text);font-size:13px;font-weight:650;flex:1;min-width:0}
+.mbar .mt span{display:block;font-size:11px;color:var(--dark-dim);font-weight:500}
+.mbar .btn{padding:12px 18px;font-size:14px}
+.mbar .call{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;flex:none}
+.cookies{
+  position:fixed;left:16px;bottom:16px;z-index:960;max-width:420px;background:var(--paper-2);border:1px solid var(--line);
+  border-radius:var(--r-l);padding:20px 22px;box-shadow:var(--shadow-2);
+  transform:translateY(140%);transition:transform .7s var(--ease);
+}
+.cookies.on{transform:none}
+.cookies h4{font-size:15px;letter-spacing:-.015em}
+.cookies p{font-size:13px;color:var(--ink-2);margin-top:8px;line-height:1.5}
+.cookies .cbtn{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9997;border-radius:50%;mix-blend-mode:multiply}
+.cursor-dot{width:6px;height:6px;background:var(--forest);margin:-3px 0 0 -3px}
+.cursor-ring{width:34px;height:34px;box-shadow:inset 0 0 0 1.4px rgba(11,31,23,.4);margin:-17px 0 0 -17px;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),box-shadow .3s var(--ease),opacity .3s ease}
+body.cur-hover .cursor-ring{width:56px;height:56px;margin:-28px 0 0 -28px;box-shadow:inset 0 0 0 1.4px rgba(11,31,23,.7)}
+
+/* ============ RESPONSIVT ============ */
+@media (max-width:1080px){
+  .hero-grid,.proc-grid,.calc-grid,.inside-grid,.contact-grid,.faq-grid,.addons{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .n-grid{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat{border-bottom:1px solid var(--line);padding-bottom:26px}
+  .stat:nth-child(2){border-right:0}
+  .proc-sticky,.calc-out{position:static}
+  .p-grid{grid-template-columns:1fr;max-width:520px}
+  .ftr-top{grid-template-columns:1fr 1fr}
+  .fc-1{left:-14px;bottom:60px}
+  .fc-2{right:-10px;top:-18px}
+}
+@media (max-width:820px){
+  body{font-size:16.5px}
+  .nav,.hdr-tel,.hdr-cta .btn{display:none}
+  .burger{display:grid}
+  .sec-head{grid-template-columns:1fr}
+  .cursor-dot,.cursor-ring{display:none}
+  .mbar{display:flex}
+  .to-top{bottom:86px;right:14px;width:44px;height:44px}
+  .cookies{left:12px;right:12px;bottom:82px;max-width:none}
+}
+@media (max-width:640px){
+  .svc-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .n-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:0 18px}
+  .stat{padding:22px 12px 22px 0}
+  .stat .tag{display:none}
+  .f-2{grid-template-columns:1fr}
+  .kpi-row{grid-template-columns:1fr 1fr;gap:8px}
+  .ring-row{grid-template-columns:1fr 1fr}
+  .ftr-top{grid-template-columns:1fr}
+  .fc-1{display:none}
+  .fc-2{top:-16px;right:6px;transform:scale(.9)}
+  .q-card{flex-basis:82%}
+  .band-in{flex-direction:column;align-items:flex-start}
+  .step.on{transform:none}
+  .bar-row{grid-template-columns:78px 1fr auto;gap:8px}
+}
+@media (max-width:400px){
+  .team-grid{grid-template-columns:1fr}
+  .seg label{font-size:12.5px;padding:9px 8px}
+}
+@media (prefers-reduced-motion:reduce){
+  html:focus-within{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .reveal{opacity:1;transform:none}
+  .marq-track{animation:none}
+}
+@media print{.hdr,.mbar,.to-top,.cookies,.cursor-dot,.cursor-ring,#progress{display:none}}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<a class="skip" href="#main" style="position:absolute;left:-9999px;top:0;background:var(--forest);color:#fff;padding:12px 18px;z-index:2000;border-radius:0 0 12px 0" onfocus="this.style.left='0'" onblur="this.style.left='-9999px'">Hopp til innhold</a>
+<div id="progress" aria-hidden="true"></div>
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top" aria-label="Andersen Regnskap AS – til toppen">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+          <path d="M6 19 L12 5 L18 19" stroke="#C8F24A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 15 H15" stroke="#F5F2EB" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-txt"><b>Andersen Regnskap</b><span>Autorisert · Oslo</span></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Hovednavigasjon">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#prosess">Bytte</a>
+      <a href="#kalkulator">Kalkulator</a>
+      <a href="#priser">Priser</a>
+      <a href="#om">Om oss</a>
+      <a href="#nyttig">Nyttig</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="hdr-tel" href="tel:+4722456789">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        22 45 67 89
+      </a>
+      <a class="btn btn--sm magnetic" href="#kontakt" data-scrollto="kontakt">Få tilbud <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <button class="burger" id="burger" aria-label="Åpne meny" aria-expanded="false" aria-controls="mobileMenu"><i></i></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a class="m-link" href="#tjenester">Tjenester <span>01</span></a>
+  <a class="m-link" href="#prosess">Slik bytter du <span>02</span></a>
+  <a class="m-link" href="#kalkulator">Priskalkulator <span>03</span></a>
+  <a class="m-link" href="#priser">Priser <span>04</span></a>
+  <a class="m-link" href="#tall">Målepunkter <span>05</span></a>
+  <a class="m-link" href="#omtaler">Kundeomtaler <span>06</span></a>
+  <a class="m-link" href="#om">Om oss <span>07</span></a>
+  <a class="m-link" href="#nyttig">Nyttig <span>08</span></a>
+  <a class="m-link" href="#kontakt">Kontakt <span>09</span></a>
+  <div class="mm-foot">
+    <a class="btn btn--lime btn--full" href="#kontakt">Få tilbud på 2 minutter</a>
+    <a class="btn btn--ghost btn--full" href="tel:+4722456789">Ring 22 45 67 89</a>
+  </div>
+</div>
+
+<main id="main">
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow reveal">Autorisert regnskapsbyrå · Oslo siden 2011</span>
+      <h1>
+        <span class="line"><span>Regnskapet ditt,</span></span>
+        <span class="line"><span><em class="ital">i orden.</em></span></span>
+        <span class="line"><span>Hver måned.</span></span>
+      </h1>
+      <p class="hero-sub reveal d2">Vi tar hele regnskapet for små og mellomstore bedrifter – <b>bokføring, lønn, MVA, årsoppgjør og rådgivning</b>. Fast månedspris, fast kontaktperson, og et regnskap du faktisk forstår når du åpner det.</p>
+      <div class="hero-ctas reveal d3">
+        <a class="btn magnetic" href="#kontakt" data-scrollto="kontakt">Få tilbud på 2 minutter <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost magnetic" href="#kalkulator" data-scrollto="kalkulator">Regn ut prisen din</a>
+      </div>
+      <ul class="hero-trust reveal d4">
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ingen bindingstid</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bytte på 24 timer</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Autorisert av Finanstilsynet</li>
+      </ul>
+    </div>
+
+    <div class="hero-anim">
+      <div class="dash" id="dash">
+        <div class="dash-top">
+          <div class="dash-title">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+            Økonomioversikt · Nordvik &amp; Partnere AS
+          </div>
+          <div class="dash-badge"><span class="dot"></span> Live</div>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="k-label">Likviditet</div>
+            <div class="k-val" data-count="1842300" data-fmt="kr">0</div>
+            <div class="k-delta"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg> 12,4 %</div>
+          </div>
+          <div class="kpi">
+            <div class="k-label">Resultat YTD</div>
+            <div class="k-val" data-count="612400" data-fmt="kr">0</div>
+            <div class="k-delta"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg> 8,1 %</div>
+          </div>
+          <div class="kpi">
+            <div class="k-label">Ubetalt MVA</div>
+            <div class="k-val" data-count="84500" data-fmt="kr">0</div>
+            <div class="k-delta down">Forfaller 10.09</div>
+          </div>
+          <div class="kpi">
+            <div class="k-label">Åpne poster</div>
+            <div class="k-val"><span data-count="3">0</span></div>
+            <div class="k-delta">Alle avstemt</div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-head">
+            <span class="t">Kassebeholdning 12 mnd</span>
+            <span class="l">NOK</span>
+          </div>
+          <div class="chart-wrap" id="chartWrap">
+            <svg id="cashChart" viewBox="0 0 620 170" preserveAspectRatio="none" role="img" aria-label="Utvikling i kassebeholdning siste 12 måneder, fra 980 000 til 1 842 000 kroner"></svg>
+            <div class="chart-tip" id="chartTip"><div class="m"></div><div class="v"></div></div>
+          </div>
+        </div>
+
+        <div class="dash-foot">
+          <div class="txt"><b>Alt avstemt</b> for august.<br>Neste frist: MVA 10. september</div>
+          <span class="chip on-dark"><span class="dot"></span> Automatisk bokført</span>
+        </div>
+
+        <div class="float-card fc-1" aria-hidden="true">
+          <div class="fc-row">
+            <span class="fc-ic" style="background:rgba(62,107,79,.12)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <div>
+              <div class="fc-t">Lønn kjørt</div>
+              <div class="fc-s">14 ansatte · A-melding sendt</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-card fc-2" aria-hidden="true">
+          <div class="fc-row">
+            <svg class="mini-ring" viewBox="0 0 44 44" aria-hidden="true">
+              <circle cx="22" cy="22" r="18" fill="none" stroke="#E4DECE" stroke-width="5"/>
+              <circle class="ring-dash" data-p="86" cx="22" cy="22" r="18" fill="none" stroke="#C8F24A" stroke-width="5" stroke-linecap="round" transform="rotate(-90 22 22)"/>
+            </svg>
+            <div>
+              <div class="fc-t">Bilagsflyt</div>
+              <div class="fc-s">86 % auto-kategorisert</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<section class="marq" aria-label="Noen av kundene våre">
+  <p class="marq-label">Betrodd av over 300 selskaper i hele Norge</p>
+  <div class="marq-track" id="marqTrack"></div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <span class="tag">01</span>
+        <div class="n"><span data-count="312">0</span></div>
+        <p class="l">aktive selskaper i porteføljen</p>
+      </div>
+      <div class="stat reveal d1">
+        <span class="tag">02</span>
+        <div class="n"><span data-count="18">0</span><span class="suf">mnd</span></div>
+        <p class="l">snitt før vi avstemmer måneden</p>
+      </div>
+      <div class="stat reveal d2">
+        <span class="tag">03</span>
+        <div class="n"><span data-count="4">0</span><span class="suf">t</span></div>
+        <p class="l">maks svartid på e-post i åpningstiden</p>
+      </div>
+      <div class="stat reveal d3">
+        <span class="tag">04</span>
+        <div class="n"><span data-count="96">0</span><span class="suf">%</span></div>
+        <p class="l">av kundene blir værende etter år tre</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TJENESTER ===================== -->
+<section class="sec" id="tjenester">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="eyebrow">Tjenester</span>
+        <h2 class="h-l">Alt som <em class="ital">ikke</em> er<br>kjernevirksomheten din.</h2>
+      </div>
+      <p class="lead reveal d2">Åtte tjenester som henger sammen. Du trenger ikke kjøpe alt – men du får alt fra samme team, i samme system, med samme kontaktperson som faktisk kjenner tallene dine.</p>
+    </div>
+
+    <div class="svc-grid">
+      <article class="svc reveal">
+        <span class="idx">01 / Bokføring</span>
+        <span class="svc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/><path d="M15 4v5h5M7 13h9M7 17h6"/></svg></span>
+        <h3>Bokføring</h3>
+        <p>Løpende, digital bokføring med automatisk bilagsgjenkjenning. Bank, kort og faktura avstemt fortløpende – ikke i januar.</p>
+        <span class="svc-more">Les mer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+      <article class="svc reveal d1">
+        <span class="idx">02 / Lønn</span>
+        <span class="svc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h3"/></svg></span>
+        <h3>Lønn &amp; personal</h3>
+        <p>Lønnskjøring, a-melding, feriepenger, reiseregninger og refusjoner fra NAV. Alt levert på fristen, hver gang.</p>
+        <span class="svc-more">Les mer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+      <article class="svc reveal d2">
+        <span class="idx">03 / MVA</span>
+        <span class="svc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5 5 19"/><circle cx="7.5" cy="7.5" r="2.6"/><circle cx="16.5" cy="16.5" r="2.6"/></svg></span>
+        <h3>MVA</h3>
+        <p>MVA-oppgaver levert i tide, med kontroll før innsending. Vi følger opp krav fra Skatteetaten slik at du slipper.</p>
+        <span class="svc-more">Les mer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+      <article class="svc reveal d3">
+        <span class="idx">04 / Årsoppgjør</span>
+        <span class="svc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h8.5L19 7v14.5H6z"/><path d="M14.5 2.5V7H19M9 14l2.2 2.2L16 11.5"/></svg></span>
+        <h3>Årsoppgjør</h3>
+        <p>Årsregnskap, skattemelding for selskapet og noter. Levert til Brønnøysund før fristen – uten overtid i mai.</p>
+        <span class="svc-more">Les mer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+      <article class="svc reveal">
+        <span class="idx">05 / Fakturering</span>
+        <span class="svc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h14v17l-2.5-1.8-2.5 1.8-2-1.8-2 1.8-2.5-1.8L5 20.5z"/><path d="M9 8h6M9 12h4"/></svg></span>
+        <h3>Fakturering</h3>
+        <p>EHF og PDF, purreløp, inkassosamarbeid og automatisk reskontro. Du bruker tre minutter i uken på faktura.</p>
+        <span class="svc-more">Les mer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+      <article class="svc reveal d1">
+        <span class="idx">06 / Rådgivning</span>
+        <span class="svc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L3.5 20l1.4-5.4A8 8 0 1 1 21 11.5Z"/><path d="M8.5 11h7M8.5 14h4"/></svg></span>
+        <h3>Rådgivning</h3>
+        <p>Skatt, utbytte, eierstruktur, kjøp av bolig i selskap, valg av pensjonsordning. Konkret svar – ikke generell teori.</p>
+        <span class="svc-more">Les mer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+      <article class="svc reveal d2">
+        <span class="idx">07 / Stiftelse</span>
+        <span class="svc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17M5 20.5V9l7-5.5 7 5.5v11.5"/><path d="M9.5 20.5v-6h5v6"/></svg></span>
+        <h3>Selskapsstiftelse</h3>
+        <p>AS, ENK, ANS eller holding? Vi stifter, setter opp kontoplan, bank og systemer – og gir deg råd om riktig form.</p>
+        <span class="svc-more">Les mer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+      <article class="svc reveal d3">
+        <span class="idx">08 / Oppfølging</span>
+        <span class="svc-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2.5-7 3.5 14 3-7h7"/></svg></span>
+        <h3>Økonomisk oppfølging</h3>
+        <p>Månedlig rapport, budsjett, likviditetsprognose og styringsmøte. Tallene dine oversatt til beslutninger.</p>
+        <span class="svc-more">Les mer <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROSESS ===================== -->
+<section class="sec proc" id="prosess">
+  <div class="wrap proc-grid">
+    <div class="proc-sticky">
+      <span class="eyebrow reveal">Bytte av regnskapsfører</span>
+      <h2 class="h-m reveal d1" style="margin-top:18px">Å bytte er enklere<br>enn du tror.</h2>
+      <p class="lead reveal d2" style="margin-top:16px;font-size:16.5px">De fleste utsetter byttet fordi de frykter rot, doble kostnader og en regnskapsfører som ikke svarer. Her er hele løpet – fra første prat til alt er på plass.</p>
+
+      <div class="proc-visual reveal d3" id="procVisual">
+        <div class="pv-stage on" data-stage="1">
+          <div class="pv-num">Steg 01</div>
+          <div class="pv-title">Avklaringsmøte</div>
+          <div class="pv-art">
+            <svg viewBox="0 0 300 120" fill="none" aria-hidden="true">
+              <rect x="10" y="14" width="180" height="92" rx="12" stroke="rgba(234,240,233,.28)" stroke-width="1.4"/>
+              <circle cx="46" cy="48" r="14" stroke="#C8F24A" stroke-width="2"/>
+              <path d="M28 84c3-10 10-15 18-15s15 5 18 15" stroke="#C8F24A" stroke-width="2" stroke-linecap="round"/>
+              <path d="M76 42h96M76 56h72M76 70h84" stroke="rgba(234,240,233,.45)" stroke-width="2.4" stroke-linecap="round"/>
+              <rect x="200" y="40" width="90" height="52" rx="10" stroke="rgba(234,240,233,.28)" stroke-width="1.4"/>
+              <path d="M214 58h62M214 70h44" stroke="rgba(234,240,233,.4)" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="272" cy="30" r="9" fill="#C8F24A" opacity=".9"/>
+            </svg>
+          </div>
+          <ul class="pv-list">
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>20 minutter</b> på telefon eller video</span></li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Vi ser på bilagsmengde og systemer</span></li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Du får fast pris – ikke timepris</span></li>
+          </ul>
+        </div>
+
+        <div class="pv-stage" data-stage="2">
+          <div class="pv-num">Steg 02</div>
+          <div class="pv-title">Flytteplan</div>
+          <div class="pv-art">
+            <svg viewBox="0 0 300 120" fill="none" aria-hidden="true">
+              <rect x="14" y="12" width="120" height="96" rx="12" stroke="rgba(234,240,233,.28)" stroke-width="1.4"/>
+              <path d="M32 40h84M32 58h64M32 76h74" stroke="rgba(234,240,233,.4)" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M146 60h58" stroke="#C8F24A" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="5 5"/>
+              <path d="M198 52l8 8-8 8" stroke="#C8F24A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="214" y="26" width="72" height="68" rx="12" stroke="#C8F24A" stroke-width="1.8"/>
+              <path d="M232 50l7 7 14-15" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M230 72h40" stroke="rgba(234,240,233,.4)" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <ul class="pv-list">
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Vi henter balansen og historikken</span></li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Kontoplan, bank og integrasjoner settes opp</span></li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Du gjør ingenting selv</span></li>
+          </ul>
+        </div>
+
+        <div class="pv-stage" data-stage="3">
+          <div class="pv-num">Steg 03</div>
+          <div class="pv-title">Drift &amp; oppfølging</div>
+          <div class="pv-art">
+            <svg viewBox="0 0 300 120" fill="none" aria-hidden="true">
+              <path d="M14 96h272" stroke="rgba(234,240,233,.2)" stroke-width="1.4"/>
+              <path d="M20 82 62 62 104 70 146 40 188 52 230 26 276 34" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="230" cy="26" r="5" fill="#C8F24A"/>
+              <rect x="20" y="14" width="86" height="26" rx="8" stroke="rgba(234,240,233,.3)" stroke-width="1.4"/>
+              <path d="M32 27h62" stroke="rgba(234,240,233,.4)" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <ul class="pv-list">
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Månedlig rapport rett i innboksen</span></li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Fast kontaktperson som svarer på 4 timer</span></li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Kvartalsvis gjennomgang av tallene</span></li>
+          </ul>
+        </div>
+
+        <div class="pv-bar"><i id="pvBar"></i></div>
+        <div class="pv-meta"><span>Steg <b id="pvNum">1</b> av 3</span><span id="pvTime">Dag 1</span></div>
+      </div>
+    </div>
+
+    <div class="steps" id="steps">
+      <article class="step on" data-step="1">
+        <div class="step-top">
+          <span class="step-n">01</span>
+          <h3>20 minutters avklaringsmøte</h3>
+          <span class="dur">Dag 1</span>
+        </div>
+        <p>Vi går gjennom selskapsform, bilagsmengde, ansatte og hva du ikke er fornøyd med i dag. Du får en fast pris samme dag – og et ærlig svar hvis vi ikke er riktig byrå for deg.</p>
+        <div class="step-tags"><span class="chip">Uforpliktende</span><span class="chip">Fast pris</span><span class="chip">Video eller telefon</span></div>
+      </article>
+      <article class="step" data-step="2">
+        <div class="step-top">
+          <span class="step-n">02</span>
+          <h3>Vi henter alt fra dagens byrå</h3>
+          <span class="dur">Dag 2–5</span>
+        </div>
+        <p>Du sender oss én fullmakt, resten tar vi. Vi kontakter nåværende regnskapsfører, henter balanse, reskontroer og historikk, og setter opp kontoplan, bankintegrasjon og fakturaløsning. Ingen overlappende faktura fra to byråer.</p>
+        <div class="step-tags"><span class="chip">Vi tar kontakten</span><span class="chip">Ingen egeninnsats</span><span class="chip">Gratis oppsett</span></div>
+      </article>
+      <article class="step" data-step="3">
+        <div class="step-top">
+          <span class="step-n">03</span>
+          <h3>Fast kontaktperson fra dag én</h3>
+          <span class="dur">Løpende</span>
+        </div>
+        <p>Du får navn, e-post og mobilnummer – ikke en fellespostkasse. Måneden avstemmes løpende, rapporten kommer innen den 18., og vi varsler deg før hver frist. Ingen overraskelser i mai.</p>
+        <div class="step-tags"><span class="chip">Svar på 4 timer</span><span class="chip">Rapport innen 18.</span><span class="chip">Ingen bindingstid</span></div>
+      </article>
+      <div class="reveal" style="margin-top:8px">
+        <a class="btn btn--ghost magnetic" href="#kontakt" data-scrollto="kontakt">Book avklaringsmøte <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KALKULATOR ===================== -->
+<section class="sec" id="kalkulator">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="eyebrow">Priskalkulator</span>
+        <h2 class="h-l">Hva koster regnskapet<br><em class="ital">ditt</em>, egentlig?</h2>
+      </div>
+      <p class="lead reveal d2">Juster tre felter, få en realistisk månedspris. Modellen vår bruker faktisk timebruk fra 312 kunder – ikke et gjennomsnitt fra bransjen.</p>
+    </div>
+
+    <div class="calc-grid">
+      <form class="card calc-form reveal" id="calcForm" novalidate>
+        <div class="field">
+          <div class="f-label"><span>Selskapsform</span></div>
+          <div class="seg" role="radiogroup" aria-label="Selskapsform">
+            <input type="radio" name="form" id="f-enk" value="enk">
+            <label for="f-enk">ENK<small>Enkeltperson</small></label>
+            <input type="radio" name="form" id="f-as" value="as" checked>
+            <label for="f-as">AS<small>Aksjeselskap</small></label>
+            <input type="radio" name="form" id="f-ans" value="ans">
+            <label for="f-ans">ANS / DA<small>Flere eiere</small></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="f-label"><span>Bransje</span><span class="val" id="bransjeVal">Konsulent / tjeneste</span></div>
+          <div class="seg" role="radiogroup" aria-label="Bransje">
+            <input type="radio" name="bransje" id="b-kons" value="konsulent" checked>
+            <label for="b-kons">Konsulent</label>
+            <input type="radio" name="bransje" id="b-nett" value="nettbutikk">
+            <label for="b-nett">Nettbutikk</label>
+            <input type="radio" name="bransje" id="b-bygg" value="handverk">
+            <label for="b-bygg">Håndverk</label>
+            <input type="radio" name="bransje" id="b-rest" value="restaurant">
+            <label for="b-rest">Servering</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="f-label"><span>Månedlig omsetning</span><span class="val" id="omsVal">300 000 kr</span></div>
+          <input type="range" id="oms" min="0" max="4000000" step="25000" value="300000" aria-label="Månedlig omsetning i kroner">
+          <div class="scale"><span>0</span><span>1 mill.</span><span>2 mill.</span><span>3 mill.</span><span>4 mill. +</span></div>
+        </div>
+
+        <div class="field">
+          <div class="f-label"><span>Bilag per måned</span><span class="val" id="bilVal">80</span></div>
+          <input type="range" id="bilag" min="10" max="800" step="10" value="80" aria-label="Antall bilag per måned">
+          <div class="scale"><span>10</span><span>200</span><span>400</span><span>600</span><span>800</span></div>
+        </div>
+
+        <div class="field">
+          <div class="f-label"><span>Ansatte med lønn</span><span class="val" id="ansVal">3</span></div>
+          <input type="range" id="ansatte" min="0" max="40" step="1" value="3" aria-label="Antall ansatte med lønn">
+          <div class="scale"><span>0</span><span>10</span><span>20</span><span>30</span><span>40 +</span></div>
+        </div>
+
+        <div class="field">
+          <div class="f-label"><span>Ekstra tjenester</span></div>
+          <div class="opts">
+            <input type="checkbox" id="o-mva" checked><label for="o-mva"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>MVA-oppgaver <span class="add-price">+590</span></label>
+            <input type="checkbox" id="o-fakt"><label for="o-fakt"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Fakturering <span class="add-price">+490</span></label>
+            <input type="checkbox" id="o-rapp"><label for="o-rapp"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Månedsrapport <span class="add-price">+450</span></label>
+            <input type="checkbox" id="o-rad"><label for="o-rad"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Rådgivning 3 t/mnd <span class="add-price">+750</span></label>
+          </div>
+        </div>
+      </form>
+
+      <div class="calc-out reveal d2">
+        <div class="card">
+          <div class="calc-price">
+            <div class="cp-label">Estimert månedspris</div>
+            <div class="cp-big"><span class="n" id="calcTotal" aria-live="polite">0</span><span class="u">kr / mnd</span></div>
+            <div class="cp-sub">
+              <span>Tilsvarende <b id="calcYear">0 kr</b> i året</span>
+              <span>·</span>
+              <span>Inkl. årsoppgjør <b id="calcAr">8 900 kr</b></span>
+            </div>
+          </div>
+          <div class="calc-body" id="calcBreak"></div>
+          <div style="padding:0 clamp(20px,2.4vw,28px)">
+            <div class="save-box">
+              <div class="t"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> <span id="saveTitle">Du sparer 9 400 kr i måneden</span></div>
+              <p class="d" id="saveDesc">Basert på at egeninnsats på regnskap koster deg rundt 950 kr timen.</p>
+              <div class="bar-cmp">
+                <div class="bar-row"><span class="bl">Egeninnsats</span><span class="bar"><i id="barOwn" style="background:#B5563C"></i></span><span class="bv" id="valOwn">0</span></div>
+                <div class="bar-row"><span class="bl">Andersen</span><span class="bar"><i id="barUs" style="background:#3E6B4F"></i></span><span class="bv" id="valUs">0</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="calc-cta" style="padding-top:20px">
+            <a class="btn btn--lime btn--full magnetic" href="#kontakt" data-scrollto="kontakt">Send innstillingene som forespørsel <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <p class="disclaim">Estimatet er veiledende og basert på opplysningene du oppgir. Endelig pris avtales etter avklaringsmøtet, og endres ikke uten at du blir varslet først.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRISER ===================== -->
+<section class="sec prices" id="priser">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="eyebrow on-dark">Priser</span>
+        <h2 class="h-l">Fast pris. Ingen<br>overraskelser.</h2>
+      </div>
+      <div class="reveal d2" style="display:grid;gap:20px;justify-items:start">
+        <p class="lead">Du vet hva regnskapet koster før måneden begynner. Timepris bruker vi bare når du ber om ekstra arbeid – og da sier vi fra først.</p>
+        <div class="ptoggle" role="group" aria-label="Velg faktureringstakt">
+          <button type="button" class="on" data-cycle="mnd">Månedlig</button>
+          <button type="button" data-cycle="ar">Årlig <span class="save">−10 %</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-grid">
+      <article class="p-card reveal">
+        <div class="p-name">Gründer</div>
+        <p class="p-for">For deg som nettopp har startet, eller driver alene med få bilag.</p>
+        <div class="p-amt"><span class="n" data-mnd="990" data-ar="891">990</span><span class="kr">kr</span><span class="per">/ mnd</span></div>
+        <p class="p-note" data-note-mnd="Eks. mva · årsoppgjør 4 900 kr" data-note-ar="Faktureres årlig · eks. mva">Eks. mva · årsoppgjør 4 900 kr</p>
+        <ul class="p-list">
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Opptil <b>50 bilag</b> i måneden</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>MVA-oppgaver og innsending</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Bankintegrasjon og automatisk avstemming</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Ubegrenset e-post med svar innen 4 timer</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Hjelp til skattemeldingen for selskapet</span></li>
+        </ul>
+        <a class="btn btn--dark-ghost btn--full magnetic" href="#kontakt" data-scrollto="kontakt">Velg Gründer</a>
+      </article>
+
+      <article class="p-card feat reveal d1">
+        <span class="p-flag">Mest valgt</span>
+        <div class="p-name">Vekst</div>
+        <p class="p-for">For bedrifter med ansatte, jevn omsetning og behov for å følge med.</p>
+        <div class="p-amt"><span class="n" data-mnd="2 490" data-ar="2 241">2 490</span><span class="kr">kr</span><span class="per">/ mnd</span></div>
+        <p class="p-note" data-note-mnd="Eks. mva · årsoppgjør 8 900 kr · inkl. lønn for 5 ansatte" data-note-ar="Faktureres årlig · eks. mva">Eks. mva · inkl. lønn for 5 ansatte</p>
+        <ul class="p-list">
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Opptil <b>250 bilag</b> i måneden</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Lønn for opptil 10 ansatte</b>, inkl. a-melding</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Fakturering med EHF og purreløp</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Månedlig rapport med resultat og likviditet</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Kvartalsvis gjennomgang med rådgiver</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Fast kontaktperson med mobilnummer</span></li>
+        </ul>
+        <a class="btn magnetic" href="#kontakt" data-scrollto="kontakt">Velg Vekst <svg class="arw" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <article class="p-card reveal d2">
+        <div class="p-name">Full kontroll</div>
+        <p class="p-for">For deg som vil ha økonomifunksjonen din outsourcet, men beholde styringen.</p>
+        <div class="p-amt"><span class="n" data-mnd="5 900" data-ar="5 310">5 900</span><span class="kr">kr</span><span class="per">/ mnd</span></div>
+        <p class="p-note" data-note-mnd="Eks. mva · inkl. 6 timer rådgivning" data-note-ar="Faktureres årlig · eks. mva">Eks. mva · inkl. 6 timer rådgivning</p>
+        <ul class="p-list">
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Ubegrenset antall bilag</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Lønn for opptil 40 ansatte</b></span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Budsjett, prognose og likviditetsplan</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Styringsmøte hver måned, fysisk eller digitalt</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Rådgivning om skatt, utbytte og struktur</span></li>
+          <li><span class="pi"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span>Bistand ved bankmøter og finansiering</span></li>
+        </ul>
+        <a class="btn btn--dark-ghost btn--full magnetic" href="#kontakt" data-scrollto="kontakt">Velg Full kontroll</a>
+      </article>
+    </div>
+
+    <div class="addons">
+      <div class="reveal">
+        <h3 class="h-m" style="font-size:clamp(22px,2.4vw,30px)">Tillegg og<br>engangstjenester</h3>
+        <p class="lead" style="font-size:15.5px;margin-top:14px;color:var(--dark-dim)">Timepris 1 250 kr eks. mva. Vi sier alltid fra før vi begynner, og du godkjenner omfanget på forhånd.</p>
+      </div>
+      <div class="reveal d2">
+        <div class="addon"><span class="l"><b>Lønn</b> per ekstra ansatt</span><span class="r">290 kr / mnd</span></div>
+        <div class="addon"><span class="l"><b>Årsoppgjør</b> AS, inkl. skattemelding</span><span class="r">fra 8 900 kr</span></div>
+        <div class="addon"><span class="l"><b>Årsoppgjør</b> ENK</span><span class="r">fra 4 900 kr</span></div>
+        <div class="addon"><span class="l"><b>Selskapsstiftelse</b> AS, inkl. Brønnøysund</span><span class="r">6 500 kr</span></div>
+        <div class="addon"><span class="l"><b>Skatte- og utbytterådgivning</b></span><span class="r">1 250 kr / t</span></div>
+        <div class="addon"><span class="l"><b>Opprydding</b> i gammel bokføring</span><span class="r">fra 4 500 kr</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MÅLEPUNKTER ===================== -->
+<section class="sec" id="tall">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="eyebrow">Økonomioversikt</span>
+        <h2 class="h-l">Tallene dine,<br>slik du ser dem.</h2>
+      </div>
+      <p class="lead reveal d2">Alle kunder får samme dashboard. Ikke et regneark du må tyde, men en oversikt som svarer på det du lurer på: Har vi penger til det vi planlegger?</p>
+    </div>
+
+    <div class="inside-grid">
+      <div class="panel reveal">
+        <div class="panel-h">
+          <span class="t">Driftsinntekter mot kostnader</span>
+          <span class="s">Siste 8 mnd</span>
+        </div>
+        <div class="bars" id="revBars"></div>
+        <div class="deadline">
+          <span style="flex:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+          <div>
+            <div class="dl">Neste frist</div>
+            <div class="dt">MVA-oppgave, 4. termin</div>
+            <div class="dd">10. september · vi sender påminnelse 3 dager før</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;gap:14px">
+        <div class="panel reveal d1">
+          <div class="panel-h"><span class="t">Nøkkeltall august</span><span class="s">Sanntid</span></div>
+          <div class="ring-row">
+            <div class="ring-item">
+              <svg width="86" height="86" viewBox="0 0 86 86">
+                <circle cx="43" cy="43" r="36" fill="none" stroke="#E4DECE" stroke-width="7"/>
+                <circle class="ring-dash" data-p="74" data-label="74 %" cx="43" cy="43" r="36" fill="none" stroke="#3E6B4F" stroke-width="7" stroke-linecap="round" transform="rotate(-90 43 43)"/>
+                <text x="43" y="48" text-anchor="middle" font-family="Manrope,sans-serif" font-size="17" font-weight="700" fill="#0B1F17">74 %</text>
+              </svg>
+              <p class="rl">Andel egenkapital</p>
+            </div>
+            <div class="ring-item">
+              <svg width="86" height="86" viewBox="0 0 86 86">
+                <circle cx="43" cy="43" r="36" fill="none" stroke="#E4DECE" stroke-width="7"/>
+                <circle class="ring-dash" data-p="91" cx="43" cy="43" r="36" fill="none" stroke="#C8F24A" stroke-width="7" stroke-linecap="round" transform="rotate(-90 43 43)"/>
+                <text x="43" y="48" text-anchor="middle" font-family="Manrope,sans-serif" font-size="17" font-weight="700" fill="#0B1F17">91 %</text>
+              </svg>
+              <p class="rl">Bilag auto-kategorisert</p>
+            </div>
+            <div class="ring-item">
+              <svg width="86" height="86" viewBox="0 0 86 86">
+                <circle cx="43" cy="43" r="36" fill="none" stroke="#E4DECE" stroke-width="7"/>
+                <circle class="ring-dash" data-p="38" cx="43" cy="43" r="36" fill="none" stroke="#D9A441" stroke-width="7" stroke-linecap="round" transform="rotate(-90 43 43)"/>
+                <text x="43" y="48" text-anchor="middle" font-family="Manrope,sans-serif" font-size="17" font-weight="700" fill="#0B1F17">38 d</text>
+              </svg>
+              <p class="rl">Snitt betalings&shy;tid hos kunder</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel reveal d2">
+          <div class="panel-h"><span class="t">Siste hendelser</span><span class="s">I dag</span></div>
+          <ul class="feed">
+            <li>
+              <span class="fi" style="background:rgba(62,107,79,.12)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div><div class="ft">Kundefaktura #2841 betalt</div><div class="fs">Nordvik &amp; Partnere · 08:42</div></div>
+              <span class="fa pos">+87 500</span>
+            </li>
+            <li>
+              <span class="fi" style="background:rgba(217,164,65,.14)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B5822B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span>
+              <div><div class="ft">3 bilag mangler kvittering</div><div class="fs">August · sendt til godkjenning</div></div>
+              <span class="fa">3 stk</span>
+            </li>
+            <li>
+              <span class="fi" style="background:rgba(11,31,23,.06)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0B1F17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19"/></svg></span>
+              <div><div class="ft">Lønn kjørt for 14 ansatte</div><div class="fs">A-melding sendt til Altinn</div></div>
+              <span class="fa">−612 400</span>
+            </li>
+            <li>
+              <span class="fi" style="background:rgba(200,242,74,.35)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E6B4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></span>
+              <div><div class="ft">Månedsrapport august klar</div><div class="fs">Resultat +18 % mot budsjett</div></div>
+              <span class="fa pos">PDF</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OMTALER ===================== -->
+<section class="sec quotes" id="omtaler">
+  <div class="wrap">
+    <div class="q-top">
+      <div class="reveal">
+        <span class="eyebrow">Kundeomtaler</span>
+        <h2 class="h-l" style="margin-top:18px">4,9 av 5 fra<br>127 anmeldelser.</h2>
+      </div>
+      <div class="q-nav reveal d1">
+        <button type="button" id="qPrev" aria-label="Forrige omtale"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+        <button type="button" id="qNext" aria-label="Neste omtale"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="q-track-wrap" id="qWrap">
+    <div class="q-track" id="qTrack"></div>
+  </div>
+  <div class="q-dots" id="qDots" role="tablist" aria-label="Velg omtale"></div>
+</section>
+
+<!-- ===================== CTA-BÅND ===================== -->
+<section class="band">
+  <div class="wrap band-in">
+    <div class="reveal">
+      <h2>Bytt regnskapsfører<br>i løpet av én uke.</h2>
+      <p class="sub">Vi tar hele jobben med overføringen. Du trenger ikke si opp noe selv, og du betaler ikke to byråer i samme måned.</p>
+    </div>
+    <div class="reveal d1" style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn magnetic" href="#kontakt" data-scrollto="kontakt">Bytt regnskapsfører <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--ghost magnetic" href="tel:+4722456789" style="--fg:#0B1F17">Ring 22 45 67 89</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OM OSS / TEAM ===================== -->
+<section class="sec" id="om">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="eyebrow">Om oss</span>
+        <h2 class="h-l">Åtte mennesker<br>som liker <em class="ital">orden</em>.</h2>
+      </div>
+      <p class="lead reveal d2">Vi startet i 2011 i et kontor på Majorstuen med tre kunder og én skjerm. I dag er vi åtte, holder til på Skøyen, og har fortsatt den samme regelen: du skal aldri måtte forklare saken din to ganger.</p>
+    </div>
+
+    <div class="team-grid" id="teamGrid"></div>
+
+    <div class="reveal" style="margin-top:clamp(30px,3.6vw,50px);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden">
+      <div style="background:var(--paper-2);padding:26px 24px">
+        <h4 class="h-s" style="font-family:var(--serif);font-weight:400;font-size:22px">Autorisert</h4>
+        <p class="muted" style="font-size:14px;margin-top:8px">Godkjent regnskapsførerselskap av Finanstilsynet. Medlem av Regnskap Norge.</p>
+      </div>
+      <div style="background:var(--paper-2);padding:26px 24px">
+        <h4 class="h-s" style="font-family:var(--serif);font-weight:400;font-size:22px">Sikre systemer</h4>
+        <p class="muted" style="font-size:14px;margin-top:8px">All data lagres i Norge. To-faktor pålogging, kryptert overføring og daglig backup.</p>
+      </div>
+      <div style="background:var(--paper-2);padding:26px 24px">
+        <h4 class="h-s" style="font-family:var(--serif);font-weight:400;font-size:22px">Ansvarsforsikret</h4>
+        <p class="muted" style="font-size:14px;margin-top:8px">Full yrkesansvarsforsikring. Du er dekket dersom vi gjør en feil – det står i avtalen.</p>
+      </div>
+      <div style="background:var(--paper-2);padding:26px 24px">
+        <h4 class="h-s" style="font-family:var(--serif);font-weight:400;font-size:22px">Norsk support</h4>
+        <p class="muted" style="font-size:14px;margin-top:8px">Ingen chatbot, ingen outsourcing. Du treffer den samme personen hver gang.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NYTTIG ===================== -->
+<section class="sec news" id="nyttig">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="reveal">
+        <span class="eyebrow">Nyttig å vite</span>
+        <h2 class="h-l">Færre overraskelser,<br>mer kontroll.</h2>
+      </div>
+      <div class="reveal d2" style="justify-self:end;align-self:end">
+        <a class="link-u" href="#nyttig">Alle artikler <svg class="arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+
+    <div class="n-grid">
+      <article class="n-card reveal">
+        <div class="n-img">
+          <svg viewBox="0 0 400 235" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="235" fill="#0B1F17"/>
+            <g stroke="rgba(234,240,233,.14)"><path d="M0 60h400M0 120h400M0 180h400M100 0v235M200 0v235M300 0v235"/></g>
+            <path d="M0 190 L70 150 L140 168 L210 96 L280 118 L350 54 L400 74" stroke="#C8F24A" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="350" cy="54" r="6" fill="#C8F24A"/>
+            <rect x="26" y="26" width="112" height="34" rx="10" fill="rgba(234,240,233,.1)"/>
+            <path d="M42 43h80" stroke="rgba(234,240,233,.5)" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <span class="n-tag">Digitalisering</span>
+        </div>
+        <div class="n-body">
+          <span class="n-meta">18. august 2026 · 6 min</span>
+          <h3>Slik kutter AI bokføringen din med 70 prosent</h3>
+          <p>Bilagsgjenkjenning, automatisk kontoforslag og sanntidsavstemming. Hva som faktisk fungerer i 2026 – og hva du fortsatt bør gjøre selv.</p>
+          <span class="n-link link-u">Les artikkelen <svg class="arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </article>
+
+      <article class="n-card reveal d1">
+        <div class="n-img">
+          <svg viewBox="0 0 400 235" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="235" fill="#EDE8DC"/>
+            <g stroke="rgba(11,31,23,.1)"><path d="M0 47h400M0 94h400M0 141h400M0 188h400"/></g>
+            <rect x="52" y="52" width="120" height="130" rx="12" fill="#0B1F17"/>
+            <path d="M76 96h72M76 118h54M76 140h64" stroke="#C8F24A" stroke-width="4" stroke-linecap="round"/>
+            <path d="M196 118h44" stroke="#3E6B4F" stroke-width="4" stroke-linecap="round" stroke-dasharray="6 7"/>
+            <path d="M232 106l14 12-14 12" stroke="#3E6B4F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="262" y="72" width="90" height="92" rx="12" fill="none" stroke="#0B1F17" stroke-width="3"/>
+            <path d="M284 112l10 10 20-22" stroke="#0B1F17" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="n-tag">Selskapsform</span>
+        </div>
+        <div class="n-body">
+          <span class="n-meta">4. august 2026 · 8 min</span>
+          <h3>Når bør du gå fra ENK til AS?</h3>
+          <p>Grensen handler sjelden om omsetning alene. Her er de fire signalene som betyr at et aksjeselskap begynner å lønne seg – og hva overgangen koster.</p>
+          <span class="n-link link-u">Les artikkelen <svg class="arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </article>
+
+      <article class="n-card reveal d2">
+        <div class="n-img">
+          <svg viewBox="0 0 400 235" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="235" fill="#3E6B4F"/>
+            <g stroke="rgba(245,242,235,.14)"><path d="M0 58h400M0 117h400M0 176h400M133 0v235M266 0v235"/></g>
+            <circle cx="200" cy="118" r="62" fill="none" stroke="rgba(245,242,235,.35)" stroke-width="3"/>
+            <circle cx="200" cy="118" r="62" fill="none" stroke="#C8F24A" stroke-width="7" stroke-linecap="round" stroke-dasharray="230 390" transform="rotate(-90 200 118)"/>
+            <path d="M176 118h48M200 94v48" stroke="rgba(245,242,235,.55)" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <span class="n-tag">Fradrag</span>
+        </div>
+        <div class="n-body">
+          <span class="n-meta">21. juli 2026 · 5 min</span>
+          <h3>De syv vanligste feilene på fradrag</h3>
+          <p>Reise, hjemmekontor, representasjon og bil. Vi går gjennom feilene vi ser oftest i kontroll – og hva som faktisk er lov å føre.</p>
+          <span class="n-link link-u">Les artikkelen <svg class="arw" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="sec">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow reveal">Spørsmål</span>
+      <h2 class="h-m reveal d1" style="margin-top:18px">Det folk pleier<br>å lure på.</h2>
+      <p class="reveal d2" style="margin-top:16px;color:var(--ink-2);font-size:15.5px;max-width:34ch">Finner du ikke svaret? Send oss en melding, eller ring. Vi svarer samme dag.</p>
+      <a class="btn btn--ghost magnetic reveal d3" style="margin-top:22px" href="#kontakt" data-scrollto="kontakt">Still et spørsmål</a>
+    </div>
+    <div class="faq-list reveal d1" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hvor lang tid tar det å bytte regnskapsfører?<span class="faq-ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Normalt mellom tre og fem virkedager. Du sender oss en fullmakt, så kontakter vi nåværende byrå og henter balanse, reskontroer og historikk. Vi overlapper aldri fakturering, så du betaler ikke to byråer for samme måned.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Er prisen virkelig fast?<span class="faq-ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Ja. Prisen din står i avtalen og endres ikke uten at vi varsler deg skriftlig først, med minst én måneds varsel. Timepris bruker vi kun på arbeid du ber om utenfor avtalen – og da avtaler vi omfang og pris før vi begynner.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hvilke systemer bruker dere?<span class="faq-ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Vi jobber i Tripletex, Fiken, PowerOffice Go og 24SevenOffice, og tilpasser oss gjerne systemet du allerede har. Bankintegrasjon, kortterminal, kassasystem og reiseregninger kobles opp slik at bilagene havner rett i regnskapet uten at du gjør noe.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hvordan håndterer dere sensitive data?<span class="faq-ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>All data lagres i Norge hos leverandører med norsk databehandlingsavtale. Vi bruker to-faktor pålogging, rollebasert tilgang og kryptert overføring, med daglig backup. Som autorisert regnskapsførerselskap er vi underlagt regnskapsførerloven og hvitvaskingsloven, og har taushetsplikt.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hva skjer hvis dere gjør en feil?<span class="faq-ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Vi retter den uten kostnad for deg, og vi har full yrkesansvarsforsikring som dekker eventuelt tap. Det står i avtalen din – ikke bare i markedsføringen.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Kan dere hjelpe meg med et etterslep?<span class="faq-ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Det gjør vi ofte. Vi kartlegger hva som mangler, gir deg fast pris på oppryddingen og prioriterer det som har frister – typisk MVA-oppgaver og a-meldinger – før vi tar resten. Ingen dømming, bare en plan.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KONTAKT ===================== -->
+<section class="sec" id="kontakt" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:0">
+      <div class="reveal">
+        <span class="eyebrow">Kontakt</span>
+        <h2 class="h-l">Fortell oss litt<br>om bedriften din.</h2>
+      </div>
+      <p class="lead reveal d2">Fyll ut skjemaet, så ringer vi deg innen én virkedag med et konkret forslag. Ingen selgere, ingen oppfølging på autopilot – bare en regnskapsfører som har sett på tallene dine.</p>
+    </div>
+
+    <div class="contact-grid">
+      <form class="cf reveal" id="contactForm" novalidate>
+        <div class="f-2">
+          <label class="inp">
+            <span>Navn *</span>
+            <input type="text" name="navn" placeholder="Kari Nordmann" autocomplete="name" required>
+            <span class="err-msg">Skriv inn navnet ditt</span>
+          </label>
+          <label class="inp">
+            <span>Bedrift</span>
+            <input type="text" name="bedrift" placeholder="Nordvik &amp; Partnere AS" autocomplete="organization">
+          </label>
+        </div>
+        <div class="f-2">
+          <label class="inp">
+            <span>E-post *</span>
+            <input type="email" name="epost" placeholder="kari@bedriften.no" autocomplete="email" required>
+            <span class="err-msg">Skriv inn en gyldig e-postadresse</span>
+          </label>
+          <label class="inp">
+            <span>Telefon *</span>
+            <input type="tel" name="telefon" placeholder="900 00 000" autocomplete="tel" required>
+            <span class="err-msg">Skriv inn telefonnummeret ditt</span>
+          </label>
+        </div>
+
+        <div class="form-seg">
+          <div class="f-label" style="margin-bottom:10px"><span style="font-size:12.5px;font-weight:700;color:var(--ink-2)">Selskapsform</span></div>
+          <div class="seg" role="radiogroup" aria-label="Selskapsform">
+            <input type="radio" name="sform" id="s-as" value="AS" checked><label for="s-as">AS</label>
+            <input type="radio" name="sform" id="s-enk" value="ENK"><label for="s-enk">ENK</label>
+            <input type="radio" name="sform" id="s-ans" value="ANS/DA"><label for="s-ans">ANS/DA</label>
+            <input type="radio" name="sform" id="s-ny" value="Skal starte"><label for="s-ny">Skal starte</label>
+          </div>
+        </div>
+
+        <div class="form-seg">
+          <div class="f-label" style="margin-bottom:10px"><span style="font-size:12.5px;font-weight:700;color:var(--ink-2)">Antall ansatte</span><span class="val" id="cAnsVal" style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--forest);background:rgba(200,242,74,.28);padding:3px 10px;border-radius:100px">3</span></div>
+          <input type="range" id="cAnsatte" name="ansatte" min="0" max="50" value="3" style="--fill:6%" aria-label="Antall ansatte">
+          <div class="scale"><span>0</span><span>25</span><span>50 +</span></div>
+        </div>
+
+        <div class="form-seg">
+          <div class="f-label" style="margin-bottom:12px"><span style="font-size:12.5px;font-weight:700;color:var(--ink-2)">Hva trenger du hjelp med?</span></div>
+          <div class="opts" id="needOpts">
+            <input type="checkbox" id="n-bok" name="behov" value="Bokføring" checked><label for="n-bok"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Bokføring</label>
+            <input type="checkbox" id="n-lonn" name="behov" value="Lønn"><label for="n-lonn"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Lønn</label>
+            <input type="checkbox" id="n-mva" name="behov" value="MVA"><label for="n-mva"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>MVA</label>
+            <input type="checkbox" id="n-aar" name="behov" value="Årsoppgjør"><label for="n-aar"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Årsoppgjør</label>
+            <input type="checkbox" id="n-fakt" name="behov" value="Fakturering"><label for="n-fakt"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Fakturering</label>
+            <input type="checkbox" id="n-rad" name="behov" value="Rådgivning"><label for="n-rad"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Rådgivning</label>
+            <input type="checkbox" id="n-stift" name="behov" value="Selskapsstiftelse"><label for="n-stift"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Selskapsstiftelse</label>
+            <input type="checkbox" id="n-opp" name="behov" value="Økonomisk oppfølging"><label for="n-opp"><span class="bx"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Økonomisk oppfølging</label>
+          </div>
+        </div>
+
+        <label class="inp">
+          <span>Melding</span>
+          <textarea name="melding" placeholder="Fortell gjerne kort om bedriften, og hva du ikke er fornøyd med i dag."></textarea>
+        </label>
+
+        <div class="consent" id="consentWrap">
+          <input type="checkbox" id="consent" required>
+          <label for="consent">
+            <span class="bx"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F5F2EB" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <span>Jeg samtykker til at Andersen Regnskap AS lagrer opplysningene for å kunne svare på henvendelsen. Vi deler aldri data med tredjeparter. <span class="err-msg c-err">Du må samtykke for å sende</span></span>
+          </label>
+        </div>
+
+        <button class="btn btn--lime btn--full magnetic" type="submit" id="submitBtn" style="margin-top:22px">
+          <span id="submitTxt">Send forespørsel</span>
+          <svg class="arw" id="submitArw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="form-note">Vi svarer innen én virkedag. Forespørselen er uforpliktende, og du binder deg ikke til noe før du har sett tilbudet.</p>
+
+        <div class="cf-success" id="cfSuccess" role="status" aria-live="polite">
+          <div class="confetti" id="confetti" aria-hidden="true"></div>
+          <span class="tick"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <h3>Takk – vi har fått forespørselen din.</h3>
+          <p id="successMsg">Du hører fra Ingrid innen én virkedag, som regel samme dag.</p>
+          <span class="cf-ref" id="cfRef">Ref. AR-000000</span>
+          <button type="button" class="btn btn--dark-ghost btn--sm" id="resetForm" style="margin-top:8px">Send en ny forespørsel</button>
+        </div>
+      </form>
+
+      <div class="cinfo">
+        <div class="ci-card reveal d1">
+          <span class="ci-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B1F17" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10.5c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10.5" r="2.8"/></svg></span>
+          <div>
+            <h4>Kontor</h4>
+            <p>Karenslyst allé 2, 0273 Oslo<br>4. etasje – ring på «Andersen Regnskap»</p>
+          </div>
+        </div>
+        <div class="ci-card reveal d2">
+          <span class="ci-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B1F17" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+          <div>
+            <h4>Ring eller skriv</h4>
+            <p><a class="mono" href="tel:+4722456789">22 45 67 89</a><br><a class="mono" href="/cdn-cgi/l/email-protection#bbcbd4c8cffbdad5dfdec9c8ded5c9dedcd5c8d0dacb95d5d4"><span class="__cf_email__" data-cfemail="a8d8c7dbdce8c9c6cccddadbcdc6dacdcfc6dbc3c9d886c6c7">[email&#160;protected]</span></a></p>
+          </div>
+        </div>
+        <div class="ci-card reveal d3">
+          <span class="ci-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B1F17" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+          <div style="flex:1">
+            <h4>Åpningstider</h4>
+            <div class="hours">
+              <div><span>Mandag – torsdag</span><b>08–16</b></div>
+              <div><span>Fredag</span><b>08–15</b></div>
+              <div><span>Juli</span><b>Bemanning 09–14</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="ci-card reveal d4">
+          <span class="ci-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B1F17" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3.5 6v6c0 5 3.6 9.3 8.5 10 4.9-.7 8.5-5 8.5-10V6Z"/><path d="M9.2 12.2 11 14l3.8-4"/></svg></span>
+          <div>
+            <h4>Organisasjonsnummer</h4>
+            <p><span class="mono">924 817 364</span> · MVA-registrert<br>Godkjent regnskapsførerselskap</p>
+          </div>
+        </div>
+        <div class="map-card reveal d5">
+          <svg viewBox="0 0 600 300" role="img" aria-label="Kart som viser kontoret på Skøyen i Oslo">
+            <rect width="600" height="300" fill="#EDE8DC"/>
+            <g fill="#E2DBCB">
+              <rect x="30" y="30" width="120" height="80" rx="6"/>
+              <rect x="180" y="20" width="90" height="60" rx="6"/>
+              <rect x="420" y="40" width="140" height="70" rx="6"/>
+              <rect x="60" y="190" width="110" height="80" rx="6"/>
+              <rect x="230" y="210" width="130" height="60" rx="6"/>
+              <rect x="430" y="180" width="120" height="90" rx="6"/>
+            </g>
+            <path d="M0 150 H600" stroke="#FBFAF6" stroke-width="26"/>
+            <path d="M0 150 H600" stroke="#D8D0BD" stroke-width="1" stroke-dasharray="10 12"/>
+            <path d="M310 0 V300" stroke="#FBFAF6" stroke-width="18"/>
+            <path d="M150 0 V300" stroke="#FBFAF6" stroke-width="10"/>
+            <path d="M480 0 V300" stroke="#FBFAF6" stroke-width="10"/>
+            <path d="M0 60 Q200 40 600 90" stroke="#C9D8C4" stroke-width="20" fill="none" opacity=".8"/>
+            <circle cx="312" cy="150" r="46" fill="rgba(62,107,79,.12)"/>
+            <text x="312" y="196" text-anchor="middle" font-family="Manrope,sans-serif" font-size="13" font-weight="700" fill="#3A4A42">Karenslyst allé 2</text>
+            <text x="312" y="214" text-anchor="middle" font-family="Geist Mono,monospace" font-size="10.5" fill="#6E7D75" letter-spacing="1.4">SKØYEN · OSLO</text>
+          </svg>
+          <span class="map-pin" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div class="ftr-brand">
+        <a class="brand" href="#top" style="color:var(--dark-text)">
+          <span class="brand-mark" style="background:rgba(255,255,255,.08)" aria-hidden="true">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+              <path d="M6 19 L12 5 L18 19" stroke="#C8F24A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 15 H15" stroke="#F5F2EB" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="brand-txt"><b>Andersen Regnskap</b><span style="color:var(--dark-dim)">Autorisert · Oslo</span></span>
+        </a>
+        <p>Regnskap, lønn og rådgivning for små og mellomstore bedrifter. Fast pris, fast kontaktperson og tall du forstår.</p>
+        <span class="demo-tag" style="margin-top:20px">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+          Demoside · fiktivt selskap
+        </span>
+      </div>
+      <div>
+        <h5>Tjenester</h5>
+        <ul class="ftr-links">
+          <li><a href="#tjenester">Bokføring</a></li>
+          <li><a href="#tjenester">Lønn og personal</a></li>
+          <li><a href="#tjenester">MVA</a></li>
+          <li><a href="#tjenester">Årsoppgjør</a></li>
+          <li><a href="#tjenester">Fakturering</a></li>
+          <li><a href="#tjenester">Rådgivning</a></li>
+          <li><a href="#tjenester">Selskapsstiftelse</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Selskapet</h5>
+        <ul class="ftr-links">
+          <li><a href="#om">Om oss</a></li>
+          <li><a href="#priser">Priser</a></li>
+          <li><a href="#omtaler">Kundeomtaler</a></li>
+          <li><a href="#prosess">Bytt regnskapsfører</a></li>
+          <li><a href="#nyttig">Nyttig å vite</a></li>
+          <li><a href="#kontakt">Ledige stillinger</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Få nyhetsbrevet</h5>
+        <p style="font-size:14px;color:var(--dark-dim);line-height:1.55">Én e-post i måneden om frister, regelendringer og grep du kan ta før året er omme.</p>
+        <form class="ftr-news" id="newsForm" novalidate>
+          <label for="newsMail" style="position:absolute;left:-9999px">E-postadresse</label>
+          <input type="email" id="newsMail" placeholder="din@epost.no" autocomplete="email">
+          <button type="submit" aria-label="Meld på nyhetsbrev"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0B1F17" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </form>
+        <p id="newsMsg" style="font-size:12.5px;color:var(--lime);margin-top:10px;min-height:18px"></p>
+      </div>
+    </div>
+    <div class="ftr-bot">
+      <p>© <span id="year">2026</span> Andersen Regnskap AS · Org.nr 924 817 364 MVA · Karenslyst allé 2, 0273 Oslo</p>
+      <div class="ftr-legal">
+        <a href="#kontakt">Personvern</a>
+        <a href="#kontakt">Vilkår</a>
+        <a href="#kontakt">Informasjonskapsler</a>
+        <a href="#kontakt">Hvitvasking</a>
+      </div>
+    </div>
+  </div>
+  <div class="ftr-wordmark" aria-hidden="true">Andersen Regnskap</div>
+</footer>
+
+<!-- ===================== FLOATING ===================== -->
+<button class="to-top" id="toTop" aria-label="Til toppen">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="mbar" id="mbar">
+  <a class="call" href="tel:+4722456789" aria-label="Ring oss">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C8F24A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+  </a>
+  <div class="mt">Få tilbud<span>Svar innen 1 virkedag</span></div>
+  <a class="btn btn--lime" href="#kontakt">Få tilbud</a>
+</div>
+
+<div class="cookies" id="cookies" role="dialog" aria-label="Informasjonskapsler">
+  <h4>Vi bruker minimalt med cookies</h4>
+  <p>Kun det som trengs for at siden skal fungere, og anonym statistikk som hjelper oss å gjøre den bedre. Ingen sporing på tvers av nettsteder.</p>
+  <div class="cbtn">
+    <button class="btn btn--sm" id="cookieOk">Greit</button>
+    <button class="btn btn--sm btn--ghost" id="cookieNo">Kun nødvendige</button>
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   ANDERSEN REGNSKAP AS — interaksjon
+   ========================================================================== */
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nf = new Intl.NumberFormat('nb-NO');
+  var $  = function(s,c){ return (c||document).querySelector(s); };
+  var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+
+  /* ---------- 1. Reveal on scroll ---------- */
+  var revealables = $$('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    revealables.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } });
+    }, { rootMargin:'0px 0px -8% 0px', threshold:.12 });
+    revealables.forEach(function(el){ ro.observe(el); });
+  }
+
+  /* ---------- 2. Header, progress, to-top, mobile bar ---------- */
+  var hdr = $('#hdr'), prog = $('#progress'), toTop = $('#toTop'), mbar = $('#mbar');
+  var ticking = false;
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    hdr.classList.toggle('stuck', y > 24);
+    prog.style.transform = 'scaleX(' + (h > 0 ? Math.min(y/h,1) : 0) + ')';
+    toTop.classList.toggle('on', y > 900);
+    mbar.classList.toggle('on', y > window.innerHeight * .85);
+    procScroll();
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});
+
+  toTop.addEventListener('click', function(){
+    window.scrollTo({ top:0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+
+  /* ---------- 3. Mobil meny ---------- */
+  var burger = $('#burger'), mm = $('#mobileMenu');
+  function setMenu(open){
+    document.body.classList.toggle('menu-open', open);
+    document.body.classList.toggle('locked', open);
+    burger.setAttribute('aria-expanded', String(open));
+    mm.setAttribute('aria-hidden', String(!open));
+    $$('.m-link', mm).forEach(function(a,i){ a.style.transitionDelay = open ? (0.12 + i*0.045)+'s' : '0s'; });
+  }
+  burger.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); });
+  $$('.m-link, .mm-foot a', mm).forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && document.body.classList.contains('menu-open')) setMenu(false); });
+
+  /* ---------- 4. Smooth scroll + scrollspy ---------- */
+  $$('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length < 2) return;
+      var t = document.querySelector(id);
+      if(!t) return;
+      e.preventDefault();
+      var off = window.innerWidth > 820 ? 84 : 66;
+      var y = t.getBoundingClientRect().top + window.scrollY - off;
+      window.scrollTo({ top:y, behavior: reduce ? 'auto' : 'smooth' });
+      if(history.replaceState) history.replaceState(null,'',id);
+    });
+  });
+
+  var navLinks = $$('#nav a');
+  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window && sections.length) {
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          navLinks.forEach(function(l){ l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
+        }
+      });
+    }, { rootMargin:'-45% 0px -50% 0px' });
+    sections.forEach(function(s){ spy.observe(s); });
+  }
+
+  /* ---------- 5. Magnetic buttons ---------- */
+  if (!reduce && window.matchMedia('(pointer:fine)').matches) {
+    $$('.magnetic').forEach(function(el){
+      el.addEventListener('mousemove', function(e){
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width/2) * .22;
+        var y = (e.clientY - r.top - r.height/2) * .32;
+        el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+      });
+      el.addEventListener('mouseleave', function(){ el.style.transform = ''; });
+    });
+  }
+
+  /* ---------- 6. Custom cursor ---------- */
+  var dot = $('.cursor-dot'), ring = $('.cursor-ring');
+  if (dot && !reduce && window.matchMedia('(pointer:fine)').matches) {
+    var mx = -100, my = -100, rx = -100, ry = -100;
+    window.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; dot.style.transform = 'translate('+mx+'px,'+my+'px)'; }, {passive:true});
+    (function loop(){
+      rx += (mx - rx) * .16; ry += (my - ry) * .16;
+      ring.style.transform = 'translate('+rx+'px,'+ry+'px)';
+      requestAnimationFrame(loop);
+    })();
+    document.addEventListener('mouseover', function(e){
+      var t = e.target.closest('a,button,label,input,.svc,.q-card,.p-card,.n-card,.t-card');
+      document.body.classList.toggle('cur-hover', !!t);
+    });
+  } else if (dot) { dot.style.display = 'none'; ring.style.display = 'none'; }
+
+  /* ---------- 7. Hero intro ---------- */
+  requestAnimationFrame(function(){ setTimeout(function(){ document.body.classList.add('ready'); }, 60); });
+
+  /* ---------- 8. Telle-animasjon ---------- */
+  function fmtNum(v, kind){
+    v = Math.round(v);
+    if (kind === 'kr') return nf.format(v);
+    return nf.format(v);
+  }
+  function countUp(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var kind = el.getAttribute('data-fmt');
+    if (reduce){ el.textContent = fmtNum(target, kind); return; }
+    var dur = 1500, t0 = null;
+    function step(ts){
+      if(!t0) t0 = ts;
+      var p = Math.min((ts - t0)/dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmtNum(target * e, kind);
+      if (p < 1) requestAnimationFrame(step); else el.textContent = fmtNum(target, kind);
+    }
+    requestAnimationFrame(step);
+  }
+  if ('IntersectionObserver' in window){
+    var co = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); co.unobserve(e.target); } });
+    }, { threshold:.5 });
+    $$('[data-count]').forEach(function(el){ co.observe(el); });
+  } else { $$('[data-count]').forEach(countUp); }
+
+  /* ---------- 9. Hero cash chart ---------- */
+  (function chart(){
+    var svg = $('#cashChart'); if(!svg) return;
+    var W = 620, H = 170, pad = 8;
+    var data = [980,1045,1010,1120,1240,1195,1310,1425,1380,1520,1655,1842];
+    var months = ['sep','okt','nov','des','jan','feb','mar','apr','mai','jun','jul','aug'];
+    var max = Math.max.apply(null,data) * 1.12, min = Math.min.apply(null,data) * .82;
+    var X = function(i){ return pad + i * ((W - pad*2) / (data.length - 1)); };
+    var Y = function(v){ return H - pad - ((v - min) / (max - min)) * (H - pad*2 - 6); };
+    var pts = data.map(function(v,i){ return [X(i), Y(v)]; });
+    var d = 'M' + pts.map(function(p){ return p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' L ');
+    var area = d + ' L ' + pts[pts.length-1][0].toFixed(1) + ' ' + H + ' L ' + pts[0][0].toFixed(1) + ' ' + H + ' Z';
+    var ns = 'http://www.w3.org/2000/svg';
+    function mk(tag, attrs){ var e = document.createElementNS(ns, tag); for(var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+    var defs = mk('defs',{});
+    var g = mk('linearGradient',{id:'areaG',x1:'0',y1:'0',x2:'0',y2:'1'});
+    g.appendChild(mk('stop',{offset:'0%','stop-color':'#C8F24A','stop-opacity':'.34'}));
+    g.appendChild(mk('stop',{offset:'100%','stop-color':'#C8F24A','stop-opacity':'0'}));
+    defs.appendChild(g); svg.appendChild(defs);
+
+    [0.25,0.5,0.75].forEach(function(f){
+      svg.appendChild(mk('line',{x1:pad,x2:W-pad,y1:(H*f).toFixed(1),y2:(H*f).toFixed(1),stroke:'rgba(234,240,233,.09)','stroke-width':'1','stroke-dasharray':'3 6'}));
+    });
+    var ap = mk('path',{d:area, fill:'url(#areaG)', opacity:'0'});
+    svg.appendChild(ap);
+    var line = mk('path',{d:d, fill:'none', stroke:'#C8F24A','stroke-width':'2.6','stroke-linecap':'round','stroke-linejoin':'round'});
+    svg.appendChild(line);
+    var head = mk('circle',{r:'4.5',fill:'#C8F24A',opacity:'0'});
+    svg.appendChild(head);
+    var hoverDot = mk('circle',{r:'5.5',fill:'#0B1F17',stroke:'#C8F24A','stroke-width':'2.6',opacity:'0'});
+    svg.appendChild(hoverDot);
+
+    var len = line.getTotalLength ? line.getTotalLength() : 1400;
+    line.style.strokeDasharray = len; line.style.strokeDashoffset = reduce ? 0 : len;
+
+    function play(){
+      if (reduce){ ap.setAttribute('opacity','1'); head.setAttribute('opacity','1'); head.setAttribute('cx',pts[pts.length-1][0]); head.setAttribute('cy',pts[pts.length-1][1]); return; }
+      line.style.transition = 'stroke-dashoffset 1.9s cubic-bezier(.16,1,.3,1)';
+      line.style.strokeDashoffset = 0;
+      setTimeout(function(){
+        ap.style.transition = 'opacity .9s ease'; ap.setAttribute('opacity','1');
+        head.setAttribute('opacity','1');
+        head.setAttribute('cx',pts[pts.length-1][0]); head.setAttribute('cy',pts[pts.length-1][1]);
+      }, 900);
+    }
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ play(); io.disconnect(); } }); }, {threshold:.4});
+      io.observe(svg);
+    } else play();
+
+    // hover / touch
+    var wrap = $('#chartWrap'), tip = $('#chartTip');
+    function nearest(clientX){
+      var r = svg.getBoundingClientRect();
+      var vx = ((clientX - r.left) / r.width) * W;
+      var i = Math.round(((vx - pad) / ((W - pad*2) / (data.length - 1))));
+      return Math.max(0, Math.min(data.length - 1, i));
+    }
+    function show(i){
+      var r = svg.getBoundingClientRect();
+      hoverDot.setAttribute('cx', pts[i][0]); hoverDot.setAttribute('cy', pts[i][1]); hoverDot.setAttribute('opacity','1');
+      tip.querySelector('.m').textContent = months[i];
+      tip.querySelector('.v').textContent = nf.format(data[i] * 1000) + ' kr';
+      tip.style.left = (pts[i][0] / W * r.width) + 'px';
+      tip.style.top  = (pts[i][1] / H * r.height) + 'px';
+      tip.classList.add('show');
+    }
+    function hide(){ tip.classList.remove('show'); hoverDot.setAttribute('opacity','0'); }
+    svg.addEventListener('mousemove', function(e){ show(nearest(e.clientX)); });
+    svg.addEventListener('mouseleave', hide);
+    svg.addEventListener('touchstart', function(e){ show(nearest(e.touches[0].clientX)); }, {passive:true});
+    svg.addEventListener('touchmove', function(e){ show(nearest(e.touches[0].clientX)); }, {passive:true});
+    svg.addEventListener('touchend', function(){ setTimeout(hide, 1400); });
+  })();
+
+  /* ---------- 10. Mini-ringer ---------- */
+  function animRing(c){
+    var p = parseFloat(c.getAttribute('data-p')) || 0;
+    var r = parseFloat(c.getAttribute('r'));
+    var circ = 2 * Math.PI * r;
+    c.style.strokeDasharray = circ;
+    c.style.strokeDashoffset = circ;
+    var txt = c.parentElement.querySelector('text');
+    var label = txt ? txt.textContent : '';
+    var numeric = parseFloat(String(label).replace(',', '.').replace(/[^0-9.]/g, ''));
+    var suffix = String(label).replace(/^[0-9.,\s]+/, '');
+    function labelTick(v){ if (txt) txt.textContent = Math.round(v) + suffix; }
+    if (reduce){ c.style.strokeDashoffset = circ * (1 - p/100); return; }
+    requestAnimationFrame(function(){
+      c.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.16,1,.3,1)';
+      c.style.strokeDashoffset = circ * (1 - p/100);
+    });
+    if (!isNaN(numeric)) {
+      var t0 = null, dur = 1500;
+      requestAnimationFrame(function step(ts){
+        if (!t0) t0 = ts;
+        var pr = Math.min((ts - t0) / dur, 1);
+        labelTick(numeric * (1 - Math.pow(1 - pr, 3)));
+        if (pr < 1) requestAnimationFrame(step); else labelTick(numeric);
+      });
+    }
+  }
+  var rings = $$('.ring-dash');
+  if ('IntersectionObserver' in window){
+    var rio = new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ animRing(e.target); rio.unobserve(e.target); } }); }, {threshold:.5});
+    rings.forEach(function(c){ rio.observe(c); });
+  } else rings.forEach(animRing);
+
+  /* ---------- 11. Marquee ---------- */
+  (function(){
+    var track = $('#marqTrack'); if(!track) return;
+    var clients = [
+      {n:'Nordvik & Partnere', s:'Arkitektur', i:'M4 20V8l6-4 6 4v12M9 20v-6h4v6'},
+      {n:'Fjordkaféen', s:'Servering', i:'M4 9h12v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM16 10h2a2.5 2.5 0 0 1 0 5h-2M4 21h14'},
+      {n:'Bygg & Bruk', s:'Håndverk', i:'M3 21h18M6 21V9l6-5 6 5v12M10 21v-6h4v6'},
+      {n:'Studio Halden', s:'Design', i:'M12 3a9 9 0 1 0 0 18c1.7 0 2-1.2 1.3-2.2-.8-1.2.1-2.6 1.6-2.6H17a4 4 0 0 0 4-4c0-5-4-9.2-9-9.2Z'},
+      {n:'Klinikken Sør', s:'Helse', i:'M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10Z'},
+      {n:'Reis & Opplev', s:'Reise', i:'M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z'},
+      {n:'Verksted 24', s:'Bilverksted', i:'M5 16h14M6 16l1.5-5.5A2 2 0 0 1 9.4 9h5.2a2 2 0 0 1 1.9 1.5L18 16M7 16v2M17 16v2'},
+      {n:'Logistikk Nord', s:'Transport', i:'M2 7h11v9H2zM13 10h4l3 3v3h-7M6 19a2 2 0 1 0 0-.1M17 19a2 2 0 1 0 0-.1'}
+    ];
+    var html = clients.map(function(c){
+      return '<div class="marq-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="opacity:.55"><path d="' + c.i + '"/></svg><span><span class="nm">' + c.n + '</span><br><span class="sub">' + c.s + '</span></span></div>';
+    }).join('');
+    track.innerHTML = html + html;
+  })();
+
+  /* ---------- 12. Prosess scroll ---------- */
+  var stages = $$('.pv-stage'), stepEls = $$('.step'), pvBar = $('#pvBar'), pvNum = $('#pvNum'), pvTime = $('#pvTime');
+  var times = ['Dag 1','Dag 2–5','Løpende'];
+  var curStage = 1;
+  function setStage(n){
+    if (n === curStage) return;
+    curStage = n;
+    stages.forEach(function(s){ s.classList.toggle('on', +s.getAttribute('data-stage') === n); });
+    stepEls.forEach(function(s){ s.classList.toggle('on', +s.getAttribute('data-step') === n); });
+    pvBar.style.width = (n/3*100) + '%';
+    pvNum.textContent = n;
+    pvTime.textContent = times[n-1];
+  }
+  if ('IntersectionObserver' in window && stepEls.length){
+    var pio = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting) setStage(+e.target.getAttribute('data-step')); });
+    }, { rootMargin:'-42% 0px -42% 0px' });
+    stepEls.forEach(function(s){ pio.observe(s); });
+  }
+  function procScroll(){
+    var vis = $('#procVisual'); if(!vis || !pvBar) return;
+    var box = $('#prosess').getBoundingClientRect();
+    var total = box.height - window.innerHeight;
+    var p = total > 0 ? Math.min(Math.max(-box.top / total, 0), 1) : 0;
+    pvBar.style.width = Math.max(6, p * 100) + '%';
+  }
+
+  /* ---------- 13. Kalkulator ---------- */
+  (function(){
+    var form = $('#calcForm'); if(!form) return;
+    var el = {
+      oms:$('#oms'), bilag:$('#bilag'), ansatte:$('#ansatte'),
+      omsVal:$('#omsVal'), bilVal:$('#bilVal'), ansVal:$('#ansVal'), bransjeVal:$('#bransjeVal'),
+      total:$('#calcTotal'), year:$('#calcYear'), ar:$('#calcAr'), break:$('#calcBreak'),
+      saveTitle:$('#saveTitle'), saveDesc:$('#saveDesc'),
+      barOwn:$('#barOwn'), barUs:$('#barUs'), valOwn:$('#valOwn'), valUs:$('#valUs')
+    };
+    var bransjeNavn = { konsulent:'Konsulent / tjeneste', nettbutikk:'Nettbutikk / handel', handverk:'Håndverk / bygg', restaurant:'Servering / butikk' };
+    var bransjeFaktor = { konsulent:1.0, nettbutikk:1.15, handverk:1.12, restaurant:1.2 };
+      var baseForm = { enk:990, as:1490, ans:1490 };
+      var arForm = { enk:4900, as:8900, ans:8900 };
+      var lastTotal = 0, lastOwn = 0;
+
+      function setFill(inp){
+        var min = +inp.min, max = +inp.max, v = +inp.value;
+        inp.style.setProperty('--fill', ((v - min) / (max - min) * 100) + '%');
+      }
+      function kr(v){ return nf.format(Math.round(v)); }
+
+      function calc(){
+        var f = (form.querySelector('input[name=form]:checked') || {}).value || 'as';
+        var b = (form.querySelector('input[name=bransje]:checked') || {}).value || 'konsulent';
+        var oms = +el.oms.value, bil = +el.bilag.value, ans = +el.ansatte.value;
+        var mva = $('#o-mva').checked, fakt = $('#o-fakt').checked, rapp = $('#o-rapp').checked, rad = $('#o-rad').checked;
+
+        var base = baseForm[f];
+        var bilagK = bil <= 100 ? Math.round(bil * 10) : Math.round(1000 + (bil - 100) * 6);
+        bilagK = Math.min(bilagK, 3600);
+        var lønnK = ans > 0 ? ans * 290 : 0;
+        var aMeld = ans > 0 ? 190 : 0;
+        var årsK = f === 'as' || f === 'ans' ? 742 : 0;
+        var mvaK = mva ? 590 : 0, faktK = fakt ? 490 : 0, rappK = rapp ? 450 : 0, radK = rad ? 750 : 0;
+        var sum = base + bilagK + lønnK + aMeld + årsK + mvaK + faktK + rappK + radK;
+        var total = Math.round(sum * bransjeFaktor[b] / 10) * 10;
+
+        var rows = [
+          ['Grunnpakke ' + (f === 'enk' ? 'ENK' : f === 'as' ? 'AS' : 'ANS/DA'), base],
+          ['Bokføring, ' + bil + ' bilag', bilagK],
+          ['Bransjetillegg ' + bransjeNavn[b].split(' / ')[0].toLowerCase(), Math.round(sum * (bransjeFaktor[b] - 1))]
+        ];
+        if (lønnK) rows.push(['Lønn, ' + ans + ' ansatte', lønnK]);
+        if (aMeld) rows.push(['A-melding og rapportering', aMeld]);
+        if (årsK) rows.push(['Årsoppgjør, avsetning per mnd', årsK]);
+        if (mvaK) rows.push(['MVA-oppgaver', mvaK]);
+        if (faktK) rows.push(['Fakturering', faktK]);
+        if (rappK) rows.push(['Månedsrapport', rappK]);
+        if (radK) rows.push(['Rådgivning 3 t/mnd', radK]);
+
+        el.break.innerHTML = rows.filter(function(r){ return r[1] > 0; }).map(function(r){
+          return '<div class="brk"><span class="l"><i></i>' + r[0] + '</span><span class="r">' + kr(r[1]) + ' kr</span></div>';
+        }).join('') + '<div class="brk total"><span class="l">Sum per måned</span><span class="r">' + kr(total) + ' kr</span></div>';
+
+        el.total.textContent = kr(total);
+        el.year.textContent = kr(total * 12) + ' kr';
+        el.ar.textContent = kr(arForm[f]) + ' kr';
+
+        // verdi av egeninnsats
+        var timer = Math.round(1.8 + bil * 0.016 + ans * 0.4 + (mva ? .8 : 0) + (fakt ? .7 : 0));
+        var own = Math.round(timer * 1150 / 50) * 50;
+        var diff = own - total;
+        el.saveTitle.textContent = diff > 0 ? 'Du sparer ' + kr(diff) + ' kr i måneden' : 'Prisen dekker ' + timer + ' timer egeninnsats';
+        el.saveDesc.textContent = 'Vi anslår at du bruker rundt ' + timer + ' timer i måneden på bokføring, lønn og MVA. Med en timepris på 1 150 kr tilsvarer det ' + kr(own) + ' kr – tid du heller kan bruke på kundene dine.';
+      var maxv = Math.max(own, total, 1);
+      requestAnimationFrame(function(){
+        el.barOwn.style.width = (own / maxv * 100) + '%';
+        el.barUs.style.width  = (total / maxv * 100) + '%';
+      });
+      el.valOwn.textContent = kr(own) + ' kr';
+      el.valUs.textContent  = kr(total) + ' kr';
+
+      lastTotal = total; lastOwn = own;
+      window.andersenEstimate = { total:total, form:f, bransje:bransjeNavn[b], bilag:bil, ansatte:ans, oms:oms };
+    }
+
+    function labelUpdate(){
+      var oms = +el.oms.value;
+      el.omsVal.textContent = oms >= 1000000 ? (oms/1000000).toFixed(oms % 1000000 === 0 ? 0 : 1).replace('.',',') + ' mill. kr' : kr(oms) + ' kr';
+      el.bilVal.textContent = el.bilag.value;
+      el.ansVal.textContent = el.ansatte.value + (el.ansatte.value === '40' ? ' +' : '');
+      var b = (form.querySelector('input[name=bransje]:checked') || {}).value;
+      el.bransjeVal.textContent = bransjeNavn[b] || '';
+      [el.oms, el.bilag, el.ansatte].forEach(setFill);
+    }
+
+    form.addEventListener('input', function(){ labelUpdate(); calc(); });
+    form.addEventListener('change', function(){ labelUpdate(); calc(); });
+    labelUpdate(); calc();
+
+    // overfør til kontaktskjema
+    $$('a[href="#kontakt"]').forEach(function(a){
+      a.addEventListener('click', function(){
+        var msg = $('#contactForm textarea[name=melding]');
+        if (msg && a.closest('#kalkulator')) {
+          var e = window.andersenEstimate;
+          var behov = [];
+          if ($('#o-mva').checked) behov.push('MVA');
+          if ($('#o-fakt').checked) behov.push('Fakturering');
+          if ($('#o-rapp').checked) behov.push('Økonomisk oppfølging');
+          if ($('#o-rad').checked) behov.push('Rådgivning');
+          msg.value = 'Jeg har brukt priskalkulatoren på nettsiden.\n' +
+            'Selskapsform: ' + (e.form === 'enk' ? 'ENK' : e.form === 'as' ? 'AS' : 'ANS/DA') + '\n' +
+            'Bransje: ' + e.bransje + '\n' +
+            'Månedlig omsetning: ' + kr(e.oms) + ' kr\n' +
+            'Bilag per måned: ' + e.bilag + '\n' +
+            'Ansatte: ' + e.ansatte + '\n' +
+            'Ønsket tillegg: ' + (behov.length ? behov.join(', ') : 'Kun bokføring') + '\n' +
+            'Estimert månedspris fra kalkulatoren: ' + kr(e.total) + ' kr';
+          setTimeout(function(){ msg.focus({preventScroll:true}); }, 700);
+        }
+      });
+    });
+  })();
+
+  /* ---------- 14. Priser: mnd / år ---------- */
+  (function(){
+    var btns = $$('.ptoggle button'); if(!btns.length) return;
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var c = b.getAttribute('data-cycle');
+        btns.forEach(function(x){ x.classList.toggle('on', x === b); });
+        $$('.p-amt .n').forEach(function(n){
+          n.style.opacity = '0';
+          setTimeout(function(){ n.textContent = n.getAttribute('data-' + c); n.style.opacity = '1'; }, 160);
+        });
+        $$('.p-note').forEach(function(p){
+          p.textContent = p.getAttribute('data-note-' + c);
+        });
+      });
+    });
+  })();
+
+  /* ---------- 15. Målepunkter: bars ---------- */
+  (function(){
+    var host = $('#revBars'); if(!host) return;
+    var mnd = [
+      {m:'Jan', in:820, ut:640},{m:'Feb', in:905, ut:680},{m:'Mar', in:1010, ut:720},
+      {m:'Apr', in:960, ut:700},{m:'Mai', in:1120, ut:790},{m:'Jun', in:1240, ut:830},
+      {m:'Jul', in:780, ut:610},{m:'Aug', in:1360, ut:880}
+    ];
+    var max = 1400;
+    host.innerHTML = mnd.map(function(d){
+      return '<div class="b-item"><div class="bt"><b>' + d.m + '</b><span>' + nf.format(d.in) + ' / ' + nf.format(d.ut) + ' tusen</span></div>' +
+        '<div class="bar" style="position:relative;background:rgba(11,31,23,.07)"><i data-w="' + (d.ut/max*100).toFixed(1) + '" style="background:rgba(11,31,23,.22);position:absolute;inset:0;width:0"></i>' +
+        '<i data-w="' + (d.in/max*100).toFixed(1) + '" style="background:linear-gradient(90deg,#3E6B4F,#7FB069);position:absolute;inset:0;width:0;opacity:.55"></i></div></div>';
+    }).join('');
+    var bars = $$('i[data-w]', host);
+    if ('IntersectionObserver' in window){
+      var bio = new IntersectionObserver(function(en){
+        en.forEach(function(e){
+          if(e.isIntersecting){
+            bars.forEach(function(b,i){ setTimeout(function(){ b.style.width = b.getAttribute('data-w') + '%'; }, i * 45); });
+            bio.disconnect();
+          }
+        });
+      }, {threshold:.3});
+      bio.observe(host);
+    } else bars.forEach(function(b){ b.style.width = b.getAttribute('data-w') + '%'; });
+  })();
+
+  /* ---------- 16. Omtaler ---------- */
+  (function(){
+    var track = $('#qTrack'), wrapEl = $('#qWrap'), dotsHost = $('#qDots');
+    if(!track) return;
+    var q = [
+      {t:'Vi byttet fra et stort byrå der vi aldri snakket med samme person to ganger. Nå får vi rapporten den 15., og jeg vet faktisk hva vi tjener per prosjekt. Det har endret hvordan vi priser jobbene våre.', n:'Ingrid Nordvik', r:'Daglig leder, Nordvik & Partnere AS', c:'#3E6B4F'},
+      {t:'Lønn til 22 ansatte, tre overenskomster og turnus. Jeg hadde ikke trodd det kunne gå så stille for seg. A-meldingene går ut uten at jeg tenker på det, og feriepengeoversikten stemmer endelig.', n:'Terje Bakken', r:'Daglig leder, Bygg & Bruk AS', c:'#B5563C'},
+      {t:'Vi startet som ENK i 2023 og Martin ringte meg i fjor og sa at vi burde blitt AS. Han hadde regnet på det, viste tallene, og stiftet selskapet for oss. Den samtalen sparte oss for over 90 000 kroner i skatt.', n:'Sara Lindqvist', r:'Grunnlegger, Studio Halden', c:'#D9A441'},
+      {t:'Jeg kom inn med to år med etterslep og ganske dårlig samvittighet. Ingen pekefingre – bare en plan, fast pris og en fristliste. Nå er alt à jour og jeg får varsel før hver MVA-frist.', n:'Ahmed Khalil', r:'Eier, Fjordkaféen', c:'#1B4632'},
+      {t:'Som nettbutikk har vi tusenvis av transaksjoner i måneden. Integrasjonene de satt opp mellom nettbutikk, betalingsterminal og regnskapet fjernet rundt to hele arbeidsdager i måneden for meg.', n:'Hanne Vik', r:'Grunnlegger, Reis & Opplev AS', c:'#4A5D7A'}
+    ];
+    function stars(){
+      var s = '';
+      for(var i=0;i<5;i++) s += '<svg width="14" height="14" viewBox="0 0 24 24" fill="#D9A441"><path d="m12 2 2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>';
+      return s;
+    }
+    function avatar(nm, col){
+      var inits = nm.split(' ').map(function(w){ return w[0]; }).slice(0,2).join('');
+      return '<svg viewBox="0 0 80 80" width="42" height="42" aria-hidden="true"><defs><linearGradient id="g' + nm.replace(/\W/g,'') + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="' + col + '"/><stop offset="100%" stop-color="#0B1F17"/></linearGradient></defs>' +
+        '<rect width="80" height="80" rx="40" fill="url(#g' + nm.replace(/\W/g,'') + ')"/>' +
+        '<text x="40" y="50" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="30" fill="#F5F2EB">' + inits + '</text></svg>';
+    }
+    track.innerHTML = q.map(function(o){
+      return '<article class="q-card"><div class="stars" aria-label="5 av 5">' + stars() + '</div>' +
+        '<div class="q-mark" aria-hidden="true">”</div>' +
+        '<p class="q-text">' + o.t + '</p>' +
+        '<div class="q-person"><span class="q-av">' + avatar(o.n, o.c) + '</span><span><span class="q-pn">' + o.n + '</span><br><span class="q-pr">' + o.r + '</span></span></div></article>';
+    }).join('');
+
+    var cards = $$('.q-card', track);
+    var idx = 0, dragging = false, startX = 0, startT = 0, curT = 0;
+    function gap(){ return cards[1] ? (cards[1].offsetLeft - cards[0].offsetLeft) : cards[0].offsetWidth; }
+    function go(i, smooth){
+      idx = Math.max(0, Math.min(cards.length - 1, i));
+      curT = -idx * gap();
+      track.style.transition = smooth === false ? 'none' : '';
+      track.style.transform = 'translateX(' + curT + 'px)';
+      $$('#qDots button').forEach(function(d,k){ d.classList.toggle('on', k === idx); d.setAttribute('aria-selected', String(k === idx)); });
+    }
+    dotsHost.innerHTML = q.map(function(_,i){ return '<button role="tab" aria-label="Omtale ' + (i+1) + '" aria-selected="' + (i===0) + '"></button>'; }).join('');
+    $$('#qDots button').forEach(function(d,i){ d.addEventListener('click', function(){ go(i); }); });
+    $('#qNext').addEventListener('click', function(){ go(idx + 1 >= cards.length ? 0 : idx + 1); });
+    $('#qPrev').addEventListener('click', function(){ go(idx - 1 < 0 ? cards.length - 1 : idx - 1); });
+
+    wrapEl.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'mouse') { dragging = true; startX = e.clientX; startT = curT; wrapEl.classList.add('drag'); wrapEl.setPointerCapture(e.pointerId); }
+    });
+    wrapEl.addEventListener('pointermove', function(e){
+      if(!dragging) return;
+      var dx = e.clientX - startX;
+      track.style.transform = 'translateX(' + (startT + dx) + 'px)';
+    });
+    function endDrag(e){
+      if(!dragging) return;
+      dragging = false; wrapEl.classList.remove('drag');
+      try { if (wrapEl.hasPointerCapture(e.pointerId)) wrapEl.releasePointerCapture(e.pointerId); } catch(err){}
+      var dx = e.clientX - startX;
+      go(idx + (Math.abs(dx) > gap() * .25 ? (dx < 0 ? 1 : -1) : 0));
+    }
+    wrapEl.addEventListener('pointerup', endDrag);
+    wrapEl.addEventListener('pointercancel', endDrag);
+    window.addEventListener('resize', function(){ go(idx, false); });
+    go(0, false);
+    var auto = setInterval(function(){ if(!dragging) go(idx + 1 >= cards.length ? 0 : idx + 1); }, 6500);
+    wrapEl.addEventListener('pointerenter', function(){ clearInterval(auto); });
+  })();
+
+  /* ---------- 17. Team ---------- */
+  (function(){
+    var host = $('#teamGrid'); if(!host) return;
+    var team = [
+      {n:'Martin Andersen', r:'Daglig leder · Statsautorisert regnskapsfører', d:'Startet byrået i 2011. Jobber mest med eierskifte, struktur og rådgivning for selskaper mellom 5 og 40 ansatte.', c1:'#0B1F17', c2:'#3E6B4F', b:'Autorisert'},
+      {n:'Ingrid Solberg', r:'Partner · Lønn og personal', d:'Har kjørt lønn i 18 år, også for tariffbedrifter. Sørger for at a-meldingene går ut før du rekker å tenke på dem.', c1:'#1B4632', c2:'#7FB069', b:'Autorisert'},
+      {n:'Jonas Berg', r:'Regnskapsfører · Teknologi', d:'Bygger integrasjonene våre. Hvis du har et kassasystem, en nettbutikk eller en terminal, har Jonas sannsynligvis koblet den opp før.', c1:'#B5563C', c2:'#D9A441', b:'Autorisert'},
+      {n:'Amal Hassan', r:'Rådgiver · Skatt og selskapsrett', d:'Advokatbakgrunn. Tar de vanskelige spørsmålene: utbytte mot lønn, holding, generasjonsskifte og kjøp av bolig i selskapet.', c1:'#3A4A42', c2:'#8FA396', b:'Autorisert'}
+    ];
+    host.innerHTML = team.map(function(p, i){
+      var id = 'tg' + i;
+      return '<article class="t-card reveal' + (i ? ' d' + i : '') + '">' +
+        '<div class="t-photo"><svg viewBox="0 0 200 230" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Portrett av ' + p.n + '">' +
+          '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="' + p.c1 + '"/><stop offset="100%" stop-color="' + p.c2 + '"/></linearGradient></defs>' +
+          '<rect width="200" height="230" fill="url(#' + id + ')"/>' +
+          '<g stroke="rgba(245,242,235,.12)" stroke-width="1">' +
+            '<path d="M0 40h200M0 80h200M0 120h200M0 160h200M0 200h200"/><path d="M40 0v230M100 0v230M160 0v230"/></g>' +
+          '<circle cx="100" cy="86" r="30" fill="none" stroke="rgba(245,242,235,.55)" stroke-width="2.4"/>' +
+          '<path d="M52 178c8-26 26-40 48-40s40 14 48 40" fill="none" stroke="rgba(245,242,235,.55)" stroke-width="2.4" stroke-linecap="round"/>' +
+          '<path d="M100 30v-14M100 244v-14" stroke="#C8F24A" stroke-width="3" stroke-linecap="round"/>' +
+          '<text x="100" y="216" text-anchor="middle" font-family="Instrument Serif,Georgia,serif" font-size="26" fill="rgba(245,242,235,.85)">' + p.n.split(' ').map(function(w){ return w[0]; }).join('') + '</text>' +
+        '</svg><span class="t-badge">' + p.b + '</span></div>' +
+        '<h3 class="t-name">' + p.n + '</h3><p class="t-role">' + p.r + '</p><p class="t-desc">' + p.d + '</p></article>';
+    }).join('');
+    if (!reduce && 'IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.15});
+      $$('.t-card', host).forEach(function(c){ io.observe(c); });
+    } else $$('.t-card', host).forEach(function(c){ c.classList.add('in'); });
+  })();
+
+  /* ---------- 18. FAQ ---------- */
+  $$('#faqList .faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var open = item.classList.contains('open');
+      $$('#faqList .faq-item').forEach(function(i){
+        i.classList.remove('open');
+        $('.faq-q', i).setAttribute('aria-expanded','false');
+      });
+      if(!open){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  /* ---------- 19. Kontaktskjema ---------- */
+  (function(){
+    var form = $('#contactForm'); if(!form) return;
+    var cAns = $('#cAnsatte'), cAnsVal = $('#cAnsVal');
+    function fillRange(){
+      var p = (cAns.value - cAns.min) / (cAns.max - cAns.min) * 100;
+      cAns.style.setProperty('--fill', p + '%');
+      cAnsVal.textContent = cAns.value === '50' ? '50 +' : cAns.value;
+    }
+    cAns.addEventListener('input', fillRange); fillRange();
+
+    function invalid(el){ if(!el) return; var w = el.closest('.inp'); if(w) w.classList.add('err'); }
+    function clear(el){ if(!el) return; var w = el.closest('.inp'); if(w) w.classList.remove('err'); }
+
+    $$('input,textarea', form).forEach(function(f){
+      f.addEventListener('input', function(){ clear(f); });
+    });
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var ok = true;
+      var navn = form.querySelector('[name=navn]'), epost = form.querySelector('[name=epost]'),
+          tlf = form.querySelector('[name=telefon]'), consent = $('#consent');
+      [navn, epost, tlf].forEach(clear);
+      $('#consentWrap').classList.remove('err');
+      if (!navn.value.trim()){ invalid(navn); ok = false; }
+      if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(epost.value.trim())){ invalid(epost); ok = false; }
+      if (tlf.value.replace(/\D/g,'').length < 8){ invalid(tlf); ok = false; }
+      if (!consent.checked){ $('#consentWrap').classList.add('err'); ok = false; }
+      if (!ok){
+        var first = form.querySelector('.err');
+        if (first) first.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'center'});
+        if (!reduce){
+          form.classList.remove('shake');
+          void form.offsetWidth;
+          form.classList.add('shake');
+        }
+        return;
+      }
+      var btn = $('#submitBtn'), txt = $('#submitTxt'), arw = $('#submitArw');
+      btn.disabled = true; btn.style.opacity = '.7';
+      txt.textContent = 'Sender …'; arw.style.display = 'none';
+      setTimeout(function(){
+        var ref = 'AR-' + String(Math.floor(100000 + Math.random() * 899999));
+        $('#cfRef').textContent = 'Ref. ' + ref;
+        var hvem = ['Ingrid','Martin','Jonas','Amal'][Math.floor(Math.random()*4)];
+        $('#successMsg').textContent = 'Du hører fra ' + hvem + ' innen én virkedag – som regel samme dag. Bekreftelsen er sendt til ' + epost.value.trim() + '.';
+        $('#cfSuccess').classList.add('on');
+        confetti();
+      }, 1100);
+    });
+
+    function confetti(){
+      var host = $('#confetti'); host.innerHTML = '';
+      var cols = ['#C8F24A','#F5F2EB','#D9A441','#7FB069','#B5563C'];
+      for (var i = 0; i < 34; i++){
+        var p = document.createElement('i');
+        p.style.left = (Math.random()*100) + '%';
+        p.style.background = cols[i % cols.length];
+        p.style.animationDelay = (Math.random()*.5) + 's';
+        p.style.animationDuration = (1.9 + Math.random()*1.4) + 's';
+        p.style.opacity = String(.5 + Math.random()*.5);
+        host.appendChild(p);
+      }
+    }
+
+    $('#resetForm').addEventListener('click', function(){
+      $('#cfSuccess').classList.remove('on');
+      form.reset();
+      fillRange();
+      var btn = $('#submitBtn'); btn.disabled = false; btn.style.opacity = '1';
+      $('#submitTxt').textContent = 'Send forespørsel';
+      $('#submitArw').style.display = '';
+      $$('.inp', form).forEach(function(i){ i.classList.remove('err'); });
+    });
+  })();
+
+  /* ---------- 20. Nyhetsbrev ---------- */
+  (function(){
+    var f = $('#newsForm'); if(!f) return;
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var v = $('#newsMail').value.trim(), m = $('#newsMsg');
+      if (/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(v)){
+        m.textContent = 'Takk! Du er meldt på – sjekk innboksen for bekreftelse.';
+        f.reset();
+      } else {
+        m.style.color = '#F0A48B';
+        m.textContent = 'Skriv inn en gyldig e-postadresse.';
+        setTimeout(function(){ m.style.color = ''; }, 2600);
+      }
+    });
+  })();
+
+  /* ---------- 21. Cookies ---------- */
+  (function(){
+    var el = $('#cookies');
+    try { if (localStorage.getItem('ar-cookies')) return; } catch(e){}
+    setTimeout(function(){ el.classList.add('on'); }, 2200);
+    function close(v){
+      try { localStorage.setItem('ar-cookies', v); } catch(e){}
+      el.classList.remove('on');
+    }
+    $('#cookieOk').addEventListener('click', function(){ close('alle'); });
+    $('#cookieNo').addEventListener('click', function(){ close('nodvendige'); });
+  })();
+
+  /* ---------- 22. Dash-tilt ---------- */
+  (function(){
+    var dash = $('#dash'); if(!dash || reduce) return;
+    if (!window.matchMedia('(pointer:fine)').matches) return;
+    var parent = dash.parentElement;
+    parent.addEventListener('mousemove', function(e){
+      var r = parent.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5;
+      var y = (e.clientY - r.top) / r.height - .5;
+      dash.style.transition = 'transform .3s ease-out';
+      dash.style.transform = 'perspective(1200px) rotateY(' + (x*4).toFixed(2) + 'deg) rotateX(' + (-y*4).toFixed(2) + 'deg) translateY(' + (-y*6).toFixed(1) + 'px)';
+    });
+    parent.addEventListener('mouseleave', function(){
+      dash.style.transition = 'transform .8s cubic-bezier(.16,1,.3,1)';
+      dash.style.transform = '';
+    });
+  })();
+
+  /* ---------- 23. År ---------- */
+  $('#year').textContent = new Date().getFullYear();
+
+  onScroll();
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a367ff9af90556b7',t:'MTc4ODY0MDI5Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

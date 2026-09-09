@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Andersen Regnskap AS – Regnskap som gir deg oversikt</title>
+<meta name="description" content="Andersen Regnskap AS er et moderne regnskapsbyrå for små og mellomstore bedrifter. Bokføring, lønn, MVA, årsoppgjør og rådgivning – med fast pris og fast kontaktperson.">
+<meta name="theme-color" content="#0E1512">
+<link rel="icon" href="images/image-01.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#F4F2EC;
+  --bg-2:#ECE9E1;
+  --ink:#0E1512;
+  --ink-2:#1B2521;
+  --ink-3:#3A4742;
+  --mute:#6B7772;
+  --line:rgba(14,21,18,.10);
+  --line-2:rgba(14,21,18,.06);
+  --green:#1F6B4E;
+  --green-2:#2B8A66;
+  --acid:#D7F26A;
+  --acid-2:#C6E84B;
+  --white:#FFFFFF;
+  --sans:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --serif:"Instrument Serif",ui-serif,Georgia,"Times New Roman",serif;
+  --r-s:10px;--r-m:16px;--r-l:24px;--r-xl:32px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --sh-1:0 1px 2px rgba(14,21,18,.04),0 8px 24px -12px rgba(14,21,18,.12);
+  --sh-2:0 2px 4px rgba(14,21,18,.04),0 24px 48px -20px rgba(14,21,18,.22);
+  --wrap:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--acid);color:var(--ink)}
+.wrap{width:min(var(--wrap),calc(100% - 40px));margin-inline:auto}
+@media(max-width:640px){.wrap{width:calc(100% - 32px)}}
+
+h1,h2,h3,h4{font-weight:700;letter-spacing:-.02em;line-height:1.08}
+.display{font-size:clamp(2.6rem,6.2vw,5.4rem);font-weight:600;letter-spacing:-.035em;line-height:.98}
+.display em,.h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.h2{font-size:clamp(2rem,4.2vw,3.4rem);font-weight:600;letter-spacing:-.03em;line-height:1.02}
+.h3{font-size:1.35rem;font-weight:700;letter-spacing:-.015em}
+.lead{font-size:clamp(1.05rem,1.4vw,1.25rem);color:var(--ink-3);line-height:1.55;max-width:56ch}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--acid);border-radius:2px}
+.sec{padding:clamp(72px,9vw,128px) 0}
+.sec-head{display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:clamp(40px,5vw,64px)}
+@media(min-width:900px){.sec-head.split{grid-template-columns:1.1fr .9fr;align-items:end;gap:48px}}
+.sec-head .h2{margin-top:14px}
+
+/* ============ BUTTONS ============ */
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:700;font-size:.95rem;letter-spacing:-.005em;transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .3s,color .3s;white-space:nowrap;overflow:hidden;isolation:isolate}
+.btn svg{width:18px;height:18px;transition:transform .5s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--ink);color:var(--white)}
+.btn-primary::after{content:"";position:absolute;inset:0;background:var(--green);transform:translateY(101%);transition:transform .5s var(--ease);z-index:-1;border-radius:inherit}
+.btn-primary:hover::after{transform:translateY(0)}
+.btn-acid{background:var(--acid);color:var(--ink)}
+.btn-acid:hover{background:var(--acid-2);box-shadow:0 12px 32px -12px rgba(215,242,106,.7)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost:hover{background:var(--ink);color:var(--white);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn-light{background:var(--white);color:var(--ink)}
+.btn-light:hover{background:var(--acid)}
+.btn-sm{padding:10px 16px;font-size:.88rem}
+.btn-lg{padding:18px 28px;font-size:1.02rem}
+.link{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);position:relative}
+.link::after{content:"";position:absolute;left:0;bottom:-3px;height:1.5px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.link:hover::after{transform:scaleX(1);transform-origin:left}
+.link svg{width:16px;height:16px;transition:transform .4s var(--ease)}
+.link:hover svg{transform:translate(3px,-3px)}
+
+/* ============ NAV ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;transition:padding .4s var(--ease),background .4s,box-shadow .4s,backdrop-filter .4s}
+.nav.scrolled{padding:10px 0;background:rgba(244,242,236,.82);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);box-shadow:0 1px 0 var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;font-size:1.05rem}
+.logo-mark{width:36px;height:36px;border-radius:10px;background:var(--ink);display:grid;place-items:center;transition:transform .5s var(--ease)}
+.logo:hover .logo-mark{transform:rotate(-8deg) scale(1.05)}
+.logo-mark svg{width:20px;height:20px}
+.logo span small{display:block;font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);line-height:1;margin-top:2px}
+.nav-links{display:flex;gap:4px;align-items:center;list-style:none}
+.nav-links a{padding:9px 14px;border-radius:999px;font-weight:600;font-size:.92rem;color:var(--ink-3);transition:background .3s,color .3s}
+.nav-links a:hover{background:rgba(14,21,18,.06);color:var(--ink)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.burger{display:none;width:44px;height:44px;border-radius:12px;place-items:center;position:relative}
+.burger span{position:absolute;left:12px;width:20px;height:2px;background:var(--ink);border-radius:2px;transition:transform .4s var(--ease),opacity .3s,top .4s var(--ease)}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:22px}.burger span:nth-child(3){top:28px}
+.burger.open span:nth-child(1){top:22px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:22px;transform:rotate(-45deg)}
+@media(max-width:1000px){
+  .nav-links,.nav-cta .btn-ghost{display:none}
+  .burger{display:grid}
+}
+@media(max-width:480px){.nav-cta .btn-primary{display:none}}
+.mobile-menu{position:fixed;inset:0;z-index:90;background:var(--ink);color:var(--white);padding:110px 24px 40px;display:flex;flex-direction:column;justify-content:space-between;clip-path:circle(0 at calc(100% - 44px) 40px);transition:clip-path .7s var(--ease);pointer-events:none}
+.mobile-menu.open{clip-path:circle(150% at calc(100% - 44px) 40px);pointer-events:auto}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.mobile-menu li a{display:flex;justify-content:space-between;align-items:center;font-size:2rem;font-weight:600;letter-spacing:-.03em;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);opacity:0;transform:translateY(20px);transition:opacity .5s,transform .6s var(--ease)}
+.mobile-menu.open li a{opacity:1;transform:none}
+.mobile-menu li:nth-child(1) a{transition-delay:.15s}.mobile-menu li:nth-child(2) a{transition-delay:.2s}.mobile-menu li:nth-child(3) a{transition-delay:.25s}.mobile-menu li:nth-child(4) a{transition-delay:.3s}.mobile-menu li:nth-child(5) a{transition-delay:.35s}.mobile-menu li:nth-child(6) a{transition-delay:.4s}
+.mobile-menu li a span{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--acid);font-weight:400}
+.mobile-foot{display:flex;flex-direction:column;gap:14px}
+.mobile-foot p{color:rgba(255,255,255,.6);font-size:.9rem}
+.nav.menu-open{background:transparent;box-shadow:none;backdrop-filter:none}
+.nav.menu-open .logo,.nav.menu-open .burger span{color:var(--white)}
+.nav.menu-open .burger span{background:var(--white)}
+.nav.menu-open .logo-mark{background:var(--acid)}
+.nav.menu-open .logo-mark path{fill:var(--ink)}
+.nav.menu-open .logo span small{color:rgba(255,255,255,.5)}
+
+/* ============ HERO ============ */
+.hero{position:relative;padding:150px 0 60px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 50% at 80% 10%,rgba(215,242,106,.32),transparent 60%),
+  radial-gradient(40% 40% at 10% 90%,rgba(31,107,78,.10),transparent 60%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center;position:relative}
+@media(min-width:1000px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:48px}}
+.hero-copy{max-width:640px}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border-radius:999px;background:var(--white);box-shadow:var(--sh-1);font-size:.82rem;font-weight:600;color:var(--ink-3);margin-bottom:28px}
+.pill b{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:var(--acid);padding:4px 10px;border-radius:999px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.pill b i{width:6px;height:6px;border-radius:50%;background:var(--acid);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(215,242,106,.6)}70%{box-shadow:0 0 0 6px rgba(215,242,106,0)}}
+.hero .display{margin-bottom:26px}
+.hero .lead{margin-bottom:36px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:44px}
+.hero-proof{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.avatars{display:flex}
+.avatars span{width:38px;height:38px;border-radius:50%;border:2.5px solid var(--bg);margin-left:-10px;display:grid;place-items:center;font-size:.72rem;font-weight:800;color:var(--white)}
+.avatars span:first-child{margin-left:0}
+.hero-proof .stars{color:#E9B949;letter-spacing:1px;font-size:.9rem}
+.hero-proof small{display:block;color:var(--mute);font-size:.82rem}
+.hero-proof b{font-size:.9rem}
+
+/* dashboard mock */
+.dash-wrap{position:relative;perspective:1400px}
+.dash{background:var(--white);border-radius:var(--r-xl);box-shadow:var(--sh-2);padding:22px;position:relative;transform:rotateY(-6deg) rotateX(3deg);transform-style:preserve-3d;transition:transform .8s var(--ease);border:1px solid var(--line-2)}
+@media(hover:hover){.dash-wrap:hover .dash{transform:rotateY(0) rotateX(0)}}
+@media(max-width:1000px){.dash{transform:none}}
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.dash-top h4{font-size:.95rem;font-weight:700}
+.dash-top small{color:var(--mute);font-size:.78rem;display:block;font-weight:500}
+.tag{font-size:.72rem;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(31,107,78,.1);color:var(--green)}
+.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.kpi{background:var(--bg);border-radius:14px;padding:14px}
+.kpi small{display:block;font-size:.7rem;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.kpi b{font-size:1.15rem;letter-spacing:-.02em;display:block}
+.kpi i{font-style:normal;font-size:.72rem;font-weight:700;color:var(--green)}
+.kpi i.down{color:#C8553D}
+.chart{background:var(--bg);border-radius:14px;padding:16px;margin-bottom:12px}
+.chart-head{display:flex;justify-content:space-between;font-size:.78rem;font-weight:600;color:var(--mute);margin-bottom:10px}
+.chart svg{width:100%;height:120px;overflow:visible}
+.chart .line{fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 2.2s var(--ease) .6s forwards}
+.chart .area{fill:url(#g1);opacity:0;animation:fade 1s 1.4s forwards}
+.chart .dot{fill:var(--ink);opacity:0;animation:fade .4s 2.4s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+.dash-rows{display:flex;flex-direction:column;gap:6px}
+.drow{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;font-size:.84rem;transition:background .3s}
+.drow:hover{background:var(--bg)}
+.drow .ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:var(--bg);flex-shrink:0}
+.drow .ic svg{width:16px;height:16px}
+.drow .t{flex:1;min-width:0}
+.drow .t b{display:block;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.drow .t small{color:var(--mute);font-size:.74rem}
+.drow .amt{font-weight:700;font-variant-numeric:tabular-nums}
+.status{font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:6px}
+.status.ok{background:rgba(31,107,78,.1);color:var(--green)}
+.status.wait{background:rgba(233,185,73,.16);color:#8A6A14}
+.float{position:absolute;background:var(--white);border-radius:18px;box-shadow:var(--sh-2);padding:14px 16px;display:flex;align-items:center;gap:12px;border:1px solid var(--line-2);animation:float 6s ease-in-out infinite}
+.float .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--acid)}
+.float .ic svg{width:18px;height:18px}
+.float b{display:block;font-size:.88rem;letter-spacing:-.01em}
+.float small{color:var(--mute);font-size:.76rem}
+.float-1{top:-22px;left:-30px;animation-delay:-2s}
+.float-2{bottom:34px;right:-26px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media(max-width:1100px){.float-1{left:-8px}.float-2{right:-8px}}
+@media(max-width:640px){.float{padding:10px 12px}.float-1{top:-16px;left:-6px}.float-2{bottom:-14px;right:-6px}.dash{padding:16px}.dash-kpis{grid-template-columns:1fr 1fr}.dash-kpis .kpi:nth-child(3){display:none}}
+
+/* marquee */
+.marquee-sec{padding:40px 0 10px}
+.marquee-label{text-align:center;font-size:.78rem;font-weight:600;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px}
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;gap:64px;width:max-content;animation:scroll 36s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-weight:800;font-size:1.25rem;letter-spacing:-.03em;color:var(--ink);opacity:.55;white-space:nowrap;display:flex;align-items:center;gap:10px;transition:opacity .3s}
+.marquee-track span:hover{opacity:1}
+.marquee-track span i{width:8px;height:8px;border-radius:2px;background:var(--acid);transform:rotate(45deg)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ============ STATS ============ */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden}
+@media(min-width:900px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--bg);padding:36px 30px;position:relative;transition:background .4s}
+.stat:hover{background:var(--white)}
+.stat b{display:block;font-size:clamp(2.4rem,4vw,3.4rem);font-weight:600;letter-spacing:-.04em;line-height:1;margin-bottom:10px;font-variant-numeric:tabular-nums}
+.stat b sup{font-size:.4em;color:var(--green);vertical-align:top;margin-left:2px;top:.3em;position:relative}
+.stat p{color:var(--mute);font-size:.92rem;font-weight:500}
+
+/* ============ SERVICES ============ */
+.services-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:700px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.services-grid{grid-template-columns:repeat(4,1fr)}.services-grid .svc:first-child{grid-column:span 2;grid-row:span 2}}
+.svc{background:var(--white);border-radius:var(--r-l);padding:30px;border:1px solid var(--line-2);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;min-height:240px;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.svc:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.svc .ic{width:48px;height:48px;border-radius:14px;background:var(--bg);display:grid;place-items:center;transition:background .4s,transform .5s var(--ease)}
+.svc:hover .ic{background:var(--acid);transform:rotate(-6deg)}
+.svc .ic svg{width:22px;height:22px}
+.svc h3{font-size:1.15rem;font-weight:700;letter-spacing:-.015em}
+.svc p{color:var(--ink-3);font-size:.94rem;line-height:1.55}
+.svc .num{position:absolute;top:26px;right:26px;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--mute)}
+.svc.feature{background:var(--ink);color:var(--white);justify-content:space-between}
+.svc.feature .ic{background:rgba(255,255,255,.08)}
+.svc.feature:hover .ic{background:var(--acid)}
+.svc.feature:hover .ic svg path,.svc.feature:hover .ic svg circle,.svc.feature:hover .ic svg rect{stroke:var(--ink)}
+.svc.feature .ic svg path,.svc.feature .ic svg circle,.svc.feature .ic svg rect{stroke:var(--white)}
+.svc.feature p{color:rgba(255,255,255,.7)}
+.svc.feature h3{font-size:clamp(1.5rem,2.2vw,2rem);letter-spacing:-.025em;font-weight:600;line-height:1.1}
+.svc.feature .num{color:rgba(255,255,255,.4)}
+.svc.feature ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin-top:8px}
+.svc.feature li{font-size:.88rem;display:flex;gap:8px;align-items:center;color:rgba(255,255,255,.85)}
+.svc.feature li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acid);flex-shrink:0}
+.svc.feature .orb{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,106,.28),transparent 65%);right:-100px;bottom:-140px;pointer-events:none;transition:transform .8s var(--ease)}
+.svc.feature:hover .orb{transform:scale(1.3)}
+.svc .link{margin-top:auto;font-size:.9rem}
+.svc.feature .link{color:var(--acid)}
+
+/* ============ PROCESS ============ */
+.process-sec{background:var(--ink);color:var(--white);position:relative;overflow:hidden}
+.process-sec::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 100% 0%,rgba(31,107,78,.5),transparent 60%);pointer-events:none}
+.process-sec .eyebrow{color:var(--acid)}
+.process-sec .lead{color:rgba(255,255,255,.65)}
+.steps{display:grid;grid-template-columns:1fr;gap:0;position:relative;counter-reset:step}
+@media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{padding:34px 28px 34px 0;position:relative;border-top:1px solid rgba(255,255,255,.12)}
+@media(min-width:900px){.step{padding:36px 28px 0 0}.step:not(:last-child){margin-right:20px}}
+.step::before{content:"";position:absolute;top:-1px;left:0;height:1px;width:0;background:var(--acid);transition:width 1.2s var(--ease)}
+.step.in::before{width:100%}
+.step .n{font-family:var(--serif);font-style:italic;font-size:2.6rem;color:var(--acid);line-height:1;margin-bottom:18px}
+.step h3{font-size:1.2rem;margin-bottom:10px;font-weight:700}
+.step p{color:rgba(255,255,255,.65);font-size:.94rem}
+.step .time{display:inline-block;margin-top:16px;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:6px 10px;border:1px solid rgba(255,255,255,.14);border-radius:999px}
+.process-cta{margin-top:56px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;padding:28px 32px;border-radius:var(--r-l);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.process-cta p{color:rgba(255,255,255,.8);font-size:1.05rem;max-width:52ch}
+.process-cta p b{color:var(--white)}
+
+/* ============ WHY / FEATURES ============ */
+.why-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
+@media(min-width:1000px){.why-grid{grid-template-columns:.95fr 1.05fr;gap:80px}}
+.why-list{display:flex;flex-direction:column;margin-top:32px;border-top:1px solid var(--line)}
+.why-item{padding:24px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;cursor:default}
+.why-item .ic{width:44px;height:44px;border-radius:12px;background:var(--white);border:1px solid var(--line-2);display:grid;place-items:center;transition:background .4s,border-color .4s}
+.why-item:hover .ic{background:var(--acid);border-color:var(--acid)}
+.why-item .ic svg{width:20px;height:20px}
+.why-item h4{font-size:1.05rem;margin-bottom:4px;font-weight:700}
+.why-item p{color:var(--ink-3);font-size:.94rem}
+.why-visual{position:relative}
+.phone-scene{background:linear-gradient(135deg,var(--bg-2),#E2DFD5);border-radius:var(--r-xl);padding:clamp(28px,5vw,60px);display:grid;grid-template-columns:1fr;gap:20px;position:relative;overflow:hidden;min-height:520px}
+.phone-scene::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(215,242,106,.55),transparent 65%);top:-150px;right:-120px;pointer-events:none}
+.phone{width:min(300px,100%);margin:0 auto;background:var(--ink);border-radius:40px;padding:12px;box-shadow:0 40px 80px -30px rgba(14,21,18,.5);position:relative;z-index:1}
+.phone-screen{background:var(--bg);border-radius:30px;padding:20px 16px;min-height:480px;overflow:hidden;position:relative}
+.phone-screen .notch{width:90px;height:22px;background:var(--ink);border-radius:999px;margin:0 auto 18px}
+.ps-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.ps-head b{font-size:.95rem}
+.ps-head .av{width:30px;height:30px;border-radius:50%;background:var(--green);color:var(--white);display:grid;place-items:center;font-size:.7rem;font-weight:800}
+.ps-card{background:var(--ink);color:var(--white);border-radius:18px;padding:16px;margin-bottom:12px}
+.ps-card small{font-size:.7rem;color:rgba(255,255,255,.6);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.ps-card b{display:block;font-size:1.6rem;letter-spacing:-.03em;margin:4px 0 10px;font-variant-numeric:tabular-nums}
+.ps-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden}
+.ps-bar i{display:block;height:100%;width:0;background:var(--acid);border-radius:99px;transition:width 1.6s var(--ease) .3s}
+.in .ps-bar i{width:68%}
+.ps-card .row{display:flex;justify-content:space-between;font-size:.72rem;margin-top:8px;color:rgba(255,255,255,.7)}
+.ps-list{display:flex;flex-direction:column;gap:8px}
+.ps-item{background:var(--white);border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px;font-size:.8rem;opacity:0;transform:translateY(12px);transition:opacity .6s,transform .8s var(--ease)}
+.in .ps-item{opacity:1;transform:none}
+.in .ps-item:nth-child(1){transition-delay:.4s}.in .ps-item:nth-child(2){transition-delay:.55s}.in .ps-item:nth-child(3){transition-delay:.7s}
+.ps-item .dot{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;font-size:.9rem}
+.ps-item .t{flex:1}
+.ps-item b{display:block;font-size:.82rem}
+.ps-item small{color:var(--mute);font-size:.7rem}
+.ps-item .chk{width:20px;height:20px;border-radius:50%;background:var(--acid);display:grid;place-items:center}
+.ps-item .chk svg{width:11px;height:11px}
+.ps-fab{position:absolute;bottom:16px;right:16px;background:var(--acid);border-radius:999px;padding:10px 14px;font-size:.78rem;font-weight:800;display:flex;align-items:center;gap:6px;box-shadow:0 10px 24px -8px rgba(14,21,18,.4)}
+.chip{position:absolute;background:var(--white);border-radius:14px;padding:10px 14px;box-shadow:var(--sh-2);font-size:.82rem;font-weight:700;display:flex;gap:10px;align-items:center;z-index:2;border:1px solid var(--line-2)}
+.chip small{display:block;font-weight:500;color:var(--mute);font-size:.72rem}
+.chip .em{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--bg)}
+.chip-1{top:14%;left:4%;animation:float 7s ease-in-out infinite}
+.chip-2{bottom:16%;right:4%;animation:float 6s ease-in-out -3s infinite}
+@media(max-width:640px){.chip-1{left:-4px;top:6%}.chip-2{right:-4px}}
+
+/* ============ CALCULATOR ============ */
+.calc{display:grid;grid-template-columns:1fr;background:var(--white);border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--line-2);box-shadow:var(--sh-2)}
+@media(min-width:900px){.calc{grid-template-columns:1.15fr .85fr}}
+.calc-form{padding:clamp(28px,4vw,52px)}
+.calc-form h3{font-size:1.6rem;letter-spacing:-.025em;font-weight:600;margin-bottom:8px}
+.calc-form>p{color:var(--ink-3);margin-bottom:32px;font-size:.96rem}
+.field{margin-bottom:26px}
+.field-label{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:.92rem;margin-bottom:12px}
+.field-label output{font-weight:700;color:var(--green);font-variant-numeric:tabular-nums;background:rgba(31,107,78,.08);padding:3px 10px;border-radius:999px;font-size:.85rem}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg.four{grid-template-columns:repeat(4,1fr)}
+@media(max-width:520px){.seg.four{grid-template-columns:repeat(2,1fr)}}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{display:block;text-align:center;padding:12px 10px;border-radius:12px;border:1.5px solid var(--line);font-weight:600;font-size:.9rem;cursor:pointer;transition:all .3s;user-select:none}
+.seg label:hover{border-color:var(--ink)}
+.seg input:checked+label{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.seg input:focus-visible+label{outline:2px solid var(--green);outline-offset:2px}
+.range{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--green) var(--p,0%),var(--bg-2) var(--p,0%));outline:none}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--white);border:3px solid var(--ink);box-shadow:0 4px 12px rgba(14,21,18,.2);cursor:grab;transition:transform .2s}
+.range::-webkit-slider-thumb:hover{transform:scale(1.1)}
+.range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--white);border:3px solid var(--ink);cursor:grab}
+.toggles{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:560px){.toggles{grid-template-columns:1fr 1fr}}
+.toggle{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;font-size:.9rem;font-weight:600;transition:all .3s;position:relative}
+.toggle:hover{border-color:var(--ink)}
+.toggle input{position:absolute;opacity:0}
+.toggle .sw{width:40px;height:24px;border-radius:99px;background:var(--bg-2);position:relative;flex-shrink:0;transition:background .3s}
+.toggle .sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--white);box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .4s var(--ease)}
+.toggle input:checked~.sw{background:var(--green)}
+.toggle input:checked~.sw::after{transform:translateX(16px)}
+.toggle input:checked~span:not(.sw){color:var(--ink)}
+.toggle small{display:block;font-weight:500;color:var(--mute);font-size:.76rem}
+.calc-result{background:var(--ink);color:var(--white);padding:clamp(28px,4vw,52px);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.calc-result::before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(31,107,78,.55),transparent 65%);bottom:-160px;right:-120px;pointer-events:none}
+.calc-result small.lbl{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.price-big{font-size:clamp(3rem,5vw,4.4rem);font-weight:600;letter-spacing:-.045em;line-height:1;margin:14px 0 4px;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:8px}
+.price-big span{font-size:1rem;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:0}
+.calc-result .eks{color:rgba(255,255,255,.55);font-size:.86rem;margin-bottom:28px}
+.break{list-style:none;display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.12);margin-bottom:28px}
+.break li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:.9rem;color:rgba(255,255,255,.8)}
+.break li b{color:var(--white);font-variant-numeric:tabular-nums}
+.break li.off{display:none}
+.calc-result .btn{margin-top:auto;justify-content:center}
+.calc-result .note{font-size:.76rem;color:rgba(255,255,255,.45);margin-top:14px;text-align:center}
+.save-badge{display:inline-flex;gap:8px;align-items:center;background:rgba(215,242,106,.12);border:1px solid rgba(215,242,106,.3);color:var(--acid);padding:8px 12px;border-radius:10px;font-size:.82rem;font-weight:600;margin-bottom:24px;width:fit-content}
+
+/* ============ PRICING ============ */
+.pricing-grid{display:grid;grid-template-columns:1fr;gap:16px;align-items:stretch}
+@media(min-width:900px){.pricing-grid{grid-template-columns:repeat(3,1fr)}}
+.plan{background:var(--white);border-radius:var(--r-l);padding:34px 30px;border:1px solid var(--line-2);display:flex;flex-direction:column;position:relative;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.plan .who{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
+.plan h3{font-size:1.5rem;letter-spacing:-.025em;font-weight:700;margin-bottom:6px}
+.plan .desc{color:var(--ink-3);font-size:.92rem;min-height:44px;margin-bottom:22px}
+.plan .price{display:flex;align-items:baseline;gap:6px;margin-bottom:6px}
+.plan .price b{font-size:2.8rem;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.plan .price small{color:var(--mute);font-weight:600}
+.plan .from{font-size:.8rem;color:var(--mute);margin-bottom:26px}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:30px;flex:1}
+.plan li{display:flex;gap:10px;font-size:.92rem;align-items:flex-start;color:var(--ink-2)}
+.plan li svg{width:18px;height:18px;flex-shrink:0;margin-top:2px}
+.plan li.dim{color:var(--mute)}
+.plan .btn{justify-content:center}
+.plan.pop{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.plan.pop .who,.plan.pop .from,.plan.pop .price small{color:rgba(255,255,255,.55)}
+.plan.pop .desc{color:rgba(255,255,255,.7)}
+.plan.pop li{color:rgba(255,255,255,.88)}
+.plan.pop li.dim{color:rgba(255,255,255,.45)}
+.plan .badge{position:absolute;top:-13px;left:30px;background:var(--acid);color:var(--ink);font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.pricing-note{text-align:center;margin-top:28px;color:var(--mute);font-size:.9rem}
+.pricing-note a{color:var(--ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ============ TEAM ============ */
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:900px){.team-grid{grid-template-columns:repeat(4,1fr)}}
+.member{position:relative;border-radius:var(--r-l);overflow:hidden;aspect-ratio:3/3.7;background:var(--bg-2);cursor:default}
+.member .portrait{position:absolute;inset:0;transition:transform .8s var(--ease)}
+.member:hover .portrait{transform:scale(1.04)}
+.member .portrait svg{width:100%;height:100%}
+.member .info{position:absolute;left:0;right:0;bottom:0;padding:18px;background:linear-gradient(180deg,transparent,rgba(14,21,18,.75));color:var(--white)}
+.member .info b{display:block;font-size:1.02rem;letter-spacing:-.01em}
+.member .info small{font-size:.8rem;color:rgba(255,255,255,.75)}
+.member .more{position:absolute;inset:0;background:var(--ink);color:var(--white);padding:22px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .6s var(--ease)}
+.member:hover .more,.member:focus-within .more{opacity:1;transform:none}
+.member .more b{font-size:1.05rem}
+.member .more p{font-size:.86rem;color:rgba(255,255,255,.7);line-height:1.5}
+.member .more span{font-size:.74rem;color:var(--acid);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:640px){.member{aspect-ratio:3/3.4}.member .info{padding:14px}.member .info b{font-size:.92rem}}
+.team-cta{margin-top:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:24px 28px;border-radius:var(--r-l);border:1px dashed var(--line);color:var(--ink-3)}
+.team-cta b{color:var(--ink)}
+
+/* ============ TESTIMONIALS ============ */
+.testi-sec{background:var(--bg-2);overflow:hidden}
+.testi-track{display:flex;gap:16px;transition:transform .8s var(--ease);will-change:transform}
+.testi{flex:0 0 calc((100% - 32px)/3);background:var(--white);border-radius:var(--r-l);padding:34px 32px;display:flex;flex-direction:column;gap:20px;border:1px solid var(--line-2);min-height:320px}
+@media(max-width:1000px){.testi{flex-basis:calc((100% - 16px)/2)}}
+@media(max-width:640px){.testi{flex-basis:100%;padding:26px 24px}}
+.testi .q{font-family:var(--serif);font-size:1.45rem;line-height:1.3;letter-spacing:-.01em;color:var(--ink);flex:1}
+.testi .q::before{content:"“";color:var(--green);margin-right:2px}
+.testi .who{display:flex;gap:12px;align-items:center}
+.testi .who span{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:.8rem;color:var(--white);flex-shrink:0}
+.testi .who b{display:block;font-size:.92rem}
+.testi .who small{color:var(--mute);font-size:.8rem}
+.testi .meta{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:var(--mute);font-weight:600;padding-top:16px;border-top:1px solid var(--line)}
+.testi .meta .stars{color:#E9B949;letter-spacing:1px}
+.testi-nav{display:flex;gap:10px}
+.arrow{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:all .3s;background:transparent}
+.arrow:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.arrow:disabled{opacity:.3;pointer-events:none}
+.arrow svg{width:18px;height:18px}
+.testi-dots{display:flex;gap:6px;margin-top:28px;justify-content:center}
+.testi-dots i{width:6px;height:6px;border-radius:99px;background:var(--line);transition:all .4s var(--ease)}
+.testi-dots i.on{width:24px;background:var(--ink)}
+.rating-strip{display:flex;flex-wrap:wrap;gap:24px 40px;align-items:center;margin-bottom:40px;padding:22px 26px;background:var(--white);border-radius:var(--r-m);border:1px solid var(--line-2)}
+.rating-strip .big{display:flex;align-items:center;gap:14px}
+.rating-strip .big b{font-size:2.4rem;letter-spacing:-.04em;font-weight:600;line-height:1}
+.rating-strip .big .stars{color:#E9B949;letter-spacing:2px;font-size:1rem}
+.rating-strip .big small{display:block;color:var(--mute);font-size:.8rem;font-weight:500}
+.rating-strip .src{display:flex;gap:24px;font-weight:700;font-size:.9rem;color:var(--ink-3);flex-wrap:wrap}
+.rating-strip .src span{display:flex;align-items:center;gap:8px}
+.rating-strip .src i{width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+/* ============ FAQ ============ */
+.faq-grid{display:grid;grid-template-columns:1fr;gap:48px}
+@media(min-width:1000px){.faq-grid{grid-template-columns:.8fr 1.2fr;gap:80px}}
+.faq-side{position:sticky;top:110px;align-self:start}
+.faq-side .h2{margin:14px 0 18px}
+.faq-side p{color:var(--ink-3);margin-bottom:26px}
+.faq-list{border-top:1px solid var(--line)}
+.faq{border-bottom:1px solid var(--line)}
+.faq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;text-align:left;font-weight:700;font-size:1.08rem;letter-spacing:-.01em;transition:color .3s}
+.faq button:hover{color:var(--green)}
+.faq button .pm{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;flex-shrink:0;transition:all .4s var(--ease)}
+.faq button .pm svg{width:14px;height:14px;transition:transform .5s var(--ease)}
+.faq.open button .pm{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.faq.open button .pm svg{transform:rotate(45deg)}
+.faq .a{max-height:0;overflow:hidden;transition:max-height .6s var(--ease)}
+.faq .a p{padding:0 60px 26px 0;color:var(--ink-3);line-height:1.6}
+@media(max-width:640px){.faq .a p{padding-right:0}.faq button{font-size:1rem;padding:20px 0}}
+
+/* ============ CONTACT ============ */
+.contact-sec{position:relative}
+.contact-card{display:grid;grid-template-columns:1fr;border-radius:var(--r-xl);overflow:hidden;background:var(--ink);color:var(--white);box-shadow:var(--sh-2)}
+@media(min-width:1000px){.contact-card{grid-template-columns:.85fr 1.15fr}}
+.contact-info{padding:clamp(32px,4.5vw,60px);position:relative;overflow:hidden;display:flex;flex-direction:column}
+.contact-info::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(31,107,78,.6),transparent 65%);top:-200px;left:-200px;pointer-events:none}
+.contact-info .eyebrow{color:var(--acid)}
+.contact-info .h2{margin:14px 0 18px}
+.contact-info>p{color:rgba(255,255,255,.65);margin-bottom:36px;max-width:40ch}
+.c-list{display:flex;flex-direction:column;gap:22px;margin-bottom:40px;position:relative}
+.c-item{display:flex;gap:14px;align-items:flex-start}
+.c-item .ic{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.07);display:grid;place-items:center;flex-shrink:0}
+.c-item .ic svg{width:18px;height:18px}
+.c-item small{display:block;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:3px}
+.c-item b{font-weight:600;font-size:1rem}
+.c-item a:hover{color:var(--acid)}
+.c-item span{display:block;font-size:.86rem;color:rgba(255,255,255,.6)}
+.c-promise{margin-top:auto;padding:20px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:flex;gap:14px;align-items:center;position:relative}
+.c-promise .dot{width:44px;height:44px;border-radius:50%;background:var(--acid);display:grid;place-items:center;flex-shrink:0;color:var(--ink);font-weight:800;font-size:.8rem}
+.c-promise b{display:block;font-size:.92rem}
+.c-promise small{color:rgba(255,255,255,.6);font-size:.8rem}
+.contact-form{background:var(--white);color:var(--ink);padding:clamp(28px,4.5vw,56px);position:relative}
+.form-steps{display:flex;gap:8px;margin-bottom:28px}
+.form-steps i{flex:1;height:4px;border-radius:99px;background:var(--bg-2);overflow:hidden;position:relative}
+.form-steps i::after{content:"";position:absolute;inset:0;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.form-steps i.done::after{transform:scaleX(1)}
+.fstep{display:none;animation:stepIn .6s var(--ease)}
+.fstep.active{display:block}
+@keyframes stepIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.fstep h3{font-size:1.4rem;letter-spacing:-.02em;font-weight:600;margin-bottom:6px}
+.fstep>p{color:var(--mute);font-size:.92rem;margin-bottom:24px}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
+@media(min-width:600px){.opts.three{grid-template-columns:repeat(3,1fr)}}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0}
+.opt label{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:14px;border:1.5px solid var(--line);cursor:pointer;font-weight:600;font-size:.92rem;transition:all .3s;min-height:84px;position:relative}
+.opt label small{color:var(--mute);font-weight:500;font-size:.78rem}
+.opt label .em{width:30px;height:30px;border-radius:9px;background:var(--bg);display:grid;place-items:center}
+.opt label .em svg{width:16px;height:16px}
+.opt label:hover{border-color:var(--ink)}
+.opt input:checked+label{border-color:var(--ink);background:var(--ink);color:var(--white)}
+.opt input:checked+label small{color:rgba(255,255,255,.6)}
+.opt input:checked+label .em{background:var(--acid)}
+.opt input:checked+label .em svg path,.opt input:checked+label .em svg rect,.opt input:checked+label .em svg circle{stroke:var(--ink)}
+.opt input:focus-visible+label{outline:2px solid var(--green);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.chips label{position:relative;padding:10px 16px;border-radius:999px;border:1.5px solid var(--line);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:6px}
+.chips label input{position:absolute;opacity:0}
+.chips label:hover{border-color:var(--ink)}
+.chips label.on{background:var(--acid);border-color:var(--acid)}
+.chips label.on::before{content:"✓";font-size:.8rem}
+.frow{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:14px}
+@media(min-width:600px){.frow.two{grid-template-columns:1fr 1fr}}
+.fld{position:relative}
+.fld input,.fld select,.fld textarea{width:100%;padding:18px 16px 8px;border-radius:12px;border:1.5px solid var(--line);background:var(--white);font-size:.98rem;transition:border-color .3s,box-shadow .3s;appearance:none;-webkit-appearance:none}
+.fld textarea{min-height:110px;resize:vertical;padding-top:22px}
+.fld label{position:absolute;left:16px;top:14px;font-size:.95rem;color:var(--mute);pointer-events:none;transition:all .25s var(--ease);font-weight:500}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px rgba(14,21,18,.06)}
+.fld input:focus~label,.fld input:not(:placeholder-shown)~label,.fld textarea:focus~label,.fld textarea:not(:placeholder-shown)~label,.fld select~label{top:7px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.fld input.err,.fld textarea.err{border-color:#C8553D}
+.fld .msg{font-size:.76rem;color:#C8553D;margin-top:6px;display:none;font-weight:600}
+.fld input.err~.msg{display:block}
+.fld select{padding-top:20px}
+.fld .car{position:absolute;right:16px;top:50%;transform:translateY(-50%);pointer-events:none;width:14px}
+.fnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;flex-wrap:wrap}
+.fnav .back{color:var(--mute);font-weight:600;font-size:.9rem;display:inline-flex;gap:6px;align-items:center;padding:10px 0;transition:color .3s}
+.fnav .back:hover{color:var(--ink)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:var(--mute);margin:8px 0 20px;line-height:1.5}
+.consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--green);flex-shrink:0}
+.consent a{text-decoration:underline;text-underline-offset:2px;color:var(--ink)}
+.summary{background:var(--bg);border-radius:14px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;font-size:.82rem}
+.summary span{background:var(--white);padding:6px 12px;border-radius:999px;font-weight:600;border:1px solid var(--line-2)}
+.success{text-align:center;padding:30px 0;display:none;animation:stepIn .7s var(--ease)}
+.success.active{display:block}
+.success .ok{width:80px;height:80px;border-radius:50%;background:var(--acid);display:grid;place-items:center;margin:0 auto 22px;animation:pop .7s var(--ease)}
+.success .ok svg{width:34px;height:34px}
+@keyframes pop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.success h3{font-size:1.7rem;letter-spacing:-.025em;margin-bottom:10px;font-weight:600}
+.success p{color:var(--ink-3);max-width:42ch;margin:0 auto 24px}
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--white);border-radius:50%;animation:spin .8s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn.loading .spinner{display:block}
+.btn.loading .btn-txt,.btn.loading>svg{display:none}
+
+/* ============ CTA BANNER ============ */
+.banner{position:relative;border-radius:var(--r-xl);overflow:hidden;background:var(--acid);color:var(--ink);padding:clamp(44px,6vw,80px);display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+@media(min-width:900px){.banner{grid-template-columns:1.3fr .7fr}}
+.banner h2{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:600;letter-spacing:-.035em;line-height:1;margin-bottom:14px}
+.banner p{font-size:1.05rem;color:rgba(14,21,18,.72);max-width:48ch}
+.banner .acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start}
+@media(min-width:900px){.banner .acts{justify-content:flex-end}}
+.banner .deco{position:absolute;right:-60px;top:-80px;width:340px;height:340px;border-radius:50%;border:60px solid rgba(14,21,18,.05);pointer-events:none}
+.banner .deco2{position:absolute;left:40%;bottom:-160px;width:260px;height:260px;border-radius:50%;background:rgba(14,21,18,.05);pointer-events:none}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:var(--white);padding:72px 0 32px;margin-top:clamp(72px,9vw,128px)}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px 24px;margin-bottom:56px}
+@media(min-width:900px){.f-grid{grid-template-columns:1.6fr 1fr 1fr 1fr}}
+.f-brand{grid-column:1/-1}
+@media(min-width:900px){.f-brand{grid-column:auto}}
+.f-brand .logo-mark{background:var(--acid)}
+.f-brand .logo-mark path{fill:var(--ink)}
+.f-brand .logo span small{color:rgba(255,255,255,.5)}
+.f-brand p{color:rgba(255,255,255,.6);font-size:.92rem;max-width:34ch;margin:20px 0 24px}
+.f-badges{display:flex;gap:10px;flex-wrap:wrap}
+.f-badges span{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:8px;color:rgba(255,255,255,.75);display:inline-flex;gap:6px;align-items:center}
+.f-badges span i{width:6px;height:6px;border-radius:50%;background:var(--acid)}
+.f-col h4{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:18px}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.f-col a{color:rgba(255,255,255,.8);font-size:.94rem;transition:color .3s;display:inline-flex;gap:6px;align-items:center}
+.f-col a:hover{color:var(--acid)}
+.f-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.45)}
+.f-bottom a:hover{color:var(--white)}
+.f-bottom .r{display:flex;gap:20px;flex-wrap:wrap}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}
+.hero .rv{transition-duration:1.1s}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+
+/* sticky mobile CTA */
+.sticky-cta{position:fixed;left:16px;right:16px;bottom:16px;z-index:80;display:none;transform:translateY(120%);transition:transform .6s var(--ease)}
+.sticky-cta.show{transform:none}
+.sticky-cta .btn{width:100%;justify-content:center;box-shadow:0 16px 40px -10px rgba(14,21,18,.5)}
+@media(max-width:640px){.sticky-cta{display:block}}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,120px);background:var(--ink);color:var(--white);padding:12px 18px;border-radius:12px;font-size:.88rem;font-weight:600;z-index:200;transition:transform .6s var(--ease);box-shadow:var(--sh-2);display:flex;gap:10px;align-items:center}
+.toast.show{transform:translate(-50%,0)}
+.toast i{width:8px;height:8px;border-radius:50%;background:var(--acid)}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--acid);padding:10px 14px;border-radius:8px;font-weight:700;z-index:999}
+.skip:focus{left:8px}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<a class="skip" href="#main">Hopp til innhold</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Andersen Regnskap AS – til toppen">
+      <span class="logo-mark"><svg viewBox="0 0 32 32" fill="none"><path d="M9 25 16 7l7 18h-3.6l-1.4-3.6h-4l-1.4 3.6H9Zm6.2-6.6h1.6L16 16.1l-.8 2.3Z" fill="#D7F26A"/></svg></span>
+      <span>Andersen<small>Regnskap AS</small></span>
+    </a>
+    <nav aria-label="Hovedmeny">
+      <ul class="nav-links">
+        <li><a href="#tjenester">Tjenester</a></li>
+        <li><a href="#slik">Slik fungerer det</a></li>
+        <li><a href="#priser">Priser</a></li>
+        <li><a href="#team">Om oss</a></li>
+        <li><a href="#faq">Spørsmål</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+4722334455" class="btn btn-ghost btn-sm">22 33 44 55</a>
+      <a href="#kontakt" class="btn btn-primary btn-sm">Få tilbud <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="burger" id="burger" aria-label="Åpne meny" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <ul>
+    <li><a href="#tjenester">Tjenester <span>01</span></a></li>
+    <li><a href="#slik">Slik fungerer det <span>02</span></a></li>
+    <li><a href="#kalkulator">Priskalkulator <span>03</span></a></li>
+    <li><a href="#priser">Priser <span>04</span></a></li>
+    <li><a href="#team">Om oss <span>05</span></a></li>
+    <li><a href="#kontakt">Kontakt <span>06</span></a></li>
+  </ul>
+  <div class="mobile-foot">
+    <a href="#kontakt" class="btn btn-acid btn-lg" style="justify-content:center">Få et uforpliktende tilbud</a>
+    <p>Storgata 32, 0184 Oslo · <a href="tel:+4722334455">22 33 44 55</a> · post@andersenregnskap.no</p>
+  </div>
+</div>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="pill rv"><b><i></i>Nyhet</b> Fast pris fra 1 490 kr/mnd – ingen bindingstid</div>
+      <h1 class="display rv rv-d1">Regnskap som gir deg <em>ro i magen</em> – og tid til å drive butikk.</h1>
+      <p class="lead rv rv-d2">Andersen Regnskap er et moderne regnskapsbyrå for små og mellomstore bedrifter. Fast kontaktperson, fast pris og full oversikt i sanntid – uten regnskapsspråk du ikke forstår.</p>
+      <div class="hero-actions rv rv-d3">
+        <a href="#kontakt" class="btn btn-primary btn-lg">Få tilbud på 2 minutter <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#slik" class="btn btn-ghost btn-lg">Bytt regnskapsfører</a>
+      </div>
+      <div class="hero-proof rv rv-d4">
+        <div class="avatars">
+          <span style="background:#1F6B4E">KH</span><span style="background:#3A4742">MS</span><span style="background:#C8553D">EL</span><span style="background:#8A6A14">JB</span><span style="background:#0E1512;color:#D7F26A">+</span>
+        </div>
+        <div>
+          <b>4,9 <span class="stars">★★★★★</span></b>
+          <small>Basert på 312 vurderinger fra kunder på Google og Trustpilot</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-wrap rv rv-d2">
+      <div class="dash" aria-hidden="true">
+        <div class="dash-top">
+          <div><h4>Nordlys Kaffebar AS</h4><small>Oppdatert i dag kl. 08:14</small></div>
+          <span class="tag">Alt à jour</span>
+        </div>
+        <div class="dash-kpis">
+          <div class="kpi"><small>Omsetning</small><b>742 300</b><i>▲ 12,4 %</i></div>
+          <div class="kpi"><small>Resultat</small><b>128 950</b><i>▲ 8,1 %</i></div>
+          <div class="kpi"><small>Likviditet</small><b>412 000</b><i class="down">▼ 2,3 %</i></div>
+        </div>
+        <div class="chart">
+          <div class="chart-head"><span>Resultat siste 12 mnd</span><span>NOK</span></div>
+          <svg viewBox="0 0 400 120" preserveAspectRatio="none">
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1F6B4E" stop-opacity=".25"/><stop offset="1" stop-color="#1F6B4E" stop-opacity="0"/></linearGradient></defs>
+            <path class="area" d="M0 95 C30 92 40 80 70 78 S110 88 140 70 S190 50 220 56 S270 40 300 34 S350 20 400 14 V120 H0 Z"/>
+            <path class="line" d="M0 95 C30 92 40 80 70 78 S110 88 140 70 S190 50 220 56 S270 40 300 34 S350 20 400 14"/>
+            <circle class="dot" cx="400" cy="14" r="5"/>
+          </svg>
+        </div>
+        <div class="dash-rows">
+          <div class="drow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span><div class="t"><b>MVA-melding 4. termin</b><small>Levert til Skatteetaten</small></div><span class="status ok">Levert</span></div>
+          <div class="drow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span><div class="t"><b>Lønn september – 6 ansatte</b><small>Klar for godkjenning</small></div><span class="amt">218 400</span></div>
+          <div class="drow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2" stroke-linecap="round"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v6h6"/></svg></span><div class="t"><b>3 bilag venter på deg</b><small>Ta bilde i appen</small></div><span class="status wait">Venter</span></div>
+        </div>
+      </div>
+      <div class="float float-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Årsoppgjør levert</b><small>14 dager før frist</small></div></div>
+      <div class="float float-2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="2.2" stroke-linecap="round"><path d="M12 2v20M17 6.5C17 4.6 14.8 3.5 12 3.5S7 4.6 7 6.5 9.2 9.5 12 9.5s5 1.1 5 3-2.2 3-5 3-5-1.1-5-3"/></svg></span><div><b>Spart 38 400 kr</b><small>i skatt i år, via rådgivning</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="marquee-sec" aria-label="Kunder">
+  <p class="marquee-label rv">Over 640 bedrifter i Oslo og omegn har allerede byttet</p>
+  <div class="marquee rv">
+    <div class="marquee-track" id="marquee">
+      <span><i></i>Nordlys Kaffebar</span><span><i></i>Fjellheim Bygg</span><span><i></i>Studio Brekke</span><span><i></i>Hav & Fjord Sjømat</span><span><i></i>Lindqvist Arkitekter</span><span><i></i>Bragernes Tannklinikk</span><span><i></i>Grønn Logistikk</span><span><i></i>Ekeberg Elektro</span><span><i></i>Mosaikk Design</span><span><i></i>Tind Consulting</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="sec" style="padding-top:64px">
+  <div class="wrap">
+    <div class="stats rv">
+      <div class="stat"><b><span data-count="640">0</span><sup>+</sup></b><p>Bedrifter som har overlatt regnskapet til oss</p></div>
+      <div class="stat"><b><span data-count="4.9" data-dec="1">0</span><sup>★</sup></b><p>Snittvurdering på Google og Trustpilot</p></div>
+      <div class="stat"><b><span data-count="2">0</span><sup>t</sup></b><p>Garantert svartid fra din faste rådgiver</p></div>
+      <div class="stat"><b><span data-count="100">0</span><sup>%</sup></b><p>Frister overholdt i 2025 – MVA, a-melding og årsoppgjør</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="sec" id="tjenester" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div><span class="eyebrow rv">Tjenester</span><h2 class="h2 rv rv-d1">Alt du trenger, <em>fra ett sted.</em></h2></div>
+      <p class="lead rv rv-d2">Vi tar hele økonomifunksjonen – eller bare de delene du vil slippe. Du velger, vi leverer. Alt skjer i ett system du har tilgang til døgnet rundt.</p>
+    </div>
+    <div class="services-grid">
+      <article class="svc feature rv">
+        <span class="num">01</span>
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 15l3-3 2 2 5-5"/></svg></span>
+        <div>
+          <h3>Løpende regnskap og bokføring</h3>
+          <p style="margin-top:10px">Bilagene sendes automatisk fra bank, kasse og e-post. Vi bokfører fortløpende, avstemmer hver måned og gir deg en rapport du faktisk forstår – i klarspråk, ikke kontoplanspråk.</p>
+          <ul>
+            <li>Automatisk bankavstemming</li><li>EHF og digitale bilag</li><li>Månedsrapport i klarspråk</li><li>Integrasjon mot Fiken, Tripletex og PowerOffice</li>
+          </ul>
+        </div>
+        <a href="#kontakt" class="link">Få tilbud på bokføring <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <span class="orb"></span>
+      </article>
+      <article class="svc rv rv-d1">
+        <span class="num">02</span>
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.4.6 3.5 2.6 3.5 6"/></svg></span>
+        <h3>Lønn og HR</h3>
+        <p>Lønnskjøring, a-melding, feriepenger, sykepenger og reiseregninger. Alltid riktig, alltid i tide.</p>
+      </article>
+      <article class="svc rv rv-d2">
+        <span class="num">03</span>
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>
+        <h3>MVA og rapportering</h3>
+        <p>Vi beregner, kontrollerer og leverer MVA-meldingen hver termin. Du får varsel før pengene trekkes.</p>
+      </article>
+      <article class="svc rv rv-d1">
+        <span class="num">04</span>
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></span>
+        <h3>Årsoppgjør og skattemelding</h3>
+        <p>Årsregnskap, skattemelding og aksjonærregister – levert i god tid, med en gjennomgang der vi forklarer tallene.</p>
+      </article>
+      <article class="svc rv rv-d2">
+        <span class="num">05</span>
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg></span>
+        <h3>Fakturering og purring</h3>
+        <p>Vi setter opp fakturaflyt med automatisk purring og inkassovarsel, så du får pengene dine raskere.</p>
+      </article>
+      <article class="svc rv rv-d1">
+        <span class="num">06</span>
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+        <h3>Rådgivning og økonomisk oppfølging</h3>
+        <p>Budsjett, likviditetsprognose, utbytte vs. lønn og kvartalsvise møter med en rådgiver som kjenner bransjen din.</p>
+      </article>
+      <article class="svc rv rv-d2">
+        <span class="num">07</span>
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
+        <h3>Selskapsstiftelse</h3>
+        <p>Fra idé til organisasjonsnummer på under en uke. Vi hjelper med AS, ENK, vedtekter og bankkonto – fast pris 4 900 kr.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="sec process-sec" id="slik">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div><span class="eyebrow rv">Bytt regnskapsfører</span><h2 class="h2 rv rv-d1">Å bytte er enklere <em>enn du tror.</em></h2></div>
+      <p class="lead rv rv-d2">Vi ordner alt med din nåværende regnskapsfører – oppsigelse, overføring av data og historikk. Du trenger bare å signere én fullmakt. Resten tar vi.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="n">01</div><h3>Uforpliktende samtale</h3><p>Vi tar en 20-minutters prat om bedriften din, hva som fungerer og hva som ikke gjør det. Du får et fastpristilbud samme dag.</p><span class="time">Dag 1</span></div>
+      <div class="step rv rv-d1"><div class="n">02</div><h3>Signer med BankID</h3><p>Avtale og fullmakt signeres digitalt. Vi varsler din gamle regnskapsfører og henter alt av data og bilag.</p><span class="time">Dag 2–3</span></div>
+      <div class="step rv rv-d2"><div class="n">03</div><h3>Oppsett og migrering</h3><p>Vi kobler bank, kasse og fakturasystem, og flytter historikken. Du får en 45-minutters opplæring i appen.</p><span class="time">Uke 1–2</span></div>
+      <div class="step rv rv-d3"><div class="n">04</div><h3>Full oversikt, hver måned</h3><p>Fast kontaktperson, månedsrapport og svar innen to timer. Første måned er gratis om du ikke er fornøyd.</p><span class="time">Løpende</span></div>
+    </div>
+    <div class="process-cta rv">
+      <p><b>Bundet til dagens regnskapsfører?</b> Vi tar over gratis i oppsigelsestiden, slik at du aldri betaler dobbelt.</p>
+      <a href="#kontakt" class="btn btn-acid">Start byttet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="sec" id="hvorfor">
+  <div class="wrap why-grid">
+    <div>
+      <span class="eyebrow rv">Hvorfor Andersen</span>
+      <h2 class="h2 rv rv-d1" style="margin-top:14px">Regnskap i lomma. <em>Rådgiver i ryggen.</em></h2>
+      <p class="lead rv rv-d2" style="margin-top:20px">Teknologi tar det kjedelige, mennesker tar det viktige. Du får begge deler – og en app som faktisk er hyggelig å åpne.</p>
+      <div class="why-list">
+        <div class="why-item rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12l3 3 5-6"/></svg></span><div><h4>Fast pris, ingen overraskelser</h4><p>Du vet nøyaktig hva regnskapet koster hver måned. Ingen timeføring, ingen ekstraregning for «en rask telefon».</p></div></div>
+        <div class="why-item rv rv-d1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><h4>Svar innen to timer – garantert</h4><p>Din faste rådgiver svarer på chat, e-post eller telefon i arbeidstiden. Bryter vi løftet, trekker vi 500 kr fra neste faktura.</p></div></div>
+        <div class="why-item rv rv-d2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span><div><h4>Ta bilde av bilaget, ferdig</h4><p>Kvitteringer, fakturaer og reiseregninger tas rett i appen. Vi tolker, kontrollerer og bokfører – som regel innen et døgn.</p></div></div>
+        <div class="why-item rv rv-d3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></span><div><h4>Autorisert og forsikret</h4><p>Vi er autorisert regnskapsførerselskap, medlem av Regnskap Norge og har ansvarsforsikring på 10 millioner.</p></div></div>
+      </div>
+    </div>
+    <div class="why-visual rv rv-d2">
+      <div class="phone-scene" id="phoneScene">
+        <div class="chip chip-1"><span class="em"><svg viewBox="0 0 24 24" width="16" fill="none" stroke="#1F6B4E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div>A-melding levert<small>Automatisk, 5. hver måned</small></div></div>
+        <div class="chip chip-2"><span class="em">💬</span><div>Kristine svarte<small>for 4 minutter siden</small></div></div>
+        <div class="phone" aria-hidden="true">
+          <div class="phone-screen">
+            <div class="notch"></div>
+            <div class="ps-head"><b>God morgen, Jonas 👋</b><span class="av">JB</span></div>
+            <div class="ps-card"><small>Disponibelt etter skatt og MVA</small><b>284 120 kr</b><div class="ps-bar"><i></i></div><div class="row"><span>Avsatt MVA: 61 200</span><span>Frist 10. okt</span></div></div>
+            <div class="ps-list">
+              <div class="ps-item"><span class="dot" style="background:#EAF3EE">📸</span><div class="t"><b>Kvittering – Clas Ohlson</b><small>Bokført på kontorrekvisita</small></div><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+              <div class="ps-item"><span class="dot" style="background:#FBF1D8">💸</span><div class="t"><b>Lønn godkjent</b><small>6 ansatte · utbetales 25. sep</small></div><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+              <div class="ps-item"><span class="dot" style="background:#F3E6E2">📊</span><div class="t"><b>Månedsrapport august</b><small>Resultat +18 % mot budsjett</small></div><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+            </div>
+            <div class="ps-fab">+ Nytt bilag</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULATOR ============ -->
+<section class="sec" id="kalkulator" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div><span class="eyebrow rv">Priskalkulator</span><h2 class="h2 rv rv-d1">Hva koster det <em>for deg?</em></h2></div>
+      <p class="lead rv rv-d2">Juster noen få valg og få et realistisk prisestimat på sekunder. Endelig pris får du i tilbudet – men den pleier å treffe.</p>
+    </div>
+    <div class="calc rv">
+      <form class="calc-form" id="calcForm" onsubmit="return false">
+        <h3>Fortell oss litt om bedriften</h3>
+        <p>Alle priser er faste månedspriser og gjelder løpende regnskap.</p>
+        <div class="field">
+          <div class="field-label"><span>Selskapsform</span></div>
+          <div class="seg">
+            <input type="radio" name="form" id="f-enk" value="enk"><label for="f-enk">ENK</label>
+            <input type="radio" name="form" id="f-as" value="as" checked><label for="f-as">AS</label>
+            <input type="radio" name="form" id="f-annet" value="annet"><label for="f-annet">Annet</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label"><span>Antall bilag per måned</span><output id="bilagOut">60</output></div>
+          <input type="range" class="range" id="bilag" min="10" max="500" step="10" value="60" aria-label="Antall bilag per måned">
+        </div>
+        <div class="field">
+          <div class="field-label"><span>Antall ansatte på lønn</span><output id="ansOut">3</output></div>
+          <input type="range" class="range" id="ansatte" min="0" max="50" step="1" value="3" aria-label="Antall ansatte">
+        </div>
+        <div class="field">
+          <div class="field-label"><span>Tillegg</span></div>
+          <div class="toggles">
+            <label class="toggle"><input type="checkbox" id="t-mva" checked><span class="sw"></span><span>MVA-registrert<small>Terminvis rapportering</small></span></label>
+            <label class="toggle"><input type="checkbox" id="t-faktura"><span class="sw"></span><span>Fakturering<small>Vi sender og purrer</small></span></label>
+            <label class="toggle"><input type="checkbox" id="t-raad"><span class="sw"></span><span>Kvartalsvis rådgivning<small>Møte med rådgiver</small></span></label>
+            <label class="toggle"><input type="checkbox" id="t-aar" checked><span class="sw"></span><span>Årsoppgjør inkludert<small>Fordelt per måned</small></span></label>
+          </div>
+        </div>
+      </form>
+      <div class="calc-result">
+        <small class="lbl">Estimert månedspris</small>
+        <div class="price-big"><span id="priceOut" style="font-size:inherit;color:inherit;font-weight:inherit;letter-spacing:inherit">4 240</span><span>kr / mnd</span></div>
+        <p class="eks">eks. mva · ingen bindingstid · ingen oppstartskostnad</p>
+        <div class="save-badge" id="saveBadge"><svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/></svg><span>Typisk besparelse vs. timepris: <b id="saveOut">1 800 kr</b>/mnd</span></div>
+        <ul class="break">
+          <li><span>Løpende bokføring</span><b id="b-bok">2 490 kr</b></li>
+          <li id="r-lonn"><span>Lønn (<span id="b-ans-n">3</span> ansatte)</span><b id="b-lonn">750 kr</b></li>
+          <li id="r-mva"><span>MVA-rapportering</span><b id="b-mva">350 kr</b></li>
+          <li id="r-faktura" class="off"><span>Fakturering og purring</span><b id="b-faktura">490 kr</b></li>
+          <li id="r-raad" class="off"><span>Kvartalsvis rådgivning</span><b id="b-raad">890 kr</b></li>
+          <li id="r-aar"><span>Årsoppgjør (fordelt)</span><b id="b-aar">650 kr</b></li>
+        </ul>
+        <a href="#kontakt" class="btn btn-acid btn-lg" id="calcCta">Få bindende tilbud <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="note">Estimatet tas med videre i kontaktskjemaet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="sec" id="priser">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;align-items:center">
+      <span class="eyebrow rv" style="margin-inline:auto">Pakker</span>
+      <h2 class="h2 rv rv-d1">Tre pakker. <em>Null bindingstid.</em></h2>
+      <p class="lead rv rv-d2" style="margin-inline:auto;text-align:center">Vokser du ut av en pakke, flytter vi deg opp uten gebyr. Blir det roligere, flytter vi deg ned. Enkelt.</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="plan rv">
+        <div class="who">For enkeltpersonforetak og nyoppstartede</div>
+        <h3>Start</h3>
+        <p class="desc">Du fakturerer selv og har få bilag. Vi tar resten og passer på fristene.</p>
+        <div class="price"><b>1 490</b><small>kr/mnd</small></div>
+        <div class="from">eks. mva · inntil 30 bilag/mnd</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Løpende bokføring og bankavstemming</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>MVA-melding hver termin</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Skattemelding og næringsoppgave</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>App med bilagsfoto og rapporter</li>
+          <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 12h12"/></svg>Lønn (kan legges til)</li>
+          <li class="dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 12h12"/></svg>Rådgivning (timepris)</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost" data-plan="Start">Velg Start</a>
+      </article>
+      <article class="plan pop rv rv-d1">
+        <span class="badge">Mest valgt</span>
+        <div class="who">For AS med 1–15 ansatte</div>
+        <h3>Vekst</h3>
+        <p class="desc">Full økonomifunksjon med lønn, årsoppgjør og en rådgiver som følger deg opp.</p>
+        <div class="price"><b>3 990</b><small>kr/mnd</small></div>
+        <div class="from">eks. mva · inntil 100 bilag/mnd · 5 ansatte inkl.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#D7F26A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Alt i Start</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#D7F26A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Lønn, a-melding og reiseregninger</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#D7F26A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Årsregnskap og aksjonærregister</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#D7F26A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Månedsrapport med kommentarer</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#D7F26A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Halvårlig rådgivningsmøte</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#D7F26A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Svar innen 2 timer – garantert</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-acid" data-plan="Vekst">Velg Vekst <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="plan rv rv-d2">
+        <div class="who">For selskaper med 15–80 ansatte</div>
+        <h3>Partner</h3>
+        <p class="desc">Din eksterne økonomiavdeling. CFO-tjenester, styrerapportering og budsjettstyring.</p>
+        <div class="price"><b>9 900</b><small>kr/mnd</small></div>
+        <div class="from">eks. mva · fra-pris, tilpasses omfang</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Alt i Vekst</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dedikert controller og CFO-timer</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Budsjett, prognose og likviditetsstyring</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Styre- og investorrapportering</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Konsern og flere selskaper</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1F6B4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kvartalsvise strategimøter</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost" data-plan="Partner">Bestill møte</a>
+      </article>
+    </div>
+    <p class="pricing-note rv">Usikker på hvilken pakke som passer? <a href="#kalkulator">Prøv kalkulatoren</a> eller <a href="#kontakt">be om en anbefaling</a>. Selskapsstiftelse: fast pris 4 900 kr.</p>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="sec testi-sec" id="team" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div><span class="eyebrow rv">Menneskene</span><h2 class="h2 rv rv-d1">Du får en rådgiver – <em>ikke en kø.</em></h2></div>
+      <p class="lead rv rv-d2">Vi er 14 autoriserte regnskapsførere og rådgivere i Oslo. Hver kunde har én fast kontaktperson som kjenner både tallene og historien bak dem.</p>
+    </div>
+    <div class="team-grid">
+      <article class="member rv" tabindex="0">
+        <div class="portrait"><svg viewBox="0 0 300 370" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="p1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DDE8DF"/><stop offset="1" stop-color="#B8CFC0"/></linearGradient></defs><rect width="300" height="370" fill="url(#p1)"/><circle cx="150" cy="140" r="58" fill="#1F6B4E"/><path d="M40 370c0-78 49-128 110-128s110 50 110 128" fill="#1F6B4E"/><text x="150" y="152" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="34" fill="#D7F26A">MA</text></svg></div>
+        <div class="info"><b>Marte Andersen</b><small>Daglig leder · Statsautorisert regnskapsfører</small></div>
+        <div class="more"><span>Grunnlegger</span><b>Marte Andersen</b><p>Startet Andersen Regnskap i 2014 etter ti år i BDO. Brenner for å gjøre økonomi forståelig for folk som heller vil drive butikk.</p></div>
+      </article>
+      <article class="member rv rv-d1" tabindex="0">
+        <div class="portrait"><svg viewBox="0 0 300 370" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="p2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EFE3D6"/><stop offset="1" stop-color="#D8C3AE"/></linearGradient></defs><rect width="300" height="370" fill="url(#p2)"/><circle cx="150" cy="140" r="58" fill="#C8553D"/><path d="M40 370c0-78 49-128 110-128s110 50 110 128" fill="#C8553D"/><text x="150" y="152" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="34" fill="#fff">KH</text></svg></div>
+        <div class="info"><b>Kristine Haugland</b><small>Senior rådgiver · Lønn og HR</small></div>
+        <div class="more"><span>Rådgiver</span><b>Kristine Haugland</b><p>Ekspert på lønn, permitteringer og alt som heter a-melding. Kjent for å svare før du rekker å lure på om hun har sett meldingen.</p></div>
+      </article>
+      <article class="member rv rv-d2" tabindex="0">
+        <div class="portrait"><svg viewBox="0 0 300 370" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="p3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E2E4EC"/><stop offset="1" stop-color="#C3C8D8"/></linearGradient></defs><rect width="300" height="370" fill="url(#p3)"/><circle cx="150" cy="140" r="58" fill="#3A4742"/><path d="M40 370c0-78 49-128 110-128s110 50 110 128" fill="#3A4742"/><text x="150" y="152" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="34" fill="#D7F26A">OS</text></svg></div>
+        <div class="info"><b>Omar Said</b><small>Autorisert regnskapsfører · Teknologi</small></div>
+        <div class="more"><span>Systemansvarlig</span><b>Omar Said</b><p>Setter opp integrasjoner mot bank, kasse og nettbutikk så bilagene flyter av seg selv. Sertifisert på Tripletex, Fiken og PowerOffice.</p></div>
+      </article>
+      <article class="member rv rv-d3" tabindex="0">
+        <div class="portrait"><svg viewBox="0 0 300 370" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="p4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0EBD6"/><stop offset="1" stop-color="#DCD3B0"/></linearGradient></defs><rect width="300" height="370" fill="url(#p4)"/><circle cx="150" cy="140" r="58" fill="#8A6A14"/><path d="M40 370c0-78 49-128 110-128s110 50 110 128" fill="#8A6A14"/><text x="150" y="152" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="34" fill="#fff">EL</text></svg></div>
+        <div class="info"><b>Eirik Lunde</b><small>Økonomirådgiver · Skatt og struktur</small></div>
+        <div class="more"><span>Rådgiver</span><b>Eirik Lunde</b><p>Hjelper eiere med utbytte, holdingstruktur og skatteoptimalisering. Siviløkonom fra NHH med bakgrunn fra Skatteetaten.</p></div>
+      </article>
+    </div>
+    <div class="team-cta rv">
+      <p><b>Vi ansetter.</b> Autorisert regnskapsfører som er lei av timeføring? Vi tilbyr fastlønn, fire dagers uke og kunder du faktisk blir kjent med.</p>
+      <a href="mailto:jobb@andersenregnskap.no" class="link">Se ledige stillinger <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="sec testi-sec" id="omtaler">
+  <div class="wrap">
+    <div class="sec-head split">
+      <div><span class="eyebrow rv">Kundene sier</span><h2 class="h2 rv rv-d1">Ikke ta vårt ord <em>for det.</em></h2></div>
+      <div class="testi-nav rv rv-d2" style="justify-content:flex-end">
+        <button class="arrow" id="prevT" aria-label="Forrige omtale"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+        <button class="arrow" id="nextT" aria-label="Neste omtale"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="rating-strip rv">
+      <div class="big"><b>4,9</b><div><div class="stars">★★★★★</div><small>312 vurderinger</small></div></div>
+      <div class="src"><span><i></i>Google 4,9</span><span><i></i>Trustpilot 4,8</span><span><i></i>Regnskap Norge – autorisert</span></div>
+    </div>
+    <div class="testi-track rv" id="testiTrack">
+      <article class="testi"><p class="q">Vi byttet fra et stort byrå der vi aldri snakket med samme person to ganger. Nå har vi Kristine. Hun kjenner butikken vår bedre enn vi gjør selv.”</p><div class="who"><span style="background:#1F6B4E">JB</span><div><b>Jonas Berge</b><small>Daglig leder, Nordlys Kaffebar AS</small></div></div><div class="meta"><span class="stars">★★★★★</span><span>Kunde siden 2022</span></div></article>
+      <article class="testi"><p class="q">Byttet tok tre dager. Jeg signerte én fullmakt, resten skjedde i bakgrunnen. Skulle gjort det for fem år siden.”</p><div class="who"><span style="background:#C8553D">SF</span><div><b>Sara Fjellheim</b><small>Eier, Fjellheim Bygg AS</small></div></div><div class="meta"><span class="stars">★★★★★</span><span>Kunde siden 2024</span></div></article>
+      <article class="testi"><p class="q">Eirik foreslo en holdingstruktur som sparte oss for over 200 000 i skatt ved salget. Den samtalen alene betalte for ti år med regnskap.”</p><div class="who"><span style="background:#3A4742">ML</span><div><b>Mikkel Lindqvist</b><small>Partner, Lindqvist Arkitekter AS</small></div></div><div class="meta"><span class="stars">★★★★★</span><span>Kunde siden 2019</span></div></article>
+      <article class="testi"><p class="q">Månedsrapporten er skrevet på norsk, ikke regnskapsk. Første gang jeg faktisk forstår hvordan det går med selskapet mitt uten å ringe noen.”</p><div class="who"><span style="background:#8A6A14">AB</span><div><b>Aisha Bakke</b><small>Gründer, Mosaikk Design AS</small></div></div><div class="meta"><span class="stars">★★★★★</span><span>Kunde siden 2023</span></div></article>
+      <article class="testi"><p class="q">Fast pris betyr at jeg faktisk tør å ringe når jeg lurer på noe. Hos forrige regnskapsfører kostet hver telefon 600 kroner.”</p><div class="who"><span style="background:#2B8A66">TE</span><div><b>Thomas Ekeberg</b><small>Eier, Ekeberg Elektro ENK</small></div></div><div class="meta"><span class="stars">★★★★★</span><span>Kunde siden 2021</span></div></article>
+      <article class="testi"><p class="q">Vi har 42 ansatte og tre selskaper. Andersen fungerer som økonomiavdelingen vår, med styrerapporter som investorene våre faktisk skryter av.”</p><div class="who"><span style="background:#0E1512">HN</span><div><b>Helene Nordvik</b><small>CEO, Grønn Logistikk AS</small></div></div><div class="meta"><span class="stars">★★★★★</span><span>Kunde siden 2020</span></div></article>
+    </div>
+    <div class="testi-dots" id="testiDots"></div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-side">
+      <span class="eyebrow rv">Ofte stilte spørsmål</span>
+      <h2 class="h2 rv rv-d1">Det folk lurer på <em>før de bytter.</em></h2>
+      <p class="rv rv-d2">Finner du ikke svaret? Ring oss på <a href="tel:+4722334455" style="font-weight:700;text-decoration:underline;text-underline-offset:3px">22 33 44 55</a> – du får et menneske, ikke en meny.</p>
+      <a href="#kontakt" class="btn btn-primary rv rv-d3">Still et spørsmål <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="faq-list rv rv-d1">
+      <div class="faq open"><button aria-expanded="true">Hvor lang tid tar det å bytte regnskapsfører?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="a"><p>Vanligvis 1–2 uker fra signert avtale til vi er fullt operative. Selve overføringen av data tar ofte bare noen dager. Er du bundet av oppsigelsestid hos dagens regnskapsfører, tar vi over gratis i mellomtiden slik at du aldri betaler dobbelt.</p></div></div>
+      <div class="faq"><button aria-expanded="false">Må jeg bytte regnskapssystem?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="a"><p>Nei. Vi jobber i Tripletex, Fiken, PowerOffice Go og Visma eAccounting. Bruker du et av disse, fortsetter du som før. Har du et eldre system, anbefaler vi ofte å bytte – og da tar vi migreringen uten ekstra kostnad.</p></div></div>
+      <div class="faq"><button aria-expanded="false">Hva er inkludert i fastprisen – og hva koster ekstra?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="a"><p>Alt som står i pakken din er inkludert, også spørsmål på telefon og e-post. Det eneste som koster ekstra er større prosjekter utenfor løpende drift, som due diligence, fusjoner eller omfattende skattesaker – og da avtaler vi en fast pris på forhånd.</p></div></div>
+      <div class="faq"><button aria-expanded="false">Kan jeg ha ansatte i utlandet eller drive nettbutikk?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="a"><p>Ja. Vi har lang erfaring med nettbutikker (Shopify, WooCommerce, Vipps) inkludert MVA på salg til EU (OSS) og valutahåndtering. For ansatte i utlandet samarbeider vi med partnere i Norden og EU.</p></div></div>
+      <div class="faq"><button aria-expanded="false">Hva skjer om jeg ikke er fornøyd?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="a"><p>Vi har ingen bindingstid og én måneds oppsigelse. Er du misfornøyd den første måneden, betaler du ingenting. Sier du opp senere, får du alle data utlevert i et standardformat innen fem virkedager – uten diskusjon.</p></div></div>
+      <div class="faq"><button aria-expanded="false">Hjelper dere med å starte selskap?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="a"><p>Ja, til fast pris 4 900 kr eks. mva. Det inkluderer rådgivning om selskapsform, stiftelsesdokumenter, vedtekter, registrering i Brønnøysund og hjelp med bankkonto. Velger du oss som regnskapsfører etterpå, trekker vi beløpet fra de tre første månedene.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec contact-sec" id="kontakt">
+  <div class="wrap">
+    <div class="contact-card rv">
+      <div class="contact-info">
+        <span class="eyebrow">Kontakt</span>
+        <h2 class="h2">La oss ta <em>en prat.</em></h2>
+        <p>Fyll ut skjemaet, så ringer en rådgiver deg innen to arbeidstimer med et konkret tilbud. Ingen selgere, ingen oppfølgingsmas.</p>
+        <div class="c-list">
+          <div class="c-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#D7F26A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><div><small>Telefon</small><b><a href="tel:+4722334455">22 33 44 55</a></b><span>Man–fre 08–16</span></div></div>
+          <div class="c-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#D7F26A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg></span><div><small>E-post</small><b><a href="mailto:post@andersenregnskap.no">post@andersenregnskap.no</a></b><span>Svar innen 2 timer</span></div></div>
+          <div class="c-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#D7F26A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><small>Besøksadresse</small><b>Storgata 32, 4. etg.</b><span>0184 Oslo · Rett ved Jernbanetorget</span></div></div>
+        </div>
+        <div class="c-promise"><span class="dot">2t</span><div><b>Svargaranti</b><small>Sendt før kl. 14 på en hverdag? Da hører du fra oss samme dag.</small></div></div>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-steps" aria-hidden="true"><i class="done" id="s1"></i><i id="s2"></i><i id="s3"></i></div>
+
+        <div class="fstep active" data-step="1">
+          <h3>Hva kan vi hjelpe deg med?</h3>
+          <p>Velg det som passer best – du kan velge flere.</p>
+          <div class="chips" id="needChips">
+            <label><input type="checkbox" name="behov" value="Bytte regnskapsfører" checked>Bytte regnskapsfører</label>
+            <label><input type="checkbox" name="behov" value="Bokføring">Bokføring</label>
+            <label><input type="checkbox" name="behov" value="Lønn">Lønn</label>
+            <label><input type="checkbox" name="behov" value="MVA">MVA</label>
+            <label><input type="checkbox" name="behov" value="Årsoppgjør">Årsoppgjør</label>
+            <label><input type="checkbox" name="behov" value="Fakturering">Fakturering</label>
+            <label><input type="checkbox" name="behov" value="Rådgivning">Rådgivning</label>
+            <label><input type="checkbox" name="behov" value="Starte selskap">Starte selskap</label>
+          </div>
+          <h3 style="font-size:1.1rem;margin-bottom:12px">Hvilken selskapsform har dere?</h3>
+          <div class="opts three">
+            <div class="opt"><input type="radio" name="selskapsform" id="c-as" value="AS" checked><label for="c-as"><span class="em"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16M4 21h16M9 8h2M9 12h2M13 8h2M13 12h2"/></svg></span>Aksjeselskap<small>AS</small></label></div>
+            <div class="opt"><input type="radio" name="selskapsform" id="c-enk" value="ENK"><label for="c-enk"><span class="em"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>Enkeltperson&shy;foretak<small>ENK</small></label></div>
+            <div class="opt"><input type="radio" name="selskapsform" id="c-annet" value="Annet / ikke stiftet"><label for="c-annet"><span class="em"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>Annet<small>ANS, NUF, ikke stiftet</small></label></div>
+          </div>
+          <div class="fnav"><span></span><button type="button" class="btn btn-primary" data-next>Neste <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </div>
+
+        <div class="fstep" data-step="2">
+          <h3>Litt om størrelsen</h3>
+          <p>Så vi kan gi deg en riktig pris med én gang.</p>
+          <h3 style="font-size:1.1rem;margin-bottom:12px">Antall ansatte</h3>
+          <div class="opts">
+            <div class="opt"><input type="radio" name="ansatte" id="a0" value="Bare meg" checked><label for="a0">Bare meg<small>Ingen lønn</small></label></div>
+            <div class="opt"><input type="radio" name="ansatte" id="a1" value="2–5"><label for="a1">2–5 ansatte<small>Liten bedrift</small></label></div>
+            <div class="opt"><input type="radio" name="ansatte" id="a2" value="6–20"><label for="a2">6–20 ansatte<small>Voksende</small></label></div>
+            <div class="opt"><input type="radio" name="ansatte" id="a3" value="20+"><label for="a3">20+ ansatte<small>Trenger controller</small></label></div>
+          </div>
+          <div class="frow two">
+            <div class="fld"><select id="omsetning" name="omsetning"><option value="Under 1 MNOK">Under 1 MNOK</option><option value="1–5 MNOK" selected>1–5 MNOK</option><option value="5–20 MNOK">5–20 MNOK</option><option value="Over 20 MNOK">Over 20 MNOK</option></select><label>Omsetning per år</label><svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></div>
+            <div class="fld"><select id="system" name="system"><option value="Vet ikke / ingen">Vet ikke / ingen</option><option value="Tripletex">Tripletex</option><option value="Fiken">Fiken</option><option value="PowerOffice Go">PowerOffice Go</option><option value="Visma">Visma</option><option value="Annet">Annet</option></select><label>Regnskapssystem i dag</label><svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></div>
+          </div>
+          <div class="fnav"><button type="button" class="back" data-prev><svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Tilbake</button><button type="button" class="btn btn-primary" data-next>Neste <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </div>
+
+        <div class="fstep" data-step="3">
+          <h3>Hvem skal vi ringe?</h3>
+          <p>Vi bruker kun opplysningene til å kontakte deg om tilbudet.</p>
+          <div class="summary" id="summary"></div>
+          <div class="frow two">
+            <div class="fld"><input type="text" id="navn" name="navn" placeholder=" " autocomplete="name" required><label for="navn">Navn</label><span class="msg">Skriv inn navnet ditt</span></div>
+            <div class="fld"><input type="text" id="firma" name="firma" placeholder=" " autocomplete="organization"><label for="firma">Firma (valgfritt)</label></div>
+          </div>
+          <div class="frow two">
+            <div class="fld"><input type="email" id="epost" name="epost" placeholder=" " autocomplete="email" required><label for="epost">E-post</label><span class="msg">Skriv inn en gyldig e-postadresse</span></div>
+            <div class="fld"><input type="tel" id="tlf" name="tlf" placeholder=" " autocomplete="tel" required inputmode="tel"><label for="tlf">Telefon</label><span class="msg">Skriv inn et gyldig telefonnummer</span></div>
+          </div>
+          <div class="frow">
+            <div class="fld"><textarea id="melding" name="melding" placeholder=" "></textarea><label for="melding">Noe mer vi bør vite? (valgfritt)</label></div>
+          </div>
+          <label class="consent"><input type="checkbox" id="samtykke" required><span>Jeg godtar at Andersen Regnskap AS kontakter meg om denne henvendelsen og behandler opplysningene i tråd med <a href="#">personvernerklæringen</a>.</span></label>
+          <div class="fnav"><button type="button" class="back" data-prev><svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Tilbake</button><button type="submit" class="btn btn-primary btn-lg" id="submitBtn"><span class="btn-txt">Send og få tilbud</span><span class="spinner"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </div>
+
+        <div class="success" id="success">
+          <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1512" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h3>Takk, <span id="succName">vi</span>! Vi ringer deg snart.</h3>
+          <p>Henvendelsen er mottatt. En rådgiver tar kontakt innen to arbeidstimer med et konkret tilbud. I mellomtiden kan du gjerne lese hvordan byttet foregår.</p>
+          <a href="#slik" class="btn btn-ghost">Se hvordan byttet foregår</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANNER ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="banner rv">
+      <span class="deco"></span><span class="deco2"></span>
+      <div style="position:relative"><h2>Klar for et regnskap som jobber for deg?</h2><p>Første samtale er gratis. Første måned er gratis om du ikke er fornøyd. Resten er opp til deg.</p></div>
+      <div class="acts" style="position:relative">
+        <a href="#kontakt" class="btn btn-primary btn-lg">Få tilbud <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="tel:+4722334455" class="btn btn-light btn-lg">Ring 22 33 44 55</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="#top" class="logo"><span class="logo-mark"><svg viewBox="0 0 32 32" fill="none"><path d="M9 25 16 7l7 18h-3.6l-1.4-3.6h-4l-1.4 3.6H9Zm6.2-6.6h1.6L16 16.1l-.8 2.3Z" fill="#D7F26A"/></svg></span><span>Andersen<small>Regnskap AS</small></span></a>
+        <p>Autorisert regnskapsførerselskap i Oslo. Vi hjelper små og mellomstore bedrifter med å få kontroll, spare tid og ta bedre beslutninger.</p>
+        <div class="f-badges"><span><i></i>Autorisert regnskapsfører</span><span><i></i>Regnskap Norge</span><span><i></i>Miljøfyrtårn</span></div>
+      </div>
+      <div class="f-col"><h4>Tjenester</h4><ul><li><a href="#tjenester">Bokføring</a></li><li><a href="#tjenester">Lønn og HR</a></li><li><a href="#tjenester">MVA</a></li><li><a href="#tjenester">Årsoppgjør</a></li><li><a href="#tjenester">Rådgivning</a></li><li><a href="#tjenester">Selskapsstiftelse</a></li></ul></div>
+      <div class="f-col"><h4>Selskapet</h4><ul><li><a href="#team">Om oss</a></li><li><a href="#omtaler">Kundehistorier</a></li><li><a href="#priser">Priser</a></li><li><a href="mailto:jobb@andersenregnskap.no">Jobb hos oss</a></li><li><a href="#faq">Spørsmål og svar</a></li></ul></div>
+      <div class="f-col"><h4>Kontakt</h4><ul><li><a href="tel:+4722334455">22 33 44 55</a></li><li><a href="mailto:post@andersenregnskap.no">post@andersenregnskap.no</a></li><li><a href="#kontakt">Storgata 32, 0184 Oslo</a></li><li><a href="#kontakt">Man–fre 08:00–16:00</a></li></ul></div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 Andersen Regnskap AS · Org.nr 912 345 678 MVA</span>
+      <div class="r"><a href="#">Personvern</a><a href="#">Informasjonskapsler</a><a href="#">Vilkår</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="stickyCta"><a href="#kontakt" class="btn btn-acid btn-lg">Få tilbud på 2 minutter</a></div>
+<div class="toast" id="toast"><i></i><span id="toastTxt"></span></div>
+
+<script>
+(function(){
+  const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+  const nok=n=>Math.round(n).toLocaleString('nb-NO').replace(/\u00a0|,/g,' ');
+
+  /* NAV */
+  const nav=$('#nav'), burger=$('#burger'), mm=$('#mobileMenu'), sticky=$('#stickyCta');
+  const onScroll=()=>{
+    nav.classList.toggle('scrolled',scrollY>20);
+    const kontakt=$('#kontakt').getBoundingClientRect().top;
+    sticky.classList.toggle('show',scrollY>600&&kontakt>innerHeight*.8);
+  };
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const toggleMenu=(open)=>{
+    const o=open??!mm.classList.contains('open');
+    mm.classList.toggle('open',o);burger.classList.toggle('open',o);nav.classList.toggle('menu-open',o);
+    burger.setAttribute('aria-expanded',o);mm.setAttribute('aria-hidden',!o);
+    document.body.style.overflow=o?'hidden':'';
+  };
+  burger.addEventListener('click',()=>toggleMenu());
+  $$('a',mm).forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&mm.classList.contains('open'))toggleMenu(false)});
+
+  /* Smooth anchor offset */
+  $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');if(id.length<2)return;
+    const t=$(id);if(!t)return;e.preventDefault();
+    const y=t.getBoundingClientRect().top+scrollY-80;
+    scrollTo({top:y,behavior:'smooth'});history.replaceState(null,'',id);
+  }));
+
+  /* Reveal */
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  $$('.rv,.step,#phoneScene').forEach(el=>io.observe(el));
+
+  /* Counters */
+  const cio=new IntersectionObserver(es=>es.forEach(en=>{
+    if(!en.isIntersecting)return;const el=en.target;cio.unobserve(el);
+    const end=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),dur=1600,t0=performance.now();
+    const tick=t=>{const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);el.textContent=(end*e).toFixed(dec).replace('.',',');if(p<1)requestAnimationFrame(tick)};
+    requestAnimationFrame(tick);
+  }),{threshold:.5});
+  $$('[data-count]').forEach(el=>cio.observe(el));
+
+  /* Marquee duplicate */
+  const mq=$('#marquee');mq.innerHTML+=mq.innerHTML;
+
+  /* Calculator */
+  const bilag=$('#bilag'),ans=$('#ansatte');
+  const setRange=r=>r.style.setProperty('--p',((r.value-r.min)/(r.max-r.min)*100)+'%');
+  let estimate=0;
+  const calc=()=>{
+    setRange(bilag);setRange(ans);
+    const b=+bilag.value,a=+ans.value,form=$('input[name=form]:checked').value;
+    $('#bilagOut').textContent=b+(b==500?'+':'');$('#ansOut').textContent=a;$('#b-ans-n').textContent=a;
+    let bok=(form==='enk'?990:1490)+Math.max(0,b-20)*22;
+    if(form==='annet')bok+=300;
+    const lonn=a>0?350+a*135:0;
+    const mva=$('#t-mva').checked?(b>150?590:350):0;
+    const fak=$('#t-faktura').checked?490+Math.round(b*1.2):0;
+    const raad=$('#t-raad').checked?(a>10?1490:890):0;
+    const aar=$('#t-aar').checked?(form==='enk'?390:650+Math.round(b*1.5)):0;
+    const total=Math.round((bok+lonn+mva+fak+raad+aar)/10)*10;estimate=total;
+    const set=(id,v)=>$(id).textContent=nok(v)+' kr';
+    set('#b-bok',bok);set('#b-lonn',lonn);set('#b-mva',mva);set('#b-faktura',fak);set('#b-raad',raad);set('#b-aar',aar);
+    $('#r-lonn').classList.toggle('off',a===0);$('#r-mva').classList.toggle('off',!mva);$('#r-faktura').classList.toggle('off',!fak);$('#r-raad').classList.toggle('off',!raad);$('#r-aar').classList.toggle('off',!aar);
+    animateNum($('#priceOut'),total);
+    $('#saveOut').textContent=nok(total*.42)+' kr';
+  };
+  let curPrice=0;
+  function animateNum(el,to){const from=curPrice,t0=performance.now();curPrice=to;const tick=t=>{const p=Math.min(1,(t-t0)/500),e=1-Math.pow(1-p,3);el.textContent=nok(from+(to-from)*e);if(p<1)requestAnimationFrame(tick)};requestAnimationFrame(tick)}
+  $$('#calcForm input').forEach(i=>i.addEventListener('input',calc));calc();
+
+  /* Plan buttons -> prefill */
+  let chosenPlan='';
+  $$('[data-plan]').forEach(b=>b.addEventListener('click',()=>{chosenPlan=b.dataset.plan;showToast('Pakke «'+chosenPlan+'» valgt – fullfør skjemaet')}));
+  $('#calcCta').addEventListener('click',()=>{chosenPlan='Estimat '+nok(estimate)+' kr/mnd';showToast('Estimatet er lagt ved henvendelsen')});
+
+  /* Testimonials */
+  const track=$('#testiTrack'),cards=$$('.testi',track),dots=$('#testiDots');let idx=0;
+  const perView=()=>innerWidth<=640?1:innerWidth<=1000?2:3;
+  const pages=()=>Math.max(1,cards.length-perView()+1);
+  const render=()=>{
+    idx=Math.min(idx,pages()-1);
+    const gap=16,w=cards[0].getBoundingClientRect().width;
+    track.style.transform=`translateX(${-idx*(w+gap)}px)`;
+    dots.innerHTML='';for(let i=0;i<pages();i++){const d=document.createElement('i');if(i===idx)d.className='on';dots.appendChild(d)}
+    $('#prevT').disabled=idx===0;$('#nextT').disabled=idx>=pages()-1;
+  };
+  $('#prevT').addEventListener('click',()=>{idx--;render()});$('#nextT').addEventListener('click',()=>{idx++;render()});
+  addEventListener('resize',render);render();
+  let sx=0;track.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+  track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){idx+=dx<0?1:-1;idx=Math.max(0,idx);render()}});
+
+  /* FAQ */
+  $$('.faq').forEach(f=>{
+    const b=$('button',f),a=$('.a',f);
+    if(f.classList.contains('open'))a.style.maxHeight=a.scrollHeight+'px';
+    b.addEventListener('click',()=>{
+      const open=f.classList.contains('open');
+      $$('.faq.open').forEach(o=>{o.classList.remove('open');$('.a',o).style.maxHeight=0;$('button',o).setAttribute('aria-expanded','false')});
+      if(!open){f.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';b.setAttribute('aria-expanded','true')}
+    });
+  });
+
+  /* Contact form */
+  const form=$('#contactForm');let step=1;
+  const chips=$$('#needChips label');
+  const syncChips=()=>chips.forEach(l=>l.classList.toggle('on',$('input',l).checked));
+  chips.forEach(l=>$('input',l).addEventListener('change',syncChips));syncChips();
+  const goto=n=>{
+    step=n;$$('.fstep',form).forEach(s=>s.classList.toggle('active',+s.dataset.step===n));
+    [1,2,3].forEach(i=>$('#s'+i).classList.toggle('done',i<=n));
+    if(n===3)buildSummary();
+    form.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  const buildSummary=()=>{
+    const behov=$$('input[name=behov]:checked').map(i=>i.value);
+    const items=[...behov,$('input[name=selskapsform]:checked').value,$('input[name=ansatte]:checked').value+' ansatte',$('#omsetning').value];
+    if(chosenPlan)items.push(chosenPlan);
+    $('#summary').innerHTML=items.map(i=>`<span>${i}</span>`).join('');
+  };
+  $$('[data-next]',form).forEach(b=>b.addEventListener('click',()=>{
+    if(step===1&&!$$('input[name=behov]:checked').length){showToast('Velg minst ett behov');return}
+    goto(step+1)}));
+  $$('[data-prev]',form).forEach(b=>b.addEventListener('click',()=>goto(step-1)));
+  const validate=()=>{
+    let ok=true;
+    const chk=(el,test)=>{const v=test(el.value.trim());el.classList.toggle('err',!v);if(!v)ok=false};
+    chk($('#navn'),v=>v.length>1);
+    chk($('#epost'),v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v));
+    chk($('#tlf'),v=>v.replace(/\D/g,'').length>=8);
+    if(!$('#samtykke').checked){ok=false;showToast('Du må godta at vi kontakter deg')}
+    return ok;
+  };
+  $$('#navn,#epost,#tlf').forEach(i=>i.addEventListener('input',()=>i.classList.remove('err')));
+  form.addEventListener('submit',e=>{
+    e.preventDefault();if(!validate()){const f=$('.err',form);f&&f.focus();return}
+    const btn=$('#submitBtn');btn.classList.add('loading');btn.disabled=true;
+    setTimeout(()=>{
+      $$('.fstep',form).forEach(s=>s.classList.remove('active'));$('.form-steps').style.display='none';
+      $('#succName').textContent=$('#navn').value.trim().split(' ')[0];
+      $('#success').classList.add('active');
+      form.scrollIntoView({behavior:'smooth',block:'center'});
+    },1400);
+  });
+
+  /* Toast */
+  let tt;function showToast(m){$('#toastTxt').textContent=m;$('#toast').classList.add('show');clearTimeout(tt);tt=setTimeout(()=>$('#toast').classList.remove('show'),2800)}
+
+  /* Subtle parallax on hero glow */
+  const hero=$('.hero');
+  if(matchMedia('(hover:hover)').matches){
+    hero.addEventListener('mousemove',e=>{
+      const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      $$('.float').forEach((f,i)=>f.style.translate=`${x*(i?-14:14)}px ${y*(i?-10:10)}px`);
+    });
+  }
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

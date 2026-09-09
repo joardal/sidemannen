@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="nb-NO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NordTak &amp; Blikk AS — Taktekker &amp; blikkenslager i Oslo | Nytt tak, rehabilitering, beslag</title>
+<meta name="description" content="NordTak & Blikk AS — taktekker og blikkenslager i Oslo og Viken siden 1998. Nytt tak, takrehabilitering, pipebeslag, takrenner, fasadeblikk og akutt lekkasjehjelp. 10 års garanti. Bestill gratis taksjekk.">
+<meta name="theme-color" content="#101413">
+<link rel="icon" href="images/image-01.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS / RESET ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#F2EEE6; --paper2:#E8E2D4; --paper3:#DFD7C3;
+  --ink:#101413; --ink2:#1A201E; --ink3:#2A3330;
+  --muted:#5B6562; --muted-d:#9AA5A1;
+  --line:rgba(16,20,19,.14); --line-d:rgba(242,238,230,.16);
+  --copper:#D9622B; --copper-deep:#A84312; --copper-soft:#F3D9C4;
+  --moss:#152B24; --moss2:#0D1C18;
+  --steel:#7E9296; --zinc:#DCE3E2;
+  --gold:#F5B81B;
+  --ok:#1E7A4C; --danger:#C22E1F;
+  --card:#FBF9F4;
+  --r:18px; --r-s:12px;
+  --shadow:8px 8px 0 rgba(16,20,19,.9);
+  --shadow-s:5px 5px 0 rgba(16,20,19,.9);
+  --f-disp:"Anton","Arial Narrow","Helvetica Neue",Impact,sans-serif;
+  --f-body:"Inter Tight","Helvetica Neue",-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --nav-h:72px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16.5px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--copper);color:#fff}
+:focus-visible{outline:3px solid var(--copper);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1260px,93vw);margin-inline:auto}
+section{scroll-margin-top:calc(var(--nav-h) + 18px);position:relative}
+.mono{font-family:var(--f-mono)}
+/* grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2000;opacity:.05;
+  background-image:url("images/image-02.svg")}
+/* ============ TYPE / SHARED ============ */
+.eyebrow{font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.7rem;color:var(--copper-deep)}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--copper);flex:none}
+.eyebrow.on-dark{color:var(--gold)}
+.eyebrow.on-dark::before{background:var(--gold)}
+h1,h2,h3{line-height:1.02;letter-spacing:-.01em}
+.disp{font-family:var(--f-disp);font-weight:400;text-transform:uppercase;letter-spacing:.005em}
+.h-xl{font-size:clamp(2.6rem,6vw,5.2rem)}
+.h-lg{font-size:clamp(2rem,4.4vw,3.4rem)}
+.lead{font-size:clamp(1.02rem,1.6vw,1.22rem);color:var(--muted);max-width:60ch}
+.on-dark .lead,.lead.on-dark{color:#C7CFCc}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.2rem;margin-bottom:2.6rem}
+.sec-head p{max-width:52ch;color:var(--muted)}
+.sec-pad{padding:clamp(4rem,8vw,7.5rem) 0}
+.kicker-num{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);letter-spacing:.15em}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.7rem;font-weight:700;font-size:.98rem;padding:.95rem 1.6rem;border-radius:100px;border:2px solid var(--ink);transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;white-space:nowrap}
+.btn .arr{transition:transform .2s ease}
+.btn:hover .arr{transform:translate(3px,-3px)}
+.btn-primary{background:var(--copper);border-color:var(--copper-deep);color:#fff;box-shadow:4px 4px 0 var(--ink)}
+.btn-primary:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);background:#E5712F}
+.btn-primary:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn-dark{background:var(--ink);color:var(--paper);box-shadow:4px 4px 0 var(--copper)}
+.btn-dark:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--copper)}
+.btn-ghost{background:transparent;box-shadow:none}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.btn-light{background:var(--paper);color:var(--ink);border-color:var(--paper);box-shadow:4px 4px 0 rgba(0,0,0,.45)}
+.btn-light:hover{transform:translate(-2px,-2px)}
+.btn-sm{padding:.6rem 1.1rem;font-size:.85rem}
+.ic{width:1.15em;height:1.15em;flex:none}
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--copper),var(--gold));z-index:1500}
+/* ============ TOPBAR ============ */
+.topbar{background:var(--ink);color:#D8D2C4;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.55rem 0}
+.topbar .tb-l,.topbar .tb-r{display:flex;align-items:center;gap:1.2rem;min-width:0}
+.topbar .dot{width:7px;height:7px;border-radius:50%;background:#5BD98A;flex:none;animation:blink 2.2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.topbar a.tel{color:var(--gold);font-weight:600}
+.topbar .hide-m{white-space:nowrap}
+/* ============ NAV ============ */
+.nav{position:sticky;top:0;z-index:1000;background:rgba(242,238,230,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);height:var(--nav-h)}
+.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.75rem;font-weight:800}
+.brand-mark{width:44px;height:44px;flex:none}
+.brand-txt{line-height:1.05;font-size:1.02rem;letter-spacing:-.01em}
+.brand-txt small{display:block;font-family:var(--f-mono);font-weight:500;font-size:.62rem;letter-spacing:.24em;color:var(--copper-deep);text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:1.5rem;font-weight:600;font-size:.93rem}
+.nav-links a{position:relative;padding:.3rem 0;opacity:.85}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--copper);transition:width .22s ease}
+.nav-links a:hover{opacity:1}.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:.7rem}
+.nav-phone{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:.95rem}
+.nav-phone .ph{width:38px;height:38px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;background:var(--card)}
+.burger{display:none;width:48px;height:48px;border:2px solid var(--ink);border-radius:12px;background:var(--card);position:relative;flex:none}
+.burger span{position:absolute;left:11px;right:11px;height:2.5px;background:var(--ink);border-radius:2px;transition:.25s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:22px}.burger span:nth-child(3){top:29px}
+body.menu-open .burger span:nth-child(1){top:22px;transform:rotate(45deg)}
+body.menu-open .burger span:nth-child(2){opacity:0}
+body.menu-open .burger span:nth-child(3){top:22px;transform:rotate(-45deg)}
+/* mobile menu */
+.mmenu{position:fixed;inset:0;z-index:990;background:var(--moss2);color:var(--paper);padding:calc(var(--nav-h) + 2rem) 6vw 2rem;display:flex;flex-direction:column;gap:.4rem;transform:translateY(-102%);transition:transform .45s cubic-bezier(.7,0,.2,1);overflow-y:auto}
+body.menu-open .mmenu{transform:none}
+.mmenu a.mlink{font-family:var(--f-disp);font-size:clamp(2rem,9vw,3.2rem);text-transform:uppercase;padding:.45rem 0;border-bottom:1px solid var(--line-d);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.mmenu a.mlink small{font-family:var(--f-mono);font-size:.75rem;color:var(--gold)}
+.mmenu .mm-foot{margin-top:auto;padding-top:1.5rem;display:flex;flex-wrap:wrap;gap:.8rem}
+body.menu-open{overflow:hidden}
+/* ============ HERO ============ */
+.hero{background:
+  linear-gradient(rgba(16,20,19,.055) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(16,20,19,.055) 1px,transparent 1px),
+  var(--paper);
+  background-size:44px 44px,44px 44px,auto;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(2rem,4vw,4rem);padding:clamp(2.2rem,4vw,3.6rem) 0 clamp(2.6rem,5vw,4rem);align-items:center}
+.hero-copy .disp{font-size:clamp(3.1rem,7.6vw,6.4rem);line-height:.93}
+.hero-copy .disp .outl{color:transparent;-webkit-text-stroke:2.5px var(--ink)}
+.hero-copy .disp .cop{color:var(--copper);position:relative;display:inline-block}
+.stamp{display:inline-flex;align-items:center;gap:.6rem;border:2px solid var(--ink);background:var(--card);border-radius:100px;padding:.42rem 1rem .42rem .45rem;font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.2rem;box-shadow:3px 3px 0 var(--ink)}
+.stamp .pill{background:var(--ok);color:#fff;border-radius:100px;padding:.2rem .7rem;font-size:.68rem}
+.hero-sub{margin:1.3rem 0 1.7rem;max-width:52ch;color:#3A4441;font-size:clamp(1rem,1.5vw,1.15rem)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:1.6rem}
+.hero-proof{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.avatars{display:flex}
+.avatars span{width:40px;height:40px;border-radius:50%;border:2px solid var(--paper);outline:2px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:.78rem;margin-left:-10px;color:#fff}
+.avatars span:first-child{margin-left:0}
+.proof-txt{font-size:.88rem;line-height:1.45}
+.proof-txt strong{display:block;font-size:.95rem}
+.stars{color:var(--copper-deep);letter-spacing:.1em;font-size:.85rem}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:2px solid var(--ink);border-radius:var(--r-s);overflow:hidden;margin-top:1.8rem;box-shadow:var(--shadow-s)}
+.hstat{background:var(--card);padding:.9rem .6rem;text-align:center}
+.hstat b{font-family:var(--f-disp);font-weight:400;font-size:clamp(1.4rem,2.4vw,2rem);display:block;line-height:1}
+.hstat small{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+/* hero visual */
+.hero-vis{position:relative}
+.blueprint{position:relative;background:var(--moss2);border:2px solid var(--ink);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.blueprint .bp-top{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1rem;border-bottom:1px dashed rgba(242,238,230,.25);font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;color:#B9C4C0;text-transform:uppercase}
+.blueprint .bp-top .rec{display:flex;align-items:center;gap:.5rem;color:#FF8A7A}
+.blueprint .bp-top .rec i{width:9px;height:9px;border-radius:50%;background:#FF5A4D;animation:blink 1.4s infinite}
+.house-wrap{position:relative;padding:.5rem .5rem 0}
+.hotspot{position:absolute;width:34px;height:34px;border-radius:50%;background:var(--gold);border:2.5px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:1rem;z-index:5;transition:transform .2s;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+.hotspot::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--gold);opacity:.6;animation:ping 2s infinite}
+@keyframes ping{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.15);opacity:0}}
+.hotspot:hover{transform:scale(1.15)}
+.hs-card{position:absolute;z-index:6;background:var(--paper);border:2px solid var(--ink);border-radius:12px;padding:.8rem .95rem;width:230px;box-shadow:5px 5px 0 rgba(0,0,0,.5);font-size:.83rem;display:none}
+.hs-card.show{display:block;animation:pop .25s ease}
+@keyframes pop{from{transform:scale(.92);opacity:0}}
+.hs-card b{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--copper-deep);display:block;margin-bottom:.25rem}
+.hs-card .x{position:absolute;top:4px;right:8px;font-weight:800;opacity:.5}
+.bp-foot{display:flex;gap:0;border-top:1px dashed rgba(242,238,230,.25);font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;color:#B9C4C0}
+.bp-foot div{flex:1;padding:.65rem .8rem;text-transform:uppercase}
+.bp-foot div+div{border-left:1px dashed rgba(242,238,230,.25)}
+.bp-foot b{color:var(--gold);display:block;font-size:.78rem}
+.float-chip{position:absolute;background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:.7rem .95rem;box-shadow:var(--shadow-s);font-size:.82rem;display:flex;gap:.7rem;align-items:center;max-width:250px}
+.float-chip .fi{width:38px;height:38px;flex:none;border-radius:10px;background:var(--moss);color:var(--gold);display:grid;place-items:center}
+.float-chip b{display:block;font-size:.86rem}
+.float-chip small{color:var(--muted)}
+.fc1{top:6%;left:-34px;transform:rotate(-3deg);animation:floaty 5s ease-in-out infinite}
+.fc2{bottom:14%;right:-26px;transform:rotate(2.5deg);animation:floaty 6s ease-in-out infinite reverse}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.smoke circle{animation:smoke 3.4s ease-in-out infinite;opacity:0}
+.smoke circle:nth-child(2){animation-delay:1.1s}.smoke circle:nth-child(3){animation-delay:2.2s}
+@keyframes smoke{0%{opacity:0;transform:translateY(0)}30%{opacity:.55}100%{opacity:0;transform:translateY(-26px)}}
+/* ============ MARQUEE ============ */
+.marquee{background:var(--ink);color:var(--paper);border-block:2px solid var(--ink);overflow:hidden;padding:.85rem 0;transform:rotate(-.6deg) scale(1.01)}
+.mq-track{display:flex;gap:2.6rem;width:max-content;animation:mq 26s linear infinite;font-family:var(--f-disp);font-size:1.25rem;letter-spacing:.06em;text-transform:uppercase}
+.mq-track span{display:flex;align-items:center;gap:2.6rem;white-space:nowrap}
+.mq-track em{color:var(--copper);font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* ============ TRUST ============ */
+.trust{background:var(--paper)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.tcard{background:var(--card);border:2px solid var(--ink);border-radius:var(--r-s);padding:1.4rem 1.3rem;position:relative;transition:transform .2s,box-shadow .2s}
+.tcard:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-s)}
+.tcard .tn{font-family:var(--f-disp);font-size:2.6rem;line-height:1}
+.tcard .tn small{font-size:1.3rem;color:var(--copper)}
+.tcard p{font-size:.9rem;color:var(--muted);margin-top:.4rem}
+.tcard .tag{position:absolute;top:1rem;right:1rem;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.12em;background:var(--ink);color:var(--gold);padding:.2rem .55rem;border-radius:6px}
+.badges{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
+.badge{display:inline-flex;align-items:center;gap:.55rem;border:1.5px dashed rgba(16,20,19,.4);border-radius:100px;padding:.5rem 1rem;font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:rgba(251,249,244,.6)}
+.badge .ic{color:var(--ok)}
+/* ============ CHECKER (taksjekk) ============ */
+.checker{background:var(--moss2);color:var(--paper);border-block:2px solid var(--ink);overflow:hidden}
+.checker::before{content:"TAKSJEKK";position:absolute;top:1rem;right:-1rem;font-family:var(--f-disp);font-size:clamp(4rem,12vw,10rem);color:transparent;-webkit-text-stroke:1.5px rgba(242,238,230,.09);pointer-events:none;letter-spacing:.02em}
+.chk-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,4vw,3.5rem);align-items:start}
+.chk-copy .lead{color:#B9C4C0}
+.chk-points{margin:1.6rem 0;display:grid;gap:.8rem}
+.chk-points li{list-style:none;display:flex;gap:.8rem;align-items:flex-start;background:rgba(242,238,230,.05);border:1px solid var(--line-d);border-radius:12px;padding:.85rem 1rem;font-size:.92rem}
+.chk-points .n{font-family:var(--f-mono);color:var(--gold);font-weight:600;flex:none}
+.chk-guarantee{display:flex;gap:1rem;align-items:center;background:rgba(245,184,27,.1);border:1.5px solid rgba(245,184,27,.4);border-radius:14px;padding:1rem 1.2rem;font-size:.9rem}
+.chk-guarantee .sh{width:46px;height:46px;flex:none;border-radius:12px;background:var(--gold);color:var(--ink);display:grid;place-items:center}
+.card-wiz{background:var(--paper);color:var(--ink);border-radius:20px;border:2px solid #000;box-shadow:10px 10px 0 rgba(0,0,0,.5);overflow:hidden}
+.wiz-top{padding:1.2rem 1.4rem .8rem;border-bottom:2px solid var(--ink);background:var(--card)}
+.wiz-steps{display:flex;gap:.5rem;margin-bottom:.8rem}
+.wiz-steps i{flex:1;height:8px;border-radius:99px;background:var(--paper3);border:1.5px solid var(--ink);overflow:hidden;position:relative}
+.wiz-steps i.done{background:var(--copper)}
+.wiz-steps i.now::after{content:"";position:absolute;inset:0;background:var(--copper);animation:fillpulse 1.6s ease-in-out infinite}
+@keyframes fillpulse{0%,100%{opacity:.45}50%{opacity:1}}
+.wiz-meta{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.wiz-body{padding:1.4rem;min-height:380px}
+.wstep{display:none}.wstep.on{display:block;animation:stepin .35s ease}
+@keyframes stepin{from{opacity:0;transform:translateX(18px)}}
+.wstep h3{font-size:1.35rem;margin-bottom:.3rem}
+.wstep .wsub{color:var(--muted);font-size:.92rem;margin-bottom:1.1rem}
+.opt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.opt{border:2px solid var(--ink);border-radius:14px;background:#fff;padding:.9rem .6rem;text-align:center;transition:.18s;display:flex;flex-direction:column;align-items:center;gap:.5rem;font-weight:700;font-size:.85rem;line-height:1.25}
+.opt svg{width:42px;height:42px}
+.opt small{font-weight:500;color:var(--muted);font-size:.72rem}
+.opt:hover{transform:translateY(-3px);box-shadow:4px 4px 0 var(--ink)}
+.opt.sel{background:var(--ink);color:var(--paper);box-shadow:4px 4px 0 var(--copper)}
+.opt.sel small{color:#B9C4C0}
+.opt2-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.opt2{display:flex;gap:.75rem;align-items:center;border:2px solid var(--ink);border-radius:14px;background:#fff;padding:.8rem .9rem;font-weight:700;font-size:.88rem;text-align:left;transition:.18s}
+.opt2 .e{font-size:1.35rem;flex:none}
+.opt2 small{display:block;font-weight:500;color:var(--muted);font-size:.74rem}
+.opt2:hover{transform:translateY(-2px);box-shadow:4px 4px 0 var(--ink)}
+.opt2.sel{background:var(--ink);color:var(--paper);box-shadow:4px 4px 0 var(--copper)}
+.opt2.sel small{color:#B9C4C0}
+.slider-row{margin:1.1rem 0}
+.slider-row label{display:flex;justify-content:space-between;font-weight:700;font-size:.92rem;margin-bottom:.5rem}
+.slider-row label output{font-family:var(--f-mono);background:var(--ink);color:var(--gold);padding:.15rem .7rem;border-radius:8px}
+input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:12px;border-radius:99px;background:linear-gradient(90deg,var(--copper) var(--fill,30%),var(--paper3) var(--fill,30%));border:2px solid var(--ink);outline-offset:4px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--paper);border:3px solid var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:grab}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--paper);border:3px solid var(--ink);cursor:grab}
+.age-row{display:flex;flex-wrap:wrap;gap:.6rem;margin:.4rem 0 1rem}
+.age{border:2px solid var(--ink);border-radius:100px;padding:.55rem 1.1rem;font-weight:700;font-size:.85rem;background:#fff;transition:.15s}
+.age.sel{background:var(--copper);color:#fff;border-color:var(--copper-deep)}
+.zip-row{display:flex;gap:.7rem;align-items:flex-end;flex-wrap:wrap}
+.zip-row .fld{flex:1;min-width:170px}
+.fld label{display:block;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:.4rem;color:var(--muted)}
+.fld input,.fld select,.fld textarea{width:100%;border:2px solid var(--ink);border-radius:12px;background:#fff;padding:.8rem .95rem;font-size:.95rem}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:3px solid rgba(217,98,43,.35);border-color:var(--copper-deep)}
+.zip-msg{font-size:.82rem;margin-top:.5rem;min-height:1.3em;font-weight:600}
+.zip-msg.ok{color:var(--ok)}.zip-msg.warn{color:var(--copper-deep)}
+.wiz-nav{display:flex;justify-content:space-between;gap:.8rem;padding:1.1rem 1.4rem;border-top:2px solid var(--ink);background:var(--card)}
+.result{background:var(--moss);color:var(--paper);border-radius:14px;padding:1.3rem;border:2px solid var(--ink)}
+.result .rtag{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.result h4{font-family:var(--f-disp);font-weight:400;font-size:1.7rem;text-transform:uppercase;margin:.3rem 0 .5rem;letter-spacing:.02em}
+.result p{font-size:.92rem;color:#C9D2CE}
+.price-band{display:flex;flex-wrap:wrap;gap:1rem;background:rgba(242,238,230,.07);border:1px dashed rgba(242,238,230,.3);border-radius:12px;padding:1rem;margin:1rem 0}
+.price-band div{flex:1;min-width:130px}
+.price-band small{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#9AA5A1}
+.price-band b{display:block;font-size:1.25rem;color:#fff}
+.result-ctas{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1rem}
+/* ============ SERVICES ============ */
+.svc-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:start}
+.svc-list{border:2px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--card);box-shadow:var(--shadow-s)}
+.svc{border-bottom:2px solid var(--ink)}
+.svc:last-child{border-bottom:none}
+.svc-head{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:1.15rem 1.3rem;text-align:left;transition:background .18s}
+.svc-head:hover{background:#FFF7EA}
+.svc.open .svc-head{background:var(--ink);color:var(--paper)}
+.svc-num{font-family:var(--f-mono);font-size:.78rem;font-weight:600;color:var(--copper-deep);border:1.5px solid currentColor;border-radius:8px;padding:.25rem .55rem}
+.svc.open .svc-num{color:var(--gold)}
+.svc-head h3{font-size:clamp(1.05rem,2vw,1.35rem);font-weight:800;letter-spacing:-.01em}
+.svc-head .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.35rem}
+.svc-head .tags span{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:.12rem .6rem;color:var(--muted)}
+.svc.open .tags span{color:#B9C4C0;border-color:var(--line-d)}
+.svc-plus{width:40px;height:40px;flex:none;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:1.3rem;font-weight:800;transition:.25s;background:var(--paper);color:var(--ink)}
+.svc.open .svc-plus{transform:rotate(45deg);background:var(--copper);color:#fff;border-color:var(--copper)}
+.svc-panel{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.svc-inner{padding:0 1.3rem 1.4rem 1.3rem;display:grid;gap:.9rem}
+.svc-inner p{color:var(--muted);font-size:.95rem;max-width:60ch}
+.svc-cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.svc-cols ul{list-style:none;display:grid;gap:.4rem;font-size:.88rem}
+.svc-cols li{display:flex;gap:.5rem;align-items:flex-start}
+.svc-cols li .ic{color:var(--ok);margin-top:.2rem}
+.svc-price{background:var(--paper);border:1.5px dashed rgba(16,20,19,.35);border-radius:12px;padding:.8rem 1rem;font-size:.85rem}
+.svc-price b{color:var(--copper-deep)}
+.svc-side{position:sticky;top:calc(var(--nav-h) + 20px);display:grid;gap:1rem}
+.svc-preview{border:2px solid var(--ink);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-s);background:var(--moss2);min-height:340px;position:relative}
+.svc-preview .pv{position:absolute;inset:0;display:none;flex-direction:column;justify-content:flex-end;padding:1.4rem;color:var(--paper)}
+.svc-preview .pv.on{display:flex;animation:stepin .3s ease}
+.svc-preview .pv .patt{position:absolute;inset:0;opacity:.9}
+.svc-preview .pv-txt{position:relative;background:rgba(13,28,24,.82);border:1px solid var(--line-d);border-radius:12px;padding:1rem 1.1rem;backdrop-filter:blur(4px)}
+.svc-preview .pv-txt b{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.svc-preview .pv-txt h4{font-family:var(--f-disp);font-weight:400;font-size:1.5rem;text-transform:uppercase;margin:.2rem 0}
+.svc-preview .pv-txt p{font-size:.85rem;color:#C9D2CE}
+/* pattern fills */
+.p-seam{background:repeating-linear-gradient(90deg,#232B29 0 26px,#394442 26px 29px,#141918 29px 32px)}
+.p-tile{background:radial-gradient(circle at 50% 0,rgba(255,255,255,.14) 18px,transparent 19px),repeating-linear-gradient(0deg,#3A2A24 0 34px,#241915 34px 38px),#2C201B;background-size:44px 38px,auto,auto}
+.p-insp{background:radial-gradient(circle at 70% 30%,rgba(245,184,27,.25),transparent 55%),repeating-linear-gradient(0deg,transparent 0 30px,rgba(242,238,230,.08) 30px 31px),repeating-linear-gradient(90deg,transparent 0 30px,rgba(242,238,230,.08) 30px 31px),#122019}
+.p-flash{background:linear-gradient(135deg,#B25A22 0%,#E8934A 35%,#8A3E0F 60%,#D97B2F 100%)}
+.p-gutter{background:repeating-linear-gradient(0deg,#2E3836 0 46px,#161C1B 46px 50px),#202726}
+.p-fasade{background:repeating-linear-gradient(90deg,#4A5451 0 60px,#333B39 60px 64px),#3A4340}
+.p-serv{background:radial-gradient(circle at 20% 80%,rgba(217,98,43,.5),transparent 55%),#141918}
+.svc-cta{background:var(--ink);color:var(--paper);border-radius:var(--r);padding:1.5rem;border:2px solid #000}
+.svc-cta h4{font-family:var(--f-disp);font-weight:400;font-size:1.5rem;text-transform:uppercase}
+.svc-cta p{font-size:.9rem;color:#B9C4C0;margin:.4rem 0 1rem}
+/* ============ BEFORE / AFTER ============ */
+.ba-sec{background:var(--paper2);border-block:2px solid var(--ink)}
+.ba-tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.ba-tab{border:2px solid var(--ink);border-radius:100px;padding:.6rem 1.3rem;font-weight:700;font-size:.88rem;background:var(--card);transition:.15s}
+.ba-tab.sel{background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--copper)}
+.ba-frame{border:2px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+.ba-stage{position:relative;user-select:none;touch-action:pan-y;cursor:ew-resize}
+.ba-layer svg{width:100%;height:auto}
+.ba-after{position:absolute;inset:0;clip-path:inset(0 0 0 var(--pos,50%))}
+.ba-after svg{width:100%;height:100%}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:4px;background:var(--gold);transform:translateX(-2px);z-index:4}
+.ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:var(--paper);border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;box-shadow:3px 3px 0 rgba(0,0,0,.5);white-space:nowrap}
+.ba-tag{position:absolute;top:1rem;font-family:var(--f-mono);font-size:.68rem;font-weight:600;letter-spacing:.14em;padding:.4rem .9rem;border-radius:8px;z-index:3;text-transform:uppercase}
+.ba-tag.before{left:1rem;background:rgba(13,28,24,.85);color:#FFB3A6;border:1.5px solid rgba(255,179,166,.5)}
+.ba-tag.after{right:1rem;background:var(--gold);color:var(--ink);border:1.5px solid var(--ink)}
+.ba-hint{text-align:center;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#8A938F;padding:.7rem;background:var(--ink)}
+.ba-facts{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border-top:2px solid var(--ink)}
+.ba-facts div{padding:1.1rem 1.2rem}
+.ba-facts div+div{border-left:2px solid var(--ink)}
+.ba-facts small{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.ba-facts b{display:block;font-size:1.05rem;margin-top:.15rem}
+/* ============ PROCESS ============ */
+.proc-line{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:2px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--card);box-shadow:var(--shadow-s);position:relative}
+.pstep{padding:1.6rem 1.3rem 1.4rem;position:relative;border-left:2px dashed rgba(16,20,19,.25)}
+.pstep:first-child{border-left:none}
+.pstep .pn{font-family:var(--f-disp);font-size:3rem;line-height:1;color:transparent;-webkit-text-stroke:2px var(--copper)}
+.pstep h3{font-size:1.02rem;margin:.7rem 0 .45rem}
+.pstep p{font-size:.85rem;color:var(--muted)}
+.pstep .pd{margin-top:.8rem;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;background:var(--paper);border:1.5px solid var(--line);padding:.4rem .6rem;border-radius:8px;color:var(--ink3)}
+.proc-note{margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;background:var(--moss);color:var(--paper);border-radius:14px;padding:1.1rem 1.3rem;border:2px solid #000}
+.proc-note b{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-right:.4rem}
+.proc-note span{font-size:.88rem;display:inline-flex;align-items:center;gap:.45rem}
+.proc-note .ic{color:#5BD98A}
+/* ============ PROJECTS ============ */
+.proj-sec{background:var(--ink);color:var(--paper);border-block:2px solid #000}
+.proj-sec .sec-head p{color:#9AA5A1}
+.filters{display:flex;gap:.6rem;flex-wrap:wrap}
+.fbtn{border:1.5px solid var(--line-d);border-radius:100px;padding:.55rem 1.2rem;font-weight:600;font-size:.85rem;color:#C9D2CE;transition:.15s}
+.fbtn:hover{border-color:var(--gold);color:#fff}
+.fbtn.sel{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.proj-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1.1rem;margin-top:1.6rem}
+.proj{border-radius:var(--r);overflow:hidden;border:1.5px solid var(--line-d);background:#161D1B;transition:transform .25s,border-color .25s;display:flex;flex-direction:column}
+.proj:hover{transform:translateY(-6px);border-color:rgba(245,184,27,.6)}
+.proj.feat{grid-row:span 2}
+.pvis{position:relative;min-height:210px;flex:none;overflow:hidden}
+.proj.feat .pvis{min-height:340px}
+.pvis svg{position:absolute;inset:0;width:100%;height:100%}
+.pchip{position:absolute;top:.9rem;left:.9rem;font-family:var(--f-mono);font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:rgba(13,28,24,.85);color:var(--gold);padding:.35rem .75rem;border-radius:8px;border:1px solid rgba(245,184,27,.4);z-index:2}
+.pbody{padding:1.3rem 1.3rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;flex:1}
+.pbody h3{font-size:1.25rem}
+.proj.feat .pbody h3{font-size:1.7rem}
+.pmeta{display:flex;flex-wrap:wrap;gap:.5rem 1.1rem;font-family:var(--f-mono);font-size:.7rem;color:#9AA5A1;letter-spacing:.04em}
+.pmeta b{color:var(--paper)}
+.pbody p{font-size:.9rem;color:#B9C4C0}
+.plink{margin-top:auto;padding-top:.6rem;display:inline-flex;align-items:center;gap:.5rem;font-weight:700;font-size:.88rem;color:var(--gold)}
+.proj.hide{display:none}
+/* ============ MATERIALS ============ */
+.mat-tabs{display:flex;gap:.6rem;overflow-x:auto;padding-bottom:.6rem;margin-bottom:1.3rem;scrollbar-width:thin}
+.mat-tab{flex:none;border:2px solid var(--ink);background:var(--card);border-radius:14px;padding:.8rem 1.1rem;display:flex;align-items:center;gap:.8rem;font-weight:800;font-size:.92rem;transition:.15s}
+.mat-tab .sw{width:46px;height:34px;border-radius:8px;border:2px solid var(--ink);flex:none}
+.mat-tab small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.mat-tab.sel{background:var(--ink);color:var(--paper)}
+.mat-tab.sel small{color:#B9C4C0}
+.mat-panel{display:none;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,2.5rem);background:var(--card);border:2px solid var(--ink);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-s)}
+.mat-panel.on{display:grid;animation:stepin .3s ease}
+.mat-vis{min-height:320px;position:relative}
+.mat-vis .big{position:absolute;inset:0}
+.mat-vis .mat-badge{position:absolute;bottom:1.2rem;left:1.2rem;background:var(--paper);border:2px solid var(--ink);border-radius:12px;padding:.7rem 1rem;font-family:var(--f-mono);font-size:.7rem;box-shadow:4px 4px 0 var(--ink)}
+.mat-vis .mat-badge b{font-size:1.4rem;font-family:var(--f-disp);font-weight:400;display:block}
+.mat-info{padding:clamp(1.4rem,3vw,2.4rem) clamp(1.4rem,3vw,2.4rem) clamp(1.4rem,3vw,2.4rem) 0}
+.mat-info h3{font-family:var(--f-disp);font-weight:400;font-size:clamp(1.6rem,3vw,2.3rem);text-transform:uppercase}
+.mat-info>p{color:var(--muted);margin:.7rem 0 1.2rem;font-size:.96rem}
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.2rem}
+.spec div{background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:.65rem .85rem}
+.spec small{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.spec b{display:block;font-size:.98rem}
+/* ============ GUARANTEE ============ */
+.guar{background:linear-gradient(160deg,var(--moss) 0%,var(--moss2) 70%);color:var(--paper);border-block:2px solid #000;overflow:hidden}
+.guar-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center}
+.guar-big{display:flex;align-items:flex-start;gap:1.2rem}
+.guar-big .ten{font-family:var(--f-disp);font-size:clamp(6rem,14vw,11rem);line-height:.85;color:var(--gold);text-shadow:5px 5px 0 rgba(0,0,0,.5)}
+.guar-big .tt{padding-top:.6rem}
+.guar-big .tt b{font-family:var(--f-disp);font-weight:400;font-size:clamp(1.6rem,3.4vw,2.4rem);text-transform:uppercase;display:block;line-height:1}
+.guar-big .tt span{color:#B9C4C0;font-size:.95rem}
+.guar-list{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:1.8rem}
+.guar-list div{background:rgba(242,238,230,.06);border:1px solid var(--line-d);border-radius:14px;padding:1.1rem 1.1rem}
+.guar-list .ic{color:var(--gold);width:1.6em;height:1.6em}
+.guar-list b{display:block;margin:.5rem 0 .25rem;font-size:.95rem}
+.guar-list p{font-size:.83rem;color:#B9C4C0}
+.doc-card{background:var(--paper);color:var(--ink);border-radius:var(--r);border:2px solid #000;box-shadow:10px 10px 0 rgba(0,0,0,.45);overflow:hidden}
+.doc-card .dc-top{background:var(--gold);border-bottom:2px solid #000;padding:.9rem 1.4rem;display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.doc-card .dc-top .st{background:var(--ink);color:#5BD98A;padding:.25rem .7rem;border-radius:99px}
+.doc-body{padding:1.5rem 1.4rem}
+.doc-body h3{font-size:1.4rem;margin-bottom:.8rem}
+.doc-body ul{list-style:none;display:grid;gap:.65rem;font-size:.92rem;margin-bottom:1.2rem}
+.doc-body li{display:flex;gap:.65rem;align-items:flex-start}
+.doc-body li .ic{color:var(--ok);margin-top:.2rem;flex:none}
+.sign{display:flex;justify-content:space-between;align-items:center;border-top:1.5px dashed rgba(16,20,19,.3);padding-top:1rem;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+.sign .sig{font-family:Georgia,serif;font-style:italic;font-size:1.3rem;color:var(--ink);transform:rotate(-4deg)}
+/* ============ REVIEWS ============ */
+.rev-head{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem;margin-bottom:2rem}
+.g-score{display:flex;align-items:center;gap:1rem;background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:.9rem 1.3rem;box-shadow:var(--shadow-s)}
+.g-score b{font-family:var(--f-disp);font-weight:400;font-size:2.6rem;line-height:1}
+.g-score small{font-size:.8rem;color:var(--muted);display:block;line-height:1.4}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.rev{background:var(--card);border:2px solid var(--ink);border-radius:var(--r-s);padding:1.4rem;display:flex;flex-direction:column;gap:.8rem;position:relative;transition:transform .2s,box-shadow .2s}
+.rev:hover{transform:translateY(-5px);box-shadow:var(--shadow-s)}
+.rev:nth-child(2){transform:rotate(.7deg)}.rev:nth-child(3){transform:rotate(-.7deg)}
+.rev-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem}
+.rev-who{display:flex;gap:.75rem;align-items:center}
+.rev-who .ava{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:800;color:#fff;flex:none;border:2px solid var(--ink)}
+.rev-who b{display:block;font-size:.95rem}
+.rev-who small{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);letter-spacing:.04em}
+.rev .stars{font-size:.8rem}
+.rev p{font-size:.93rem;color:#333C3A}
+.rev .job{margin-top:auto;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:.5rem .75rem;color:var(--muted)}
+.rev .job b{color:var(--copper-deep)}
+.rev-stamp{position:absolute;top:-14px;right:14px;background:var(--ok);color:#fff;font-family:var(--f-mono);font-size:.62rem;font-weight:600;letter-spacing:.12em;padding:.3rem .8rem;border-radius:8px;border:2px solid var(--ink);transform:rotate(3deg)}
+/* ============ PRICING ============ */
+.price-sec{background:var(--paper2);border-block:2px solid var(--ink)}
+.price-table{background:var(--card);border:2px solid var(--ink);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-s)}
+.prow{display:grid;grid-template-columns:1.3fr 1fr auto auto;gap:1rem;align-items:center;padding:1.05rem 1.4rem;border-bottom:1.5px solid var(--line)}
+.prow:last-child{border-bottom:none}
+.prow.head{background:var(--ink);color:var(--paper);font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase}
+.prow:not(.head):hover{background:#FFF7EA}
+.prow h4{font-size:.98rem}
+.prow p{font-size:.82rem;color:var(--muted)}
+.prow .pr{font-weight:800;font-size:1.02rem;white-space:nowrap}
+.prow .pr small{display:block;font-weight:500;font-size:.72rem;color:var(--muted)}
+.price-note{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:1.2rem;font-size:.88rem;color:var(--muted)}
+/* ============ FAQ ============ */
+.faq-list{max-width:860px;display:grid;gap:.8rem}
+.faq{border:2px solid var(--ink);border-radius:14px;background:var(--card);overflow:hidden;transition:box-shadow .2s}
+.faq.open{box-shadow:var(--shadow-s)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem 1.3rem;font-weight:800;font-size:1rem;text-align:left}
+.faq-q .fx{width:34px;height:34px;flex:none;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:1.2rem;transition:.25s;background:var(--paper)}
+.faq.open .fx{transform:rotate(45deg);background:var(--ink);color:var(--paper)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 1.3rem 1.2rem;color:var(--muted);font-size:.94rem;max-width:65ch}
+/* ============ CONTACT ============ */
+.contact-sec{background:var(--paper);padding-bottom:clamp(4rem,7vw,6rem)}
+.ct-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1.2rem;align-items:start}
+.form-card{background:var(--card);border:2px solid var(--ink);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.form-card .fc-top{background:var(--ink);color:var(--paper);padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.form-card .fc-top h3{font-family:var(--f-disp);font-weight:400;font-size:1.5rem;text-transform:uppercase}
+.form-card .fc-top span{font-family:var(--f-mono);font-size:.68rem;color:var(--gold);letter-spacing:.1em}
+form.ct-form{padding:1.5rem;display:grid;gap:1rem}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.want{display:flex;flex-wrap:wrap;gap:.55rem}
+.want label{cursor:pointer}
+.want input{position:absolute;opacity:0;pointer-events:none}
+.want span{display:inline-block;border:2px solid var(--ink);border-radius:100px;padding:.5rem 1.05rem;font-weight:700;font-size:.83rem;background:#fff;transition:.15s}
+.want input:checked+span{background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--copper)}
+.want input:focus-visible+span{outline:3px solid var(--copper);outline-offset:2px}
+textarea{resize:vertical;min-height:110px}
+.form-foot{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+.privacy{font-size:.76rem;color:var(--muted);max-width:34ch}
+.form-ok{display:none;padding:3rem 2rem;text-align:center}
+.form-ok.show{display:block;animation:pop .3s ease}
+.form-ok .okc{width:76px;height:76px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;margin:0 auto 1rem;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.form-ok h3{font-family:var(--f-disp);font-weight:400;font-size:2rem;text-transform:uppercase}
+.form-ok .ref{font-family:var(--f-mono);background:var(--paper);border:2px dashed var(--ink);border-radius:10px;display:inline-block;padding:.5rem 1.2rem;margin:1rem 0;font-weight:600}
+.ct-side{display:grid;gap:1rem}
+.info-card{border:2px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--moss2);color:var(--paper)}
+.info-card .map{height:190px;position:relative;overflow:hidden}
+.info-body{padding:1.4rem;display:grid;gap:1rem}
+.info-row{display:flex;gap:.9rem;align-items:flex-start}
+.info-row .ii{width:42px;height:42px;flex:none;border-radius:12px;background:rgba(242,238,230,.08);border:1px solid var(--line-d);display:grid;place-items:center;color:var(--gold)}
+.info-row small{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#9AA5A1}
+.info-row b{font-size:1rem}
+.info-row a:hover{color:var(--gold)}
+.emergency{background:var(--danger);color:#fff;border:2px solid #000;border-radius:var(--r);padding:1.3rem 1.4rem;display:flex;gap:1rem;align-items:center;box-shadow:5px 5px 0 var(--ink)}
+.emergency .ei{width:52px;height:52px;flex:none;background:#fff;color:var(--danger);border-radius:14px;display:grid;place-items:center;border:2px solid #000;animation:blink 2s infinite}
+.emergency b{font-size:1.05rem;display:block}
+.emergency a{font-weight:800;font-size:1.3rem;letter-spacing:.02em}
+.hours{background:var(--card);border:2px solid var(--ink);border-radius:var(--r);padding:1.3rem 1.4rem}
+.hours h4{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem}
+.hours table{width:100%;font-size:.9rem;border-collapse:collapse}
+.hours td{padding:.35rem 0;border-top:1px solid var(--line)}
+.hours td:last-child{text-align:right;font-weight:700}
+/* ============ FOOTER ============ */
+footer{background:#0B0F0E;color:#C9D2CE;border-top:2px solid #000}
+.foot-word{font-family:var(--f-disp);font-size:clamp(2.6rem,9vw,7.5rem);text-transform:uppercase;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(242,238,230,.28);white-space:nowrap;overflow:hidden;padding:2.2rem 0 .5rem;text-align:center}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:2rem;padding:2rem 0 2.5rem}
+.foot-grid h5{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.foot-grid ul{list-style:none;display:grid;gap:.5rem;font-size:.92rem}
+.foot-grid a:hover{color:#fff;text-decoration:underline}
+.foot-brand p{font-size:.88rem;color:#9AA5A1;margin:.8rem 0 1rem;max-width:32ch}
+.foot-bottom{border-top:1px solid var(--line-d);padding:1.2rem 0 6.5rem;display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-between;font-family:var(--f-mono);font-size:.7rem;color:#7E8A86}
+/* ============ FLOATING ============ */
+.m-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:900;display:none;gap:.6rem;background:rgba(16,20,19,.94);backdrop-filter:blur(8px);border:2px solid #000;border-radius:16px;padding:.6rem;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.m-cta a{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;font-weight:800;font-size:.92rem;border-radius:11px;padding:.85rem .5rem}
+.m-cta .mc-call{background:var(--paper);color:var(--ink)}
+.m-cta .mc-offer{background:var(--copper);color:#fff}
+.to-top{position:fixed;right:18px;bottom:18px;z-index:900;width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--gold);border:2px solid var(--gold);display:grid;place-items:center;font-size:1.3rem;opacity:0;pointer-events:none;transition:.3s;transform:translateY(12px)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--ink);color:var(--paper);border:2px solid var(--gold);border-radius:12px;padding:.9rem 1.4rem;font-weight:600;font-size:.9rem;z-index:1600;transition:transform .35s cubic-bezier(.2,.9,.2,1);max-width:92vw;text-align:center}
+.toast.show{transform:translate(-50%,0)}
+/* ============ RESPONSIVE ============ */
+@media(max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr}
+  .fc1{left:6px}.fc2{right:6px}
+  .chk-grid{grid-template-columns:1fr}
+  .svc-layout{grid-template-columns:1fr}
+  .svc-side{position:static}
+  .svc-preview{min-height:260px}
+  .proc-line{grid-template-columns:repeat(2,1fr)}
+  .pstep{border-left:none;border-top:2px dashed rgba(16,20,19,.25)}
+  .pstep:nth-child(-n+2){border-top:none}
+  .pstep:nth-child(even){border-left:2px dashed rgba(16,20,19,.25)}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  .proj.feat{grid-column:span 2;grid-row:auto}
+  .proj.feat .pvis{min-height:260px}
+  .guar-grid{grid-template-columns:1fr}
+  .mat-panel{grid-template-columns:1fr}
+  .mat-info{padding:0 1.4rem 1.6rem}
+  .mat-vis{min-height:230px}
+  .ct-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:960px){
+  .nav-links,.nav-phone span.ptxt{display:none}
+  .burger{display:block}
+  .nav-cta .btn{padding:.7rem 1.15rem;font-size:.85rem}
+}
+@media(max-width:760px){
+  body{font-size:15.5px}
+  .topbar .hide-m{display:none}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .hstat:nth-child(3),.hstat:nth-child(4){border-top:1px solid var(--line)}
+  .trust-grid{grid-template-columns:1fr 1fr}
+  .opt-grid{grid-template-columns:1fr 1fr}
+  .opt2-grid{grid-template-columns:1fr}
+  .wiz-body{min-height:0;padding:1.1rem}
+  .proc-line{grid-template-columns:1fr}
+  .pstep{border-left:none!important;border-top:2px dashed rgba(16,20,19,.25)!important}
+  .pstep:first-child{border-top:none!important}
+  .pstep .pn{font-size:2.4rem}
+  .proj-grid{grid-template-columns:1fr}
+  .proj.feat{grid-column:auto}
+  .rev-grid{grid-template-columns:1fr}
+  .rev:nth-child(2),.rev:nth-child(3){transform:none}
+  .guar-list{grid-template-columns:1fr}
+  .ba-facts{grid-template-columns:1fr 1fr}
+  .ba-facts div:nth-child(3){border-left:none;border-top:2px solid var(--ink)}
+  .ba-facts div:nth-child(4){border-top:2px solid var(--ink)}
+  .ba-facts div:nth-child(2){border-top:none}
+  .prow{grid-template-columns:1fr auto;row-gap:.2rem}
+  .prow.head{display:none}
+  .prow .pdesc{grid-column:1/-1;order:3}
+  .prow .pbtn{grid-column:1/-1;order:4}
+  .prow .pbtn .btn{width:100%;justify-content:center}
+  .f2{grid-template-columns:1fr}
+  .spec{grid-template-columns:1fr 1fr}
+  .float-chip{max-width:210px;font-size:.75rem;padding:.55rem .7rem}
+  .fc1{top:2%}.fc2{bottom:8%}
+  .m-cta{display:flex}
+  .to-top{bottom:86px}
+  .foot-bottom{padding-bottom:7.5rem}
+  .foot-grid{grid-template-columns:1fr;gap:1.5rem}
+  .svc-cols{grid-template-columns:1fr}
+  .hs-card{width:200px}
+}
+@media(max-width:420px){
+  .trust-grid{grid-template-columns:1fr}
+  .opt-grid{grid-template-columns:1fr 1fr;gap:.55rem}
+  .opt{font-size:.76rem;padding:.7rem .4rem}
+  .spec{grid-template-columns:1fr}
+  .hero-ctas .btn{width:100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- SVG symbol library -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 5 3.4 8.4 7 10 3.6-1.6 7-5 7-10V6l-7-3Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="m9 12 2.2 2.2L15.5 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.3 6 11a6 6 0 0 1-12 0c0-4.7 6-11 6-11Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><path d="m3 17 14-14 4 4L7 21l-4-4Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="m8 16 1.5 1.5M11 13l1.5 1.5M14 10l1.5 1.5M17 7l1.5 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7V3Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M14 3v5h5M10 13h5m-5 4h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="13" r="3.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M9 7l1.5-3h3L15 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 5 13.5h5L10 22l8-11.5h-5L13 2Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9 2.9-6Z" fill="currentColor"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-l">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="hide-m">Mesterbrev · Sentral godkjenning</span>
+      <span>Oslo &amp; Viken</span>
+    </div>
+    <div class="tb-r">
+      <span class="hide-m">Man–fre 07–16</span>
+      <span>Lekkasjevakt: <a class="tel" href="tel:+4722345678">22 34 56 78</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#topp" aria-label="NordTak og Blikk – til toppen">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="10" fill="#101413"/><path d="M8 27 24 12l16 15" stroke="#E07B2C" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 26v9h18v-9" stroke="#F2EEE6" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 12v6" stroke="#F5B81B" stroke-width="3" stroke-linecap="round"/></svg>
+      <span class="brand-txt">NordTak &amp; Blikk<small>Tak · Blikk · AS</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Hovedmeny">
+      <a href="#taksjekk">Taksjekk</a>
+      <a href="#tjenester">Tjenester</a>
+      <a href="#prosjekter">Prosjekter</a>
+      <a href="#prosess">Prosess</a>
+      <a href="#priser">Priser</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-phone" href="tel:+4722345678"><span class="ph"><svg class="ic"><use href="#i-phone"/></svg></span><span class="ptxt">22 34 56 78</span></a>
+      <a class="btn btn-primary btn-sm" href="#kontakt">Få tilbud <svg class="ic arr"><use href="#i-arrow"/></svg></a>
+      <button class="burger" id="burger" aria-label="Åpne meny" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<nav class="mmenu" id="mmenu" aria-label="Mobilmeny">
+  <a class="mlink" href="#taksjekk">Taksjekk <small>01</small></a>
+  <a class="mlink" href="#tjenester">Tjenester <small>02</small></a>
+  <a class="mlink" href="#for-etter">Før / etter <small>03</small></a>
+  <a class="mlink" href="#prosjekter">Prosjekter <small>04</small></a>
+  <a class="mlink" href="#priser">Priser <small>05</small></a>
+  <a class="mlink" href="#kontakt">Kontakt <small>06</small></a>
+  <div class="mm-foot">
+    <a class="btn btn-primary" href="#kontakt">Få tilbud <svg class="ic arr"><use href="#i-arrow"/></svg></a>
+    <a class="btn btn-light" href="tel:+4722345678"><svg class="ic"><use href="#i-phone"/></svg> 22 34 56 78</a>
+  </div>
+</nav>
+
+<main id="topp">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="stamp rv"><span class="pill">Ledig nå</span> Befaring i Oslo &amp; Viken · Etabl. 1998</span>
+      <h1 class="disp rv rv-d1">Tak som<br><span class="outl">tåler</span> <span class="cop">Norden.</span></h1>
+      <p class="hero-sub rv rv-d2">Vi er taktekker <strong>og</strong> blikkenslager under samme tak. Eget verksted, droneinspeksjon, dokumentert kvalitet og <strong>10 års garanti</strong> på alle komplette tak. Fra lekk villa på Ullern til næringsbygg på Alnabru.</p>
+      <div class="hero-ctas rv rv-d3">
+        <a class="btn btn-primary" href="#taksjekk">Bestill gratis taksjekk <svg class="ic arr"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#for-etter">Se før / etter</a>
+      </div>
+      <div class="hero-proof rv rv-d4">
+        <div class="avatars" aria-hidden="true">
+          <span style="background:#A84312">MK</span><span style="background:#152B24">TA</span><span style="background:#3E5C50">EL</span><span style="background:#101413">+9</span>
+        </div>
+        <div class="proof-txt">
+          <span class="stars">★★★★★</span>
+          <strong>4,9 av 5 · 312 verifiserte omtaler</strong>
+          1&nbsp;400+ tak levert siden 1998
+        </div>
+      </div>
+      <div class="hero-stats rv rv-d4">
+        <div class="hstat"><b data-count="27">0</b><small>Års erfaring</small></div>
+        <div class="hstat"><b><span data-count="1400">0</span>+</b><small>Ferdige tak</small></div>
+        <div class="hstat"><b data-count="10">0</b><small>Års garanti</small></div>
+        <div class="hstat"><b><span data-count="98">0</span>%</b><small>Fornøyde kunder</small></div>
+      </div>
+    </div>
+
+    <div class="hero-vis rv rv-d2">
+      <div class="blueprint">
+        <div class="bp-top"><span>Fig. 01 — Saltak · Båndtekking</span><span class="rec"><i></i>BEFARING 12.05</span></div>
+        <div class="house-wrap" id="houseWrap">
+          <svg viewBox="0 0 560 430" role="img" aria-label="Illustrasjon av hus med båndtekket tak, pipebeslag og takrenne">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B3230"/><stop offset="1" stop-color="#0D1C18"/></linearGradient>
+              <linearGradient id="roofG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4542"/><stop offset="1" stop-color="#1C2321"/></linearGradient>
+              <linearGradient id="copG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8934A"/><stop offset=".5" stop-color="#B25A22"/><stop offset="1" stop-color="#8A3E0F"/></linearGradient>
+              <pattern id="seam" width="26" height="10" patternUnits="userSpaceOnUse"><rect width="26" height="10" fill="none"/><line x1="24" y1="0" x2="24" y2="10" stroke="#0C1110" stroke-width="2.4"/><line x1="25.5" y1="0" x2="25.5" y2="10" stroke="#5A6764" stroke-width="1"/></pattern>
+            </defs>
+            <rect x="8" y="8" width="544" height="414" rx="14" fill="url(#sky)"/>
+            <g stroke="rgba(242,238,230,.07)"><line x1="8" y1="120" x2="552" y2="120"/><line x1="8" y1="230" x2="552" y2="230"/><line x1="8" y1="340" x2="552" y2="340"/><line x1="150" y1="8" x2="150" y2="422"/><line x1="300" y1="8" x2="300" y2="422"/><line x1="450" y1="8" x2="450" y2="422"/></g>
+            <circle cx="470" cy="70" r="26" fill="#F5B81B" opacity=".9"/>
+            <g fill="#0A1512"><ellipse cx="120" cy="60" rx="52" ry="14"/><ellipse cx="170" cy="52" rx="40" ry="12"/></g>
+            <!-- distant hills -->
+            <path d="M8 300 Q120 250 230 292 T450 285 T552 296 V422 H8Z" fill="#13211D"/>
+            <!-- ground -->
+            <rect x="8" y="352" width="544" height="70" fill="#0A120F"/>
+            <rect x="8" y="350" width="544" height="6" fill="#2C3835"/>
+            <!-- house body -->
+            <rect x="120" y="238" width="320" height="116" fill="#E4DCCB"/>
+            <g stroke="#C9BFA8" stroke-width="1.4"><line x1="120" y1="258" x2="440" y2="258"/><line x1="120" y1="278" x2="440" y2="278"/><line x1="120" y1="298" x2="440" y2="298"/><line x1="120" y1="318" x2="440" y2="318"/><line x1="120" y1="338" x2="440" y2="338"/></g>
+            <!-- foundation -->
+            <rect x="112" y="352" width="336" height="16" fill="#5A6663"/>
+            <!-- roof -->
+            <polygon points="80,246 280,110 480,246" fill="url(#roofG)"/>
+            <polygon points="80,246 280,110 480,246" fill="url(#seam)" opacity=".85"/>
+            <polygon points="80,246 280,110 480,246" fill="none" stroke="#0C1110" stroke-width="4" stroke-linejoin="round"/>
+            <rect x="262" y="100" width="36" height="14" rx="4" fill="url(#copG)" stroke="#0C1110" stroke-width="2.5"/>
+            <!-- gable -->
+            <polygon points="200,246 280,182 360,246" fill="#D8CFBB" stroke="#0C1110" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="280" cy="222" r="13" fill="#FFD98A" stroke="#0C1110" stroke-width="3"/>
+            <!-- skylight -->
+            <g transform="rotate(0)"><rect x="330" y="168" width="56" height="44" rx="3" fill="#16211F" stroke="#0C1110" stroke-width="3"/><rect x="335" y="173" width="46" height="34" fill="#9FB8C9"/><line x1="358" y1="173" x2="358" y2="207" stroke="#16211F" stroke-width="3"/><line x1="335" y1="190" x2="381" y2="190" stroke="#16211F" stroke-width="3"/></g>
+            <!-- chimney + flashing -->
+            <rect x="168" y="118" width="44" height="86" fill="#8A4A2E" stroke="#0C1110" stroke-width="3"/>
+            <g stroke="#5E2E18" stroke-width="1.6"><line x1="168" y1="134" x2="212" y2="134"/><line x1="168" y1="150" x2="212" y2="150"/><line x1="168" y1="166" x2="212" y2="166"/><line x1="190" y1="118" x2="190" y2="134"/></g>
+            <rect x="160" y="108" width="60" height="14" rx="3" fill="#3A3A3A" stroke="#0C1110" stroke-width="3"/>
+            <polygon points="158,204 222,204 232,222 148,222" fill="url(#copG)" stroke="#0C1110" stroke-width="2.5"/>
+            <g class="smoke" fill="#C9D2CE"><circle cx="190" cy="96" r="7"/><circle cx="196" cy="88" r="9"/><circle cx="202" cy="78" r="11"/></g>
+            <!-- windows + door -->
+            <g><rect x="142" y="272" width="62" height="56" fill="#16211F" stroke="#0C1110" stroke-width="3"/><rect x="147" y="277" width="52" height="46" fill="#FFD98A"/><line x1="173" y1="277" x2="173" y2="323" stroke="#16211F" stroke-width="3"/><line x1="147" y1="300" x2="199" y2="300" stroke="#16211F" stroke-width="3"/></g>
+            <g><rect x="356" y="272" width="62" height="56" fill="#16211F" stroke="#0C1110" stroke-width="3"/><rect x="361" y="277" width="52" height="46" fill="#FFD98A"/><line x1="387" y1="277" x2="387" y2="323" stroke="#16211F" stroke-width="3"/><line x1="361" y1="300" x2="413" y2="300" stroke="#16211F" stroke-width="3"/></g>
+            <g><rect x="252" y="266" width="56" height="88" fill="#152B24" stroke="#0C1110" stroke-width="3"/><circle cx="300" cy="312" r="3.4" fill="#F5B81B"/><rect x="258" y="272" width="44" height="26" fill="#FFD98A" opacity=".85"/></g>
+            <!-- gutter + downspout -->
+            <rect x="70" y="244" width="420" height="16" rx="6" fill="url(#copG)" stroke="#0C1110" stroke-width="3"/>
+            <rect x="452" y="258" width="18" height="96" fill="url(#copG)" stroke="#0C1110" stroke-width="3"/>
+            <path d="M452 354 h30" stroke="url(#copG)" stroke-width="14" stroke-linecap="round"/>
+            <!-- dimension lines -->
+            <g stroke="#F5B81B" stroke-width="1.4" font-family="monospace" font-size="12" fill="#F5B81B">
+              <line x1="120" y1="392" x2="440" y2="392"/><line x1="120" y1="386" x2="120" y2="398"/><line x1="440" y1="386" x2="440" y2="398"/>
+              <text x="255" y="388">8,4 m</text>
+              <line x1="496" y1="246" x2="496" y2="354"/><line x1="490" y1="246" x2="502" y2="246"/><line x1="490" y1="354" x2="502" y2="354"/>
+              <text x="502" y="305" transform="rotate(90 508,300)">2,7 m</text>
+              <text x="392" y="140">32°</text><line x1="380" y1="150" x2="420" y2="120"/>
+            </g>
+          </svg>
+          <button class="hotspot" style="top:26%;left:31%" data-hs="hs1" aria-label="Vis info om pipebeslag">+</button>
+          <button class="hotspot" style="top:12%;left:48%" data-hs="hs2" aria-label="Vis info om møne">+</button>
+          <button class="hotspot" style="top:52%;left:80%" data-hs="hs3" aria-label="Vis info om takrenne">+</button>
+          <button class="hotspot" style="top:33%;left:63%" data-hs="hs4" aria-label="Vis info om takvindu">+</button>
+          <div class="hs-card" id="hs1" style="top:34%;left:6%"><button class="x" aria-label="Lukk">×</button><b>Pipebeslag · Kobber</b>Falsede beslag på mål fra eget verksted. Tett mot pipe, lekter og undertak — det vanligste lekkasjepunktet på norske tak.</div>
+          <div class="hs-card" id="hs2" style="top:18%;left:52%"><button class="x" aria-label="Lukk">×</button><b>Møne · Luftet</b>Luftet møneløsning slipper ut fukt fra konstruksjonen. Kritisk for levetid på isolerte saltak.</div>
+          <div class="hs-card" id="hs3" style="top:58%;left:46%"><button class="x" aria-label="Lukk">×</button><b>Takrenne · Stål/kobber</b>Renne og nedløp dimensjonert etter takareal. Vi lodder skjøter — ingen klips som svikter etter 5 år.</div>
+          <div class="hs-card" id="hs4" style="top:40%;left:38%"><button class="x" aria-label="Lukk">×</button><b>Takvindu · Inndekking</b>Inndekking av takvindu med vannbrett og sidebeslag. Inkludert i de fleste rehabiliteringer.</div>
+        </div>
+        <div class="bp-foot"><div><b>184 m²</b>Båndtekking</div><div><b>12 dager</b>Byggetid</div><div><b>10 år</b>Garanti</div></div>
+      </div>
+      <div class="float-chip fc1"><span class="fi"><svg class="ic"><use href="#i-cam"/></svg></span><span><b>Drone + fuktmåler</b><small>Gratis på befaring i Oslo</small></span></div>
+      <div class="float-chip fc2"><span class="fi"><svg class="ic"><use href="#i-shield"/></svg></span><span><b>Eget blikkverksted</b><small>Beslag på mål, ikke standard</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span>Taktekking <em>✦</em> Båndtekking <em>✦</em> Takstein <em>✦</em> Takrenner <em>✦</em> Pipebeslag <em>✦</em> Fasadeblikk <em>✦</em> Rehabilitering <em>✦</em> Lekkasjesøk <em>✦</em></span>
+    <span>Taktekking <em>✦</em> Båndtekking <em>✦</em> Takstein <em>✦</em> Takrenner <em>✦</em> Pipebeslag <em>✦</em> Fasadeblikk <em>✦</em> Rehabilitering <em>✦</em> Lekkasjesøk <em>✦</em></span>
+  </div>
+</div>
+
+<!-- ================= TRUST ================= -->
+<section class="trust sec-pad">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Hvorfor NordTak</span><h2 class="disp h-lg" style="margin-top:.6rem">Solid håndverk.<br>Dokumentert.</h2></div>
+      <p>Vi er ikke billigst — vi er de som kommer tilbake hvis noe skjer. Alt dokumenteres med bilder, alt avtales med fastpris, og alt dekkes av garanti og forsikring.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="tcard rv"><span class="tag">NR. 8741</span><div class="tn">27 <small>år</small></div><p>Med mesterbrev i taktekker- og blikkenslagerfaget. Samme eiere siden 1998.</p></div>
+      <div class="tcard rv rv-d1"><span class="tag">DOKUMENTERT</span><div class="tn">1 400<small>+</small></div><p>Ferdigstilte tak i Oslo og Viken — eneboliger, rekkehus, borettslag og næring.</p></div>
+      <div class="tcard rv rv-d2"><span class="tag">SKRIFTLIG</span><div class="tn">10 <small>år</small></div><p>Garanti på komplette tak, 5 år på beslag og renner. Pluss reklamasjonsrett.</p></div>
+      <div class="tcard rv rv-d3"><span class="tag">VERIFISERT</span><div class="tn">4,9<small>★</small></div><p>Snitt på 312 omtaler fra Byggmester, Google og Trustpilot siste 5 år.</p></div>
+    </div>
+    <div class="badges rv">
+      <span class="badge"><svg class="ic"><use href="#i-shield"/></svg> Mesterbrev</span>
+      <span class="badge"><svg class="ic"><use href="#i-check"/></svg> Sentral godkjenning</span>
+      <span class="badge"><svg class="ic"><use href="#i-check"/></svg> Ansvarsforsikret · If</span>
+      <span class="badge"><svg class="ic"><use href="#i-check"/></svg> Miljøfyrtårn-bedrift</span>
+      <span class="badge"><svg class="ic"><use href="#i-check"/></svg> Godkjent lærebedrift</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TAKSJEKK ================= -->
+<section class="checker sec-pad" id="taksjekk">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow on-dark">Interaktiv taksjekk</span><h2 class="disp h-lg" style="margin-top:.6rem;color:var(--paper)">Hva trenger<br>taket ditt?</h2></div>
+      <p style="color:#B9C4C0">Svar på 3 spørsmål og få en ærlig anbefaling med prisindikasjon — uten å snakke med en selger først. Tar ca. 90 sekunder.</p>
+    </div>
+    <div class="chk-grid">
+      <div class="chk-copy rv">
+        <ul class="chk-points">
+          <li><span class="n">01</span><span><strong>Velg taktype</strong> — stein, shingel, fals, papp eller flatt tak/terrasse.</span></li>
+          <li><span class="n">02</span><span><strong>Beskriv problemet</strong> — lekkasje, slitasje, mose, renner eller nytt prosjekt.</span></li>
+          <li><span class="n">03</span><span><strong>Oppgi størrelse og alder</strong> — vi regner ut anbefaling og prisnivå.</span></li>
+        </ul>
+        <div class="chk-guarantee">
+          <span class="sh"><svg class="ic" style="width:1.5em;height:1.5em"><use href="#i-shield"/></svg></span>
+          <span><strong>Uforpliktende &amp; gratis.</strong> Resultatet kan sendes rett til en takrådgiver — eller du kan bare ringe oss på <a href="tel:+4722345678" style="color:var(--gold);font-weight:800">22 34 56 78</a>.</span>
+        </div>
+      </div>
+      <div class="card-wiz rv rv-d1" role="form" aria-label="Taksjekk">
+        <div class="wiz-top">
+          <div class="wiz-steps" id="wizSteps"><i class="now"></i><i></i><i></i><i></i></div>
+          <div class="wiz-meta"><span id="wizLabel">Steg 1 av 4</span><span>≈ 90 sek</span></div>
+        </div>
+        <div class="wiz-body">
+          <!-- STEP 1 -->
+          <div class="wstep on" data-step="1">
+            <h3>Hva slags tak har du?</h3>
+            <p class="wsub">Velg det som ligner mest — du kan endre senere.</p>
+            <div class="opt-grid" id="roofTypes">
+              <button class="opt" data-v="stein"><svg viewBox="0 0 48 48"><path d="M6 30 24 12l18 18" stroke="#101413" stroke-width="4" fill="none" stroke-linejoin="round"/><path d="M12 30v-6m8 6v-8m8 8v-8m8 8v-6" stroke="#D9622B" stroke-width="3.4" stroke-linecap="round"/></svg>Takstein<small>Betong / tegl</small></button>
+              <button class="opt" data-v="shingel"><svg viewBox="0 0 48 48"><path d="M6 30 24 12l18 18" stroke="#101413" stroke-width="4" fill="none" stroke-linejoin="round"/><path d="M14 26h8m4 0h8m4 0h4M18 31h8m4 0h8" stroke="#D9622B" stroke-width="3" stroke-linecap="round"/></svg>Shingel<small>Asfalt / tre</small></button>
+              <button class="opt" data-v="fals"><svg viewBox="0 0 48 48"><path d="M6 30 24 12l18 18" stroke="#101413" stroke-width="4" fill="none" stroke-linejoin="round"/><path d="M16 24 24 15m8 9 8-9M24 30V15" stroke="#D9622B" stroke-width="2.6"/></svg>Båndtekking<small>Fals / plate</small></button>
+              <button class="opt" data-v="papp"><svg viewBox="0 0 48 48"><rect x="8" y="24" width="32" height="10" rx="2" stroke="#101413" stroke-width="4" fill="none"/><path d="M8 29h32" stroke="#D9622B" stroke-width="3"/></svg>Papp / membran<small>Flatt / lavt fall</small></button>
+              <button class="opt" data-v="terrasse"><svg viewBox="0 0 48 48"><rect x="10" y="26" width="28" height="8" stroke="#101413" stroke-width="4" fill="none"/><path d="M14 26v-6m6 6v-6m6 6v-6m6 6v-6" stroke="#D9622B" stroke-width="2.6" stroke-linecap="round"/></svg>Terrasse<small>Oppå garasje/tilbygg</small></button>
+              <button class="opt" data-v="vetikke"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14" stroke="#101413" stroke-width="4" fill="none"/><text x="24" y="31" text-anchor="middle" font-size="18" font-weight="800" fill="#D9622B">?</text></svg>Vet ikke<small>Vi finner ut av det</small></button>
+            </div>
+          </div>
+          <!-- STEP 2 -->
+          <div class="wstep" data-step="2">
+            <h3>Hva er problemet?</h3>
+            <p class="wsub">Velg det viktigste. Akutt lekkasje? Ring heller direkte: <a href="tel:+4722345678" style="font-weight:800;color:var(--copper-deep)">22 34 56 78</a></p>
+            <div class="opt2-grid" id="problems">
+              <button class="opt2" data-v="lekkasje"><span class="e">💧</span><span>Lekkasje / vann inn<small>Drypp, flekker, fukt i tak</small></span></button>
+              <button class="opt2" data-v="slitt"><span class="e">🧱</span><span>Slitt / gammelt tak<small>Over 20–25 år, synlig slitasje</small></span></button>
+              <button class="opt2" data-v="mose"><span class="e">🌿</span><span>Mose og alger<small>Grønt belegg, tette renner</small></span></button>
+              <button class="opt2" data-v="renner"><span class="e">🪣</span><span>Renner / nedløp<small>Lekker, henger, renner over</small></span></button>
+              <button class="opt2" data-v="pipe"><span class="e">🛠️</span><span>Pipe / beslag<small>Rust, sprekker rundt pipe</small></span></button>
+              <button class="opt2" data-v="nytt"><span class="e">🏠</span><span>Nytt tak / nybygg<small>Garasi, tilbygg eller ny bolig</small></span></button>
+            </div>
+          </div>
+          <!-- STEP 3 -->
+          <div class="wstep" data-step="3">
+            <h3>Størrelse, alder og sted</h3>
+            <p class="wsub">Omtrentlige tall holder — vi måler nøyaktig på befaring.</p>
+            <div class="slider-row">
+              <label for="rSize">Takflate <output id="oSize">140 m²</output></label>
+              <input type="range" id="rSize" min="30" max="400" value="140" step="5" aria-label="Takflate i kvadratmeter">
+            </div>
+            <div class="fld" style="margin-top:.4rem"><label>Hvor gammelt er taket?</label>
+              <div class="age-row" id="ageRow">
+                <button class="age" data-v="5">Under 10 år</button>
+                <button class="age sel" data-v="15">10–20 år</button>
+                <button class="age" data-v="25">20–30 år</button>
+                <button class="age" data-v="35">Over 30 år</button>
+              </div>
+            </div>
+            <div class="zip-row">
+              <div class="fld"><label for="zip">Postnummer</label><input id="zip" inputmode="numeric" maxlength="4" placeholder="f.eks. 0582" autocomplete="postal-code"></div>
+            </div>
+            <p class="zip-msg" id="zipMsg" aria-live="polite"></p>
+          </div>
+          <!-- STEP 4 -->
+          <div class="wstep" data-step="4">
+            <div class="result">
+              <span class="rtag">Din anbefaling · basert på svarene dine</span>
+              <h4 id="resTitle">Befaring anbefales</h4>
+              <p id="resDesc"></p>
+              <div class="price-band">
+                <div><small>Prisindikasjon</small><b id="resPrice">–</b></div>
+                <div><small>Typisk byggetid</small><b id="resTime">–</b></div>
+                <div><small>Garanti</small><b id="resGar">–</b></div>
+              </div>
+              <p style="font-size:.8rem;color:#9AA5A1">Veiledende og inkl. mva. Endelig fastpris får du etter gratis befaring med dronefoto og fuktmåling.</p>
+              <div class="result-ctas">
+                <a class="btn btn-primary btn-sm" href="#kontakt" id="resCta">Send som forespørsel <svg class="ic arr"><use href="#i-arrow"/></svg></a>
+                <a class="btn btn-sm" style="border-color:var(--gold);color:var(--gold)" href="tel:+4722345678"><svg class="ic"><use href="#i-phone"/></svg> Ring rådgiver</a>
+                <button class="btn btn-sm" style="border-color:#5B6562;color:#C9D2CE" id="resRestart">Start på nytt</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wiz-nav">
+          <button class="btn btn-ghost btn-sm" id="wizBack" disabled style="opacity:.4">← Tilbake</button>
+          <button class="btn btn-dark btn-sm" id="wizNext">Neste →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TJENESTER ================= -->
+<section class="sec-pad" id="tjenester">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Tjenester</span><h2 class="disp h-lg" style="margin-top:.6rem">Alt på taket.<br>Én entreprenør.</h2></div>
+      <p>Klikk deg inn på hvert fagområde. Alt utføres av egne ansatte med fagbrev — vi leier ikke inn tilfeldige underentreprenører på taket ditt.</p>
+    </div>
+    <div class="svc-layout">
+      <div class="svc-list rv" id="svcList">
+        <div class="svc open" data-pv="pv1">
+          <button class="svc-head" aria-expanded="true"><span class="svc-num">01</span><span><h3>Taktekking — komplett nytt tak</h3><span class="tags"><span>Stein</span><span>Shingel</span><span>Fals</span><span>Fastpris</span></span></span><span class="svc-plus">+</span></button>
+          <div class="svc-panel"><div class="svc-inner"><p>Riving av gammelt tak, kontroll og utbedring av undertak og sløyfer, ny tekking, alle beslag, renner og gjennomføringer. Du får én fastpris, én kontaktperson og daglig bildelogg.</p><div class="svc-cols"><ul><li><svg class="ic"><use href="#i-check"/></svg>Riving + container og avfallshåndtering</li><li><svg class="ic"><use href="#i-check"/></svg>Nytt undertak, lekter og lufting</li><li><svg class="ic"><use href="#i-check"/></svg>Alle beslag fra eget verksted</li></ul><div class="svc-price">Veiledende <b>2 400–3 800 kr/m²</b> inkl. mva, avhengig av materiale og kompleksitet.</div></div></div></div>
+        </div>
+        <div class="svc" data-pv="pv2">
+          <button class="svc-head" aria-expanded="false"><span class="svc-num">02</span><span><h3>Takrehabilitering</h3><span class="tags"><span>Omlegging</span><span>Etterisolering</span><span>Enøk</span></span></span><span class="svc-plus">+</span></button>
+          <div class="svc-panel"><div class="svc-inner"><p>Taket ditt er ofte bedre enn du tror — men undertaket, beslagene eller luftingen svikter. Vi rehabiliterer det som må byttes og bevarer det som holder, inkludert etterisolering mot loft.</p><div class="svc-cols"><ul><li><svg class="ic"><use href="#i-check"/></svg>Tilstandsrapport med dronefoto</li><li><svg class="ic"><use href="#i-check"/></svg>Delvis eller full omlegging</li><li><svg class="ic"><use href="#i-check"/></svg>Enøk-tiltak med dokumentasjon</li></ul><div class="svc-price">Typisk <b>30–50 % rimeligere</b> enn komplett nytt tak. Gratis vurdering.</div></div></div></div>
+        </div>
+        <div class="svc" data-pv="pv3">
+          <button class="svc-head" aria-expanded="false"><span class="svc-num">03</span><span><h3>Takinspeksjon &amp; tilstandsrapport</h3><span class="tags"><span>Drone</span><span>Fuktmåling</span><span>Rapport</span></span></span><span class="svc-plus">+</span></button>
+          <div class="svc-panel"><div class="svc-inner"><p>For boligkjøp, forsikringssaker, borettslag og vedlikeholdsplanlegging. Dronefoto, fuktmåling på loft, kontroll av beslag, gjennomføringer og renner — samlet i en forståelig rapport med prioriterte tiltak.</p><div class="svc-cols"><ul><li><svg class="ic"><use href="#i-check"/></svg>20–40 dronebilder + fuktlogg</li><li><svg class="ic"><use href="#i-check"/></svg>Rapport innen 3 virkedager</li><li><svg class="ic"><use href="#i-check"/></svg>Kan brukes mot forsikring</li></ul><div class="svc-price">Fra <b>1 900 kr</b> inkl. mva. <b>Gratis ved oppdrag</b> over 50 000 kr.</div></div></div></div>
+        </div>
+        <div class="svc" data-pv="pv4">
+          <button class="svc-head" aria-expanded="false"><span class="svc-num">04</span><span><h3>Beslag &amp; pipebeslag</h3><span class="tags"><span>Eget verksted</span><span>Kobber</span><span>Sink</span></span></span><span class="svc-plus">+</span></button>
+          <div class="svc-panel"><div class="svc-inner"><p>Vårt eget blikkenslagerverksted på Brobekk knekker og falser alle beslag på mål: pipebeslag, møne, vindskier, vannbrett og gjennomføringer i stål, sink, aluminium eller kobber.</p><div class="svc-cols"><ul><li><svg class="ic"><use href="#i-check"/></svg>Oppmåling og produksjon på 3–5 dager</li><li><svg class="ic"><use href="#i-check"/></svg>Loddede skjøter — ikke fugemasse</li><li><svg class="ic"><use href="#i-check"/></svg>5 års garanti på beslagarbeid</li></ul><div class="svc-price">Pipebeslag fra <b>14 900 kr</b> inkl. mva, ferdig montert.</div></div></div></div>
+        </div>
+        <div class="svc" data-pv="pv5">
+          <button class="svc-head" aria-expanded="false"><span class="svc-num">05</span><span><h3>Takrenner &amp; nedløp</h3><span class="tags"><span>Stål</span><span>Kobber</span><span>Løvfang</span></span></span><span class="svc-plus">+</span></button>
+          <div class="svc-panel"><div class="svc-inner"><p>Dimensjonering etter takareal og nedbør, montering med riktig fall, lodding av skjøter og montering av løvfang og snøfangere der det trengs.</p><div class="svc-cols"><ul><li><svg class="ic"><use href="#i-check"/></svg>Riving av gamle renner inkludert</li><li><svg class="ic"><use href="#i-check"/></svg>Snø- og is-sikring</li><li><svg class="ic"><use href="#i-check"/></svg>Rens og serviceavtaler</li></ul><div class="svc-price">Komplett anlegg fra <b>1 100 kr/løpemeter</b> inkl. mva.</div></div></div></div>
+        </div>
+        <div class="svc" data-pv="pv6">
+          <button class="svc-head" aria-expanded="false"><span class="svc-num">06</span><span><h3>Fasadeblikk &amp; sålbenker</h3><span class="tags"><span>Vinduer</span><span>Gesims</span><span>Rehabilitering</span></span></span><span class="svc-plus">+</span></button>
+          <div class="svc-panel"><div class="svc-inner"><p>Sålbenker, vindusbeslag, gesimser og fasadeplater som beskytter mur og treverk mot vann. Mye fuktskader i fasade starter med dårlige beslag over vinduer.</p><div class="svc-cols"><ul><li><svg class="ic"><use href="#i-check"/></svg>Utskifting vindu for vindu — beboelig underveis</li><li><svg class="ic"><use href="#i-check"/></svg>Tilpasset vernet bebyggelse</li><li><svg class="ic"><use href="#i-check"/></svg>Samarbeid med murere og malere</li></ul><div class="svc-price">Sålbenker fra <b>2 400 kr/vindu</b> inkl. mva.</div></div></div></div>
+        </div>
+        <div class="svc" data-pv="pv7">
+          <button class="svc-head" aria-expanded="false"><span class="svc-num">07</span><span><h3>Service &amp; akutt lekkasjehjelp</h3><span class="tags"><span>Vakttelefon</span><span>Tetting</span><span>Avtaler</span></span></span><span class="svc-plus">+</span></button>
+          <div class="svc-panel"><div class="svc-inner"><p>Vann inn? Vi rykker ut med presenning, tettemateriell og fuktmåler. Deretter finner vi årsaken — ikke bare symptomet — og gir fastpris på varig utbedring.</p><div class="svc-cols"><ul><li><svg class="ic"><use href="#i-check"/></svg>Vakttelefon alle hverdager 07–22</li><li><svg class="ic"><use href="#i-check"/></svg>Midlertidig sikring samme dag i Oslo</li><li><svg class="ic"><use href="#i-check"/></svg>Årlige serviceavtaler for borettslag</li></ul><div class="svc-price">Service fra <b>1 250 kr/time</b> + materiell. Utrykning etter avtale.</div></div></div></div>
+        </div>
+      </div>
+      <aside class="svc-side">
+        <div class="svc-preview rv rv-d1" aria-hidden="true">
+          <div class="pv on" id="pv1"><div class="patt p-seam"></div><div class="pv-txt"><b>Fag 01 — Tekking</b><h4>Stående fals</h4><p>Dobbeltsidig fals i stål eller sink. 40–60 års levetid, nesten vedlikeholdsfritt.</p></div></div>
+          <div class="pv" id="pv2"><div class="patt p-tile"></div><div class="pv-txt"><b>Fag 02 — Rehab</b><h4>Takstein</h4><p>Omlegging med nytt undertak. Bevarer uttrykket, fornyer funksjonen.</p></div></div>
+          <div class="pv" id="pv3"><div class="patt p-insp"></div><div class="pv-txt"><b>Fag 03 — Inspeksjon</b><h4>Drone + fukt</h4><p>Ser det øyet ikke ser: skjulte lekkasjer, dårlig lufting, svikt i undertak.</p></div></div>
+          <div class="pv" id="pv4"><div class="patt p-flash"></div><div class="pv-txt"><b>Fag 04 — Blikk</b><h4>Kobberbeslag</h4><p>Håndfalset på eget verksted. Pent om 50 år også.</p></div></div>
+          <div class="pv" id="pv5"><div class="patt p-gutter"></div><div class="pv-txt"><b>Fag 05 — Renner</b><h4>Loddede skjøter</h4><p>Dimensjonert etter takareal — ikke «standardpakke».</p></div></div>
+          <div class="pv" id="pv6"><div class="patt p-fasade"></div><div class="pv-txt"><b>Fag 06 — Fasade</b><h4>Sålbenker</h4><p>Stopper fuktskader over vinduer før de starter.</p></div></div>
+          <div class="pv" id="pv7"><div class="patt p-serv"></div><div class="pv-txt"><b>Fag 07 — Akutt</b><h4>Lekkasjevakt</h4><p>Sikring samme dag i Oslo. Årsak, ikke bare symptom.</p></div></div>
+        </div>
+        <div class="svc-cta rv rv-d2">
+          <h4>Usikker på hva du trenger?</h4>
+          <p>Ta taksjekken på 90 sekunder — eller be om en gratis befaring så ser vi på det sammen.</p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="#taksjekk">Ta taksjekken</a><a class="btn btn-sm" style="border:2px solid var(--gold);color:var(--gold)" href="#kontakt">Be om befaring</a></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FØR / ETTER ================= -->
+<section class="ba-sec sec-pad" id="for-etter">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Før / etter</span><h2 class="disp h-lg" style="margin-top:.6rem">Fra slitt<br>til solid.</h2></div>
+      <p>Ekte prosjekter, ekte bilder — gjenskapt som illustrasjon her. Dra i håndtaket for å sammenligne. Alle prosjekter dokumenteres med bilder før, under og etter.</p>
+    </div>
+    <div class="ba-tabs rv" role="tablist" aria-label="Velg prosjekt">
+      <button class="ba-tab sel" data-ba="0" role="tab" aria-selected="true">Villa · Ullern</button>
+      <button class="ba-tab" data-ba="1" role="tab" aria-selected="false">Rekkehus · Lørenskog</button>
+      <button class="ba-tab" data-ba="2" role="tab" aria-selected="false">Næring · Alnabru</button>
+    </div>
+    <div class="ba-frame rv rv-d1">
+      <div class="ba-stage" id="baStage" style="--pos:50%">
+        <div class="ba-layer" id="baBefore"></div>
+        <div class="ba-layer ba-after" id="baAfter"></div>
+        <span class="ba-tag before" id="baTagB">Før · 1987</span>
+        <span class="ba-tag after" id="baTagA">Etter · 2025</span>
+        <div class="ba-handle"><span class="ba-knob">⇔</span></div>
+      </div>
+      <div class="ba-hint">← Dra i håndtaket for å sammenligne →</div>
+      <div class="ba-facts" id="baFacts"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROSESS ================= -->
+<section class="sec-pad" id="prosess">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Arbeidsprosess</span><h2 class="disp h-lg" style="margin-top:.6rem">Sånn jobber vi,<br>steg for steg.</h2></div>
+      <p>Ingen overraskelser, ingen «det glemte vi å ta med». Samme prosess på alle jobber — fra pipebeslag til komplett tak på 400 m².</p>
+    </div>
+    <div class="proc-line rv">
+      <div class="pstep"><div class="pn">01</div><h3>Befaring &amp; dronefoto</h3><p>Vi måler, fotograferer og fuktmåler. Du får se akkurat det vi ser — på skjerm, samme dag.</p><div class="pd">GRATIS I OSLO · 45–60 MIN</div></div>
+      <div class="pstep"><div class="pn">02</div><h3>Fastpris-tilbud</h3><p>Skriftlig tilbud med fastpris, materialspesifikasjon og fremdrift. Gyldig i 30 dager.</p><div class="pd">SVAR INNEN 3 VIRKEDAGER</div></div>
+      <div class="pstep"><div class="pn">03</div><h3>Plan &amp; rigg</h3><p>Stillas, sikring, containere og nabovarsel ordnes av oss. Beslag produseres på verkstedet.</p><div class="pd">FAST KONTAKTPERSON</div></div>
+      <div class="pstep"><div class="pn">04</div><h3>Utførelse m. bildelogg</h3><p>Egne fagfolk, daglig opprydding og bilder underveis. Du kan følge jobben uten å klatre.</p><div class="pd">DAGLIG LOGG PÅ SMS/E-POST</div></div>
+      <div class="pstep"><div class="pn">05</div><h3>Overlevering &amp; garanti</h3><p>Gjennomgang på taket (eller dronevideo), FDV-mappe og skriftlig garanti. Så rydder vi.</p><div class="pd">10 ÅRS GARANTI · FDV-MAPPE</div></div>
+    </div>
+    <div class="proc-note rv"><b>Du får alltid:</b><span><svg class="ic"><use href="#i-check"/></svg> Bilder før / under / etter</span><span><svg class="ic"><use href="#i-check"/></svg> Fastpris — ingen tillegg uten avtale</span><span><svg class="ic"><use href="#i-check"/></svg> Ryddet tomt hver dag</span><span><svg class="ic"><use href="#i-check"/></svg> 1-års gratis etterkontroll</span></div>
+  </div>
+</section>
+
+<!-- ================= PROSJEKTER ================= -->
+<section class="proj-sec sec-pad" id="prosjekter">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow on-dark">Prosjekter</span><h2 class="disp h-lg" style="margin-top:.6rem;color:var(--paper)">Utvalgte tak<br>vi er stolte av.</h2></div>
+      <div class="filters" role="group" aria-label="Filtrer prosjekter">
+        <button class="fbtn sel" data-f="alle">Alle</button>
+        <button class="fbtn" data-f="enebolig">Enebolig</button>
+        <button class="fbtn" data-f="rekke">Rekkehus / BRL</button>
+        <button class="fbtn" data-f="naring">Næring / hytte</button>
+      </div>
+    </div>
+    <div class="proj-grid" id="projGrid">
+      <article class="proj feat rv" data-cat="enebolig">
+        <div class="pvis"><span class="pchip">Båndtekking · Sink</span><svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice"><rect width="600" height="340" fill="#1B3230"/><circle cx="500" cy="60" r="24" fill="#F5B81B"/><path d="M0 260 160 200l160-130 160 130 120-46v176H0Z" fill="#232B29"/><g stroke="#0C1110" stroke-width="3"><line x1="180" y1="192" x2="160" y2="260"/><line x1="220" y1="162" x2="200" y2="260"/><line x1="260" y1="132" x2="244" y2="260"/><line x1="300" y1="132" x2="316" y2="260"/><line x1="340" y1="162" x2="360" y2="260"/><line x1="380" y1="192" x2="404" y2="260"/></g><rect x="140" y="258" width="280" height="82" fill="#E4DCCB"/><rect x="170" y="278" width="52" height="44" fill="#FFD98A" stroke="#0C1110" stroke-width="3"/><rect x="338" y="278" width="52" height="44" fill="#FFD98A" stroke="#0C1110" stroke-width="3"/><rect x="268" y="272" width="44" height="68" fill="#152B24" stroke="#0C1110" stroke-width="3"/><rect x="352" y="120" width="30" height="60" fill="#8A4A2E" stroke="#0C1110" stroke-width="3"/><rect x="130" y="252" width="300" height="12" rx="5" fill="#C97B2F" stroke="#0C1110" stroke-width="2.5"/></svg></div>
+        <div class="pbody"><h3>Villa Ullern — fra shingel til sink</h3><div class="pmeta"><span><b>210 m²</b> båndtekking</span><span><b>14</b> dager</span><span><b>2025</b></span></div><p>60-tallsvilla med tre lag gammel shingel og råttent undertak ved pipen. Alt revet til sperrene, nytt undertak, sink i prepatina og kobberrenner. Etterisolert mot loft — strømregningen falt 18 %.</p><span class="plink">Se prosjektlogg <svg class="ic"><use href="#i-arrow"/></svg></span></div>
+      </article>
+      <article class="proj rv rv-d1" data-cat="rekke">
+        <div class="pvis"><span class="pchip">Takstein · Betong</span><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><rect width="400" height="220" fill="#23302C"/><path d="M20 170 120 90l100 80 100-80 60 48v82H20Z" fill="#4A3830"/><g stroke="#241915" stroke-width="2.5"><line x1="20" y1="150" x2="380" y2="150"/><line x1="20" y1="132" x2="380" y2="132"/><line x1="60" y1="132" x2="50" y2="170"/><line x1="120" y1="132" x2="112" y2="170"/><line x1="180" y1="132" x2="176" y2="170"/><line x1="240" y1="132" x2="244" y2="170"/><line x1="300" y1="132" x2="308" y2="170"/><line x1="350" y1="136" x2="358" y2="170"/></g><rect x="60" y="168" width="280" height="52" fill="#D8CFBB"/><rect x="90" y="180" width="40" height="28" fill="#FFD98A" stroke="#0C1110" stroke-width="2.5"/><rect x="180" y="180" width="40" height="28" fill="#FFD98A" stroke="#0C1110" stroke-width="2.5"/><rect x="270" y="180" width="40" height="28" fill="#FFD98A" stroke="#0C1110" stroke-width="2.5"/></svg></div>
+        <div class="pbody"><h3>Rekkehus Lørenskog — 6 enheter</h3><div class="pmeta"><span><b>540 m²</b> stein</span><span><b>5</b> uker</span></div><p>Sameie med lekkasjer i tre enheter. Omlegging etappevis — beboerne bodde hjemme hele perioden.</p><span class="plink">Se prosjektlogg <svg class="ic"><use href="#i-arrow"/></svg></span></div>
+      </article>
+      <article class="proj rv rv-d2" data-cat="naring">
+        <div class="pvis"><span class="pchip">Membran · Næring</span><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><rect width="400" height="220" fill="#1B3230"/><rect x="30" y="120" width="340" height="100" fill="#3A4542"/><rect x="30" y="112" width="340" height="12" fill="#141918" stroke="#F5B81B" stroke-width="1.5"/><g fill="#9FB8C9"><rect x="60" y="140" width="44" height="30"/><rect x="120" y="140" width="44" height="30"/><rect x="180" y="140" width="44" height="30"/><rect x="240" y="140" width="44" height="30"/><rect x="300" y="140" width="40" height="30"/></g><rect x="300" y="70" width="26" height="44" fill="#5A6663" stroke="#0C1110" stroke-width="2.5"/><circle cx="120" cy="60" r="18" fill="#F5B81B"/></svg></div>
+        <div class="pbody"><h3>Lager Alnabru — membran 900 m²</h3><div class="pmeta"><span><b>900 m²</b> PVC</span><span><b>9</b> dager</span></div><p>Gammelt papp-tak med dammer og 11 lapper. Ny falloppbygging og sveiset membran — tørt siden dag én.</p><span class="plink">Se prosjektlogg <svg class="ic"><use href="#i-arrow"/></svg></span></div>
+      </article>
+      <article class="proj rv" data-cat="enebolig">
+        <div class="pvis"><span class="pchip">Pipebeslag · Kobber</span><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><rect width="400" height="220" fill="#23302C"/><path d="M40 180 200 70l160 110Z" fill="#2E3836"/><rect x="170" y="60" width="60" height="90" fill="#8A4A2E" stroke="#0C1110" stroke-width="3"/><rect x="160" y="50" width="80" height="14" fill="#3A3A3A" stroke="#0C1110" stroke-width="3"/><polygon points="158,150 242,150 256,172 144,172" fill="#D97B2F" stroke="#0C1110" stroke-width="2.5"/><g fill="#FFD98A" opacity=".9"><circle cx="200" cy="38" r="5"/><circle cx="208" cy="28" r="7"/></g></svg></div>
+        <div class="pbody"><h3>Villa Bekkelaget — pipe &amp; beslag</h3><div class="pmeta"><span><b>Kobber</b></span><span><b>2</b> dager</span></div><p>Kronisk lekkasje rundt pipe i 4 år, «tettet» med fugemasse tre ganger. Nytt falsede kobberbeslag — problem løst permanent.</p><span class="plink">Se prosjektlogg <svg class="ic"><use href="#i-arrow"/></svg></span></div>
+      </article>
+      <article class="proj rv rv-d1" data-cat="naring">
+        <div class="pvis"><span class="pchip">Fals · Sort · Hytte</span><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><rect width="400" height="220" fill="#16211F"/><path d="M0 190 90 150l60-90 60 90 90-40 100 30v80H0Z" fill="#DCE3E2" opacity=".16"/><path d="M90 180 200 100l110 80Z" fill="#141918" stroke="#F5B81B" stroke-width="1.5"/><g stroke="#3A4542" stroke-width="2.5"><line x1="140" y1="150" x2="130" y2="180"/><line x1="170" y1="130" x2="162" y2="180"/><line x1="200" y1="112" x2="200" y2="180"/><line x1="230" y1="130" x2="238" y2="180"/><line x1="260" y1="150" x2="270" y2="180"/></g><rect x="120" y="178" width="160" height="42" fill="#5A4632"/><rect x="145" y="188" width="34" height="24" fill="#FFD98A"/><rect x="221" y="188" width="34" height="24" fill="#FFD98A"/></svg></div>
+        <div class="pbody"><h3>Hytte Geilo — sort fals, snølast</h3><div class="pmeta"><span><b>130 m²</b></span><span><b>8</b> dager</span></div><p>Hytte i snøsone med isdam-problematikk. Luftet undertak, snøfangere og is-sikre gjennomføringer.</p><span class="plink">Se prosjektlogg <svg class="ic"><use href="#i-arrow"/></svg></span></div>
+      </article>
+      <article class="proj rv rv-d2" data-cat="rekke">
+        <div class="pvis"><span class="pchip">Renner · Borettslag</span><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><rect width="400" height="220" fill="#1B3230"/><rect x="60" y="90" width="120" height="130" fill="#D8CFBB"/><rect x="220" y="90" width="120" height="130" fill="#D8CFBB"/><path d="M50 92 120 50l70 42M210 92l70-42 70 42" stroke="#141918" stroke-width="10" fill="none"/><rect x="48" y="88" width="144" height="10" rx="4" fill="#C97B2F"/><rect x="208" y="88" width="144" height="10" rx="4" fill="#C97B2F"/><rect x="180" y="96" width="10" height="124" fill="#C97B2F"/><rect x="330" y="96" width="10" height="124" fill="#C97B2F"/><g fill="#FFD98A"><rect x="90" y="120" width="30" height="26"/><rect x="250" y="120" width="30" height="26"/></g></svg></div>
+        <div class="pbody"><h3>BRL Nordberg — 14 oppganger</h3><div class="pmeta"><span><b>380 lm</b> renner</span><span><b>2</b> uker</span></div><p>Total utskifting av renner og nedløp med stillasfritt montasje der det var mulig. Serviceavtale i 5 år inkludert.</p><span class="plink">Se prosjektlogg <svg class="ic"><use href="#i-arrow"/></svg></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MATERIALER ================= -->
+<section class="sec-pad" id="materialer">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Materialguide</span><h2 class="disp h-lg" style="margin-top:.6rem">Hvilket tak<br>passer huset ditt?</h2></div>
+      <p>Ærlige fordeler og ulemper — inkludert levetid og pris. Vi selger alle typer, så vi har ingen grunn til å dytte deg mot feil valg.</p>
+    </div>
+    <div class="mat-tabs rv" role="tablist" aria-label="Takmaterialer">
+      <button class="mat-tab sel" data-m="m1" role="tab" aria-selected="true"><span class="sw p-seam"></span><span>Båndtekking<small>Mest valgt nå</small></span></button>
+      <button class="mat-tab" data-m="m2" role="tab" aria-selected="false"><span class="sw p-tile"></span><span>Takstein<small>Klassikeren</small></span></button>
+      <button class="mat-tab" data-m="m3" role="tab" aria-selected="false"><span class="sw" style="background:repeating-linear-gradient(0deg,#2E3836 0 12px,#141918 12px 14px),repeating-linear-gradient(90deg,transparent 0 22px,rgba(0,0,0,.5) 22px 24px),#232B29"></span><span>Shingel<small>Rimeligst</small></span></button>
+      <button class="mat-tab" data-m="m4" role="tab" aria-selected="false"><span class="sw" style="background:linear-gradient(135deg,#3A4542,#141918)"></span><span>Membran<small>Flate tak</small></span></button>
+      <button class="mat-tab" data-m="m5" role="tab" aria-selected="false"><span class="sw" style="background:radial-gradient(circle at 30% 30%,#5BA35B,#2C5B2C)"></span><span>Grønne tak<small>Sedum / torv</small></span></button>
+    </div>
+    <div class="mat-panel on rv" id="m1">
+      <div class="mat-vis"><div class="big p-seam"></div><div class="mat-badge"><b>40–60 år</b>forventet levetid</div></div>
+      <div class="mat-info"><h3>Båndtekking</h3><p>Stående fals i stål, sink eller aluminium. Tett, stille i regn (med riktig undertak), og penere med årene. Vårt mest solgte til eneboliger nå.</p><div class="spec"><div><small>Pris inkl. mva</small><b>2 900–3 800 kr/m²</b></div><div><small>Vedlikehold</small><b>Minimalt · vask hvert 5. år</b></div><div><small>Passer for</small><b>Fall over 14° · moderne + klassisk</b></div><div><small>Garanti</small><b>10 år + materialgaranti</b></div></div><div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="#kontakt">Få pris på fals <svg class="ic arr"><use href="#i-arrow"/></svg></a><a class="btn btn-ghost btn-sm" href="#taksjekk">Ta taksjekken</a></div></div>
+    </div>
+    <div class="mat-panel" id="m2">
+      <div class="mat-vis"><div class="big p-tile"></div><div class="mat-badge"><b>40–70 år</b>forventet levetid</div></div>
+      <div class="mat-info"><h3>Takstein</h3><p>Betong- eller teglstein. Tungt, solid og tidløst — og enkelt å bytte enkeltstein ved skade. Krever takstol som tåler vekten.</p><div class="spec"><div><small>Pris inkl. mva</small><b>2 400–3 200 kr/m²</b></div><div><small>Vedlikehold</small><b>Mosebehandling hvert 5.–8. år</b></div><div><small>Passer for</small><b>Fall over 22° · de fleste hus</b></div><div><small>Garanti</small><b>10 år + 30 år material</b></div></div><div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="#kontakt">Få pris på stein <svg class="ic arr"><use href="#i-arrow"/></svg></a></div></div>
+    </div>
+    <div class="mat-panel" id="m3">
+      <div class="mat-vis"><div class="big" style="background:repeating-linear-gradient(0deg,#33302B 0 26px,#141311 26px 30px),repeating-linear-gradient(90deg,transparent 0 30px,rgba(0,0,0,.55) 30px 33px),#232B29"></div><div class="mat-badge"><b>20–30 år</b>forventet levetid</div></div>
+      <div class="mat-info"><h3>Shingel</h3><p>Rimeligste vei til tett tak. Fungerer på kompliserte takformer med mange vinkler. Kortere levetid — regn med ett bytte der fals holder to.</p><div class="spec"><div><small>Pris inkl. mva</small><b>1 900–2 600 kr/m²</b></div><div><small>Vedlikehold</small><b>Mosebehandling, sjekk limfuger</b></div><div><small>Passer for</small><b>Komplekse tak · budsjett</b></div><div><small>Garanti</small><b>10 år utførelse</b></div></div><div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="#kontakt">Få pris på shingel <svg class="ic arr"><use href="#i-arrow"/></svg></a></div></div>
+    </div>
+    <div class="mat-panel" id="m4">
+      <div class="mat-vis"><div class="big" style="background:linear-gradient(135deg,#4A5451,#141918 70%)"></div><div class="mat-badge"><b>25–40 år</b>forventet levetid</div></div>
+      <div class="mat-info"><h3>Membran / papp</h3><p>For flate tak, terrasser og tilbygg med lavt fall. Sveiset PVC eller 2-lags asfaltbelegg — helt tett når fall og sluk er riktig bygget.</p><div class="spec"><div><small>Pris inkl. mva</small><b>2 200–3 400 kr/m²</b></div><div><small>Vedlikehold</small><b>Årlig slukkontroll · enkelt</b></div><div><small>Passer for</small><b>Fall under 10° · terrasser</b></div><div><small>Garanti</small><b>10 år, tett-garanti</b></div></div><div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="#kontakt">Få pris på membran <svg class="ic arr"><use href="#i-arrow"/></svg></a></div></div>
+    </div>
+    <div class="mat-panel" id="m5">
+      <div class="mat-vis"><div class="big" style="background:radial-gradient(circle at 30% 25%,#6FAF62,#2C5B2C 60%),radial-gradient(circle at 75% 70%,#8FC483,transparent 50%),#356B34"></div><div class="mat-badge"><b>40+ år</b>beskytter membranen</div></div>
+      <div class="mat-info"><h3>Grønne tak</h3><p>Sedum eller torv over sveiset membran. Demper overvann, isolerer og ser fantastisk ut. Krever riktig oppbygging — det kan vi.</p><div class="spec"><div><small>Pris inkl. mva</small><b>3 400–4 800 kr/m²</b></div><div><small>Vedlikehold</small><b>1–2 tilsyn per år</b></div><div><small>Passer for</small><b>Fall 3–27° · garasje/tilbygg</b></div><div><small>Garanti</small><b>10 år på oppbygging</b></div></div><div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="#kontakt">Få pris på grønt tak <svg class="ic arr"><use href="#i-arrow"/></svg></a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GARANTI ================= -->
+<section class="guar sec-pad" id="trygghet">
+  <div class="wrap">
+    <div class="guar-grid">
+      <div class="rv">
+        <span class="eyebrow on-dark">Trygghet &amp; garanti</span>
+        <div class="guar-big" style="margin-top:1rem"><span class="ten">10</span><span class="tt"><b>års garanti</b><span>på alle komplette tak — skriftlig, uten stjerner og fotnoter.</span></span></div>
+        <div class="guar-list">
+          <div><svg class="ic"><use href="#i-shield"/></svg><b>Mesterbrev &amp; godkjenning</b><p>Fagbrev i begge fag, sentral godkjenning og godkjent lærebedrift.</p></div>
+          <div><svg class="ic"><use href="#i-doc"/></svg><b>Forsikret opp til 10 mill.</b><p>Ansvarsforsikring hos If. HMS og stillas etter forskrift — alltid.</p></div>
+          <div><svg class="ic"><use href="#i-cam"/></svg><b>Bildedokumentasjon</b><p>Før, under og etter på alle jobber. FDV-mappe ved overlevering.</p></div>
+          <div><svg class="ic"><use href="#i-phone"/></svg><b>Vi svarer — også etterpå</b><p>Gratis 1-års etterkontroll og fast kontaktperson i hele garantiperioden.</p></div>
+        </div>
+      </div>
+      <div class="doc-card rv rv-d1">
+        <div class="dc-top"><span>FDV-mappe · Eksempel</span><span class="st">● Overlevert</span></div>
+        <div class="doc-body">
+          <h3>Slik dokumenterer vi jobben din</h3>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg><span><strong>Tilstandsrapport</strong> med dronebilder og fuktlogg før oppstart</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span><strong>Materialspesifikasjon</strong> — nøyaktig hva som er brukt, hvor og hvorfor</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span><strong>Bildelogg underveis</strong> — undertak, beslag, gjennomføringer</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span><strong>Garantibevis</strong> med vilkår i klartekst og kontaktinfo</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span><strong>Vedlikeholdsplan</strong> — hva du bør sjekke, og når</span></li>
+          </ul>
+          <div class="sign"><span>Oppdragsleder<br><strong style="color:var(--ink)">Tom-André Nordli</strong></span><span class="sig">T.A. Nordli</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OMtaler ================= -->
+<section class="sec-pad" id="omtaler">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Kundeomtaler</span><h2 class="disp h-lg" style="margin-top:.6rem">Loggbok<br>fra takene.</h2></div>
+      <p>Utdrag fra verifiserte omtaler. Fullstendige referanser med adresser fås ved befaring — flere kunder lar oss gjerne vise frem taket.</p>
+    </div>
+    <div class="rev-head rv">
+      <div class="g-score"><b>4,9</b><span><span class="stars">★★★★★</span><small>312 omtaler · Google, Byggmester &amp; Trustpilot</small></span></div>
+      <a class="btn btn-ghost btn-sm" href="#kontakt">Bli neste fornøyde kunde <svg class="ic arr"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="rev-grid">
+      <article class="rev rv"><span class="rev-stamp">FERDIGSTILT</span><div class="rev-top"><div class="rev-who"><span class="ava" style="background:#A84312">MK</span><span><b>Marianne K.</b><small>Ullern, Oslo · 2025</small></span></div><span class="stars">★★★★★</span></div><p>«Tre firmaer sa taket måtte rives. NordTak dokumenterte at undertaket var friskt og rehabiliterte i stedet. Spar­te oss 180 000 kroner — og taket er tett som et skott.»</p><div class="job">OPPDAG: <b>Rehab 184 m² · shingel → fals</b></div></article>
+      <article class="rev rv rv-d1"><span class="rev-stamp">FERDIGSTILT</span><div class="rev-top"><div class="rev-who"><span class="ava" style="background:#152B24">TA</span><span><b>Terje A.</b><small>Lørenskog · 2025</small></span></div><span class="stars">★★★★★</span></div><p>«Fikk bilder på SMS hver dag fra taket. Visste nøyaktig hva som skjedde uten å klatre opp selv. Ryddig, presise og ferdige to dager før avtalt.»</p><div class="job">OPPDAG: <b>Omlegging takstein · 6 enheter</b></div></article>
+      <article class="rev rv rv-d2"><span class="rev-stamp">FERDIGSTILT</span><div class="rev-top"><div class="rev-who"><span class="ava" style="background:#3E5C50">EL</span><span><b>Elin &amp; Lars</b><small>Nordstrand · 2024</small></span></div><span class="stars">★★★★★</span></div><p>«Lekkasje rundt pipa som to andre hadde 'fikset' med fugemasse. NordTak knekket nytt kobberbeslag på verkstedet sitt. Tørt gjennom to vintre nå. Verdt hver krone.»</p><div class="job">OPPDAG: <b>Pipebeslag kobber · 2 dager</b></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRISER ================= -->
+<section class="price-sec sec-pad" id="priser">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Prisliste</span><h2 class="disp h-lg" style="margin-top:.6rem">Ærlige priser,<br>før du ringer.</h2></div>
+      <p>Veiledende priser inkl. mva. Endelig fastpris avtales alltid skriftlig etter befaring — den rører vi ikke etterpå.</p>
+    </div>
+    <div class="price-table rv">
+      <div class="prow head"><span>Tjeneste</span><span></span><span>Pris inkl. mva</span><span></span></div>
+      <div class="prow"><span><h4>Befaring &amp; taksjekk</h4></span><span class="pdesc"><p>Dronefoto, fuktmåling og skriftlig vurdering. Gratis ved oppdrag.</p></span><span class="pr">1 900 kr<small>gratis ved oppdrag</small></span><span class="pbtn"><a class="btn btn-dark btn-sm" href="#kontakt">Bestill</a></span></div>
+      <div class="prow"><span><h4>Komplett nytt tak</h4></span><span class="pdesc"><p>Riving, undertak, tekking, beslag og renner. Alt inkludert.</p></span><span class="pr">2 400–3 800 kr/m²<small>avh. av materiale</small></span><span class="pbtn"><a class="btn btn-dark btn-sm" href="#kontakt">Få fastpris</a></span></div>
+      <div class="prow"><span><h4>Takrehabilitering</h4></span><span class="pdesc"><p>Delvis eller full omlegging der konstruksjonen beholdes.</p></span><span class="pr">1 400–2 400 kr/m²<small>typisk −30–50 %</small></span><span class="pbtn"><a class="btn btn-dark btn-sm" href="#kontakt">Vurdering</a></span></div>
+      <div class="prow"><span><h4>Pipebeslag, ferdig montert</h4></span><span class="pdesc"><p>Oppmåling, produksjon på verksted og montering med fals/lodding.</p></span><span class="pr">fra 14 900 kr<small>stål · sink +3 000</small></span><span class="pbtn"><a class="btn btn-dark btn-sm" href="#kontakt">Bestill</a></span></div>
+      <div class="prow"><span><h4>Takrenner komplett</h4></span><span class="pdesc"><p>Riving av gamle, nye renner + nedløp med loddede skjøter.</p></span><span class="pr">fra 1 100 kr/lm<small>kobber fra 1 900</small></span><span class="pbtn"><a class="btn btn-dark btn-sm" href="#kontakt">Bestill</a></span></div>
+      <div class="prow"><span><h4>Mosebehandling + rens</h4></span><span class="pdesc"><p>Skånsom rens, mosefjerner og impregnering. Forlenger levetid.</p></span><span class="pr">85 kr/m²<small>min. 6 900 kr</small></span><span class="pbtn"><a class="btn btn-dark btn-sm" href="#kontakt">Bestill</a></span></div>
+      <div class="prow"><span><h4>Service / akutt hjelp</h4></span><span class="pdesc"><p>Tetningsarbeid, småreparasjoner og lekkasjesøk per time.</p></span><span class="pr">1 250 kr/t<small>+ materiell</small></span><span class="pbtn"><a class="btn btn-dark btn-sm" href="tel:+4722345678">Ring nå</a></span></div>
+    </div>
+    <div class="price-note rv"><span>Alle priser inkl. 25 % mva. Stillas og container faktureres etter medgått der det ikke inngår i fastpris — alltid spesifisert i tilbudet.</span><a class="btn btn-primary" href="#taksjekk">Få prisindikasjon på 90 sek <svg class="ic arr"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec-pad" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Spørsmål &amp; svar</span><h2 class="disp h-lg" style="margin-top:.6rem">Det folk<br>lurer på.</h2></div>
+    </div>
+    <div class="faq-list">
+      <div class="faq open rv"><button class="faq-q" aria-expanded="true">Hvor lang tid tar et komplett nytt tak?<span class="fx">+</span></button><div class="faq-a"><p>En normal enebolig på 150–200 m² tar 8–14 arbeidsdager fra stillas er oppe til vi er nede — væravhengig. Vi jobber med værsikring seksjon for seksjon, så huset står aldri åpent over natten. Du får fremdriftsplan med datoer i tilbudet.</p></div></div>
+      <div class="faq rv"><button class="faq-q" aria-expanded="false">Må vi flytte ut mens dere jobber?<span class="fx">+</span></button><div class="faq-a"><p>Nei, nesten aldri. Vi jobber utvendig, rydder daglig og varsler naboer. Det bråker mest under riving (1–2 dager). Mange kunder er på jobb som normalt — og følger fremdriften på bildelogg.</p></div></div>
+      <div class="faq rv"><button class="faq-q" aria-expanded="false">Hva dekker 10-års garantien — egentlig?<span class="fx">+</span></button><div class="faq-a"><p>Alt vi har utført: tetthet, beslag, gjennomføringer, renner og inndekninger. Oppdager du lekkasje eller feil, utbedrer vi uten kostnad. Garantien gjelder i tillegg til forbrukerkjøpslovens reklamasjonsrett, og du får garantibevis i FDV-mappen.</p></div></div>
+      <div class="faq rv"><button class="faq-q" aria-expanded="false">Jobber dere om vinteren?<span class="fx">+</span></button><div class="faq-a"><p>Ja — beslag, renner, service og akutte lekkasjer hele året. Komplette omtekkinger legger vi helst mellom mars og november, men med teltløsning og værsikring tar vi også vinterprosjekter. Vinteren er ofte rimeligere: spør om sesongrabatt.</p></div></div>
+      <div class="faq rv"><button class="faq-q" aria-expanded="false">Bruker dere underentreprenører?<span class="fx">+</span></button><div class="faq-a"><p>Nei. Alle på taket er fast ansatt hos oss med fagbrev eller lærlingkontrakt. Unntaket er stillas (sertifisert stillasfirma) og elektriker ved behov — begge avtales og koordineres av oss.</p></div></div>
+      <div class="faq rv"><button class="faq-q" aria-expanded="false">Hvilke områder dekker dere?<span class="fx">+</span></button><div class="faq-a"><p>Kjerneområdet er Oslo, Bærum, Asker, Lørenskog, Lillestrøm, Ski, Nesodden og omegn. Større prosjekter tar vi i hele Viken og deler av Innlandet — spør oss, vi er ærlige på om det lønner seg for deg.</p></div></div>
+      <div class="faq rv"><button class="faq-q" aria-expanded="false">Kan dere hjelpe med forsikringssak?<span class="fx">+</span></button><div class="faq-a"><p>Ja, ofte. Ved storm- og vannskader dokumenterer vi skaden med dronefoto og rapport som forsikringsselskapet godtar, sikrer taket midlertidig og gir fastpris på utbedring. Vi samarbeider med alle de store selskapene.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONTAKT ================= -->
+<section class="contact-sec sec-pad" id="kontakt" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="eyebrow">Kontakt</span><h2 class="disp h-lg" style="margin-top:.6rem">Be om befaring<br>eller få tilbud.</h2></div>
+      <p>Fyll ut skjemaet — vi ringer tilbake innen <strong>én virkedag</strong>, som regel samme dag. Eller ring oss direkte på <a href="tel:+4722345678" style="font-weight:800;color:var(--copper-deep)">22 34 56 78</a>.</p>
+    </div>
+    <div class="ct-grid">
+      <div class="form-card rv">
+        <div class="fc-top"><h3>Forespørsel</h3><span>Svar innen 1 virkedag ✓</span></div>
+        <form class="ct-form" id="ctForm" novalidate>
+          <div class="f2">
+            <div class="fld"><label for="fNavn">Navn *</label><input id="fNavn" name="navn" autocomplete="name" placeholder="Ola Nordmann" required></div>
+            <div class="fld"><label for="fTlf">Telefon *</label><input id="fTlf" name="telefon" inputmode="tel" autocomplete="tel" placeholder="900 00 000" required></div>
+          </div>
+          <div class="f2">
+            <div class="fld"><label for="fEpost">E-post *</label><input id="fEpost" name="epost" type="email" autocomplete="email" placeholder="ola@epost.no" required></div>
+            <div class="fld"><label for="fAdr">Adresse for taket</label><input id="fAdr" name="adresse" autocomplete="street-address" placeholder="Gateveien 12, 0582 Oslo"></div>
+          </div>
+          <div class="f2">
+            <div class="fld"><label for="fTak">Taktype</label><select id="fTak" name="taktype"><option>Takstein</option><option>Shingel</option><option>Båndtekking / fals</option><option>Papp / membran</option><option>Terrasse / flatt tak</option><option>Vet ikke</option></select></div>
+            <div class="fld"><label for="fTid">Foretrukket tid</label><select id="fTid" name="tid"><option>Raskest mulig</option><option>Formiddag</option><option>Ettermiddag</option><option>Kveld (etter 16)</option></select></div>
+          </div>
+          <div class="fld"><label>Jeg ønsker (velg gjerne flere)</label>
+            <div class="want">
+              <label><input type="checkbox" name="onske" value="befaring" checked><span>Gratis befaring</span></label>
+              <label><input type="checkbox" name="onske" value="fastpris"><span>Fastpris-tilbud</span></label>
+              <label><input type="checkbox" name="onske" value="taksjekk"><span>Taksjekk / rapport</span></label>
+              <label><input type="checkbox" name="onske" value="service"><span>Service / lekkasje</span></label>
+            </div>
+          </div>
+          <div class="fld"><label for="fMsg">Fortell kort om taket</label><textarea id="fMsg" name="melding" placeholder="F.eks.: Takstein fra 1994, mose på nordsiden, drypp ved pipe ved kraftig regn …"></textarea></div>
+          <div class="form-foot">
+            <span class="privacy">Ved innsending godtar du at vi kontakter deg. Vi deler aldri opplysningene dine. Demo: data sendes ikke noe sted.</span>
+            <button class="btn btn-primary" type="submit">Send forespørsel <svg class="ic arr"><use href="#i-arrow"/></svg></button>
+          </div>
+        </form>
+        <div class="form-ok" id="formOk">
+          <div class="okc"><svg style="width:2em;height:2em"><use href="#i-check"/></svg></div>
+          <h3>Takk! Vi ringer deg.</h3>
+          <p style="color:var(--muted)">Forespørselen din er mottatt. En takrådgiver ringer innen én virkedag — som regel samme dag.</p>
+          <div class="ref" id="formRef">REF: NT-0000</div>
+          <p style="font-size:.88rem">Akutt lekkasje? Ikke vent — ring <a href="tel:+4722345678" style="font-weight:800;color:var(--copper-deep)">22 34 56 78</a></p>
+        </div>
+      </div>
+      <aside class="ct-side">
+        <div class="info-card rv rv-d1">
+          <div class="map" aria-hidden="true"><svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><rect width="400" height="190" fill="#122019"/><path d="M150 0c10 40-30 60-25 100s40 50 30 90" stroke="#2E4A44" stroke-width="26" fill="none"/><path d="M150 0c10 40-30 60-25 100s40 50 30 90" stroke="#3E6B62" stroke-width="3" fill="none" stroke-dasharray="6 6"/><g stroke="rgba(242,238,230,.14)"><line x1="0" y1="60" x2="400" y2="60"/><line x1="0" y1="120" x2="400" y2="120"/><line x1="220" y1="0" x2="220" y2="190"/><line x1="320" y1="0" x2="320" y2="190"/></g><g font-family="monospace" font-size="11" fill="#9AA5A1"><text x="236" y="52">LØRENSKOG</text><text x="236" y="112">OSLO ØST</text><text x="60" y="150">BÆRUM</text></g><g><circle cx="252" cy="88" r="26" fill="rgba(245,184,27,.18)"/><circle cx="252" cy="88" r="9" fill="#F5B81B" stroke="#0B0F0E" stroke-width="3"/><text x="252" y="140" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#F5B81B">BROBEKK · OSLO</text></g></svg></div>
+          <div class="info-body">
+            <div class="info-row"><span class="ii"><svg class="ic"><use href="#i-pin"/></svg></span><span><small>Besøk / verksted</small><br><b>Brobekkveien 80, 0582 Oslo</b></span></div>
+            <div class="info-row"><span class="ii"><svg class="ic"><use href="#i-phone"/></svg></span><span><small>Telefon</small><br><b><a href="tel:+4722345678">22 34 56 78</a></b></span></div>
+            <div class="info-row"><span class="ii"><svg class="ic"><use href="#i-mail"/></svg></span><span><small>E-post</small><br><b><a href="mailto:post@nordtakblikk.no">post@nordtakblikk.no</a></b></span></div>
+          </div>
+        </div>
+        <div class="emergency rv rv-d2"><span class="ei"><svg class="ic" style="width:1.7em;height:1.7em"><use href="#i-bolt"/></svg></span><span><b>Vann inn nå? Lekkasjevakt:</b><a href="tel:+4722345678">22 34 56 78</a><br><small>Man–fre 07–22 · sikring samme dag i Oslo</small></span></div>
+        <div class="hours rv rv-d3"><h4>Åpningstider</h4><table><tr><td>Mandag–fredag</td><td>07:00–16:00</td></tr><tr><td>Befaringer</td><td>08:00–17:00</td></tr><tr><td>Lekkasjevakt</td><td>07:00–22:00</td></tr><tr><td>Helg</td><td>Stengt (vakt ved avtale)</td></tr></table></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-word" aria-hidden="true">NordTak &amp; Blikk</div>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#topp" style="color:var(--paper)"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="10" fill="#F2EEE6"/><path d="M8 27 24 12l16 15" stroke="#D9622B" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 26v9h18v-9" stroke="#101413" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-txt">NordTak &amp; Blikk<small style="color:var(--gold)">Tak · Blikk · AS</small></span></a>
+        <p>Taktekker og blikkenslager i Oslo og Viken siden 1998. Eget verksted, egne fagfolk, dokumentert kvalitet.</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="#kontakt">Få tilbud</a><a class="btn btn-sm" style="border:2px solid var(--gold);color:var(--gold)" href="tel:+4722345678">22 34 56 78</a></div>
+      </div>
+      <div><h5>Tjenester</h5><ul><li><a href="#tjenester">Taktekking</a></li><li><a href="#tjenester">Takrehabilitering</a></li><li><a href="#tjenester">Takinspeksjon</a></li><li><a href="#tjenester">Beslag &amp; pipebeslag</a></li><li><a href="#tjenester">Takrenner</a></li><li><a href="#tjenester">Fasadeblikk</a></li></ul></div>
+      <div><h5>Snarveier</h5><ul><li><a href="#taksjekk">Taksjekken™</a></li><li><a href="#for-etter">Før / etter</a></li><li><a href="#prosjekter">Prosjekter</a></li><li><a href="#priser">Prisliste</a></li><li><a href="#faq">Spørsmål &amp; svar</a></li><li><a href="#trygghet">Garanti</a></li></ul></div>
+      <div><h5>Kontakt</h5><ul><li>Brobekkveien 80<br>0582 Oslo</li><li><a href="tel:+4722345678">22 34 56 78</a></li><li><a href="mailto:post@nordtakblikk.no">post@nordtakblikk.no</a></li><li>Org.nr. 998 765 432 MVA</li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> NordTak &amp; Blikk AS · Demo-nettside for portefølje</span><span>Mesterbrev nr. 8741 · Sentral godkjenning</span></div>
+  </div>
+</footer>
+
+<!-- floating -->
+<div class="m-cta"><a class="mc-call" href="tel:+4722345678"><svg class="ic"><use href="#i-phone"/></svg> Ring nå</a><a class="mc-offer" href="#kontakt">Få tilbud <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+<button class="to-top" id="toTop" aria-label="Til toppen"><svg class="ic"><use href="#i-up"/></svg></button>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+"use strict";
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+/* year + progress + to-top */
+$("#year").textContent=new Date().getFullYear();
+var prog=$("#progress"),toTop=$("#toTop"),nav=$("#nav");
+function onScroll(){
+  var h=document.documentElement,sc=h.scrollTop,max=h.scrollHeight-h.clientHeight;
+  prog.style.width=(max>0?(sc/max*100):0)+"%";
+  toTop.classList.toggle("show",sc>700);
+  nav.style.boxShadow=sc>10?"0 4px 24px rgba(16,20,19,.12)":"none";
+}
+window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+toTop.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
+
+/* mobile menu */
+var burger=$("#burger");
+function closeMenu(){document.body.classList.remove("menu-open");burger.setAttribute("aria-expanded","false")}
+burger.addEventListener("click",function(){
+  var open=document.body.classList.toggle("menu-open");
+  burger.setAttribute("aria-expanded",open?"true":"false");
+});
+$$("#mmenu a").forEach(function(a){a.addEventListener("click",closeMenu)});
+
+/* reveal on scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+$$(".rv").forEach(function(el){io.observe(el)});
+
+/* counters */
+var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  var el=e.target,end=parseInt(el.dataset.count,10)||0,t0=null;
+  function tick(t){if(!t0)t0=t;var p=Math.min((t-t0)/1400,1),v=Math.round(end*(1-Math.pow(1-p,3)));
+    el.textContent=v.toLocaleString("nb-NO");if(p<1)requestAnimationFrame(tick)}
+  requestAnimationFrame(tick);
+})},{threshold:.5});
+$$("[data-count]").forEach(function(el){cio.observe(el)});
+
+/* hero hotspots */
+$$(".hotspot").forEach(function(b){
+  b.addEventListener("click",function(ev){
+    ev.stopPropagation();
+    var card=document.getElementById(b.dataset.hs),was=card.classList.contains("show");
+    $$(".hs-card").forEach(function(c){c.classList.remove("show")});
+    if(!was)card.classList.add("show");
+  });
+});
+$$(".hs-card .x").forEach(function(x){x.addEventListener("click",function(ev){ev.stopPropagation();x.parentElement.classList.remove("show")})});
+document.addEventListener("click",function(){$(".hs-card")&&$$(".hs-card").forEach(function(c){c.classList.remove("show")})});
+
+/* ---------- WIZARD ---------- */
+var step=1,sel={roof:null,prob:null,age:15};
+var steps=$$(".wstep"),bars=$$("#wizSteps i"),wizLabel=$("#wizLabel"),back=$("#wizBack"),next=$("#wizNext");
+function paintSteps(){bars.forEach(function(b,i){b.className=i<step-1?"done":(i===step-1?"now":"")});wizLabel.textContent="Steg "+step+" av 4";
+  back.disabled=step===1;back.style.opacity=step===1?".4":"1";
+  next.textContent=step===3?"Se anbefaling →":(step===4?"Ferdig ✓":"Neste →");}
+function go(n){
+  if(n===4&&step===3)compute();
+  step=Math.max(1,Math.min(4,n));
+  steps.forEach(function(s){s.classList.toggle("on",+s.dataset.step===step)});
+  paintSteps();
+}
+function pick(list,fn){$$("#"+list+" .opt, #"+list+" .opt2").forEach(function(b){b.addEventListener("click",function(){
+  $$("#"+list+" .sel").forEach(function(x){x.classList.remove("sel")});b.classList.add("sel");fn(b.dataset.v);})});}
+pick("roofTypes",function(v){sel.roof=v;setTimeout(function(){if(step===1)go(2)},260)});
+pick("problems",function(v){sel.prob=v;setTimeout(function(){if(step===2)go(3)},260)});
+$$("#ageRow .age").forEach(function(b){b.addEventListener("click",function(){$$("#ageRow .age").forEach(function(x){x.classList.remove("sel")});b.classList.add("sel");sel.age=+b.dataset.v})});
+var rSize=$("#rSize"),oSize=$("#oSize");
+function paintRange(){var p=(rSize.value-rSize.min)/(rSize.max-rSize.min)*100;rSize.style.setProperty("--fill",p+"%");oSize.textContent=rSize.value+" m²"}
+rSize.addEventListener("input",paintRange);paintRange();
+var zip=$("#zip"),zipMsg=$("#zipMsg");
+zip.addEventListener("input",function(){
+  zip.value=zip.value.replace(/\D/g,"").slice(0,4);
+  if(zip.value.length===4){
+    var ok=/^(0|1|2|3)\d{3}$/.test(zip.value);
+    zipMsg.textContent=ok?"✓ Vi dekker "+zip.value+" — gratis befaring.":"• Utenfor kjerneområdet — kontakt oss, vi vurderer større oppdrag.";
+    zipMsg.className="zip-msg "+(ok?"ok":"warn");
+  }else{zipMsg.textContent="";zipMsg.className="zip-msg"}
+});
+back.addEventListener("click",function(){go(step-1)});
+next.addEventListener("click",function(){
+  if(step===1&&!sel.roof){toast("Velg en taktype først");return}
+  if(step===2&&!sel.prob){toast("Velg det viktigste problemet");return}
+  if(step===4){document.getElementById("kontakt").scrollIntoView({behavior:"smooth"});return}
+  go(step+1);
+});
+var roofN={stein:"Takstein",shingel:"Shingel",fals:"Båndtekking/fals",papp:"Papp/membran",terrasse:"Terrasse/flatt tak",vetikke:"Ukjent taktype"};
+var probN={lekkasje:"Lekkasje",slitt:"Slitt tak",mose:"Mose/alger",renner:"Renner/nedløp",pipe:"Pipe/beslag",nytt:"Nytt tak"};
+function fmt(n){return Math.round(n/1000)*1000}
+function kr(n){return fmt(n).toLocaleString("nb-NO")+" kr"}
+function compute(){
+  var size=+rSize.value,age=sel.age,r=sel.roof||"vetikke",p=sel.prob||"slitt";
+  var base=2400,title,desc,time,gar="10 år";
+  if(p==="lekkasje"){title="Akutt lekkasjehjelp først";desc="Vann inn skal sikres med én gang. Vi rykker ut, tetter midlertidig og finner årsaken med fuktmåler — deretter fastpris på varig utbedring. Ring "+ "22 34 56 78"+" for raskest hjelp.";base=1100;time="Samme dag";gar="5 år på utbedring"}
+  else if(p==="mose"){title="Rens + mosebehandling";desc="Mose holder på fukt og forkorter levetiden, men betyr sjelden at taket må byttes. Skånsom rens og behandling gir taket mange år til — vi sjekker samtidig beslag og renner.";base=95;time="1–2 dager";gar="2 år mosefritt"}
+  else if(p==="renner"){title="Nye renner + kontroll";desc="Tette eller hengende renner sender vann inn i fasade og grunnmur. Vi dimensjonerer nytt anlegg etter takareal, lodder skjøter og monterer løvfang.";base=1250;time="1–3 dager";gar="5 år"}
+  else if(p==="pipe"){title="Nytt pipebeslag";desc="9 av 10 'mystiske lekkasjer' sitter rundt pipa. Vi måler opp, produserer nytt beslag på eget verksted og monterer med fals og lodding — ikke fugemasse.";base=0;time="1–2 dager";gar="5 år"}
+  else if(p==="nytt"){title="Komplett nytt tak";desc="Nybygg, garasje eller tilbygg? Vi prosjekterer oppbygging, lufting og beslag fra start — med fastpris og fremdriftsplan du kan forholde deg til.";base=r==="fals"?3300:(r==="stein"?2800:2600);time="2–3 uker";gar="10 år"}
+  else{if(age>=25||r==="vetikke"){title="Full rehabilitering sannsynlig";desc="Etter 25+ år er undertak og beslag som regel modne for utskifting. Befaring med drone og fuktmåling avgjør om full omlegging eller delvis rehab lønner seg.";base=r==="fals"?3100:2500;time="2–3 uker";gar="10 år"}
+    else{title="Service + tilstandssjekk";desc="Taket er midt i livet — da lønner det seg med kontroll av beslag, gjennomføringer og renner, pluss små utbedringer før de blir dyre.";base=900;time="1 dag";gar="2 år på service"}}
+  var price;
+  if(p==="pipe")price="14 900–24 900 kr";
+  else if(p==="mose")price=kr(size*70)+"–"+kr(size*110);
+  else if(p==="renner")price=kr(Math.max(19000,size*320))+"–"+kr(Math.max(29000,size*480));
+  else if(p==="lekkasje"&&base===1100)price=kr(6900)+" + utbedring";
+  else price=kr(size*base*.85)+"–"+kr(size*base*1.15);
+  $("#resTitle").textContent=title;$("#resDesc").textContent=desc;
+  $("#resPrice").textContent=price;$("#resTime").textContent=time;$("#resGar").textContent=gar;
+  sel.result={title:title,price:price,time:time,roof:roofN[r],prob:probN[p],size:size,age:age,zip:zip.value||"–"};
+}
+$("#resRestart").addEventListener("click",function(){sel={roof:null,prob:null,age:15};$$(".opt.sel,.opt2.sel").forEach(function(x){x.classList.remove("sel")});$$("#ageRow .age").forEach(function(x,i){x.classList.toggle("sel",i===1)});zip.value="";zipMsg.textContent="";go(1)});
+$("#resCta").addEventListener("click",function(){
+  if(!sel.result)return;
+  var m=$("#fMsg");
+  m.value="Hei! Jeg tok taksjekken: "+sel.result.roof+" ("+sel.result.size+" m², ca. "+sel.result.age+" år), problem: "+sel.result.prob+". Anbefaling: "+sel.result.title+" ("+sel.result.price+"). Postnr: "+sel.result.zip+". Ta kontakt for befaring!";
+  var map={"Takstein":0,"Shingel":1,"Båndtekking/fals":2,"Papp/membran":3,"Terrasse/flatt tak":4};
+  var idx=map[sel.result.roof];if(idx!==undefined)$("#fTak").selectedIndex=idx;
+  toast("Resultatet er lagt inn i skjemaet nedenfor ✓");
+});
+
+/* ---------- SERVICES accordion + preview ---------- */
+var svcs=$$(".svc");
+function setPanel(svc){var p=$(".svc-panel",svc);p.style.maxHeight=svc.classList.contains("open")?p.scrollHeight+"px":"0px"}
+function paintPV(id){$$(".svc-preview .pv").forEach(function(p){p.classList.toggle("on",p.id===id)})}
+svcs.forEach(function(svc){
+  setPanel(svc);
+  $(".svc-head",svc).addEventListener("click",function(){
+    var willOpen=!svc.classList.contains("open");
+    svcs.forEach(function(s){s.classList.remove("open");$(".svc-head",s).setAttribute("aria-expanded","false");setPanel(s)});
+    if(willOpen){svc.classList.add("open");$(".svc-head",svc).setAttribute("aria-expanded","true");setPanel(svc);paintPV(svc.dataset.pv)}
+  });
+  svc.addEventListener("mouseenter",function(){if(window.innerWidth>1080)paintPV(svc.dataset.pv)});
+});
+window.addEventListener("resize",function(){svcs.forEach(setPanel)});
+
+/* ---------- BEFORE / AFTER ---------- */
+var BA=[
+ {tagB:"Før · 1987",tagA:"Etter · 2025",
+  facts:[["Omfang","184 m² + beslag"],["Materiale","Fals · sort stål"],["Byggetid","12 dager"],["Garanti","10 år"]],
+  old:{roof:"#4A4238",roof2:"#3A342C",wall:"#B8AB93",moss:true,sky:"#5A6B72",gutter:"#5A6663",pipe:"#6B4A3A"},
+  now:{roof:"#1C2321",roof2:"#141918",wall:"#E4DCCB",moss:false,sky:"#1B3230",gutter:"#C97B2F",pipe:"#8A4A2E"}},
+ {tagB:"Før · 1996",tagA:"Etter · 2025",
+  facts:[["Omfang","540 m² · 6 enheter"],["Materiale","Betongstein"],["Byggetid","5 uker"],["Garanti","10 år"]],
+  old:{roof:"#5C4A3E",roof2:"#4A3830",wall:"#A89B86",moss:true,sky:"#5A6B72",gutter:"#6B7572",pipe:"#6B4A3A"},
+  now:{roof:"#3A2A24",roof2:"#241915",wall:"#E4DCCB",moss:false,sky:"#1B3230",gutter:"#2E3836",pipe:"#8A4A2E"}},
+ {tagB:"Før · 2001",tagA:"Etter · 2024",
+  facts:[["Omfang","900 m² membran"],["Materiale","PVC + falloppbygg"],["Byggetid","9 dager"],["Garanti","10 år"]],
+  old:{roof:"#55504A",roof2:"#44403A",wall:"#9A938A",moss:true,sky:"#5A6B72",gutter:"#6B7572",pipe:"#5A5A5A"},
+  now:{roof:"#232B29",roof2:"#141918",wall:"#C9CFD2",moss:false,sky:"#1B3230",gutter:"#C97B2F",pipe:"#5A6663"}}
+];
+function houseSVG(c,isOld){
+  var moss=isOld?'<g fill="#4A6B3A" opacity=".85"><ellipse cx="330" cy="200" rx="34" ry="14"/><ellipse cx="230" cy="225" rx="26" ry="11"/><ellipse cx="420" cy="232" rx="22" ry="10"/><ellipse cx="150" cy="238" rx="18" ry="8"/></g><g stroke="#2C241C" stroke-width="2"><line x1="250" y1="180" x2="262" y2="230"/><line x1="360" y1="195" x2="352" y2="244"/></g><rect x="120" y="300" width="30" height="60" fill="#6B5B45" opacity=".6"/>':"";
+  var stain=isOld?'<rect x="440" y="270" width="22" height="70" fill="#5E5648" opacity=".55"/>':"";
+  var skyline=isOld?"":'<circle cx="700" cy="70" r="26" fill="#F5B81B"/>';
+  return '<svg viewBox="0 0 800 420" preserveAspectRatio="xMidYMid slice"><rect width="800" height="420" fill="'+c.sky+'"/>'+skyline+
+  '<path d="M0 330 Q200 280 400 322 T800 315 V420 H0Z" fill="'+(isOld?"#4E5A52":"#13211D")+'"/>'+
+  '<rect x="0" y="368" width="800" height="52" fill="'+(isOld?"#3E463F":"#0A120F")+'"/>'+
+  '<rect x="170" y="250" width="460" height="120" fill="'+c.wall+'"/>'+stain+
+  '<g stroke="rgba(0,0,0,.18)" stroke-width="1.4"><line x1="170" y1="275" x2="630" y2="275"/><line x1="170" y1="300" x2="630" y2="300"/><line x1="170" y1="325" x2="630" y2="325"/><line x1="170" y1="350" x2="630" y2="350"/></g>'+
+  '<polygon points="110,258 400,100 690,258" fill="'+c.roof+'"/>'+
+  '<g stroke="'+c.roof2+'" stroke-width="3"><line x1="200" y1="214" x2="180" y2="258"/><line x1="260" y1="184" x2="244" y2="258"/><line x1="320" y1="154" x2="310" y2="258"/><line x1="380" y1="124" x2="376" y2="258"/><line x1="440" y1="154" x2="450" y2="258"/><line x1="500" y1="184" x2="516" y2="258"/><line x1="560" y1="214" x2="582" y2="258"/></g>'+
+  '<polygon points="110,258 400,100 690,258" fill="none" stroke="#0C1110" stroke-width="4" stroke-linejoin="round"/>'+moss+
+  '<polygon points="320,258 400,196 480,258" fill="'+c.wall+'" stroke="#0C1110" stroke-width="3"/><circle cx="400" cy="234" r="12" fill="'+(isOld?"#8A8A8A":"#FFD98A")+'" stroke="#0C1110" stroke-width="3"/>'+
+  '<rect x="238" y="118" width="52" height="100" fill="'+c.pipe+'" stroke="#0C1110" stroke-width="3"/><rect x="228" y="106" width="72" height="16" fill="#3A3A3A" stroke="#0C1110" stroke-width="3"/>'+
+  '<polygon points="226,218 302,218 314,238 214,238" fill="'+c.gutter+'" stroke="#0C1110" stroke-width="2.5"/>'+
+  '<rect x="200" y="286" width="70" height="58" fill="#16211F" stroke="#0C1110" stroke-width="3"/><rect x="206" y="292" width="58" height="46" fill="'+(isOld?"#7E8A86":"#FFD98A")+'"/>'+
+  '<rect x="530" y="286" width="70" height="58" fill="#16211F" stroke="#0C1110" stroke-width="3"/><rect x="536" y="292" width="58" height="46" fill="'+(isOld?"#7E8A86":"#FFD98A")+'"/>'+
+  '<rect x="375" y="280" width="56" height="90" fill="#152B24" stroke="#0C1110" stroke-width="3"/>'+
+  '<rect x="100" y="256" width="600" height="16" rx="6" fill="'+c.gutter+'" stroke="#0C1110" stroke-width="3"/>'+
+  '<rect x="656" y="270" width="18" height="100" fill="'+c.gutter+'" stroke="#0C1110" stroke-width="3"/>'+
+  (isOld?'<g font-family="monospace" font-size="15" fill="#E8B4A6"><text x="560" y="150">✕ LEKKASJE</text><line x1="560" y1="158" x2="520" y2="200" stroke="#E8B4A6" stroke-width="2"/></g>':'<g font-family="monospace" font-size="15" fill="#5BD98A"><text x="556" y="150">✓ TETT 2025</text></g>')+
+  '</svg>';
+}
+var baStage=$("#baStage"),baIdx=0;
+function paintBA(){
+  var d=BA[baIdx];
+  $("#baBefore").innerHTML=houseSVG(d.old,true);
+  $("#baAfter").innerHTML=houseSVG(d.now,false);
+  $("#baTagB").textContent=d.tagB;$("#baTagA").textContent=d.tagA;
+  $("#baFacts").innerHTML=d.facts.map(function(f){return "<div><small>"+f[0]+"</small><b>"+f[1]+"</b></div>"}).join("");
+}
+paintBA();
+$$(".ba-tab").forEach(function(t){t.addEventListener("click",function(){
+  $$(".ba-tab").forEach(function(x){x.classList.remove("sel");x.setAttribute("aria-selected","false")});
+  t.classList.add("sel");t.setAttribute("aria-selected","true");baIdx=+t.dataset.ba;paintBA();
+})});
+(function(){
+  var dragging=false;
+  function setPos(clientX){var r=baStage.getBoundingClientRect();var p=(clientX-r.left)/r.width*100;p=Math.max(4,Math.min(96,p));baStage.style.setProperty("--pos",p+"%")}
+  baStage.addEventListener("pointerdown",function(e){dragging=true;baStage.setPointerCapture(e.pointerId);setPos(e.clientX)});
+  baStage.addEventListener("pointermove",function(e){if(dragging)setPos(e.clientX)});
+  baStage.addEventListener("pointerup",function(){dragging=false});
+  baStage.addEventListener("pointercancel",function(){dragging=false});
+})();
+
+/* ---------- PROJECT FILTERS ---------- */
+$$(".fbtn").forEach(function(b){b.addEventListener("click",function(){
+  $$(".fbtn").forEach(function(x){x.classList.remove("sel")});b.classList.add("sel");
+  var f=b.dataset.f;
+  $$("#projGrid .proj").forEach(function(p){
+    var show=f==="alle"||p.dataset.cat===f;
+    p.classList.toggle("hide",!show);
+    if(show){p.style.animation="none";void p.offsetWidth;p.style.animation="pop .35s ease"}
+  });
+})});
+
+/* ---------- MATERIALS TABS ---------- */
+$$(".mat-tab").forEach(function(t){t.addEventListener("click",function(){
+  $$(".mat-tab").forEach(function(x){x.classList.remove("sel");x.setAttribute("aria-selected","false")});
+  t.classList.add("sel");t.setAttribute("aria-selected","true");
+  $$(".mat-panel").forEach(function(p){p.classList.toggle("on",p.id===t.dataset.m)});
+})});
+
+/* ---------- FAQ ---------- */
+$$(".faq").forEach(function(f){
+  var a=$(".faq-a",f),q=$(".faq-q",f);
+  function paint(){a.style.maxHeight=f.classList.contains("open")?a.scrollHeight+"px":"0px"}
+  paint();window.addEventListener("resize",paint);
+  q.addEventListener("click",function(){
+    var open=f.classList.contains("open");
+    $$(".faq.open").forEach(function(o){o.classList.remove("open");$(".faq-q",o).setAttribute("aria-expanded","false");$(".faq-a",o).style.maxHeight="0px"});
+    if(!open){f.classList.add("open");q.setAttribute("aria-expanded","true");paint()}
+  });
+});
+
+/* ---------- FORM ---------- */
+var toastTimer;
+function toast(msg){var t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove("show")},2800)}
+$("#ctForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  var n=$("#fNavn").value.trim(),t=$("#fTlf").value.replace(/\D/g,""),m=$("#fEpost").value.trim();
+  if(n.length<2){toast("Skriv inn navnet ditt");$("#fNavn").focus();return}
+  if(t.length<8){toast("Skriv inn et gyldig telefonnummer");$("#fTlf").focus();return}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)){toast("Skriv inn en gyldig e-postadresse");$("#fEpost").focus();return}
+  $("#formRef").textContent="REF: NT-"+Math.floor(1000+Math.random()*9000);
+  $("#ctForm").style.display="none";$("#formOk").classList.add("show");
+  toast("Forespørsel sendt ✓ Vi ringer deg snart");
+});
+
+paintSteps();
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

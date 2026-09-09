@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andersen Rør AS — Rørlegger i Oslo med hjertet på rett sted</title>
+<meta name="description" content="Andersen Rør AS er et moderne rørleggerfirma for privatpersoner og bedrifter. Bad, rehabilitering, lekkasjer, service og akutte rørleggertjenester — alltid til fast pris.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d1220;
+    --ink-soft:#4a5161;
+    --paper:#f7f6f2;
+    --paper-2:#ffffff;
+    --line:#e8e6df;
+    --accent:#0a4fd0;
+    --accent-deep:#083894;
+    --accent-soft:#e8effc;
+    --signal:#1f9d55;
+    --warm:#b4533a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4,.grotesk{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-0.02em}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;width:100%}
+  button{font-family:inherit;cursor:pointer}
+
+  /* ---------- Buttons ---------- */
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;padding:16px 26px;border-radius:12px;border:1px solid transparent;transition:.25s cubic-bezier(.4,0,.2,1);white-space:nowrap}
+  .btn svg{width:18px;height:18px;flex:none}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px -8px rgba(10,79,208,.5)}
+  .btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(10,79,208,.55)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:#000;transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--line);background:var(--paper-2);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn-light{background:#fff;color:var(--ink)}
+  .btn-light:hover{transform:translateY(-2px)}
+  .link-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--accent);transition:gap .2s}
+  .link-arrow:hover{gap:14px}
+
+  /* ---------- Header / Nav ---------- */
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s}
+  .site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .site-header.scrolled{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 4px 30px -20px rgba(0,0,0,.3)}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk';font-weight:700;font-size:20px;letter-spacing:-0.02em}
+  .logo-mark{width:36px;height:36px;background:var(--accent);border-radius:10px;display:grid;place-items:center;color:#fff;position:relative;overflow:hidden}
+  .logo-mark svg{width:20px;height:20px}
+  .logo small{display:block;font-family:'Inter';font-size:10px;font-weight:500;color:var(--ink-soft);letter-spacing:.14em;text-transform:uppercase;margin-top:-3px}
+  .nav-links{display:flex;gap:30px;list-style:none}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--ink-soft);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .header-cta{display:flex;align-items:center;gap:16px}
+  .tel-chip{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+  .tel-chip:hover{color:var(--accent)}
+  .hamburger{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--paper-2);place-items:center}
+  .hamburger span{display:block;width:18px;height:2px;background:var(--ink);margin:2.5px auto;transition:.3s}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:150px 0 90px;background:var(--ink);color:#fff;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(10,79,208,.35),transparent 55%),radial-gradient(circle at 20% 90%,rgba(179,84,58,.18),transparent 50%)}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#cfe0ff;border:1px solid rgba(255,255,255,.18);padding:8px 14px;border-radius:100px;background:rgba(255,255,255,.04)}
+  .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 0 rgba(31,157,85,.6);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(31,157,85,.5)}70%{box-shadow:0 0 0 8px rgba(31,157,85,0)}100%{box-shadow:0 0 0 0 rgba(31,157,85,0)}}
+  .hero h1{font-size:clamp(38px,6vw,66px);line-height:1.04;font-weight:700;margin:24px 0 22px}
+  .hero h1 em{font-style:normal;color:transparent;background:linear-gradient(100deg,#7ea8ff,#cfe0ff);-webkit-background-clip:text;background-clip:text}
+  .hero p{font-size:18px;color:#b9c2d1;max-width:520px}
+  .hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .hero-trust{display:flex;gap:30px;margin-top:48px;flex-wrap:wrap}
+  .hero-trust .stat{text-align:left}
+  .hero-trust .num{font-family:'Space Grotesk';font-size:28px;font-weight:700;color:#fff}
+  .hero-trust .lbl{font-size:13px;color:#9aa5b8}
+  .hero-visual{position:relative}
+  .hero-img{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);aspect-ratio:4/5;max-height:560px}
+  .hero-img img{height:100%;object-fit:cover}
+  .hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(8,20,40,.55))}
+  .hero-card{position:absolute;bottom:-28px;left:-30px;background:#fff;color:var(--ink);border-radius:16px;padding:18px 22px;display:flex;gap:14px;align-items:center;box-shadow:0 20px 50px -20px rgba(0,0,0,.5)}
+  .hero-card .ico{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent)}
+  .hero-card .t{font-weight:700;font-size:15px}
+  .hero-card .s{font-size:13px;color:var(--ink-soft)}
+  .hero-chip{position:absolute;top:20px;right:-14px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 16px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .hero-chip .g{color:var(--signal)}
+  .hero-marquee{position:relative;margin-top:-1px;background:var(--accent);color:#fff;overflow:hidden}
+  .marq-track{display:flex;gap:0;animation:marq 30s linear infinite;white-space:nowrap;padding:14px 0;font-weight:600;font-size:14px;letter-spacing:.04em}
+  .marq-track span{padding:0 24px;display:inline-flex;align-items:center;gap:24px}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- Section scaffolding ---------- */
+  section{padding:96px 0}
+  .sec-head{max-width:640px;margin-bottom:52px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .eyebrow::before{content:'';width:22px;height:2px;background:var(--accent)}
+  .sec-head h2{font-size:clamp(30px,4.5vw,46px);line-height:1.1;font-weight:700;margin-top:14px}
+  .sec-head p{color:var(--ink-soft);margin-top:16px;font-size:17px}
+  .light{background:var(--paper)} .alt{background:var(--paper-2)}
+
+  /* ---------- Services ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .service{background:var(--paper-2);border:1px solid var(--line);border-radius:18px;padding:34px 30px;position:relative;transition:.3s cubic-bezier(.4,0,.2,1);overflow:hidden}
+  .service:hover{transform:translateY(-6px);box-shadow:0 24px 50px -25px rgba(13,18,32,.25);border-color:#d6d2c8}
+  .service .snum{position:absolute;top:24px;right:26px;font-family:'Space Grotesk';font-size:40px;font-weight:700;color:#eeebe3}
+  .service .ico{width:54px;height:54px;border-radius:14px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent);margin-bottom:22px;transition:.3s}
+  .service:hover .ico{background:var(--accent);color:#fff}
+  .service .ico svg{width:26px;height:26px}
+  .service h3{font-size:20px;margin-bottom:10px}
+  .service p{color:var(--ink-soft);font-size:15px;margin-bottom:18px}
+  .service ul{list-style:none;margin-bottom:22px}
+  .service ul li{font-size:14px;color:var(--ink-soft);padding-left:22px;position:relative;margin-bottom:7px}
+  .service ul li::before{content:'';position:absolute;left:2px;top:7px;width:8px;height:8px;border-radius:2px;background:var(--signal)}
+
+  /* ---------- Numbers ---------- */
+  .band{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+  .band::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 30%,rgba(10,79,208,.28),transparent 50%)}
+  .stats{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+  .stats .num{font-family:'Space Grotesk';font-size:clamp(38px,5vw,58px);font-weight:700;line-height:1}
+  .stats .lbl{color:#9aa5b8;font-size:14px;margin-top:8px}
+
+  /* ---------- Before/After ---------- */
+  .ba-shell{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .ba-compare{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(0,0,0,.4);cursor:ew-resize;user-select:none}
+  .ba-compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .ba-before{z-index:1}
+  .ba-after{z-index:2;clip-path:inset(0 0 0 50%)}
+  .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;z-index:3;transform:translateX(-1px)}
+  .ba-handle .knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;background:#fff;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3);color:var(--ink)}
+  .ba-handle .knob svg{width:20px;height:20px}
+  .ba-tag{position:absolute;top:16px;z-index:3;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:100px;background:rgba(13,18,32,.6);color:#fff;backdrop-filter:blur(4px)}
+  .ba-tag.before{left:16px}
+  .ba-tag.after{right:16px;background:var(--accent)}
+  .ba-copy h2{font-size:clamp(28px,4vw,42px);line-height:1.12;margin-bottom:18px}
+  .ba-copy p{color:var(--ink-soft);margin-bottom:20px}
+  .ba-points{list-style:none;margin:26px 0 30px}
+  .ba-points li{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+  .ba-points .ck{width:24px;height:24px;flex:none;border-radius:7px;background:var(--signal);color:#fff;display:grid;place-items:center;margin-top:2px}
+  .ba-points .ck svg{width:13px;height:13px}
+  .ba-points b{display:block;font-size:15px}
+  .ba-points span{color:var(--ink-soft);font-size:14px}
+
+  /* ---------- Projects ---------- */
+  .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .project{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;background:#ddd;cursor:pointer}
+  .project img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.6,.2,1)}
+  .project .ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(8,15,30,.9));opacity:.9;transition:.4s}
+  .project:hover img{transform:scale(1.06)}
+  .project .info{position:absolute;left:0;right:0;bottom:0;padding:24px;color:#fff}
+  .project .cat{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:#a8c0ee}
+  .project h3{font-size:20px;margin:6px 0 2px}
+  .project .loc{font-size:14px;color:#c2c9d6}
+  .project .chip{position:absolute;top:16px;left:16px;font-size:12px;font-weight:700;padding:5px 11px;border-radius:100px;background:rgba(255,255,255,.92);color:var(--ink)}
+
+  /* ---------- Testimonials ---------- */
+  .quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .quote{background:var(--paper-2);border:1px solid var(--line);border-radius:18px;padding:32px;display:flex;flex-direction:column}
+  .quote .stars{color:#e8a23d;letter-spacing:2px;font-size:15px;margin-bottom:18px}
+  .quote p{font-size:16px;color:var(--ink);line-height:1.7;flex:1}
+  .quote .who{display:flex;align-items:center;gap:13px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+  .quote .av{width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700;font-family:'Space Grotesk'}
+  .quote .nm{font-weight:600;font-size:14px}
+  .quote .rl{font-size:13px;color:var(--ink-soft)}
+
+  /* ---------- Process ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .step{position:relative;padding:6px 0}
+  .step .big{font-family:'Space Grotesk';font-size:56px;font-weight:700;color:#e8e5dc;line-height:1;margin-bottom:12px}
+  .step h3{font-size:18px;margin-bottom:8px}
+  .step p{color:var(--ink-soft);font-size:14.5px}
+
+  /* ---------- FAQ / Contact ---------- */
+  .contact{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+  .contact::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 10%,rgba(10,79,208,.32),transparent 55%)}
+  .contact-grid{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:60px}
+  .contact-info h2{font-size:clamp(28px,4vw,42px);line-height:1.12;margin-bottom:18px}
+  .contact-info>p{color:#aeb7c6;margin-bottom:32px}
+  .ci-row{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start}
+  .ci-row .ico{width:46px;height:46px;flex:none;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center}
+  .ci-row .ico svg{width:20px;height:20px}
+  .ci-row .t{font-weight:600;font-size:15px;margin-bottom:2px}
+  .ci-row .s{font-size:14px;color:#aeb7c6}
+  .ci-row a{color:#cfe0ff;font-weight:600}
+  .ci-row a:hover{color:#fff}
+  .emergency{display:flex;gap:16px;background:rgba(179,84,58,.16);border:1px solid rgba(179,112,90,.35);padding:20px;border-radius:16px;margin-top:10px}
+  .emergency .box-ico{width:44px;height:44px;flex:none;border-radius:12px;background:var(--warm);display:grid;place-items:center}
+  .emergency .hl{font-weight:700;font-size:16px}
+  .emergency .sub{font-size:13.5px;color:#d9c0b5}
+
+  .form-card{background:#fff;color:var(--ink);border-radius:22px;padding:clamp(26px,4vw,44px);box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+  .form-card h3{font-size:24px;margin-bottom:6px}
+  .form-card .lead{color:var(--ink-soft);font-size:15px;margin-bottom:26px}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:7px;color:var(--ink-soft)}
+  .field input,.field select,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:13px 15px;font-size:15px;font-family:inherit;background:#fbfbfa;transition:.2s;color:var(--ink)}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px rgba(10,79,208,.1)}
+  .field textarea{resize:vertical;min-height:110px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .form-note{font-size:12.5px;color:var(--ink-soft);margin-top:14px;text-align:center}
+  .form-success{display:none;text-align:center;padding:30px 10px}
+  .form-success .big-ck{width:64px;height:64px;border-radius:50%;background:var(--signal);color:#fff;display:grid;place-items:center;margin:0 auto 18px}
+  .form-success .big-ck svg{width:30px;height:30px}
+  .form-success h4{font-size:22px;margin-bottom:8px}
+  .form-success p{color:var(--ink-soft);font-size:15px}
+
+  /* ---------- Footer ---------- */
+  footer{background:#0a0e19;color:#9aa5b8;padding:64px 0 32px;font-size:14px}
+  .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+  .footer-grid h4{color:#fff;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;font-weight:600}
+  .footer-grid ul{list-style:none}
+  .footer-grid li{margin-bottom:11px}
+  .footer-grid a:hover{color:#fff}
+  .footer-brand p{max-width:300px;margin-top:16px;color:#7a8294}
+  .footer-bottom{border-top:1px solid #1a2030;padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#6b7285}
+  .org-nr{margin-top:18px;font-size:13px;color:#6b7285}
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+  /* ---------- Mobile nav ---------- */
+  .mobile-nav{position:fixed;inset:0;background:var(--ink);z-index:200;color:#fff;padding:100px 28px 40px;transform:translateX(100%);transition:.4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+  .mobile-nav.open{transform:translateX(0)}
+  .mobile-nav ul{list-style:none;flex:1}
+  .mobile-nav li{border-bottom:1px solid rgba(255,255,255,.08)}
+  .mobile-nav a{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-family:'Space Grotesk';font-size:24px;font-weight:600}
+  .mobile-nav .close{position:absolute;top:28px;right:28px;width:44px;height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;font-size:22px}
+  .mobile-nav .m-footer{margin-top:30px}
+
+  .to-top{position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:12px;background:var(--accent);color:#fff;border:none;display:grid;place-items:center;opacity:0;pointer-events:none;transition:.3s;box-shadow:0 10px 24px -8px rgba(10,79,208,.5);z-index:90}
+  .to-top.show{opacity:1;pointer-events:auto}
+  .to-top:hover{transform:translateY(-3px)}
+
+  @media(max-width:960px){
+    section{padding:70px 0}
+    .hero{padding:120px 0 70px}
+    .hero-grid{grid-template-columns:1fr;gap:56px}
+    .hero-visual{max-width:480px}
+    .hero-card{left:16px}
+    .services-grid,.quotes-grid,.projects-grid{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:repeat(2,1fr);gap:36px}
+    .stats{grid-template-columns:repeat(2,1fr);gap:36px}
+    .ba-shell{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr;gap:44px}
+    .footer-grid{grid-template-columns:1fr 1fr}
+    .nav-links,.header-cta .btn{display:none}
+    .hamburger{display:grid}
+  }
+  @media(max-width:560px){
+    .services-grid,.quotes-grid,.projects-grid{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr}
+    .hero-actions .btn{width:100%;justify-content:center}
+    .hero-trust{gap:22px}
+    .footer-grid{grid-template-columns:1fr}
+  }
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="site-header" id="header">
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Andersen Rør AS – hjem">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8"/><path d="M9 14h6"/><path d="M19 5.5l-1.5-1.5L15 6.5l-.5-.5"/><path d="M17 6.5h-2a6 6 0 0 0-6 6v1"/><path d="M17 6.5v1.5A2.5 2.5 0 0 1 14.5 11H13"/></svg>
+      </span>
+      <span>Andersen Rør<small>Oslo</small></span>
+    </a>
+    <nav aria-label="Hovedmeny">
+      <ul class="nav-links">
+        <li><a href="#tjenester">Tjenester</a></li>
+        <li><a href="#prosjekter">Prosjekter</a></li>
+        <li><a href="#om-oss">Om oss</a></li>
+        <li><a href="#omtaler">Omtaler</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <a href="tel:22004040" class="tel-chip">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        22 00 40 40
+      </a>
+      <a href="#kontakt" class="btn btn-primary">Få tilbud</a>
+      <button class="hamburger" id="hamburger" aria-label="Åpne meny">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Mobile nav ===== -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="close" id="closeNav" aria-label="Lukk meny">&times;</button>
+  <nav>
+    <ul>
+      <li><a href="#tjenester">Tjenester <span>→</span></a></li>
+      <li><a href="#prosjekter">Prosjekter <span>→</span></a></li>
+      <li><a href="#om-oss">Om oss <span>→</span></a></li>
+      <li><a href="#omtaler">Omtaler <span>→</span></a></li>
+      <li><a href="#kontakt">Kontakt <span>→</span></a></li>
+    </ul>
+  </nav>
+  <div class="m-footer">
+    <a href="tel:22004040" class="btn btn-light" style="width:100%;justify-content:center">Ring 22 00 40 40</a>
+    <a href="#kontakt" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:12px">Få gratis tilbud</a>
+  </div>
+</div>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-badge"><span class="dot"></span> Rørleggervakt — åpent nå</span>
+      <h1>Rørleggerarbeid utført med <em>presisjon.</em> Til fast pris.</h1>
+      <p>Andersen Rør AS leverer baderom, rehabilitering og akutte rørleggertjenester for privatpersoner og bedrifter i Oslo og omegn. Ærlig rådgivning, ryddig gjennomføring og garanti på alt arbeid.</p>
+      <div class="hero-actions">
+        <a href="#kontakt" class="btn btn-primary">Få gratis tilbud
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:22004040" class="btn btn-light">Ring nå</a>
+      </div>
+      <div class="hero-trust">
+        <div class="stat"><div class="num">18 år</div><div class="lbl">erfaring i faget</div></div>
+        <div class="stat"><div class="num">4,9/5</div><div class="lbl">fra 380+ kunder</div></div>
+        <div class="stat"><div class="num">100 %</div><div class="lbl">garanti på arbeid</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img">
+        <img src="images/photo-03.jpg" alt="Nylig oppusset baderom med dusjkabinett">
+      </div>
+      <div class="hero-chip"><span class="g">●</span> Ledig i dag — svar innen 30 min</div>
+      <div class="hero-card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div>
+          <div class="t">Godkjent rørleggerbedrift</div>
+          <div class="s">Sentralt godkjenningsområde</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Marquee ===== -->
+<div class="hero-marquee" aria-hidden="true">
+  <div class="marq-track">
+    <span>Bad og oppussing <span>·</span> Varmtvannsbereder <span>·</span> Lekkasjesøk <span>·</span> Rehabilitering <span>·</span> Service og vedlikehold <span>·</span> Akutt rørleggervakt <span>·</span> Utskifting av armatur <span>·</span></span>
+    <span>Bad og oppussing <span>·</span> Varmtvannsbereder <span>·</span> Lekkasjesøk <span>·</span> Rehabilitering <span>·</span> Service og vedlikehold <span>·</span> Akutt rørleggervakt <span>·</span> Utskifting av armatur <span>·</span></span>
+  </div>
+</div>
+
+<!-- ===== Services ===== -->
+<section class="light" id="tjenester">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Tjenester</span>
+      <h2>Alt hjemmet og bedriften din trenger</h2>
+      <p>Fra mindre reparasjoner til totalrenovering av bad. Vi gjør hele jobben — med én kontaktperson fra start til slutt.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service reveal">
+        <span class="snum">01</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v3"/><path d="M18 2a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3"/><path d="M7 21v-3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/></svg></div>
+        <h3>Bad</h3>
+        <p>Totalrenovering og nyoppføring av bad med våtromssertifisering etter gjeldende regler.</p>
+        <ul>
+          <li>Komplett baderom i alle størrelser</li>
+          <li>Flis, membran og innredning</li>
+          <li>Dokumentert våtromssikring</li>
+        </ul>
+        <a href="#kontakt" class="link-arrow">Få tilbud på bad →</a>
+      </article>
+
+      <article class="service reveal d1">
+        <span class="snum">02</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h17v11H3z"/><path d="M3 7l9 7 9-7"/><path d="M7 5v2M17 5v2"/></svg></div>
+        <h3>Rehabilitering</h3>
+        <p>Vi fornyer vann- og avløpsrør i eldre bygg, borettslag og sameier med minimal inngripen.</p>
+        <ul>
+          <li>Utskifting av stakabler og vannledninger</li>
+          <li>Planlegging i borettslag og sameier</li>
+          <li>Oppgradering til dagens standard</li>
+        </ul>
+        <a href="#kontakt" class="link-arrow">Snakk med oss →</a>
+      </article>
+
+      <article class="service reveal d2">
+        <span class="snum">03</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+        <h3>Lekkasjer</h3>
+        <p>Rask lokalisering og tetting av lekkasjer med termografering og sporingsutstyr — før skaden vokser.</p>
+        <ul>
+          <li>Lekkasjesøk uten rivning</li>
+          <li>Termografering og logging</li>
+          <li>Assistanse ved forsikringssak</li>
+        </ul>
+        <a href="#kontakt" class="link-arrow">Få hjelp nå →</a>
+      </article>
+
+      <article class="service reveal">
+        <span class="snum">04</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.6 3 8 3s8-1.34 8-3V5"/><path d="M4 11v6c0 1.66 3.6 3 8 3s8-1.34 8-3v-6"/></svg></div>
+        <h3>Varmtvannsbereder</h3>
+        <p>Montering og bytte av varmtvannsberedere — ofte samme dag. Vi tar også hånd om den gamle.</p>
+        <ul>
+          <li>Bytte innen 24 timer</li>
+          <li>Veiledning om riktig størrelse</li>
+          <li>Bereder inkludert i fastpris</li>
+        </ul>
+        <a href="#kontakt" class="link-arrow">Bestill bytte →</a>
+      </article>
+
+      <article class="service reveal d1">
+        <span class="snum">05</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Service &amp; vedlikehold</h3>
+        <p>Regelmessig ettersyn forlenger levetiden på anlegget og kan forhindre kostbare vannskader.</p>
+        <ul>
+          <li>Serviceavtaler for bolig og bedrift</li>
+          <li>Årlig kontroll og dokumentasjon</li>
+          <li>Forebyggende utskifting</li>
+        </ul>
+        <a href="#kontakt" class="link-arrow">Se serviceavtaler →</a>
+      </article>
+
+      <article class="service reveal d2">
+        <span class="snum">06</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 11-12h-7l1-8z"/></svg></div>
+        <h3>Akutt rørleggervakt</h3>
+        <p>Vannlekkasje stopper ikke for kontortid. Vår vakttelefon er bemannet døgnet rundt, hele året.</p>
+        <ul>
+          <li>Svar innen 30 minutter</li>
+          <li>Utrykning døgnet rundt</li>
+          <li>Stopp av lekkasje først</li>
+        </ul>
+        <a href="tel:22004040" class="link-arrow">Ring vakttelefonen →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Stats band ===== -->
+<section class="band">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div><div class="num">2 400+</div><div class="lbl">gjennomførte oppdrag</div></div>
+      <div><div class="num">18</div><div class="lbl">år i bransjen</div></div>
+      <div><div class="num">9</div><div class="lbl">rørleggere i teamet</div></div>
+      <div><div class="num">24/7</div><div class="lbl">vakttelefon hele året</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Before / After ===== -->
+<section class="alt" id="om-oss">
+  <div class="wrap ba-shell">
+    <div class="ba-compare reveal" id="baCompare">
+      <img class="ba-before" src="images/photo-06.jpg" alt="Baderom før renovering">
+      <img class="ba-after" src="images/photo-07.jpg" alt="Baderom etter renovering">
+      <span class="ba-tag before">Før</span>
+      <span class="ba-tag after">Etter</span>
+      <div class="ba-handle" id="baHandle">
+        <span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3"/></svg></span>
+      </div>
+    </div>
+
+    <div class="ba-copy reveal d1">
+      <span class="eyebrow">Fra kaos til ro</span>
+      <h2>Se forskjellen ekte håndverk gjør</h2>
+      <p>Dra i slideren og se et bad fra Majorstuen vi totalrenoverte i sommer. Her på 6 uker, fra riving til nøkkelklar.</p>
+      <ul class="ba-points">
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>Totalentreprenør</b><span>Fra rør og elektro til flis og innredning — ett ansvar.</span></div></li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>Fast pris før vi starter</b><span>Ingen overraskelser. Avtalen gjelder uansett.</span></div></li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>5 års garanti</b><span>Skriftlig garanti på alt utført arbeid.</span></div></li>
+      </ul>
+      <a href="#kontakt" class="btn btn-primary">Få tilbud på ditt bad
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Projects ===== -->
+<section class="light" id="prosjekter">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Utvalgte prosjekter</span>
+      <h2>Arbeid vi er stolte av</h2>
+      <p>Et lite utvalg fra oppdrag vi har levert for privatpersoner og bedrifter det siste året.</p>
+    </div>
+    <div class="projects-grid">
+      <article class="project reveal">
+        <img src="images/photo-08.jpg" alt="Bad — Frogner">
+        <span class="chip">Bad</span>
+        <div class="ov"></div>
+        <div class="info"><div class="cat">Totalrenovering</div><h3>Bad · Frogner</h3><div class="loc">18 m² — leveres på 7 uker</div></div>
+      </article>
+      <article class="project reveal d1">
+        <img src="images/photo-01.jpg" alt="Kjøkken — Grünerløkka">
+        <span class="chip">Kjøkken</span>
+        <div class="ov"></div>
+        <div class="info"><div class="cat">Armatur og rør</div><h3>Kjøkken · Grünerløkka</h3><div class="loc">Ny vannforsyning og armatur</div></div>
+      </article>
+      <article class="project reveal d2">
+        <img src="images/photo-05.jpg" alt="Bad — Bogstad">
+        <span class="chip">Bad</span>
+        <div class="ov"></div>
+        <div class="info"><div class="cat">Våtrom</div><h3>Bad · Bogstad</h3><div class="loc">Marmor og beskyttende membran</div></div>
+      </article>
+      <article class="project reveal">
+        <img src="images/photo-02.jpg" alt="Borettslag — Majorstuen">
+        <span class="chip">Rehabilitering</span>
+        <div class="ov"></div>
+        <div class="info"><div class="cat">Stakabel</div><h3>Borettslag · Majorstuen</h3><div class="loc">42 leiligheter — ny stakabil</div></div>
+      </article>
+      <article class="project reveal d1">
+        <img src="images/photo-09.jpg" alt="Bad — St. Hanshaugen">
+        <span class="chip">Bad</span>
+        <div class="ov"></div>
+        <div class="info"><div class="cat">Totalrenovering</div><h3>Bad · St. Hanshaugen</h3><div class="loc">Skjult sisterner og LED-belysning</div></div>
+      </article>
+      <article class="project reveal d2">
+        <img src="images/photo-04.jpg" alt="Næringseiendom — Nydalen">
+        <span class="chip">Næring</span>
+        <div class="ov"></div>
+        <div class="info"><div class="cat">Service &amp; vedlikehold</div><h3>Næringsbygg · Nydalen</h3><div class="loc">Løpende serviceavtale</div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Process ===== -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Slik jobber vi</span>
+      <h2>Enkel prosess, uten overraskelser</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="big">1</div><h3>Kontakt &amp; befaring</h3><p>Du forteller hva du trenger. Vi kommer på gratis befaring og ser på mulighetene sammen.</p></div>
+      <div class="step reveal d1"><div class="big">2</div><h3>Fast tilbud</h3><p>Innen 48 timer får du et detaljert, skriftlig tilbud med fast pris og tidsplan.</p></div>
+      <div class="step reveal d2"><div class="big">3</div><h3>Gjennomføring</h3><p>Faste håndverkere gjennom hele prosjektet. Ryddig arbeidsplass og løpende oppdatering.</p></div>
+      <div class="step reveal d3"><div class="big">4</div><h3>Overlevering</h3><p>Gjennomgang, dokumentasjon og garanti. Først når du er fornøyd, er jobben ferdig.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Testimonials ===== -->
+<section class="light" id="omtaler">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Kundeomtaler</span>
+      <h2>Derfor velger folk oss igjen</h2>
+      <p>Gjennomsnittlig 4,9 av 5 stjerner basert på mer enn 380 verifiserte omtaler.</p>
+    </div>
+    <div class="quotes-grid">
+      <article class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>«Andersen Rør renoverte badet vårt på Frogner. Presis, ryddig og alltid oppdaterte på tidsplan. Levert til avtalt pris — det skjer sjelden i denne bransjen.»</p>
+        <div class="who"><span class="av">LM</span><div><div class="nm">Lars Mjøen</div><div class="rl">Privatkunde, Frogner</div></div></div>
+      </article>
+      <article class="quote reveal d1">
+        <div class="stars">★★★★★</div>
+        <p>«Natt til søndag fikk vi vannlekkasje i stuen. En rørlegger var hos oss på 40 minutter og stoppet skaden før den ble omfattende. Utrolig godt ivaretatt.»</p>
+        <div class="who"><span class="av">SP</span><div><div class="nm">Sofie Pettersen</div><div class="rl">Privatkunde, Grünerløkka</div></div></div>
+      </article>
+      <article class="quote reveal d2">
+        <div class="stars">★★★★★</div>
+        <p>«Vi bruker Andersen Rør som fast leverandør for utleieporteføljen vår. Responsive, profesjonelle og all dokumentasjon på plass ved behov.»</p>
+        <div class="who"><span class="av">RT</span><div><div class="nm">Rune Thorsen</div><div class="rl">Eiendomsforvalter, Nydalen</div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="contact" id="kontakt">
+  <div class="wrap contact-grid">
+    <div class="contact-info reveal">
+      <span class="eyebrow" style="color:#7ea8ff">Ta kontakt</span>
+      <h2>Få hjelp av en rørlegger i dag</h2>
+      <p>Uansett om det haster eller du planlegger et større prosjekt — send oss en melding og vi svarer innen én virkedag. Vakttelefonen er åpen døgnet rundt.</p>
+
+      <div class="ci-row">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div><div class="t">Ring oss</div><div class="s"><a href="tel:22004040">22 00 40 40</a> — man–fre 07–17</div></div>
+      </div>
+      <div class="ci-row">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></span>
+        <div><div class="t">E-post</div><div class="s"><a href="mailto:post@andersenror.no">post@andersenror.no</a></div></div>
+      </div>
+      <div class="ci-row">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+        <div><div class="t">Besøk oss</div><div class="s">Akersbakken 12, 0172 Oslo</div></div>
+      </div>
+
+      <div class="emergency">
+        <span class="box-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+        <div><div class="hl">Akutt vannlekkasje?</div><div class="sub">Ring vakttelefonen <a href="tel:22004040" style="color:#fff;font-weight:700;text-decoration:underline">22 00 40 40</a> — åpen 24/7.</div></div>
+      </div>
+    </div>
+
+    <div class="form-card reveal d1">
+      <div id="formWrap">
+        <h3>Få et gratis tilbud</h3>
+        <p class="lead">Fyll ut skjemaet, så hører du fra oss innen én virkedag.</p>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="field"><label for="fname">Navn *</label><input type="text" id="fname" name="name" placeholder="Ditt navn" required></div>
+            <div class="field"><label for="fphone">Telefon</label><input type="tel" id="fphone" name="phone" placeholder="+47 …"></div>
+          </div>
+          <div class="field"><label for="femail">E-post *</label><input type="email" id="femail" name="email" placeholder="epost@eksempel.no" required></div>
+          <div class="field"><label for="ftype">Hva gjelder det?</label>
+            <select id="ftype" name="type">
+              <option value="" selected>Velg tjeneste</option>
+              <option>Bad / oppussing</option>
+              <option>Rehabilitering</option>
+              <option>Varmtvannsbereder</option>
+              <option>Lekkasje</option>
+              <option>Service / vedlikehold</option>
+              <option>Akutt rørleggerhjelp</option>
+              <option>Annet</option>
+            </select>
+          </div>
+          <div class="field"><label for="fmsg">Beskriv behovet</label><textarea id="fmsg" name="message" placeholder="Fortell kort om oppdraget …"></textarea></div>
+          <button type="submit" class="btn btn-dark" style="width:100%;justify-content:center">Send forespørsel
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <div class="form-note">Ved å sende godtar du at vi kontakter deg. Vi deler aldri informasjonen din.</div>
+        </form>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <span class="big-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <h4>Takk for henvendelsen!</h4>
+        <p>Vi har mottatt forespørselen din og tar kontakt innen én virkedag. Hasper det, ring oss på <strong>22 00 40 40</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" style="color:#fff"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8"/><path d="M9 14h6"/><path d="M19 5.5l-1.5-1.5L15 6.5l-.5-.5"/><path d="M17 6.5h-2a6 6 0 0 0-6 6v1"/><path d="M17 6.5v1.5A2.5 2.5 0 0 1 14.5 11H13"/></svg></span>Andersen Rør<small>Oslo</small></a>
+        <p>Moderne rørleggerfirma for privatpersoner og bedrifter i Oslo og omegn. Bad, rehabilitering og akutte tjenester — alltid til fast pris.</p>
+      </div>
+      <div>
+        <h4>Tjenester</h4>
+        <ul>
+          <li><a href="#tjenester">Bad og oppussing</a></li>
+          <li><a href="#tjenester">Rehabilitering</a></li>
+          <li><a href="#tjenester">Varmtvannsbereder</a></li>
+          <li><a href="#tjenester">Serviceavtaler</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Firma</h4>
+        <ul>
+          <li><a href="#om-oss">Om oss</a></li>
+          <li><a href="#prosjekter">Prosjekter</a></li>
+          <li><a href="#omtaler">Omtaler</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:22004040">22 00 40 40</a></li>
+          <li><a href="mailto:post@andersenror.no">post@andersenror.no</a></li>
+          <li>Akersbakken 12, Oslo</li>
+          <li>Org.nr. 913 456 789</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Andersen Rør AS. Alle rettigheter reservert.</span>
+      <span>Personvern · Vilkår</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Til toppen">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('header');
+  const toTop = document.getElementById('toTop');
+  const onScroll = () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 20);
+    toTop.classList.toggle('show', y > 600);
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const closeNav = document.getElementById('closeNav');
+  const openMenu = () => mobileNav.classList.add('open');
+  const closeMenu = () => mobileNav.classList.remove('open');
+  hamburger.addEventListener('click', openMenu);
+  closeNav.addEventListener('click', closeMenu);
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  revealEls.forEach(el => io.observe(el));
+
+  // Before / After slider
+  const ba = document.getElementById('baCompare');
+  const after = ba.querySelector('.ba-after');
+  const handle = document.getElementById('baHandle');
+  let dragging = false;
+  const setBA = (clientX) => {
+    const r = ba.getBoundingClientRect();
+    let pct = (clientX - r.left) / r.width * 100;
+    pct = Math.max(0, Math.min(100, pct));
+    after.style.clipPath = `inset(0 0 0 ${pct}%)`;
+    handle.style.left = pct + '%';
+  };
+  ba.addEventListener('pointerdown', e => { dragging = true; ba.setPointerCapture(e.pointerId); setBA(e.clientX); });
+  ba.addEventListener('pointermove', e => { if(dragging) setBA(e.clientX); });
+  ['pointerup','pointerleave'].forEach(ev => ba.addEventListener(ev, () => dragging = false));
+  // keyboard
+  ba.tabIndex = 0;
+  ba.setAttribute('role','slider');
+  ba.setAttribute('aria-label','Sammenlign før og etter');
+  ba.addEventListener('keydown', e => {
+    let pct = parseFloat(after.style.clipPath.replace(/[^0-9.]/g,'')) || 50;
+    if(e.key === 'ArrowLeft') pct -= 5;
+    if(e.key === 'ArrowRight') pct += 5;
+    pct = Math.max(0, Math.min(100, pct));
+    after.style.clipPath = `inset(0 0 0 ${pct}%)`;
+    handle.style.left = pct + '%';
+  });
+
+  // Contact form
+  const form = document.getElementById('contactForm');
+  const formWrap = document.getElementById('formWrap');
+  const formSuccess = document.getElementById('formSuccess');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    let valid = true;
+    [form.name, form.email].forEach(f => {
+      f.style.borderColor = '';
+    });
+    if(!name){ form.name.style.borderColor = '#d33'; valid = false; }
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ form.email.style.borderColor = '#d33'; valid = false; }
+    if(!valid) return;
+    const btn = form.querySelector('button[type=submit]');
+    btn.textContent = 'Sender …';
+    btn.disabled = true;
+    setTimeout(() => {
+      formWrap.style.display = 'none';
+      formSuccess.style.display = 'block';
+    }, 900);
+  });
+
+  // Smooth scroll for anchors (respect header height)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const el = document.querySelector(id);
+        if(el){
+          e.preventDefault();
+          const top = el.getBoundingClientRect().top + window.scrollY - 70;
+          window.scrollTo({top, behavior:'smooth'});
+        }
+      }
+    });
+  });
+  toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

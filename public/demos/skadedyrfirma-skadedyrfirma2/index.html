@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TryggSkade AS — Diskret skadedyrkontroll i Oslo og Østlandet</title>
+  <meta name="description" content="Sertifiserte skadedyrteknikere for hjem, borettslag og bedrift. Mus, rotter, maur, veggedyr, skjeggkre, veps og møll. Inspeksjon innen 24 timer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a211c;
+      --ink-soft: #3d4a42;
+      --muted: #6b746e;
+      --paper: #f4efe6;
+      --paper-2: #ebe4d6;
+      --cream: #faf7f1;
+      --white: #fffcf7;
+      --pine: #1f4a3a;
+      --pine-deep: #16362b;
+      --moss: #3d6b54;
+      --sage: #8fad97;
+      --gold: #c4a35a;
+      --gold-deep: #9a7c3a;
+      --line: rgba(26, 33, 28, 0.1);
+      --shadow: 0 24px 60px rgba(22, 54, 43, 0.12);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Outfit, system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font-family: inherit; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+    .serif { font-family: Fraunces, Georgia, serif; }
+
+    /* Top bar */
+    .topbar {
+      background: var(--pine-deep);
+      color: #e8efe9;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    .topbar .wrap {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; padding: 10px 0; flex-wrap: wrap;
+    }
+    .topbar a { color: #e8efe9; border-bottom: 1px solid transparent; }
+    .topbar a:hover { border-bottom-color: var(--gold); }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #7dca9a; display: inline-block; margin-right: 8px; box-shadow: 0 0 0 4px rgba(125,202,154,.18); }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(250,247,241,.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0; gap: 20px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 600; letter-spacing: -0.02em;
+    }
+    .mark {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--pine);
+      display: grid; place-items: center;
+    }
+    nav ul { display: flex; gap: 26px; list-style: none; font-size: 14.5px; color: var(--ink-soft); }
+    nav a:hover { color: var(--pine); }
+    .nav-cta { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border: 0; cursor: pointer; border-radius: 999px;
+      padding: 12px 20px; font-weight: 560; font-size: 14.5px;
+      transition: transform .2s, background .2s, color .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-dark { background: var(--pine); color: var(--white); }
+    .btn-dark:hover { background: var(--pine-deep); }
+    .btn-gold { background: var(--gold); color: var(--ink); }
+    .btn-gold:hover { background: #d4b56a; }
+    .btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--ink); }
+    .btn-line { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,.28); }
+    .menu-btn { display: none; background: none; border: 0; font-size: 22px; cursor: pointer; }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 48px;
+      padding: 72px 0 40px;
+      align-items: end;
+    }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--moss); font-weight: 600; margin-bottom: 18px;
+    }
+    h1 {
+      font-family: Fraunces, serif;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.04; letter-spacing: -0.03em; font-weight: 560;
+    }
+    .lede { margin-top: 22px; font-size: 18px; color: var(--ink-soft); max-width: 520px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .trust-row {
+      display: flex; gap: 28px; margin-top: 40px; padding-top: 28px;
+      border-top: 1px solid var(--line); flex-wrap: wrap;
+    }
+    .trust-row strong { display: block; font-size: 22px; font-family: Fraunces, serif; }
+    .trust-row span { font-size: 13px; color: var(--muted); }
+
+    .hero-panel {
+      background: var(--pine);
+      color: var(--white);
+      border-radius: 28px;
+      padding: 28px;
+      min-height: 460px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-panel::after {
+      content: "";
+      position: absolute; right: -40px; bottom: -40px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,163,90,.35), transparent 70%);
+    }
+    .panel-label { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--sage); }
+    .panel-title { font-family: Fraunces, serif; font-size: 28px; margin: 8px 0 22px; }
+    .pest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative; z-index: 1; }
+    .pest-chip {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; padding: 14px 14px 12px;
+      text-align: left; color: var(--white); cursor: pointer;
+      transition: background .2s, transform .2s, border-color .2s;
+    }
+    .pest-chip:hover, .pest-chip.active {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(196,163,90,.55);
+      transform: translateY(-2px);
+    }
+    .pest-chip small { display: block; color: #c5d4cb; font-size: 12px; margin-top: 4px; }
+    .pest-ico { font-size: 20px; margin-bottom: 6px; }
+
+    /* Split band */
+    .band {
+      margin: 20px 0 80px;
+      display: grid; grid-template-columns: 1.2fr .8fr;
+      border-radius: 28px; overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .band-copy { padding: 40px; background: var(--white); }
+    .band-copy h2 { font-family: Fraunces, serif; font-size: 32px; margin: 8px 0 14px; }
+    .hours { background: var(--paper-2); padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+    .hours li { list-style: none; display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+    .hours .open { color: var(--moss); font-weight: 600; }
+
+    /* Section heads */
+    section { padding: 20px 0 80px; }
+    .sec-head { max-width: 640px; margin-bottom: 36px; }
+    .sec-head h2 { font-family: Fraunces, serif; font-size: clamp(30px, 4vw, 44px); letter-spacing: -0.03em; line-height: 1.12; }
+    .sec-head p { margin-top: 12px; color: var(--ink-soft); }
+
+    /* Found grid */
+    .found {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .found-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px 20px 20px;
+      min-height: 250px;
+      display: flex; flex-direction: column;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .found-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .found-card h3 { font-size: 18px; margin: 10px 0 8px; }
+    .found-card p { color: var(--muted); font-size: 14px; flex: 1; }
+    .tag { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--moss); font-weight: 600; }
+    .linkish { margin-top: 14px; font-size: 13.5px; font-weight: 600; color: var(--pine); }
+
+    /* Process */
+    .process {
+      background: var(--pine-deep);
+      color: var(--white);
+      border-radius: 32px;
+      padding: 56px 48px;
+    }
+    .process h2 { font-family: Fraunces, serif; font-size: 40px; }
+    .steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 40px;
+    }
+    .step-n {
+      font-family: Fraunces, serif; font-size: 42px; color: var(--gold); line-height: 1;
+    }
+    .step h3 { margin: 12px 0 8px; font-size: 18px; }
+    .step p { color: #c7d4cc; font-size: 14.5px; }
+
+    /* Wizard */
+    .wizard {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 36px;
+    }
+    .wiz-progress { display: flex; gap: 8px; margin-bottom: 28px; }
+    .wiz-progress span {
+      height: 4px; flex: 1; background: var(--paper-2); border-radius: 4px;
+    }
+    .wiz-progress span.on { background: var(--pine); }
+    .choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .choice {
+      border: 1px solid var(--line); background: var(--cream);
+      border-radius: 16px; padding: 16px; text-align: left; cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .choice:hover, .choice.sel { border-color: var(--pine); background: #e7f0ea; }
+    .choice strong { display: block; margin-bottom: 4px; }
+    .choice span { font-size: 13px; color: var(--muted); }
+    .wiz-nav { display: flex; justify-content: space-between; margin-top: 28px; gap: 12px; }
+    .result-box {
+      background: var(--pine); color: var(--white); border-radius: 20px; padding: 28px; margin-top: 8px;
+    }
+
+    /* Audience */
+    .aud {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    }
+    .aud article {
+      padding: 28px; border-radius: 24px; min-height: 280px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .aud article:nth-child(1) { background: var(--paper-2); }
+    .aud article:nth-child(2) { background: var(--pine); color: var(--white); }
+    .aud article:nth-child(3) { background: #2c3a32; color: var(--white); }
+    .aud h3 { font-family: Fraunces, serif; font-size: 28px; margin: 8px 0 10px; }
+
+    /* Knowledge */
+    .know { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
+    .know-main {
+      background: var(--white); border-radius: 24px; padding: 32px; border: 1px solid var(--line);
+    }
+    .know-side { display: grid; gap: 14px; }
+    .know-side a {
+      background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 20px;
+      display: block;
+    }
+    .know-side a:hover { border-color: var(--sage); }
+
+    /* Reviews */
+    .reviews { display: grid; grid-template-columns: 280px 1fr 1fr; gap: 16px; }
+    .rev-intro { background: var(--gold); border-radius: 24px; padding: 28px; }
+    .rev-intro h2 { font-family: Fraunces, serif; font-size: 32px; }
+    .quote {
+      background: var(--white); border: 1px solid var(--line); border-radius: 24px; padding: 28px;
+    }
+    .stars { color: var(--gold-deep); letter-spacing: 2px; margin-bottom: 12px; }
+
+    /* Contact */
+    .contact {
+      display: grid; grid-template-columns: .9fr 1.1fr; gap: 20px;
+    }
+    .contact-card {
+      background: var(--pine-deep); color: var(--white); border-radius: 28px; padding: 36px;
+    }
+    form { display: grid; gap: 12px; }
+    label { font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+    input, select, textarea {
+      width: 100%; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid var(--line); background: var(--white); font-size: 15px;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+
+    footer {
+      background: var(--ink); color: #d5ddd8; padding: 48px 0 28px; margin-top: 20px;
+    }
+    .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 24px; }
+    footer a { color: #d5ddd8; }
+    footer a:hover { color: var(--gold); }
+    .copy { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; color: #8a938d; }
+
+    /* Sticky phone */
+    .float-phone {
+      position: fixed; right: 20px; bottom: 20px; z-index: 60;
+      background: var(--gold); color: var(--ink); border-radius: 999px;
+      padding: 14px 18px; font-weight: 600; box-shadow: var(--shadow);
+    }
+
+    .modal {
+      position: fixed; inset: 0; background: rgba(22,54,43,.55);
+      display: none; place-items: center; z-index: 80; padding: 20px;
+    }
+    .modal.show { display: grid; }
+    .modal-box { background: var(--cream); border-radius: 24px; padding: 32px; max-width: 480px; width: 100%; }
+
+    @media (max-width: 980px) {
+      nav ul { display: none; }
+      .menu-btn { display: block; }
+      .hero, .band, .found, .steps, .aud, .know, .reviews, .contact, .foot, .choices {
+        grid-template-columns: 1fr;
+      }
+      .found { grid-template-columns: 1fr 1fr; }
+      .hero { padding-top: 36px; }
+      .process { padding: 36px 24px; }
+      .nav-cta .btn-ghost { display: none; }
+    }
+    @media (max-width: 640px) {
+      .found, .choices { grid-template-columns: 1fr; }
+      .wrap { width: min(1180px, calc(100% - 28px)); }
+      .hero-panel { min-height: auto; }
+      .float-phone { left: 16px; right: 16px; text-align: center; }
+    }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <span><span class="dot"></span>Tekniker i Oslo og Akershus — utrykning samme dag ved akutt behov</span>
+      <span>Ring <a href="tel:+4722401100">22 40 11 00</a> · Døgnvakt for bedrift</span>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#top">
+        <span class="mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 4v5c0 5-3.2 8.6-7 9.8C8.2 20.6 5 17 5 12V7l7-4z" stroke="#faf7f1" stroke-width="1.7"/><path d="M9 12.2l2 2 4.2-4.4" stroke="#c4a35a" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </span>
+        TryggSkade AS
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#funnet">Hva har du funnet?</a></li>
+          <li><a href="#prosess">Slik jobber vi</a></li>
+          <li><a href="#veiviser">Veiviser</a></li>
+          <li><a href="#kunnskap">Råd</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="#veiviser">Identifiser problemet</a>
+        <a class="btn btn-dark" href="#kontakt">Bestill inspeksjon</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Meny">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div>
+        <p class="kicker">Skadedyrkontroll · Oslo & Østlandet</p>
+        <h1>Når noe ikke hører hjemme i huset ditt, rydder vi det stille og grundig.</h1>
+        <p class="lede">Sertifiserte teknikere for privatbolig, borettslag og næring. Vi identifiserer, behandler og dokumenterer — uten unødig støy, uten overbehandling.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="#kontakt">Få hjelp nå</a>
+          <a class="btn btn-ghost" href="tel:+4722401100">Kontakt skadedyrtekniker</a>
+        </div>
+        <div class="trust-row">
+          <div><strong>24 t</strong><span>Inspeksjon i Oslo-området</span></div>
+          <div><strong>98 %</strong><span>Løst i første behandlingsplan</span></div>
+          <div><strong>12 år</strong><span>Erfaring, F-gass og godkjent</span></div>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <p class="panel-label">Start her</p>
+        <h2 class="panel-title">Hva har du sett?</h2>
+        <div class="pest-grid" id="quickPests">
+          <button class="pest-chip" data-p="mus"><div class="pest-ico">◆</div>Mus eller rotte<small>Lyder, ekskrementer, gnag</small></button>
+          <button class="pest-chip" data-p="maur"><div class="pest-ico">◇</div>Maur<small>Stier på kjøkken eller fasade</small></button>
+          <button class="pest-chip" data-p="veps"><div class="pest-ico">○</div>Veps<small>Bol i tak, tre eller vegg</small></button>
+          <button class="pest-chip" data-p="innendors"><div class="pest-ico">□</div>Insekt innendørs<small>Skjeggkre, veggedyr, møll</small></button>
+        </div>
+        <a class="btn btn-gold" style="margin-top:18px;width:100%;position:relative;z-index:1" href="#veiviser">Identifiser problemet</a>
+      </aside>
+    </div>
+
+    <div class="wrap">
+      <div class="band">
+        <div class="band-copy">
+          <p class="kicker">Diskresjon som standard</p>
+          <h2>Vi kommer i umerkede biler når du ønsker det. Rapporten går bare til deg.</h2>
+          <p>Mange kunder er mer opptatt av naboer og leietakere enn av selve skadedyret. Derfor planlegger vi tidspunkt, inngang og dokumentasjon sammen med deg. Behandlingene er målrettede — vi sprer ikke unødvendig kjemi i rom der barn og kjæledyr ferdes.</p>
+        </div>
+        <div class="hours">
+          <p class="kicker">Åpningstider</p>
+          <ul>
+            <li><span>Mandag–fredag</span><span class="open">07:30–17:00</span></li>
+            <li><span>Lørdag</span><span>09:00–14:00</span></li>
+            <li><span>Søndag</span><span>Kun akutt</span></li>
+            <li><span>Bedrift / eiendom</span><span class="open">Døgnvakt</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <section id="funnet">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="kicker">Kjennetegn</p>
+          <h2>Hva har du funnet?</h2>
+          <p>De fleste saker starter med et spor, ikke et dyr. Velg det som ligner mest — så vet du hva du kan gjøre i kveld, og når det er lurt å ringe.</p>
+        </div>
+        <div class="found">
+          <article class="found-card">
+            <span class="tag">Gnager</span>
+            <h3>Mus</h3>
+            <p>Små, mørke korn langs lister. Nattelyder i vegg. Gnag på emballasje og såpe. Ofte på kjøkken og bod.</p>
+            <a class="linkish" href="#veiviser">Start veiviser →</a>
+          </article>
+          <article class="found-card">
+            <span class="tag">Gnager</span>
+            <h3>Rotte</h3>
+            <p>Større ekskrementer, slitasje langs rør, lyder i avløp eller krypkjeller. Krever rask tetting og fangst.</p>
+            <a class="linkish" href="#kontakt">Bestill inspeksjon →</a>
+          </article>
+          <article class="found-card">
+            <span class="tag">Insekt</span>
+            <h3>Maur</h3>
+            <p>Tydelige stier mot søtsaker eller fukt. Sukkermaur innendørs, stokkmaur i treverk — to helt ulike løp.</p>
+            <a class="linkish" href="#kunnskap">Les kjennetegn →</a>
+          </article>
+          <article class="found-card">
+            <span class="tag">Insekt</span>
+            <h3>Veps</h3>
+            <p>Økende aktivitet ved takfot i juni–august. Ikke spray inn i hulrom. Vi fjerner bol og tetter innflyvning.</p>
+            <a class="linkish" href="tel:+4722401100">Ring tekniker →</a>
+          </article>
+          <article class="found-card">
+            <span class="tag">Nattaktiv</span>
+            <h3>Skjeggkre</h3>
+            <p>Sølvgrå, raske, ofte på bad. Trives i fukt og papir. Behandles med kartlegging, ikke panikk.</p>
+            <a class="linkish" href="#kunnskap">Råd før vi kommer →</a>
+          </article>
+          <article class="found-card">
+            <span class="tag">Soverom</span>
+            <h3>Veggedyr</h3>
+            <p>Kløende bitt i rekker, små blodprikker på laken, søte skall. Diskret og dokumentert behandling.</p>
+            <a class="linkish" href="#kontakt">Få hjelp nå →</a>
+          </article>
+          <article class="found-card">
+            <span class="tag">Tekstil</span>
+            <h3>Klesmøll</h3>
+            <p>Hull i ull, kokonger i skap, voksne møll mot lys. Ofte sesong og lagring — ikke alltid infestasjon.</p>
+            <a class="linkish" href="#veiviser">Identifiser →</a>
+          </article>
+          <article class="found-card">
+            <span class="tag">Annet</span>
+            <h3>Usikker</h3>
+            <p>Send bilde. Vi skiller mellom ufarlige gjester og arter som krever tiltak — uten å selge deg feil behandling.</p>
+            <a class="linkish" href="#kontakt">Send observasjon →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="process" id="prosess">
+          <p class="kicker" style="color:var(--sage)">Forutsigbart løp</p>
+          <h2>Fra første spor til et hus som er i ro igjen</h2>
+          <div class="steps">
+            <div class="step"><div class="step-n">01</div><h3>Inspeksjon</h3><p>Vi kartlegger inn- og utganger, fukt og næringskilder. Du får en tydelig rapport samme dag.</p></div>
+            <div class="step"><div class="step-n">02</div><h3>Identifisering</h3><p>Riktig art, riktig metode. Ingen standardpakke. Vi forklarer hva som er nødvendig — og hva som kan vente.</p></div>
+            <div class="step"><div class="step-n">03</div><h3>Behandling</h3><p>Målrettet innsats, merking av soner og tydelig tidsplan. Du vet når rom kan brukes igjen.</p></div>
+            <div class="step"><div class="step-n">04</div><h3>Forebygging</h3><p>Tetting, vaner og oppfølging. Målet er at vi ikke skal trenges tilbake neste sesong.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="veiviser">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="kicker">Interaktiv veiviser</p>
+          <h2>Tre spørsmål. En anbefaling.</h2>
+          <p>Ingen innlogging. Svarene brukes bare til å peke deg mot riktig neste steg.</p>
+        </div>
+        <div class="wizard">
+          <div class="wiz-progress" id="wizBar"><span class="on"></span><span></span><span></span></div>
+          <div id="wizStep"></div>
+          <div class="wiz-nav">
+            <button class="btn btn-ghost" type="button" id="wizBack">Tilbake</button>
+            <button class="btn btn-dark" type="button" id="wizNext">Neste</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="kicker">Hvem vi hjelper</p>
+          <h2>Samme fag. Ulik rytme.</h2>
+        </div>
+        <div class="aud">
+          <article>
+            <div>
+              <span class="tag">Privat</span>
+              <h3>Hjemmet</h3>
+              <p>Kveldstimer, diskret ankomst og forklaring til barn og kjæledyr-eiere. Fastpris på de fleste standardoppdrag.</p>
+            </div>
+            <a class="btn btn-dark" href="#kontakt">Bestill inspeksjon</a>
+          </article>
+          <article>
+            <div>
+              <span class="tag" style="color:var(--gold)">Borettslag</span>
+              <h3>Oppgang og kjeller</h3>
+              <p>Avtale med styret, varsling til beboere og fellesrapport. Vi tar tak i årsaken, ikke bare leilighet 3B.</p>
+            </div>
+            <a class="btn btn-gold" href="#kontakt">Be om rammeavtale</a>
+          </article>
+          <article>
+            <div>
+              <span class="tag" style="color:var(--gold)">Næring</span>
+              <h3>Kjøkken og lager</h3>
+              <p>HACCP-vennlig dokumentasjon, nattarbeid og beredskap. Egnet for hotell, restaurant og eiendom.</p>
+            </div>
+            <a class="btn btn-line" href="#kontakt">Kontakt skadedyrtekniker</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kunnskap">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="kicker">Kort og konkret</p>
+          <h2>Hva du kan gjøre før vi kommer</h2>
+        </div>
+        <div class="know">
+          <article class="know-main">
+            <span class="tag">Viktigst</span>
+            <h3 class="serif" style="font-size:28px;margin:10px 0 12px;">Ikke start med gift. Start med spor.</h3>
+            <p>Gift uten tetting flytter problemet. Ta bilde av ekskrementer eller insekt mot en linjal, noter hvor og når, og unngå å rydde bort alle spor før inspeksjon. Tørk søl, tøm søppel, og la oss se restene som forteller historien.</p>
+            <p style="margin-top:12px;color:var(--ink-soft)">Ved mistanke om veggedyr: ikke flytt madrass eller klær til hytte eller nabo. Pakk tøy i tette poser og vask på 60 °C når vi ber om det.</p>
+          </article>
+          <div class="know-side">
+            <a href="#funnet"><strong>Tegn på mus versus rotte</strong><p style="color:var(--muted);font-size:14px;margin-top:6px;">Størrelse på korn, gnagemerker og hvor lyden kommer fra.</p></a>
+            <a href="#funnet"><strong>Skjeggkre eller sølvkre?</strong><p style="color:var(--muted);font-size:14px;margin-top:6px;">Fukt, papir og hvorfor feller alene sjelden holder.</p></a>
+            <a href="#funnet"><strong>Vepsebol i takfot</strong><p style="color:var(--muted);font-size:14px;margin-top:6px;">Når du kan vente, og når du bør la oss ta det.</p></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="reviews">
+          <div class="rev-intro">
+            <p class="kicker" style="color:var(--pine)">Kunder</p>
+            <h2>Rolig, presist, ferdig.</h2>
+            <p style="margin-top:10px">Utvalg av tilbakemeldinger fra 2025–2026. Alle oppdrag er fiktive for denne demosiden.</p>
+          </div>
+          <blockquote class="quote">
+            <div class="stars">★★★★★</div>
+            <p>«Teknikeren forklarte forskjellen på sukkermaur og stokkmaur på fem minutter. Ingen skremsel, bare en plan. Boligen var i ro etter to besøk.»</p>
+            <p style="margin-top:16px;font-size:14px;color:var(--muted)">— Marte H., rekkehus på Lambertseter</p>
+          </blockquote>
+          <blockquote class="quote">
+            <div class="stars">★★★★★</div>
+            <p>«Vi trengte dokumentasjon til styret og Mattilsynet. Rapporten var lesbar, bildene var merket, og de jobbet etter stengetid.»</p>
+            <p style="margin-top:16px;font-size:14px;color:var(--muted)">— Drift, restaurant i Kvadraturen</p>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="wrap contact">
+        <div class="contact-card">
+          <p class="kicker" style="color:var(--sage)">Kontakt</p>
+          <h2 class="serif" style="font-size:36px;margin:8px 0 16px;">Snakk med en tekniker, ikke et skjema-kø.</h2>
+          <p>TryggSkade AS<br>Maridalsveien 88, 0458 Oslo<br>Org.nr. 912 446 221</p>
+          <p style="margin:18px 0"><a href="tel:+4722401100"><strong>22 40 11 00</strong></a><br><a href="mailto:hei@tryggskade.no">hei@tryggskade.no</a></p>
+          <p style="color:#c7d4cc;font-size:14px">Akutt for bedrift: trykk 1. Privat inspeksjon bookes vanligvis innen 24 timer på hverdager.</p>
+        </div>
+        <div class="wizard">
+          <h3 class="serif" style="font-size:26px;margin-bottom:16px;">Bestill inspeksjon</h3>
+          <form id="contactForm">
+            <div>
+              <label for="name">Navn</label>
+              <input id="name" name="name" required placeholder="Ola Nordmann" />
+            </div>
+            <div>
+              <label for="phone">Telefon</label>
+              <input id="phone" name="phone" required placeholder="900 00 000" />
+            </div>
+            <div>
+              <label for="type">Type oppdrag</label>
+              <select id="type" name="type">
+                <option>Privatbolig</option>
+                <option>Borettslag / sameie</option>
+                <option>Bedrift / eiendom</option>
+              </select>
+            </div>
+            <div>
+              <label for="msg">Hva har du observert?</label>
+              <textarea id="msg" name="msg" placeholder="F.eks. lyder i vegg på kjøkken, sett to mus i boden."></textarea>
+            </div>
+            <button class="btn btn-dark" type="submit">Send og få hjelp nå</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <strong>TryggSkade AS</strong>
+          <p style="margin-top:10px;max-width:280px">Skadedyrkontroll med vekt på identifisering, tetting og dokumentasjon. Demoside for webbyrå-portefølje.</p>
+        </div>
+        <div>
+          <strong>Tjenester</strong>
+          <p><a href="#funnet">Gnagere</a><br><a href="#funnet">Insekter</a><br><a href="#funnet">Veps</a><br><a href="#prosess">Forebygging</a></p>
+        </div>
+        <div>
+          <strong>Selskap</strong>
+          <p>Personvern<br>Ansettelse<br>For styret<br>Varsling</p>
+        </div>
+        <div>
+          <strong>Område</strong>
+          <p>Oslo, Bærum, Lillestrøm, Nordre Follo og nærliggende kommuner.</p>
+        </div>
+      </div>
+      <p class="copy">© 2026 TryggSkade AS. Fiktivt firma. Nettsiden er laget som designdemo.</p>
+    </div>
+  </footer>
+
+  <a class="float-phone" href="tel:+4722401100">Ring 22 40 11 00 — tekniker</a>
+
+  <div class="modal" id="modal" role="dialog">
+    <div class="modal-box">
+      <h3 class="serif" style="font-size:26px;">Takk. Vi tar kontakt.</h3>
+      <p style="margin:12px 0 20px;color:var(--ink-soft)">Dette er en demoside, så ingen melding er sendt. I en ekte løsning ville en tekniker ringt deg innen kort tid.</p>
+      <button class="btn btn-dark" type="button" id="closeModal">Lukk</button>
+    </div>
+  </div>
+
+  <script>
+    const steps = [
+      {
+        q: "Hvilket skadedyr har du sett — eller spor av?",
+        opts: [
+          { id: "gnager", t: "Mus eller rotte", d: "Lyder, gnag, ekskrementer" },
+          { id: "maur", t: "Maur", d: "Stier innendørs eller i treverk" },
+          { id: "veps", t: "Veps", d: "Bol eller sverm ved huset" },
+          { id: "veggedyr", t: "Veggedyr / bitt", d: "Soverom, reise, møbler" },
+          { id: "skjeggkre", t: "Skjeggkre / sølvkre", d: "Bad, bod, natt" },
+          { id: "annet", t: "Møll eller usikker", d: "Tekstiler eller ukjent insekt" }
+        ]
+      },
+      {
+        q: "Hvor er problemet?",
+        opts: [
+          { id: "kjokken", t: "Kjøkken / spiskammers", d: "Mat og varme" },
+          { id: "sov", t: "Soverom", d: "Seng, skap, reisestoff" },
+          { id: "bad", t: "Bad / vaskerom", d: "Fukt og rør" },
+          { id: "kjeller", t: "Kjeller / kryp", d: "Avløp, lagring" },
+          { id: "ute", t: "Tak, fasade, hage", d: "Bol og innflyvning" },
+          { id: "naering", t: "Næringslokale", d: "Kjøkken, lager, resepsjon" }
+        ]
+      },
+      {
+        q: "Hvor omfattende virker det?",
+        opts: [
+          { id: "lite", t: "Ett syn, få spor", d: "Kan vente til i morgen" },
+          { id: "middels", t: "Flere dager, flere rom", d: "Bør sees denne uken" },
+          { id: "stort", t: "Mange dyr eller bitt", d: "Trenger rask inspeksjon" },
+          { id: "akutt", t: "Sverm, rotte, gjester i hus", d: "Ring oss i dag" }
+        ]
+      }
+    ];
+
+    const answers = [null, null, null];
+    let i = 0;
+
+    function renderStep() {
+      const s = steps[i];
+      const bar = document.getElementById("wizBar");
+      bar.innerHTML = [0,1,2].map(n => `<span class="${n<=i?"on":""}"></span>`).join("");
+      document.getElementById("wizStep").innerHTML = `
+        <p class="kicker">Steg ${i+1} av 3</p>
+        <h3 class="serif" style="font-size:26px;margin:8px 0 18px;">${s.q}</h3>
+        <div class="choices">${s.opts.map(o => `
+          <button type="button" class="choice ${answers[i]===o.id?"sel":""}" data-id="${o.id}">
+            <strong>${o.t}</strong><span>${o.d}</span>
+          </button>`).join("")}</div>`;
+      document.getElementById("wizBack").style.visibility = i ? "visible" : "hidden";
+      document.getElementById("wizNext").textContent = i === 2 ? "Se anbefaling" : "Neste";
+      document.querySelectorAll(".choice").forEach(btn => {
+        btn.onclick = () => { answers[i] = btn.dataset.id; renderStep(); };
+      });
+    }
+
+    function resultText() {
+      const [p, where, size] = answers;
+      let title = "Vi anbefaler en inspeksjon i løpet av få dager.";
+      let body = "En tekniker bekrefter art og omfang før vi behandler. Du kan sende bilde på forhånd.";
+      if (size === "akutt" || p === "veggedyr" || (p === "gnager" && size === "stort")) {
+        title = "Ring oss i dag.";
+        body = "Dette bør ikke vente. En tekniker kan ofte komme samme dag i Oslo. Ta vare på spor, og unngå å spre gjenstander mellom rom.";
+      } else if (p === "veps" && where === "ute") {
+        title = "Vepsebol vurderes på dagtid.";
+        body = "Ikke spray inn i hulrom. Vi fjerner bol og tetter innflyvning, helst på kvelden når aktiviteten er lav.";
+      } else if (p === "skjeggkre") {
+        title = "Kartlegging først, deretter feller.";
+        body = "Skjeggkre krever tålmodighet og fukt-kontroll. Vi setter en plan, ikke en engangs-spray.";
+      }
+      return { title, body };
+    }
+
+    function showResult() {
+      const r = resultText();
+      document.getElementById("wizBar").innerHTML = "<span class='on'></span><span class='on'></span><span class='on'></span>";
+      document.getElementById("wizStep").innerHTML = `
+        <div class="result-box">
+          <p class="panel-label">Anbefaling</p>
+          <h3 class="serif" style="font-size:28px;margin:8px 0 12px;">${r.title}</h3>
+          <p>${r.body}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;">
+            <a class="btn btn-gold" href="tel:+4722401100">Kontakt skadedyrtekniker</a>
+            <a class="btn btn-line" href="#kontakt">Bestill inspeksjon</a>
+          </div>
+        </div>`;
+      document.getElementById("wizNext").textContent = "Start på nytt";
+    }
+
+    document.getElementById("wizNext").onclick = () => {
+      if (document.getElementById("wizNext").textContent === "Start på nytt") {
+        answers[0]=answers[1]=answers[2]=null; i=0; renderStep(); return;
+      }
+      if (!answers[i]) return;
+      if (i < 2) { i++; renderStep(); } else showResult();
+    };
+    document.getElementById("wizBack").onclick = () => { if (i>0) { i--; renderStep(); } };
+    renderStep();
+
+    document.getElementById("quickPests").addEventListener("click", e => {
+      const b = e.target.closest(".pest-chip");
+      if (!b) return;
+      document.querySelectorAll(".pest-chip").forEach(x => x.classList.remove("active"));
+      b.classList.add("active");
+      const map = { mus: "gnager", maur: "maur", veps: "veps", innendors: "skjeggkre" };
+      answers[0] = map[b.dataset.p];
+      document.getElementById("veiviser").scrollIntoView({ behavior: "smooth" });
+      i = 0; renderStep();
+    });
+
+    const modal = document.getElementById("modal");
+    document.getElementById("contactForm").onsubmit = e => {
+      e.preventDefault();
+      modal.classList.add("show");
+    };
+    document.getElementById("closeModal").onclick = () => modal.classList.remove("show");
+    modal.onclick = e => { if (e.target === modal) modal.classList.remove("show"); };
+
+    document.getElementById("menuBtn").onclick = () => {
+      const ul = document.querySelector("nav ul");
+      ul.style.display = ul.style.display === "flex" ? "none" : "flex";
+      ul.style.flexDirection = "column";
+      ul.style.position = "absolute";
+      ul.style.right = "20px";
+      ul.style.top = "70px";
+      ul.style.background = "var(--cream)";
+      ul.style.padding = "16px";
+      ul.style.borderRadius = "12px";
+      ul.style.border = "1px solid var(--line)";
+    };
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

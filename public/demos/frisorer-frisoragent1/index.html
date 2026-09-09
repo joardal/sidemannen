@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Andersen — Hår som kunst. Oslo</title>
+<meta name="description" content="Studio Andersen er en prisvinnende frisørsalong på Frogner. Spesialister på klipp, balayage, farge og styling. Bestill time online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FCFAF8;
+  --bg2:#F1EBE3;
+  --paper:#FFFFFF;
+  --ink:#0F0F0E;
+  --ink2:#1A1A1A;
+  --muted:#9A9590;
+  --muted2:#6B6763;
+  --line:#E8E0D6;
+  --line2:#EDE6DD;
+  --accent:#C49A6C;
+  --accent-dark:#A97D4F;
+  --cream:#F6F0E8;
+  --radius:18px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;object-fit:cover}
+button{font-family:inherit}
+::selection{background:var(--ink);color:white}
+
+/* Typography */
+.serif{font-family:'Cormorant Garamond',serif}
+.display{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.03em;line-height:.85}
+.kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted2);font-weight:500}
+.huge{font-size:clamp(48px, 9vw, 132px)}
+.h1{font-size:clamp(36px,6vw,72px);line-height:.9;letter-spacing:-.04em}
+.h2{font-size:clamp(32px,4.2vw,56px);line-height:.95;letter-spacing:-.03em}
+.lead{font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:var(--muted2);font-weight:300}
+
+/* Layout helpers */
+.container{width:min(1320px,92vw);margin:0 auto}
+.split{ display:grid; grid-template-columns: 1.05fr .95fr; gap:0; }
+@media(max-width:900px){ .split{grid-template-columns:1fr} }
+.fine-line{height:1px;background:var(--line)}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 32px;mix-blend-mode:difference;color:white;transition:background .4s, padding .4s, mix-blend-mode .4s, color .4s}
+.nav.scrolled{mix-blend-mode:normal;background:rgba(252,250,248,.82);backdrop-filter:blur(16px) saturate(1.4);color:var(--ink);border-bottom:1px solid var(--line2);padding:14px 32px}
+.nav__logo{font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:-.02em;line-height:1}
+.nav__logo span{font-style:italic;font-weight:400}
+.nav__links{display:flex;gap:32px;align-items:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.nav__links a{position:relative;padding:4px 0}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{appearance:none;border:1px solid transparent;cursor:pointer;transition:all .4s var(--ease);display:inline-flex;align-items:center;gap:10px;justify-content:center;white-space:nowrap}
+.btn--dark{background:var(--ink);color:white;padding:14px 22px;border-radius:100px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.btn--dark:hover{background:var(--accent);transform:translateY(-1px)}
+.btn--light{background:white;color:var(--ink);border-color:var(--line);padding:14px 22px;border-radius:100px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.btn--light:hover{border-color:var(--ink)}
+.btn--ghost{border:1px solid rgba(255,255,255,.4);color:white;padding:12px 20px;border-radius:100px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;backdrop-filter:blur(6px)}
+.btn--ghost:hover{background:white;color:var(--ink);border-color:white}
+.hamburger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:white;align-items:center;justify-content:center}
+.nav.scrolled .hamburger{border-color:var(--line);color:var(--ink)}
+@media(max-width:1024px){
+  .nav{padding:16px 18px}
+  .nav__links{gap:18px}
+  .nav__links .hide-m{display:none}
+}
+@media(max-width:860px){
+  .nav__links{display:none}
+  .hamburger{display:flex}
+}
+
+/* Mobile drawer */
+.drawer{position:fixed;inset:0;z-index:60;background:var(--bg);transform:translateY(-100%);transition:transform .6s var(--ease);display:flex;flex-direction:column}
+.drawer.open{transform:translateY(0)}
+.drawer__top{display:flex;justify-content:space-between;align-items:center;padding:20px 18px;border-bottom:1px solid var(--line)}
+.drawer__nav{padding:32px 18px;display:grid;gap:6px;flex:1}
+.drawer__nav a{font-family:'Instrument Serif',serif;font-size:42px;line-height:.9;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid var(--line2)}
+.drawer__nav small{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.drawer__foot{padding:18px;display:grid;gap:12px}
+
+/* Hero */
+.hero{min-height:100svh;display:grid;grid-template-columns: 55% 45%;background:var(--bg);overflow:hidden}
+.hero__left{padding:120px 48px 48px 48px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--line);position:relative}
+.hero__right{position:relative;overflow:hidden;background:#E8E0D6}
+.hero__right img{height:100%;width:100%;object-position:center top;transform:scale(1.02);transition:transform 1.2s var(--ease)}
+.hero__eyebrow{display:flex;gap:14px;align-items:center;margin-bottom:28px}
+.hero__eyebrow i{width:36px;height:1px;background:var(--line);display:block}
+.hero__title{margin-bottom:18px}
+.hero__title em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300}
+.hero__desc{max-width:44ch;margin-bottom:28px}
+.hero__ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.hero__meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;border-top:1px solid var(--line);padding-top:22px;margin-top:auto}
+.hero__meta b{font-size:13px;letter-spacing:.06em}
+.hero__meta span{font-size:12px;color:var(--muted2);display:block;margin-top:4px;line-height:1.5}
+.hero__vert{position:absolute;right:18px;top:50%;writing-mode:vertical-rl;text-orientation:mixed;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);transform:translateY(-50%) rotate(180deg);display:flex;align-items:center;gap:12px}
+.hero__vert::before{content:"";width:1px;height:48px;background:var(--line);display:block}
+.hero__award{position:absolute;right:22px;bottom:22px;background:white;padding:14px 16px;border-radius:14px;display:flex;gap:12px;align-items:center;box-shadow:0 12px 40px rgba(0,0,0,.12);max-width:280px}
+.hero__award img{width:44px;height:44px;border-radius:50%}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero__left{padding:92px 18px 28px;border-right:none}
+  .hero__right{height:58vh;order:-1}
+  .hero__vert{display:none}
+  .hero__meta{grid-template-columns:1fr 1fr}
+  .hero__award{right:12px;bottom:12px;padding:10px 12px;max-width:240px}
+}
+
+/* Marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);overflow:hidden;white-space:nowrap;padding:14px 0}
+.marquee__track{display:inline-flex;animation:marquee 28s linear infinite;gap:36px;align-items:center}
+.marquee__track span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted2);display:inline-flex;align-items:center;gap:36px}
+.marquee__track i{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* Philosophy */
+.philosophy{padding:80px 0 0}
+.phil__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+.phil__img{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:var(--bg2)}
+.phil__img img{height:100%}
+.phil__card{position:absolute;left:18px;bottom:18px;background:white;padding:18px 20px;border-radius:16px;max-width:300px;box-shadow:0 16px 40px rgba(0,0,0,.10)}
+.phil__content{padding:18px 0}
+.phil__quote{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.2vw,44px);line-height:.95;letter-spacing:-.02em;margin:18px 0 22px}
+.phil__quote em{font-style:italic;color:var(--accent-dark)}
+.phil__facts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px;border-top:1px solid var(--line);padding-top:24px}
+.phil__facts b{font-size:28px;font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.02em}
+.phil__facts span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-top:2px}
+@media(max-width:900px){ .phil__grid{grid-template-columns:1fr;gap:28px} .philosophy{padding:48px 0 0} }
+
+/* Treatments */
+.treatments{padding:80px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:72px}
+.treat__header{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:36px;flex-wrap:wrap}
+.treat__tabs{display:inline-flex;background:var(--bg);border:1px solid var(--line);padding:4px;border-radius:100px;gap:4px;flex-wrap:wrap}
+.treat__tabs button{padding:10px 18px;border-radius:100px;border:none;background:transparent;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--muted2);cursor:pointer;transition:all .3s}
+.treat__tabs button.active{background:var(--ink);color:white}
+.treat__layout{display:grid;grid-template-columns:360px 1fr;gap:32px}
+.treat__sticky{position:sticky;top:96px;height:fit-content}
+.treat__sticky img{border-radius:20px;aspect-ratio:4/4.6;overflow:hidden}
+.treat__sticky p{font-size:12px;color:var(--muted2);margin-top:14px;line-height:1.6}
+.treat__list{border-top:1px solid var(--line)}
+.treat__row{display:grid;grid-template-columns:1fr auto;gap:16px;padding:22px 0;border-bottom:1px solid var(--line2);position:relative;cursor:pointer;transition:background .3s}
+.treat__row:hover{padding-left:12px}
+.treat__row h4{font-family:'Instrument Serif',serif;font-size:22px;font-weight:400;letter-spacing:-.02em;display:flex;gap:10px;align-items:center}
+.treat__row h4 i{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:var(--bg2);padding:5px 8px;border-radius:100px;color:var(--muted2);font-style:normal}
+.treat__row p{font-size:13px;color:var(--muted2);margin-top:6px;max-width:56ch;line-height:1.6}
+.treat__price{text-align:right}
+.treat__price b{font-family:'Instrument Serif',serif;font-size:20px;font-weight:400}
+.treat__price span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.treat__hoverImg{position:fixed;left:0;top:0;width:220px;height:280px;border-radius:16px;overflow:hidden;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .25s, transform .25s;z-index:20;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.treat__hoverImg img{height:100%}
+@media(max-width:900px){
+  .treatments{padding:48px 0}
+  .treat__layout{grid-template-columns:1fr}
+  .treat__sticky{display:none}
+  .treat__hoverImg{display:none}
+}
+
+/* Editorial strip */
+.editorial{display:grid;grid-template-columns:1.05fr .95fr;min-height:560px;overflow:hidden}
+.editorial__img{position:relative;overflow:hidden;background:var(--bg2)}
+.editorial__img img{height:100%;min-height:560px}
+.editorial__content{background:var(--ink);color:#F5F0E8;padding:56px;display:flex;flex-direction:column;justify-content:center}
+.editorial__content h3{font-family:'Instrument Serif',serif;font-size:clamp(32px,4vw,54px);line-height:.9;letter-spacing:-.02em;margin:16px 0}
+.editorial__content p{color:#CFC8BD;line-height:1.7;font-weight:300;max-width:48ch}
+.editorial__stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:32px;border-top:1px solid rgba(255,255,255,.12);padding-top:24px}
+.editorial__stats b{font-family:'Instrument Serif',serif;font-size:28px;font-weight:400}
+.editorial__stats span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#A9A297;display:block}
+@media(max-width:900px){ .editorial{grid-template-columns:1fr} .editorial__content{padding:36px 18px} .editorial__img img{min-height:420px} }
+
+/* Team */
+.team{padding:80px 0}
+.team__header{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.team__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.team__card{position:relative;overflow:hidden;border-radius:22px;background:var(--paper);border:1px solid var(--line2)}
+.team__card img{aspect-ratio:3/4;transition:transform .7s var(--ease)}
+.team__card:hover img{transform:scale(1.06)}
+.team__info{padding:16px 16px 18px}
+.team__info h4{font-family:'Instrument Serif',serif;font-size:21px;font-weight:400;letter-spacing:-.02em}
+.team__info p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.team__tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.team__tags span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--bg);border:1px solid var(--line);padding:6px 8px;border-radius:100px}
+.team__card .overlayBtn{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:white;display:grid;place-items:center;border:1px solid var(--line);opacity:0;transform:translateY(6px);transition:all .3s}
+.team__card:hover .overlayBtn{opacity:1;transform:none}
+@media(max-width:1100px){ .team__grid{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:560px){ .team__grid{grid-template-columns:1fr} }
+
+/* Gallery */
+.gallery{padding:10px 0 80px}
+.gallery__grid{display:grid;grid-template-columns:1.1fr .9fr .9fr;grid-template-rows:360px 360px;gap:14px}
+.gallery__grid > div{border-radius:22px;overflow:hidden;position:relative;background:var(--bg2)}
+.gallery__grid > div:nth-child(1){grid-row:span 2}
+.gallery__grid > div:nth-child(4){grid-column:span 2}
+.gallery__grid img{height:100%;transition:transform .8s var(--ease)}
+.gallery__grid > div:hover img{transform:scale(1.05)}
+.gallery__label{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);padding:8px 12px;border-radius:100px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:flex;gap:8px;align-items:center}
+.gallery__label i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:block}
+@media(max-width:900px){
+  .gallery__grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 240px 240px}
+  .gallery__grid > div:nth-child(1){grid-row:span 1;grid-column:span 2}
+  .gallery__grid > div:nth-child(4){grid-column:span 2}
+}
+
+/* Reviews */
+.reviews{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:72px 0}
+.reviews__head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.stars{color:var(--accent);letter-spacing:.14em;font-size:14px}
+.review__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review__card{background:white;border:1px solid var(--line2);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:16px}
+.review__card blockquote{font-family:'Instrument Serif',serif;font-size:22px;line-height:1.15;letter-spacing:-.02em}
+.review__card p{font-size:13px;color:var(--muted2);line-height:1.6}
+.review__person{display:flex;gap:12px;align-items:center;margin-top:auto;padding-top:16px;border-top:1px solid var(--line2)}
+.review__person img{width:40px;height:40px;border-radius:50%}
+.review__person b{font-size:13px}
+.review__person span{font-size:11px;color:var(--muted);display:block}
+@media(max-width:900px){ .review__grid{grid-template-columns:1fr; overflow:auto; scroll-snap-type:x mandatory} .review__card{scroll-snap-align:start} }
+
+/* Booking */
+.booking{padding:80px 0}
+.booking__wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:start}
+.booking__panel{background:white;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(16,12,8,.07)}
+.booking__head{padding:22px 22px 0;display:flex;justify-content:space-between;align-items:center}
+.steps{display:flex;gap:8px;align-items:center}
+.steps i{width:28px;height:4px;border-radius:100px;background:var(--line);display:block;transition:background .3s}
+.steps i.active{background:var(--ink)}
+.booking__body{padding:22px}
+.step{display:none;animation:fadeUp .5s var(--ease)}
+.step.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.field{margin-bottom:14px}
+.field label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);display:block;margin-bottom:8px;font-weight:500}
+.field input, .field select, .field textarea{width:100%;padding:14px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);font-size:14px;outline:none;transition:border .2s, background .2s}
+.field input:focus, .field select:focus, .field textarea:focus{border-color:var(--ink);background:white}
+.choiceGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--bg);cursor:pointer;transition:all .2s;display:flex;flex-direction:column;gap:6px;text-align:left}
+.choice:hover{border-color:var(--muted)}
+.choice.selected{border-color:var(--ink);background:var(--ink);color:white}
+.choice.selected span{color:rgba(255,255,255,.7)}
+.choice b{font-size:13px}
+.choice span{font-size:11px;color:var(--muted2);line-height:1.4}
+.times{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.times button{padding:12px;border:1px solid var(--line);border-radius:100px;background:white;font-size:13px;cursor:pointer;transition:all .2s}
+.times button:hover{border-color:var(--ink)}
+.times button.selected{background:var(--ink);color:white;border-color:var(--ink)}
+.booking__aside{position:sticky;top:96px}
+.booking__asideCard{background:var(--ink);color:#F5F0E8;border-radius:24px;padding:26px;overflow:hidden;position:relative}
+.booking__asideCard::after{content:"";position:absolute;inset:auto -30% -40% auto;width:70%;height:70%;background:radial-gradient(400px 300px at center, rgba(196,154,108,.35), transparent 70%);pointer-events:none}
+.summary{margin-top:18px;border-top:1px solid rgba(255,255,255,.12);padding-top:18px;display:grid;gap:10px;font-size:13px}
+.summary div{display:flex;justify-content:space-between;gap:12px;color:#CFC8BD}
+.summary b{color:white}
+.booking__benefits{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.booking__benefits div{background:white;border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;gap:12px;align-items:flex-start}
+.booking__benefits i{width:36px;height:36px;border-radius:50%;background:var(--bg);display:grid;place-items:center;flex-shrink:0;border:1px solid var(--line)}
+@media(max-width:980px){ .booking__wrap{grid-template-columns:1fr} .booking__aside{position:static} .choiceGrid{grid-template-columns:1fr} .times{grid-template-columns:repeat(3,1fr)} }
+
+/* Contact */
+.contact{display:grid;grid-template-columns: .95fr 1.05fr;min-height:560px;border-top:1px solid var(--line)}
+.contact__info{padding:48px;background:var(--paper);display:flex;flex-direction:column;justify-content:center}
+.contact__map{position:relative;overflow:hidden;background:#DDD}
+.contact__map img{height:100%;min-height:560px}
+.contact__mapCard{position:absolute;left:18px;bottom:18px;background:white;padding:16px;border-radius:16px;display:flex;gap:12px;align-items:center;box-shadow:0 16px 40px rgba(0,0,0,.12);max-width:320px}
+@media(max-width:900px){ .contact{grid-template-columns:1fr} .contact__info{padding:28px 18px} .contact__map img{min-height:380px} }
+
+/* Footer */
+.footer{background:var(--ink);color:#F5F0E8;padding:48px 0 22px}
+.footer__grid{display:grid;grid-template-columns:1.4fr .8fr .8fr .9fr;gap:28px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer h5{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A9A297;margin-bottom:14px}
+.footer a, .footer p{font-size:13px;color:#CFC8BD;line-height:1.7}
+.footer a:hover{color:white}
+.newsletter{display:flex;gap:8px;margin-top:12px}
+.newsletter input{flex:1;padding:12px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:white;outline:none}
+.newsletter button{padding:12px 16px;border-radius:100px;border:none;background:white;color:var(--ink);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;cursor:pointer}
+.footer__bottom{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:18px;flex-wrap:wrap;color:#8E8880;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:900px){ .footer__grid{grid-template-columns:1fr 1fr} }
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* Modal */
+.modal{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex}
+.modal__backdrop{position:absolute;inset:0;background:rgba(15,15,14,.48);backdrop-filter:blur(10px)}
+.modal__card{position:relative;background:var(--bg);width:min(560px,100%);border-radius:22px;overflow:hidden;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.22);animation:pop .5s var(--ease)}
+@keyframes pop{from{transform:translateY(12px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.modal__head{padding:18px 18px 0;display:flex;justify-content:space-between;align-items:center}
+.modal__body{padding:18px;overflow:auto}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(12px);background:var(--ink);color:white;padding:12px 16px;border-radius:100px;font-size:13px;display:flex;gap:10px;align-items:center;opacity:0;pointer-events:none;transition:all .4s;z-index:80;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#" class="nav__logo">STUDIO <span>Andersen</span></a>
+  <div class="nav__links">
+    <a href="#behandlinger">Behandlinger</a>
+    <a href="#team">Frisører</a>
+    <a href="#galleri">Galleri</a>
+    <a href="#kontakt" class="hide-m">Kontakt</a>
+    <a href="#booking" class="btn btn--dark" style="padding:10px 16px">Bestill time →</a>
+  </div>
+  <button class="hamburger" id="openDrawer" aria-label="Meny">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+</nav>
+
+<div class="drawer" id="drawer">
+  <div class="drawer__top">
+    <div class="nav__logo" style="color:var(--ink)">STUDIO <span>Andersen</span></div>
+    <button class="hamburger" id="closeDrawer" style="border-color:var(--line);color:var(--ink)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <nav class="drawer__nav">
+    <a href="#behandlinger"><small>01 — Meny</small> Behandlinger</a>
+    <a href="#team"><small>02 — Møt</small> Våre frisører</a>
+    <a href="#galleri"><small>03 — Se</small> Galleri & inspo</a>
+    <a href="#booking"><small>04 — Bestill</small> Booking</a>
+    <a href="#kontakt"><small>05 — Finn</small> Kontakt & åpningstider</a>
+  </nav>
+  <div class="drawer__foot">
+    <a href="#booking" class="btn btn--dark" style="width:100%">Bestill time — velg frisør</a>
+    <p class="kicker" style="text-align:center">Frognerveien 12 · 0262 Oslo · 22 44 88 10</p>
+  </div>
+</div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__left">
+      <div>
+        <div class="hero__eyebrow kicker"><i></i> Frogner — Oslo · Etablert 2018</div>
+        <h1 class="hero__title display huge">HÅR<br><em style="font-weight:300;display:inline-block;transform:translateY(-6px)">som kunst.</em></h1>
+        <p class="lead hero__desc">Studio Andersen er et boutique-studio for deg som vil ha mer enn en klipp. Vi er fargespesialister, presisjonsklippere og formgivere — med sans for det skandinaviske, myke og bærekraftige.</p>
+        <div class="hero__ctas">
+          <a href="#booking" class="btn btn--dark">Bestill time <span>→</span></a>
+          <a href="#behandlinger" class="btn btn--light">Se behandlinger</a>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:8px">
+            <img src="https://i.pravatar.cc/100?img=32" style="width:28px;height:28px;border-radius:50%;border:2px solid white;box-shadow:0 2px 10px rgba(0,0,0,.12)">
+            <img src="https://i.pravatar.cc/100?img=26" style="width:28px;height:28px;border-radius:50%;border:2px solid white;margin-left:-10px">
+            <img src="https://i.pravatar.cc/100?img=5" style="width:28px;height:28px;border-radius:50%;border:2px solid white;margin-left:-10px">
+          </div>
+          <div style="font-size:12px;line-height:1.2"><b>4.9/5 på Google</b> <span style="color:var(--muted2)">· 847 anmeldelser · ELLE anbefalt 2024</span></div>
+        </div>
+      </div>
+      <div class="hero__meta">
+        <div><b>Balayage & farge</b><span>Skreddersydd fargedesign med sunn glans og myke overganger</span></div>
+        <div><b>Presisjonsklipp</b><span>Signaturklipp tilpasset ansiktsform, tekstur og livsstil</span></div>
+        <div><b style="display:flex;gap:6px;align-items:center">Svanemerket <span style="background:var(--accent);color:white;padding:2px 6px;border-radius:100px;font-size:9px;letter-spacing:.1em">ECO</span></b><span>82% mindre avtrykk · Veganske produkter</span></div>
+      </div>
+      <div class="hero__vert">Scroll — oppdag studioet</div>
+    </div>
+    <div class="hero__right">
+      <img src="images/photo-15.jpg" alt="Kvinne med myk balayage">
+      <div class="hero__award">
+        <img src="images/photo-11.jpg" alt="">
+        <div style="line-height:1.3">
+          <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Årets Farge 2024</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:17px">Emma Andersen — finalist</div>
+          <div style="font-size:11px;color:var(--muted2)">Norwegian Hair Awards</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee__track">
+      <span>Vogue Scandinavia <i></i> ELLE Norge <i></i> Costume <i></i> Det Nye <i></i> KK <i></i> Oslo Runway <i></i> Svanemerket salong <i></i> Olaplex Certified <i></i></span>
+      <span>Vogue Scandinavia <i></i> ELLE Norge <i></i> Costume <i></i> Det Nye <i></i> KK <i></i> Oslo Runway <i></i> Svanemerket salong <i></i> Olaplex Certified <i></i></span>
+    </div>
+  </div>
+
+  <!-- Philosophy -->
+  <section class="philosophy container reveal">
+    <div class="phil__grid">
+      <div class="phil__img">
+        <img src="images/photo-22.jpg" alt="Salong interiør">
+        <div class="phil__card">
+          <div class="kicker" style="margin-bottom:8px">Vår filosofi</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:18px;line-height:1.2">“Vi klipper ikke bare hår. Vi former identitet.”</div>
+          <div style="font-size:12px;color:var(--muted2);margin-top:8px">— Emma Andersen, grunnlegger</div>
+        </div>
+      </div>
+      <div class="phil__content">
+        <div class="kicker">Skandinavisk presisjon — myk luksus</div>
+        <h2 class="phil__quote">Et stille, <em>varmt</em> studio hvor faget står i sentrum — og du står i fokus.</h2>
+        <p class="lead">Hos Studio Andersen tar vi oss tid. Konsultasjon er alltid inkludert. Vi analyserer hårtekstur, hudtone og hverdagen din — før vi skaper et uttrykk som varer, vokser vakkert ut og er enkelt å style hjemme.</p>
+        <p style="margin-top:14px;color:var(--muted2);font-size:14px;line-height:1.7">Vi jobber kun med K18, Olaplex og Kevin Murphy — og tilbyr alltid en ærlig anbefaling om hva håret trenger, ikke hva som selger mest. Derfor kommer kundene tilbake. Igjen og igjen.</p>
+        <div class="phil__facts">
+          <div><b>7+</b><span>År på Frogner</span></div>
+          <div><b>4.9 ★</b><span>847 Google anmeldelser</span></div>
+          <div><b>100%</b><span>Fornøydgaranti</span></div>
+          <div><b>02</b><span>Min fra Frognerparken</span></div>
+        </div>
+        <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap">
+          <a href="#team" class="btn btn--dark">Finn din frisør</a>
+          <a href="#galleri" class="btn btn--light">Se før & etter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Treatments -->
+  <section class="treatments" id="behandlinger">
+    <div class="container">
+      <div class="treat__header reveal">
+        <div>
+          <div class="kicker">Meny — Behandlinger</div>
+          <h2 class="h2 serif" style="margin-top:8px">Gjort for å <em style="font-style:italic;font-weight:300">vokse vakkert ut.</em></h2>
+        </div>
+        <div class="treat__tabs" role="tablist">
+          <button class="active" data-tab="klipp">Klipp</button>
+          <button data-tab="farge">Farge & Balayage</button>
+          <button data-tab="styling">Styling & Pleie</button>
+        </div>
+      </div>
+
+      <div class="treat__layout">
+        <div class="treat__sticky reveal">
+          <img id="treatImage" src="images/photo-14.jpg" alt="Behandling">
+          <p id="treatCaption"><b style="color:var(--ink)">Signaturklipp med styling.</b> 60 min konsultasjon, vask, presisjonsklipp og føn. Inkl. produktveiledning.</p>
+          <div style="margin-top:14px;display:flex;gap:8px;align-items:center;color:var(--muted2);font-size:12px"><span style="width:8px;height:8px;background:#2ECC71;border-radius:50%;display:inline-block"></span> Ledige timer i dag — se booking</div>
+        </div>
+        <div class="treat__list" id="treatList">
+          <!-- injected by JS -->
+        </div>
+      </div>
+      <div style="margin-top:18px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:16px">
+        <p style="font-size:12px;color:var(--muted2)">Alle priser er veiledende. Endelig pris avtales i konsultasjon. Student 15% på hverdager før kl 14.</p>
+        <a href="#booking" class="btn btn--dark">Bestill fargekonsultasjon — gratis</a>
+      </div>
+    </div>
+    <div class="treat__hoverImg" id="hoverImg"><img src="" alt=""></div>
+  </section>
+
+  <!-- Editorial -->
+  <section class="editorial reveal">
+    <div class="editorial__img">
+      <img src="images/photo-10.jpg" alt="Nærbilde hårfarge">
+      <div style="position:absolute;left:18px;top:18px;background:white;padding:10px 14px;border-radius:100px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:flex;gap:8px;align-items:center"><i style="width:8px;height:8px;background:var(--accent);border-radius:50%;display:block"></i> Balayage signatur — myk overgang</div>
+    </div>
+    <div class="editorial__content">
+      <div class="kicker" style="color:#A9A297">Slik jobber vi — håndverk</div>
+      <h3>Balayage er ikke en teknikk.<br><em style="font-style:italic;font-weight:400;color:var(--accent)">Det er et håndverk.</em></h3>
+      <p>Vi maler fargen for hånd, streng for streng — for et resultat som ser dyrt ut på dag én og enda bedre etter 8 uker. Ingen skarpe kanter. Bare solkysset dimensjon som kler deg.</p>
+      <ul style="margin-top:18px;display:grid;gap:10px;list-style:none">
+        <li style="display:flex;gap:12px;align-items:start;font-size:13px;color:#CFC8BD"><span style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;flex-shrink:0">✓</span> Inkl. K18-reparasjon og gloss for speilglans</li>
+        <li style="display:flex;gap:12px;align-items:start;font-size:13px;color:#CFC8BD"><span style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;flex-shrink:0">✓</span> 3,5 timer med ro, kaffe og skreddersøm</li>
+        <li style="display:flex;gap:12px;align-items:start;font-size:13px;color:#CFC8BD"><span style="width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;flex-shrink:0">✓</span> Gratis etterkontroll innen 14 dager</li>
+      </ul>
+      <div class="editorial__stats">
+        <div><b>210 min</b><span>Fra konsult til ferdig</span></div>
+        <div><b>Fra 2490,-</b><span>Inkl. pleie & styling</span></div>
+        <div><b>8–12 uker</b><span>Holdbart & myk utvekst</span></div>
+      </div>
+      <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap">
+        <a href="#booking" class="btn btn--light" style="background:white;color:var(--ink)">Bestill balayage</a>
+        <a href="#galleri" class="btn btn--ghost">Se galleri</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team container reveal" id="team">
+    <div class="team__header">
+      <div>
+        <div class="kicker">Håndplukket team</div>
+        <h2 class="h2 serif" style="margin-top:8px">Møt <em style="font-style:italic;font-weight:300">frisørene.</em></h2>
+        <p class="lead" style="margin-top:10px;max-width:52ch">Fire spesialister — én felles standard: presisjon, varme og ærlighet. Velg etter spesialfelt eller la oss matche deg.</p>
+      </div>
+      <a href="#booking" class="btn btn--dark">Finn din frisør — 2 min</a>
+    </div>
+    <div class="team__grid" id="teamGrid">
+      <!-- injected -->
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery container reveal" id="galleri">
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px;flex-wrap:wrap">
+      <div>
+        <div class="kicker">Galleri — før & etter</div>
+        <h3 class="h2 serif" style="margin-top:6px">Hår som <em style="font-style:italic;font-weight:300">kler hverdagen.</em></h3>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a href="https://instagram.com" target="_blank" class="btn btn--light">Følg @studioandersen →</a>
+        <span style="font-size:12px;color:var(--muted2)">12,4k følgere</span>
+      </div>
+    </div>
+    <div class="gallery__grid">
+      <div><img src="images/photo-02.jpg" alt=""><span class="gallery__label"><i></i> Soft balayage — Sofia</span></div>
+      <div><img src="images/photo-04.jpg" alt=""><span class="gallery__label"><i></i> Blunt bob — Jonas</span></div>
+      <div><img src="images/photo-17.jpg" alt=""><span class="gallery__label"><i></i> Gloss & klipp — Emma</span></div>
+      <div><img src="images/photo-06.jpg" alt=""><span class="gallery__label"><i></i> Brudestyling — Amalie · Elsket</span></div>
+      <div><img src="images/photo-13.jpg" alt=""><span class="gallery__label"><i></i> Herreklipp — Jonas</span></div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <div class="container">
+      <div class="reviews__head reveal">
+        <div>
+          <div class="kicker">Kundekjærlighet</div>
+          <h3 class="h2 serif" style="margin-top:6px">Det kundene <em style="font-style:italic;font-weight:300">sier.</em></h3>
+        </div>
+        <div style="text-align:right">
+          <div class="stars">★★★★★</div>
+          <div style="font-size:12px;color:var(--muted2);margin-top:4px">4.9 / 5 · 847 anmeldelser · Google</div>
+        </div>
+      </div>
+      <div class="review__grid reveal">
+        <div class="review__card">
+          <div class="stars">★★★★★</div>
+          <blockquote>“Beste balayage jeg har hatt. Myk utvekst etter 3 måneder og fortsatt fantastisk glans.”</blockquote>
+          <p>Fikk fargekonsultasjon uten stress, og Sofia forklarte alt. Følte meg sett og ivaretatt hele veien.</p>
+          <div class="review__person">
+            <img src="https://i.pravatar.cc/100?img=33" alt="">
+            <div><b>Ingrid S.</b><span>Balayage · september 2025</span></div>
+            <span style="margin-left:auto;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Verifisert</span>
+          </div>
+        </div>
+        <div class="review__card" style="background:var(--ink);color:#F5F0E8;border-color:#1A1A1A">
+          <div class="stars" style="color:var(--accent)">★★★★★</div>
+          <blockquote style="color:white">“Endelig en frisør som klipper etter hvordan håret <em style="color:var(--accent);font-style:italic">faktisk</em> faller.”</blockquote>
+          <p style="color:#CFC8BD">Jonas er utrolig presis. Klippen ser bra ut både rett og krøllete — og er lett å style.</p>
+          <div class="review__person" style="border-color:rgba(255,255,255,.14)">
+            <img src="https://i.pravatar.cc/100?img=15" alt="">
+            <div><b>Markus L.</b><span>Signaturklipp · herre</span></div>
+            <span style="margin-left:auto;color:#A9A297">Verifisert</span>
+          </div>
+        </div>
+        <div class="review__card">
+          <div class="stars">★★★★★</div>
+          <blockquote>“Brudestylingen var magisk. Amalie lyttet, prøvde og leverte over forventning.”</blockquote>
+          <p>Prøvetime inkludert gjorde alt trygt. Håret holdt hele dagen og bildene ble nydelige.</p>
+          <div class="review__person">
+            <img src="https://i.pravatar.cc/100?img=23" alt="">
+            <div><b>Sara E. & Thomas</b><span>Brud & styling · juni 2025</span></div>
+            <span style="margin-left:auto;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Verifisert</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section class="booking container reveal" id="booking">
+    <div style="text-align:center;max-width:720px;margin:0 auto 36px">
+      <div class="kicker">Booking — 2 minutter</div>
+      <h2 class="h2 serif" style="margin-top:8px">Bestill time <em style="font-style:italic;font-weight:300">på ekte.</em></h2>
+      <p class="lead" style="margin-top:10px">Velg behandling, frisør og tid — bekreftelsen kommer på SMS. Ingen forskuddsbetaling. Gratis avbestilling til 24t før.</p>
+    </div>
+
+    <div class="booking__wrap">
+      <div class="booking__panel">
+        <div class="booking__head">
+          <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600">Steg <span id="stepNo">1</span> av 4</div>
+          <div class="steps"><i class="active"></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="booking__body">
+          <!-- Step 1: Behandling -->
+          <div class="step active" data-step="1">
+            <h3 style="font-family:'Instrument Serif',serif;font-size:26px;font-weight:400;letter-spacing:-.02em">Hva vil du gjøre?</h3>
+            <p style="font-size:13px;color:var(--muted2);margin:6px 0 16px">Velg kategori — vi viser anbefalt tid og pris.</p>
+            <div class="choiceGrid" id="bookingServices"></div>
+            <div style="margin-top:18px;display:flex;justify-content:end"><button class="btn btn--dark" onclick="nextStep()">Fortsett →</button></div>
+          </div>
+          <!-- Step 2: Frisør -->
+          <div class="step" data-step="2">
+            <h3 style="font-family:'Instrument Serif',serif;font-size:26px;font-weight:400">Velg frisør</h3>
+            <p style="font-size:13px;color:var(--muted2);margin:6px 0 16px">Eller la oss matche deg med ledig spesialist.</p>
+            <div class="choiceGrid" id="bookingStylists"></div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between"><button class="btn btn--light" onclick="prevStep()">Tilbake</button><button class="btn btn--dark" onclick="nextStep()">Fortsett →</button></div>
+          </div>
+          <!-- Step 3: Tid -->
+          <div class="step" data-step="3">
+            <h3 style="font-family:'Instrument Serif',serif;font-size:26px;font-weight:400">Velg dag & tid</h3>
+            <p style="font-size:13px;color:var(--muted2);margin:6px 0 16px">Grønn = ledig. Vi holder av tiden i 10 min.</p>
+            <div class="field"><label>Dag</label><input type="date" id="bookDate"></div>
+            <div class="field"><label>Ledige tider</label><div class="times" id="timeGrid"></div></div>
+            <div style="margin-top:18px;display:flex;justify-content:space-between"><button class="btn btn--light" onclick="prevStep()">Tilbake</button><button class="btn btn--dark" onclick="nextStep()">Fortsett →</button></div>
+          </div>
+          <!-- Step 4: Info -->
+          <div class="step" data-step="4">
+            <h3 style="font-family:'Instrument Serif',serif;font-size:26px;font-weight:400">Dine detaljer</h3>
+            <p style="font-size:13px;color:var(--muted2);margin:6px 0 16px">Bekreftelse sendes på SMS og e-post.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="field"><label>Fornavn</label><input id="firstName" placeholder="Emma"></div>
+              <div class="field"><label>Etternavn</label><input id="lastName" placeholder="Hansen"></div>
+            </div>
+            <div class="field"><label>Mobil</label><input id="phone" placeholder="+47 9xx xx xxx"></div>
+            <div class="field"><label>E-post</label><input id="email" placeholder="emma@email.no" type="email"></div>
+            <div class="field"><label>Melding til frisør (valgfritt)</label><textarea id="note" rows="3" placeholder="F.eks. inspobilder, allergier, ønsker..."></textarea></div>
+            <label style="display:flex;gap:10px;align-items:start;font-size:12px;color:var(--muted2);margin:10px 0"><input type="checkbox" checked> Jeg godtar <a href="#" style="text-decoration:underline">vilkår</a> og forstår at avbestilling må skje 24t før.</label>
+            <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;gap:12px"><button class="btn btn--light" onclick="prevStep()">Tilbake</button><button class="btn btn--dark" onclick="confirmBooking()" style="flex:1">Bekreft booking →</button></div>
+            <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">Ingen betaling nå · Du betaler i salongen</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking__aside">
+        <div class="booking__asideCard">
+          <div class="kicker" style="color:#A9A297">Din booking</div>
+          <h3 style="font-family:'Instrument Serif',serif;font-size:30px;margin-top:8px;line-height:.9">Studio<br><em style="font-style:italic;font-weight:400;color:var(--accent)">Andersen.</em></h3>
+          <div class="summary" id="summary">
+            <div><span>Behandling</span><b id="sService">Velg behandling</b></div>
+            <div><span>Frisør</span><b id="sStylist">—</b></div>
+            <div><span>Tid</span><b id="sTime">Velg tid</b></div>
+            <div><span>Sted</span><b>Frognerveien 12, 0262 Oslo</b></div>
+            <div style="margin-top:8px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12)"><span>Å betale i salong</span><b id="sPrice">—</b></div>
+          </div>
+          <div style="margin-top:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px;display:flex;gap:10px;align-items:center">
+            <span style="width:28px;height:28px;border-radius:50%;background:var(--accent);display:grid;place-items:center">✦</span>
+            <div style="font-size:12px;line-height:1.4"><b>Gratis fargekonsultasjon</b><br><span style="color:#CFC8BD">15 min · Vi finner fargen som kler deg</span></div>
+          </div>
+        </div>
+        <div class="booking__benefits">
+          <div><i>◷</i><div><b style="font-size:12px">24t avbestilling</b><br><span style="font-size:11px;color:var(--muted2)">Gratis endring frem til dagen før</span></div></div>
+          <div><i>♡</i><div><b style="font-size:12px">Fornøydgaranti</b><br><span style="font-size:11px;color:var(--muted2)">Justering innen 14 dager</span></div></div>
+        </div>
+        <div style="margin-top:14px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;gap:12px;align-items:center">
+          <img src="https://i.pravatar.cc/100?img=5" style="width:36px;height:36px;border-radius:50%">
+          <div style="font-size:12px;line-height:1.4"><b>Trenger du hjelp?</b> <span style="color:var(--muted2)">Ring oss: <a href="tel:+4722448810" style="text-decoration:underline">22 44 88 10</a> · Svar på 2 min</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact reveal" id="kontakt">
+    <div class="contact__info">
+      <div class="kicker">Besøk oss — Frogner</div>
+      <h2 class="h2 serif" style="margin:10px 0 14px">Kom innom<br><em style="font-style:italic;font-weight:300">for en kaffe.</em></h2>
+      <p style="font-size:14px;color:var(--muted2);line-height:1.7;max-width:46ch">Vi ligger 2 minutter fra Frognerparken, med trikk 12 rett utenfor. Kom 5 min før timen — vi har god kaffe, te og et stille sted å lande.</p>
+      <div style="margin-top:22px;display:grid;gap:16px">
+        <div style="display:flex;gap:14px;align-items:start">
+          <span style="width:36px;height:36px;border-radius:50%;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center">⌖</span>
+          <div><b style="font-size:13px">Studio Andersen</b><br><span style="font-size:13px;color:var(--muted2)">Frognerveien 12, 0262 Oslo<br>Trikk: Frogner plass · Parkering i Elisenbergveien</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div style="background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px">
+            <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Åpningstider</div>
+            <div style="font-size:13px;margin-top:6px;line-height:1.7">Man–Fre: 10–19<br>Lørdag: 10–17<br>Søndag: Stengt</div>
+          </div>
+          <div style="background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px">
+            <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Kontakt</div>
+            <div style="font-size:13px;margin-top:6px;line-height:1.7"><a href="tel:+4722448810" style="text-decoration:underline">22 44 88 10</a><br><a href="mailto:hei@studioandersen.no" style="text-decoration:underline">hei@studioandersen.no</a><br><a href="#" style="text-decoration:underline">@studioandersen</a></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <a href="#booking" class="btn btn--dark">Bestill time</a>
+        <a href="https://maps.google.com/?q=Frognerveien+12+Oslo" target="_blank" class="btn btn--light">Åpne i kart →</a>
+      </div>
+    </div>
+    <div class="contact__map">
+      <img src="images/photo-19.jpg" alt="Kart Oslo">
+      <div class="contact__mapCard">
+        <span style="width:36px;height:36px;border-radius:50%;background:var(--ink);color:white;display:grid;place-items:center">⌖</span>
+        <div style="font-size:12px;line-height:1.4"><b>Studio Andersen · Frogner</b><br><span style="color:var(--muted2)">Frognerveien 12 — 0262 Oslo</span></div>
+        <span style="margin-left:auto;background:var(--accent);color:white;padding:6px 10px;border-radius:100px;font-size:10px;letter-spacing:.1em;text-transform:uppercase">Åpent i dag til 19</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div style="font-family:'Instrument Serif',serif;font-size:26px;letter-spacing:-.02em">STUDIO <span style="font-style:italic;font-weight:400">Andersen</span></div>
+        <p style="margin-top:10px;max-width:36ch">Boutique frisørstudio på Frogner. Klipp, farge og styling med skandinavisk presisjon — og varme.</p>
+        <div class="newsletter">
+          <input placeholder="Din e-post for inspo & ledige timer">
+          <button onclick="showToast('Takk! Du er på listen — vi sender kun det fineste.')">Meld på</button>
+        </div>
+        <p style="font-size:11px;color:#8E8880;margin-top:8px">Ingen spam. Avmeld når du vil.</p>
+      </div>
+      <div>
+        <h5>Salongen</h5>
+        <p><a href="#behandlinger">Behandlinger & priser</a><br><a href="#team">Våre frisører</a><br><a href="#galleri">Galleri</a><br><a href="#">Produkter</a><br><a href="#">Jobb hos oss</a></p>
+      </div>
+      <div>
+        <h5>Hjelp</h5>
+        <p><a href="#booking">Bestill time</a><br><a href="#">Avbestilling</a><br><a href="#">Fornøydgaranti</a><br><a href="#">Personvern</a><br><a href="#">Vilkår</a></p>
+      </div>
+      <div>
+        <h5>Følg oss</h5>
+        <p><a href="#">Instagram — @studioandersen</a><br><a href="#">TikTok</a><br><a href="#">Facebook</a></p>
+        <p style="margin-top:14px">Frognerveien 12<br>0262 Oslo<br>22 44 88 10</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Studio Andersen AS · Org 923 456 789 · Svanemerket · Alle rettigheter</span>
+      <span>Designet for portefølje · By Studio Andersen × Webbyrå Demo</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Success modal -->
+<div class="modal" id="successModal">
+  <div class="modal__backdrop" onclick="closeModal()"></div>
+  <div class="modal__card">
+    <div class="modal__head">
+      <div class="kicker">Bekreftet — takk!</div>
+      <button class="btn btn--light" style="padding:8px 12px;border-radius:100px" onclick="closeModal()">Lukk ✕</button>
+    </div>
+    <div class="modal__body" style="text-align:center;padding:24px 18px 28px">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--ink);color:white;display:grid;place-items:center;margin:0 auto 14px;font-size:22px">✓</div>
+      <h3 style="font-family:'Instrument Serif',serif;font-size:32px;letter-spacing:-.02em">Vi gleder oss til å se deg!</h3>
+      <p style="color:var(--muted2);font-size:14px;margin:8px auto 0;max-width:42ch;line-height:1.6" id="confirmText">Bekreftelse er sendt på SMS og e-post. Kom 5 min før timen.</p>
+      <div style="margin:18px auto 0;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:left;max-width:420px">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Din time</div>
+        <div style="display:grid;gap:6px;margin-top:8px;font-size:13px" id="confirmDetails"></div>
+      </div>
+      <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn--dark" onclick="closeModal()">Lukk</button>
+        <a href="#kontakt" class="btn btn--light" onclick="closeModal()">Se veibeskrivelse</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span>✦</span><span id="toastText">Lagret</span></div>
+
+<script>
+// Nav scroll
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=> nav.classList.toggle('scrolled', scrollY>30),{passive:true});
+
+// Drawer
+const drawer=document.getElementById('drawer');
+document.getElementById('openDrawer').onclick=()=>drawer.classList.add('open');
+document.getElementById('closeDrawer').onclick=()=>drawer.classList.remove('open');
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>drawer.classList.remove('open')));
+
+// Reveal
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Treatments data
+const treatments={
+  klipp:[
+    {name:"Signaturklipp Dame", tag:"Mest valgt", desc:"Konsultasjon, vask, presisjonsklipp og styling tilpasset ansikt og tekstur. Inkl. veiledning.", price:"890,-", dur:"60 min", img:"images/photo-14.jpg"},
+    {name:"Signaturklipp Herre", tag:"Presisjon", desc:"Fade, tekstur og finish. Vask og styling inkludert. Rask, presis og varig form.", price:"690,-", dur:"45 min", img:"images/photo-09.jpg"},
+    {name:"Klipp & Styling", tag:"Anbefalt", desc:"For deg som vil ha det lille ekstra — klipp med fønbørst, bølger eller ekstra volum.", price:"1090,-", dur:"75 min", img:"images/photo-05.jpg"},
+    {name:"Barneklipp", tag:"0–12 år", desc:"Trygg og rolig opplevelse for de minste. Lekent, tålmodig og fint.", price:"490,-", dur:"30 min", img:"images/photo-25.jpg"},
+  ],
+  farge:[
+    {name:"Balayage / Highlights", tag:"Signatur", desc:"Håndmalt farge for myk, solkysset dimensjon. Inkl. K18, gloss og styling. Vokser vakkert ut.", price:"Fra 2490,-", dur:"180–210 min", img:"images/photo-12.jpg"},
+    {name:"Hel farge", tag:"Dekk & glans", desc:"Dekkende eller transparent farge fra bunn til spiss. Dyp glans og jevn farge.", price:"Fra 1890,-", dur:"150 min", img:"images/photo-03.jpg"},
+    {name:"Ettervekstfarge", tag:"Oppfrisk", desc:"Oppfrisk av ettervekst med perfekt match og glans. Inkl. vask og styling.", price:"Fra 1390,-", dur:"120 min", img:"images/photo-24.jpg"},
+    {name:"Gloss & Toning", tag:"Glanskur", desc:"Kjøl ned varme toner eller boost glansen på 60 min. Perfekt mellom fargebehandlinger.", price:"790,-", dur:"60 min", img:"images/photo-18.jpg"},
+  ],
+  styling:[
+    {name:"Fønbørst & Styling", tag:"Event", desc:"Volum, bølger eller sleek — holdbar styling for jobb, fest eller photoshoot.", price:"590,-", dur:"45 min", img:"images/photo-18.jpg"},
+    {name:"Brudestyling inkl. prøvetime", tag:"Brud", desc:"To timer: prøvetime + dag. Vi skaper et tidløst uttrykk som holder hele dagen.", price:"3490,-", dur:"180 min", img:"images/photo-07.jpg"},
+    {name:"Olaplex / K18 Kur", tag:"Pleie", desc:"Reparerende kur for styrke og glans. Tas alene eller i kombinasjon med klipp/farge.", price:"450,-", dur:"30 min", img:"images/photo-23.jpg"},
+    {name:"Styling & Oppsett", tag:"Anledning", desc:"Oppsett, fletter og tekstur for bryllup, konfirmasjon eller fest.", price:"890,-", dur:"60 min", img:"images/photo-03.jpg"},
+  ]
+};
+
+let activeTab='klipp';
+const listEl=document.getElementById('treatList');
+const treatImage=document.getElementById('treatImage');
+const treatCaption=document.getElementById('treatCaption');
+const hoverImg=document.getElementById('hoverImg');
+
+function renderTreatments(){
+  listEl.innerHTML='';
+  treatments[activeTab].forEach((t,i)=>{
+    const row=document.createElement('div');
+    row.className='treat__row';
+    row.innerHTML=`
+      <div>
+        <h4>${t.name} <i>${t.tag}</i></h4>
+        <p>${t.desc}</p>
+      </div>
+      <div class="treat__price"><b>${t.price}</b><span>${t.dur}</span><span style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)">Bestill <span style="transition:transform .3s">→</span></span></div>
+    `;
+    row.addEventListener('mouseenter',()=>{
+      treatImage.src=t.img;
+      treatCaption.innerHTML=`<b style="color:var(--ink)">${t.name}.</b> ${t.desc} <br><span style="color:var(--muted)"> ${t.dur} · ${t.price}</span>`;
+      hoverImg.querySelector('img').src=t.img;
+      hoverImg.style.opacity=1;
+    });
+    row.addEventListener('mouseleave',()=> hoverImg.style.opacity=0);
+    row.addEventListener('click',()=>{
+      selectedService=t.name;
+      selectedPrice=t.price;
+      selectedDuration=t.dur;
+      updateSummary();
+      document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+      // pre-select in booking
+      bookingServicesEl.querySelectorAll('.choice').forEach(c=>{
+        c.classList.toggle('selected', c.dataset.name===t.name);
+      });
+      goToStep(1);
+    });
+    listEl.appendChild(row);
+  });
+}
+document.querySelectorAll('.treat__tabs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.treat__tabs button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    activeTab=b.dataset.tab;
+    renderTreatments();
+  });
+});
+renderTreatments();
+
+// Hover image follow cursor
+let mx=0,my=0, raf;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  if(hoverImg.style.opacity==1){
+    if(!raf) raf=requestAnimationFrame(()=>{
+      hoverImg.style.left=mx+'px';
+      hoverImg.style.top=my+'px';
+      raf=null;
+    });
+  }
+});
+
+// Team
+const team=[
+  {name:"Emma Andersen", role:"Grunnlegger · Fargespesialist", tags:["Balayage","Gloss","K18"], img:"images/photo-01.jpg", bio:"12 år i faget. Utdannet hos Vidal Sassoon, finalist Norwegian Hair Awards. Elsker myke, dyre farger som varer."},
+  {name:"Jonas Lind", role:"Senior Stylist · Klipp & Herre", tags:["Presisjonsklipp","Herre","Krøller"], img:"images/photo-08.jpg", bio:"Presisjon og personlighet. Spesialist på tekstur, krøller og klipp som er lett å leve med."},
+  {name:"Sofia Chen", role:"Balayage Artist", tags:["Highlights","Brunette","Blond"], img:"images/photo-21.jpg", bio:"Farge med dimensjon. Sofia maler balayage for hånd — for et solkysset resultat som vokser vakkert ut."},
+  {name:"Amalie Holm", role:"Stylist · Brud & Event", tags:["Brud","Oppsett","Styling"], img:"images/photo-20.jpg", bio:"Romantisk, moderne og holdbart. Amalie skaper hår som holder hele dagen — og ser nydelig ut på bilder."},
+];
+const teamGrid=document.getElementById('teamGrid');
+team.forEach(t=>{
+  const c=document.createElement('div');
+  c.className='team__card';
+  c.innerHTML=`
+    <img src="${t.img}" alt="${t.name}">
+    <div class="overlayBtn">→</div>
+    <div class="team__info">
+      <h4>${t.name}</h4>
+      <p>${t.role}</p>
+      <p style="font-size:12px;color:var(--muted2);margin-top:8px;line-height:1.5;text-transform:none;letter-spacing:0">${t.bio}</p>
+      <div class="team__tags">${t.tags.map(x=>`<span>${x}</span>`).join('')}</div>
+      <button class="btn btn--dark" style="width:100%;margin-top:12px;padding:10px" onclick="selectStylist('${t.name}')">Bestill hos ${t.name.split(' ')[0]} →</button>
+    </div>
+  `;
+  teamGrid.appendChild(c);
+});
+
+// Booking logic
+let currentStep=1;
+let selectedService=null, selectedPrice=null, selectedDuration=null, selectedStylist=null, selectedTime=null;
+
+const bookingServicesEl=document.getElementById('bookingServices');
+const bookingStylistsEl=document.getElementById('bookingStylists');
+const timeGrid=document.getElementById('timeGrid');
+const stepNo=document.getElementById('stepNo');
+
+const quickServices=[
+  {name:"Signaturklipp Dame", price:"890,-", dur:"60 min", note:"Mest valgt"},
+  {name:"Balayage / Highlights", price:"Fra 2490,-", dur:"180 min", note:"Signatur"},
+  {name:"Ettervekstfarge", price:"Fra 1390,-", dur:"120 min", note:"Oppfrisk"},
+  {name:"Fønbørst & Styling", price:"590,-", dur:"45 min", note:"Event"},
+  {name:"Brudestyling", price:"3490,-", dur:"180 min", note:"Brud"},
+  {name:"Herreklipp", price:"690,-", dur:"45 min", note:"Presisjon"},
+];
+
+function renderBookingServices(){
+  bookingServicesEl.innerHTML='';
+  quickServices.forEach(s=>{
+    const b=document.createElement('button');
+    b.className='choice';
+    b.dataset.name=s.name;
+    b.innerHTML=`<b>${s.name}</b><span>${s.dur} · ${s.price} · ${s.note}</span>`;
+    b.onclick=()=>{
+      bookingServicesEl.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected');
+      selectedService=s.name; selectedPrice=s.price; selectedDuration=s.dur;
+      updateSummary();
+    };
+    bookingServicesEl.appendChild(b);
+  });
+}
+function renderStylists(){
+  bookingStylistsEl.innerHTML='';
+  [{name:"Første ledige", role:"Vi matcher deg", img:"images/photo-16.jpg" }, ...team].forEach(t=>{
+    const b=document.createElement('button');
+    b.className='choice';
+    b.style.flexDirection='row'; b.style.alignItems='center'; b.style.gap='12px';
+    b.innerHTML=`<img src="${t.img}" style="width:40px;height:40px;border-radius:50%;object-fit:cover"><div style="text-align:left"><b>${t.name}</b><span style="display:block">${t.role}</span></div>`;
+    b.onclick=()=>{
+      bookingStylistsEl.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected');
+      selectedStylist=t.name;
+      updateSummary();
+    };
+    bookingStylistsEl.appendChild(b);
+  });
+}
+const times=["09:00","10:30","11:45","13:00","14:30","16:00"];
+function renderTimes(){
+  timeGrid.innerHTML='';
+  times.forEach(t=>{
+    const b=document.createElement('button');
+    b.textContent=t;
+    b.onclick=()=>{
+      timeGrid.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected');
+      selectedTime=t;
+      updateSummary();
+    };
+    timeGrid.appendChild(b);
+  });
+}
+renderBookingServices(); renderStylists(); renderTimes();
+
+// default date = tomorrow
+const dateInput=document.getElementById('bookDate');
+const tomorrow=new Date(); tomorrow.setDate(tomorrow.getDate()+1);
+dateInput.valueAsDate=tomorrow;
+dateInput.min=new Date().toISOString().split('T')[0];
+
+function updateSummary(){
+  document.getElementById('sService').textContent= selectedService ? `${selectedService} · ${selectedDuration}` : 'Velg behandling';
+  document.getElementById('sStylist').textContent= selectedStylist || '—';
+  const d=dateInput.value ? new Date(dateInput.value).toLocaleDateString('no-NO',{weekday:'short', day:'numeric', month:'short'}) : '';
+  document.getElementById('sTime').textContent= selectedTime ? `${d} kl ${selectedTime}` : (d? d : 'Velg tid');
+  document.getElementById('sPrice').textContent= selectedPrice || '—';
+}
+dateInput.addEventListener('change', updateSummary);
+
+function goToStep(n){
+  currentStep=n;
+  document.querySelectorAll('.step').forEach(s=>s.classList.toggle('active', Number(s.dataset.step)===n));
+  document.querySelectorAll('.steps i').forEach((el,i)=> el.classList.toggle('active', i < n));
+  stepNo.textContent=n;
+}
+function nextStep(){
+  if(currentStep===1 && !selectedService){ showToast('Velg en behandling først'); return; }
+  if(currentStep===2 && !selectedStylist){ showToast('Velg frisør — eller “Første ledige”'); return; }
+  if(currentStep===3 && !selectedTime){ showToast('Velg en tid'); return; }
+  if(currentStep<4) goToStep(currentStep+1);
+}
+function prevStep(){ if(currentStep>1) goToStep(currentStep-1); }
+
+function selectStylist(name){
+  selectedStylist=name;
+  updateSummary();
+  document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+  goToStep(2);
+  // highlight
+  setTimeout(()=>{
+    bookingStylistsEl.querySelectorAll('.choice').forEach(c=>{
+      c.classList.toggle('selected', c.textContent.includes(name));
+    });
+  },100);
+}
+
+function confirmBooking(){
+  const fn=document.getElementById('firstName').value.trim();
+  const ln=document.getElementById('lastName').value.trim();
+  const ph=document.getElementById('phone').value.trim();
+  const em=document.getElementById('email').value.trim();
+  if(!fn || !ph || !em){ showToast('Fyll inn navn, mobil og e-post'); return; }
+  if(!selectedService || !selectedStylist || !selectedTime){ showToast('Fullfør valg av behandling, frisør og tid'); goToStep(1); return; }
+  const d=new Date(dateInput.value).toLocaleDateString('no-NO',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  document.getElementById('confirmText').textContent=`Takk ${fn}! Bekreftelse er sendt til ${ph} og ${em}.`;
+  document.getElementById('confirmDetails').innerHTML=`
+    <div><span>Behandling</span><b>${selectedService} · ${selectedDuration}</b></div>
+    <div><span>Frisør</span><b>${selectedStylist}</b></div>
+    <div><span>Dato</span><b>${d} kl ${selectedTime}</b></div>
+    <div><span>Pris</span><b>${selectedPrice} — betales i salongen</b></div>
+    <div><span>Sted</span><b>Frognerveien 12, 0262 Oslo</b></div>
+  `;
+  document.getElementById('successModal').classList.add('open');
+  showToast('Booking bekreftet ✓ Se SMS/e-post');
+  // reset a bit after
+}
+
+function closeModal(){ document.getElementById('successModal').classList.remove('open'); }
+
+// Toast
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastText').textContent=msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'), 3200);
+}
+
+// Parallax-ish hero
+let lastY=0;
+addEventListener('scroll',()=>{
+  const y=scrollY;
+  const img=document.querySelector('.hero__right img');
+  if(img && innerWidth>900) img.style.transform=`translateY(${y*0.06}px) scale(1.02)`;
+},{passive:true});
+
+// Smooth anchor
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    if(id.length>1){
+      const el=document.querySelector(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
+  });
+});
+
+// Init summary
+updateSummary();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

@@ -1,0 +1,2796 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0b0d0a" />
+<title>Fjellro Lodge — Et opphold i stillheten</title>
+<meta name="description" content="Fjellro Lodge er et eksklusivt overnattingssted i Vest-Norge. Håndbygde hytter, villmarksbad, badstue og menyer signert av mesterkokk." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+
+<style>
+/* =============================
+   FJELLRO LODGE — Design System
+   ============================= */
+
+:root{
+  /* Palette — mørk, varm, naturlig */
+  --ink-1000:#07080a;
+  --ink-950:#0b0d0a;
+  --ink-900:#10110d;
+  --ink-800:#1a1b16;
+  --ink-700:#2a2b24;
+  --bone-50:#f4efe6;
+  --bone-100:#ece5d6;
+  --bone-200:#dccfb6;
+  --bone-300:#b8a987;
+  --moss-500:#6b6a3e;
+  --rust-500:#a85a3b;
+  --ember-400:#d99868;
+  --ember-500:#c47a4a;
+  --frost-100:#e6eaf0;
+  --line:rgba(244,239,230,.14);
+  --line-soft:rgba(244,239,230,.08);
+  --gold: #c8a96a;
+
+  /* Type */
+  --serif: 'Cormorant Garamond', 'Fraunces', Georgia, serif;
+  --display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Easing */
+  --ease-out: cubic-bezier(.16,.84,.36,1);
+  --ease-in-out: cubic-bezier(.65,.05,.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--ink-1000);
+  color:var(--bone-50);
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+
+/* Selection */
+::selection{background:var(--ember-500);color:var(--ink-1000)}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--ink-900)}
+::-webkit-scrollbar-thumb{background:var(--ink-700);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:var(--moss-500)}
+
+/* ========== Typography ========== */
+.eyebrow{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--bone-200);
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+}
+.eyebrow::before{
+  content:"";
+  width:32px;height:1px;
+  background:currentColor;
+  opacity:.7;
+}
+h1,h2,h3,h4{font-family:var(--display);font-weight:300;letter-spacing:-.02em;color:var(--bone-50);line-height:1.05}
+.serif{font-family:var(--display);font-weight:300;letter-spacing:-.01em}
+
+/* ========== Layout ========== */
+.wrap{max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
+section{position:relative}
+.container{padding:0 clamp(20px,5vw,72px)}
+
+/* ========== Buttons ========== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  padding:18px 28px;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  border-radius:999px;
+  transition:all .5s var(--ease-out);
+  position:relative;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.btn--primary{
+  background:var(--bone-50);
+  color:var(--ink-1000);
+}
+.btn--primary:hover{
+  background:var(--ember-500);
+  color:var(--bone-50);
+  gap:20px;
+}
+.btn--ghost{
+  background:transparent;
+  color:var(--bone-50);
+  border:1px solid var(--line);
+}
+.btn--ghost:hover{
+  border-color:var(--bone-50);
+  background:rgba(244,239,230,.05);
+}
+.btn--dark{
+  background:var(--ink-1000);
+  color:var(--bone-50);
+}
+.btn--dark:hover{background:var(--ember-500);color:var(--ink-1000)}
+.btn .arrow{transition:transform .4s var(--ease-out)}
+.btn:hover .arrow{transform:translateX(6px)}
+
+/* ===========================================================
+   NAV
+   =========================================================== */
+.nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  padding:22px 0;
+  transition:all .6s var(--ease-out);
+}
+.nav__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,5vw,72px);
+}
+.nav__brand{
+  font-family:var(--display);
+  font-size:22px;
+  font-weight:500;
+  letter-spacing:.04em;
+  color:var(--bone-50);
+  display:flex;align-items:center;gap:12px;
+}
+.nav__brand-mark{
+  width:34px;height:34px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--bone-100),var(--ember-400));
+  display:grid;place-items:center;
+  color:var(--ink-1000);
+  font-family:var(--display);
+  font-weight:500;
+  font-size:18px;
+}
+.nav__links{display:flex;gap:38px;align-items:center}
+.nav__links a{
+  font-size:13px;
+  font-weight:400;
+  letter-spacing:.04em;
+  color:var(--bone-100);
+  position:relative;
+  padding:6px 0;
+  transition:color .3s;
+}
+.nav__links a::after{
+  content:"";
+  position:absolute;left:0;bottom:0;
+  width:0;height:1px;
+  background:var(--bone-50);
+  transition:width .4s var(--ease-out);
+}
+.nav__links a:hover{color:var(--bone-50)}
+.nav__links a:hover::after{width:100%}
+
+.nav--scrolled{
+  background:rgba(7,8,10,.78);
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  border-bottom:1px solid var(--line-soft);
+  padding:14px 0;
+}
+.nav--scrolled .nav__brand{font-size:20px}
+
+.nav__cta{
+  padding:11px 22px;
+  font-size:11px;
+  letter-spacing:.18em;
+  border-radius:999px;
+  background:var(--bone-50);
+  color:var(--ink-1000);
+  transition:all .4s var(--ease-out);
+  font-weight:500;
+}
+.nav__cta:hover{background:var(--ember-500);color:var(--bone-50)}
+
+.nav__burger{
+  display:none;
+  width:38px;height:38px;
+  position:relative;
+  z-index:120;
+}
+.nav__burger span{
+  position:absolute;left:8px;right:8px;height:1.5px;
+  background:var(--bone-50);
+  transition:all .4s var(--ease-out);
+}
+.nav__burger span:nth-child(1){top:13px}
+.nav__burger span:nth-child(2){top:18.5px}
+.nav__burger span:nth-child(3){top:24px}
+.nav--open .nav__burger span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.nav--open .nav__burger span:nth-child(2){opacity:0}
+.nav--open .nav__burger span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+.mobile-menu{
+  position:fixed;inset:0;
+  background:var(--ink-1000);
+  z-index:110;
+  padding:120px clamp(20px,5vw,72px) 40px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  transform:translateY(-100%);
+  transition:transform .7s var(--ease-out);
+  overflow-y:auto;
+}
+.nav--open .mobile-menu{transform:translateY(0)}
+.mobile-menu a{
+  display:block;
+  font-family:var(--display);
+  font-size:clamp(36px,8vw,56px);
+  font-weight:300;
+  letter-spacing:-.02em;
+  padding:14px 0;
+  border-bottom:1px solid var(--line-soft);
+}
+.mobile-menu__cta{
+  margin-top:30px;
+  display:flex;flex-direction:column;gap:14px;
+}
+
+/* ===========================================================
+   HERO
+   =========================================================== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  align-items:flex-end;
+  padding:120px 0 60px;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero__bg{
+  position:absolute;inset:0;
+  z-index:-2;
+  overflow:hidden;
+}
+.hero__bg::before{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(7,8,10,.35) 0%,
+    rgba(7,8,10,.15) 40%,
+    rgba(7,8,10,.55) 75%,
+    rgba(7,8,10,.95) 100%);
+  z-index:2;
+}
+.hero__bg img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 40%;
+  animation:heroZoom 24s var(--ease-out) infinite alternate;
+}
+@keyframes heroZoom{
+  from{transform:scale(1)}
+  to{transform:scale(1.12)}
+}
+.hero__bg-grain{
+  position:absolute;inset:0;
+  background-image:url("images/image-01.svg");
+  opacity:.18;
+  mix-blend-mode:overlay;
+  z-index:3;
+  pointer-events:none;
+}
+.hero__inner{
+  position:relative;z-index:5;
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:40px;
+}
+.hero__meta{
+  display:flex;align-items:center;gap:30px;
+  font-size:11px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--bone-200);
+  margin-bottom:32px;
+  flex-wrap:wrap;
+}
+.hero__meta-item{display:flex;align-items:center;gap:10px}
+.hero__meta-dot{width:5px;height:5px;background:var(--ember-400);border-radius:50%;animation:pulse 2.4s var(--ease-in-out) infinite}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(1.3)}
+}
+.hero h1{
+  font-size:clamp(54px,10vw,148px);
+  line-height:.95;
+  letter-spacing:-.035em;
+  font-weight:300;
+  max-width:1200px;
+  margin-bottom:38px;
+}
+.hero h1 em{
+  font-style:italic;
+  font-weight:300;
+  color:var(--bone-100);
+}
+.hero h1 .word{
+  display:inline-block;
+  overflow:hidden;
+}
+.hero h1 .word span{
+  display:inline-block;
+  transform:translateY(110%);
+  animation:wordUp 1.1s var(--ease-out) forwards;
+}
+.hero h1 .word:nth-child(1) span{animation-delay:.1s}
+.hero h1 .word:nth-child(2) span{animation-delay:.25s}
+.hero h1 .word:nth-child(3) span{animation-delay:.4s}
+.hero h1 .word:nth-child(4) span{animation-delay:.55s}
+@keyframes wordUp{
+  to{transform:translateY(0)}
+}
+.hero__sub{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap:60px;
+  align-items:end;
+  margin-top:24px;
+}
+.hero__sub p{
+  font-size:clamp(15px,1.2vw,18px);
+  color:var(--bone-200);
+  line-height:1.65;
+  max-width:540px;
+  font-weight:300;
+}
+.hero__ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+.hero__scroll{
+  position:absolute;
+  bottom:30px;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  font-size:10px;
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:var(--bone-200);
+  z-index:5;
+  animation:bob 3s var(--ease-in-out) infinite;
+}
+@keyframes bob{
+  0%,100%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,6px)}
+}
+.hero__scroll-line{
+  width:1px;height:42px;background:var(--bone-200);opacity:.6;
+  position:relative;overflow:hidden;
+}
+.hero__scroll-line::after{
+  content:"";position:absolute;top:0;left:0;width:100%;height:50%;
+  background:var(--bone-50);
+  animation:scrollLine 2.4s var(--ease-in-out) infinite;
+}
+@keyframes scrollLine{
+  0%{transform:translateY(-100%)}
+  100%{transform:translateY(200%)}
+}
+
+/* ===========================================================
+   MARQUEE / PHILOSOPHY BAR
+   =========================================================== */
+.marquee{
+  background:var(--ink-1000);
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
+  padding:22px 0;
+  overflow:hidden;
+  position:relative;
+}
+.marquee__track{
+  display:flex;gap:60px;align-items:center;
+  animation:marquee 40s linear infinite;
+  white-space:nowrap;
+  width:max-content;
+}
+@keyframes marquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.marquee__item{
+  font-family:var(--display);
+  font-size:18px;
+  font-weight:300;
+  color:var(--bone-100);
+  display:flex;align-items:center;gap:60px;
+  letter-spacing:.02em;
+}
+.marquee__item::after{
+  content:"✦";
+  color:var(--ember-400);
+  font-size:10px;
+}
+
+/* ===========================================================
+   STORY / PHILOSOPHY
+   =========================================================== */
+.story{
+  background:var(--ink-1000);
+  padding:140px 0;
+  position:relative;
+}
+.story__head{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:80px;
+  margin-bottom:80px;
+  align-items:start;
+}
+.story h2{
+  font-size:clamp(40px,6vw,84px);
+  line-height:1.02;
+  letter-spacing:-.025em;
+  font-weight:300;
+}
+.story h2 em{font-style:italic;color:var(--bone-200)}
+.story__lead p{
+  font-family:var(--display);
+  font-size:clamp(20px,1.6vw,26px);
+  font-weight:300;
+  line-height:1.5;
+  color:var(--bone-100);
+  letter-spacing:-.005em;
+  max-width:760px;
+}
+.story__lead p + p{margin-top:22px;font-size:clamp(15px,1.1vw,17px);font-family:var(--sans);color:var(--bone-200);letter-spacing:0;line-height:1.7}
+.story__split{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:80px;
+  align-items:center;
+  margin-top:80px;
+}
+.story__images{
+  position:relative;
+  height:680px;
+}
+.story__img{
+  position:absolute;
+  overflow:hidden;
+  border-radius:6px;
+}
+.story__img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s var(--ease-out);
+}
+.story__img--1{
+  top:0;left:0;width:62%;height:60%;
+}
+.story__img--2{
+  bottom:0;right:0;width:55%;height:62%;
+}
+.story__img--3{
+  top:30%;left:32%;width:38%;height:42%;
+  z-index:2;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.5);
+}
+.story__caption{
+  position:absolute;
+  bottom:24px;left:24px;
+  color:var(--bone-50);
+  z-index:3;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  background:rgba(7,8,10,.4);
+  backdrop-filter:blur(8px);
+  padding:8px 14px;
+  border-radius:100px;
+}
+.story__points{
+  display:flex;flex-direction:column;gap:32px;
+}
+.story__point{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:28px;
+  padding:32px 0;
+  border-top:1px solid var(--line-soft);
+  align-items:start;
+}
+.story__point:last-child{border-bottom:1px solid var(--line-soft)}
+.story__point-num{
+  font-family:var(--display);
+  font-size:14px;
+  color:var(--ember-400);
+  font-weight:400;
+  letter-spacing:.05em;
+  padding-top:6px;
+}
+.story__point h4{
+  font-size:clamp(22px,1.8vw,28px);
+  margin-bottom:10px;
+  font-weight:400;
+}
+.story__point p{
+  color:var(--bone-200);
+  font-size:15px;
+  line-height:1.65;
+}
+
+/* Reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal--slow{transition-duration:1.4s}
+
+/* ===========================================================
+   BOOKING WIDGET
+   =========================================================== */
+.booking{
+  background:var(--bone-50);
+  color:var(--ink-1000);
+  padding:120px 0 100px;
+  position:relative;
+  overflow:hidden;
+}
+.booking::before{
+  content:"";
+  position:absolute;top:0;right:0;bottom:0;width:30%;
+  background:linear-gradient(180deg,transparent,rgba(196,122,74,.04));
+  pointer-events:none;
+}
+.booking__head{
+  text-align:center;
+  margin-bottom:60px;
+}
+.booking__head .eyebrow{color:var(--ember-500)}
+.booking__head h2{
+  color:var(--ink-1000);
+  font-size:clamp(38px,5vw,64px);
+  margin:18px 0 16px;
+  font-weight:300;
+  letter-spacing:-.02em;
+}
+.booking__head h2 em{font-style:italic}
+.booking__head p{
+  color:#3a3a36;
+  font-size:16px;
+  max-width:520px;
+  margin:0 auto;
+  line-height:1.6;
+}
+.booking__form{
+  background:var(--ink-1000);
+  color:var(--bone-50);
+  border-radius:20px;
+  padding:40px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr) auto;
+  gap:0;
+  align-items:stretch;
+  position:relative;
+  box-shadow:0 40px 100px -30px rgba(0,0,0,.4);
+}
+.booking__field{
+  padding:6px 28px;
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:center;
+  min-height:80px;
+  position:relative;
+}
+.booking__field:last-of-type{border-right:0}
+.booking__field label{
+  display:block;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--bone-300);
+  margin-bottom:6px;
+}
+.booking__field .value{
+  font-family:var(--display);
+  font-size:22px;
+  font-weight:400;
+  letter-spacing:-.01em;
+  color:var(--bone-50);
+  display:flex;align-items:center;gap:8px;
+  cursor:pointer;
+  user-select:none;
+}
+.booking__field input[type="date"]{
+  position:absolute;inset:0;opacity:0;cursor:pointer;
+  font-size:0;
+}
+.booking__field select{
+  background:transparent;border:0;outline:0;
+  appearance:none;
+  -webkit-appearance:none;
+  font-family:var(--display);
+  font-size:22px;
+  font-weight:400;
+  color:var(--bone-50);
+  cursor:pointer;
+  width:100%;
+  padding-right:18px;
+  background-image:url("images/image-02.svg");
+  background-repeat:no-repeat;
+  background-position:right center;
+}
+.booking__submit{
+  margin:0 0 0 24px;
+  background:var(--bone-50);
+  color:var(--ink-1000);
+  border-radius:14px;
+  padding:0 36px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:600;
+  transition:all .4s var(--ease-out);
+  white-space:nowrap;
+}
+.booking__submit:hover{background:var(--ember-500);color:var(--bone-50);transform:translateY(-2px)}
+.booking__chips{
+  display:flex;gap:10px;flex-wrap:wrap;
+  justify-content:center;
+  margin-top:30px;
+}
+.booking__chip{
+  font-size:11px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  padding:10px 18px;
+  border-radius:100px;
+  border:1px solid rgba(7,8,10,.15);
+  color:var(--ink-1000);
+  background:transparent;
+  cursor:pointer;
+  transition:all .3s;
+  font-weight:500;
+}
+.booking__chip:hover, .booking__chip.is-active{
+  background:var(--ink-1000);
+  color:var(--bone-50);
+  border-color:var(--ink-1000);
+}
+.booking__note{
+  text-align:center;
+  font-size:12px;
+  color:#666;
+  margin-top:24px;
+  letter-spacing:.05em;
+}
+
+/* ===========================================================
+   ROOMS
+   =========================================================== */
+.rooms{
+  background:var(--ink-950);
+  padding:140px 0;
+  position:relative;
+}
+.rooms__head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  margin-bottom:80px;
+  align-items:end;
+}
+.rooms__head h2{
+  font-size:clamp(40px,6vw,80px);
+  line-height:1.02;
+  letter-spacing:-.025em;
+  font-weight:300;
+}
+.rooms__head h2 em{font-style:italic}
+.rooms__head p{
+  color:var(--bone-200);
+  font-size:16px;
+  max-width:480px;
+  line-height:1.65;
+}
+
+.rooms__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+.room-card{
+  position:relative;
+  overflow:hidden;
+  background:var(--ink-900);
+  border:1px solid var(--line-soft);
+  border-radius:8px;
+  transition:transform .8s var(--ease-out), border-color .6s;
+  cursor:pointer;
+}
+.room-card:hover{transform:translateY(-6px);border-color:var(--ember-500)}
+.room-card__media{
+  position:relative;
+  aspect-ratio:4/5;
+  overflow:hidden;
+}
+.room-card__media img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 1.4s var(--ease-out);
+}
+.room-card:hover .room-card__media img{transform:scale(1.08)}
+.room-card__badge{
+  position:absolute;top:18px;left:18px;
+  background:rgba(7,8,10,.7);
+  backdrop-filter:blur(10px);
+  color:var(--bone-50);
+  padding:7px 14px;
+  border-radius:100px;
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:500;
+  z-index:2;
+}
+.room-card__fav{
+  position:absolute;top:18px;right:18px;
+  width:38px;height:38px;
+  border-radius:50%;
+  background:rgba(7,8,10,.55);
+  backdrop-filter:blur(10px);
+  display:grid;place-items:center;
+  z-index:2;
+  color:var(--bone-50);
+  transition:all .3s;
+}
+.room-card__fav:hover{background:var(--ember-500);color:var(--ink-1000)}
+.room-card__body{padding:28px 26px 30px}
+.room-card__top{
+  display:flex;justify-content:space-between;align-items:start;
+  gap:16px;
+  margin-bottom:14px;
+}
+.room-card h3{
+  font-size:28px;
+  font-weight:400;
+  letter-spacing:-.01em;
+  line-height:1.1;
+}
+.room-card__sub{
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--bone-300);
+  margin-top:4px;
+}
+.room-card__price{
+  text-align:right;
+  flex-shrink:0;
+}
+.room-card__price-from{
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--bone-300);
+  margin-bottom:2px;
+}
+.room-card__price-num{
+  font-family:var(--display);
+  font-size:26px;
+  font-weight:500;
+  color:var(--ember-400);
+  letter-spacing:-.01em;
+}
+.room-card__price-unit{
+  font-size:11px;
+  color:var(--bone-300);
+  margin-left:2px;
+}
+.room-card__desc{
+  color:var(--bone-200);
+  font-size:14px;
+  line-height:1.6;
+  margin:14px 0 20px;
+  min-height:66px;
+}
+.room-card__amenities{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin-bottom:22px;
+}
+.room-card__amenity{
+  font-size:11px;
+  padding:6px 12px;
+  border:1px solid var(--line);
+  border-radius:100px;
+  color:var(--bone-200);
+  display:inline-flex;align-items:center;gap:6px;
+}
+.room-card__amenity svg{width:11px;height:11px;opacity:.8}
+.room-card__cta{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:20px;
+  border-top:1px solid var(--line-soft);
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:500;
+}
+.room-card__cta-arr{
+  width:34px;height:34px;
+  border-radius:50%;
+  background:var(--bone-50);
+  color:var(--ink-1000);
+  display:grid;place-items:center;
+  transition:all .4s var(--ease-out);
+}
+.room-card:hover .room-card__cta-arr{background:var(--ember-500);color:var(--bone-50);transform:rotate(-45deg)}
+
+/* ===========================================================
+   SEASONS / ACTIVITIES
+   =========================================================== */
+.seasons{
+  background:var(--ink-1000);
+  padding:140px 0 0;
+  position:relative;
+  overflow:hidden;
+}
+.seasons__head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  margin-bottom:60px;
+  align-items:end;
+}
+.seasons__head h2{
+  font-size:clamp(40px,6vw,80px);
+  line-height:1.02;
+  letter-spacing:-.025em;
+  font-weight:300;
+}
+.seasons__head h2 em{font-style:italic}
+.seasons__head p{color:var(--bone-200);font-size:16px;line-height:1.65;max-width:480px}
+
+.seasons__tabs{
+  display:flex;gap:8px;
+  border-bottom:1px solid var(--line-soft);
+  margin-bottom:50px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.seasons__tabs::-webkit-scrollbar{display:none}
+.seasons__tab{
+  padding:18px 28px;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--bone-300);
+  border-bottom:2px solid transparent;
+  transition:all .3s;
+  white-space:nowrap;
+  display:flex;align-items:center;gap:10px;
+  cursor:pointer;
+  flex-shrink:0;
+}
+.seasons__tab .tab-num{
+  font-family:var(--display);
+  font-size:13px;
+  font-weight:400;
+  letter-spacing:0;
+  color:var(--ember-400);
+}
+.seasons__tab.is-active{color:var(--bone-50);border-bottom-color:var(--ember-500)}
+.seasons__tab:hover{color:var(--bone-50)}
+
+.season-panel{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:80px;
+  align-items:center;
+  min-height:560px;
+  padding-bottom:120px;
+}
+.season-panel__media{
+  position:relative;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  border-radius:8px;
+}
+.season-panel__media img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;
+  transition:opacity .8s var(--ease-out);
+}
+.season-panel__media img.is-active{opacity:1}
+.season-panel__media-label{
+  position:absolute;bottom:24px;left:24px;
+  background:rgba(7,8,10,.65);
+  backdrop-filter:blur(12px);
+  padding:10px 16px;
+  border-radius:100px;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--bone-50);
+  z-index:3;
+}
+.season-content{
+  display:none;
+}
+.season-content.is-active{display:block;animation:fadeUp .8s var(--ease-out)}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.season-content .eyebrow{color:var(--ember-400);margin-bottom:20px}
+.season-content h3{
+  font-size:clamp(36px,4.5vw,56px);
+  line-height:1.05;
+  margin-bottom:22px;
+  font-weight:300;
+  letter-spacing:-.02em;
+}
+.season-content h3 em{font-style:italic}
+.season-content p{
+  color:var(--bone-200);
+  font-size:16px;
+  line-height:1.7;
+  max-width:520px;
+  margin-bottom:32px;
+}
+.season-activities{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:36px;
+}
+.season-activity{
+  padding:18px 0;
+  border-top:1px solid var(--line-soft);
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;
+  transition:padding .3s;
+}
+.season-activity:hover{padding-left:8px}
+.season-activity__name{
+  font-family:var(--display);
+  font-size:20px;
+  font-weight:400;
+  color:var(--bone-50);
+  letter-spacing:-.01em;
+}
+.season-activity__name small{
+  display:block;
+  font-family:var(--sans);
+  font-size:12px;
+  color:var(--bone-300);
+  letter-spacing:.05em;
+  margin-top:2px;
+  font-weight:400;
+}
+.season-activity__time{
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--bone-300);
+}
+.season-content .btn{background:var(--bone-50);color:var(--ink-1000)}
+.season-content .btn:hover{background:var(--ember-500);color:var(--bone-50)}
+
+/* ===========================================================
+   EXPERIENCE / GALLERY
+   =========================================================== */
+.experience{
+  background:var(--ink-1000);
+  padding:120px 0;
+  border-top:1px solid var(--line-soft);
+}
+.experience__head{
+  text-align:center;
+  max-width:780px;
+  margin:0 auto 70px;
+}
+.experience__head .eyebrow{justify-content:center;color:var(--ember-400)}
+.experience__head h2{
+  font-size:clamp(40px,6vw,76px);
+  line-height:1.05;
+  margin:18px 0 20px;
+  font-weight:300;
+  letter-spacing:-.02em;
+}
+.experience__head h2 em{font-style:italic}
+.experience__head p{color:var(--bone-200);font-size:16px;line-height:1.7}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:160px;
+  gap:14px;
+}
+.gallery__item{
+  position:relative;
+  overflow:hidden;
+  border-radius:6px;
+  cursor:pointer;
+}
+.gallery__item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.4s var(--ease-out), filter .6s;
+  filter:saturate(.92);
+}
+.gallery__item:hover img{transform:scale(1.08);filter:saturate(1.1)}
+.gallery__item::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(7,8,10,.7));
+  opacity:.6;
+  transition:opacity .4s;
+}
+.gallery__item:hover::after{opacity:.9}
+.gallery__item-label{
+  position:absolute;left:20px;bottom:18px;
+  z-index:2;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--bone-50);
+  font-weight:500;
+  opacity:0;transform:translateY(8px);
+  transition:all .5s var(--ease-out);
+}
+.gallery__item:hover .gallery__item-label{opacity:1;transform:translateY(0)}
+.g1{grid-column:span 5;grid-row:span 3}
+.g2{grid-column:span 4;grid-row:span 2}
+.g3{grid-column:span 3;grid-row:span 2}
+.g4{grid-column:span 4;grid-row:span 2}
+.g5{grid-column:span 4;grid-row:span 2}
+.g6{grid-column:span 4;grid-row:span 2}
+
+/* Lightbox */
+.lightbox{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(7,8,10,.95);
+  backdrop-filter:blur(10px);
+  display:none;
+  align-items:center;justify-content:center;
+  padding:40px;
+}
+.lightbox.is-open{display:flex;animation:fadeIn .3s ease}
+.lightbox__img{
+  max-width:92vw;max-height:88vh;
+  border-radius:4px;
+  box-shadow:0 40px 100px -20px rgba(0,0,0,.5);
+}
+.lightbox__close{
+  position:absolute;top:30px;right:30px;
+  width:48px;height:48px;
+  border-radius:50%;
+  background:rgba(244,239,230,.1);
+  display:grid;place-items:center;
+  color:var(--bone-50);
+  transition:all .3s;
+}
+.lightbox__close:hover{background:var(--ember-500);color:var(--ink-1000)}
+.lightbox__nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;
+  border-radius:50%;
+  background:rgba(244,239,230,.08);
+  display:grid;place-items:center;
+  color:var(--bone-50);
+  transition:all .3s;
+}
+.lightbox__nav:hover{background:var(--ember-500);color:var(--ink-1000)}
+.lightbox__nav--prev{left:30px}
+.lightbox__nav--next{right:30px}
+
+/* ===========================================================
+   CULINARY
+   =========================================================== */
+.culinary{
+  background:var(--ink-900);
+  padding:140px 0;
+  position:relative;
+  overflow:hidden;
+}
+.culinary::before{
+  content:"";
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:1400px;height:1400px;
+  background:radial-gradient(circle, rgba(196,122,74,.08) 0%, transparent 50%);
+  pointer-events:none;
+}
+.culinary__inner{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:90px;
+  align-items:center;
+  position:relative;
+}
+.culinary__media{
+  position:relative;
+  aspect-ratio:4/5;
+  border-radius:6px;
+  overflow:hidden;
+}
+.culinary__media img{width:100%;height:100%;object-fit:cover}
+.culinary__media-tag{
+  position:absolute;top:20px;left:20px;
+  background:rgba(7,8,10,.7);
+  backdrop-filter:blur(10px);
+  color:var(--bone-50);
+  padding:8px 16px;
+  border-radius:100px;
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  z-index:2;
+}
+.culinary__media-stat{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(180deg,transparent,rgba(7,8,10,.9));
+  padding:60px 24px 24px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  z-index:2;
+}
+.culinary__media-stat div{
+  text-align:center;
+  border-right:1px solid var(--line);
+  padding:0 4px;
+}
+.culinary__media-stat div:last-child{border-right:0}
+.culinary__media-stat b{
+  display:block;
+  font-family:var(--display);
+  font-size:30px;
+  font-weight:500;
+  color:var(--ember-400);
+  letter-spacing:-.01em;
+}
+.culinary__media-stat span{
+  display:block;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--bone-200);
+  margin-top:2px;
+}
+.culinary__content h2{
+  font-size:clamp(36px,5vw,60px);
+  line-height:1.05;
+  margin-bottom:24px;
+  font-weight:300;
+  letter-spacing:-.02em;
+}
+.culinary__content h2 em{font-style:italic}
+.culinary__content p{
+  color:var(--bone-200);
+  font-size:16px;
+  line-height:1.7;
+  margin-bottom:18px;
+  max-width:540px;
+}
+.culinary__chef{
+  display:flex;align-items:center;gap:18px;
+  padding:24px 0;
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
+  margin:32px 0;
+}
+.culinary__chef-avatar{
+  width:60px;height:60px;
+  border-radius:50%;
+  background-size:cover;
+  background-position:center;
+  flex-shrink:0;
+}
+.culinary__chef-meta b{
+  display:block;
+  font-family:var(--display);
+  font-size:18px;
+  font-weight:500;
+}
+.culinary__chef-meta span{
+  font-size:12px;
+  color:var(--bone-300);
+  letter-spacing:.05em;
+}
+.culinary__menu{
+  display:flex;flex-direction:column;gap:14px;
+  margin-top:18px;
+}
+.culinary__menu-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:10px 0;
+  border-bottom:1px dashed var(--line-soft);
+  gap:18px;
+}
+.culinary__menu-row span:first-child{
+  font-family:var(--display);
+  font-size:18px;
+  color:var(--bone-50);
+}
+.culinary__menu-row small{
+  display:block;
+  font-size:12px;
+  color:var(--bone-300);
+  font-family:var(--sans);
+  margin-top:2px;
+}
+.culinary__menu-row span:last-child{
+  font-family:var(--display);
+  font-size:18px;
+  color:var(--ember-400);
+}
+
+/* ===========================================================
+   TESTIMONIALS
+   =========================================================== */
+.testimonials{
+  background:var(--ink-1000);
+  padding:140px 0;
+  position:relative;
+  border-top:1px solid var(--line-soft);
+}
+.testimonials__head{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  margin-bottom:60px;align-items:end;
+}
+.testimonials__head h2{
+  font-size:clamp(40px,5.5vw,72px);
+  line-height:1.05;
+  font-weight:300;
+  letter-spacing:-.02em;
+}
+.testimonials__head h2 em{font-style:italic}
+.testimonials__head p{color:var(--bone-200);font-size:16px;line-height:1.65;max-width:480px}
+.testimonials__rating{
+  display:flex;align-items:center;gap:18px;
+  margin-bottom:14px;
+}
+.testimonials__rating-stars{
+  display:flex;gap:4px;color:var(--ember-400);
+}
+.testimonials__rating-num{
+  font-family:var(--display);
+  font-size:48px;
+  font-weight:500;
+  color:var(--bone-50);
+  line-height:1;
+}
+.testimonials__rating-meta{
+  font-size:13px;color:var(--bone-200);line-height:1.4;
+}
+.testimonials__rating-meta b{color:var(--bone-50);font-weight:500}
+
+.testi-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.testi{
+  background:var(--ink-900);
+  border:1px solid var(--line-soft);
+  border-radius:8px;
+  padding:32px 30px;
+  display:flex;flex-direction:column;
+  transition:all .5s var(--ease-out);
+  position:relative;
+}
+.testi:hover{border-color:var(--ember-500);transform:translateY(-4px)}
+.testi__quote{
+  font-family:var(--display);
+  font-size:22px;
+  line-height:1.45;
+  font-weight:400;
+  color:var(--bone-50);
+  margin-bottom:24px;
+  letter-spacing:-.005em;
+  flex:1;
+}
+.testi__quote::before{
+  content:"\201C";
+  font-size:60px;
+  color:var(--ember-500);
+  font-family:var(--display);
+  line-height:0;
+  vertical-align:-22px;
+  margin-right:4px;
+  opacity:.7;
+}
+.testi__stars{
+  display:flex;gap:3px;
+  margin-bottom:18px;
+  color:var(--ember-400);
+}
+.testi__author{
+  display:flex;align-items:center;gap:14px;
+  padding-top:20px;
+  border-top:1px solid var(--line-soft);
+}
+.testi__avatar{
+  width:46px;height:46px;
+  border-radius:50%;
+  background-size:cover;background-position:center;
+  flex-shrink:0;
+}
+.testi__author b{
+  display:block;
+  font-family:var(--display);
+  font-size:16px;
+  font-weight:500;
+  margin-bottom:1px;
+}
+.testi__author span{
+  font-size:12px;
+  color:var(--bone-300);
+  letter-spacing:.05em;
+}
+.testi__origin{
+  position:absolute;top:28px;right:30px;
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--bone-300);
+}
+
+/* ===========================================================
+   MAP / LOCATION
+   =========================================================== */
+.location{
+  background:var(--ink-1000);
+  padding:120px 0;
+  border-top:1px solid var(--line-soft);
+  position:relative;
+}
+.location__inner{
+  display:grid;
+  grid-template-columns:1fr 1.4fr;
+  gap:60px;
+  align-items:stretch;
+}
+.location__info{
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:20px 0;
+}
+.location__info h2{
+  font-size:clamp(36px,4.5vw,60px);
+  line-height:1.05;
+  margin-bottom:18px;
+  font-weight:300;
+  letter-spacing:-.02em;
+}
+.location__info h2 em{font-style:italic}
+.location__info p{color:var(--bone-200);font-size:16px;line-height:1.65;margin-bottom:30px;max-width:480px}
+.location__info .eyebrow{color:var(--ember-400);margin-bottom:20px}
+.location__details{
+  display:flex;flex-direction:column;gap:18px;
+  margin:30px 0;
+}
+.location__detail{
+  display:flex;align-items:start;gap:18px;
+  padding:18px 0;
+  border-top:1px solid var(--line-soft);
+}
+.location__detail:last-child{border-bottom:1px solid var(--line-soft)}
+.location__detail-icon{
+  width:42px;height:42px;
+  border-radius:50%;
+  background:var(--ink-900);
+  display:grid;place-items:center;
+  color:var(--ember-400);
+  flex-shrink:0;
+}
+.location__detail b{
+  display:block;
+  font-family:var(--display);
+  font-size:18px;
+  font-weight:500;
+  margin-bottom:2px;
+}
+.location__detail span{
+  font-size:13px;
+  color:var(--bone-200);
+  line-height:1.5;
+}
+.location__map{
+  position:relative;
+  min-height:560px;
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--ink-900);
+  border:1px solid var(--line-soft);
+}
+/* SVG "kart" — stilistisk, ikke ekte leverandør */
+.location__map svg{width:100%;height:100%;display:block}
+.map-pin{
+  position:absolute;
+  top:50%;left:52%;
+  transform:translate(-50%,-100%);
+  z-index:5;
+  display:flex;flex-direction:column;align-items:center;
+}
+.map-pin__pulse{
+  width:60px;height:60px;
+  background:rgba(196,122,74,.3);
+  border-radius:50%;
+  position:absolute;
+  bottom:0;
+  animation:pinPulse 2.4s var(--ease-in-out) infinite;
+}
+@keyframes pinPulse{
+  0%{transform:scale(.6);opacity:.8}
+  100%{transform:scale(2.2);opacity:0}
+}
+.map-pin__core{
+  position:relative;
+  background:var(--ember-500);
+  color:var(--ink-1000);
+  padding:14px 22px;
+  border-radius:100px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  box-shadow:0 12px 40px -8px rgba(196,122,74,.6);
+  white-space:nowrap;
+  display:flex;align-items:center;gap:8px;
+  z-index:2;
+  margin-bottom:8px;
+}
+.map-pin__core::after{
+  content:"";
+  position:absolute;bottom:-6px;left:50%;
+  transform:translateX(-50%) rotate(45deg);
+  width:12px;height:12px;
+  background:var(--ember-500);
+}
+.map-overlay{
+  position:absolute;
+  bottom:24px;left:24px;
+  background:rgba(7,8,10,.85);
+  backdrop-filter:blur(12px);
+  padding:16px 20px;
+  border-radius:8px;
+  display:flex;gap:24px;
+  font-size:12px;
+  color:var(--bone-100);
+  border:1px solid var(--line-soft);
+}
+.map-overlay b{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-300);margin-bottom:4px;font-weight:500}
+.map-overlay div span{display:block;font-family:var(--display);font-size:18px;color:var(--bone-50);font-weight:500}
+
+/* ===========================================================
+   NEWSLETTER / FOOTER CTA
+   =========================================================== */
+.cta-strip{
+  background:var(--ink-1000);
+  padding:140px 0;
+  position:relative;
+  border-top:1px solid var(--line-soft);
+  overflow:hidden;
+}
+.cta-strip::before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(196,122,74,.18), transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(107,106,62,.12), transparent 50%);
+  pointer-events:none;
+}
+.cta-strip__inner{
+  position:relative;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.cta-strip h2{
+  font-size:clamp(40px,5.5vw,72px);
+  line-height:1.05;
+  font-weight:300;
+  letter-spacing:-.02em;
+}
+.cta-strip h2 em{font-style:italic}
+.cta-strip p{
+  color:var(--bone-200);
+  font-size:16px;
+  line-height:1.7;
+  margin-bottom:30px;
+  max-width:480px;
+}
+.cta-strip__form{
+  display:flex;gap:8px;
+  background:var(--ink-900);
+  border:1px solid var(--line);
+  border-radius:100px;
+  padding:8px;
+  max-width:520px;
+  margin-bottom:18px;
+}
+.cta-strip__form input{
+  flex:1;
+  background:transparent;
+  border:0;outline:0;
+  padding:14px 22px;
+  font-size:14px;
+  color:var(--bone-50);
+}
+.cta-strip__form input::placeholder{color:var(--bone-300)}
+.cta-strip__form button{
+  background:var(--bone-50);
+  color:var(--ink-1000);
+  border-radius:100px;
+  padding:14px 28px;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:600;
+  transition:all .3s;
+}
+.cta-strip__form button:hover{background:var(--ember-500);color:var(--bone-50)}
+.cta-strip__note{font-size:12px;color:var(--bone-300);letter-spacing:.03em}
+
+/* ===========================================================
+   FOOTER
+   =========================================================== */
+.footer{
+  background:var(--ink-950);
+  color:var(--bone-100);
+  padding:80px 0 30px;
+  border-top:1px solid var(--line-soft);
+}
+.footer__top{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:60px;
+  padding-bottom:60px;
+  border-bottom:1px solid var(--line-soft);
+}
+.footer__brand h4{
+  font-family:var(--display);
+  font-size:32px;
+  font-weight:400;
+  margin-bottom:8px;
+  letter-spacing:-.01em;
+}
+.footer__brand p{
+  font-size:13px;
+  color:var(--bone-200);
+  line-height:1.65;
+  max-width:340px;
+  margin-bottom:20px;
+}
+.footer__social{
+  display:flex;gap:10px;
+}
+.footer__social a{
+  width:38px;height:38px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  display:grid;place-items:center;
+  color:var(--bone-100);
+  transition:all .3s;
+}
+.footer__social a:hover{background:var(--ember-500);color:var(--ink-1000);border-color:var(--ember-500)}
+.footer__col h5{
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--bone-300);
+  margin-bottom:18px;
+  font-weight:500;
+  font-family:var(--sans);
+}
+.footer__col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer__col a{
+  font-size:14px;
+  color:var(--bone-100);
+  transition:color .3s;
+}
+.footer__col a:hover{color:var(--ember-400)}
+.footer__bottom{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+  padding-top:30px;
+  font-size:12px;
+  color:var(--bone-300);
+  letter-spacing:.03em;
+}
+.footer__bottom-links{display:flex;gap:20px}
+.footer__bottom-links a:hover{color:var(--ember-400)}
+
+/* ===========================================================
+   RESPONSIVE
+   =========================================================== */
+@media (max-width: 1100px){
+  .nav__links{display:none}
+  .nav__burger{display:block}
+  .nav__cta{display:none}
+  .hero__sub{grid-template-columns:1fr;gap:30px}
+  .hero__ctas{justify-content:flex-start}
+  .rooms__grid{grid-template-columns:repeat(2,1fr)}
+  .rooms__head,.story__head,.seasons__head,.testimonials__head,.cta-strip__inner{grid-template-columns:1fr;gap:30px;align-items:start}
+  .story__split,.culinary__inner,.location__inner{grid-template-columns:1fr;gap:50px}
+  .season-panel{grid-template-columns:1fr;gap:40px;min-height:auto}
+  .testi-grid{grid-template-columns:repeat(2,1fr)}
+  .booking__form{grid-template-columns:repeat(2,1fr)}
+  .booking__field{border-right:0;border-bottom:1px solid var(--line)}
+  .booking__field:nth-child(odd){border-right:1px solid var(--line)}
+  .booking__field:nth-last-child(2){border-bottom:0}
+  .booking__submit{margin:24px 0 0;grid-column:1/-1;padding:22px}
+  .footer__top{grid-template-columns:1fr 1fr;gap:40px}
+  .gallery{grid-auto-rows:140px}
+  .g1{grid-column:span 6;grid-row:span 3}
+  .g2{grid-column:span 6;grid-row:span 2}
+  .g3{grid-column:span 6;grid-row:span 2}
+  .g4{grid-column:span 6;grid-row:span 2}
+  .g5{grid-column:span 6;grid-row:span 2}
+  .g6{grid-column:span 6;grid-row:span 2}
+  .story__images{height:500px}
+}
+@media (max-width: 720px){
+  .nav{padding:18px 0}
+  .nav--scrolled{padding:12px 0}
+  .hero{padding:100px 0 60px}
+  .hero h1{font-size:clamp(48px,12vw,72px);letter-spacing:-.025em}
+  .hero__meta{gap:18px;font-size:10px;letter-spacing:.24em}
+  .hero__meta-dot{width:4px;height:4px}
+  .hero__sub{gap:24px}
+  .btn{padding:16px 24px;font-size:11px}
+  .btn--primary,.btn--ghost,.btn--dark{padding:16px 24px}
+  section{padding:90px 0 !important}
+  .booking{padding:80px 0 60px}
+  .booking__form{grid-template-columns:1fr;padding:24px;border-radius:16px;gap:0}
+  .booking__field{border-right:0;border-bottom:1px solid var(--line);padding:14px 8px;min-height:64px}
+  .booking__field:last-of-type{border-bottom:0}
+  .booking__field .value,.booking__field select{font-size:18px}
+  .booking__field label{font-size:9px;letter-spacing:.18em}
+  .booking__submit{margin:18px 0 0;padding:18px;border-radius:12px}
+  .booking__chip{font-size:10px;padding:9px 14px;letter-spacing:.1em}
+  .rooms__grid{grid-template-columns:1fr;gap:20px}
+  .room-card__body{padding:24px 22px 26px}
+  .room-card h3{font-size:24px}
+  .testi-grid{grid-template-columns:1fr}
+  .season-activities{grid-template-columns:1fr;gap:8px}
+  .season-activity__name{font-size:17px}
+  .gallery{grid-auto-rows:120px;gap:8px}
+  .g1,.g2,.g3,.g4,.g5,.g6{grid-column:span 12;grid-row:span 2}
+  .culinary__media-stat{padding:40px 16px 18px;gap:8px}
+  .culinary__media-stat b{font-size:22px}
+  .culinary__media-stat span{font-size:9px;letter-spacing:.12em}
+  .footer__top{grid-template-columns:1fr;gap:30px}
+  .footer__bottom{flex-direction:column;align-items:flex-start}
+  .cta-strip__form{flex-direction:column;border-radius:14px;padding:6px}
+  .cta-strip__form input{padding:12px 16px;width:100%}
+  .cta-strip__form button{width:100%;padding:16px;border-radius:10px}
+  .map-overlay{left:14px;right:14px;bottom:14px;gap:14px;padding:12px 14px;font-size:11px}
+  .map-overlay div span{font-size:15px}
+  .map-pin__core{font-size:10px;padding:10px 16px}
+  .seasons__tab{padding:14px 18px;font-size:11px;letter-spacing:.16em}
+  .seasons__tab .tab-num{font-size:12px}
+  .lightbox__nav{width:40px;height:40px}
+  .lightbox__nav--prev{left:14px}
+  .lightbox__nav--next{right:14px}
+  .lightbox__close{top:14px;right:14px;width:40px;height:40px}
+  .story__images{height:420px}
+  .story__img--1{width:70%;height:55%}
+  .story__img--2{width:62%;height:55%}
+  .story__img--3{width:42%;height:42%;top:35%;left:30%}
+  .season-content h3{font-size:30px}
+  .experience__head{margin-bottom:50px}
+  .testimonials__rating-num{font-size:36px}
+  .rooms__head h2, .seasons__head h2, .story h2, .testimonials__head h2{font-size:clamp(34px,8vw,46px)}
+}
+@media (max-width: 380px){
+  .hero h1{font-size:44px}
+  .marquee__item{font-size:15px;gap:40px}
+  .marquee__item::after{margin-left:-30px}
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;
+    transition-duration:0.01ms !important;
+  }
+  .hero__bg img{animation:none}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__brand">
+      <span class="nav__brand-mark">F</span>
+      <span>Fjellro Lodge</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="#om">Oppdag</a></li>
+      <li><a href="#rom">Rom &amp; hytter</a></li>
+      <li><a href="#sesong">Sesong</a></li>
+      <li><a href="#galleri">Galleri</a></li>
+      <li><a href="#omtaler">Omtaler</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#booking" class="nav__cta">Sjekk ledighet</a>
+    <button class="nav__burger" id="burger" aria-label="Meny">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div>
+    <a href="#om">Oppdag</a>
+    <a href="#rom">Rom &amp; hytter</a>
+    <a href="#sesong">Sesong &amp; aktiviteter</a>
+    <a href="#galleri">Galleri</a>
+    <a href="#omtaler">Gjesteomtaler</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+  <div class="mobile-menu__cta">
+    <a href="#booking" class="btn btn--primary">Sjekk ledighet <span class="arrow">→</span></a>
+    <a href="tel:+4755100900" class="btn btn--ghost">Ring +47 55 10 09 00</a>
+  </div>
+</div>
+
+<!-- ============== HERO ============== -->
+<header class="hero" id="top">
+  <div class="hero__bg">
+    <img src="images/photo-09.jpg" alt="Fjellro Lodge" />
+    <div class="hero__bg-grain"></div>
+  </div>
+  <div class="wrap hero__inner">
+    <div class="hero__meta">
+      <span class="hero__meta-item"><span class="hero__meta-dot"></span> Åpent hele året · Geiranger, Norge</span>
+      <span class="hero__meta-item">★ 4,9 · 412 omtaler</span>
+      <span class="hero__meta-item">Sertifisert · Miljøfyrtårn</span>
+    </div>
+    <h1>
+      <span class="word"><span>Stilhet.</span></span>
+      <span class="word"><span>Skog.</span></span>
+      <br/>
+      <span class="word"><span><em>Et opphold</em></span></span>
+      <span class="word"><span>å lengte hjem til.</span></span>
+    </h1>
+    <div class="hero__sub">
+      <p>Fjellro Lodge ligger i en gammel setergrend ved Storfjorden — tolv håndbygde hytter og suiter, et eget bakeri, villmarksbad under stjernene og en meny tegnet av kokken Sigrid Vang. Bestill et opphold, eller bare en natt med frokost.</p>
+      <div class="hero__ctas">
+        <a href="#booking" class="btn btn--primary">Sjekk ledighet <span class="arrow">→</span></a>
+        <a href="#rom" class="btn btn--ghost">Se rom &amp; hytter</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</header>
+
+<!-- ============== MARQUEE ============== -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span class="marquee__item">Håndbygde hytter fra 1880</span>
+    <span class="marquee__item">Badstue ved fjorden</span>
+    <span class="marquee__item">Bærekraftige råvarer</span>
+    <span class="marquee__item">Nordlyset i oktober–mars</span>
+    <span class="marquee__item">Mesterkokk på kjøkkenet</span>
+    <span class="marquee__item">Stille, mørkt, ekte</span>
+    <span class="marquee__item">Håndbygde hytter fra 1880</span>
+    <span class="marquee__item">Badstue ved fjorden</span>
+    <span class="marquee__item">Bærekraftige råvarer</span>
+    <span class="marquee__item">Nordlyset i oktober–mars</span>
+    <span class="marquee__item">Mesterkokk på kjøkkenet</span>
+    <span class="marquee__item">Stille, mørkt, ekte</span>
+  </div>
+</div>
+
+<!-- ============== STORY ============== -->
+<section class="story" id="om">
+  <div class="wrap">
+    <div class="story__head">
+      <span class="eyebrow">Historien</span>
+      <div class="story__lead">
+        <h2 class="reveal">Et sted bygget for <em>å gjøre lite</em>.</h2>
+      </div>
+    </div>
+
+    <div class="story__split">
+      <div class="story__images reveal">
+        <div class="story__img story__img--1">
+          <img src="images/photo-19.jpg" alt="Gammel seter" />
+        </div>
+        <div class="story__img story__img--2">
+          <img src="images/photo-18.jpg" alt="Vedfyrt peis" />
+        </div>
+        <div class="story__img story__img--3">
+          <img src="images/photo-24.jpg" alt="Gammel dør" />
+          <div class="story__caption">Foto · Ingrid Hovde</div>
+        </div>
+      </div>
+
+      <div class="story__points">
+        <div class="story__point reveal">
+          <span class="story__point-num">01</span>
+          <div>
+            <h4>En seter fra 1880 — gjenoppdaget</h4>
+            <p>Fjellro var en glemt setergrend da familien Hovde kjøpte den i 2014. Siden har vi restaurert syv av bygningene med opprinnelige materialer fra dalen, og bygget fem nye hytter i samme formspråk.</p>
+          </div>
+        </div>
+        <div class="story__point reveal">
+          <span class="story__point-num">02</span>
+          <div>
+            <h4>Ro, ikke luksus, er produktet</h4>
+            <p>Det finnes ingen TV på rommene. Det finnes heller ingen reklame, ingen minibar og ingen støy fra veien. Bare ullsokker, vedovn, ei god bok og utsikten som endrer seg hver time.</p>
+          </div>
+        </div>
+        <div class="story__point reveal">
+          <span class="story__point-num">03</span>
+          <div>
+            <h4>Forpliktet til dalen</h4>
+            <p>Vi kjøper kjøtt, fisk, sopp og urter fra gårder innen 30 km. Vi fyrer med kortreist ved, bruker gråvann til vanning og lar 80 % av tomten forbli villmark. Sertifisert Miljøfyrtårn siden 2019.</p>
+          </div>
+        </div>
+        <div class="story__point reveal">
+          <span class="story__point-num">04</span>
+          <div>
+            <h4>Litt avsides, likevel nær</h4>
+            <p>45 minutter fra Ålesund lufthavn, 15 minutter fra Geiranger, og like ved fergeleiet som tar deg videre innover mot Trollstigen. Vi henter deg gjerne på flyplassen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== BOOKING ============== -->
+<section class="booking" id="booking">
+  <div class="wrap">
+    <div class="booking__head">
+      <span class="eyebrow" style="justify-content:center">Reservasjon</span>
+      <h2 class="reveal">Reserver ditt <em>opphold</em></h2>
+      <p>Sanntids ledighet, ingen bestillingsgebyr og gratis avbestilling frem til 7 dager før ankomst.</p>
+    </div>
+
+    <form class="booking__form reveal" id="bookingForm" onsubmit="handleBooking(event)">
+      <div class="booking__field">
+        <label>Innsjekk</label>
+        <div class="value" id="checkinLabel">14. mars 2026</div>
+        <input type="date" id="checkin" value="2026-03-14" onchange="syncDate()" />
+      </div>
+      <div class="booking__field">
+        <label>Utsjekk</label>
+        <div class="value" id="checkoutLabel">17. mars 2026</div>
+        <input type="date" id="checkout" value="2026-03-17" onchange="syncDate()" />
+      </div>
+      <div class="booking__field">
+        <label>Gjester</label>
+        <select id="guests">
+          <option>1 gjest</option>
+          <option selected>2 gjester</option>
+          <option>3 gjester</option>
+          <option>4 gjester</option>
+          <option>5+ gjester</option>
+        </select>
+      </div>
+      <div class="booking__field">
+        <label>Type opphold</label>
+        <select id="roomType">
+          <option>Alle typer</option>
+          <option>Heritage Suite</option>
+          <option>Fjordhytte</option>
+          <option>Skogshytte m/ badstue</option>
+          <option>Seterloft</option>
+          <option>Hovedhus — dobbeltrom</option>
+        </select>
+      </div>
+      <div class="booking__field">
+        <label>Pakke</label>
+        <select id="package">
+          <option>Kun overnatting</option>
+          <option selected>Med frokost</option>
+          <option>Halvpension</option>
+          <option>Full pensjon + spa</option>
+        </select>
+      </div>
+      <button type="submit" class="booking__submit">
+        Sjekk ledighet
+        <span class="arrow">→</span>
+      </button>
+    </form>
+
+    <div class="booking__chips">
+      <button class="booking__chip" onclick="quickFill(this,'Helg med frokost','2026-03-13','2026-03-15','2 gjester')">Helg med frokost</button>
+      <button class="booking__chip" onclick="quickFill(this,'Romantisk helg','2026-03-14','2026-03-16','2 gjester','Heritage Suite','Halvpension')">Romantisk helg</button>
+      <button class="booking__chip" onclick="quickFill(this,'Familieopphold','2026-04-04','2026-04-08','4 gjester','Fjordhytte','Full pensjon + spa')">Familieopphold</button>
+      <button class="booking__chip" onclick="quickFill(this,'Nordlysuker','2026-01-19','2026-01-24','2 gjester','Skogshytte m/ badstue','Halvpension')">Nordlysuker</button>
+      <button class="booking__chip" onclick="quickFill(this,'Sommer &amp; fjell','2026-07-12','2026-07-16','2 gjester','Seterloft','Med frokost')">Sommer &amp; fjell</button>
+    </div>
+    <p class="booking__note" id="bookingNote">Vises: 14. mars → 17. mars · 2 gjester · Med frokost</p>
+  </div>
+</section>
+
+<!-- ============== ROOMS ============== -->
+<section class="rooms" id="rom">
+  <div class="wrap">
+    <div class="rooms__head">
+      <h2 class="reveal">Rom &amp; hytter <em>å bo i</em></h2>
+      <p>Hver enhet er forskjellig — innredet med gjenbrukte materialer fra dalen, norsk ull, håndlagde møbler og utsikt du ikke glemmer.</p>
+    </div>
+
+    <div class="rooms__grid">
+      <article class="room-card reveal">
+        <div class="room-card__media">
+          <img src="images/photo-29.jpg" alt="Heritage Suite" />
+          <span class="room-card__badge">Mest populær</span>
+          <button class="room-card__fav" aria-label="Lagre">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__top">
+            <div>
+              <h3>Heritage Suite</h3>
+              <div class="room-card__sub">Hovedhuset · 42 m²</div>
+            </div>
+            <div class="room-card__price">
+              <div class="room-card__price-from">Fra</div>
+              <div class="room-card__price-num">2 890<span class="room-card__price-unit">/natt</span></div>
+            </div>
+          </div>
+          <p class="room-card__desc">Hovedhusets fineste rom — peis i originalt murverk, frittstående badekar foran vinduet, og utsikt rett ut i Storfjorden.</p>
+          <div class="room-card__amenities">
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 0L8 6m4 2l4-2M5 22h14a2 2 0 0 0 2-2v-7H3v7a2 2 0 0 0 2 2z"/></svg> Peis</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Badekar</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/></svg> Fjordutsikt</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg> King size</span>
+          </div>
+          <div class="room-card__cta">
+            <span>Se detaljer &amp; book</span>
+            <span class="room-card__cta-arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="room-card reveal">
+        <div class="room-card__media">
+          <img src="images/photo-17.jpg" alt="Fjordhytte" />
+          <span class="room-card__badge">Familievennlig</span>
+          <button class="room-card__fav" aria-label="Lagre">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__top">
+            <div>
+              <h3>Fjordhytte</h3>
+              <div class="room-card__sub">Frittstående · 65 m² · 4–6 pers</div>
+            </div>
+            <div class="room-card__price">
+              <div class="room-card__price-from">Fra</div>
+              <div class="room-card__price-num">3 450<span class="room-card__price-unit">/natt</span></div>
+            </div>
+          </div>
+          <p class="room-card__desc">To soverom, fullt kjøkken og egen terrasse helt ned til vannet. Perfekt for familier eller to par som vil dele.</p>
+          <div class="room-card__amenities">
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> 2 soverom</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"/></svg> Kjøkken</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Vedovn</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c3-9 15-9 18 0-3 9-15 9-18 0z"/></svg> Terrasse</span>
+          </div>
+          <div class="room-card__cta">
+            <span>Se detaljer &amp; book</span>
+            <span class="room-card__cta-arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="room-card reveal">
+        <div class="room-card__media">
+          <img src="images/photo-30.jpg" alt="Skogshytte" />
+          <span class="room-card__badge">Med privat badstue</span>
+          <button class="room-card__fav" aria-label="Lagre">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__top">
+            <div>
+              <h3>Skogshytte</h3>
+              <div class="room-card__sub">Egen badstue · 38 m² · 2 pers</div>
+            </div>
+            <div class="room-card__price">
+              <div class="room-card__price-from">Fra</div>
+              <div class="room-card__price-num">2 490<span class="room-card__price-unit">/natt</span></div>
+            </div>
+          </div>
+          <p class="room-card__desc">Liten, tett på skogen, med egen vedfyrt badstue og utedusj. For deg som vil sove med lyden av elva og våkne til tåke.</p>
+          <div class="room-card__amenities">
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 6 8 10 12 14c4-4 4-8 0-12z"/></svg> Vedfyrt badstue</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Utedusj</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c3-9 15-9 18 0"/></svg> Skogsutsikt</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Kjøkkenkrok</span>
+          </div>
+          <div class="room-card__cta">
+            <span>Se detaljer &amp; book</span>
+            <span class="room-card__cta-arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="room-card reveal">
+        <div class="room-card__media">
+          <img src="images/photo-31.jpg" alt="Seterloft" />
+          <button class="room-card__fav" aria-label="Lagre">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__top">
+            <div>
+              <h3>Seterloft</h3>
+              <div class="room-card__sub">Loft i låven · 28 m² · 2 pers</div>
+            </div>
+            <div class="room-card__price">
+              <div class="room-card__price-from">Fra</div>
+              <div class="room-card__price-num">1 890<span class="room-card__price-unit">/natt</span></div>
+            </div>
+          </div>
+          <p class="room-card__desc">Et åpent rom i den gamle låven, med synlige bjelker og et stort vindu mot vest. Best for helgetur alene eller to.</p>
+          <div class="room-card__amenities">
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> Åpen plan</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Eget bad</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c3-9 15-9 18 0"/></svg> Fjellutsikt</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"/></svg> Kaffe</span>
+          </div>
+          <div class="room-card__cta">
+            <span>Se detaljer &amp; book</span>
+            <span class="room-card__cta-arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="room-card reveal">
+        <div class="room-card__media">
+          <img src="images/photo-14.jpg" alt="Dobbeltrom Hovedhus" />
+          <button class="room-card__fav" aria-label="Lagre">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__top">
+            <div>
+              <h3>Hovedhus — dobbeltrom</h3>
+              <div class="room-card__sub">Hovedhuset · 22 m² · 2 pers</div>
+            </div>
+            <div class="room-card__price">
+              <div class="room-card__price-from">Fra</div>
+              <div class="room-card__price-num">1 590<span class="room-card__price-unit">/natt</span></div>
+            </div>
+          </div>
+          <p class="room-card__desc">Våre minste, men varmeste rom — i andre etasje i hovedhuset, med eget bad og utsikt over tunet og fjorden.</p>
+          <div class="room-card__amenities">
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"/></svg> Dusj</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Queen size</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c3-9 15-9 18 0"/></svg> Fjordutsikt</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg> Frokost inkl.</span>
+          </div>
+          <div class="room-card__cta">
+            <span>Se detaljer &amp; book</span>
+            <span class="room-card__cta-arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="room-card reveal">
+        <div class="room-card__media">
+          <img src="images/photo-27.jpg" alt="Spa-loft" />
+          <span class="room-card__badge">Nyhet 2026</span>
+          <button class="room-card__fav" aria-label="Lagre">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__top">
+            <div>
+              <h3>Villmarksloft</h3>
+              <div class="room-card__sub">Nyrenovert · 75 m² · 2 pers</div>
+            </div>
+            <div class="room-card__price">
+              <div class="room-card__price-from">Fra</div>
+              <div class="room-card__price-num">4 290<span class="room-card__price-unit">/natt</span></div>
+            </div>
+          </div>
+          <p class="room-card__desc">Vår nye signatursuite — eget villmarksbad på terrassen, panoramavindu fra gulv til tak, og en peis du kan lage mat i.</p>
+          <div class="room-card__amenities">
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 6 8 10 12 14"/></svg> Villmarksbad</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18"/></svg> Peis + kjøkken</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c3-9 15-9 18 0"/></svg> Panorama</span>
+            <span class="room-card__amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> King size</span>
+          </div>
+          <div class="room-card__cta">
+            <span>Se detaljer &amp; book</span>
+            <span class="room-card__cta-arr"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SEASONS ============== -->
+<section class="seasons" id="sesong">
+  <div class="wrap">
+    <div class="seasons__head">
+      <h2 class="reveal">Fire sesonger. <em>Ett sted.</em></h2>
+      <p>Fjellro endrer karakter med året — fra lyse sommernetting til mørke vinternetter med nordlys. Her er det vi tilbyr gjennom året.</p>
+    </div>
+
+    <div class="seasons__tabs">
+      <button class="seasons__tab is-active" data-season="vinter"><span class="tab-num">01</span> Vinter · Nov–Mar</button>
+      <button class="seasons__tab" data-season="vaar"><span class="tab-num">02</span> Vår · Apr–Mai</button>
+      <button class="seasons__tab" data-season="sommer"><span class="tab-num">03</span> Sommer · Jun–Aug</button>
+      <button class="seasons__tab" data-season="host"><span class="tab-num">04</span> Høst · Sep–Okt</button>
+    </div>
+
+    <div class="season-panel">
+      <div class="season-panel__media">
+        <img class="is-active" data-img="vinter" src="images/photo-07.jpg" alt="Vinter" />
+        <img data-img="vaar" src="images/photo-13.jpg" alt="Vår" />
+        <img data-img="sommer" src="images/photo-02.jpg" alt="Sommer" />
+        <img data-img="host" src="images/photo-16.jpg" alt="Høst" />
+        <div class="season-panel__media-label" id="seasonLabel">Vintersesong · 2026</div>
+      </div>
+
+      <div>
+        <div class="season-content is-active" data-content="vinter">
+          <span class="eyebrow">Sesong 01 — Stille og mørk</span>
+          <h3>Nordlys over <em>Storfjorden</em>.</h3>
+          <p>Fra november til mars har vi færre gjester og lengre netter. Det gjør at vi kan tilby noe vi ellers ikke rekker — en dedikert vert som følger deg på nordlyssafari, badstue ved elva klokka 23, og varm sjokolade på terrassen mens du venter på grønt lys på himmelen.</p>
+          <div class="season-activities">
+            <div class="season-activity"><div class="season-activity__name">Nordlyssafari med guide<small>4 timer · 1 290 kr pp</small></div><span class="season-activity__time">21:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Badstue &amp; isbad<small>Privat · 1 time</small></div><span class="season-activity__time">23:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Hundekjøring<small>3 timer · 1 490 kr pp</small></div><span class="season-activity__time">10:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Fem-retters vintermeny<small>Fjellro kjøkken</small></div><span class="season-activity__time">19:30</span></div>
+          </div>
+          <a href="#booking" class="btn btn--primary">Book vinteropphold <span class="arrow">→</span></a>
+        </div>
+
+        <div class="season-content" data-content="vaar">
+          <span class="eyebrow">Sesong 02 — Lys og vann</span>
+          <h3>Snø som <em>smelter</em>, elver som våkner.</h3>
+          <p>April og mai er Fjellro sin mest fotogene tid. Fossene er på sitt største, frukttrærne blomstrer i tunet, og vi kjører daglige turer til fossefallene i nærheten. Restauranten går over til en lettere meny med mer fisk og urter.</p>
+          <div class="season-activities">
+            <div class="season-activity"><div class="season-activity__name">Fossevandring<small>4 timer · 690 kr pp</small></div><span class="season-activity__time">10:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Fisketur i Storfjorden<small>6 timer · 1 890 kr</small></div><span class="season-activity__time">07:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Vårens urteworkshop<small>3 timer · 590 kr</small></div><span class="season-activity__time">14:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Sesongmeny med fersk fisk<small>4 retter</small></div><span class="season-activity__time">19:00</span></div>
+          </div>
+          <a href="#booking" class="btn btn--primary">Book våropphold <span class="arrow">→</span></a>
+        </div>
+
+        <div class="season-content" data-content="sommer">
+          <span class="eyebrow">Sesong 03 — Lyse netter</span>
+          <h3>Fjellet <em>sover aldri</em> om sommeren.</h3>
+          <p>Mellom juni og august er det lys fra klokka fire om morgenen til elleve om kvelden. Perfekt for fotturer, kajakkpadling og soppsanking. Vi tilbyr guidede turer hver dag, og barna kan bli med på junior-ranger-programmet vårt.</p>
+          <div class="season-activities">
+            <div class="season-activity"><div class="season-activity__name">Topptur til Blåhornet<small>8 timer · 690 kr pp</small></div><span class="season-activity__time">08:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Kajakk i Storfjorden<small>4 timer · 890 kr pp</small></div><span class="season-activity__time">14:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Soppsanking m/ kokk<small>3 timer · 590 kr</small></div><span class="season-activity__time">10:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Grillkveld på bryggen<small>Hver lørdag</small></div><span class="season-activity__time">20:00</span></div>
+          </div>
+          <a href="#booking" class="btn btn--primary">Book sommeropphold <span class="arrow">→</span></a>
+        </div>
+
+        <div class="season-content" data-content="host">
+          <span class="eyebrow">Sesong 04 — Farge og ro</span>
+          <h3>Oransje skog, <em>stille hytter</em>.</h3>
+          <p>September og oktober er når de fleste drar, men det er da Fjellro er på sitt beste for deg som vil ha stillhet. Bjørka går i gult, hjorten kommer ned fra fjellet, og restauranten kjører en av Norges beste viltmenyer — fra elg, rein og hjort skutt i dalen.</p>
+          <div class="season-activities">
+            <div class="season-activity"><div class="season-activity__name">Hjortesafari i grålysning<small>3 timer · 890 kr</small></div><span class="season-activity__time">06:30</span></div>
+            <div class="season-activity"><div class="season-activity__name">Viltkokkekurs<small>5 timer · 1 690 kr</small></div><span class="season-activity__time">15:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Fotokurs i høstfarger<small>2 dager · 4 290 kr</small></div><span class="season-activity__time">10:00</span></div>
+            <div class="season-activity"><div class="season-activity__name">Sju-retters viltmeny<small>Fjellro kjøkken</small></div><span class="season-activity__time">19:30</span></div>
+          </div>
+          <a href="#booking" class="btn btn--primary">Book høstopphold <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== GALLERY ============== -->
+<section class="experience" id="galleri">
+  <div class="wrap">
+    <div class="experience__head">
+      <span class="eyebrow">Galleri</span>
+      <h2 class="reveal">Et sted du <em>ser for deg</em>.</h2>
+      <p>Bilder fra gjester, fra oss, og fra årets gang. Klikk på et bilde for å se det i full størrelse.</p>
+    </div>
+
+    <div class="gallery">
+      <div class="gallery__item g1" data-full="images/photo-08.jpg">
+        <img src="images/photo-06.jpg" alt="Hovedhuset i kveldslys" />
+        <div class="gallery__item-label">Hovedhuset i kveldslys</div>
+      </div>
+      <div class="gallery__item g2" data-full="images/photo-20.jpg">
+        <img src="images/photo-21.jpg" alt="Setergrenden" />
+        <div class="gallery__item-label">Setergrenden</div>
+      </div>
+      <div class="gallery__item g3" data-full="images/photo-22.jpg">
+        <img src="images/photo-23.jpg" alt="Detaljer" />
+        <div class="gallery__item-label">Detaljer fra håndverkerne</div>
+      </div>
+      <div class="gallery__item g4" data-full="images/photo-25.jpg">
+        <img src="images/photo-26.jpg" alt="Badstue" />
+        <div class="gallery__item-label">Badstuen ved elva</div>
+      </div>
+      <div class="gallery__item g5" data-full="images/photo-04.jpg">
+        <img src="images/photo-05.jpg" alt="Fjord" />
+        <div class="gallery__item-label">Storfjorden i morgenskygge</div>
+      </div>
+      <div class="gallery__item g6" data-full="images/photo-11.jpg">
+        <img src="images/photo-12.jpg" alt="Frokost" />
+        <div class="gallery__item-label">Frokost fra bakeriet</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CULINARY ============== -->
+<section class="culinary" id="kulinarisk">
+  <div class="wrap culinary__inner">
+    <div class="culinary__media reveal">
+      <div class="culinary__media-tag">Kjøkkenet · Sigrid Vang</div>
+      <img src="images/photo-03.jpg" alt="Restaurant" />
+      <div class="culinary__media-stat">
+        <div><b>4,9</b><span>i snitt</span></div>
+        <div><b>92 %</b><span>lokale råvarer</span></div>
+        <div><b>3</b><span>retter / meny</span></div>
+      </div>
+    </div>
+    <div class="culinary__content reveal">
+      <span class="eyebrow" style="color:var(--ember-400)">Kulinarisk</span>
+      <h2>Et kjøkken som <em>smaker sted</em>.</h2>
+      <p>Sigrid Vang overtok kjøkkenet i 2021 etter ti år på Maaemo og Måltid i Kristiansund. Menyen endres hver uke, alltid med utgangspunkt i hva dalen, fjorden og gården leverer akkurat den dagen.</p>
+      <p>Vi baker alt brød selv, syr alt tilbehør, og har et lite ysteri i kjelleren hvor modningsosten ligger i 9–14 måneder.</p>
+
+      <div class="culinary__chef">
+        <div class="culinary__chef-avatar" style="background-image:url('images/photo-28.jpg')"></div>
+        <div class="culinary__chef-meta">
+          <b>Sigrid Vang</b>
+          <span>Kjøkkensjef og medeier · Tidligere Maaemo &amp; Måltid</span>
+        </div>
+      </div>
+
+      <div class="culinary__menu">
+        <div class="culinary__menu-row">
+          <span>Fem-retters meny<small>Sesongbasert · 7–9 retter på forespørsel</small></span>
+          <span>1 290 kr</span>
+        </div>
+        <div class="culinary__menu-row">
+          <span>Tre-retters lunsj<small>Serveres lørdag &amp; søndag</small></span>
+          <span>590 kr</span>
+        </div>
+        <div class="culinary__menu-row">
+          <span>Vinpakke<small>5 glass · nøye utvalgt</small></span>
+          <span>890 kr</span>
+        </div>
+        <div class="culinary__menu-row">
+          <span>Frokost fra bakeriet<small>Inkludert i de fleste opphold</small></span>
+          <span>—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TESTIMONIALS ============== -->
+<section class="testimonials" id="omtaler">
+  <div class="wrap">
+    <div class="testimonials__head">
+      <h2 class="reveal">Hva gjestene <em>våre sier</em>.</h2>
+      <div>
+        <div class="testimonials__rating">
+          <div class="testimonials__rating-stars">
+            ★ ★ ★ ★ ★
+          </div>
+          <div>
+            <div class="testimonials__rating-num">4,9</div>
+            <div class="testimonials__rating-meta">av 5 · basert på <b>412 omtaler</b><br/>Google, Booking.com &amp; Tripadvisor</div>
+          </div>
+        </div>
+        <p>Vi er stolte av at 96 % av gjestene våre sier de vil komme tilbake. Her er et utvalg av hva de har skrevet.</p>
+      </div>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <span class="testi__origin">Tripadvisor</span>
+        <div class="testi__stars">★★★★★</div>
+        <p class="testi__quote">Vi kom for stillheten og ble for maten. Sigrids meny var den beste måltidet vi har spist i Norge — og vi har spist på Maaemo. Hytta var perfekt varm da vi kom, og utsikten fikk oss til å glemme telefonen i tre dager.</p>
+        <div class="testi__author">
+          <div class="testi__avatar" style="background-image:url('images/photo-10.jpg')"></div>
+          <div><b>Ingrid &amp; Pål</b><span>Oslo · Mars 2025</span></div>
+        </div>
+      </div>
+
+      <div class="testi reveal">
+        <span class="testi__origin">Google</span>
+        <div class="testi__stars">★★★★★</div>
+        <p class="testi__quote">Tok med familien i sommer. Barna elsket junior-ranger-programmet, vi elsket kajakkturen. Detaljene på rommet — fra ullpledd til håndlagde såper — viste at noen faktisk har tenkt på dette stedet.</p>
+        <div class="testi__author">
+          <div class="testi__avatar" style="background-image:url('images/photo-15.jpg')"></div>
+          <div><b>Magnus Riise</b><span>Bergen · Juli 2025</span></div>
+        </div>
+      </div>
+
+      <div class="testi reveal">
+        <span class="testi__origin">Booking.com</span>
+        <div class="testi__stars">★★★★★</div>
+        <p class="testi__quote">Vi booket to netter og ble i syv. Nordlyset kom tredje kvelden, og verten vår Daniel kjørte oss opp på fjellet for å se det. Det er den typen service man ikke får mange andre steder.</p>
+        <div class="testi__author">
+          <div class="testi__avatar" style="background-image:url('images/photo-01.jpg')"></div>
+          <div><b>Sophie &amp; James</b><span>London · Januar 2025</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LOCATION ============== -->
+<section class="location" id="kontakt">
+  <div class="wrap">
+    <div class="location__inner">
+      <div class="location__info">
+        <div>
+          <span class="eyebrow">Finn oss</span>
+          <h2 class="reveal">45 minutter fra <em>alt</em>, langt fra <em>alt annet</em>.</h2>
+          <p>Fjellro Lodge ligger på en gammel setergrend i Sunnmøre, 220 meter over Storfjorden. Vi henter deg gjerne på Ålesund Lufthavn, Vigra, eller ved fergeleiet i Geiranger.</p>
+
+          <div class="location__details">
+            <div class="location__detail">
+              <div class="location__detail-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <b>Adresse</b>
+                <span>Fjellro Lodge · Setervegen 47<br/>6216 Geiranger, Norge</span>
+              </div>
+            </div>
+            <div class="location__detail">
+              <div class="location__detail-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <b>Resepsjon &amp; booking</b>
+                <span>+47 55 10 09 00 · booking@fjellro.no<br/>Åpent 08–22 hele året</span>
+              </div>
+            </div>
+            <div class="location__detail">
+              <div class="location__detail-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <div>
+                <b>Slik kommer du deg hit</b>
+                <span>45 min fra Ålesund lufthavn (AES) · 15 min fra Geiranger fergekai<br/>Vi tilbyr privat transport fra 690 kr</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="mailto:booking@fjellro.no" class="btn btn--primary" style="margin-top:30px">Send oss en e-post <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="location__map">
+        <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="terrain" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#1a1b16"/>
+              <stop offset="1" stop-color="#0b0d0a"/>
+            </linearGradient>
+            <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2a2b24"/>
+              <stop offset="1" stop-color="#1a1b16"/>
+            </linearGradient>
+            <pattern id="contour" width="100" height="100" patternUnits="userSpaceOnUse">
+              <path d="M 0 50 Q 25 30, 50 50 T 100 50" fill="none" stroke="rgba(244,239,230,.04)" stroke-width=".6"/>
+              <path d="M 0 80 Q 25 60, 50 80 T 100 80" fill="none" stroke="rgba(244,239,230,.03)" stroke-width=".6"/>
+            </pattern>
+          </defs>
+          <!-- Bakgrunn -->
+          <rect width="800" height="600" fill="url(#terrain)"/>
+          <rect width="800" height="600" fill="url(#contour)"/>
+
+          <!-- Fjellformasjoner -->
+          <path d="M 0 380 L 80 280 L 160 340 L 220 240 L 320 320 L 380 200 L 460 280 L 520 220 L 620 320 L 720 260 L 800 320 L 800 600 L 0 600 Z" fill="rgba(244,239,230,.03)"/>
+          <path d="M 100 420 L 200 320 L 280 380 L 360 280 L 440 360 L 540 300 L 640 380 L 740 320 L 800 380 L 800 600 L 0 600 L 0 460 Z" fill="rgba(244,239,230,.02)"/>
+
+          <!-- Fjorden -->
+          <path d="M 200 600 Q 250 480, 350 460 Q 450 440, 480 380 Q 500 320, 480 280 Q 460 240, 380 260 Q 300 280, 280 360 Q 260 440, 320 520 Q 360 600, 320 600 Z" fill="url(#water)" stroke="rgba(196,122,74,.15)" stroke-width="1"/>
+          <path d="M 280 360 Q 260 440, 320 520" fill="none" stroke="rgba(196,122,74,.25)" stroke-width=".8"/>
+          <path d="M 380 260 Q 460 240, 480 280" fill="none" stroke="rgba(196,122,74,.25)" stroke-width=".8"/>
+
+          <!-- Vei -->
+          <path d="M 0 480 Q 100 460, 200 440 Q 280 420, 360 400 Q 420 380, 480 360" fill="none" stroke="rgba(244,239,230,.15)" stroke-width="2" stroke-dasharray="4 6"/>
+
+          <!-- Trær prikker -->
+          <g fill="rgba(244,239,230,.18)">
+            <circle cx="120" cy="420" r="1.5"/><circle cx="150" cy="380" r="1.2"/><circle cx="180" cy="450" r="1.4"/>
+            <circle cx="240" cy="380" r="1.3"/><circle cx="280" cy="420" r="1.5"/><circle cx="320" cy="360" r="1.2"/>
+            <circle cx="400" cy="320" r="1.4"/><circle cx="440" cy="350" r="1.2"/><circle cx="500" cy="300" r="1.5"/>
+            <circle cx="560" cy="340" r="1.3"/><circle cx="600" cy="380" r="1.4"/><circle cx="640" cy="320" r="1.2"/>
+            <circle cx="700" cy="360" r="1.3"/><circle cx="740" cy="400" r="1.4"/><circle cx="100" cy="500" r="1.2"/>
+          </g>
+
+          <!-- Koordinat-tekst -->
+          <g fill="rgba(244,239,230,.18)" font-family="monospace" font-size="9">
+            <text x="20" y="30">62°06′N</text>
+            <text x="700" y="30">7°12′Ø</text>
+            <text x="20" y="580">SUNNMØRE · NORGE</text>
+            <text x="620" y="580">MÅLESTOKK 1:25 000</text>
+          </g>
+
+          <!-- Grid -->
+          <g stroke="rgba(244,239,230,.04)" stroke-width=".5">
+            <line x1="0" y1="100" x2="800" y2="100"/>
+            <line x1="0" y1="200" x2="800" y2="200"/>
+            <line x1="0" y1="300" x2="800" y2="300"/>
+            <line x1="0" y1="400" x2="800" y2="400"/>
+            <line x1="0" y1="500" x2="800" y2="500"/>
+            <line x1="200" y1="0" x2="200" y2="600"/>
+            <line x1="400" y1="0" x2="400" y2="600"/>
+            <line x1="600" y1="0" x2="600" y2="600"/>
+          </g>
+
+          <!-- Stedsnavn -->
+          <g fill="rgba(244,239,230,.35)" font-family="var(--sans)" font-size="10" font-style="italic">
+            <text x="220" y="540">Storfjorden</text>
+            <text x="120" y="220">Blåhornet · 1 412 m</text>
+            <text x="580" y="220">Dalsnibba · 1 476 m</text>
+          </g>
+
+          <!-- Pin-omriss -->
+          <circle cx="416" cy="312" r="30" fill="none" stroke="rgba(196,122,74,.2)" stroke-width="1"/>
+          <circle cx="416" cy="312" r="60" fill="none" stroke="rgba(196,122,74,.12)" stroke-width="1"/>
+        </svg>
+
+        <div class="map-pin">
+          <div class="map-pin__pulse"></div>
+          <div class="map-pin__core">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>
+            Fjellro Lodge
+          </div>
+        </div>
+
+        <div class="map-overlay">
+          <div>
+            <b>Distanse</b>
+            <span>45 min</span>
+          </div>
+          <div>
+            <b>Fra Ålesund</b>
+            <span>62 km</span>
+          </div>
+          <div>
+            <b>Høyde over fjorden</b>
+            <span>220 m</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA STRIP ============== -->
+<section class="cta-strip">
+  <div class="wrap cta-strip__inner">
+    <div>
+      <span class="eyebrow" style="color:var(--ember-400)">Hold deg oppdatert</span>
+      <h2 class="reveal">Sesongmenyer, <em>hemmelige</em> opplevelser, og ro i innboksen.</h2>
+    </div>
+    <div>
+      <p>Vi sender nyhetsbrev fire ganger i året — når menyen skifter, når nordlyset er ventet, og når vi har et par ledige rom i høysesongen. Ingen reklame, ingen spam.</p>
+      <form class="cta-strip__form" onsubmit="handleNewsletter(event)">
+        <input type="email" placeholder="din@epost.no" required />
+        <button type="submit">Abonner</button>
+      </form>
+      <div class="cta-strip__note">Vi sender 4 e-poster i året. Du kan melde deg av når som helst.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <h4>Fjellro Lodge</h4>
+        <p>Et eksklusivt overnattingssted i Sunnmøre. Håndbygde hytter, sesongbasert kjøkken og ro siden 2017.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h5>Oppdag</h5>
+        <ul>
+          <li><a href="#om">Historien</a></li>
+          <li><a href="#rom">Rom &amp; hytter</a></li>
+          <li><a href="#sesong">Sesong &amp; aktiviteter</a></li>
+          <li><a href="#kulinarisk">Kjøkkenet</a></li>
+          <li><a href="#galleri">Galleri</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Praktisk</h5>
+        <ul>
+          <li><a href="#booking">Ledighet &amp; priser</a></li>
+          <li><a href="#">Gavekort</a></li>
+          <li><a href="#">Konferanse &amp; selskap</a></li>
+          <li><a href="#">Bærekraft</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li><a href="tel:+4755100900">+47 55 10 09 00</a></li>
+          <li><a href="mailto:booking@fjellro.no">booking@fjellro.no</a></li>
+          <li><a href="#">Setervegen 47, 6216 Geiranger</a></li>
+          <li><a href="#">Transport fra flyplass</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Fjellro Lodge AS · Org.nr 923 145 789</span>
+      <div class="footer__bottom-links">
+        <a href="#">Personvern</a>
+        <a href="#">Vilkår</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== LIGHTBOX ============== -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Lukk">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Forrige">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Neste">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <img class="lightbox__img" id="lightboxImg" alt="" />
+</div>
+
+<script>
+/* ========== NAV scroll state ========== */
+const nav = document.getElementById('nav');
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+let menuOpen = false;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) nav.classList.add('nav--scrolled');
+  else nav.classList.remove('nav--scrolled');
+}, { passive: true });
+
+burger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  nav.classList.toggle('nav--open', menuOpen);
+  document.body.style.overflow = menuOpen ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menuOpen = false;
+  nav.classList.remove('nav--open');
+  document.body.style.overflow = '';
+}));
+
+/* ========== Reveal on scroll ========== */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ========== Booking — dato synk ========== */
+const months = ['jan.','feb.','mars','apr.','mai','juni','juli','aug.','sep.','okt.','nov.','des.'];
+function fmtDate(d){
+  const day = d.getDate();
+  return day + '. ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+function syncDate(){
+  const ci = new Date(document.getElementById('checkin').value);
+  const co = new Date(document.getElementById('checkout').value);
+  if(!isNaN(ci)) document.getElementById('checkinLabel').textContent = fmtDate(ci);
+  if(!isNaN(co)) document.getElementById('checkoutLabel').textContent = fmtDate(co);
+  updateBookingNote();
+}
+function updateBookingNote(){
+  const ci = document.getElementById('checkinLabel').textContent;
+  const co = document.getElementById('checkoutLabel').textContent;
+  const g = document.getElementById('guests').value;
+  const p = document.getElementById('package').value;
+  document.getElementById('bookingNote').textContent =
+    `Vises: ${ci} → ${co} · ${g} · ${p}`;
+}
+['guests','roomType','package'].forEach(id => {
+  document.getElementById(id).addEventListener('change', updateBookingNote);
+});
+syncDate();
+
+/* Quick fill chips */
+function quickFill(el, name, ci, co, g, room, pkg){
+  document.querySelectorAll('.booking__chip').forEach(c => c.classList.remove('is-active'));
+  el.classList.add('is-active');
+  document.getElementById('checkin').value = ci;
+  document.getElementById('checkout').value = co;
+  if(g) document.getElementById('guests').value = g;
+  if(room) document.getElementById('roomType').value = room;
+  if(pkg) document.getElementById('package').value = pkg;
+  syncDate();
+  document.getElementById('bookingForm').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* Booking submit */
+function handleBooking(e){
+  e.preventDefault();
+  const note = document.getElementById('bookingNote');
+  const orig = note.textContent;
+  note.style.color = 'var(--ink-1000)';
+  note.style.fontWeight = '500';
+  note.textContent = '✓ Sjekker ledighet for ' + document.getElementById('checkinLabel').textContent + ' …';
+  setTimeout(() => {
+    note.textContent = '✓ 3 av 6 romtyper ledig for valgte datoer. Vi tar kontakt innen 1 time.';
+    setTimeout(() => {
+      note.style.color = '';
+      note.style.fontWeight = '';
+      note.textContent = orig;
+    }, 4000);
+  }, 900);
+}
+
+/* Newsletter */
+function handleNewsletter(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  const orig = btn.textContent;
+  btn.textContent = '✓ Takk!';
+  setTimeout(() => btn.textContent = orig, 2500);
+  e.target.reset();
+}
+
+/* ========== Seasons tabs ========== */
+const seasonTabs = document.querySelectorAll('.seasons__tab');
+const seasonContents = document.querySelectorAll('.season-content');
+const seasonImgs = document.querySelectorAll('.season-panel__media img');
+const seasonLabel = document.getElementById('seasonLabel');
+const seasonLabels = { vinter:'Vintersesong · 2026', vaar:'Vårsesong · 2026', sommer:'Sommersesong · 2026', host:'Høstsesong · 2026' };
+
+seasonTabs.forEach(t => t.addEventListener('click', () => {
+  const s = t.dataset.season;
+  seasonTabs.forEach(x => x.classList.toggle('is-active', x === t));
+  seasonContents.forEach(c => c.classList.toggle('is-active', c.dataset.content === s));
+  seasonImgs.forEach(i => i.classList.toggle('is-active', i.dataset.img === s));
+  seasonLabel.textContent = seasonLabels[s];
+}));
+
+/* ========== Gallery lightbox ========== */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const galleryItems = Array.from(document.querySelectorAll('.gallery__item'));
+let currentIndex = 0;
+
+function openLightbox(i){
+  currentIndex = i;
+  lightboxImg.src = galleryItems[i].dataset.full;
+  lightbox.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  lightbox.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+function navLightbox(dir){
+  currentIndex = (currentIndex + dir + galleryItems.length) % galleryItems.length;
+  lightboxImg.style.opacity = '0';
+  setTimeout(() => {
+    lightboxImg.src = galleryItems[currentIndex].dataset.full;
+    lightboxImg.style.opacity = '1';
+  }, 150);
+}
+galleryItems.forEach((it, i) => it.addEventListener('click', () => openLightbox(i)));
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightboxPrev').addEventListener('click', () => navLightbox(-1));
+document.getElementById('lightboxNext').addEventListener('click', () => navLightbox(1));
+lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', (e) => {
+  if(!lightbox.classList.contains('is-open')) return;
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowLeft') navLightbox(-1);
+  if(e.key === 'ArrowRight') navLightbox(1);
+});
+lightboxImg.style.transition = 'opacity .25s';
+
+/* ========== Smooth anchor scroll med offset ========== */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if(id.length > 1){
+      const target = document.querySelector(id);
+      if(target){
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 70;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }
+  });
+});
+
+/* ========== Parallax på hero (subtle) ========== */
+const heroImg = document.querySelector('.hero__bg img');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if(y < window.innerHeight && heroImg){
+    heroImg.style.transform = `scale(${1 + y * 0.00015}) translateY(${y * 0.15}px)`;
+  }
+}, { passive: true });
+
+/* ========== Room card favourite toggle ========== */
+document.querySelectorAll('.room-card__fav').forEach(b => {
+  b.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const svg = b.querySelector('svg');
+    const filled = svg.getAttribute('fill') !== 'none';
+    svg.setAttribute('fill', filled ? 'none' : 'currentColor');
+    b.style.background = filled ? 'rgba(7,8,10,.55)' : 'var(--ember-500)';
+    b.style.color = filled ? 'var(--bone-50)' : 'var(--ink-1000)';
+  });
+});
+
+/* ========== Click room card -> booking ========== */
+document.querySelectorAll('.room-card').forEach(c => {
+  c.addEventListener('click', () => {
+    const name = c.querySelector('h3').textContent;
+    const sel = document.getElementById('roomType');
+    for(let i=0; i<sel.options.length; i++){
+      if(sel.options[i].text === name){ sel.selectedIndex = i; break; }
+    }
+    updateBookingNote();
+    document.getElementById('booking').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

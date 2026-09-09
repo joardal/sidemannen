@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Velværeklinikken — Behandlinger som faktisk virker</title>
+  <meta name="description" content="Velværeklinikken i Oslo. Massasje, muskelspenninger, fotterapi, idrettsmassasje og rådgivning. Bestill time hos erfarne behandlere.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0e0e0f;
+      --ink-soft: #1a1a1b;
+      --ink-ghost: #2a2a2c;
+      --surface: #f4f2ee;
+      --surface-warm: #eae7e0;
+      --surface-deep: #ddd9cf;
+      --surface-darker: #cfc9bc;
+      --text-primary: #111;
+      --text-secondary: #555;
+      --text-muted: #8a8379;
+      --text-light: #b5af9f;
+      --accent: #2c3a2e;
+      --accent-deep: #1b2520;
+      --accent-warm: #bfae96;
+      --accent-warm-soft: #e2d4bc;
+      --accent-warm-faint: #f3ede4;
+      --danger: #c44;
+      --success: #2d5a3d;
+      --radius: 28px;
+      --radius-sm: 14px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 24px 80px rgba(14,14,15,0.08), 0 6px 24px rgba(14,14,15,0.05);
+      --shadow-card: 0 32px 64px rgba(14,14,15,0.06), 0 8px 24px rgba(14,14,15,0.04);
+      --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 16px; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--surface);
+      color: var(--text-primary);
+      line-height: 1.65;
+      overflow-x: hidden;
+      letter-spacing: -0.01em;
+    }
+
+    ::selection { background: var(--accent-warm-soft); color: var(--ink); }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ================== NAVIGATION ================== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.1rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .45s ease, backdrop-filter .45s ease, box-shadow .45s ease, padding .4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(244,242,238,0.88);
+      backdrop-filter: blur(18px) saturate(1.2);
+      -webkit-backdrop-filter: blur(18px) saturate(1.2);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+      padding: 0.7rem 5vw;
+    }
+    .nav-logo { font-family: var(--font-display); font-weight: 500; font-size: 1.35rem; letter-spacing: -0.03em; color: var(--ink); }
+    .nav-logo em { font-style: italic; font-weight: 300; color: var(--accent); }
+    .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-secondary); transition: color .2s; position: relative; }
+    .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--ink); transition:width .35s ease; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-cta { background: var(--ink); color: var(--surface); padding: 0.55rem 1.3rem; border-radius: var(--radius-pill); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.03em; transition: background .25s, transform .2s; }
+    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+    .mobile-menu-btn { display:none; background:none; border:none; cursor:pointer; padding:0.5rem; }
+    .mobile-menu-btn span { display:block; width:22px; height:1.5px; background:var(--ink); margin:5px 0; border-radius:1px; transition:all .3s; }
+
+    /* ================== HERO ================== */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: flex-end;
+      overflow: hidden; padding: 10rem 5vw 7rem;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.78) contrast(1.06) saturate(0.95);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(14,14,15,0.35) 0%, rgba(14,14,15,0.15) 40%, rgba(14,14,15,0.55) 70%, rgba(14,14,15,0.82) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2; max-width: 800px;
+      animation: fadeUp 1.1s ease-out both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-label {
+      display: inline-block; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent-warm-soft); border: 1px solid rgba(224,212,188,0.35); padding: 0.35rem 1rem; border-radius: var(--radius-pill); margin-bottom: 1.5rem;
+      backdrop-filter: blur(4px);
+    }
+    .hero h1 {
+      font-family: var(--font-display); font-weight: 300; font-size: clamp(3rem, 7vw, 5.6rem); line-height: 1.05; letter-spacing: -0.035em; color: #fff; margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      font-style: italic; font-weight: 400; color: var(--accent-warm);
+    }
+    .hero-sub {
+      font-size: 1.1rem; color: rgba(255,255,255,0.75); max-width: 520px; line-height: 1.65; margin-bottom: 2.4rem; font-weight: 300;
+    }
+    .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--surface); color: var(--ink); padding: 1rem 2.2rem; border-radius: var(--radius-pill); font-weight: 500; font-size: 0.92rem; letter-spacing: 0.02em; transition: all .3s ease; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 8px 32px rgba(255,255,255,0.12);
+    }
+    .btn-primary:hover { background: #fff; box-shadow: 0 12px 40px rgba(255,255,255,0.2); transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent; color: #fff; padding: 1rem 2rem; border-radius: var(--radius-pill); font-weight: 400; font-size: 0.92rem; border: 1px solid rgba(255,255,255,0.35); transition: all .3s; backdrop-filter: blur(4px);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+
+    /* ================== SECTIONS ================== */
+    .section { padding: 8rem 5vw; }
+    .section-narrow { max-width: 1200px; margin: 0 auto; padding-left: 5vw; padding-right: 5vw; }
+    .section-header { margin-bottom: 4rem; max-width: 640px; }
+    .section-header h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem; }
+    .section-header h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+    .section-header p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6; font-weight: 300; }
+    .label-pill {
+      display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: var(--accent-warm-faint); padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); margin-bottom: 1rem;
+    }
+
+    /* ================== ABOUT / INTRO ================== */
+    .intro-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .intro-text h3 { font-family: var(--font-display); font-weight: 300; font-size: 2.2rem; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1.2rem; }
+    .intro-text h3 em { font-style: italic; font-weight: 400; color: var(--accent); }
+    .intro-text p { color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.2rem; font-weight: 300; }
+    .intro-text .stats { display: flex; gap: 3rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--surface-deep); }
+    .stat-number { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--ink); line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+    .intro-img { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); }
+    .intro-img img { aspect-ratio: 4/5; object-fit: cover; transition: transform .8s ease; }
+    .intro-img:hover img { transform: scale(1.03); }
+
+    /* ================== WIZARD ================== */
+    .wizard-card {
+      background: var(--ink-soft); border-radius: var(--radius); padding: 3rem; color: #fff; position: relative; overflow: hidden; box-shadow: var(--shadow-card);
+    }
+    .wizard-card::before {
+      content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+      background: radial-gradient(circle at 30% 20%, rgba(191,174,150,0.12), transparent 60%),
+                  radial-gradient(circle at 70% 80%, rgba(44,58,46,0.3), transparent 50%);
+      pointer-events:none;
+    }
+    .wizard-steps { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem; position: relative; z-index: 1; }
+    .wizard-steps button {
+      flex: 1 1 auto; min-width: 120px; padding: 0.85rem 0.6rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); border-radius: var(--radius-sm); color: rgba(255,255,255,0.8); font-family: var(--font-display); font-weight: 400; font-size: 1rem; letter-spacing: -0.01em; cursor: pointer; transition: all .25s; text-align: left; line-height: 1.25;
+    }
+    .wizard-steps button:hover, .wizard-steps button.active { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.35); color: #fff; }
+    .wizard-steps button strong { display:block; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.55; margin-bottom: 0.2rem; font-family: var(--font-body); }
+    .wizard-result { position: relative; z-index: 1; }
+    .wizard-result h3 { font-family: var(--font-display); font-weight: 300; font-size: 1.8rem; letter-spacing: -0.03em; margin-bottom: 0.8rem; }
+    .wizard-result .treatment-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
+    .treatment-card-link {
+      display: flex; align-items: center; gap: 1.2rem; padding: 1.1rem 1.2rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); color: inherit; transition: all .25s; text-align: left;
+    }
+    .treatment-card-link:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.22); transform: translateX(6px); }
+    .treatment-card-link .treat-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-warm); color: var(--ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-display); font-size: 1.1rem; font-weight: 500; }
+    .treatment-card-link h4 { font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; letter-spacing: -0.02em; margin-bottom: 0.15rem; }
+    .treatment-card-link span { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+
+    /* ================== TREATMENTS ================== */
+    .treatments-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .treatment-card {
+      background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-soft); transition: box-shadow .35s, transform .35s; position: relative;
+    }
+    .treatment-card:hover { box-shadow: var(--shadow-card); transform: translateY(-4px); }
+    .treatment-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform .6s ease; }
+    .treatment-card:hover img { transform: scale(1.05); }
+    .treatment-body { padding: 1.6rem 1.5rem 1.4rem; }
+    .treatment-body h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+    .treatment-body .duration { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); font-weight: 500; margin-bottom: 0.7rem; }
+    .treatment-body p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; font-weight: 300; margin-bottom: 1.2rem; }
+    .treatment-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--surface-deep); }
+    .price { font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--ink); }
+    .treatment-footer a { font-size: 0.82rem; font-weight: 500; color: var(--accent); letter-spacing: 0.02em; transition: opacity .2s; }
+    .treatment-footer a:hover { opacity: 0.7; }
+
+    /* ================== THERAPISTS ================== */
+    .therapists-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .therapist-card { background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-soft); text-align: center; padding: 0; transition: box-shadow .35s, transform .35s; }
+    .therapist-card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); }
+    .therapist-card .photo-wrap { position: relative; overflow: hidden; }
+    .therapist-card img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform .7s ease; }
+    .therapist-card:hover img { transform: scale(1.04); }
+    .therapist-body { padding: 1.4rem 1.2rem 1.6rem; }
+    .therapist-body h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; letter-spacing: -0.01em; margin-bottom: 0.15rem; }
+    .therapist-body .role { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); font-weight: 500; margin-bottom: 0.7rem; }
+    .therapist-body p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; font-weight: 300; }
+
+    /* ================== BOOKING ================== */
+    .booking-wrap {
+      background: linear-gradient(135deg, #f8f6f2 0%, #edeae3 100%);
+      border-radius: var(--radius); padding: 3.5rem; box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+    }
+    .booking-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .booking-step h4 { font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+    .booking-step p { font-size: 0.9rem; color: var(--text-secondary); font-weight: 300; line-height: 1.55; }
+    .booking-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem; }
+    .booking-form-grid label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; color: var(--text-muted); margin-bottom: 0.4rem; display: block; }
+    .booking-form-grid select, .booking-form-grid input, .booking-form-grid textarea {
+      width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--surface-deep); border-radius: var(--radius-sm); background: #fff; font-family: var(--font-body); font-size: 0.92rem; color: var(--ink); transition: border-color .2s, box-shadow .2s;
+    }
+    .booking-form-grid select:focus, .booking-form-grid input:focus, .booking-form-grid textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(44,58,46,0.08); }
+    .booking-form-grid textarea { resize: vertical; min-height: 100px; }
+    .form-row-full { grid-column: 1 / -1; }
+    .btn-submit { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--ink); color: #fff; padding: 1rem 2.4rem; border-radius: var(--radius-pill); font-weight: 500; font-size: 0.92rem; letter-spacing: 0.03em; border: none; cursor: pointer; transition: background .25s, transform .2s; margin-top: 0.6rem; }
+    .btn-submit:hover { background: var(--accent); transform: translateY(-2px); }
+
+    /* ================== TESTIMONIALS ================== */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .testimonial-card { background: #fff; border-radius: var(--radius); padding: 2.2rem 1.8rem; box-shadow: var(--shadow-soft); position: relative; transition: box-shadow .3s; }
+    .testimonial-card:hover { box-shadow: var(--shadow-card); }
+    .testimonial-card::before { content: ""; font-family: var(--font-display); font-size: 5rem; color: var(--accent-warm-soft); line-height: 0; position: absolute; top: 2rem; right: 1.2rem; opacity: 0.7; }
+    .testimonial-card .quote { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: 1.15rem; line-height: 1.45; color: var(--ink); margin-bottom: 1.4rem; letter-spacing: -0.02em; position: relative; z-index: 1; }
+    .testimonial-card .author { display: flex; align-items: center; gap: 0.75rem; }
+    .testimonial-card .author img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+    .testimonial-card .author-info h5 { font-family: var(--font-display); font-weight: 400; font-size: 0.95rem; letter-spacing: -0.01em; }
+    .testimonial-card .author-info span { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ================== OPENING HOURS & CONTACT ================== */
+    .info-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr { border-bottom: 1px solid var(--surface-deep); }
+    .hours-table td { padding: 0.85rem 0; font-size: 0.92rem; color: var(--text-secondary); font-weight: 300; }
+    .hours-table td:first-child { font-weight: 500; color: var(--ink); }
+    .contact-block h3 { font-family: var(--font-display); font-weight: 300; font-size: 1.6rem; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .contact-block p { color: var(--text-secondary); font-weight: 300; line-height: 1.7; margin-bottom: 1.2rem; }
+    .contact-block a { color: var(--accent); font-weight: 500; border-bottom: 1px solid var(--accent-warm-soft); padding-bottom: 0.05rem; transition: opacity .2s; }
+    .contact-block a:hover { opacity: 0.7; }
+    .contact-details { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
+    .contact-row { display: flex; align-items: center; gap: 1rem; font-size: 0.9rem; color: var(--text-secondary); }
+    .contact-row .icon { width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: var(--surface); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.75rem; }
+
+    /* ================== MAP / LOCATION IMAGE ================== */
+    .map-image { width: 100%; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-soft); position: relative; }
+    .map-image img { width: 100%; aspect-ratio: 21/9; object-fit: cover; display: block; filter: grayscale(30%) contrast(1.05); }
+    .map-image .map-label { position: absolute; bottom: 1.5rem; left: 1.5rem; background: rgba(14,14,15,0.85); color: #fff; padding: 0.9rem 1.2rem; border-radius: var(--radius-sm); backdrop-filter: blur(8px); max-width: 320px; }
+    .map-image .map-label h4 { font-family: var(--font-display); font-weight: 400; font-size: 1.05rem; letter-spacing: -0.01em; margin-bottom: 0.15rem; }
+    .map-image .map-label p { font-size: 0.82rem; color: rgba(255,255,255,0.75); line-height: 1.45; }
+
+    /* ================== FOOTER ================== */
+    footer { background: var(--ink); color: #fff; padding: 5rem 5vw 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto 4rem; }
+    footer h4 { font-family: var(--font-display); font-weight: 400; font-size: 1.05rem; letter-spacing: -0.02em; margin-bottom: 1.2rem; color: #fff; }
+    footer p, footer a { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.7; font-weight: 300; transition: color .2s; }
+    footer a:hover { color: rgba(255,255,255,0.9); }
+    footer .logo-footer { font-family: var(--font-display); font-weight: 300; font-size: 1.3rem; letter-spacing: -0.03em; color: #fff; margin-bottom: 0.8rem; }
+    footer .logo-footer em { font-style: italic; font-weight: 400; color: var(--accent-warm); }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+
+    /* ================== ANIMATIONS ================== */
+    .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.9s ease-out forwards; }
+    .fade-up-delay-1 { animation-delay: 0.12s; }
+    .fade-up-delay-2 { animation-delay: 0.24s; }
+    .fade-up-delay-3 { animation-delay: 0.36s; }
+
+    /* ================== RESPONSIVE ================== */
+    @media (max-width: 1024px) {
+      .intro-grid, .info-two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+      .treatments-grid { grid-template-columns: 1fr 1fr; }
+      .therapists-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .booking-steps { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .hero-content { max-width: 100%; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+      .nav.scrolled { padding: 0.6rem 4vw; }
+      .section { padding: 5rem 4vw; }
+      .hero { padding: 8rem 4vw 5rem; min-height: 92vh; }
+      .hero h1 { font-size: 2.6rem; }
+      .hero-sub { font-size: 1rem; }
+      .intro-text h3 { font-size: 1.7rem; }
+      .treatments-grid { grid-template-columns: 1fr; }
+      .therapists-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .booking-wrap { padding: 1.8rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .wizard-steps button { min-width: 0; font-size: 0.85rem; }
+      .map-image img { aspect-ratio: 16/10; }
+    }
+
+    /* ================== SMALL UTILS ================== */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Hovednavigasjon">
+    <a href="#" class="nav-logo" aria-label="Velværeklinikken — Hjem">Velvære<em>klinikken</em></a>
+    <div class="nav-links" aria-label="Lenker">
+      <a href="#om">Om oss</a>
+      <a href="#behandlinger">Behandlinger</a>
+      <a href="#veiviser">Veiviser</a>
+      <a href="#behandlere">Behandlere</a>
+      <a href="#booking">Bestill</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#booking" class="nav-cta">Bestill time</a>
+    </div>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('open')" aria-label="Åpne meny" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE OVERLAY -->
+  <div id="mobile-menu" style="position:fixed;inset:0;z-index:999;background:rgba(14,14,15,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;opacity:0;pointer-events:none;transition:opacity .35s;" onclick="this.classList.remove('open'); document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded','false');">
+    <a href="#om" onclick="this.parentElement.classList.remove('open')" style="font-family:var(--font-display);font-size:1.8rem;color:#fff;">Om oss</a>
+    <a href="#behandlinger" onclick="this.parentElement.classList.remove('open')" style="font-family:var(--font-display);font-size:1.8rem;color:#fff;">Behandlinger</a>
+    <a href="#veiviser" onclick="this.parentElement.classList.remove('open')" style="font-family:var(--font-display);font-size:1.8rem;color:#fff;">Veiviser</a>
+    <a href="#behandlere" onclick="this.parentElement.classList.remove('open')" style="font-family:var(--font-display);font-size:1.8rem;color:#fff;">Behandlere</a>
+    <a href="#booking" onclick="this.parentElement.classList.remove('open')" style="font-family:var(--font-display);font-size:1.8rem;color:#fff;">Bestill</a>
+    <a href="#kontakt" onclick="this.parentElement.classList.remove('open')" style="font-family:var(--font-display);font-size:1.8rem;color:#fff;">Kontakt</a>
+  </div>
+  <style>
+    #mobile-menu.open { opacity:1; pointer-events:auto; }
+  </style>
+
+  <!-- HERO -->
+  <header class="hero" aria-label="Hovedinnhold">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="images/photo-08.jpg" alt="Rolig atmosfære" loading="eager">
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="hero-label">Velværeklinikken — Oslo</span>
+      <h1>Behandlinger som <em>faktisk</em> virker</h1>
+      <p class="hero-sub">Vi kombinerer medisinsk kunnskap, erfarne hender og ro til en opplevelse som etterlater deg lettere, mykere og mer tilstede.</p>
+      <div class="hero-cta-row">
+        <a href="#booking" class="btn-primary">Bestill time <span aria-hidden="true">→</span></a>
+        <a href="#behandlinger" class="btn-secondary">Se behandlinger</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT -->
+    <section id="om" class="section" aria-label="Om Velværeklinikken">
+      <div class="section-narrow intro-grid">
+        <div class="intro-text fade-up">
+          <span class="label-pill">Om klinikken</span>
+          <h3>En klinikk for <em>kropp</em> og <em>hode</em></h3>
+          <p>Velværeklinikken ble startet med en enkel idé: at behandling skal være grundig, personlig og uten unødvendig støy. Vi tar oss tid til å forstå hva kroppen din trenger — ikke hva som ser pent ut på sosiale medier.</p>
+          <p>Vår tilnærming er basert på moderne fysioterapeutisk kunnskap kombinert med klassisk manuell terapi. Resultatet er behandlinger som føles både trygge og effektive.</p>
+          <div class="stats">
+            <div><div class="stat-number">14+</div><div class="stat-label">Års erfaring</div></div>
+            <div><div class="stat-number">3 200+</div><div class="stat-label">Behandlinger</div></div>
+            <div><div class="stat-number">98%</div><div class="stat-label">Tilfredshet</div></div>
+          </div>
+        </div>
+        <figure class="intro-img fade-up fade-up-delay-1">
+          <img src="images/photo-11.jpg" alt="Behandling i rolig rom" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <!-- TREATMENTS -->
+    <section id="behandlinger" class="section" aria-label="Våre behandlinger" style="background: linear-gradient(180deg, #f4f2ee 0%, #edeae3 40%, #f4f2ee 100%);">
+      <div class="section-narrow">
+        <div class="section-header fade-up">
+          <span class="label-pill">Behandlinger</span>
+          <h2>Valg som gir <em>mening</em></h2>
+          <p>Fra dyp muskulær avspenning til målrettet fotpleie — hver behandling er utformet med et tydelig formål.</p>
+        </div>
+        <div class="treatments-grid">
+          <article class="treatment-card fade-up fade-up-delay-1">
+            <img src="images/photo-15.jpg" alt="Klassisk massasje" loading="lazy">
+            <div class="treatment-body">
+              <h3>Klassisk massasje</h3>
+              <div class="duration">45–75 min</div>
+              <p>En gjennomgående, rolig massasje som løsner opp i overfladiske og dypere muskelspenninger. Perfekt for deg som trenger ro og varig avspenning.</p>
+              <div class="treatment-footer">
+                <span class="price">Fra 890 kr</span>
+                <a href="#booking">Bestill →</a>
+              </div>
+            </div>
+          </article>
+          <article class="treatment-card fade-up fade-up-delay-2">
+            <img src="images/photo-09.jpg" alt="Idrettsmassasje" loading="lazy">
+            <div class="treatment-body">
+              <h3>Idrettsmassasje</h3>
+              <div class="duration">60 min</div>
+              <p>Målrettet behandling av muskelgrupper som er belastet av trening, løping eller fysisk arbeid. Kombinerer dyp trykk og tøying.</p>
+              <div class="treatment-footer">
+                <span class="price">Fra 1 150 kr</span>
+                <a href="#booking">Bestill →</a>
+              </div>
+            </div>
+          </article>
+          <article class="treatment-card fade-up fade-up-delay-3">
+            <img src="images/photo-13.jpg" alt="Fotterapi" loading="lazy">
+            <div class="treatment-body">
+              <h3>Fotterapi</h3>
+              <div class="duration">45 min</div>
+              <p>En helhetlig tilnærming til føttene dine. Lindrer slitne føtter, forbedrer sirkulasjon og gir en følelse av letthet som varer lenge etter behandlingen.</p>
+              <div class="treatment-footer">
+                <span class="price">Fra 790 kr</span>
+                <a href="#booking">Bestill →</a>
+              </div>
+            </div>
+          </article>
+          <article class="treatment-card fade-up fade-up-delay-1">
+            <img src="images/photo-06.jpg" alt="Rygg og nakke" loading="lazy">
+            <div class="treatment-body">
+              <h3>Muskelspenninger</h3>
+              <div class="duration">60 min</div>
+              <p>Behandling av stiv nakke, øvre rygg og skulderparti. Vi bruker en kombinasjon av trykk, tøying og pusteteknikker for varig lindring.</p>
+              <div class="treatment-footer">
+                <span class="price">Fra 990 kr</span>
+                <a href="#booking">Bestill →</a>
+              </div>
+            </div>
+          </article>
+          <article class="treatment-card fade-up fade-up-delay-2">
+            <img src="images/photo-12.jpg" alt="Fotpleie" loading="lazy">
+            <div class="treatment-body">
+              <h3>Fotpleie</h3>
+              <div class="duration">45 min</div>
+              <p>Profesjonell fotpleie med fokus på velvære og helse. Inkluderer fotbad, filing, neglepleie og en kort avslappende massasje.</p>
+              <div class="treatment-footer">
+                <span class="price">Fra 650 kr</span>
+                <a href="#booking">Bestill →</a>
+              </div>
+            </div>
+          </article>
+          <article class="treatment-card fade-up fade-up-delay-3">
+            <img src="images/photo-02.jpg" alt="Rådgivning" loading="lazy">
+            <div class="treatment-body">
+              <h3>Rådgivning</h3>
+              <div class="duration">30 min</div>
+              <p>En samtale om kropp, belastning og hva du trenger akkurat nå. Vi hjelper deg å forstå mønstre og gir konkrete råd for hverdagen.</p>
+              <div class="treatment-footer">
+                <span class="price">Fra 450 kr</span>
+                <a href="#booking">Bestill →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WIZARD -->
+    <section id="veiviser" class="section" aria-label="Finn riktig behandling">
+      <div class="section-narrow">
+        <div class="section-header fade-up">
+          <span class="label-pill">Interaktiv veiviser</span>
+          <h2>Finn riktig <em>behandling</em> på 30 sekunder</h2>
+          <p>Velg hva du kjenner mest på akkurat nå — vi anbefaler det som passer best.</p>
+        </div>
+        <div class="wizard-card fade-up fade-up-delay-1" id="wizard">
+          <div class="wizard-steps" role="tablist" aria-label="Valg av symptom">
+            <button onclick="selectWizard(this, 'nakke')" class="active" role="tab" aria-selected="true" aria-controls="wizard-result" id="tab-nakke">
+              <strong>Stiv nakke</strong>
+              Smerte og begrenset bevegelse
+            </button>
+            <button onclick="selectWizard(this, 'rygg')" role="tab" aria-selected="false" aria-controls="wizard-result" id="tab-rygg">
+              <strong>Ryggplager</strong>
+              Stivhet eller smerte i korsrygg
+            </button>
+            <button onclick="selectWizard(this, 'restitusjon')" role="tab" aria-selected="false" aria-controls="wizard-result" id="tab-restitusjon">
+              <strong>Restitusjon</strong>
+              Etter trening eller fysisk arbeid
+            </button>
+            <button onclick="selectWizard(this, 'fotter')" role="tab" aria-selected="false" aria-controls="wizard-result" id="tab-fotter">
+              <strong>Slitne føtter</strong>
+              Tunge ben eller ømme føtter
+            </button>
+            <button onclick="selectWizard(this, 'velvaere')" role="tab" aria-selected="false" aria-controls="wizard-result" id="tab-velvaere">
+              <strong>Generell velvære</strong>
+              Ro, avspenning og balanse
+            </button>
+          </div>
+          <div class="wizard-result" id="wizard-result" aria-live="polite">
+            <h3>For stiv nakke anbefaler vi</h3>
+            <p style="color:rgba(255,255,255,0.7);font-weight:300;margin-bottom:0.4rem;">En kombinasjon som løsner opp i øvre ryggrad og skuldre.</p>
+            <div class="treatment-list">
+              <a href="#booking" class="treatment-card-link">
+                <span class="treat-icon" aria-hidden="true">M</span>
+                <div>
+                  <h4>Klassisk massasje — 75 min</h4>
+                  <span>Dyp avspenning av nakke og skuldre</span>
+                </div>
+              </a>
+              <a href="#booking" class="treatment-card-link">
+                <span class="treat-icon" aria-hidden="true">N</span>
+                <div>
+                  <h4>Muskelspenninger — 60 min</h4>
+                  <span>Målrettet behandling av øvre rygg</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THERAPISTS -->
+    <section id="behandlere" class="section" aria-label="Våre behandlere" style="background: linear-gradient(180deg, #edeae3 0%, #f4f2ee 60%, #edeae3 100%);">
+      <div class="section-narrow">
+        <div class="section-header fade-up">
+          <span class="label-pill">Behandlere</span>
+          <h2>Møt de som <em>tar</em> seg av deg</h2>
+          <p>Erfaring, faglig nysgjerrighet og en rolig tilnærming. Våre behandlere har lang bakgrunn fra fysioterapi, massasje og manuell terapi.</p>
+        </div>
+        <div class="therapists-grid">
+          <article class="therapist-card fade-up fade-up-delay-1">
+            <div class="photo-wrap">
+              <img src="images/photo-01.jpg" alt="Ingrid Solberg" loading="lazy">
+            </div>
+            <div class="therapist-body">
+              <h3>Ingrid Solberg</h3>
+              <div class="role">Manuell terapeut & massør</div>
+              <p>Spesialist på dyp muskulær avspenning, idrettsmassasje og rehabilitering etter skader. 12 års erfaring.</p>
+            </div>
+          </article>
+          <article class="therapist-card fade-up fade-up-delay-2">
+            <div class="photo-wrap">
+              <img src="images/photo-05.jpg" alt="Magnus Linde" loading="lazy">
+            </div>
+            <div class="therapist-body">
+              <h3>Magnus Linde</h3>
+              <div class="role">Idrettsmassør</div>
+              <p>Utdannet fra Høgskolen i Oslo. Fokus på muskelspenninger, restitusjon og rådgivning for aktive personer.</p>
+            </div>
+          </article>
+          <article class="therapist-card fade-up fade-up-delay-3">
+            <div class="photo-wrap">
+              <img src="images/photo-04.jpg" alt="Sara Nordli" loading="lazy">
+            </div>
+            <div class="therapist-body">
+              <h3>Sara Nordli</h3>
+              <div class="role">Fotterapeut & fotpleier</div>
+              <p>Autorisert fotterapeut med fokus på fothelse, slitne føtter og forebyggende behandling for hele kroppen.</p>
+            </div>
+          </article>
+          <article class="therapist-card fade-up fade-up-delay-1">
+            <div class="photo-wrap">
+              <img src="images/photo-03.jpg" alt="Thomas Holm" loading="lazy">
+            </div>
+            <div class="therapist-body">
+              <h3>Thomas Holm</h3>
+              <div class="role">Massasjeterapeut</div>
+              <p>Lang erfaring fra klassisk massasje og avspenning. Spesielt dyktig på rygg- og nakkeplager og generell velvære.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section aria-label="Kundeomtaler" class="section">
+      <div class="section-narrow">
+        <div class="section-header fade-up">
+          <span class="label-pill">Kundeomtaler</span>
+          <h2>Hva folk <em>sier</em></h2>
+        </div>
+        <div class="testimonials-grid">
+          <blockquote class="testimonial-card fade-up fade-up-delay-1">
+            <p class="quote">"Etter mange år med stiv nakke har jeg endelig funnet noe som faktisk fungerer. Ingrid tar seg tid og forklarer hva hun gjør. En helt annen standard."</p>
+            <div class="author">
+              <img src="images/photo-10.jpg" alt="Kunde: Erik M." loading="lazy">
+              <div class="author-info"><h5>Erik M.</h5><span>Idrettsmassasje, 3 ganger</span></div>
+            </div>
+          </blockquote>
+          <blockquote class="testimonial-card fade-up fade-up-delay-2">
+            <p class="quote">"Fotpleien her er på et helt annet nivå. Sara ga meg konkrete råd og føttene mine har aldri føltes bedre. Raskt, grundig og behagelig."</p>
+            <div class="author">
+              <img src="images/photo-04.jpg" alt="Kunde: Line K." loading="lazy">
+              <div class="author-info"><h5>Line K.</h5><span>Fotterapi, 2 ganger</span></div>
+            </div>
+          </blockquote>
+          <blockquote class="testimonial-card fade-up fade-up-delay-3">
+            <p class="quote">"Jeg kom for ryggplager og dro igjen med en følelse av ro jeg ikke visste jeg trengte. Thomas er fantastisk på dyp muskulær avspenning."</p>
+            <div class="author">
+              <img src="images/photo-14.jpg" alt="Kunde: Mats O." loading="lazy">
+              <div class="author-info"><h5>Mats O.</h5><span>Klassisk massasje, 5 ganger</span></div>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="booking" class="section" aria-label="Bestill time" style="background: linear-gradient(180deg, #edeae3 0%, #f4f2ee 100%);">
+      <div class="section-narrow">
+        <div class="section-header fade-up">
+          <span class="label-pill">Booking</span>
+          <h2>Bestill <em>tid</em> på 60 sekunder</h2>
+          <p>Velg behandling, behandler og et tidspunkt som passer. Vi bekrefter innen 15 minutter i åpningstiden.</p>
+        </div>
+        <div class="booking-wrap fade-up fade-up-delay-1">
+          <div class="booking-steps" aria-label="Bookingtrinn">
+            <div class="booking-step">
+              <h4>1. Velg behandling</h4>
+              <p>Se vår oversikt og velg det som passer din kropp akkurat nå.</p>
+            </div>
+            <div class="booking-step">
+              <h4>2. Velg behandler</h4>
+              <p>Velg den behandleren som passer best for din behandling.</p>
+            </div>
+            <div class="booking-step">
+              <h4>3. Velg tidspunkt</h4>
+              <p>Finn et tidspunkt som passer i kalenderen vår.</p>
+            </div>
+          </div>
+          <form class="booking-form-grid" onsubmit="event.preventDefault(); showBookingConfirm(this);" novalidate>
+            <div>
+              <label for="booking-beh">Behandling</label>
+              <select id="booking-beh" name="behandling" required>
+                <option value="">— Velg behandling —</option>
+                <option value="klassisk">Klassisk massasje (45–75 min)</option>
+                <option value="idrett">Idrettsmassasje (60 min)</option>
+                <option value="fotterapi">Fotterapi (45 min)</option>
+                <option value="fotpleie">Fotpleie (45 min)</option>
+                <option value="muskel">Muskelspenninger (60 min)</option>
+                <option value="radgivning">Rådgivning (30 min)</option>
+              </select>
+            </div>
+            <div>
+              <label for="booking-behandler">Behandler</label>
+              <select id="booking-behandler" name="behandler" required>
+                <option value="">— Velg behandler —</option>
+                <option value="ingrid">Ingrid Solberg</option>
+                <option value="magnus">Magnus Linde</option>
+                <option value="sara">Sara Nordli</option>
+                <option value="thomas">Thomas Holm</option>
+              </select>
+            </div>
+            <div>
+              <label for="booking-dato">Dato</label>
+              <input type="date" id="booking-dato" name="dato" required>
+            </div>
+            <div>
+              <label for="booking-tid">Tidspunkt</label>
+              <select id="booking-tid" name="tidspunkt" required>
+                <option value="">— Velg tidspunkt —</option>
+                <option value="09:00">09:00</option>
+                <option value="10:30">10:30</option>
+                <option value="12:00">12:00</option>
+                <option value="13:30">13:30</option>
+                <option value="15:00">15:00</option>
+                <option value="16:30">16:30</option>
+                <option value="18:00">18:00</option>
+              </select>
+            </div>
+            <div>
+              <label for="booking-navn">Navn</label>
+              <input type="text" id="booking-navn" name="navn" placeholder="Ditt navn" required>
+            </div>
+            <div>
+              <label for="booking-telefon">Telefon</label>
+              <input type="tel" id="booking-telefon" name="telefon" placeholder="+47 123 45 678" required>
+            </div>
+            <div class="form-row-full">
+              <label for="booking-merknad">Merknad (valgfritt)</label>
+              <textarea id="booking-merknad" name="merknad" placeholder="Noe spesielt vi bør vite? Skader, preferanser, tidligere erfaringer?"></textarea>
+            </div>
+            <div class="form-row-full">
+              <button type="submit" class="btn-submit">Send bestilling <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPENING HOURS & CONTACT -->
+    <section id="kontakt" class="section" aria-label="Kontakt og åpningstider">
+      <div class="section-narrow info-two-col">
+        <div class="fade-up">
+          <span class="label-pill">Åpningstider</span>
+          <h2 style="font-family:var(--font-display);font-weight:300;font-size:2.2rem;letter-spacing:-0.03em;margin-bottom:1.5rem;">Åpen når du <em>trenger</em> det</h2>
+          <table class="hours-table" aria-label="Åpningstider">
+            <tbody>
+              <tr><td>Mandag</td><td>09:00 – 19:00</td></tr>
+              <tr><td>Tirsdag</td><td>09:00 – 19:00</td></tr>
+              <tr><td>Onsdag</td><td>09:00 – 19:00</td></tr>
+              <tr><td>Torsdag</td><td>09:00 – 20:00</td></tr>
+              <tr><td>Fredag</td><td>09:00 – 18:00</td></tr>
+              <tr><td>Lørdag</td><td>10:00 – 15:00</td></tr>
+              <tr><td>Søndag</td><td>Stengt</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="contact-block fade-up fade-up-delay-1">
+          <h3>Kontakt oss</h3>
+          <p>Har du spørsmål om behandlingen din, eller trenger du råd før du bestiller? Vi svarer raskt og grundig.</p>
+          <a href="#booking">Bestill time →</a>
+          <div class="contact-details">
+            <div class="contact-row">
+              <span class="icon" aria-hidden="true">✉</span>
+              <span><a href="mailto:post@velvaereklinikken.no">post@velvaereklinikken.no</a></span>
+            </div>
+            <div class="contact-row">
+              <span class="icon" aria-hidden="true">✆</span>
+              <span><a href="tel:+4791234567">+47 912 34 567</a></span>
+            </div>
+            <div class="contact-row">
+              <span class="icon" aria-hidden="true">◈</span>
+              <span>Storgata 42, 0155 Oslo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-image" style="margin-top:5rem;">
+        <img src="images/photo-07.jpg" alt="Oslo sentrum ved solnedgang" loading="lazy">
+        <div class="map-label">
+          <h4>Velværeklinikken</h4>
+          <p>Storgata 42, 0155 Oslo<br>5 min fra Oslo S, nær Bislett stadion.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer aria-label="Footer">
+    <div class="footer-grid">
+      <div>
+        <div class="logo-footer">Velvære<em>klinikken</em></div>
+        <p>En uavhengig klinikk i Oslo sentrum som kombinerer medisinsk kunnskap, erfarne behandlere og rolig atmosfære. Vi tar oss tid til å forstå kroppen din — ikke bare behandle symptomene.</p>
+      </div>
+      <div>
+        <h4>Behandlinger</h4>
+        <p><a href="#behandlinger">Klassisk massasje</a></p>
+        <p><a href="#behandlinger">Idrettsmassasje</a></p>
+        <p><a href="#behandlinger">Muskelspenninger</a></p>
+        <p><a href="#behandlinger">Fotpleie</a></p>
+      </div>
+      <div>
+        <h4>Informasjon</h4>
+        <p><a href="#om">Om oss</a></p>
+        <p><a href="#behandlere">Behandlere</a></p>
+        <p><a href="#booking">Bestill time</a></p>
+        <p><a href="#kontakt">Kontakt</a></p>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <p><a href="mailto:post@velvaereklinikken.no">post@velvaereklinikken.no</a></p>
+        <p><a href="tel:+4791234567">+47 912 34 567</a></p>
+        <p>Storgata 42, 0155 Oslo</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Velværeklinikken. Et fiktivt byråprosjekt.</span>
+      <span>Personvern · Vilkår</span>
+    </div>
+  </footer>
+
+  <script>
+    // NAV SCROLL EFFECT
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+    }, { passive: true });
+
+    // WIZARD DATA
+    const wizardData = {
+      nakke: {
+        title: 'For stiv nakke anbefaler vi',
+        desc: 'En kombinasjon som løsner opp i øvre ryggrad og skuldre.',
+        treatments: [
+          { icon: 'M', title: 'Klassisk massasje — 75 min', desc: 'Dyp avspenning av nakke og skuldre' },
+          { icon: 'N', title: 'Muskelspenninger — 60 min', desc: 'Målrettet behandling av øvre rygg' }
+        ]
+      },
+      rygg: {
+        title: 'For ryggplager anbefaler vi',
+        desc: 'Behandling som fokuserer på dyp muskulatur og bevegelighet i ryggrad.',
+        treatments: [
+          { icon: 'K', title: 'Klassisk massasje — 60 min', desc: 'Helhetlig avspenning av korsrygg' },
+          { icon: 'R', title: 'Muskelspenninger — 60 min', desc: 'Målrettet behandling av rygg og hofter' }
+        ]
+      },
+      restitusjon: {
+        title: 'For restitusjon anbefaler vi',
+        desc: 'Behandling som hjelper kroppen å komme seg raskere etter belastning.',
+        treatments: [
+          { icon: 'I', title: 'Idrettsmassasje — 60 min', desc: 'Dyp muskulær avspenning og tøying' },
+          { icon: 'M', title: 'Klassisk massasje — 75 min', desc: 'Generell avspenning og restitusjon' }
+        ]
+      },
+      fotter: {
+        title: 'For slitne føtter anbefaler vi',
+        desc: 'Behandling som lindrer, avlaster og gir føttene ny energi.',
+        treatments: [
+          { icon: 'F', title: 'Fotterapi — 45 min', desc: 'Helhetlig behandling av føtter og ben' },
+          { icon: 'P', title: 'Fotpleie — 45 min', desc: 'Profesjonell fotpleie med massasje' }
+        ]
+      },
+      velvaere: {
+        title: 'For generell velvære anbefaler vi',
+        desc: 'En rolig opplevelse som gir balanse og avspenning til hele kroppen.',
+        treatments: [
+          { icon: 'V', title: 'Klassisk massasje — 75 min', desc: 'Dyp avspenning for hele kroppen' },
+          { icon: 'R', title: 'Rådgivning — 30 min', desc: 'Samtale og råd for din hverdagsrutine' }
+        ]
+      }
+    };
+
+    function selectWizard(btn, key) {
+      document.querySelectorAll('.wizard-steps button').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const d = wizardData[key];
+      const container = document.getElementById('wizard-result');
+      container.innerHTML = `
+        <h3>${d.title}</h3>
+        <p style="color:rgba(255,255,255,0.7);font-weight:300;margin-bottom:0.4rem;">${d.desc}</p>
+        <div class="treatment-list">
+          ${d.treatments.map(t => `
+            <a href="#booking" class="treatment-card-link" onclick="document.getElementById('booking-beh').value='klassisk'; document.getElementById('booking-beh').dispatchEvent(new Event('change'))">
+              <span class="treat-icon" aria-hidden="true">${t.icon}</span>
+              <div><h4>${t.title}</h4><span>${t.desc}</span></div>
+            </a>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // BOOKING CONFIRM
+    function showBookingConfirm(form) {
+      const beh = form.elements['behandling'].value;
+      const behandler = form.elements['behandler'].value;
+      const dato = form.elements['dato'].value;
+      const tid = form.elements['tidspunkt'].value;
+      if (!beh || !behandler || !dato || !tid) { alert('Vennligst fyll ut alle felt.'); return; }
+      const wrap = document.querySelector('.booking-wrap');
+      wrap.innerHTML = `
+        <div style="text-align:center;padding:2rem 0;animation:fadeUp .6s ease-out;">
+          <h3 style="font-family:var(--font-display);font-weight:300;font-size:2rem;letter-spacing:-0.02em;margin-bottom:0.8rem;">Takk for bestillingen!</h3>
+          <p style="color:var(--text-secondary);font-weight:300;max-width:440px;margin:0 auto 1.5rem;line-height:1.6;">Vi har mottatt din forespørsel om <strong>${beh}</strong> hos <strong>${behandler}</strong> den <strong>${dato}</strong> kl. <strong>${tid}</strong>. Vi bekrefter innen 15 minutter.</p>
+          <a href="#" onclick="location.reload()" class="btn-primary">Tilbake til siden</a>
+        </div>
+      `;
+    }
+
+    // SET MIN DATE
+    const dateInput = document.getElementById('booking-dato');
+    if (dateInput) {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      dateInput.min = `${yyyy}-${mm}-${dd}`;
+    }
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

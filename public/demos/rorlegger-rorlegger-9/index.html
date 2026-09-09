@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Andersen Rør AS — Rørleggermester i Oslo | Bad, vann & varme</title>
+<meta name="description" content="Andersen Rør AS er en mesterbedrift i Oslo. Bad & våtrom, rør i rør, varmtvannsbereder, lekkasjesøk og døgnvakt 24/7. Fastpris, mesterbrev og 10 års garanti.">
+<meta property="og:title" content="Andersen Rør AS — Rørleggermester i Oslo">
+<meta property="og:description" content="Vann og varme. Gjort riktig — første gang. Fastpris, mesterbrev og 10 års garanti.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/photo-06.jpg">
+<meta name="theme-color" content="#0F1316">
+<link rel="icon" href="images/icon-01.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Plumber","name":"Andersen Rør AS","telephone":"+4722471830","email":"post@andersenror.no","address":{"@type":"PostalAddress","streetAddress":"Verkstadvegen 14","postalCode":"0577","addressLocality":"Oslo","addressCountry":"NO"},"openingHours":"Mo-Fr 07:00-16:00","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"428"}}
+</script>
+
+<style>
+/* ============ DESIGN TOKENS ============ */
+:root{
+  --ink:#0F1316;
+  --ink-2:#14191E;
+  --paper:#F4F0E9;
+  --paper-2:#ECE7DD;
+  --copper:#C06E3A;
+  --copper-hi:#E0915A;
+  --line:rgba(15,19,22,.14);
+  --lineL:rgba(244,240,233,.15);
+  --muted:rgba(15,19,22,.62);
+  --err:#B3432E;
+  --fs:'Inter',ui-sans-serif,system-ui,sans-serif;
+  --fd:'Fraunces',Georgia,serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+.dark{
+  --line:rgba(244,240,233,.15);
+  --muted:rgba(244,240,233,.6);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{
+  font-family:var(--fs);
+  background:var(--paper);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:clip;
+}
+::selection{background:var(--copper);color:var(--paper)}
+:focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:2px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:var(--paper)}
+::-webkit-scrollbar-thumb{background:rgba(15,19,22,.28);border-radius:99px;border:2px solid var(--paper)}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* ============ UTILITIES ============ */
+.wrap{width:100%;max-width:88rem;margin-inline:auto;padding-inline:clamp(1.25rem,3.5vw,3rem)}
+.font-display{font-family:var(--fd)}
+.fg-muted{color:var(--muted)}
+.kicker{display:inline-flex;align-items:center;gap:.85rem;font-size:.72rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--copper)}
+.kicker::before{content:'';width:2.6rem;height:1px;background:currentColor;flex:none}
+.h2{font-family:var(--fd);font-weight:400;letter-spacing:-.02em;line-height:1.02;font-size:clamp(2.3rem,4.6vw,4rem)}
+.h2 em{font-style:italic;color:var(--copper);font-weight:360}
+.eyebrow-num{font-family:var(--fd);font-style:italic}
+
+/* Buttons */
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.7rem;
+  padding:1rem 1.7rem;border-radius:999px;font-weight:600;font-size:.95rem;letter-spacing:.01em;
+  transition:transform .45s var(--ease),background .3s,color .3s,border-color .3s,box-shadow .45s var(--ease);
+  white-space:nowrap;
+}
+.btn .lucide{width:18px;height:18px;transition:transform .4s var(--ease)}
+.btn:hover .lucide{transform:translate(3px,-3px)}
+.btn-primary{background:var(--copper);color:#161006}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px -12px rgba(192,110,58,.65);background:var(--copper-hi)}
+.btn-ghost{border:1px solid var(--line);color:inherit}
+.btn-ghost:hover{transform:translateY(-2px);border-color:currentColor}
+.btn-paper{background:var(--paper);color:var(--ink)}
+.btn-paper:hover{transform:translateY(-2px);box-shadow:0 14px 34px -12px rgba(244,240,233,.4)}
+.link-uline{position:relative;display:inline-flex;align-items:center;gap:.5rem;font-weight:600}
+.link-uline::after{content:'';position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.link-uline:hover::after,.navlink:hover::after{transform:scaleX(1);transform-origin:left}
+.navlink{position:relative;font-size:.9rem;font-weight:500;opacity:.85;transition:opacity .3s}
+.navlink::after{content:'';position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.navlink:hover{opacity:1}
+
+/* ============ NOISE / CURSOR ============ */
+.noise{position:fixed;inset:-50%;width:200%;height:200%;z-index:90;pointer-events:none;opacity:.032;
+  background-image:url("images/icon-02.svg");}
+#cursorDot,#cursorRing{position:fixed;top:0;left:0;pointer-events:none;z-index:95;border-radius:50%;will-change:transform}
+#cursorDot{width:6px;height:6px;background:var(--copper);margin:-3px 0 0 -3px}
+#cursorRing{width:34px;height:34px;border:1px solid rgba(192,110,58,.7);margin:-17px 0 0 -17px;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),background .3s}
+#cursorRing.grow{width:58px;height:58px;margin:-29px 0 0 -29px;background:rgba(192,110,58,.1)}
+@media (pointer:coarse){#cursorDot,#cursorRing{display:none}}
+
+/* ============ PRELOADER ============ */
+#loader{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.4rem}
+#loader .w{overflow:hidden}
+.load-letter{display:inline-block;transform:translateY(110%);font-family:var(--fd);font-weight:380;font-size:clamp(2.2rem,7vw,4.6rem);letter-spacing:-.02em;line-height:1}
+.load-sub{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--copper);opacity:0}
+#loadBar{position:absolute;bottom:0;left:0;height:2px;width:100%;background:rgba(244,240,233,.12)}
+#loadFill{height:100%;width:0%;background:var(--copper)}
+#loadPct{position:absolute;bottom:1.6rem;right:1.8rem;font-family:var(--fd);font-style:italic;font-size:1rem;color:var(--muted);color:rgba(244,240,233,.5)}
+
+/* ============ HEADER ============ */
+#siteNav{position:fixed;top:0;left:0;right:0;z-index:60;color:var(--paper);border-bottom:1px solid transparent;
+  transition:transform .55s var(--ease),background .45s,border-color .45s,color .45s;}
+#siteNav.nav-solid{color:var(--ink);background:rgba(244,240,233,.88);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-color:var(--line)}
+#siteNav.nav-hide{transform:translateY(-101%)}
+.logo-mark{transition:transform .5s var(--ease)}
+a:hover .logo-mark{transform:rotate(-8deg)}
+#burger{width:44px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+#burger span{display:block;width:22px;height:2px;background:currentColor;transition:transform .4s var(--ease),opacity .3s}
+body.menu-open #burger span:first-child{transform:translateY(4px) rotate(45deg)}
+body.menu-open #burger span:last-child{transform:translateY(-4px) rotate(-45deg)}
+
+/* Mobile menu */
+#mmenu{position:fixed;inset:0;z-index:59;background:var(--ink);color:var(--paper);
+  transform:translateY(-102%);transition:transform .75s var(--ease);display:flex;flex-direction:column;overflow-y:auto}
+body.menu-open #mmenu{transform:translateY(0)}
+.mitem{opacity:0;transform:translateY(26px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+body.menu-open .mitem{opacity:1;transform:none}
+.mlink{display:flex;align-items:baseline;gap:1rem;padding:.9rem 0;font-family:var(--fd);font-size:clamp(1.9rem,7.5vw,3.2rem);line-height:1;letter-spacing:-.02em;transition:color .3s}
+.mlink .num{font-size:.75rem;font-family:var(--fs);letter-spacing:.2em;color:var(--copper)}
+.mlink:hover{color:var(--copper-hi);font-style:italic}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--ink);color:var(--paper);overflow:clip}
+.hero-lines{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(244,240,233,.05) 1px,transparent 1px);
+  background-size:calc(100%/6) 100%;
+  -webkit-mask-image:linear-gradient(180deg,black 30%,transparent 95%);
+  mask-image:linear-gradient(180deg,black 30%,transparent 95%);}
+.hero-glow{position:absolute;top:-18%;right:-12%;width:56vw;aspect-ratio:1;pointer-events:none;
+  background:radial-gradient(circle,rgba(192,110,58,.16),transparent 62%)}
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line .inner{display:block;transform:translateY(112%)}
+.hero-h1{font-size:clamp(2.85rem,8.4vw,7rem);line-height:.99;letter-spacing:-.025em;font-weight:400;font-family:var(--fd)}
+.hero-h1 em{font-style:italic;color:var(--copper-hi);font-weight:360}
+.hero-card{position:relative}
+.hero-card img{border-radius:1.4rem}
+.chip{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .9rem;border-radius:999px;font-size:.75rem;font-weight:600;
+  background:rgba(15,19,22,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(244,240,233,.18);color:var(--paper)}
+.chip .dot{width:7px;height:7px;border-radius:99px;background:#5BBF7A;box-shadow:0 0 0 0 rgba(91,191,122,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(91,191,122,0)}100%{box-shadow:0 0 0 0 rgba(91,191,122,0)}}
+.float-card{position:absolute;background:var(--paper);color:var(--ink);border-radius:1rem;padding:1rem 1.2rem;box-shadow:0 24px 60px -20px rgba(0,0,0,.55)}
+
+/* marquee */
+.marquee{overflow:hidden;position:relative}
+.marquee-track{display:flex;align-items:center;width:max-content;animation:marquee 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.mq-item{display:flex;align-items:center;gap:2.4rem;padding-right:2.4rem;font-family:var(--fd);font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.mq-sep{width:7px;height:7px;background:var(--copper);transform:rotate(45deg);flex:none}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}.spin-badge,.chip .dot{animation:none!important}}
+
+/* ============ CERT BAR ============ */
+.cert{display:flex;align-items:center;gap:1rem;padding:1.1rem 0;font-size:.85rem;font-weight:600;letter-spacing:.02em;white-space:nowrap}
+.cert .lucide{width:20px;height:20px;color:var(--copper)}
+
+/* ============ SERVICES ============ */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (max-width:1100px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.svc-grid{grid-template-columns:1fr}}
+.svc{background:var(--paper);position:relative;padding:1.9rem 1.7rem 2.1rem;min-height:19rem;display:flex;flex-direction:column;
+  --fg:var(--ink);--mu:var(--muted);color:var(--fg);
+  transition:background .5s var(--ease);overflow:hidden}
+.svc::after{content:'';position:absolute;top:0;left:1.7rem;right:1.7rem;height:2px;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
+.svc:hover{background:var(--ink);--fg:var(--paper);--mu:rgba(244,240,233,.62)}
+.svc:hover::after{transform:scaleX(1)}
+.svc .num{font-family:var(--fd);font-style:italic;font-size:.85rem;color:var(--copper)}
+.svc .icon{width:2.9rem;height:2.9rem;border:1px solid var(--line);border-radius:99px;display:flex;align-items:center;justify-content:center;transition:transform .5s var(--ease),border-color .3s,background .4s}
+.svc .icon .lucide{width:20px;height:20px;color:var(--copper)}
+.svc:hover .icon{transform:rotate(-8deg) scale(1.06);background:rgba(192,110,58,.12);border-color:rgba(192,110,58,.5)}
+.svc h3{font-size:1.16rem;font-weight:600;letter-spacing:-.01em;margin:1.25rem 0 .55rem;color:var(--fg)}
+.svc p{font-size:.9rem;line-height:1.65;color:var(--mu)}
+.svc .arr{position:absolute;right:1.4rem;bottom:1.35rem;opacity:0;transform:translate(-8px,8px);transition:all .45s var(--ease);color:var(--copper-hi)}
+.svc:hover .arr{opacity:1;transform:none}
+
+/* ============ EMERGENCY ============ */
+.emg{background:var(--copper);color:#170F08;position:relative;overflow:clip}
+.emg::before{content:'';position:absolute;inset:0;background:
+  linear-gradient(115deg,rgba(23,15,8,.12) 0%,transparent 45%,rgba(255,235,214,.14) 100%)}
+.emg-phone{font-family:var(--fd);font-size:clamp(2.6rem,7.5vw,5.6rem);letter-spacing:-.02em;line-height:1;transition:letter-spacing .5s var(--ease)}
+.emg-phone:hover{letter-spacing:.005em}
+.spin-badge{animation:spin 16s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.emg-step{display:flex;gap:.9rem;align-items:flex-start}
+.emg-step .n{width:1.9rem;height:1.9rem;border-radius:99px;border:1.5px solid #170F08;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex:none;margin-top:.1rem}
+
+/* ============ PROJECTS ============ */
+.proj{background:var(--ink);color:var(--paper)}
+.proj-track{display:flex;gap:1.4rem;padding-inline:max(1.25rem,calc((100vw - 88rem)/2 + 3rem));will-change:transform}
+.pcard{flex:none;width:min(78vw,32rem)}
+.pcard .imgwrap{position:relative;overflow:hidden;border-radius:1.1rem;aspect-ratio:4/3;background:var(--ink-2)}
+.pcard img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease);transform:scale(1.02)}
+.pcard:hover img{transform:scale(1.09)}
+.pcard .tag{position:absolute;top:1rem;left:1rem}
+.pcard .cta-arrow{position:absolute;right:1.1rem;bottom:1.1rem;width:3rem;height:3rem;border-radius:99px;background:var(--paper);color:var(--ink);display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:translateY(12px);transition:all .5s var(--ease)}
+.pcard:hover .cta-arrow{opacity:1;transform:none}
+.pcard .meta{display:flex;gap:.6rem;flex-wrap:wrap;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.pcard-cta{flex:none;width:min(78vw,32rem);border-radius:1.1rem;background:var(--copper);color:#170F08;display:flex;flex-direction:column;justify-content:space-between;padding:2rem;aspect-ratio:4/3;transition:transform .5s var(--ease)}
+.pcard-cta:hover{transform:translateY(-6px)}
+.proj-bar{height:2px;background:rgba(244,240,233,.14);border-radius:99px;overflow:hidden;flex:1}
+#projFill{height:100%;width:100%;background:var(--copper);transform:scaleX(0);transform-origin:left}
+@media (max-width:1023px){
+  .proj-track{overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1.2rem;scrollbar-width:none}
+  .proj-track::-webkit-scrollbar{display:none}
+  .pcard,.pcard-cta{scroll-snap-align:start;width:min(84vw,26rem)}
+}
+
+/* ============ BEFORE / AFTER ============ */
+.ba{position:relative;border-radius:1.3rem;overflow:hidden;aspect-ratio:4/3;user-select:none;touch-action:pan-y;cursor:ew-resize;background:var(--ink-2)}
+@media (min-width:1024px){.ba{aspect-ratio:16/9}}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-top{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--paper);transform:translateX(-1px);box-shadow:0 0 0 .5px rgba(0,0,0,.25)}
+.ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:3.4rem;height:3.4rem;border-radius:99px;background:var(--paper);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .3s var(--ease)}
+.ba:active .ba-knob{transform:translate(-50%,-50%) scale(.92)}
+.ba-chip{position:absolute;top:1rem;padding:.45rem .85rem;border-radius:99px;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  background:rgba(15,19,22,.66);color:var(--paper);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(244,240,233,.2);pointer-events:none}
+
+/* ============ PROCESS ============ */
+.step{border-top:1px solid var(--line);padding-top:1.4rem;position:relative}
+.step::before{content:'';position:absolute;top:-1px;left:0;width:0;height:1px;background:var(--copper);transition:width 1.2s var(--ease)}
+.step.in::before{width:100%}
+.step .bignum{font-family:var(--fd);font-style:italic;font-weight:340;font-size:3.2rem;line-height:1;color:var(--copper)}
+
+/* ============ TESTIMONIALS ============ */
+.t-track{display:grid}
+.t-slide{grid-area:1/1;opacity:0;transform:translateY(14px);transition:opacity .65s var(--ease),transform .65s var(--ease);visibility:hidden}
+.t-slide.active{opacity:1;transform:none;visibility:visible}
+.t-nav{width:3.2rem;height:3.2rem;border-radius:99px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .35s var(--ease)}
+.t-nav:hover{background:var(--copper);border-color:var(--copper);color:#170F08}
+.t-dot{width:8px;height:8px;border-radius:99px;background:var(--line);transition:all .35s}
+.t-dot.active{width:26px;background:var(--copper)}
+.star{fill:var(--copper);color:var(--copper);width:15px;height:15px}
+
+/* ============ ABOUT ============ */
+.abt-img{border-radius:1.2rem;overflow:hidden;background:var(--ink-2)}
+.abt-li{display:flex;gap:.8rem;align-items:flex-start;padding:.85rem 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+.abt-li .lucide{width:18px;height:18px;color:var(--copper);flex:none;margin-top:.15rem}
+.stat-v{font-family:var(--fd);font-weight:380;font-size:clamp(2.4rem,4.5vw,3.6rem);line-height:1;letter-spacing:-.02em}
+
+/* ============ FAQ ============ */
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;text-align:left;padding:1.5rem 0;font-size:1.05rem;font-weight:600;letter-spacing:-.01em}
+.faq-ic{flex:none;width:2.1rem;height:2.1rem;border-radius:99px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
+.faq-ic .lucide{width:16px;height:16px;transition:transform .4s var(--ease)}
+.faq-item.open .faq-ic{background:var(--copper);border-color:var(--copper);color:#170F08}
+.faq-item.open .faq-ic .lucide{transform:rotate(45deg)}
+.faq-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.faq-panel>div{overflow:hidden}
+.faq-item.open .faq-panel{grid-template-rows:1fr}
+.faq-a{padding:0 0 1.6rem;color:var(--muted);line-height:1.7;font-size:.95rem;max-width:44rem}
+
+/* ============ CONTACT ============ */
+.field{position:relative}
+.field input,.field select,.field textarea{
+  width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);padding:1.05rem 0 .65rem;
+  font:inherit;font-size:1rem;color:inherit;border-radius:0;transition:border-color .3s}
+.field textarea{resize:vertical;min-height:5.5rem}
+.field select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:2rem}
+.field select option{color:var(--ink);background:var(--paper)}
+.field label{position:absolute;left:0;top:1rem;font-size:.98rem;color:var(--muted);pointer-events:none;
+  transition:all .3s var(--ease)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--copper);outline:none}
+.field input:focus~label,.field input:not(:placeholder-shown)~label,
+.field textarea:focus~label,.field textarea:not(:placeholder-shown)~label,
+.field select:focus~label,.field select.filled~label{
+  top:-.55rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--copper)}
+.field .chev{position:absolute;right:.2rem;top:1.15rem;pointer-events:none;color:var(--muted)}
+.field .ferr{display:none;font-size:.75rem;color:var(--err);margin-top:.45rem;font-weight:500}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--err)}
+.field.invalid .ferr{display:block}
+.consent{display:flex;gap:.8rem;align-items:flex-start;font-size:.82rem;line-height:1.6;color:var(--muted);cursor:pointer}
+.consent input{width:1.15rem;height:1.15rem;accent-color:var(--copper);margin-top:.15rem;flex:none}
+.spin{width:18px;height:18px;border-radius:99px;border:2px solid rgba(23,15,8,.25);border-top-color:#170F08;animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+/* info rows */
+.info-row{display:flex;gap:1rem;align-items:flex-start;padding:1.15rem 0;border-bottom:1px solid var(--line)}
+.info-row p + p{margin-top:.18rem}
+.info-row .ic{width:2.6rem;height:2.6rem;flex:none;border-radius:99px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.info-row .ic .lucide{width:17px;height:17px;color:var(--copper)}
+
+/* ============ FOOTER ============ */
+footer{background:#0B0E11;color:var(--paper);--line:var(--lineL);--muted:rgba(244,240,233,.55)}
+.footword{font-family:var(--fd);font-weight:340;letter-spacing:-.02em;line-height:.92;font-size:clamp(3.4rem,11.5vw,10.5rem);
+  color:transparent;-webkit-text-stroke:1px rgba(244,240,233,.35);transition:color .8s var(--ease)}
+.footword:hover{color:var(--paper)}
+.footword .dot{color:var(--copper);-webkit-text-stroke:0}
+.flink{display:block;padding:.32rem 0;font-size:.93rem;color:var(--muted);transition:color .3s,transform .3s var(--ease)}
+.flink:hover{color:var(--paper);transform:translateX(4px)}
+.to-top{width:3rem;height:3rem;border-radius:99px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .35s var(--ease)}
+.to-top:hover{background:var(--copper);border-color:var(--copper);color:#170F08}
+
+/* ============ STICKY MOBILE CTA ============ */
+#stickyCta{position:fixed;left:0;right:0;bottom:0;z-index:55;padding:.7rem .9rem calc(.7rem + env(safe-area-inset-bottom));
+  background:rgba(15,19,22,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--lineL);
+  display:flex;gap:.6rem;transform:translateY(110%);transition:transform .55s var(--ease)}
+#stickyCta.show{transform:none}
+@media (min-width:1024px){#stickyCta{display:none}}
+
+/* reveal helpers */
+[data-reveal],[data-stagger]>*{will-change:transform,opacity}
+</style>
+<noscript><style>#loader{display:none}.line .inner{transform:none!important}</style></noscript>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+
+<body>
+
+<div class="noise" aria-hidden="true"></div>
+<div id="cursorDot" aria-hidden="true"></div>
+<div id="cursorRing" aria-hidden="true"></div>
+
+<!-- ================= PRELOADER ================= -->
+<div id="loader" aria-hidden="true">
+  <div class="w" id="loadWord" style="letter-spacing:.02em"></div>
+  <div class="load-sub" id="loadSub">Rørleggermester · Oslo</div>
+  <div id="loadBar"><div id="loadFill"></div></div>
+  <div id="loadPct">0</div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header id="siteNav">
+  <div class="wrap flex items-center justify-between py-4 lg:py-5">
+    <a href="#topp" class="flex items-center gap-2.5" data-hover aria-label="Andersen Rør AS – til toppen">
+      <svg class="logo-mark" width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-opacity=".35"/>
+        <path d="M16 6.6c3.9 5 6.6 8.4 6.6 11.6a6.6 6.6 0 1 1-13.2 0c0-3.2 2.7-6.6 6.6-11.6z" fill="#C06E3A"/>
+      </svg>
+      <span class="font-semibold tracking-tight leading-none text-[1.02rem]">Andersen Rør <span class="font-display italic font-normal opacity-60 text-[.85rem]">AS</span></span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8" aria-label="Hovedmeny">
+      <a class="navlink" href="#tjenester" data-hover>Tjenester</a>
+      <a class="navlink" href="#prosjekter" data-hover>Prosjekter</a>
+      <a class="navlink" href="#omtaler" data-hover>Omtaler</a>
+      <a class="navlink" href="#om-oss" data-hover>Om oss</a>
+      <a class="navlink" href="#kontakt" data-hover>Kontakt</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="tel:+4722471830" class="hidden xl:flex items-center gap-2 text-sm font-semibold" data-hover>
+        <i data-lucide="phone" class="w-4 h-4"></i>22 47 18 30
+      </a>
+      <a href="#kontakt" class="btn btn-primary py-2.5! px-5! text-sm hidden sm:inline-flex" data-magnetic data-hover>Få tilbud</a>
+      <button id="burger" class="lg:hidden" aria-label="Åpne meny" aria-expanded="false" data-hover><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MOBILE MENU ================= -->
+<div id="mmenu" aria-hidden="true" data-lenis-prevent>
+  <div class="wrap flex flex-col min-h-full pt-28 pb-10">
+    <nav class="flex flex-col" aria-label="Mobilmeny">
+      <div class="mitem" style="transition-delay:.08s"><a class="mlink" href="#tjenester"><span class="num">01</span>Tjenester</a></div>
+      <div class="mitem" style="transition-delay:.14s"><a class="mlink" href="#prosjekter"><span class="num">02</span>Prosjekter</a></div>
+      <div class="mitem" style="transition-delay:.20s"><a class="mlink" href="#for-etter"><span class="num">03</span>Før &amp; etter</a></div>
+      <div class="mitem" style="transition-delay:.26s"><a class="mlink" href="#omtaler"><span class="num">04</span>Omtaler</a></div>
+      <div class="mitem" style="transition-delay:.32s"><a class="mlink" href="#om-oss"><span class="num">05</span>Om oss</a></div>
+      <div class="mitem" style="transition-delay:.38s"><a class="mlink" href="#kontakt"><span class="num">06</span>Kontakt</a></div>
+    </nav>
+
+    <div class="mitem mt-auto pt-12 border-t border-[rgba(244,240,233,.15)]" style="transition-delay:.46s">
+      <a href="tel:+4722471830" class="font-display text-3xl tracking-tight block mb-1">22 47 18 30</a>
+      <p class="text-sm fg-muted mb-6">Døgnvakt hele året · post@andersenror.no</p>
+      <a href="#kontakt" class="btn btn-primary w-full">Bestill rørlegger<i data-lucide="arrow-up-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<main id="topp">
+
+<!-- ================= HERO ================= -->
+<section class="hero min-h-[100svh] flex flex-col">
+  <div class="hero-lines" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="wrap relative flex-1 flex items-center pt-32 pb-16 lg:pt-36">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
+
+      <div class="lg:col-span-7">
+        <p class="kicker mb-7" data-hero="kicker">Mesterbedrift · Oslo &amp; omegn · siden 1998</p>
+
+        <h1 class="hero-h1">
+          <span class="line"><span class="inner">Håndverk som</span></span>
+          <span class="line"><span class="inner"><em>holder tett.</em></span></span>
+        </h1>
+
+        <p class="mt-7 max-w-xl text-[1.02rem] lg:text-lg leading-relaxed fg-muted" data-hero="p" style="--muted:rgba(244,240,233,.66)">
+          Fra komplett våtrom til varmtvann på døgnvakt — Andersen Rør står bak over
+          3&nbsp;400 prosjekter i Oslo og omegn. Åpen fastpris, ryddige håndverkere og
+          garanti du kan sove godt med.
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center gap-4" data-hero="cta">
+          <a href="#kontakt" class="btn btn-primary" data-magnetic data-hover>Få et uforpliktende tilbud<i data-lucide="arrow-up-right"></i></a>
+          <a href="tel:+4722471830" class="btn btn-ghost" data-hover style="--line:rgba(244,240,233,.25)"><i data-lucide="phone"></i>Ring 22 47 18 30</a>
+        </div>
+
+        <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm" data-hero="trust" style="color:rgba(244,240,233,.7)">
+          <span class="flex items-center gap-2">
+            <span class="flex gap-0.5" aria-hidden="true">
+              <i data-lucide="star" class="star"></i><i data-lucide="star" class="star"></i><i data-lucide="star" class="star"></i><i data-lucide="star" class="star"></i><i data-lucide="star" class="star"></i>
+            </span>
+            <strong class="font-semibold" style="color:var(--paper)">4,9</strong> · 428 anmeldelser
+          </span>
+          <span class="hidden sm:inline w-px h-4 bg-[rgba(244,240,233,.2)]"></span>
+          <span class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4" style="color:var(--copper-hi)"></i>Sentral godkjenning &amp; mesterbrev</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 mb-10 lg:mb-0" data-hero="card">
+        <div class="hero-card">
+          <img src="images/photo-08.jpg" alt="Rørlegger fra Andersen Rør monterer rør i et våtrom" class="w-full aspect-[4/5] object-cover" id="heroImg">
+          <div class="chip absolute top-4 left-4"><span class="dot"></span>På jobb nå: Bad, Majorstuen</div>
+          <div class="float-card -bottom-6 -left-4 sm:left-[-2.5rem] max-w-[15.5rem]" data-hero="float">
+            <div class="flex items-center gap-2.5">
+              <i data-lucide="timer" class="w-5 h-5" style="color:var(--copper)"></i>
+              <p class="text-[.83rem] leading-snug font-semibold">35 min<br><span class="font-normal" style="color:var(--muted)">snittrespons ved vannskade</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="marquee border-t border-[rgba(244,240,233,.15)] py-5 relative" aria-hidden="true">
+    <div class="marquee-track" data-mq>
+      <span class="mq-item">Bad &amp; våtrom <i class="mq-sep"></i> Rør i rør <i class="mq-sep"></i> Varmtvannsbereder <i class="mq-sep"></i> Lekkasjesøk <i class="mq-sep"></i> Døgnvakt 24/7 <i class="mq-sep"></i> Kjøkken &amp; armatur <i class="mq-sep"></i> Serviceavtaler <i class="mq-sep"></i> Vannbåren varme <i class="mq-sep"></i></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERT BAR ================= -->
+<section class="border-b border-[var(--line)]">
+  <div class="wrap">
+    <div class="flex lg:grid lg:grid-cols-4 gap-x-10 overflow-x-auto lg:overflow-visible -mx-5 px-5 lg:mx-0 lg:px-0" data-lenis-prevent data-reveal>
+      <div class="cert"><i data-lucide="badge-check"></i>Godkjent mesterbedrift</div>
+      <div class="cert"><i data-lucide="shield-check"></i>Sentral godkjenning</div>
+      <div class="cert"><i data-lucide="droplets"></i>Våtrom v/ Fagrådet</div>
+      <div class="cert"><i data-lucide="file-check"></i>StartBANK-kvalifisert</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TJENESTER ================= -->
+<section id="tjenester" class="py-20 lg:py-32">
+  <div class="wrap">
+    <div class="grid lg:grid-cols-12 gap-8 items-end mb-12 lg:mb-16">
+      <div class="lg:col-span-7" data-reveal>
+        <p class="kicker mb-5">01 — Tjenester</p>
+        <h2 class="h2">Alt innen rør.<br><em>Under ett tak.</em></h2>
+      </div>
+      <div class="lg:col-span-4 lg:col-start-9" data-reveal data-delay=".1">
+        <p class="fg-muted leading-relaxed text-[.97rem]">Vi tar både de små lekkasjene og de store totalrehabiliteringene — for privatboliger, borettslag og næringsbygg.</p>
+        <a class="link-uline mt-4 text-sm" href="#kontakt" data-hover>Usikker på hva du trenger? Snakk med oss<i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+      </div>
+    </div>
+
+    <div class="svc-grid rounded-2xl overflow-hidden" data-reveal>
+      <article class="svc" data-hover>
+        <div class="flex items-start justify-between">
+          <div class="icon"><i data-lucide="bath"></i></div><span class="num">/ 01</span>
+        </div>
+        <h3>Bad &amp; våtrom</h3>
+        <p>Fra råloft til ferdig spa­følelse. Vi prosjekterer og bygger bad som varer — med dokumentasjon og 10 års garanti.</p>
+        <span class="arr"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+      </article>
+
+      <article class="svc" data-hover>
+        <div class="flex items-start justify-between">
+          <div class="icon"><i data-lucide="layers"></i></div><span class="num">/ 02</span>
+        </div>
+        <h3>Rør i rør &amp; rehabilitering</h3>
+        <p>Nytt røranlegg inne i de gamle rørene. Minimalt med riving, kort byggetid og full kontroll på kvaliteten.</p>
+        <span class="arr"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+      </article>
+
+      <article class="svc" data-hover>
+        <div class="flex items-start justify-between">
+          <div class="icon"><i data-lucide="thermometer"></i></div><span class="num">/ 03</span>
+        </div>
+        <h3>Varmtvannsbereder</h3>
+        <p>Montering, bytte og service på alle typer beredere. Vi hjelper deg med riktig størrelse og smart styring.</p>
+        <span class="arr"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+      </article>
+
+      <article class="svc" data-hover>
+        <div class="flex items-start justify-between">
+          <div class="icon"><i data-lucide="radar"></i></div><span class="num">/ 04</span>
+        </div>
+        <h3>Lekkasjesøk &amp; vannskade</h3>
+        <p>Termografering og sporgass finner lekkasjen uten å rive ned halve huset. Rapport til forsikring inkludert.</p>
+        <span class="arr"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+      </article>
+
+      <article class="svc" data-hover>
+        <div class="flex items-start justify-between">
+          <div class="icon"><i data-lucide="wrench"></i></div><span class="num">/ 05</span>
+        </div>
+        <h3>Service &amp; vedlikehold</h3>
+        <p>Bytte av rør, kraner og sluk — og faste serviceavtaler for borettslag og bedrifter som vil ligge i forkant.</p>
+        <span class="arr"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+      </article>
+
+      <article class="svc" data-hover>
+        <div class="flex items-start justify-between">
+          <div class="icon"><i data-lucide="droplet"></i></div><span class="num">/ 06</span>
+        </div>
+        <h3>Kjøkken &amp; armatur</h3>
+        <p>Oppvaskmaskin, vannfilter og nye armaturer. Små jobber, fagmessig utført — ofte på dagen.</p>
+        <span class="arr"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+      </article>
+
+      <article class="svc" data-hover>
+        <div class="flex items-start justify-between">
+          <div class="icon"><i data-lucide="waves"></i></div><span class="num">/ 07</span>
+        </div>
+        <h3>Vannbåren varme</h3>
+        <p>Gulvvarme, radiatorer og energigjennomgang. Jevn varme og lavere strømregning — riktig dimensjonert.</p>
+        <span class="arr"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+      </article>
+
+      <article class="svc" data-hover>
+        <div class="flex items-start justify-between">
+          <div class="icon"><i data-lucide="siren"></i></div><span class="num">/ 08</span>
+        </div>
+        <h3>Døgnvakt 24/7</h3>
+        <p>Sprung lekkasje eller stoppet avløp midt på natten? Vakttelefonen betjenes hele året. Vi kommer.</p>
+        <span class="arr"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EMERGENCY ================= -->
+<section class="emg py-16 lg:py-24">
+  <div class="wrap relative grid lg:grid-cols-12 gap-10 items-center">
+    <div class="lg:col-span-8">
+      <div data-reveal>
+        <p class="flex items-center gap-3 text-[.72rem] font-bold tracking-[.24em] uppercase mb-5">
+          <i data-lucide="triangle-alert" class="w-4 h-4"></i>Akutt vannskade? Ikke vent.
+        </p>
+        <h2 class="h2 text-[clamp(2.1rem,4.5vw,3.4rem)]!" style="color:#170F08">Steng hovedkrana —<br>så <em style="color:#170F08">ringer du oss.</em></h2>
+        <a href="tel:+4722471830" class="emg-phone inline-block mt-6" data-hover aria-label="Ring vakttelefonen 22 47 18 30">22 47 18 30</a>
+        <p class="mt-3 text-[.95rem] font-medium" style="color:rgba(23,15,8,.72)">Døgnbemannet vakttelefon · Snittrespons 35 minutt i Oslo</p>
+      </div>
+
+      <div class="mt-10 grid sm:grid-cols-3 gap-6 max-w-2xl" data-stagger>
+        <div class="emg-step"><span class="n">1</span><p class="text-sm font-medium leading-snug">Steng hoved&shy;stoppekrana med én gang</p></div>
+        <div class="emg-step"><span class="n">2</span><p class="text-sm font-medium leading-snug">Slå av bereder og strøm i våtrommet</p></div>
+        <div class="emg-step"><span class="n">3</span><p class="text-sm font-medium leading-snug">Ring vakta — vi begrenser skaden sammen</p></div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-4 flex lg:justify-end" data-reveal data-delay=".15">
+      <div class="relative w-44 h-44 lg:w-56 lg:h-56">
+        <svg class="spin-badge w-full h-full" viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="circ" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+          <text style="font:600 13.5px var(--fs);letter-spacing:3.5px;text-transform:uppercase;fill:#170F08">
+            <textPath href="#circ">Døgnvakt · 24/7 beredskap · Andersen Rør · </textPath>
+          </text>
+        </svg>
+        <a href="tel:+4722471830" class="absolute inset-0 m-auto w-20 h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center transition-transform hover:scale-110" style="background:#170F08;color:var(--copper-hi)" aria-label="Ring døgnvakt" data-hover>
+          <i data-lucide="phone-call" class="w-8 h-8"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROSJEKTER ================= -->
+<section id="prosjekter" class="proj dark">
+  <div class="lg:h-[100svh] flex flex-col justify-center py-20 lg:py-0 overflow-hidden">
+    <div class="wrap w-full mb-8 lg:mb-10">
+      <div class="grid lg:grid-cols-12 gap-6 items-end">
+        <div class="lg:col-span-7" data-reveal>
+          <p class="kicker mb-5">02 — Utvalgte prosjekter</p>
+          <h2 class="h2">Arbeid vi <em>signerer.</em></h2>
+        </div>
+        <div class="lg:col-span-3 lg:col-start-10 flex items-center gap-4" data-reveal data-delay=".1">
+          <span class="font-display italic text-sm" style="color:var(--muted)"><span id="projIdx">01</span> / 06</span>
+          <div class="proj-bar"><div id="projFill"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-track" id="projTrack" data-lenis-prevent>
+      <article class="pcard" data-hover>
+        <div class="imgwrap">
+          <img src="images/photo-07.jpg" alt="Totalrenovert bad med sorte fliser og glassdusj i eierleilighet på Majorstuen">
+          <span class="chip tag">Bad · 6,2 m²</span>
+          <span class="cta-arrow"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+        </div>
+        <div class="mt-5 flex items-baseline justify-between gap-4">
+          <h3 class="text-lg font-semibold tracking-tight">Totalrenovering av bad</h3>
+          <span class="font-display italic text-sm" style="color:var(--copper-hi)">2025</span>
+        </div>
+        <div class="meta mt-2"><span>Majorstuen, Oslo</span><span>·</span><span>Privat</span></div>
+      </article>
+
+      <article class="pcard" data-hover>
+        <div class="imgwrap">
+          <img src="images/photo-12.jpg" alt="Nye stigerør montert i teknisk sjakt i borettslag på Skøyen">
+          <span class="chip tag">Rør i rør · 42 enheter</span>
+          <span class="cta-arrow"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+        </div>
+        <div class="mt-5 flex items-baseline justify-between gap-4">
+          <h3 class="text-lg font-semibold tracking-tight">Stigerør for hele blokka</h3>
+          <span class="font-display italic text-sm" style="color:var(--copper-hi)">2024</span>
+        </div>
+        <div class="meta mt-2"><span>Skøyen, Oslo</span><span>·</span><span>Borettslag</span></div>
+      </article>
+
+      <article class="pcard" data-hover>
+        <div class="imgwrap">
+          <img src="images/photo-09.jpg" alt="Spa-inspirert bad med frittstående badekar og store vinduer på Nesodden">
+          <span class="chip tag">Våtrom &amp; gulvvarme</span>
+          <span class="cta-arrow"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+        </div>
+        <div class="mt-5 flex items-baseline justify-between gap-4">
+          <h3 class="text-lg font-semibold tracking-tight">Spa-bad med sjøutsikt</h3>
+          <span class="font-display italic text-sm" style="color:var(--copper-hi)">2025</span>
+        </div>
+        <div class="meta mt-2"><span>Nesodden</span><span>·</span><span>Privat</span></div>
+      </article>
+
+      <article class="pcard" data-hover>
+        <div class="imgwrap">
+          <img src="images/photo-02.jpg" alt="Teknisk rom med rør, manometre og pumper i næringsbygg i Barcode">
+          <span class="chip tag">Teknisk anlegg</span>
+          <span class="cta-arrow"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+        </div>
+        <div class="mt-5 flex items-baseline justify-between gap-4">
+          <h3 class="text-lg font-semibold tracking-tight">Sanitæranlegg i næringsbygg</h3>
+          <span class="font-display italic text-sm" style="color:var(--copper-hi)">2024</span>
+        </div>
+        <div class="meta mt-2"><span>Barcode, Oslo</span><span>·</span><span>Næring</span></div>
+      </article>
+
+      <article class="pcard" data-hover>
+        <div class="imgwrap">
+          <img src="images/photo-11.jpg" alt="Bad med mønsterfliser og frittstående badekar i leilighet på Frogner">
+          <span class="chip tag">Bad · mønsterflis</span>
+          <span class="cta-arrow"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+        </div>
+        <div class="mt-5 flex items-baseline justify-between gap-4">
+          <h3 class="text-lg font-semibold tracking-tight">Klassisk bad, nye rør</h3>
+          <span class="font-display italic text-sm" style="color:var(--copper-hi)">2023</span>
+        </div>
+        <div class="meta mt-2"><span>Frogner, Oslo</span><span>·</span><span>Privat</span></div>
+      </article>
+
+      <article class="pcard" data-hover>
+        <div class="imgwrap">
+          <img src="images/photo-05.jpg" alt="Tekniker monterer varmesentral og smart styring i villa på Bygdøy">
+          <span class="chip tag">Bereder &amp; styring</span>
+          <span class="cta-arrow"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+        </div>
+        <div class="mt-5 flex items-baseline justify-between gap-4">
+          <h3 class="text-lg font-semibold tracking-tight">Varmesentral med smart styring</h3>
+          <span class="font-display italic text-sm" style="color:var(--copper-hi)">2025</span>
+        </div>
+        <div class="meta mt-2"><span>Bygdøy, Oslo</span><span>·</span><span>Privat</span></div>
+      </article>
+
+      <a href="#kontakt" class="pcard-cta" data-hover>
+        <div>
+          <p class="text-[.72rem] font-bold tracking-[.24em] uppercase mb-3">Neste prosjekt?</p>
+          <h3 class="font-display text-3xl lg:text-4xl tracking-tight leading-tight">Ditt bad.<br>Din bereder.<br><em style="font-style:italic">Vi gjør det.</em></h3>
+        </div>
+        <span class="inline-flex items-center gap-2 font-semibold">Få et tilbud<i data-lucide="arrow-up-right" class="w-5 h-5"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FØR / ETTER ================= -->
+<section id="for-etter" class="py-20 lg:py-32">
+  <div class="wrap">
+    <div class="grid lg:grid-cols-12 gap-8 items-end mb-10 lg:mb-14">
+      <div class="lg:col-span-7" data-reveal>
+        <p class="kicker mb-5">03 — Før &amp; etter</p>
+        <h2 class="h2">Dra og se <em>forskjellen.</em></h2>
+      </div>
+      <div class="lg:col-span-4 lg:col-start-9" data-reveal data-delay=".1">
+        <p class="fg-muted leading-relaxed text-[.97rem]">Våtrom på 4,8 m² i Sagene — totalrenovert på tre uker, med alle rør byttet og nytt sluk med fall.</p>
+      </div>
+    </div>
+
+    <div id="ba" class="ba" data-reveal role="slider" aria-label="Før og etter-sammenligning" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+      <img src="images/photo-10.jpg" alt="Etter: lys og moderne bad løsning med rundt badekar" draggable="false">
+      <div class="ba-top" id="baTop">
+        <img src="images/photo-01.jpg" alt="Før: slitt bad med gamle blå fliser" draggable="false">
+      </div>
+      <div class="ba-handle" id="baHandle">
+        <div class="ba-knob"><i data-lucide="move-horizontal" class="w-5 h-5"></i></div>
+      </div>
+      <span class="ba-chip left-4">Før</span>
+      <span class="ba-chip right-4">Etter</span>
+    </div>
+
+    <div class="mt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm fg-muted" data-reveal>
+      <span class="flex items-center gap-2"><i data-lucide="ruler" class="w-4 h-4" style="color:var(--copper)"></i>4,8 m² · Sagene</span>
+      <span class="flex items-center gap-2"><i data-lucide="calendar-check" class="w-4 h-4" style="color:var(--copper)"></i>3 ukers byggetid</span>
+      <span class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4" style="color:var(--copper)"></i>Samsvarserklæring levert</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROSESS ================= -->
+<section class="py-20 lg:py-28" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="grid lg:grid-cols-12 gap-8 items-end mb-14">
+      <div class="lg:col-span-7" data-reveal>
+        <p class="kicker mb-5">04 — Slik jobber vi</p>
+        <h2 class="h2">Forutsigbart, fra første <em>telefon.</em></h2>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+      <div class="step" data-step>
+        <div class="bignum">01</div>
+        <h3 class="mt-4 font-semibold text-lg tracking-tight">Ta kontakt</h3>
+        <p class="mt-2 text-[.93rem] leading-relaxed fg-muted">Beskriv problemet eller prosjektet. Du får svar fra oss innen én arbeidstime — også på vakttelefonen.</p>
+      </div>
+      <div class="step" data-step>
+        <div class="bignum">02</div>
+        <h3 class="mt-4 font-semibold text-lg tracking-tight">Befaring &amp; fastpris</h3>
+        <p class="mt-2 text-[.93rem] leading-relaxed fg-muted">Vi kommer innom, måler opp og gir deg en åpen fastpris. Ingen skjulte tillegg, ingen overraskelser.</p>
+      </div>
+      <div class="step" data-step>
+        <div class="bignum">03</div>
+        <h3 class="mt-4 font-semibold text-lg tracking-tight">Utførelse</h3>
+        <p class="mt-2 text-[.93rem] leading-relaxed fg-muted">Faglærte rørleggere, ryddig arbeidsplass og daglig status. Vi dekker til — og rydder etter oss.</p>
+      </div>
+      <div class="step" data-step>
+        <div class="bignum">04</div>
+        <h3 class="mt-4 font-semibold text-lg tracking-tight">Garanti &amp; oppfølging</h3>
+        <p class="mt-2 text-[.93rem] leading-relaxed fg-muted">Du får dokumentasjon, FDV og 10 års garanti på våtromsarbeid. Og vi ringer for å høre at alt fungerer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OMTALER ================= -->
+<section id="omtaler" class="dark py-20 lg:py-32" style="background:var(--ink);color:var(--paper)">
+  <div class="wrap">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-4" data-reveal>
+        <p class="kicker mb-5">05 — Kundene snakker</p>
+        <h2 class="h2">Ord skal <em>holde.</em></h2>
+        <div class="mt-8 flex items-center gap-4">
+          <span class="font-display text-5xl" style="font-weight:380">4,9</span>
+          <div>
+            <div class="flex gap-1 mb-1" aria-label="4,9 av 5 stjerner">
+              <i data-lucide="star" class="star"></i><i data-lucide="star" class="star"></i><i data-lucide="star" class="star"></i><i data-lucide="star" class="star"></i><i data-lucide="star" class="star"></i>
+            </div>
+            <p class="text-sm fg-muted">428 verifiserte anmeldelser</p>
+          </div>
+        </div>
+        <div class="mt-10 flex items-center gap-3">
+          <button class="t-nav" id="tPrev" aria-label="Forrige omtale" data-hover><i data-lucide="arrow-left" class="w-5 h-5"></i></button>
+          <button class="t-nav" id="tNext" aria-label="Neste omtale" data-hover><i data-lucide="arrow-right" class="w-5 h-5"></i></button>
+          <div class="flex items-center gap-2 ml-3" id="tDots"></div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 lg:col-start-6" data-reveal data-delay=".1">
+        <div class="t-track" id="tTrack">
+          <blockquote class="t-slide active">
+            <p class="font-display text-2xl lg:text-[2.1rem] leading-snug tracking-tight" style="font-weight:380">«Hele prosessen var smertefri. Badet sto ferdig én uke før fristen, og håndverkerne dekket til alt før de startet. Slik skal et rørleggerfirma være.»</p>
+            <footer class="mt-8 flex items-center gap-4">
+              <span class="w-11 h-11 rounded-full flex items-center justify-center font-semibold text-sm" style="background:rgba(192,110,58,.18);color:var(--copper-hi)">KL</span>
+              <div><p class="font-semibold text-[.95rem]">Kari Løkken</p><p class="text-sm fg-muted">Eierleilighet, Majorstuen · via Google</p></div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="t-slide">
+            <p class="font-display text-2xl lg:text-[2.1rem] leading-snug tracking-tight" style="font-weight:380">«Vannskade en søndag kveld. Rørleggeren sto på døra 35 minutter senere, fikk stanset lekkasjen — og reddet parketten vår fra 1912.»</p>
+            <footer class="mt-8 flex items-center gap-4">
+              <span class="w-11 h-11 rounded-full flex items-center justify-center font-semibold text-sm" style="background:rgba(192,110,58,.18);color:var(--copper-hi)">SH</span>
+              <div><p class="font-semibold text-[.95rem]">Ståle Haugland</p><p class="text-sm fg-muted">Villa, Bygdøy · via Google</p></div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="t-slide">
+            <p class="font-display text-2xl lg:text-[2.1rem] leading-snug tracking-tight" style="font-weight:380">«Vi ga Andersen Rør ansvaret for 42 bad i borettslaget. Fastprisen holdt, fremdriften holdt — og beboerne fikk daglig info. Nok sagt.»</p>
+            <footer class="mt-8 flex items-center gap-4">
+              <span class="w-11 h-11 rounded-full flex items-center justify-center font-semibold text-sm" style="background:rgba(192,110,58,.18);color:var(--copper-hi)">GN</span>
+              <div><p class="font-semibold text-[.95rem]">Geir Nystuen</p><p class="text-sm fg-muted">Styreleder, Skøyen Terrasse BRL</p></div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="t-slide">
+            <p class="font-display text-2xl lg:text-[2.1rem] leading-snug tracking-tight" style="font-weight:380">«De kunne solgt oss en ny bereder, men anbefalte heller en reparasjon til en tredjedel av prisen. Den ærligheten bygger tillit — vi kommer tilbake.»</p>
+            <footer class="mt-8 flex items-center gap-4">
+              <span class="w-11 h-11 rounded-full flex items-center justify-center font-semibold text-sm" style="background:rgba(192,110,58,.18);color:var(--copper-hi)">MD</span>
+              <div><p class="font-semibold text-[.95rem]">Marlene Daae</p><p class="text-sm fg-muted">Næringseiendom, Nydalen · via Mittanbud</p></div>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OM OSS ================= -->
+<section id="om-oss" class="py-20 lg:py-32 overflow-clip">
+  <div class="wrap grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <div class="lg:col-span-5 relative" data-reveal>
+      <div class="abt-img aspect-[4/5]">
+        <img id="abtImg" src="images/photo-04.jpg" alt="Rørlegger fra Andersen Rør monterer rør og radiator" class="w-full h-full object-cover scale-110">
+      </div>
+      <div class="abt-img absolute -right-3 -bottom-10 sm:right-[-2.5rem] w-[46%] aspect-square border-[6px]" style="border-color:var(--paper)">
+        <img src="images/photo-03.jpg" alt="Kobberfittings på rekke — materialer brukt av Andersen Rør" class="w-full h-full object-cover">
+      </div>
+    </div>
+
+    <div class="lg:col-span-6 lg:col-start-7">
+      <p class="kicker mb-5" data-reveal>06 — Om Andersen Rør</p>
+      <h2 class="h2" data-reveal>Lokale rørleggere.<br><em>Uvanlig høye ambisjoner.</em></h2>
+      <p class="mt-6 leading-relaxed fg-muted max-w-xl" data-reveal>
+        Det startet i 1998 med to brødre, én varebil og en enkel regel: gå aldri fra en jobb du ikke selv
+        ville bodd med. I dag er vi 18 faglærte rørleggere, montører og prosjektledere — og regelen er
+        fortsatt den samme. Vi sier ifra når noe bør gjøres, og vi sier like gjerne ifra når noe <em class="font-display italic" style="color:var(--ink)">ikke</em> trengs.
+      </p>
+
+      <div class="mt-8 max-w-xl" data-stagger>
+        <div class="abt-li"><i data-lucide="circle-check"></i><span><strong class="font-semibold">Åpen fastpris</strong> — du vet hva jobben koster før vi åpner verktøykassen.</span></div>
+        <div class="abt-li"><i data-lucide="circle-check"></i><span><strong class="font-semibold">Ryddig arbeidsplass</strong> — plast, dekkeplater og oppvask er en del av jobben.</span></div>
+        <div class="abt-li"><i data-lucide="circle-check"></i><span><strong class="font-semibold">Full dokumentasjon</strong> — samsvarserklæring, FDV og fotoserie ved levering.</span></div>
+        <div class="abt-li" style="border-bottom:0"><i data-lucide="circle-check"></i><span><strong class="font-semibold">Mesteransvar</strong> — alle prosjekter kvalitetssikres av rørleggermester.</span></div>
+      </div>
+
+      <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-6 border-t pt-9" style="border-color:var(--line)" data-reveal>
+        <div><p class="stat-v"><span data-count="27">0</span></p><p class="mt-1.5 text-[.82rem] fg-muted font-medium">år i drift</p></div>
+        <div><p class="stat-v"><span data-count="18">0</span></p><p class="mt-1.5 text-[.82rem] fg-muted font-medium">ansatte fagfolk</p></div>
+        <div><p class="stat-v"><span data-count="3400">0</span>+</p><p class="mt-1.5 text-[.82rem] fg-muted font-medium">fullførte prosjekter</p></div>
+        <div><p class="stat-v"><span data-count="4.9" data-dec="1">0</span></p><p class="mt-1.5 text-[.82rem] fg-muted font-medium">i snittvurdering</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="py-20 lg:py-28" style="background:var(--paper-2)">
+  <div class="wrap grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-4" data-reveal>
+      <p class="kicker mb-5">07 — Spørsmål &amp; svar</p>
+      <h2 class="h2 text-[clamp(2rem,3.8vw,3rem)]!">Lurer du på <em>noe?</em></h2>
+      <p class="mt-5 fg-muted leading-relaxed text-[.96rem] max-w-sm">Her er svarene vi gir oftest. Finner du ikke ditt, er det bare å ringe — vi liker spørsmål.</p>
+      <a href="tel:+4722471830" class="btn btn-ghost mt-8" data-hover style="color:var(--ink)"><i data-lucide="phone"></i>22 47 18 30</a>
+    </div>
+
+    <div class="lg:col-span-7 lg:col-start-6" data-reveal data-delay=".1">
+      <div class="faq-item">
+        <button class="faq-q" data-hover>Hva koster et nytt bad hos dere?<span class="faq-ic"><i data-lucide="plus"></i></span></button>
+        <div class="faq-panel"><div><p class="faq-a">Prisen avhenger av størrelse, standard og om rør og sluk må flyttes. Etter en gratis befaring får du en bindende fastpris. Som pekepinn ligger et komplett våtrom hos oss vanligvis mellom 280&nbsp;000 og 450&nbsp;000 kr, alt inkludert.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" data-hover>Hvor raskt kommer dere ved akutt vannskade?<span class="faq-ic"><i data-lucide="plus"></i></span></button>
+        <div class="faq-panel"><div><p class="faq-a">Vakttelefonen er bemannet hele døgnet, hele året. I Oslo er snittresponsen vår 35 minutter, og vi guider deg telefonisk med en gang så skaden ikke vokser mens vi kjører.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" data-hover>Er dere godkjente for våtromsarbeid?<span class="faq-ic"><i data-lucide="plus"></i></span></button>
+        <div class="faq-panel"><div><p class="faq-a">Ja. Vi er en mesterbedrift med sentral godkjenning, registrert i Fagråd for våtrom og forsikret gjennom Gjensidige. Du får alltid dokumentasjon og samsvarserklæring ved levering.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" data-hover>Hvor lang garanti gir dere?<span class="faq-ic"><i data-lucide="plus"></i></span></button>
+        <div class="faq-panel"><div><p class="faq-a">Vi gir 10 års garanti på tetthetsdetaljer i våtrom og 5 år på annet utført arbeid — i tillegg til reklamasjonsretten etter håndverkertjenesteloven.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" data-hover>Hvilke områder dekker dere?<span class="faq-ic"><i data-lucide="plus"></i></span></button>
+        <div class="faq-panel"><div><p class="faq-a">Oslo, Bærum, Asker, Lørenskog og Nedre Romerike. For større totalrehabiliteringer og næringsprosjekter tar vi på oss oppdrag i hele Østlandet.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" data-hover>Tar dere småjobber?<span class="faq-ic"><i data-lucide="plus"></i></span></button>
+        <div class="faq-panel"><div><p class="faq-a">Absolutt. Nytt armatur, oppvaskmaskin eller en kran som drypper — småjobber er en stor del av hverdagen vår. Mange kan vi gjøre samme eller neste virkedag.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONTAKT ================= -->
+<section id="kontakt" class="dark py-20 lg:py-32" style="background:var(--ink);color:var(--paper)">
+  <div class="wrap grid lg:grid-cols-12 gap-12 lg:gap-16">
+
+    <div class="lg:col-span-5">
+      <p class="kicker mb-5" data-reveal>08 — Kontakt</p>
+      <h2 class="h2" data-reveal>Fortell oss om <em>prosjektet.</em></h2>
+      <p class="mt-6 fg-muted leading-relaxed max-w-md" data-reveal>Beskriv kort hva du trenger hjelp til, så svarer riktig fagperson deg innen 24 timer — vanligvis mye raskere. Befaring og tilbud er alltid gratis.</p>
+
+      <div class="mt-9 max-w-md" data-stagger>
+        <div class="info-row">
+          <span class="ic"><i data-lucide="map-pin"></i></span>
+          <div><p class="text-sm font-semibold">Verkstadvegen 14, 0577 Oslo</p><p class="text-sm fg-muted mt-.5">Grunerløkka — port fra Grefsenveien</p></div>
+        </div>
+        <div class="info-row">
+          <span class="ic"><i data-lucide="phone"></i></span>
+          <div><a href="tel:+4722471830" class="text-sm font-semibold hover:underline" data-hover>22 47 18 30</a><p class="text-sm fg-muted mt-.5">Man–fre 07:00–16:00 · døgnvakt 24/7</p></div>
+        </div>
+        <div class="info-row">
+          <span class="ic"><i data-lucide="mail"></i></span>
+          <div><a href="mailto:post@andersenror.no" class="text-sm font-semibold hover:underline" data-hover>post@andersenror.no</a><p class="text-sm fg-muted mt-.5">Bilder av feilen? Send dem gjerne med</p></div>
+        </div>
+        <div class="info-row" style="border-bottom:0">
+          <span class="ic"><i data-lucide="timer"></i></span>
+          <div><p class="text-sm font-semibold">Svar innen 24 timer</p><p class="text-sm fg-muted mt-.5">I arbeidstiden stort sett innen 1 time</p></div>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-2xl p-5 flex items-start gap-4 max-w-md" style="background:rgba(192,110,58,.13);border:1px solid rgba(192,110,58,.35)" data-reveal>
+        <i data-lucide="siren" class="w-5 h-5 flex-none mt-0.5" style="color:var(--copper-hi)"></i>
+        <p class="text-sm leading-relaxed" style="color:rgba(244,240,233,.85)"><strong class="font-semibold" style="color:var(--paper)">Haster det?</strong> Ikke bruk skjemaet. Ring vakttelefonen <a class="font-semibold underline underline-offset-2" href="tel:+4722471830" data-hover>22 47 18 30</a> — den er alltid bemannet.</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7" data-reveal data-delay=".1">
+      <div class="rounded-3xl p-6 sm:p-10" style="background:var(--paper);color:var(--ink);--line:rgba(15,19,22,.16);--muted:rgba(15,19,22,.58)">
+
+        <form id="tilbudForm" novalidate>
+          <div class="flex items-center justify-between gap-4 mb-8">
+            <h3 class="font-semibold text-xl tracking-tight">Få et uforpliktende tilbud</h3>
+            <span class="chip bg-[rgba(15,19,22,.06)]! border-[rgba(15,19,22,.12)]! text-[rgba(15,19,22,.7)]! hidden sm:inline-flex"><span class="dot"></span>Kapasitet denne uken</span>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-x-8 gap-y-7">
+            <div class="field">
+              <input type="text" id="fNavn" placeholder=" " autocomplete="name" required>
+              <label for="fNavn">Navn *</label>
+              <p class="ferr">Oppgi navnet ditt</p>
+            </div>
+            <div class="field">
+              <input type="tel" id="fTlf" placeholder=" " autocomplete="tel" required>
+              <label for="fTlf">Telefon *</label>
+              <p class="ferr">Oppgi et gyldig telefonnummer</p>
+            </div>
+            <div class="field">
+              <input type="email" id="fEpost" placeholder=" " autocomplete="email" required>
+              <label for="fEpost">E-post *</label>
+              <p class="ferr">Oppgi en gyldig e-postadresse</p>
+            </div>
+            <div class="field">
+              <select id="fTjeneste" required>
+                <option value="" selected disabled hidden></option>
+                <option>Ny bad / våtrom</option>
+                <option>Rørlegger-service (rør, kran, sluk)</option>
+                <option>Vannskade / lekkasje</option>
+                <option>Varmtvannsbereder</option>
+                <option>Rør i rør / rehabilitering</option>
+                <option>Bedrift / borettslag</option>
+                <option>Annet</option>
+              </select>
+              <label for="fTjeneste">Hva gjelder det? *</label>
+              <span class="chev"><i data-lucide="chevron-down" class="w-4 h-4"></i></span>
+              <p class="ferr">Velg hva henvendelsen gjelder</p>
+            </div>
+            <div class="field sm:col-span-2">
+              <textarea id="fMelding" placeholder=" " rows="4" required></textarea>
+              <label for="fMelding">Beskriv jobben (f.eks. «bytte 15 år gammel bereder på 200L») *</label>
+              <p class="ferr">Skriv noen ord om hva du trenger hjelp til</p>
+            </div>
+          </div>
+
+          <label class="consent mt-7">
+            <input type="checkbox" id="fConsent" required>
+            <span>Jeg godtar at Andersen Rør AS lagrer opplysningene mine for å kunne kontakte meg om henvendelsen. *</span>
+          </label>
+          <p class="ferr ml-8" id="consentErr" style="display:none">Du må godta vilkårene for å sende inn</p>
+
+          <button type="submit" class="btn btn-primary w-full mt-8 py-4! text-base" id="submitBtn" data-hover>
+            <span id="btnLabel">Send forespørsel</span>
+            <span id="btnIcon"><i data-lucide="send" class="w-[18px] h-[18px]"></i></span>
+          </button>
+          <p class="text-center text-xs mt-4" style="color:var(--muted)">Uforpliktende · Gratis befaring · Svar innen 24 t</p>
+        </form>
+
+        <div id="formSuccess" class="hidden text-center py-10">
+          <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style="background:rgba(192,110,58,.15)">
+            <i data-lucide="circle-check" class="w-8 h-8" style="color:var(--copper)"></i>
+          </div>
+          <h3 class="font-display text-3xl tracking-tight">Takk, <span id="succName">deg</span>!</h3>
+          <p class="mt-3 max-w-sm mx-auto text-[.95rem] leading-relaxed" style="color:var(--muted)">Henvendelsen din er registrert. En rørleggermester ringer deg vanligvis innen noen timer i arbeidstiden.</p>
+          <div class="mt-7 inline-flex items-center gap-2 text-sm font-semibold"><i data-lucide="phone" class="w-4 h-4" style="color:var(--copper)"></i>Haster det? <a href="tel:+4722471830" class="underline underline-offset-2" data-hover>22 47 18 30</a></div>
+          <button id="resetForm" class="block mx-auto mt-8 text-sm link-uline" data-hover>Send en ny melding</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap pt-16 lg:pt-24 pb-8">
+    <div class="grid lg:grid-cols-12 gap-12 pb-14 border-b" style="border-color:var(--line)">
+      <div class="lg:col-span-5">
+        <a href="#topp" class="flex items-center gap-2.5 mb-6" data-hover>
+          <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-opacity=".35"/><path d="M16 6.6c3.9 5 6.6 8.4 6.6 11.6a6.6 6.6 0 1 1-13.2 0c0-3.2 2.7-6.6 6.6-11.6z" fill="#C06E3A"/></svg>
+          <span class="font-semibold tracking-tight">Andersen Rør AS</span>
+        </a>
+        <p class="text-[.93rem] leading-relaxed max-w-sm" style="color:var(--muted)">Rørleggermesteren i Oslo for privatpersoner, borettslag og bedrifter. Håndverk som holder tett — siden 1998.</p>
+        <div class="flex gap-3 mt-7">
+          <a href="#" class="to-top w-11! h-11!" aria-label="Instagram" data-hover><i data-lucide="instagram" class="w-[18px] h-[18px]"></i></a>
+          <a href="#" class="to-top w-11! h-11!" aria-label="Facebook" data-hover><i data-lucide="facebook" class="w-[18px] h-[18px]"></i></a>
+          <a href="#" class="to-top w-11! h-11!" aria-label="LinkedIn" data-hover><i data-lucide="linkedin" class="w-[18px] h-[18px]"></i></a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 lg:col-start-7">
+        <p class="text-[.72rem] font-bold tracking-[.22em] uppercase mb-5" style="color:var(--copper-hi)">Tjenester</p>
+        <a class="flink" href="#tjenester" data-hover>Bad &amp; våtrom</a>
+        <a class="flink" href="#tjenester" data-hover>Rør i rør</a>
+        <a class="flink" href="#tjenester" data-hover>Varmtvannsbereder</a>
+        <a class="flink" href="#tjenester" data-hover>Lekkasjesøk</a>
+        <a class="flink" href="#tjenester" data-hover>Døgnvakt 24/7</a>
+      </div>
+
+      <div class="lg:col-span-3">
+        <p class="text-[.72rem] font-bold tracking-[.22em] uppercase mb-5" style="color:var(--copper-hi)">Kontakt</p>
+        <p class="flink" style="cursor:default">Verkstadvegen 14<br>0577 Oslo</p>
+        <a class="flink" href="tel:+4722471830" data-hover>22 47 18 30</a>
+        <a class="flink" href="mailto:post@andersenror.no" data-hover>post@andersenror.no</a>
+        <p class="flink" style="cursor:default">Man–fre 07–16 · Vakt 24/7<br>Org.nr 918 442 771</p>
+      </div>
+    </div>
+
+    <div class="py-10 lg:py-14 overflow-hidden" data-reveal>
+      <p class="footword whitespace-nowrap" aria-hidden="true">ANDERSEN RØR<span class="dot">.</span></p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 pt-6 border-t text-[.8rem]" style="border-color:var(--line);color:var(--muted)">
+      <p>© 2026 Andersen Rør AS · Mva-registrert · Alle priser inkl. mva på tilbud</p>
+      <p class="font-medium" style="color:rgba(244,240,233,.42)">Demoside for designportefølje — selskapet er fiktivt</p>
+      <a href="#topp" class="to-top" aria-label="Til toppen" data-hover><i data-lucide="arrow-up" class="w-4 h-4"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= STICKY MOBILE CTA ================= -->
+<div id="stickyCta" role="complementary" aria-label="Hurtighandlinger">
+  <a href="tel:+4722471830" class="btn btn-primary flex-1 py-3! text-sm"><i data-lucide="phone"></i>Ring nå</a>
+  <a href="#kontakt" class="btn btn-ghost flex-1 py-3! text-sm" style="color:var(--paper);--line:rgba(244,240,233,.25)">Få tilbud</a>
+</div>
+
+<!-- ================= LIBS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+
+<script>
+(function(){
+'use strict';
+const q  = s => document.querySelector(s);
+const qa = s => Array.from(document.querySelectorAll(s));
+const fine = matchMedia('(pointer:fine)').matches;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+lucide.createIcons();
+gsap.registerPlugin(ScrollTrigger);
+
+/* ---------- Lenis smooth scroll ---------- */
+const lenis = new Lenis({ lerp:.09, wheelMultiplier:1, touchMultiplier:1.4 });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add(t => lenis.raf(t*1000));
+gsap.ticker.lagSmoothing(0);
+
+/* ---------- Preloader ---------- */
+const word = 'ANDERSEN RØR';
+q('#loadWord').innerHTML = word.split('').map(c =>
+  `<span class="load-letter">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+
+lenis.stop();
+const pct = { v:0 };
+const introTl = gsap.timeline({ paused:true });
+introTl
+  .to('.hero-h1 .inner', { y:0, duration:1.15, ease:'expo.out', stagger:.12 })
+  .fromTo('[data-hero="kicker"]', {opacity:0,y:18},{opacity:1,y:0,duration:.7,ease:'power3.out'}, '-=.85')
+  .fromTo('[data-hero="p"]',      {opacity:0,y:24},{opacity:1,y:0,duration:.8,ease:'power3.out'}, '-=.7')
+  .fromTo('[data-hero="cta"]',    {opacity:0,y:24},{opacity:1,y:0,duration:.8,ease:'power3.out'}, '-=.65')
+  .fromTo('[data-hero="trust"]',  {opacity:0,y:16},{opacity:1,y:0,duration:.7,ease:'power3.out'}, '-=.6')
+  .fromTo('[data-hero="card"]',   {opacity:0,y:40,scale:.97},{opacity:1,y:0,scale:1,duration:1.1,ease:'expo.out'}, '-=.95')
+  .fromTo('[data-hero="float"]',  {opacity:0,y:20},{opacity:1,y:0,duration:.7,ease:'back.out(1.6)'}, '-=.5')
+  .fromTo('#heroImg', {scale:1.22},{scale:1,duration:1.5,ease:'expo.out'}, 0.2);
+
+const loadTl = gsap.timeline({
+  onComplete(){
+    lenis.start();
+    introTl.play();
+    ScrollTrigger.refresh();
+  }
+});
+loadTl
+  .to('.load-letter', { y:0, duration:.9, ease:'expo.out', stagger:.035 })
+  .to('#loadSub', { opacity:1, duration:.5 }, '-=.5')
+  .to(pct, { v:100, duration:1, ease:'power2.inOut',
+      onUpdate(){ q('#loadFill').style.width = pct.v+'%'; q('#loadPct').textContent = Math.round(pct.v); } }, '-=.6')
+  .to('#loader', { yPercent:-100, duration:1, ease:'expo.inOut', delay:.15 })
+  .set('#loader', { display:'none' });
+
+/* ---------- Duplicate marquee ---------- */
+qa('[data-mq]').forEach(t => { t.innerHTML += t.innerHTML; });
+
+/* ---------- Header behaviour & sticky CTA ---------- */
+const nav = q('#siteNav'), sticky = q('#stickyCta');
+let lastY = 0, menuOpen = false;
+function onScrollY(y){
+  nav.classList.toggle('nav-solid', y > 50);
+  if (!menuOpen){
+    if (y > 480 && y > lastY + 5) nav.classList.add('nav-hide');
+    else if (y < lastY - 5 || y <= 480) nav.classList.remove('nav-hide');
+  }
+  lastY = y;
+  sticky.classList.toggle('show', y > innerHeight*.85 && !contactInView);
+}
+lenis.on('scroll', e => onScrollY(e.scroll));
+
+let contactInView = false;
+const io = new IntersectionObserver(es => es.forEach(en => { contactInView = en.isIntersecting; }), {threshold:.02});
+io.observe(q('#kontakt'));
+io.observe(q('footer'));
+
+/* ---------- Mobile menu ---------- */
+const burger = q('#burger');
+function setMenu(open){
+  menuOpen = open;
+  document.body.classList.toggle('menu-open', open);
+  burger.setAttribute('aria-expanded', open);
+  q('#mmenu').setAttribute('aria-hidden', !open);
+  open ? (lenis.stop(), nav.classList.remove('nav-hide')) : lenis.start();
+}
+burger.addEventListener('click', () => setMenu(!menuOpen));
+
+/* ---------- Anchor scrolling ---------- */
+qa('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const id = a.getAttribute('href');
+  if (id.length < 2) { e.preventDefault(); return; }
+  const target = q(id);
+  if (!target) return;
+  e.preventDefault();
+  if (menuOpen) setMenu(false);
+  lenis.scrollTo(target, { offset:-70, duration:1.25, easing:t => 1 - Math.pow(1-t, 4) });
+}));
+
+/* ---------- Generic reveals ---------- */
+qa('[data-reveal]').forEach(el => {
+  gsap.fromTo(el, { y:36, opacity:0 },
+    { y:0, opacity:1, duration:1, ease:'power3.out',
+      delay:parseFloat(el.dataset.delay||0),
+      scrollTrigger:{ trigger:el, start:'top 88%' } });
+});
+qa('[data-stagger]').forEach(p => {
+  gsap.fromTo(p.children, { y:28, opacity:0 },
+    { y:0, opacity:1, duration:.9, ease:'power3.out', stagger:.09,
+      scrollTrigger:{ trigger:p, start:'top 86%' } });
+});
+
+/* ---------- Step line draw ---------- */
+qa('[data-step]').forEach((s,i) => ScrollTrigger.create({
+  trigger:s, start:'top 82%', onEnter:() => setTimeout(()=>s.classList.add('in'), i*160)
+}));
+
+/* ---------- Counters ---------- */
+qa('[data-count]').forEach(el => {
+  const end = parseFloat(el.dataset.count), dec = parseInt(el.dataset.dec||0);
+  const o = { v:0 };
+  gsap.to(o, { v:end, duration:2, ease:'power2.out',
+    scrollTrigger:{ trigger:el, start:'top 92%' },
+    onUpdate(){ el.textContent = dec ? o.v.toFixed(1).replace('.',',') : Math.round(o.v).toLocaleString('nb-NO'); } });
+});
+
+/* ---------- About parallax ---------- */
+gsap.to('#abtImg', { yPercent:-8, ease:'none',
+  scrollTrigger:{ trigger:'#om-oss', start:'top bottom', end:'bottom top', scrub:1 } });
+
+/* ---------- Projects: horizontal (desktop pinned, mobile swipe) ---------- */
+const track = q('#projTrack'), N = 6;
+function syncLp(){
+  if (window.innerWidth >= 1024) track.removeAttribute('data-lenis-prevent');
+  else track.setAttribute('data-lenis-prevent','');
+}
+syncLp();
+addEventListener('resize', syncLp);
+function setProj(p){
+  q('#projFill').style.transform = `scaleX(${Math.min(1,Math.max(0,p))})`;
+  q('#projIdx').textContent = String(Math.min(N, Math.round(p*(N-1))+1)).padStart(2,'0');
+}
+const mm = gsap.matchMedia();
+mm.add('(min-width: 1024px)', () => {
+  const dist = () => track.scrollWidth - window.innerWidth;
+  const tw = gsap.to(track, {
+    x: () => -dist(), ease:'none',
+    scrollTrigger:{
+      trigger:'#prosjekter', start:'top top',
+      end:() => '+=' + dist()*1.15, scrub:1, pin:true,
+      anticipatePin:1, invalidateOnRefresh:true,
+      onUpdate: st => setProj(st.progress)
+    }
+  });
+  return () => { tw.scrollTrigger && tw.scrollTrigger.kill(); gsap.set(track,{x:0}); };
+});
+track.addEventListener('scroll', () => {
+  const m = track.scrollWidth - track.clientWidth;
+  if (m > 0) setProj(track.scrollLeft / m);
+}, { passive:true });
+
+/* ---------- Before / After slider ---------- */
+const ba = q('#ba'), baTop = q('#baTop'), baHandle = q('#baHandle');
+function setBA(p){
+  p = Math.min(97, Math.max(3, p));
+  baTop.style.clipPath = `inset(0 ${100-p}% 0 0)`;
+  baHandle.style.left = p + '%';
+  ba.setAttribute('aria-valuenow', Math.round(p));
+}
+function baFromEvent(e){
+  const r = ba.getBoundingClientRect();
+  const x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+  setBA(x / r.width * 100);
+}
+let baDrag = false;
+ba.addEventListener('pointerdown', e => { baDrag = true; ba.setPointerCapture(e.pointerId); baFromEvent(e); });
+ba.addEventListener('pointermove', e => { if (baDrag) baFromEvent(e); });
+['pointerup','pointercancel'].forEach(ev => ba.addEventListener(ev, () => baDrag = false));
+ba.addEventListener('keydown', e => {
+  const cur = parseFloat(ba.getAttribute('aria-valuenow'));
+  if (e.key === 'ArrowLeft')  setBA(cur - 4);
+  if (e.key === 'ArrowRight') setBA(cur + 4);
+});
+gsap.fromTo(baTop, { clipPath:'inset(0 65% 0 0)' }, { clipPath:'inset(0 50% 0 0)', duration:1.6, ease:'expo.out',
+  scrollTrigger:{ trigger:ba, start:'top 80%' },
+  onUpdate(){ /* sync handle */ } , onComplete(){ setBA(50); },
+  onStart(){ baTop.style.transition='none'; } });
+/* sync handle while animating */
+new MutationObserver(() => {
+  const m = /inset\(0 ([\d.]+)% 0 0\)/.exec(baTop.style.clipPath||'');
+  if (m) { const p = 100 - parseFloat(m[1]); baHandle.style.left = p+'%'; ba.setAttribute('aria-valuenow', Math.round(p)); }
+}).observe(baTop, { attributes:true, attributeFilter:['style'] });
+
+/* ---------- Testimonials ---------- */
+const slides = qa('.t-slide'), dotsWrap = q('#tDots');
+let tIdx = 0, tTimer;
+slides.forEach((_,i) => {
+  const d = document.createElement('button');
+  d.className = 't-dot' + (i ? '' : ' active');
+  d.setAttribute('aria-label', 'Gå til omtale ' + (i+1));
+  d.addEventListener('click', () => { goT(i); restartT(); });
+  dotsWrap.appendChild(d);
+});
+function goT(i){
+  tIdx = (i + slides.length) % slides.length;
+  slides.forEach((s,k) => s.classList.toggle('active', k === tIdx));
+  qa('.t-dot').forEach((d,k) => d.classList.toggle('active', k === tIdx));
+}
+function restartT(){ clearInterval(tTimer); if(!reduced) tTimer = setInterval(() => goT(tIdx+1), 7000); }
+q('#tPrev').addEventListener('click', () => { goT(tIdx-1); restartT(); });
+q('#tNext').addEventListener('click', () => { goT(tIdx+1); restartT(); });
+restartT();
+
+/* ---------- FAQ ---------- */
+qa('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const open = item.classList.contains('open');
+    qa('.faq-item.open').forEach(o => o.classList.remove('open'));
+    if (!open) item.classList.add('open');
+    setTimeout(() => ScrollTrigger.refresh(), 600);
+  });
+});
+
+/* ---------- Select label state ---------- */
+const sel = q('#fTjeneste');
+sel.addEventListener('change', () => sel.classList.toggle('filled', !!sel.value));
+
+/* ---------- Form ---------- */
+const form = q('#tilbudForm');
+const fields = {
+  navn:  q('#fNavn'),
+  tlf:   q('#fTlf'),
+  epost: q('#fEpost'),
+  tjen:  sel,
+  meld:  q('#fMelding')
+};
+const reMail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const reTlf  = /^[+\d][\d\s]{7,15}$/;
+function mark(input, ok){
+  input.closest('.field').classList.toggle('invalid', !ok);
+  return ok;
+}
+[fields.navn, fields.tlf, fields.epost, fields.meld].forEach(i =>
+  i.addEventListener('input', () => mark(i, true)));
+sel.addEventListener('change', () => mark(sel, true));
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  let ok = true, firstBad = null;
+  const check = (input, valid) => { const good = mark(input, valid); if (!good && !firstBad) firstBad = input; ok = ok && good; };
+  check(fields.navn,  fields.navn.value.trim().length > 1);
+  check(fields.tlf,   reTlf.test(fields.tlf.value.trim()));
+  check(fields.epost, reMail.test(fields.epost.value.trim()));
+  check(sel,          !!sel.value);
+  check(fields.meld,  fields.meld.value.trim().length > 4);
+
+  const consent = q('#fConsent');
+  const cOk = consent.checked;
+  q('#consentErr').style.display = cOk ? 'none' : 'block';
+  if (!cOk){ ok = false; if (!firstBad) firstBad = consent; }
+
+  if (!ok){ firstBad && firstBad.focus(); return; }
+
+  const btn = q('#submitBtn');
+  btn.disabled = true;
+  q('#btnLabel').textContent = 'Sender…';
+  q('#btnIcon').innerHTML = '<span class="spin"></span>';
+
+  setTimeout(() => {
+    q('#succName').textContent = fields.navn.value.trim().split(' ')[0];
+    gsap.to(form, { opacity:0, y:-14, duration:.4, ease:'power2.in', onComplete(){
+      form.classList.add('hidden');
+      const s = q('#formSuccess');
+      s.classList.remove('hidden');
+      lucide.createIcons();
+      gsap.fromTo(s, { opacity:0, y:20 }, { opacity:1, y:0, duration:.7, ease:'power3.out' });
+      ScrollTrigger.refresh();
+    }});
+  }, 1400);
+});
+q('#resetForm').addEventListener('click', () => {
+  q('#formSuccess').classList.add('hidden');
+  form.reset(); sel.classList.remove('filled');
+  q('#btnLabel').textContent = 'Send forespørsel';
+  q('#btnIcon').innerHTML = '<i data-lucide="send" class="w-[18px] h-[18px]"></i>';
+  lucide.createIcons();
+  q('#submitBtn').disabled = false;
+  form.classList.remove('hidden');
+  gsap.fromTo(form, { opacity:0, y:14 }, { opacity:1, y:0, duration:.5, ease:'power2.out' });
+});
+
+/* ---------- Custom cursor ---------- */
+if (fine && !reduced){
+  const dot = q('#cursorDot'), ring = q('#cursorRing');
+  const dx = gsap.quickTo(dot,'x',{duration:.12,ease:'power2'}), dy = gsap.quickTo(dot,'y',{duration:.12,ease:'power2'});
+  const rx = gsap.quickTo(ring,'x',{duration:.45,ease:'power3'}), ry = gsap.quickTo(ring,'y',{duration:.45,ease:'power3'});
+  addEventListener('pointermove', e => { dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); }, { passive:true });
+  qa('[data-hover], a, button').forEach(el => {
+    el.addEventListener('pointerenter', () => ring.classList.add('grow'));
+    el.addEventListener('pointerleave', () => ring.classList.remove('grow'));
+  });
+}
+
+/* ---------- Magnetic buttons ---------- */
+if (fine && !reduced) qa('[data-magnetic]').forEach(el => {
+  const xTo = gsap.quickTo(el,'x',{duration:.4,ease:'power3'}), yTo = gsap.quickTo(el,'y',{duration:.4,ease:'power3'});
+  el.addEventListener('pointermove', e => {
+    const r = el.getBoundingClientRect();
+    xTo((e.clientX - r.left - r.width/2)*.18); yTo((e.clientY - r.top - r.height/2)*.28);
+  });
+  el.addEventListener('pointerleave', () => { xTo(0); yTo(0); });
+});
+
+addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

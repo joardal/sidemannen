@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NordRenhold AS — Rent hjem. Fast person. Null stress.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,9..144,400;9..144,0.5,9..144,500;9..144,0,9..144,700;9..144,1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F5EF;
+  --bg2:#EDE8DF;
+  --bg3:#E6E1D8;
+  --ink:#111410;
+  --ink-2:#4B4F4B;
+  --ink-3:#8A8F89;
+  --line:rgba(17,20,16,.11);
+  --line-strong:rgba(17,20,16,.18);
+  --forest:#11211B;
+  --forest-2:#162E25;
+  --lime:#DCFF5A;
+  --lime-2:#E6FF85;
+  --white:#FFFFFF;
+  --radius-xl:32px;
+  --radius-lg:20px;
+  --radius-md:14px;
+  --radius-sm:10px;
+  --shadow:0 20px 60px rgba(17,20,16,.08);
+  --shadow-lg:0 30px 90px rgba(17,20,16,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:"Instrument Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;background:none;border:0;cursor:pointer}
+.serif{font-family:"Fraunces",serif;letter-spacing:-.02em}
+.mono{font-family:"Fragment Mono",monospace;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+::selection{background:var(--lime)}
+/* top ticker */
+.ticker{position:relative;z-index:30;background:var(--forest);color:var(--bg);height:36px;overflow:hidden;display:flex;align-items:center}
+.ticker-track{display:flex;gap:0;white-space:nowrap;animation:ticker 38s linear infinite}
+.ticker-item{display:flex;align-items:center;gap:14px;padding-right:36px;font-size:.78rem;letter-spacing:.02em}
+.ticker-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(220,255,90,.18)}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.2) blur(18px);background:rgba(248,245,239,.86);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1440px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:34px;height:34px;background:var(--forest);color:var(--lime);display:grid;place-items:center;border-radius:9px;font-family:"Fraunces";font-weight:700;font-size:1.15rem;letter-spacing:-.04em}
+.logo-type{line-height:.9}
+.logo-type b{display:block;font-family:"Fraunces";font-size:1.15rem;letter-spacing:-.02em;font-weight:700}
+.logo-type span{display:block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-top:2px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.9rem;font-weight:500;opacity:.78;transition:.2s}
+.nav-links a:hover{opacity:1}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.btn{height:42px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:.92rem;transition:transform .18s,background .18s,color .18s,border-color .18s;will-change:transform}
+.btn:active{transform:scale(.98)}
+.btn-dark{background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
+.btn-dark:hover{background:var(--forest);border-color:var(--forest)}
+.btn-light{background:var(--white);color:var(--ink);border:1px solid var(--line-strong)}
+.btn-light:hover{border-color:var(--ink)}
+.btn-lime{background:var(--lime);color:var(--ink);border:1px solid var(--lime)}
+.btn-lime:hover{background:var(--lime-2)}
+.btn-ghost{height:36px;padding:0 14px;font-size:.84rem;border-radius:999px;border:1px solid var(--line)}
+.hamburger{display:none;width:42px;height:42px;border-radius:999px;border:1px solid var(--line);place-items:center}
+
+/* layout */
+.wrap{max-width:1440px;margin:0 auto;padding:0 24px}
+.grid-12{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+
+/* hero */
+.hero{padding:22px 0 0}
+.hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:stretch;min-height:calc(100vh - 108px)}
+.hero-left{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-xl);padding:32px 32px 26px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.hero-left::after{content:"";position:absolute;right:-30px;top:-30px;width:260px;height:260px;background:radial-gradient(60% 60% at 50% 50%, rgba(220,255,90,.55), transparent 70%);pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 12px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);font-size:.78rem}
+.eyebrow i{width:28px;height:18px;border-radius:999px;background:var(--forest);color:var(--lime);display:grid;place-items:center;font-style:normal;font-family:"Fragment Mono";font-size:.62rem}
+.hero-h1{margin-top:28px;font-size:clamp(2.8rem,6.2vw,5.2rem);line-height:.88;letter-spacing:-.045em;font-weight:500}
+.hero-h1 .line{display:block;overflow:hidden}
+.hero-h1 .line span{display:block;transform:translateY(105%);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.hero-h1.is-in .line span{transform:translateY(0)}
+.hero-h1 em{font-weight:500;font-style:italic;color:var(--forest)}
+.hero-sub{margin-top:18px;max-width:42ch;font-size:1.05rem;line-height:1.55;color:var(--ink-2)}
+.hero-actions{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.hero-proof{margin-top:auto;padding-top:28px;display:flex;align-items:center;gap:16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.avatars{display:flex}
+.avatars img{width:36px;height:36px;border-radius:50%;border:2px solid var(--white);margin-left:-8px;object-fit:cover}
+.avatars img:first-child{margin-left:0}
+.stars{display:flex;gap:2px}
+.hero-right{position:relative;border-radius:var(--radius-xl);overflow:hidden;background:var(--bg2);border:1px solid var(--line);min-height:560px}
+.hero-img{position:absolute;inset:0}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%, rgba(0,0,0,.42) 100%)}
+.float-card{position:absolute;background:var(--white);border-radius:18px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.06);padding:14px 14px;display:flex;gap:12px;align-items:center;backdrop-filter:blur(6px)}
+.float-card .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--bg2);flex:0 0 40px}
+.float-card b{display:block;font-size:.92rem;line-height:1.1}
+.float-card span{display:block;font-size:.78rem;color:var(--ink-2);margin-top:2px}
+.fc-1{left:16px;top:16px;right:16px}
+.fc-2{left:16px;bottom:16px;min-width:220px}
+.fc-3{right:16px;bottom:88px}
+
+/* calculator */
+.calc{padding:18px 0 0}
+.calc-panel{background:var(--forest);color:var(--bg);border-radius:var(--radius-xl);overflow:hidden;position:relative;display:grid;grid-template-columns:1.05fr .95fr;min-height:640px}
+.calc-left{padding:36px 32px 32px;border-right:1px solid rgba(248,245,239,.12);position:relative}
+.calc-left h2{font-size:clamp(1.9rem,3.2vw,2.8rem);line-height:.92;letter-spacing:-.03em}
+.calc-kicker{color:var(--lime);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.calc-form{margin-top:28px;display:grid;gap:22px}
+.f-group{display:grid;gap:10px}
+.f-label{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7;font-family:"Fragment Mono"}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(248,245,239,.18);color:var(--bg);font-size:.9rem;font-weight:500;transition:.18s;background:rgba(255,255,255,.04)}
+.chip.is-active{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.range-wrap{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px}
+.range-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.range-head b{font-size:2rem;letter-spacing:-.04em}
+.range-head b small{font-size:.9rem;font-weight:500;opacity:.7;margin-left:4px}
+input[type=range]{-webkit-appearance:none;width:100%;height:36px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:4px;background:rgba(255,255,255,.18);border-radius:999px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--lime);border:3px solid var(--forest);margin-top:-12px;box-shadow:0 2px 10px rgba(0,0,0,.3);cursor:pointer}
+.addons{display:grid;gap:10px}
+.addon{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);transition:.18s}
+.addon.is-on{border-color:var(--lime);background:rgba(220,255,90,.12)}
+.addon-left{display:flex;gap:10px;align-items:center}
+.addon-left b{font-size:.9rem}
+.addon-left span{font-size:.78rem;opacity:.7;display:block}
+.switch{width:42px;height:26px;border-radius:999px;background:rgba(255,255,255,.18);position:relative;transition:.2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--bg);transition:.2s}
+.addon.is-on .switch{background:var(--lime)}
+.addon.is-on .switch::after{transform:translateX(16px);background:var(--forest)}
+
+.calc-right{background:var(--bg);color:var(--ink);padding:18px;display:flex;flex-direction:column}
+.price-card{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:22px 20px 18px;box-shadow:var(--shadow);position:sticky;top:90px}
+.price-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.price-top h3{font-size:1.15rem;letter-spacing:-.02em}
+.badge-live{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:var(--forest);color:var(--lime);font-family:"Fragment Mono";font-size:.66rem}
+.price-big{margin-top:14px;display:flex;align-items:baseline;gap:8px}
+.price-big strong{font-family:"Fraunces";font-size:clamp(2.6rem,4vw,3.6rem);line-height:.9;letter-spacing:-.04em}
+.price-big span{color:var(--ink-2)}
+.breakdown{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px;display:grid;gap:10px}
+.row{display:flex;justify-content:space-between;font-size:.9rem}
+.row small{color:var(--ink-2)}
+.total{margin-top:8px;padding:14px 14px;border-radius:14px;background:var(--ink);color:var(--bg);display:flex;justify-content:space-between;align-items:center}
+.total b{font-size:1.05rem}
+.micro{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.micro span{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);font-size:.78rem}
+.calc-cta{margin-top:16px;display:grid;gap:10px}
+.calc-cta .btn{height:50px;font-size:1rem}
+.calc-foot{margin-top:12px;text-align:center;font-size:.8rem;color:var(--ink-2)}
+
+/* services */
+.services{padding:56px 0 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:22px}
+.sec-head h2{font-size:clamp(2rem,4vw,3.4rem);line-height:.92;letter-spacing:-.04em}
+.sec-head p{max-width:36ch;color:var(--ink-2);line-height:1.5}
+.service-list{border-top:1px solid var(--line)}
+.service-row{display:grid;grid-template-columns:72px 1.2fr .8fr 160px;gap:16px;align-items:center;padding:22px 8px 22px 0;border-bottom:1px solid var(--line);position:relative;transition:background .18s}
+.service-row:hover{background:rgba(255,255,255,.7)}
+.service-row .num{font-family:"Fragment Mono";opacity:.5}
+.service-row h3{font-size:clamp(1.4rem,2.4vw,2rem);line-height:.95;letter-spacing:-.03em}
+.service-row h3 i{font-style:italic;font-weight:500}
+.service-meta{color:var(--ink-2);font-size:.92rem;line-height:1.45}
+.service-price{text-align:right}
+.service-price b{display:block;font-family:"Fraunces";font-size:1.35rem;letter-spacing:-.02em}
+.service-price span{font-size:.8rem;color:var(--ink-2)}
+.service-arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.2s;margin-left:auto}
+.service-row:hover .service-arrow{background:var(--ink);color:var(--bg);border-color:var(--ink);transform:rotate(-45deg)}
+
+/* hover preview */
+#hoverPreview{position:fixed;left:0;top:0;width:280px;height:200px;border-radius:20px;overflow:hidden;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.9) rotate(-2deg);transition:opacity .22s,transform .28s cubic-bezier(.16,1,.3,1);z-index:5;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.08)}
+#hoverPreview img{width:100%;height:100%;object-fit:cover}
+#hoverPreview.is-visible{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}
+
+/* process */
+.process{padding:56px 0 0}
+.process-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px}
+.sticky-card{position:sticky;top:90px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-xl);padding:28px;overflow:hidden}
+.sticky-card h2{font-size:clamp(1.8rem,3vw,2.6rem);line-height:.95;letter-spacing:-.04em}
+.sticky-visual{margin-top:22px;border-radius:18px;overflow:hidden;background:var(--bg2);aspect-ratio:4/3;position:relative}
+.sticky-visual img{width:100%;height:100%;object-fit:cover}
+.steps{display:grid;gap:12px}
+.step{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:22px 20px;display:grid;grid-template-columns:56px 1fr;gap:14px;transition:transform .2s,border-color .2s}
+.step:hover{transform:translateY(-2px);border-color:var(--line-strong)}
+.step-n{width:56px;height:56px;border-radius:16px;background:var(--forest);color:var(--lime);display:grid;place-items:center;font-family:"Fraunces";font-size:1.3rem;font-weight:700}
+.step h4{font-size:1.2rem;letter-spacing:-.02em;margin-bottom:6px}
+.step p{color:var(--ink-2);line-height:1.5;font-size:.95rem}
+.step-foot{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+.pill{height:26px;padding:0 10px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);font-size:.78rem;display:inline-flex;align-items:center}
+
+/* trust */
+.trust{padding:28px 0 0}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.trust-card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:20px 18px;display:flex;flex-direction:column;gap:14px;min-height:186px}
+.trust-card .ic{width:44px;height:44px;border-radius:12px;background:var(--bg2);display:grid;place-items:center}
+.trust-card h4{font-size:1.05rem;letter-spacing:-.02em}
+.trust-card p{color:var(--ink-2);font-size:.9rem;line-height:1.5}
+
+/* before after */
+.ba{padding:48px 0 0}
+.ba-panel{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.ba-left{background:var(--forest);color:var(--bg);border-radius:var(--radius-xl);padding:28px;position:relative;overflow:hidden}
+.ba-left h2{font-size:clamp(1.8rem,3vw,2.8rem);line-height:.92;letter-spacing:-.03em}
+.ba-left p{margin-top:12px;color:rgba(248,245,239,.72);line-height:1.5;max-width:36ch}
+.ba-stats{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ba-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px}
+.ba-stat b{font-family:"Fraunces";font-size:1.8rem;letter-spacing:-.03em;display:block}
+.ba-stat span{font-size:.82rem;opacity:.7}
+.ba-right{border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--line);background:var(--white);position:relative;aspect-ratio:4/3.1;min-height:520px}
+.ba-img{position:absolute;inset:0}
+.ba-img img{width:100%;height:100%;object-fit:cover}
+.ba-after{position:absolute;inset:0;overflow:hidden;width:54%;border-right:1px solid rgba(255,255,255,.9)}
+.ba-after img{width:100%;height:100%;object-fit:cover;max-width:none}
+.ba-handle{position:absolute;top:0;bottom:0;left:54%;width:0;z-index:2;display:grid;place-items:center;transform:translateX(-50%)}
+.ba-handle-line{position:absolute;top:0;bottom:0;width:2px;background:var(--white);box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+.ba-handle-btn{width:52px;height:52px;border-radius:50%;background:var(--white);border:1px solid var(--line-strong);box-shadow:var(--shadow);display:grid;place-items:center;position:relative;z-index:1;cursor:ew-resize;user-select:none}
+.ba-labels{position:absolute;left:12px;right:12px;top:12px;display:flex;justify-content:space-between;z-index:3;pointer-events:none}
+.ba-label{height:28px;padding:0 12px;border-radius:999px;background:rgba(17,20,16,.72);color:var(--bg);backdrop-filter:blur(8px);font-family:"Fragment Mono";font-size:.68rem;display:inline-flex;align-items:center}
+
+/* reviews */
+.reviews{padding:48px 0 0}
+.reviews-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.big-quote{font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.02;letter-spacing:-.04em;max-width:22ch}
+.review-grid{margin-top:22px;display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+.review-feature{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-xl);padding:24px;display:flex;flex-direction:column}
+.q{font-family:"Fraunces";font-size:clamp(1.2rem,2.2vw,1.8rem);line-height:1.15;letter-spacing:-.02em}
+.review-person{margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:12px;border-top:1px solid var(--line)}
+.review-person img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.review-cards{display:grid;gap:12px}
+.r-card{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:18px}
+.r-card p{line-height:1.5;color:var(--ink-2);font-size:.95rem}
+.r-card .meta{margin-top:12px;display:flex;justify-content:space-between;align-items:center}
+.r-card .meta b{font-size:.9rem}
+
+/* coverage */
+.coverage{padding:28px 0 0}
+.coverage-panel{border-radius:var(--radius-xl);background:var(--white);border:1px solid var(--line);display:grid;grid-template-columns:.9fr 1.1fr;overflow:hidden}
+.coverage-left{padding:28px}
+.coverage-left h3{font-size:1.6rem;letter-spacing:-.03em}
+.areas{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.area{height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-size:.86rem;display:inline-flex;align-items:center;gap:6px}
+.area i{width:6px;height:6px;border-radius:50%;background:var(--forest);display:inline-block}
+.map{position:relative;background:var(--bg2);min-height:360px;overflow:hidden}
+.map img{width:100%;height:100%;object-fit:cover;opacity:.9}
+.map-pins{position:absolute;inset:0}
+.pin{position:absolute;transform:translate(-50%,-100%);background:var(--ink);color:var(--bg);padding:8px 12px;border-radius:999px;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:6px;box-shadow:var(--shadow)}
+.pin::after{content:"";position:absolute;left:50%;top:100%;width:8px;height:8px;background:var(--ink);transform:translate(-50%,-50%) rotate(45deg)}
+.pin.lime{background:var(--lime);color:var(--ink)}
+.pin.lime::after{background:var(--lime)}
+
+/* booking */
+.booking{padding:24px 0 24px}
+.booking-panel{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+.booking-left{border-radius:var(--radius-xl);background:var(--forest);color:var(--bg);padding:28px;position:relative;overflow:hidden}
+.booking-left h2{font-size:clamp(2rem,3.6vw,3.2rem);line-height:.92;letter-spacing:-.04em}
+.booking-left p{margin-top:14px;color:rgba(248,245,239,.7);line-height:1.5;max-width:38ch}
+.checks{margin-top:24px;display:grid;gap:12px}
+.check{display:flex;gap:10px;align-items:flex-start}
+.check .c{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;flex:0 0 26px}
+.check b{font-size:.95rem}
+.check span{display:block;font-size:.84rem;opacity:.7;margin-top:2px}
+.booking-form-wrap{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-xl);padding:22px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:grid;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);font-family:"Fragment Mono"}
+.input{height:46px;border-radius:12px;border:1px solid var(--line);background:var(--bg);padding:0 14px;font-size:.95rem;outline:none;transition:.18s}
+.input:focus{border-color:var(--ink);background:var(--white)}
+.textarea{min-height:96px;padding:12px 14px;resize:vertical}
+.form-foot{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.form-foot small{color:var(--ink-2);font-size:.8rem;line-height:1.4}
+.success{display:none;background:var(--lime);border:1px solid var(--ink);border-radius:16px;padding:16px}
+.success.is-on{display:block}
+
+/* footer */
+.footer{padding:18px 0 28px}
+.footer-panel{background:var(--ink);color:var(--bg);border-radius:var(--radius-xl);padding:28px;overflow:hidden;position:relative}
+.footer-top{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr;gap:24px}
+.footer-brand b{font-family:"Fraunces";font-size:1.6rem;letter-spacing:-.02em;display:block}
+.footer-brand p{margin-top:10px;color:rgba(248,245,239,.6);line-height:1.5;max-width:30ch;font-size:.92rem}
+.footer-col h5{font-family:"Fragment Mono";font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+.footer-col a{display:block;padding:6px 0;font-size:.92rem;opacity:.84}
+.footer-col a:hover{opacity:1}
+.footer-bottom{margin-top:28px;padding-top:18px;border-top:1px solid rgba(248,245,239,.12);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.82rem;color:rgba(248,245,239,.6)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.reveal.is-in{opacity:1;transform:translateY(0)}
+
+/* progress */
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--lime);z-index:50;width:0}
+
+/* mobile menu */
+#mMenu{position:fixed;inset:0;z-index:40;background:var(--bg);display:none;flex-direction:column;padding:18px 16px 16px}
+#mMenu.is-open{display:flex}
+.m-head{height:56px;display:flex;align-items:center;justify-content:space-between}
+.m-links{margin-top:18px;display:grid;gap:8px}
+.m-links a{font-family:"Fraunces";font-size:2.2rem;line-height:.9;letter-spacing:-.04em;padding:8px 0;border-bottom:1px solid var(--line)}
+
+/* responsive */
+@media(max-width:1060px){
+  .nav-links,.nav-cta .btn-light{display:none}
+  .hamburger{display:grid}
+  .hero-inner{grid-template-columns:1fr;min-height:auto}
+  .hero-right{min-height:520px}
+  .calc-panel{grid-template-columns:1fr}
+  .calc-left{border-right:0;border-bottom:1px solid rgba(248,245,239,.12)}
+  .services .service-row{grid-template-columns:56px 1fr auto;gap:10px}
+  .service-meta{display:none}
+  .service-price{text-align:left}
+  .process-grid{grid-template-columns:1fr}
+  .sticky-card{position:relative;top:auto}
+  .trust-grid{grid-template-columns:1fr 1fr}
+  .ba-panel{grid-template-columns:1fr}
+  .ba-right{min-height:460px;aspect-ratio:4/3}
+  .review-grid{grid-template-columns:1fr}
+  .coverage-panel{grid-template-columns:1fr}
+  .booking-panel{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .wrap{padding:0 16px}
+  .nav-inner{padding:0 16px;height:64px}
+  .hero-left{padding:20px 18px 18px;border-radius:26px}
+  .hero-h1{font-size:2.6rem}
+  .hero-right{min-height:460px;border-radius:26px}
+  .calc-panel{border-radius:26px}
+  .calc-left{padding:22px 18px}
+  .calc-right{padding:12px}
+  .price-card{position:relative;top:auto;border-radius:20px}
+  .service-row{grid-template-columns:48px 1fr auto;padding:18px 4px 18px 0}
+  .service-row h3{font-size:1.35rem}
+  .trust-grid{grid-template-columns:1fr}
+  .ba-left{border-radius:26px;padding:20px 18px}
+  .ba-right{border-radius:26px;min-height:380px}
+  .booking-left{border-radius:26px;padding:20px 18px}
+  .booking-form-wrap{border-radius:26px;padding:18px}
+  .form-grid{grid-template-columns:1fr}
+  .footer-panel{border-radius:26px;padding:20px 18px}
+  .footer-top{grid-template-columns:1fr}
+  #hoverPreview{display:none !important}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<div id="progress"></div>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#">
+      <div class="logo-mark">N</div>
+      <div class="logo-type"><b>NORDRENHOLD</b><span>Oslo — Etablert 2018</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#priser">Priser</a>
+      <a href="#prosess">Slik fungerer det</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-light" href="#priser">Beregn pris</a>
+      <a class="btn btn-dark" href="#bestill">Bestill renhold</a>
+      <button class="hamburger" id="burger" aria-label="Meny">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M1 1h16M1 6h16M1 11h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div id="mMenu">
+  <div class="m-head">
+    <div class="logo"><div class="logo-mark">N</div><div class="logo-type"><b>NORDRENHOLD</b><span>Oslo — Etablert 2018</span></div></div>
+    <button class="btn btn-light" id="mClose">Lukk</button>
+  </div>
+  <div class="m-links">
+    <a href="#tjenester" class="m-link">Tjenester</a>
+    <a href="#priser" class="m-link">Priser</a>
+    <a href="#prosess" class="m-link">Prosess</a>
+    <a href="#kontakt" class="m-link">Kontakt</a>
+  </div>
+  <div style="margin-top:auto;display:grid;gap:10px">
+    <a class="btn btn-dark" style="height:52px" href="#bestill">Bestill renhold</a>
+    <div class="mono" style="opacity:.6">post@nordrenhold.no — +47 400 12 345</div>
+  </div>
+</div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-inner">
+      <div class="hero-left reveal is-in">
+        <div class="eyebrow mono"><i>4.9/5</i> 1 200+ hjem • 98% beholder samme renholder</div>
+        <h1 class="hero-h1 serif" id="heroH1">
+          <span class="line"><span>Rent hjem.</span></span>
+          <span class="line"><span>Fast person.</span></span>
+          <span class="line"><span><em>Null stress.</em></span></span>
+        </h1>
+        <p class="hero-sub">NordRenhold er ikke et vikarbyrå. Vi matcher deg med én fast renholder, med egne nøkkelrutiner, miljømerket kjemi og en fornøydhetsgaranti som faktisk gjelder.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" style="height:50px;padding:0 22px" href="#bestill">Bestill renhold <span aria-hidden="true">→</span></a>
+          <a class="btn btn-light" style="height:50px" href="#priser">Beregn pris på 30 sek</a>
+        </div>
+        <div class="hero-proof">
+          <div class="avatars">
+            <img src="images/photo-09.jpg" alt="">
+            <img src="images/photo-05.jpg" alt="">
+            <img src="images/photo-08.jpg" alt="">
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px"><div class="stars">★★★★★</div><b style="font-size:.9rem">4.9 på Google</b></div>
+            <div class="mono" style="opacity:.6;margin-top:2px;font-size:.72rem">Sist oppdatert i dag • Verifiserte kunder</div>
+          </div>
+          <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="pill">Miljømerket</span><span class="pill">Forsikret</span><span class="pill">Fast avtale</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right reveal is-in" style="transition-delay:.08s">
+        <div class="hero-img"><img src="images/photo-14.jpg" alt="Nordisk rent hjem"></div>
+        <div class="hero-overlay"></div>
+        <div class="float-card fc-1">
+          <div class="ic">◍</div>
+          <div><b>Neste ledige i ditt område</b><span id="nextSlot">I morgen 09:00 • Frogner</span></div>
+          <span class="badge-live" style="margin-left:auto">Ledig</span>
+        </div>
+        <div class="float-card fc-2">
+          <img src="images/photo-10.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover" alt="">
+          <div><b>Fast renholder: Maria S.</b><span>7 år hos NordRenhold • 4.98 ★ • Norsk, engelsk, spansk</span></div>
+        </div>
+        <div class="float-card fc-3" style="padding:10px 12px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:36px;height:36px;border-radius:10px;background:var(--lime);display:grid;place-items:center">✓</div>
+            <div><b style="font-size:.86rem">Fornøydhetsløfte</b><span style="font-size:.74rem">Ikke fornøyd? Vi kommer tilbake innen 24t, gratis.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="calc wrap" id="priser">
+    <div class="calc-panel reveal">
+      <div class="calc-left">
+        <div class="mono calc-kicker"><span style="width:28px;height:1px;background:var(--lime);display:inline-block"></span> Priskalkulator — ingen e-post nødvendig</div>
+        <h2 class="serif">Hva koster det<br><em style="font-style:italic;font-weight:500;color:var(--lime)">egentlig?</em></h2>
+        <div class="calc-form">
+          <div class="f-group">
+            <div class="f-label">Type oppdrag</div>
+            <div class="chips" id="typeChips"></div>
+          </div>
+          <div class="f-group">
+            <div class="range-wrap">
+              <div class="range-head"><div class="f-label">Størrelse</div><b id="sizeVal">85<small>m²</small></b></div>
+              <input type="range" id="sizeRange" min="30" max="240" step="5" value="85" />
+              <div style="display:flex;justify-content:space-between;margin-top:8px" class="mono"><span style="opacity:.6">30 m² — 1-roms</span><span style="opacity:.6">240 m² — Enebolig</span></div>
+            </div>
+          </div>
+          <div class="f-group">
+            <div class="f-label">Frekvens</div>
+            <div class="chips" id="freqChips"></div>
+          </div>
+          <div class="f-group">
+            <div class="f-label">Tillegg (valgfritt)</div>
+            <div class="addons" id="addons"></div>
+          </div>
+        </div>
+      </div>
+      <div class="calc-right">
+        <div class="price-card">
+          <div class="price-top">
+            <div>
+              <h3 class="serif" id="summaryTitle">Hjemmerenhold • 85 m²</h3>
+              <div class="mono" style="opacity:.6;margin-top:4px" id="summarySub">Hver 2. uke • 2.5 timer • Fast person</div>
+            </div>
+            <span class="badge-live"><span style="width:6px;height:6px;border-radius:50%;background:var(--lime);display:inline-block"></span> Live pris</span>
+          </div>
+          <div class="price-big"><strong id="priceBig">1 490 kr</strong><span id="priceSuffix">/ gang</span></div>
+          <div class="breakdown" id="breakdown"></div>
+          <div class="total"><b id="totalLabel">Total per gang</b><b id="totalPrice">1 490 kr</b></div>
+          <div class="micro" id="micro"></div>
+          <div class="calc-cta">
+            <a class="btn btn-dark" href="#bestill" id="ctaCalc" style="width:100%">Bestill til denne prisen</a>
+            <button class="btn btn-light" style="width:100%" id="copyOffer">Kopier pristilbud</button>
+          </div>
+          <div class="calc-foot">Prisen er veiledende. Endelig pris bekreftes etter befaring på video. Ingen binding.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services wrap" id="tjenester">
+    <div class="sec-head reveal">
+      <h2 class="serif">Vi gjør én ting<br>veldig, veldig bra.</h2>
+      <p>Ingen pakkeløsninger du ikke trenger. Velg det du faktisk vil ha — vi setter opp en fast rutine rundt livet ditt, ikke omvendt.</p>
+    </div>
+    <div class="service-list" id="serviceList"></div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process wrap" id="prosess">
+    <div class="process-grid">
+      <div class="sticky-card reveal">
+        <div class="mono" style="opacity:.6;margin-bottom:12px">Slik fungerer det — 3 steg</div>
+        <h2 class="serif">Du bestiller.<br>Vi tar nøkkelen.<br><em style="font-style:italic;font-weight:500">Du merker forskjellen.</em></h2>
+        <div class="sticky-visual"><img src="images/photo-11.jpg" alt=""></div>
+        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><span class="pill">Svar innen 2 timer</span><span class="pill">Oppstart innen 72 timer</span><span class="pill">Digital nøkkelhåndtering</span></div>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="step-n">1</div><div><h4 class="serif">Match på 2 timer</h4><p>Du velger type, størrelse og frekvens. Vi matcher deg med en fast renholder i ditt område — ikke et vikarpool.</p><div class="step-foot"><span class="pill">Maria S. i Frogner</span><span class="pill">Fast hver tirsdag 09:00</span></div></div></div>
+        <div class="step reveal"><div class="step-n">2</div><div><h4 class="serif">Første vask med sjekkliste</h4><p>Renholderen går gjennom 52-punkts sjekkliste med bilder. Du får rapport på SMS. Er noe ikke 100%, kommer vi tilbake gratis innen 24 timer.</p><div class="step-foot"><span class="pill">52 punkter</span><span class="pill">Fotorapport</span><span class="pill">Fornøydhetsløfte</span></div></div></div>
+        <div class="step reveal"><div class="step-n">3</div><div><h4 class="serif">Samme person. Samme standard.</h4><p>Fast dag, fast tid, fast person. Du kan pause, flytte eller endre i appen. Miljømerket kjemi og eget utstyr inkludert.</p><div class="step-foot"><span class="pill">Pause når du vil</span><span class="pill">Miljømerket</span><span class="pill">Forsikret via Gjensidige</span></div></div></div>
+        <div class="step reveal" style="background:var(--forest);color:var(--bg);border-color:var(--forest)"><div class="step-n" style="background:var(--lime);color:var(--forest)">✓</div><div><h4 class="serif" style="color:var(--bg)">Kvalitetsgaranti</h4><p style="color:rgba(248,245,239,.7)">4.9/5 basert på 1 200+ verifiserte hjem. Hvis du ikke er fornøyd, vasker vi om igjen — eller du betaler ingenting.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust wrap">
+    <div class="trust-grid">
+      <div class="trust-card reveal"><div class="ic">◑</div><h4 class="serif">Én fast renholder</h4><p>Du får samme person hver gang. Vi ansetter, vi trener, vi beholder. 98% av kundene har samme renholder over 12 mnd.</p><div class="mono" style="opacity:.5">Snitt: 4.8 år ansiennitet</div></div>
+      <div class="trust-card reveal"><div class="ic">♻︎</div><h4 class="serif">Miljømerket kjemi</h4><p>Svanemerket, parfymefritt og trygt for barn og dyr. Vi tar med eget utstyr — du trenger ikke tenke på noe.</p><div class="mono" style="opacity:.5">Svanemerket • Astma- og Allergi</div></div>
+      <div class="trust-card reveal"><div class="ic">◍</div><h4 class="serif">Nøkkelrutiner & forsikring</h4><p>Digital nøkkelhåndtering, kodeboks eller henting. Full ansvarsforsikring via Gjensidige. Alt loggføres.</p><div class="mono" style="opacity:.5">Forsikret til 5MNOK</div></div>
+      <div class="trust-card reveal"><div class="ic">✦</div><h4 class="serif">Fornøyd eller gratis</h4><p>Ikke 100% fornøyd? Si ifra innen 24t, så kommer vi tilbake. Uten diskusjon. Det er derfor vi har 4.9 på Google.</p><div class="mono" style="opacity:.5">24t garanti</div></div>
+    </div>
+  </section>
+
+  <!-- BEFORE AFTER -->
+  <section class="ba wrap">
+    <div class="ba-panel reveal">
+      <div class="ba-left">
+        <div class="mono" style="color:var(--lime)">Før / Etter — ekte oppdrag</div>
+        <h2 class="serif">Det er forskjell<br>på rent og<br><em style="font-style:italic;font-weight:500;color:var(--lime)">NordRenhold-rent.</em></h2>
+        <p>Dra i håndtaket. Bildene er fra flyttevask på 68 m² på Grünerløkka. 52-punkts sjekk, 4.5 timer, godkjent av utleier første gang.</p>
+        <div class="ba-stats">
+          <div class="ba-stat"><b>4.5t</b><span>Effektiv tid</span></div>
+          <div class="ba-stat"><b>100%</b><span>Godkjent garanti</span></div>
+          <div class="ba-stat"><b>32 kr</b><span>per m² flyttevask</span></div>
+          <div class="ba-stat"><b>0 kr</b><span>ved ikke godkjent</span></div>
+        </div>
+      </div>
+      <div class="ba-right" id="baWrap">
+        <div class="ba-img"><img src="images/photo-02.jpg" alt="Før"></div>
+        <div class="ba-after" id="baAfter"><img src="images/photo-16.jpg" alt="Etter"></div>
+        <div class="ba-handle" id="baHandle"><div class="ba-handle-line"></div><div class="ba-handle-btn" id="baBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 12H16M14 8l4 4-4 4M10 8L6 12l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="ba-labels"><span class="ba-label">FØR</span><span class="ba-label">ETTER — NORDRENHOLD</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews wrap">
+    <div class="reviews-head reveal">
+      <div class="big-quote serif">“Det er første gang jeg faktisk gleder meg til å komme hjem på vaskedagen.”</div>
+      <div class="mono" style="opacity:.6">Verifiserte anmeldelser • Google 4.9/5 • 312 anmeldelser siste år</div>
+    </div>
+    <div class="review-grid">
+      <div class="review-feature reveal">
+        <div class="mono" style="opacity:.5;margin-bottom:12px">Kunde siden 2021 — Frogner, 92 m²</div>
+        <div class="q serif">Maria legger igjen leiligheten bedre enn da vi flyttet inn. Samme person, samme tid, hver tirsdag. Det er den lille luksusen som gjør hverdagen levelig med to små barn. Og kjemien lukter ikke — barna kan leke med en gang.</div>
+        <div class="review-person"><img src="images/photo-01.jpg" alt=""><div><b>Ingrid L.</b><div class="mono" style="opacity:.6;font-size:.72rem">Advokat • 2 barn • Hund</div></div><div style="margin-left:auto">★★★★★</div></div>
+      </div>
+      <div class="review-cards">
+        <div class="r-card reveal"><p>“Flyttevask godkjent uten en eneste kommentar fra utleier. Fikk depositumet tilbake dagen etter.”</p><div class="meta"><b>Jonas K. — Grünerløkka 68 m²</b><span class="mono">Flyttevask</span></div></div>
+        <div class="r-card reveal"><p>“Endelig et firma som ikke sender nye folk hver gang. Samme dame i 2 år. Hun kan koden, hun vet hvor katten gjemmer seg.”</p><div class="meta"><b>Silje M. — Sagene</b><span class="mono">Hver 2. uke</span></div></div>
+        <div class="r-card reveal"><p>“Vi byttet fra et stort kjedefirma. Halv pris, dobbel kvalitet. Og fastrenholderen vår, Aisha, er helt gull.”</p><div class="meta"><b>Kontor — 240 m² Majorstuen</b><span class="mono">Kontorrenhold</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="coverage wrap">
+    <div class="coverage-panel reveal">
+      <div class="coverage-left">
+        <h3 class="serif">Vi er der du er. Oslo + Bærum, Asker og Lillestrøm.</h3>
+        <p style="margin-top:10px;color:var(--ink-2);line-height:1.5">Ledig kapasitet denne uken i Frogner, Majorstuen, Grünerløkka, Sagene og Bjørvika. Oppstart innen 72 timer.</p>
+        <div class="areas" id="areas"></div>
+        <div style="margin-top:18px;display:flex;gap:10px"><a class="btn btn-dark" href="#bestill">Sjekk ledig tid</a><span class="mono" style="align-self:center;opacity:.6">Svar innen 2 timer</span></div>
+      </div>
+      <div class="map">
+        <img src="images/photo-06.jpg" alt="Oslo kart">
+        <div class="map-pins">
+          <div class="pin lime" style="left:34%;top:42%">Frogner • 3 ledige</div>
+          <div class="pin" style="left:58%;top:36%">Grünerløkka</div>
+          <div class="pin" style="left:48%;top:68%">Bjørvika</div>
+          <div class="pin" style="left:72%;top:58%">Bærum</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking wrap" id="bestill">
+    <div class="booking-panel">
+      <div class="booking-left reveal">
+        <div class="mono" style="color:var(--lime)">Bestill på 60 sekunder</div>
+        <h2 class="serif">Klar for et hjem<br>som puster igjen?</h2>
+        <p>Legg igjen info, så ringer vi innen 2 timer (man–fre 08–18). Du får fast pris, fast person og oppstart innen 72 timer. Ingen binding.</p>
+        <div class="checks">
+          <div class="check"><div class="c">✓</div><div><b>Fast renholder — ikke vikarer</b><span>Samme person hver gang. 98% beholder samme over 12 mnd.</span></div></div>
+          <div class="check"><div class="c">✓</div><div><b>Miljømerket & forsikret</b><span>Svanemerket kjemi, eget utstyr, forsikret via Gjensidige.</span></div></div>
+          <div class="check"><div class="c">✓</div><div><b>Fornøydhetsløfte 24t</b><span>Ikke fornøyd? Vi kommer tilbake gratis, eller du betaler 0 kr.</span></div></div>
+        </div>
+        <div style="margin-top:26px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <img src="images/photo-10.jpg" style="width:42px;height:42px;border-radius:50%;object-fit:cover" alt="">
+          <div><b style="font-size:.92rem">Maria S. — din mulige renholder</b><div class="mono" style="opacity:.6">7 år • 4.98 ★ • Tilgjengelig tir/ons</div></div>
+        </div>
+      </div>
+      <div class="booking-form-wrap reveal" id="kontakt">
+        <div class="success" id="successBox"><b class="serif" style="font-size:1.2rem">Takk! Vi ringer innen 2 timer.</b><div class="mono" style="margin-top:6px;opacity:.7">Du får også en SMS med fast pris og tidspunkt. Sjekk mobilen.</div></div>
+        <form id="bookForm" style="display:grid;gap:14px">
+          <div class="form-grid">
+            <div class="field"><label>Navn</label><input class="input" name="name" placeholder="Ingrid Larsen" required></div>
+            <div class="field"><label>Mobil</label><input class="input" name="phone" placeholder="+47 900 00 000" required></div>
+            <div class="field full"><label>Adresse</label><input class="input" name="address" placeholder="Pilestredet 42, 0166 Oslo" required></div>
+            <div class="field"><label>Type</label><select class="input" name="type" id="formType"><option>Hjemmerenhold</option><option>Flyttevask</option><option>Kontorrenhold</option><option>Vindusvask</option><option>Byggvask</option><option>Fast avtale</option></select></div>
+            <div class="field"><label>Størrelse</label><select class="input" name="size"><option>45 m² — 1-roms</option><option>68 m² — 2-roms</option><option selected>85 m² — 3-roms</option><option>110 m² — 4-roms</option><option>150 m²+</option></select></div>
+            <div class="field full"><label>Hva er viktigst for deg?</label><textarea class="input textarea" name="msg" placeholder="F.eks: Fast person hver tirsdag, allergivennlig kjemi, ta med eget utstyr, nøkkelhåndtering..."></textarea></div>
+          </div>
+          <div class="form-foot">
+            <button class="btn btn-dark" style="height:50px;padding:0 22px" type="submit">Få pristilbud — svar innen 2t</button>
+            <small>Ved å sende inn godtar du at vi lagrer info for å gi tilbud. Ingen spam. Slettes på forespørsel.</small>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px"><span class="pill">Org 923 456 789</span><span class="pill">post@nordrenhold.no</span><span class="pill">+47 400 12 345</span></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer wrap">
+  <div class="footer-panel">
+    <div class="footer-top">
+      <div class="footer-brand"><b class="serif">NORDRENHOLD AS</b><p>Fast renholder, miljømerket kjemi og fornøydhetsløfte. Oslo, Bærum, Asker og Lillestrøm. Etablert 2018.</p><div style="margin-top:16px;display:flex;gap:8px"><span class="pill" style="background:rgba(255,255,255,.1);color:var(--bg);border-color:rgba(255,255,255,.18)">4.9 Google</span><span class="pill" style="background:rgba(255,255,255,.1);color:var(--bg);border-color:rgba(255,255,255,.18)">Svanemerket</span></div></div>
+      <div class="footer-col"><h5>Tjenester</h5><a href="#tjenester">Hjemmerenhold</a><a href="#tjenester">Flyttevask</a><a href="#tjenester">Kontorrenhold</a><a href="#tjenester">Byggvask</a><a href="#tjenester">Vindusvask</a><a href="#tjenester">Fast avtale</a></div>
+      <div class="footer-col"><h5>Pris & info</h5><a href="#priser">Priskalkulator</a><a href="#">Sjekklister</a><a href="#">Garanti & forsikring</a><a href="#">Miljø & kjemi</a><a href="#">Nøkkelrutiner</a></div>
+      <div class="footer-col"><h5>Kontakt</h5><a>Pilestredet 42, 0166 Oslo</a><a>post@nordrenhold.no</a><a>+47 400 12 345</a><a>Man–fre 08–18</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 NordRenhold AS — Org 923 456 789 MVA</span><span>Designet for å føles som et hjem, ikke et firma. • Personvern • Vilkår</span></div>
+  </div>
+</footer>
+
+<div id="hoverPreview"><img src="" alt="" id="hoverImg"></div>
+
+<script>
+// ticker
+const tickerItems=[
+  "LEDIG KAPASITET DENNE UKEN — FROGNER, MAJORSTUEN, GRÜNERLØKKA",
+  "FAST RENHOLDER — IKKE VIKARER",
+  "FORNØYDHETS GARANTI 24T — ELLERS 0 KR",
+  "MILJØMERKET KJEMI — SVANEMERKET",
+  "SVAR INNEN 2 TIMER — OPPSTART INNEN 72T"
+];
+const track=document.getElementById('tickerTrack');
+function buildTicker(){
+  const frag=document.createDocumentFragment();
+  for(let r=0;r<4;r++){
+    tickerItems.forEach(t=>{
+      const el=document.createElement('div');
+      el.className='ticker-item mono';
+      el.innerHTML=`<span class="ticker-dot"></span><span>${t}</span>`;
+      frag.appendChild(el);
+    });
+  }
+  track.appendChild(frag);
+}
+buildTicker();
+
+// progress
+const prog=document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight);
+  prog.style.width=(sc*100)+'%';
+});
+
+// reveal
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('is-in');
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+setTimeout(()=>{
+  document.querySelectorAll('.hero-h1 .line span').forEach((s,i)=>{s.style.transitionDelay=(i*0.08)+'s'});
+  document.getElementById('heroH1').classList.add('is-in');
+},80);
+
+// mobile menu
+const burger=document.getElementById('burger');
+const mMenu=document.getElementById('mMenu');
+const mClose=document.getElementById('mClose');
+burger?.addEventListener('click',()=>mMenu.classList.add('is-open'));
+mClose?.addEventListener('click',()=>mMenu.classList.remove('is-open'));
+document.querySelectorAll('.m-link').forEach(a=>a.addEventListener('click',()=>mMenu.classList.remove('is-open')));
+
+// next slot dynamic
+const slots=["I morgen 09:00 • Frogner","I dag 14:00 • Grünerløkka","I morgen 10:30 • Majorstuen","Torsdag 08:30 • Bjørvika"];
+let sIdx=0;
+setInterval(()=>{
+  sIdx=(sIdx+1)%slots.length;
+  const el=document.getElementById('nextSlot');
+  if(el){el.style.opacity=0;setTimeout(()=>{el.textContent=slots[sIdx];el.style.opacity=1;},180)}
+},3200);
+
+// calculator data
+const TYPES=[
+  {id:'home',label:'Hjemmerenhold',base:16.5,unit:'kr/m²',timeFactor:1,desc:'Fast person'},
+  {id:'move',label:'Flyttevask',base:32,unit:'kr/m²',timeFactor:1.6,desc:'Garanti'},
+  {id:'office',label:'Kontor',base:18,unit:'kr/m²',timeFactor:1.1,desc:'Kveld/helg'},
+  {id:'window',label:'Vindusvask',base:22,unit:'kr/m²',timeFactor:0.8,desc:'Innvendig/utvendig'},
+  {id:'build',label:'Byggvask',base:28,unit:'kr/m²',timeFactor:1.4,desc:'Grov + fin'},
+];
+const FREQS=[
+  {id:'weekly',label:'Hver uke',mult:1,disc:0.12,note:'-12% fastpris'},
+  {id:'biweekly',label:'Hver 2. uke',mult:1,disc:0.06,note:'Mest valgt'},
+  {id:'monthly',label:'Hver 4. uke',mult:1,disc:0,note:''},
+  {id:'once',label:'Engang',mult:1.18,disc:0,note:'+18%'},
+];
+const ADDONS=[
+  {id:'win',label:'Vinduer innvendig',price:290,desc:'Alle vinduer'},
+  {id:'oven',label:'Stekeovn',price:249,desc:'Innvendig'},
+  {id:'fridge',label:'Kjøleskap',price:199,desc:'Innvendig'},
+  {id:'balcony',label:'Balkong / terrasse',price:350,desc:'Fei + vask'},
+];
+
+let state={type:'home',size:85,freq:'biweekly',addons:new Set(['win'])};
+
+const typeChips=document.getElementById('typeChips');
+const freqChips=document.getElementById('freqChips');
+const addonsEl=document.getElementById('addons');
+function renderChips(){
+  typeChips.innerHTML='';
+  TYPES.forEach(t=>{
+    const b=document.createElement('button');
+    b.className='chip'+(state.type===t.id?' is-active':'');
+    b.textContent=t.label;
+    b.onclick=()=>{state.type=t.id;renderChips();calc();syncFormType();};
+    typeChips.appendChild(b);
+  });
+  freqChips.innerHTML='';
+  FREQS.forEach(f=>{
+    const b=document.createElement('button');
+    b.className='chip'+(state.freq===f.id?' is-active':'');
+    b.innerHTML=`${f.label} ${f.note?`<span style="opacity:.7;font-size:.78em;margin-left:4px">${f.note}</span>`:''}`;
+    b.onclick=()=>{state.freq=f.id;renderChips();calc();};
+    freqChips.appendChild(b);
+  });
+  addonsEl.innerHTML='';
+  ADDONS.forEach(a=>{
+    const row=document.createElement('button');
+    row.className='addon'+(state.addons.has(a.id)?' is-on':'');
+    row.type='button';
+    row.innerHTML=`<div class="addon-left"><div class="ic" style="width:32px;height:32px;border-radius:9px;background:rgba(255,255,255,.1);display:grid;place-items:center">+</div><div><b>${a.label}</b><span>${a.desc} • +${a.price} kr</span></div></div><div class="switch"></div>`;
+    row.onclick=()=>{
+      if(state.addons.has(a.id)) state.addons.delete(a.id); else state.addons.add(a.id);
+      renderChips();calc();
+    };
+    addonsEl.appendChild(row);
+  });
+}
+
+const sizeRange=document.getElementById('sizeRange');
+const sizeVal=document.getElementById('sizeVal');
+sizeRange.addEventListener('input',e=>{
+  state.size=parseInt(e.target.value,10);
+  sizeVal.innerHTML=`${state.size}<small>m²</small>`;
+  calc();
+});
+
+function calc(){
+  const t=TYPES.find(x=>x.id===state.type);
+  const f=FREQS.find(x=>x.id===state.freq);
+  let base = t.base * state.size;
+  // adjust for home minimum
+  if(t.id==='home' && base<1290) base=1290;
+  if(t.id==='move' && base<2490) base=2490;
+  let subtotal = base * f.mult;
+  let addonSum=0;
+  state.addons.forEach(id=>{
+    const ad=ADDONS.find(a=>a.id===id);
+    if(ad) addonSum+=ad.price;
+  });
+  let beforeDisc=subtotal+addonSum;
+  let discount = beforeDisc * f.disc;
+  let total = Math.round((beforeDisc - discount)/10)*10;
+
+  // hours estimate
+  let hours = Math.max(1.5, (state.size/38)*t.timeFactor);
+  hours = Math.round(hours*2)/2;
+
+  // update UI
+  document.getElementById('summaryTitle').textContent=`${t.label} • ${state.size} m²`;
+  document.getElementById('summarySub').textContent=`${f.label} • ${hours} timer • ${t.desc}`;
+  document.getElementById('priceBig').textContent= total.toLocaleString('no-NO')+' kr';
+  document.getElementById('priceSuffix').textContent= t.id==='move'?'total':(t.id==='office'?'/ mnd':'/ gang');
+  document.getElementById('totalPrice').textContent= total.toLocaleString('no-NO')+' kr';
+  document.getElementById('totalLabel').textContent= t.id==='move'?'Total flyttevask':'Total per gang';
+
+  const bd=document.getElementById('breakdown');
+  bd.innerHTML=`
+    <div class="row"><small>${t.label} ${state.size} m² × ${t.base} kr</small><span>${Math.round(base).toLocaleString('no-NO')} kr</span></div>
+    ${f.mult!==1?`<div class="row"><small>Tillegg ${f.label}</small><span>${f.mult>1?'+':''}${Math.round((f.mult-1)*100)}%</span></div>`:''}
+    ${addonSum?`<div class="row"><small>Tillegg (${state.addons.size})</small><span>+${addonSum} kr</span></div>`:''}
+    ${discount?`<div class="row"><small>Rabatt ${f.label}</small><span style="color:#2e7d32">−${Math.round(discount)} kr</span></div>`:''}
+  `;
+  const micro=document.getElementById('micro');
+  micro.innerHTML=`
+    <span>⏱ ${hours}t estimert</span>
+    <span>✓ ${t.id==='move'?'Godkjent-garanti':'Fornøydhetsløfte'}</span>
+    <span>♻︎ Svanemerket</span>
+    <span>Ingen binding</span>
+  `;
+
+  // update CTA link with params
+  const params=`${t.label} ${state.size}m² ${f.label} — ${total}kr`;
+  document.getElementById('ctaCalc').dataset.offer=params;
+}
+function syncFormType(){
+  const t=TYPES.find(x=>x.id===state.type);
+  const sel=document.getElementById('formType');
+  if(t && sel){
+    const map={home:'Hjemmerenhold',move:'Flyttevask',office:'Kontorrenhold',window:'Vindusvask',build:'Byggvask'};
+    const label=map[t.id]||'Hjemmerenhold';
+    [...sel.options].forEach(o=>{if(o.textContent===label) sel.value=o.textContent});
+  }
+}
+renderChips();calc();
+
+// copy offer
+document.getElementById('copyOffer')?.addEventListener('click',async()=>{
+  const offer=document.getElementById('ctaCalc').dataset.offer||'Tilbud';
+  try{
+    await navigator.clipboard.writeText(`NordRenhold AS — ${offer}. Fast person, miljømerket, fornøydhetsløfte. post@nordrenhold.no`);
+    const b=document.getElementById('copyOffer');
+    const old=b.textContent;
+    b.textContent='Kopiert ✓';
+    setTimeout(()=>b.textContent=old,1800);
+  }catch{}
+});
+
+// services
+const SERVICES=[
+  {n:'01',title:'Hjemme<em>renhold</em>',desc:'Fast person, fast dag. 52-punkts sjekk, fotorapport og miljømerket kjemi. Pause når du vil.',price:'Fra 1 290 kr',img:'images/photo-12.jpg'},
+  {n:'02',title:'Flytte<em>vask</em>',desc:'Godkjent-garanti. Ikke godkjent? Vi tar det gratis innen 24t. 32 kr/m², min 2 490 kr.',price:'Fra 32 kr/m²',img:'images/photo-13.jpg'},
+  {n:'03',title:'Kontor<em>renhold</em>',desc:'Kveld, morgen eller helg. Faste rutiner, nøkkelhåndtering og HMS-dokumentasjon.',price:'Fra 1 890 kr/mnd',img:'images/photo-03.jpg'},
+  {n:'04',title:'Bygg<em>vask</em>',desc:'Grovvask og finvask for overlevering. Støvfritt, klart til innflytting.',price:'Fra 28 kr/m²',img:'images/photo-04.jpg'},
+  {n:'05',title:'Vindus<em>vask</em>',desc:'Innvendig, utvendig eller begge. Uten skjolder. Privat og næring.',price:'Fra 890 kr',img:'images/photo-07.jpg'},
+  {n:'06',title:'Fast <em>avtale</em>',desc:'Hver uke, hver 2. eller hver 4. uke. −12% på ukentlig. Samme person, samme standard.',price:'−12% ukentlig',img:'images/photo-15.jpg'},
+];
+const list=document.getElementById('serviceList');
+SERVICES.forEach(s=>{
+  const row=document.createElement('a');
+  row.href='#bestill';
+  row.className='service-row';
+  row.dataset.img=s.img;
+  row.innerHTML=`
+    <div class="num mono">${s.n}</div>
+    <h3 class="serif">${s.title}</h3>
+    <div class="service-meta">${s.desc}</div>
+    <div class="service-price"><b>${s.price}</b><span>Bestill →</span><div class="service-arrow">↗</div></div>
+  `;
+  list.appendChild(row);
+});
+
+// hover preview
+const hover=document.getElementById('hoverPreview');
+const hoverImg=document.getElementById('hoverImg');
+let mouseX=0,mouseY=0,raf=null;
+function moveHover(){
+  hover.style.left=mouseX+'px';
+  hover.style.top=mouseY+'px';
+}
+document.querySelectorAll('.service-row').forEach(row=>{
+  row.addEventListener('mouseenter',()=>{
+    hoverImg.src=row.dataset.img;
+    hover.classList.add('is-visible');
+  });
+  row.addEventListener('mouseleave',()=>hover.classList.remove('is-visible'));
+  row.addEventListener('mousemove',e=>{
+    mouseX=e.clientX;mouseY=e.clientY;
+    if(!raf){raf=requestAnimationFrame(()=>{moveHover();raf=null;});}
+  });
+});
+
+// before after drag
+const baWrap=document.getElementById('baWrap');
+const baAfter=document.getElementById('baAfter');
+const baHandle=document.getElementById('baHandle');
+let dragging=false;
+function setBA(x){
+  const rect=baWrap.getBoundingClientRect();
+  let p=(x-rect.left)/rect.width;
+  p=Math.max(0.08,Math.min(0.92,p));
+  baAfter.style.width=(p*100)+'%';
+  baHandle.style.left=(p*100)+'%';
+}
+baWrap.addEventListener('pointerdown',e=>{
+  dragging=true;
+  baWrap.setPointerCapture(e.pointerId);
+  setBA(e.clientX);
+});
+window.addEventListener('pointermove',e=>{
+  if(!dragging) return;
+  setBA(e.clientX);
+});
+window.addEventListener('pointerup',()=>dragging=false);
+baWrap.addEventListener('touchmove',e=>{
+  if(!dragging) return;
+  setBA(e.touches[0].clientX);
+},{passive:true});
+
+// areas
+const areaList=["Frogner","Majorstuen","Grünerløkka","Sagene","Bjørvika","St.Hanshaugen","Gamle Oslo","Bærum","Asker","Lillestrøm"];
+const areasEl=document.getElementById('areas');
+areaList.forEach(a=>{
+  const el=document.createElement('span');
+  el.className='area';
+  el.innerHTML=`<i></i>${a}`;
+  areasEl.appendChild(el);
+});
+
+// form
+const form=document.getElementById('bookForm');
+const success=document.getElementById('successBox');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const fd=new FormData(form);
+  const btn=form.querySelector('button[type=submit]');
+  const old=btn.textContent;
+  btn.textContent='Sender...';
+  btn.disabled=true;
+  setTimeout(()=>{
+    btn.textContent=old;
+    btn.disabled=false;
+    form.style.display='none';
+    success.classList.add('is-on');
+    // confetti-ish
+    success.animate([{transform:'scale(.96)'},{transform:'scale(1)'}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'});
+  },900);
+});
+
+// magnetic buttons
+document.querySelectorAll('.btn-dark,.btn-light').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const x=e.clientX - (r.left+r.width/2);
+    const y=e.clientY - (r.top+r.height/2);
+    btn.style.transform=`translate(${x*0.12}px,${y*0.18}px)`;
+  });
+  btn.addEventListener('mouseleave',()=>btn.style.transform='translate(0,0)');
+});
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

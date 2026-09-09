@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Studio Andersen — Frisørsalong i Oslo</title>
+<meta name="description" content="Studio Andersen er en moderne frisørsalong i Oslo med fokus på klipp, farge, balayage og hårpleie. Bestill time hos våre håndplukkede stylister." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F1ECE4;
+    --bone-2:#E7E0D5;
+    --ink:#1C1815;
+    --ink-soft:#3A332D;
+    --clay:#B0654A;
+    --clay-deep:#8F4E37;
+    --sand:#C9BBA8;
+    --line:rgba(28,24,21,.14);
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Manrope', system-ui, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--bone);
+    color:var(--ink);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  ::selection{background:var(--clay);color:var(--bone)}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1;letter-spacing:-.01em}
+
+  .wrap{max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px)}
+  .eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--clay)}
+
+  /* ---------- Preloader ---------- */
+  #loader{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .8s ease,visibility .8s}
+  #loader.done{opacity:0;visibility:hidden}
+  .load-word{font-family:var(--serif);color:var(--bone);font-size:clamp(2rem,7vw,4.5rem);overflow:hidden;height:1.1em}
+  .load-word span{display:inline-block;transform:translateY(110%);animation:loadUp .9s cubic-bezier(.2,.8,.2,1) forwards}
+  @keyframes loadUp{to{transform:translateY(0)}}
+  .load-bar{width:min(240px,50vw);height:1px;background:rgba(241,236,228,.2);margin-top:28px;overflow:hidden}
+  .load-bar i{display:block;height:100%;width:0;background:var(--clay);animation:loadBar 1.4s ease forwards}
+  @keyframes loadBar{to{width:100%}}
+
+  /* ---------- Nav ---------- */
+  header{position:fixed;top:0;left:0;width:100%;z-index:900;transition:background .5s ease,padding .5s ease,box-shadow .5s;padding:26px 0}
+  header.solid{background:rgba(241,236,228,.85);backdrop-filter:blur(14px);padding:16px 0;box-shadow:0 1px 0 var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--serif);font-size:22px;letter-spacing:.02em;line-height:1;display:flex;flex-direction:column}
+  .brand small{font-family:var(--sans);font-size:9px;letter-spacing:.35em;text-transform:uppercase;font-weight:600;color:var(--clay);margin-top:4px}
+  .nav-links{display:flex;gap:38px;align-items:center}
+  .nav-links a{font-size:13px;font-weight:500;letter-spacing:.02em;position:relative}
+  .nav-links a::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:1px;background:currentColor;transition:width .4s cubic-bezier(.2,.8,.2,1)}
+  .nav-links a:hover::after{width:100%}
+  .nav-right{display:flex;align-items:center;gap:24px}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.02em;padding:13px 24px;border-radius:100px;background:var(--ink);color:var(--bone);border:1px solid var(--ink);cursor:pointer;transition:.4s cubic-bezier(.2,.8,.2,1);overflow:hidden;position:relative}
+  .btn:hover{background:var(--clay);border-color:var(--clay);color:var(--bone);transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--bone)}
+  .btn.light{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+  .btn.light:hover{background:var(--clay);color:var(--bone);border-color:var(--clay)}
+  .btn .dot{width:6px;height:6px;border-radius:50%;background:var(--clay);transition:.4s}
+  .btn:hover .dot{background:var(--bone);transform:scale(1.6)}
+
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;width:28px}
+  .burger span{height:1.5px;width:100%;background:var(--ink);transition:.35s}
+  header.light-nav .burger span{background:var(--bone)}
+  header.light-nav .brand,header.light-nav .nav-links a{color:var(--bone)}
+  header.light-nav.solid .brand,header.light-nav.solid .nav-links a{color:var(--ink)}
+  header.light-nav.solid .burger span{background:var(--ink)}
+
+  /* mobile menu */
+  .mobile-menu{position:fixed;inset:0;background:var(--ink);z-index:950;transform:translateY(-100%);transition:transform .7s cubic-bezier(.76,0,.24,1);display:flex;flex-direction:column;justify-content:center;padding:0 32px}
+  .mobile-menu.open{transform:translateY(0)}
+  .mobile-menu a{color:var(--bone);font-family:var(--serif);font-size:clamp(2rem,9vw,3.4rem);padding:10px 0;line-height:1.15;opacity:0;transform:translateY(20px);transition:.5s}
+  .mobile-menu.open a{opacity:1;transform:translateY(0)}
+  .mobile-menu.open a:nth-child(1){transition-delay:.15s}
+  .mobile-menu.open a:nth-child(2){transition-delay:.22s}
+  .mobile-menu.open a:nth-child(3){transition-delay:.29s}
+  .mobile-menu.open a:nth-child(4){transition-delay:.36s}
+  .mobile-menu.open a:nth-child(5){transition-delay:.43s}
+  .m-close{position:absolute;top:24px;right:28px;color:var(--bone);font-size:34px;cursor:pointer;font-family:var(--serif)}
+  .m-foot{position:absolute;bottom:36px;left:32px;color:var(--sand);font-size:13px;letter-spacing:.05em}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:120%;object-fit:cover;object-position:center 30%;filter:brightness(.72) saturate(.95);will-change:transform}
+  .hero-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,24,21,.45) 0%,rgba(28,24,21,.05) 35%,rgba(28,24,21,.7) 100%);z-index:1}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:clamp(40px,7vw,90px)}
+  .hero h1{color:var(--bone);font-size:clamp(3.2rem,13vw,12rem);line-height:.86;font-weight:300;letter-spacing:-.02em}
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--sand)}
+  .hero-line{overflow:hidden}
+  .hero-line span{display:block;transform:translateY(105%);opacity:0;animation:heroUp 1.1s cubic-bezier(.2,.85,.2,1) forwards}
+  .hero-line:nth-child(2) span{animation-delay:.12s}
+  @keyframes heroUp{to{transform:translateY(0);opacity:1}}
+  .hero-meta{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-top:clamp(28px,4vw,48px);opacity:0;animation:fadeIn 1s ease .7s forwards}
+  @keyframes fadeIn{to{opacity:1}}
+  .hero-meta p{color:var(--bone);max-width:360px;font-size:15px;font-weight:300;line-height:1.6;opacity:.9}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .scroll-hint{position:absolute;left:clamp(20px,5vw,80px);bottom:26px;z-index:2;color:var(--bone);font-size:10px;letter-spacing:.3em;text-transform:uppercase;display:flex;align-items:center;gap:10px;opacity:.75}
+  .scroll-hint .l{width:40px;height:1px;background:var(--bone);position:relative;overflow:hidden}
+  .scroll-hint .l::after{content:'';position:absolute;inset:0;background:var(--clay);animation:scrollLine 2s ease-in-out infinite}
+  @keyframes scrollLine{0%{transform:translateX(-100%)}50%{transform:translateX(0)}100%{transform:translateX(100%)}}
+
+  /* ---------- Marquee ---------- */
+  .marquee{background:var(--ink);color:var(--bone);padding:22px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(241,236,228,.1)}
+  .marquee-track{display:inline-flex;gap:0;animation:marq 32s linear infinite}
+  .marquee-track span{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2.2rem);font-style:italic;padding:0 34px;display:inline-flex;align-items:center;gap:34px;color:var(--bone)}
+  .marquee-track span::after{content:'✦';font-style:normal;color:var(--clay);font-size:.7em}
+  @keyframes marq{to{transform:translateX(-50%)}}
+
+  /* ---------- Reveal utility ---------- */
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .r-d1{transition-delay:.1s}.r-d2{transition-delay:.2s}.r-d3{transition-delay:.3s}.r-d4{transition-delay:.4s}
+  .line-reveal{overflow:hidden;display:block}
+  .line-reveal b{display:block;font-weight:inherit;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+  .in .line-reveal b{transform:translateY(0)}
+
+  /* ---------- Intro / philosophy ---------- */
+  .intro{padding:clamp(90px,13vw,170px) 0}
+  .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
+  .intro-figure{position:relative}
+  .intro-figure .main{aspect-ratio:4/5;overflow:hidden;border-radius:4px}
+  .intro-figure .main img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+  .intro-figure:hover .main img{transform:scale(1.05)}
+  .intro-figure .float{position:absolute;bottom:-40px;right:-30px;width:44%;aspect-ratio:3/4;overflow:hidden;border-radius:4px;border:8px solid var(--bone);box-shadow:0 30px 60px rgba(28,24,21,.2)}
+  .intro-figure .float img{width:100%;height:100%;object-fit:cover}
+  .intro-figure .stamp{position:absolute;top:-34px;left:-34px;width:112px;height:112px;background:var(--clay);color:var(--bone);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--serif);font-style:italic;font-size:14px;line-height:1.2;animation:spin 22s linear infinite;padding:14px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .intro-copy h2{font-size:clamp(2.2rem,5vw,4rem);line-height:1.02;margin:22px 0 26px}
+  .intro-copy h2 em{font-style:italic;color:var(--clay)}
+  .intro-copy p{font-size:16px;font-weight:300;color:var(--ink-soft);max-width:480px;margin-bottom:22px;line-height:1.7}
+  .stat-row{display:flex;gap:clamp(24px,4vw,54px);margin-top:38px;flex-wrap:wrap}
+  .stat b{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);display:block;line-height:1}
+  .stat span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px;display:block}
+
+  /* ---------- Services ---------- */
+  .services{background:var(--ink);color:var(--bone);padding:clamp(90px,13vw,160px) 0;position:relative}
+  .services .eyebrow{color:var(--sand)}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,70px)}
+  .sec-head h2{font-size:clamp(2.4rem,6vw,5rem);color:var(--bone);line-height:.98}
+  .sec-head h2 em{font-style:italic;color:var(--clay)}
+  .sec-head p{max-width:340px;font-size:14px;font-weight:300;color:var(--sand);line-height:1.7}
+  .serv-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,5vw,70px);align-items:start}
+  .serv-list{border-top:1px solid rgba(241,236,228,.16)}
+  .serv-item{border-bottom:1px solid rgba(241,236,228,.16);padding:26px 4px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;cursor:pointer;transition:.5s;position:relative}
+  .serv-item .num{font-size:12px;color:var(--sand);font-variant-numeric:tabular-nums}
+  .serv-item .name{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.3rem);transition:.5s cubic-bezier(.2,.8,.2,1);line-height:1.05}
+  .serv-item .name small{display:block;font-family:var(--sans);font-size:12.5px;font-weight:300;color:var(--sand);margin-top:8px;max-width:340px;line-height:1.5}
+  .serv-item .price{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2vw,1.5rem);color:var(--sand);white-space:nowrap}
+  .serv-item:hover{padding-left:18px}
+  .serv-item:hover .name{color:var(--clay)}
+  .serv-item:hover .price{color:var(--bone)}
+  .serv-preview{position:sticky;top:120px;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--ink-soft)}
+  .serv-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .7s ease,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+  .serv-preview img.active{opacity:1;transform:scale(1)}
+  .serv-preview .cap{position:absolute;left:20px;bottom:20px;z-index:3;color:var(--bone);font-family:var(--serif);font-style:italic;font-size:20px;background:rgba(28,24,21,.4);backdrop-filter:blur(6px);padding:8px 16px;border-radius:100px}
+  .serv-note{margin-top:34px;font-size:13px;color:var(--sand);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+
+  /* ---------- Signature / editorial parallax ---------- */
+  .signature{position:relative;padding:0}
+  .sig-strip{display:grid;grid-template-columns:1fr 1fr 1fr;min-height:80vh}
+  .sig-col{position:relative;overflow:hidden}
+  .sig-col img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+  .sig-col:hover img{transform:scale(1.06)}
+  .sig-col .tag{position:absolute;left:22px;bottom:22px;color:var(--bone);z-index:2}
+  .sig-col .tag .k{font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.8}
+  .sig-col .tag .t{font-family:var(--serif);font-size:26px;font-style:italic;margin-top:4px}
+  .sig-col::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(28,24,21,.6));z-index:1}
+  .sig-mid{background:var(--clay);display:flex;align-items:center;justify-content:center;text-align:center;padding:50px 30px}
+  .sig-mid::after{display:none}
+  .sig-mid h3{color:var(--bone);font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.02;font-style:italic}
+  .sig-mid p{color:rgba(241,236,228,.85);font-size:14px;font-weight:300;margin:20px auto 26px;max-width:300px;line-height:1.7}
+
+  /* ---------- Stylists ---------- */
+  .team{padding:clamp(90px,13vw,160px) 0}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,26px)}
+  .stylist{position:relative}
+  .stylist .ph{aspect-ratio:3/4;overflow:hidden;border-radius:4px;position:relative;background:var(--bone-2)}
+  .stylist .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(.15);transition:transform 1.2s cubic-bezier(.2,.8,.2,1),filter .6s}
+  .stylist:hover .ph img{transform:scale(1.06);filter:grayscale(0)}
+  .stylist .ph::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(28,24,21,.55));opacity:0;transition:.5s}
+  .stylist:hover .ph::after{opacity:1}
+  .stylist .spec{position:absolute;left:14px;bottom:14px;z-index:2;color:var(--bone);opacity:0;transform:translateY(10px);transition:.5s}
+  .stylist:hover .spec{opacity:1;transform:none}
+  .stylist .spec span{display:inline-block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(241,236,228,.5);border-radius:100px;padding:5px 11px;margin:0 4px 4px 0}
+  .stylist .info{padding:16px 2px 0;display:flex;justify-content:space-between;align-items:baseline}
+  .stylist .info h3{font-size:22px}
+  .stylist .info em{font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);font-weight:600}
+  .stylist .role{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .team-cta{display:flex;justify-content:center;margin-top:56px}
+
+  /* ---------- Testimonials ---------- */
+  .quotes{background:var(--bone-2);padding:clamp(90px,13vw,160px) 0;overflow:hidden}
+  .q-head{text-align:center;margin-bottom:60px}
+  .q-head h2{font-size:clamp(2.2rem,5vw,4rem);margin-top:16px}
+  .q-head h2 em{font-style:italic;color:var(--clay)}
+  .q-track{display:flex;gap:26px;transition:transform .8s cubic-bezier(.5,0,.1,1)}
+  .q-card{flex:0 0 clamp(280px,42vw,440px);background:var(--bone);border-radius:6px;padding:clamp(28px,4vw,42px);border:1px solid var(--line)}
+  .q-stars{color:var(--clay);letter-spacing:3px;font-size:14px}
+  .q-card blockquote{font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.4;margin:20px 0 28px;font-weight:400}
+  .q-card .who{display:flex;align-items:center;gap:14px}
+  .q-card .who .av{width:46px;height:46px;border-radius:50%;object-fit:cover}
+  .q-card .who b{font-family:var(--sans);font-weight:600;font-size:14px;display:block}
+  .q-card .who span{font-size:12px;color:var(--ink-soft)}
+  .q-nav{display:flex;justify-content:center;gap:12px;margin-top:44px}
+  .q-nav button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:18px;transition:.4s;display:flex;align-items:center;justify-content:center}
+  .q-nav button:hover{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+
+  /* ---------- Booking ---------- */
+  .booking{background:var(--ink);color:var(--bone);padding:clamp(90px,13vw,160px) 0}
+  .booking .eyebrow{color:var(--sand)}
+  .book-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,90px);align-items:center}
+  .book-left h2{color:var(--bone);font-size:clamp(2.4rem,5.5vw,4.6rem);line-height:.98;margin:18px 0 26px}
+  .book-left h2 em{font-style:italic;color:var(--clay)}
+  .book-left p{color:var(--sand);font-weight:300;max-width:380px;line-height:1.7;margin-bottom:34px}
+  .book-contact{display:flex;flex-direction:column;gap:14px;font-size:14px}
+  .book-contact a{display:flex;align-items:center;gap:12px;color:var(--bone);width:fit-content}
+  .book-contact a .ic{width:38px;height:38px;border:1px solid rgba(241,236,228,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;transition:.4s}
+  .book-contact a:hover .ic{background:var(--clay);border-color:var(--clay)}
+
+  .book-card{background:var(--bone);color:var(--ink);border-radius:8px;padding:clamp(26px,4vw,44px)}
+  .steps{display:flex;gap:8px;margin-bottom:28px}
+  .steps .st{flex:1;height:3px;background:var(--bone-2);border-radius:3px;overflow:hidden}
+  .steps .st i{display:block;height:100%;width:0;background:var(--clay);transition:width .5s}
+  .steps .st.on i,.steps .st.done i{width:100%}
+  .step-label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  .step-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);margin-bottom:22px}
+  .book-pane{display:none;animation:paneIn .5s ease}
+  .book-pane.on{display:block}
+  @keyframes paneIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .opt{border:1px solid var(--line);border-radius:6px;padding:16px;cursor:pointer;transition:.35s;background:transparent}
+  .opt:hover{border-color:var(--ink)}
+  .opt.sel{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+  .opt b{font-family:var(--serif);font-size:18px;font-weight:400;display:block}
+  .opt span{font-size:12px;color:var(--ink-soft);transition:.35s}
+  .opt.sel span{color:var(--sand)}
+  .opt .pr{float:right;font-family:var(--serif);font-style:italic;font-size:15px}
+  .date-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+  .date-chip{flex:0 0 auto;border:1px solid var(--line);border-radius:6px;padding:12px 14px;text-align:center;cursor:pointer;transition:.35s;min-width:66px}
+  .date-chip:hover{border-color:var(--ink)}
+  .date-chip.sel{background:var(--clay);color:var(--bone);border-color:var(--clay)}
+  .date-chip b{display:block;font-size:19px;font-family:var(--serif)}
+  .date-chip span{font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+  .time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+  .time-chip{border:1px solid var(--line);border-radius:6px;padding:11px 0;text-align:center;cursor:pointer;font-size:13px;transition:.3s}
+  .time-chip:hover{border-color:var(--ink)}
+  .time-chip.sel{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+  .fld{margin-bottom:14px}
+  .fld label{font-size:12px;letter-spacing:.05em;color:var(--ink-soft);display:block;margin-bottom:6px}
+  .fld input{width:100%;border:1px solid var(--line);border-radius:6px;padding:13px 14px;font-family:var(--sans);font-size:14px;background:transparent;color:var(--ink)}
+  .fld input:focus{outline:none;border-color:var(--clay)}
+  .summary{background:var(--bone-2);border-radius:6px;padding:16px 18px;margin-bottom:18px;font-size:13px}
+  .summary div{display:flex;justify-content:space-between;padding:5px 0}
+  .summary div span:first-child{color:var(--ink-soft)}
+  .summary .tot{border-top:1px solid var(--line);margin-top:6px;padding-top:12px;font-family:var(--serif);font-size:17px}
+  .book-actions{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+  .link-back{background:none;border:none;font-family:var(--sans);font-size:13px;cursor:pointer;color:var(--ink-soft);padding:13px 0}
+  .link-back:hover{color:var(--ink)}
+  .book-done{text-align:center;padding:20px 0}
+  .book-done .chk{width:72px;height:72px;border-radius:50%;background:var(--clay);color:var(--bone);display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 22px}
+  .book-done h3{font-size:2rem;margin-bottom:12px}
+  .book-done p{color:var(--ink-soft);font-size:14px;max-width:320px;margin:0 auto 22px}
+
+  /* ---------- Visit / hours ---------- */
+  .visit{padding:clamp(90px,13vw,160px) 0}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,64px);align-items:stretch}
+  .visit-map{border-radius:6px;overflow:hidden;position:relative;min-height:440px;background:var(--bone-2)}
+  .visit-map img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .visit-map .badge{position:absolute;top:20px;left:20px;background:var(--bone);border-radius:100px;padding:10px 18px;font-size:12px;font-weight:600;letter-spacing:.08em;z-index:2;display:flex;gap:8px;align-items:center}
+  .visit-map .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--clay);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(176,101,74,.5)}70%{box-shadow:0 0 0 10px rgba(176,101,74,0)}100%{box-shadow:0 0 0 0 rgba(176,101,74,0)}}
+  .hours h2{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1;margin:18px 0 30px}
+  .hours h2 em{font-style:italic;color:var(--clay)}
+  .hour-row{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .hour-row.now{color:var(--clay);font-weight:600}
+  .hour-row span:first-child{font-weight:500}
+  .visit-info{display:flex;gap:40px;flex-wrap:wrap;margin-top:34px}
+  .visit-info div b{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px}
+  .visit-info div p{font-size:15px;line-height:1.6}
+  .visit-info a{border-bottom:1px solid var(--clay);color:var(--clay)}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:var(--bone);padding:clamp(70px,9vw,120px) 0 40px}
+  .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:60px;border-bottom:1px solid rgba(241,236,228,.14)}
+  .foot-brand{font-family:var(--serif);font-size:clamp(2.6rem,7vw,6rem);line-height:.9;font-style:italic}
+  .foot-brand span{color:var(--clay)}
+  .foot-newsletter{margin-top:26px;max-width:360px}
+  .foot-newsletter p{color:var(--sand);font-size:14px;font-weight:300;margin-bottom:14px}
+  .news-form{display:flex;border:1px solid rgba(241,236,228,.28);border-radius:100px;overflow:hidden}
+  .news-form input{flex:1;background:transparent;border:none;color:var(--bone);padding:14px 18px;font-family:var(--sans);font-size:14px}
+  .news-form input:focus{outline:none}
+  .news-form button{background:var(--clay);border:none;color:var(--bone);padding:0 22px;cursor:pointer;font-size:18px;transition:.3s}
+  .news-form button:hover{background:var(--bone);color:var(--ink)}
+  .foot-col h4{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin-bottom:18px;font-weight:600}
+  .foot-col a{display:block;padding:7px 0;font-size:15px;color:var(--bone);opacity:.85;transition:.3s;width:fit-content}
+  .foot-col a:hover{opacity:1;color:var(--clay);transform:translateX(4px)}
+  .foot-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:30px;font-size:12px;color:var(--sand)}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:960px){
+    .nav-links{display:none}
+    .nav-right .btn{display:none}
+    .burger{display:flex}
+    .intro-grid,.serv-layout,.book-grid,.visit-grid,.foot-top{grid-template-columns:1fr}
+    .serv-preview{display:none}
+    .sig-strip{grid-template-columns:1fr;min-height:auto}
+    .sig-col{min-height:60vh}
+    .sig-mid{order:-1;padding:60px 24px}
+    .team-grid{grid-template-columns:1fr 1fr;gap:16px}
+    .intro-figure{max-width:440px;margin:0 auto 30px}
+    .intro-figure .float{bottom:-20px;right:-10px}
+    .visit-map{min-height:320px;order:2}
+    .foot-top{gap:44px}
+  }
+  @media(max-width:560px){
+    .team-grid{grid-template-columns:1fr}
+    .opt-grid{grid-template-columns:1fr}
+    .time-grid{grid-template-columns:repeat(3,1fr)}
+    .book-actions{flex-direction:column-reverse}
+    .book-actions .btn{width:100%;justify-content:center}
+    .intro-figure .stamp{width:88px;height:88px;font-size:11px}
+    .hero h1{font-size:clamp(3rem,16vw,5rem)}
+  }
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<!-- Preloader -->
+<div id="loader">
+  <div class="load-word"><span>Studio Andersen</span></div>
+  <div class="load-bar"><i></i></div>
+</div>
+
+<!-- Header -->
+<header id="header" class="light-nav">
+  <div class="wrap nav">
+    <a href="#top" class="brand">Studio Andersen<small>Oslo · Grünerløkka</small></a>
+    <nav class="nav-links">
+      <a href="#om">Om oss</a>
+      <a href="#behandlinger">Behandlinger</a>
+      <a href="#frisorer">Frisører</a>
+      <a href="#omtaler">Omtaler</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#book" class="btn"><span class="dot"></span>Bestill time</a>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="m-close" id="mClose">✕</div>
+  <a href="#om">Om oss</a>
+  <a href="#behandlinger">Behandlinger</a>
+  <a href="#frisorer">Frisører</a>
+  <a href="#omtaler">Omtaler</a>
+  <a href="#book">Bestill time</a>
+  <div class="m-foot">Thorvald Meyers gate 44, Oslo · +47 22 00 44 88</div>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="hero-bg" id="heroBg">
+    <img src="images/photo-07.jpg" alt="Editorial portrett" />
+  </div>
+  <div class="hero-grad"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow" style="color:var(--sand);margin-bottom:20px">Frisørsalong · Est. 2014</div>
+    <h1>
+      <span class="hero-line"><span>Håndverk</span></span>
+      <span class="hero-line"><span>for ditt <em>hår</em></span></span>
+    </h1>
+    <div class="hero-meta">
+      <p>Et skandinavisk hårstudio på Grünerløkka der presis klipp, levende farge og ekte omtanke møtes. Vi former looken som er akkurat deg.</p>
+      <div class="hero-cta">
+        <a href="#book" class="btn light"><span class="dot"></span>Bestill time</a>
+        <a href="#behandlinger" class="btn" style="background:transparent;color:var(--bone);border-color:rgba(241,236,228,.5)">Se behandlinger</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span class="l"></span>Scroll</div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Klipp</span><span>Balayage</span><span>Farge</span><span>Styling</span><span>Hårpleie</span><span>Highlights</span>
+    <span>Klipp</span><span>Balayage</span><span>Farge</span><span>Styling</span><span>Hårpleie</span><span>Highlights</span>
+  </div>
+</div>
+
+<!-- Intro / Philosophy -->
+<section class="intro" id="om">
+  <div class="wrap intro-grid">
+    <div class="intro-figure reveal">
+      <div class="main"><img src="images/photo-08.jpg" alt="Interiør Studio Andersen" /></div>
+      <div class="float"><img src="images/photo-17.jpg" alt="Detalj i salongen" /></div>
+      <div class="stamp">Siden<br>2014</div>
+    </div>
+    <div class="intro-copy reveal r-d1">
+      <div class="eyebrow">Filosofien vår</div>
+      <h2><span class="line-reveal"><b>Skjønnhet skapt</b></span><span class="line-reveal"><b>med <em>omtanke</em> og</b></span><span class="line-reveal"><b>presisjon.</b></span></h2>
+      <p>Studio Andersen ble grunnlagt på en enkel idé: at et frisørbesøk skal føles som en pause fra hverdagen — og at resultatet skal vare lenge etter at du forlater stolen.</p>
+      <p>Vi jobber med bærekraftige produkter, tar oss tid til grundig konsultasjon, og tilpasser hver behandling til ditt hår, ditt ansikt og din livsstil. Ingen hastverk, ingen kompromiss.</p>
+      <div class="stat-row">
+        <div class="stat"><b>10+</b><span>Års erfaring</span></div>
+        <div class="stat"><b>8&nbsp;500</b><span>Fornøyde gjester</span></div>
+        <div class="stat"><b>4.9★</b><span>Google snitt</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services" id="behandlinger">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="eyebrow">Behandlinger & priser</div>
+        <h2 style="margin-top:16px">Håndverk du kan <em>føle</em></h2>
+      </div>
+      <p>Prisene er veiledende og avhenger av hårlengde og tidsbruk. Alle behandlinger starter med en grundig konsultasjon.</p>
+    </div>
+
+    <div class="serv-layout">
+      <div class="serv-list reveal r-d1" id="servList">
+        <div class="serv-item" data-img="0" data-cap="Signaturklipp">
+          <span class="num">01</span>
+          <div class="name">Klipp & Form<small>Konsultasjon, vask, presis klipp og føn. Skreddersydd etter hårtype og ansiktsform.</small></div>
+          <span class="price">fra 690,-</span>
+        </div>
+        <div class="serv-item" data-img="1" data-cap="Balayage">
+          <span class="num">02</span>
+          <div class="name">Balayage<small>Håndmalte, mykt uttonede høylys for en naturlig, solkysset overgang.</small></div>
+          <span class="price">fra 2 190,-</span>
+        </div>
+        <div class="serv-item" data-img="2" data-cap="Farge & Glød">
+          <span class="num">03</span>
+          <div class="name">Farge & Glød<small>Helfarge, ansatsfarge eller glossing som gir dybde, glans og lang holdbarhet.</small></div>
+          <span class="price">fra 1 290,-</span>
+        </div>
+        <div class="serv-item" data-img="3" data-cap="Highlights">
+          <span class="num">04</span>
+          <div class="name">Highlights<small>Folielys som lysner og rammer inn — fra fine slørlys til full transformasjon.</small></div>
+          <span class="price">fra 1 690,-</span>
+        </div>
+        <div class="serv-item" data-img="4" data-cap="Styling">
+          <span class="num">05</span>
+          <div class="name">Styling & Opsett<small>Føn, krøll eller elegant opsett til bryllup, fest og de store anledningene.</small></div>
+          <span class="price">fra 590,-</span>
+        </div>
+        <div class="serv-item" data-img="5" data-cap="Hårpleie">
+          <span class="num">06</span>
+          <div class="name">Kur & Hårpleie<small>Dyptvirkende Olaplax-kur og hodebunnsbehandling som gjenoppbygger fra innsiden.</small></div>
+          <span class="price">fra 490,-</span>
+        </div>
+      </div>
+
+      <div class="serv-preview" id="servPreview">
+        <img data-i="0" class="active" src="images/photo-11.jpg" alt="Klipp">
+        <img data-i="1" src="images/photo-06.jpg" alt="Balayage">
+        <img data-i="2" src="images/photo-13.jpg" alt="Farge">
+        <img data-i="3" src="images/photo-05.jpg" alt="Highlights">
+        <img data-i="4" src="images/photo-02.jpg" alt="Styling">
+        <img data-i="5" src="images/photo-09.jpg" alt="Hårpleie">
+        <div class="cap" id="servCap">Signaturklipp</div>
+      </div>
+    </div>
+    <div class="serv-note reveal">✦ Nybegynner hos oss? Book en gratis 15-min fargekonsultasjon før din første behandling.</div>
+  </div>
+</section>
+
+<!-- Signature strip -->
+<section class="signature">
+  <div class="sig-strip">
+    <div class="sig-col">
+      <img src="images/photo-19.jpg" alt="Salong">
+      <div class="tag"><div class="k">Håndverk</div><div class="t">Presis klipp</div></div>
+    </div>
+    <div class="sig-mid">
+      <div>
+        <div class="eyebrow" style="color:rgba(241,236,228,.8)">Vår signatur</div>
+        <h3 style="margin-top:16px">Balayage<br>gjort riktig</h3>
+        <p>Håndmalt farge er vår spesialitet. Vi bruker timer, ikke minutter, for at overgangen skal falle naturlig og vokse ut vakkert.</p>
+        <a href="#book" class="btn light"><span class="dot"></span>Book fargetime</a>
+      </div>
+    </div>
+    <div class="sig-col">
+      <img src="images/photo-03.jpg" alt="Editorial">
+      <div class="tag"><div class="k">Farge</div><div class="t">Levende toner</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Stylists -->
+<section class="team" id="frisorer">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:56px">
+      <div>
+        <div class="eyebrow" style="color:var(--clay)">Teamet</div>
+        <h2 style="color:var(--ink);margin-top:16px">Finn din <em style="font-style:italic;color:var(--clay)">frisør</em></h2>
+      </div>
+      <p style="color:var(--ink-soft)">Hver av våre stylister har sitt spesialområde. Velg den som matcher looken du er ute etter.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="stylist reveal">
+        <div class="ph">
+          <img src="images/photo-16.jpg" alt="Ingrid Andersen">
+          <div class="spec"><span>Balayage</span><span>Farge</span></div>
+        </div>
+        <div class="info"><div><h3>Ingrid Andersen</h3><div class="role">Gründer & Master Colorist</div></div><em>01</em></div>
+      </div>
+      <div class="stylist reveal r-d1">
+        <div class="ph">
+          <img src="images/photo-15.jpg" alt="Mathilde Berg">
+          <div class="spec"><span>Klipp</span><span>Styling</span></div>
+        </div>
+        <div class="info"><div><h3>Mathilde Berg</h3><div class="role">Senior Stylist</div></div><em>02</em></div>
+      </div>
+      <div class="stylist reveal r-d2">
+        <div class="ph">
+          <img src="images/photo-20.jpg" alt="Jonas Lie">
+          <div class="spec"><span>Herreklipp</span><span>Fade</span></div>
+        </div>
+        <div class="info"><div><h3>Jonas Lie</h3><div class="role">Barber & Stylist</div></div><em>03</em></div>
+      </div>
+      <div class="stylist reveal r-d3">
+        <div class="ph">
+          <img src="images/photo-14.jpg" alt="Sofie Haugen">
+          <div class="spec"><span>Highlights</span><span>Kur</span></div>
+        </div>
+        <div class="info"><div><h3>Sofie Haugen</h3><div class="role">Colorist & Hårpleie</div></div><em>04</em></div>
+      </div>
+    </div>
+    <div class="team-cta reveal"><a href="#book" class="btn ghost"><span class="dot"></span>Book din frisør</a></div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="quotes" id="omtaler">
+  <div class="wrap">
+    <div class="q-head reveal">
+      <div class="eyebrow">Omtaler</div>
+      <h2>Det gjestene <em>sier</em></h2>
+    </div>
+    <div style="overflow:hidden">
+      <div class="q-track" id="qTrack">
+        <div class="q-card">
+          <div class="q-stars">★★★★★</div>
+          <blockquote>"Beste balayagen jeg noen gang har hatt. Ingrid tok seg virkelig tid til å forstå hva jeg ville ha, og fargen har vokst ut helt perfekt."</blockquote>
+          <div class="who"><img class="av" src="images/photo-04.jpg" alt=""><div><b>Karoline S.</b><span>Gjest siden 2019</span></div></div>
+        </div>
+        <div class="q-card">
+          <div class="q-stars">★★★★★</div>
+          <blockquote>"Endelig en salong som lytter. Mathilde ga meg en klipp som faktisk fungerer i hverdagen. Stemningen i studioet er helt rå."</blockquote>
+          <div class="who"><img class="av" src="images/photo-01.jpg" alt=""><div><b>Emma T.</b><span>Gjest siden 2021</span></div></div>
+        </div>
+        <div class="q-card">
+          <div class="q-stars">★★★★★</div>
+          <blockquote>"Gikk fra mørkt til lyst over to besøk uten at håret ble ødelagt. Fagkunnskapen her er i en helt annen liga. Anbefales på det sterkeste."</blockquote>
+          <div class="who"><img class="av" src="images/photo-12.jpg" alt=""><div><b>Nora L.</b><span>Gjest siden 2020</span></div></div>
+        </div>
+        <div class="q-card">
+          <div class="q-stars">★★★★★</div>
+          <blockquote>"Jonas er en mester på fade. Ryddig, presis og alltid god stemning. Har blitt fast kunde etter første besøk."</blockquote>
+          <div class="who"><img class="av" src="images/photo-10.jpg" alt=""><div><b>Sebastian R.</b><span>Gjest siden 2022</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button id="qPrev" aria-label="Forrige">←</button>
+      <button id="qNext" aria-label="Neste">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- Booking -->
+<section class="booking" id="book">
+  <div class="wrap book-grid">
+    <div class="book-left reveal">
+      <div class="eyebrow">Bestill time</div>
+      <h2>La oss finne <em>din</em> time</h2>
+      <p>Book på under ett minutt. Velg behandling, frisør og tidspunkt — så tar vi oss av resten når du kommer.</p>
+      <div class="book-contact">
+        <a href="tel:+4722004488"><span class="ic">✆</span> +47 22 00 44 88</a>
+        <a href="mailto:hei@studioandersen.no"><span class="ic">✉</span> hei@studioandersen.no</a>
+        <a href="#kontakt"><span class="ic">⌖</span> Thorvald Meyers gate 44, Oslo</a>
+      </div>
+    </div>
+
+    <div class="book-card reveal r-d1">
+      <div class="steps">
+        <div class="st on" data-s="1"><i></i></div>
+        <div class="st" data-s="2"><i></i></div>
+        <div class="st" data-s="3"><i></i></div>
+        <div class="st" data-s="4"><i></i></div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="book-pane on" data-pane="1">
+        <div class="step-label">Steg 1 av 4</div>
+        <div class="step-title">Velg behandling</div>
+        <div class="opt-grid">
+          <div class="opt" data-name="Klipp & Form" data-price="690"><span class="pr">690,-</span><b>Klipp & Form</b><span>ca. 60 min</span></div>
+          <div class="opt" data-name="Balayage" data-price="2190"><span class="pr">2190,-</span><b>Balayage</b><span>ca. 180 min</span></div>
+          <div class="opt" data-name="Farge & Glød" data-price="1290"><span class="pr">1290,-</span><b>Farge & Glød</b><span>ca. 120 min</span></div>
+          <div class="opt" data-name="Highlights" data-price="1690"><span class="pr">1690,-</span><b>Highlights</b><span>ca. 150 min</span></div>
+          <div class="opt" data-name="Styling & Opsett" data-price="590"><span class="pr">590,-</span><b>Styling & Opsett</b><span>ca. 45 min</span></div>
+          <div class="opt" data-name="Kur & Hårpleie" data-price="490"><span class="pr">490,-</span><b>Kur & Hårpleie</b><span>ca. 30 min</span></div>
+        </div>
+        <div class="book-actions">
+          <span></span>
+          <button class="btn next-btn" data-next="2"><span class="dot"></span>Videre</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="book-pane" data-pane="2">
+        <div class="step-label">Steg 2 av 4</div>
+        <div class="step-title">Velg din frisør</div>
+        <div class="opt-grid">
+          <div class="opt" data-name="Ingrid Andersen"><b>Ingrid</b><span>Master Colorist</span></div>
+          <div class="opt" data-name="Mathilde Berg"><b>Mathilde</b><span>Senior Stylist</span></div>
+          <div class="opt" data-name="Jonas Lie"><b>Jonas</b><span>Barber & Stylist</span></div>
+          <div class="opt" data-name="Sofie Haugen"><b>Sofie</b><span>Colorist</span></div>
+          <div class="opt" data-name="Første ledige"><b>Første ledige</b><span>Kortest ventetid</span></div>
+        </div>
+        <div class="book-actions">
+          <button class="link-back" data-back="1">← Tilbake</button>
+          <button class="btn next-btn" data-next="3"><span class="dot"></span>Videre</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="book-pane" data-pane="3">
+        <div class="step-label">Steg 3 av 4</div>
+        <div class="step-title">Dato & tid</div>
+        <div class="date-row" id="dateRow"></div>
+        <div class="time-grid" id="timeGrid"></div>
+        <div class="book-actions">
+          <button class="link-back" data-back="2">← Tilbake</button>
+          <button class="btn next-btn" data-next="4"><span class="dot"></span>Videre</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="book-pane" data-pane="4">
+        <div class="step-label">Steg 4 av 4</div>
+        <div class="step-title">Dine detaljer</div>
+        <div class="summary" id="summary"></div>
+        <div class="fld"><label>Navn</label><input type="text" id="fName" placeholder="Ola Nordmann"></div>
+        <div class="fld"><label>Telefon</label><input type="tel" id="fPhone" placeholder="+47 400 00 000"></div>
+        <div class="fld"><label>E-post</label><input type="email" id="fEmail" placeholder="ola@epost.no"></div>
+        <div class="book-actions">
+          <button class="link-back" data-back="3">← Tilbake</button>
+          <button class="btn" id="confirmBtn"><span class="dot"></span>Bekreft booking</button>
+        </div>
+      </div>
+
+      <!-- Done -->
+      <div class="book-pane" data-pane="done">
+        <div class="book-done">
+          <div class="chk">✓</div>
+          <h3>Timen er reservert!</h3>
+          <p id="doneMsg">Vi har sendt en bekreftelse. Vi gleder oss til å se deg!</p>
+          <button class="btn ghost" id="restartBtn" style="color:var(--ink)"><span class="dot"></span>Book en ny time</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Visit -->
+<section class="visit" id="kontakt">
+  <div class="wrap visit-grid">
+    <div class="visit-map reveal">
+      <img src="images/photo-18.jpg" alt="Studio Andersen">
+      <div class="badge"><span class="dot"></span> Åpent nå · til 18:00</div>
+    </div>
+    <div class="hours reveal r-d1">
+      <div class="eyebrow">Besøk oss</div>
+      <h2>Midt på <em>Grünerløkka</em></h2>
+      <div id="hoursList">
+        <div class="hour-row"><span>Mandag</span><span>Stengt</span></div>
+        <div class="hour-row"><span>Tirsdag</span><span>10:00 – 18:00</span></div>
+        <div class="hour-row"><span>Onsdag</span><span>10:00 – 18:00</span></div>
+        <div class="hour-row"><span>Torsdag</span><span>10:00 – 20:00</span></div>
+        <div class="hour-row"><span>Fredag</span><span>10:00 – 18:00</span></div>
+        <div class="hour-row"><span>Lørdag</span><span>10:00 – 16:00</span></div>
+        <div class="hour-row"><span>Søndag</span><span>Stengt</span></div>
+      </div>
+      <div class="visit-info">
+        <div><b>Adresse</b><p>Thorvald Meyers gate 44<br>0552 Oslo</p></div>
+        <div><b>Kontakt</b><p><a href="tel:+4722004488">+47 22 00 44 88</a><br><a href="mailto:hei@studioandersen.no">hei@studioandersen.no</a></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">Studio<br><span>Andersen</span></div>
+        <div class="foot-newsletter">
+          <p>Meld deg på nyhetsbrevet for hårpleietips, tilbud og nye trender — rett i innboksen.</p>
+          <form class="news-form" id="newsForm">
+            <input type="email" placeholder="Din e-postadresse" required>
+            <button type="submit" aria-label="Meld på">→</button>
+          </form>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Meny</h4>
+        <a href="#om">Om oss</a>
+        <a href="#behandlinger">Behandlinger</a>
+        <a href="#frisorer">Frisører</a>
+        <a href="#omtaler">Omtaler</a>
+        <a href="#book">Bestill time</a>
+      </div>
+      <div class="foot-col">
+        <h4>Følg oss</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">TikTok</a>
+        <a href="#">Pinterest</a>
+        <a href="#kontakt">Finn veien</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Studio Andersen · Org.nr 918 442 116</span>
+      <span>Design & utvikling — et porteføljearbeid</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Preloader
+  window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('done'),1600)});
+
+  // Header state + hero parallax
+  const header=document.getElementById('header');
+  const heroBg=document.getElementById('heroBg');
+  const hero=document.querySelector('.hero');
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY;
+    header.classList.toggle('solid',y>60);
+    // switch nav color once past hero
+    header.classList.toggle('light-nav', y < hero.offsetHeight-100);
+    if(y<window.innerHeight){heroBg.style.transform='translateY('+(y*0.28)+'px)';}
+  });
+
+  // Mobile menu
+  const burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu'),mc=document.getElementById('mClose');
+  burger.addEventListener('click',()=>mm.classList.add('open'));
+  mc.addEventListener('click',()=>mm.classList.remove('open'));
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+
+  // Reveal on scroll
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Services preview
+  const items=document.querySelectorAll('.serv-item');
+  const imgs=document.querySelectorAll('#servPreview img');
+  const cap=document.getElementById('servCap');
+  items.forEach(it=>{
+    it.addEventListener('mouseenter',()=>{
+      const i=it.dataset.img;
+      imgs.forEach(im=>im.classList.toggle('active',im.dataset.i===i));
+      cap.textContent=it.dataset.cap;
+    });
+    it.addEventListener('click',()=>{document.getElementById('book').scrollIntoView({behavior:'smooth'})});
+  });
+
+  // Testimonials slider
+  const track=document.getElementById('qTrack');
+  const cards=track.children.length;
+  let qi=0;
+  function cardStep(){const c=track.querySelector('.q-card');return c.offsetWidth+26;}
+  function visible(){return Math.max(1,Math.floor(track.parentElement.offsetWidth/cardStep()));}
+  function qGo(){const max=Math.max(0,cards-visible());qi=Math.min(qi,max);track.style.transform='translateX(-'+(qi*cardStep())+'px)';}
+  document.getElementById('qNext').addEventListener('click',()=>{qi=Math.min(qi+1,cards-visible());qGo()});
+  document.getElementById('qPrev').addEventListener('click',()=>{qi=Math.max(qi-1,0);qGo()});
+  window.addEventListener('resize',qGo);
+
+  // Newsletter
+  document.getElementById('newsForm').addEventListener('submit',e=>{e.preventDefault();e.target.querySelector('input').value='';e.target.querySelector('input').placeholder='Takk! Du er påmeldt ✓';});
+
+  /* ---------- Booking flow ---------- */
+  const booking={service:'',price:0,stylist:'',date:'',time:''};
+  const panes=document.querySelectorAll('.book-pane');
+  const stepBars=document.querySelectorAll('.steps .st');
+
+  function showPane(id){
+    panes.forEach(p=>p.classList.toggle('on',p.dataset.pane==id));
+    stepBars.forEach(b=>{b.classList.remove('on','done');const s=+b.dataset.s;if(id!=='done'){if(s<+id)b.classList.add('done');if(s==+id)b.classList.add('on');}else{b.classList.add('done');}});
+  }
+
+  // option selection
+  document.querySelectorAll('.book-pane[data-pane="1"] .opt').forEach(o=>{
+    o.addEventListener('click',()=>{
+      document.querySelectorAll('.book-pane[data-pane="1"] .opt').forEach(x=>x.classList.remove('sel'));
+      o.classList.add('sel');booking.service=o.dataset.name;booking.price=+o.dataset.price;
+    });
+  });
+  document.querySelectorAll('.book-pane[data-pane="2"] .opt').forEach(o=>{
+    o.addEventListener('click',()=>{
+      document.querySelectorAll('.book-pane[data-pane="2"] .opt').forEach(x=>x.classList.remove('sel'));
+      o.classList.add('sel');booking.stylist=o.dataset.name;
+    });
+  });
+
+  // dates
+  const dateRow=document.getElementById('dateRow');
+  const timeGrid=document.getElementById('timeGrid');
+  const days=['Søn','Man','Tir','Ons','Tor','Fre','Lør'];
+  const months=['jan','feb','mar','apr','mai','jun','jul','aug','sep','okt','nov','des'];
+  const times=['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
+  const today=new Date();
+  for(let d=1;d<=10;d++){
+    const dt=new Date(today);dt.setDate(today.getDate()+d);
+    if(dt.getDay()===1||dt.getDay()===0)continue; // skip Sun/Mon (closed-ish)
+    const chip=document.createElement('div');chip.className='date-chip';
+    chip.innerHTML='<span>'+days[dt.getDay()]+'</span><b>'+dt.getDate()+'</b><span>'+months[dt.getMonth()]+'</span>';
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('.date-chip').forEach(c=>c.classList.remove('sel'));
+      chip.classList.add('sel');booking.date=days[dt.getDay()]+' '+dt.getDate()+'. '+months[dt.getMonth()];
+    });
+    dateRow.appendChild(chip);
+  }
+  times.forEach(t=>{
+    const c=document.createElement('div');c.className='time-chip';c.textContent=t;
+    c.addEventListener('click',()=>{
+      document.querySelectorAll('.time-chip').forEach(x=>x.classList.remove('sel'));
+      c.classList.add('sel');booking.time=t;
+    });
+    timeGrid.appendChild(c);
+  });
+
+  // navigation
+  document.querySelectorAll('.next-btn').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const target=b.dataset.next;
+      if(target==='2'&&!booking.service){shake(b);return;}
+      if(target==='3'&&!booking.stylist){shake(b);return;}
+      if(target==='4'){
+        if(!booking.date||!booking.time){shake(b);return;}
+        buildSummary();
+      }
+      showPane(target);
+    });
+  });
+  document.querySelectorAll('.link-back').forEach(b=>b.addEventListener('click',()=>showPane(b.dataset.back)));
+
+  function buildSummary(){
+    document.getElementById('summary').innerHTML=
+      '<div><span>Behandling</span><span>'+booking.service+'</span></div>'+
+      '<div><span>Frisør</span><span>'+booking.stylist+'</span></div>'+
+      '<div><span>Tidspunkt</span><span>'+booking.date+' · '+booking.time+'</span></div>'+
+      '<div class="tot"><span>Fra</span><span>'+booking.price.toLocaleString('no-NO')+',-</span></div>';
+  }
+
+  document.getElementById('confirmBtn').addEventListener('click',()=>{
+    const n=document.getElementById('fName').value.trim();
+    const p=document.getElementById('fPhone').value.trim();
+    if(!n||!p){shake(document.getElementById('confirmBtn'));return;}
+    document.getElementById('doneMsg').textContent=n.split(' ')[0]+', vi har reservert '+booking.service.toLowerCase()+' hos '+booking.stylist+' '+booking.date+' kl. '+booking.time+'. Bekreftelse er sendt!';
+    showPane('done');
+  });
+
+  document.getElementById('restartBtn').addEventListener('click',()=>{
+    booking.service='';booking.price=0;booking.stylist='';booking.date='';booking.time='';
+    document.querySelectorAll('.opt,.date-chip,.time-chip').forEach(x=>x.classList.remove('sel'));
+    document.getElementById('fName').value='';document.getElementById('fPhone').value='';document.getElementById('fEmail').value='';
+    showPane('1');
+  });
+
+  function shake(el){el.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:300});}
+
+  // highlight current day in hours + set open badge roughly
+  const rows=document.querySelectorAll('#hoursList .hour-row');
+  const dayIndex=[6,0,1,2,3,4,5][new Date().getDay()===0?0:new Date().getDay()]; // Mon-first mapping
+  const jsDay=new Date().getDay(); // 0 Sun..6 Sat
+  const map={1:0,2:1,3:2,4:3,5:4,6:5,0:6};
+  if(rows[map[jsDay]])rows[map[jsDay]].classList.add('now');
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

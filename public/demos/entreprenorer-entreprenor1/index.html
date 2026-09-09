@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NordGrunn AS — Grunnarbeid, VA og tomteklargjøring</title>
+<meta name="description" content="NordGrunn AS leverer grunnarbeid, drenering, støttemurer, VA-anlegg og tomteklargjøring i Oslo og Viken. Presist utført, dokumentert og levert til avtalt tid.">
+<meta name="theme-color" content="#0d1113">
+<link rel="icon" href="images/image-07.svg">
+<style>
+:root{
+  --ink:#0d1113; --ink-2:#151a1d; --ink-3:#1d2429;
+  --line:rgba(255,255,255,.10); --line-d:rgba(12,16,18,.12);
+  --paper:#f4f2ee; --paper-2:#ebe8e2;
+  --fg:#0d1113; --mut:#6d7276; --mut-d:#9aa1a6;
+  --acc:#d8552a; --acc-2:#f0763f;
+  --steel:#5d7480;
+  --r:2px;
+  --pad:clamp(20px,5vw,72px);
+  --maxw:1360px;
+  --ff:"Inter","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--ff);background:var(--paper);color:var(--fg);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  font-size:16px;line-height:1.6;letter-spacing:-0.011em;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--acc);color:#fff}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.mono{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+h1,h2,h3,h4{margin:0;font-weight:560;letter-spacing:-.035em;line-height:1.02}
+h2{font-size:clamp(2rem,5.2vw,3.75rem)}
+h3{font-size:clamp(1.35rem,2.4vw,1.8rem);letter-spacing:-.025em;line-height:1.15}
+p{margin:0}
+.lede{font-size:clamp(1.02rem,1.55vw,1.22rem);line-height:1.55;color:var(--mut);letter-spacing:-.015em}
+section{position:relative}
+.dark{background:var(--ink);color:#eef1f2}
+.dark .lede{color:#98a2a8}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}
+.rv[data-d="3"]{transition-delay:.24s}.rv[data-d="4"]{transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important}*{animation:none!important;transition-duration:.01ms!important}}
+
+/* ---------- buttons ---------- */
+.btn{
+  --bg:var(--acc);--c:#fff;
+  position:relative;display:inline-flex;align-items:center;gap:.7em;
+  padding:1.05em 1.6em;background:var(--bg);color:var(--c);border:0;border-radius:var(--r);
+  font-size:.83rem;font-weight:560;letter-spacing:.02em;cursor:pointer;overflow:hidden;
+  transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;
+  box-shadow:0 1px 0 rgba(0,0,0,.06);
+}
+.btn span{position:relative;z-index:2;display:inline-flex;align-items:center;gap:.7em}
+.btn::after{content:"";position:absolute;inset:0;background:#0d1113;transform:translateY(101%);transition:transform .45s cubic-bezier(.16,1,.3,1);z-index:1}
+.btn:hover::after{transform:translateY(0)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn .ar{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.btn:hover .ar{transform:translateX(4px)}
+.btn.ghost{--bg:transparent;--c:inherit;border:1px solid currentColor;box-shadow:none}
+.btn.ghost::after{background:currentColor}
+.btn.ghost:hover span{color:var(--paper);mix-blend-mode:difference}
+.dark .btn.ghost:hover span{color:var(--ink)}
+.btn.lite{--bg:#fff;--c:#0d1113}
+.btn.lite::after{background:var(--acc)}
+.btn.lite:hover span{color:#fff}
+
+/* ---------- header ---------- */
+header{position:fixed;inset:0 0 auto;z-index:90;transition:transform .5s cubic-bezier(.16,1,.3,1),background .4s,border-color .4s;border-bottom:1px solid transparent}
+header.solid{background:rgba(13,17,19,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+header.up{transform:translateY(-102%)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:2rem;height:76px;color:#fff}
+.logo{display:flex;align-items:center;gap:.65rem;font-weight:600;letter-spacing:-.03em;font-size:1.06rem}
+.logo .mk{width:26px;height:26px;flex:0 0 26px;background:var(--acc);position:relative;border-radius:1px}
+.logo .mk::before{content:"";position:absolute;left:5px;top:5px;right:5px;bottom:5px;border:2px solid #fff;border-right-color:transparent;border-bottom-color:transparent}
+.logo small{display:block;font-size:.55rem;letter-spacing:.22em;color:#8e989e;font-weight:500;margin-top:2px}
+.menu{display:flex;gap:2rem;align-items:center}
+.menu a{font-size:.85rem;color:#c6cdd1;position:relative;padding:.3rem 0;transition:color .3s}
+.menu a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.menu a:hover{color:#fff}.menu a:hover::after{transform:scaleX(1);transform-origin:left}
+.navcta{display:flex;align-items:center;gap:1.1rem}
+.tel{font-size:.85rem;color:#fff;display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+.tel i{width:6px;height:6px;background:#5ec37f;border-radius:50%;box-shadow:0 0 0 0 rgba(94,195,127,.7);animation:pl 2.4s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 8px rgba(94,195,127,0)}100%{box-shadow:0 0 0 0 rgba(94,195,127,0)}}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);background:transparent;border-radius:var(--r);position:relative;cursor:pointer}
+.burger b{position:absolute;left:12px;width:20px;height:1.5px;background:#fff;transition:.35s cubic-bezier(.16,1,.3,1)}
+.burger b:nth-child(1){top:17px}.burger b:nth-child(2){bottom:17px}
+body.mopen .burger b:nth-child(1){top:21px;transform:rotate(45deg)}
+body.mopen .burger b:nth-child(2){bottom:21px;transform:rotate(-45deg)}
+.mob{position:fixed;inset:0;z-index:85;background:var(--ink);padding:100px var(--pad) 40px;display:flex;flex-direction:column;gap:.25rem;transform:translateY(-100%);transition:transform .6s cubic-bezier(.76,0,.24,1);overflow:auto}
+body.mopen .mob{transform:none}
+.mob a.ml{color:#fff;font-size:clamp(1.9rem,9vw,2.6rem);font-weight:560;letter-spacing:-.04em;padding:.42rem 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+.mob a.ml em{font-style:normal;font-size:.62rem;letter-spacing:.2em;color:var(--acc);font-family:ui-monospace,monospace}
+.mob .mfoot{margin-top:auto;padding-top:2.2rem;display:grid;gap:.9rem;color:#98a2a8;font-size:.9rem}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;background:var(--ink);overflow:hidden;isolation:isolate}
+.hero .bg{position:absolute;inset:-8% 0 0;z-index:-2;will-change:transform}
+.hero .bg img{width:100%;height:112%;object-fit:cover;filter:saturate(.72) contrast(1.06) brightness(.82)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(13,17,19,.86) 0%,rgba(13,17,19,.28) 34%,rgba(13,17,19,.55) 66%,rgba(13,17,19,.97) 100%),
+  radial-gradient(120% 80% at 80% 10%,rgba(216,85,42,.16),transparent 60%)}
+.hero .grid-l{position:absolute;inset:0;z-index:-1;max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);display:grid;grid-template-columns:repeat(4,1fr);pointer-events:none}
+.hero .grid-l i{border-left:1px solid rgba(255,255,255,.055)}
+.hero .grid-l i:last-child{border-right:1px solid rgba(255,255,255,.055)}
+.hcontent{padding-bottom:clamp(28px,5vh,54px);padding-top:130px}
+.htag{display:inline-flex;align-items:center;gap:.8rem;color:#fff;border:1px solid var(--line);padding:.5rem .85rem;border-radius:100px;background:rgba(255,255,255,.05);backdrop-filter:blur(6px)}
+.htag s{text-decoration:none;color:var(--acc-2)}
+h1{color:#fff;font-size:clamp(2.7rem,9vw,7.2rem);font-weight:560;letter-spacing:-.045em;line-height:.94;margin:1.3rem 0 0;text-wrap:balance}
+h1 .l{display:block;overflow:hidden}
+h1 .l>span{display:block;transform:translateY(105%);animation:up 1.1s cubic-bezier(.16,1,.3,1) forwards}
+h1 .l:nth-child(2)>span{animation-delay:.1s}h1 .l:nth-child(3)>span{animation-delay:.2s}
+@keyframes up{to{transform:none}}
+h1 em{font-style:normal;color:#8b979e}
+.hrow{display:flex;flex-wrap:wrap;gap:2.4rem;align-items:flex-end;justify-content:space-between;margin-top:clamp(1.6rem,4vw,2.8rem)}
+.hrow p{max-width:44ch;color:#b9c2c7;font-size:clamp(.98rem,1.4vw,1.1rem)}
+.hbtns{display:flex;gap:.7rem;flex-wrap:wrap}
+.hbar{border-top:1px solid var(--line);background:rgba(13,17,19,.5);backdrop-filter:blur(8px)}
+.hbar .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.hbar div{padding:1.15rem 0;border-left:1px solid var(--line)}
+.hbar div:first-child{border-left:0}
+.hbar div:not(:first-child){padding-left:1.3rem}
+.hbar b{display:block;font-size:clamp(1.5rem,3vw,2.15rem);font-weight:560;letter-spacing:-.04em;color:#fff;line-height:1}
+.hbar span{color:#8b959b;font-size:.72rem;letter-spacing:.05em}
+.scroll-i{position:absolute;right:var(--pad);bottom:calc(100% + 18px);writing-mode:vertical-rl;color:#8b959b;display:flex;align-items:center;gap:.7rem}
+.scroll-i b{width:1px;height:44px;background:linear-gradient(#8b959b,transparent);display:block}
+
+/* ---------- ticker ---------- */
+.tick{background:var(--acc);color:#fff;padding:.85rem 0;overflow:hidden;white-space:nowrap;border-block:1px solid rgba(0,0,0,.12)}
+.tick .t{display:inline-flex;gap:2.6rem;animation:sl 34s linear infinite;padding-right:2.6rem}
+.tick:hover .t{animation-play-state:paused}
+@keyframes sl{to{transform:translateX(-100%)}}
+.tick span{display:inline-flex;align-items:center;gap:2.6rem;opacity:.94}
+.tick span::after{content:"";width:5px;height:5px;background:currentColor;transform:rotate(45deg)}
+
+/* ---------- intro / section head ---------- */
+.shead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(1.6rem,5vw,5rem);align-items:end}
+.eyebrow{display:flex;align-items:center;gap:.75rem;color:var(--acc);margin-bottom:1.4rem}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor}
+.pad{padding-block:clamp(72px,11vw,150px)}
+
+.intro-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,6vw,5.5rem);align-items:start}
+.big-claim{font-size:clamp(1.6rem,3.6vw,2.9rem);font-weight:500;letter-spacing:-.035em;line-height:1.14;text-wrap:balance}
+.big-claim u{text-decoration:none;color:var(--mut)}
+.facts{display:grid;gap:0;border-top:1px solid var(--line-d)}
+.facts div{padding:1.15rem 0;border-bottom:1px solid var(--line-d);display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:baseline}
+.facts .k{color:var(--acc);font-family:ui-monospace,monospace;font-size:.68rem;letter-spacing:.14em}
+.facts .v{font-size:.95rem;color:#3c4348}
+.facts b{color:var(--fg);font-weight:560}
+
+/* ---------- services ---------- */
+.srv{border-top:1px solid var(--line)}
+.srv-row{display:grid;grid-template-columns:70px minmax(0,1.05fr) minmax(0,1.35fr) auto;gap:clamp(1rem,3vw,2.6rem);align-items:center;
+  padding:clamp(1.5rem,3vw,2.15rem) 0;border-bottom:1px solid var(--line);position:relative;cursor:pointer;transition:padding .45s cubic-bezier(.16,1,.3,1)}
+.srv-row::before{content:"";position:absolute;inset:0 -100vw;background:linear-gradient(90deg,rgba(216,85,42,.14),rgba(216,85,42,0) 65%);opacity:0;transition:opacity .45s}
+.srv-row:hover::before{opacity:1}
+.srv-row:hover{padding-inline:clamp(.5rem,1.6vw,1.2rem)}
+.srv-row>*{position:relative}
+.srv-row .n{color:#6a747a;font-family:ui-monospace,monospace;font-size:.7rem;letter-spacing:.12em}
+.srv-row h3{color:#fff;transition:color .35s}
+.srv-row:hover h3{color:var(--acc-2)}
+.srv-row .d{color:#98a2a8;font-size:.93rem;line-height:1.5}
+.srv-row .go{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:#fff;transition:.45s cubic-bezier(.16,1,.3,1);flex:0 0 44px}
+.srv-row:hover .go{background:var(--acc);border-color:var(--acc);transform:rotate(-45deg)}
+.srv-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.srv-tags i{font-style:normal;font-size:.68rem;letter-spacing:.03em;color:#aab3b8;border:1px solid var(--line);padding:.24rem .55rem;border-radius:100px}
+
+/* ---------- projects ---------- */
+.pj{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(14px,2vw,26px)}
+.card{position:relative;overflow:hidden;background:#dedbd5;border-radius:var(--r);display:block;isolation:isolate}
+.card .im{overflow:hidden;position:relative}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.16,1,.3,1),filter .6s;filter:saturate(.8) contrast(1.04)}
+.card:hover img{transform:scale(1.055);filter:saturate(1) contrast(1.06)}
+.card .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,17,19,0) 30%,rgba(13,17,19,.9));display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(1.1rem,2.4vw,2rem);color:#fff}
+.card .ov h3{margin-bottom:.35rem}
+.card .meta{display:flex;flex-wrap:wrap;gap:.5rem 1.1rem;color:#b6bfc4;margin-top:.55rem}
+.card .badge{position:absolute;top:1rem;left:1rem;background:rgba(13,17,19,.72);backdrop-filter:blur(6px);border:1px solid var(--line);color:#fff;padding:.4rem .7rem;border-radius:100px}
+.card .rd{opacity:0;transform:translateY(10px);transition:.5s cubic-bezier(.16,1,.3,1);color:var(--acc-2);margin-top:.9rem;display:flex;align-items:center;gap:.5rem}
+.card:hover .rd{opacity:1;transform:none}
+.c-a{grid-column:span 7}.c-a .im{aspect-ratio:16/11}
+.c-b{grid-column:span 5}.c-b .im{aspect-ratio:4/4.1}
+.c-c{grid-column:span 5}.c-c .im{aspect-ratio:4/3.4}
+.c-d{grid-column:span 7}.c-d .im{aspect-ratio:16/10}
+
+/* ---------- before/after ---------- */
+.ba{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:var(--r);cursor:ew-resize;touch-action:pan-y;user-select:none;background:#222}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .aft{clip-path:inset(0 0 0 var(--x,50%))}
+.ba .hd{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:#fff;box-shadow:0 0 22px rgba(0,0,0,.45)}
+.ba .hd::after{content:"";position:absolute;top:50%;left:50%;width:52px;height:52px;transform:translate(-50%,-50%);background:#fff;border-radius:50%;
+  box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.ba .hd svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;color:#0d1113}
+.ba .lb{position:absolute;bottom:1rem;background:rgba(13,17,19,.78);color:#fff;padding:.42rem .75rem;border-radius:100px;backdrop-filter:blur(6px)}
+.ba .lb.l{left:1rem}.ba .lb.r{right:1rem}
+
+/* ---------- process ---------- */
+.ph{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line-d)}
+.ph .st{padding:1.8rem 1.4rem 2.2rem 0;border-right:1px solid var(--line-d);position:relative}
+.ph .st:last-child{border-right:0}
+.ph .st::before{content:"";position:absolute;top:-1px;left:0;height:2px;width:0;background:var(--acc);transition:width 1.1s cubic-bezier(.16,1,.3,1)}
+.ph .st.in::before{width:100%}
+.ph .st:nth-child(2)::before{transition-delay:.15s}.ph .st:nth-child(3)::before{transition-delay:.3s}
+.ph .st:nth-child(4)::before{transition-delay:.45s}.ph .st:nth-child(5)::before{transition-delay:.6s}
+.ph .st .n{color:var(--acc);font-family:ui-monospace,monospace;font-size:.68rem;letter-spacing:.14em;margin-bottom:1rem;display:block}
+.ph .st h4{font-size:1.12rem;letter-spacing:-.02em;margin-bottom:.5rem}
+.ph .st p{color:var(--mut);font-size:.88rem;line-height:1.5;padding-right:.5rem}
+
+/* ---------- fleet ---------- */
+.fleet{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.mach{padding:clamp(1.4rem,2.4vw,2rem);border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;transition:background .5s}
+.mach:hover{background:var(--ink-3)}
+.mach .sil{color:#3d474d;transition:color .5s,transform .6s cubic-bezier(.16,1,.3,1)}
+.mach:hover .sil{color:var(--acc);transform:translateX(4px)}
+.mach h4{color:#fff;font-size:1rem;margin:1.4rem 0 .3rem;letter-spacing:-.02em}
+.mach .sp{color:#8b959b;font-size:.83rem}
+.mach .qty{position:absolute;top:1.1rem;right:1.1rem;color:#6a747a;font-family:ui-monospace,monospace;font-size:.68rem;letter-spacing:.1em;border:1px solid var(--line);padding:.2rem .45rem;border-radius:2px}
+.bars{margin-top:1.1rem;display:grid;gap:.45rem}
+.bar{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:center;font-size:.7rem;color:#7d878d}
+.bar .tr{height:3px;background:rgba(255,255,255,.09);overflow:hidden}
+.bar .tr i{display:block;height:100%;background:var(--acc);width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+.mach.in .bar .tr i{width:var(--w)}
+
+/* ---------- quotes ---------- */
+.qs{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:clamp(14px,2vw,22px)}
+.q{background:#fff;border:1px solid var(--line-d);border-radius:var(--r);padding:clamp(1.5rem,2.6vw,2.2rem);display:flex;flex-direction:column;gap:1.2rem;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.q:hover{transform:translateY(-5px);box-shadow:0 22px 50px -30px rgba(13,17,19,.45)}
+.q .stars{color:var(--acc);letter-spacing:.18em;font-size:.8rem}
+.q blockquote{margin:0;font-size:1.02rem;line-height:1.55;letter-spacing:-.015em}
+.q .who{margin-top:auto;display:flex;align-items:center;gap:.85rem;padding-top:1rem;border-top:1px solid var(--line-d)}
+.q .av{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:.8rem;font-weight:600;flex:0 0 40px}
+.q .who b{display:block;font-size:.9rem;font-weight:560}
+.q .who span{font-size:.8rem;color:var(--mut)}
+
+/* ---------- form ---------- */
+.formwrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
+form.rq{background:#fff;border:1px solid var(--line-d);border-radius:var(--r);padding:clamp(1.3rem,3vw,2.5rem)}
+.steps{display:flex;gap:.35rem;margin-bottom:1.8rem}
+.steps i{flex:1;height:3px;background:var(--paper-2);position:relative;overflow:hidden}
+.steps i::after{content:"";position:absolute;inset:0;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.steps i.on::after{transform:none}
+.fl{font-size:.78rem;font-weight:560;letter-spacing:.01em;display:block;margin-bottom:.55rem}
+.fl s{text-decoration:none;color:var(--acc)}
+.fg{margin-bottom:1.15rem}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem}
+input,select,textarea{width:100%;padding:.92rem 1rem;background:var(--paper);border:1px solid var(--line-d);border-radius:var(--r);font-size:.94rem;transition:border-color .3s,background .3s,box-shadow .3s;-webkit-appearance:none;appearance:none}
+select{background-image:url("images/image-08.svg");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.4rem}
+textarea{resize:vertical;min-height:118px}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--acc);background:#fff;box-shadow:0 0 0 3px rgba(216,85,42,.11)}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip label{display:block;padding:.6rem .9rem;border:1px solid var(--line-d);border-radius:100px;font-size:.82rem;cursor:pointer;transition:.28s;background:var(--paper);user-select:none}
+.chip label:hover{border-color:#b9b4ab}
+.chip input:checked+label{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip input:focus-visible+label{box-shadow:0 0 0 3px rgba(216,85,42,.3)}
+.rng{display:grid;gap:.5rem}
+input[type=range]{padding:0;background:transparent;border:0;height:26px}
+input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--paper-2)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;background:var(--acc);border-radius:50%;margin-top:-8.5px;cursor:grab;box-shadow:0 2px 8px rgba(216,85,42,.4)}
+input[type=range]::-moz-range-track{height:3px;background:var(--paper-2)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border:0;background:var(--acc);border-radius:50%}
+.rngv{display:flex;justify-content:space-between;font-size:.78rem;color:var(--mut)}
+.rngv b{color:var(--fg);font-weight:560;font-size:.92rem}
+.formfoot{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--line-d)}
+.formfoot small{color:var(--mut);font-size:.76rem;max-width:34ch;line-height:1.45}
+.ok{display:none;text-align:center;padding:2.5rem 1rem}
+.ok.on{display:block;animation:fi .6s cubic-bezier(.16,1,.3,1)}
+@keyframes fi{from{opacity:0;transform:translateY(14px)}}
+.ok .ic{width:62px;height:62px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;margin:0 auto 1.3rem}
+.sidebox{display:grid;gap:1.6rem}
+.sidebox .row{display:grid;grid-template-columns:36px 1fr;gap:1rem;align-items:start;padding-bottom:1.5rem;border-bottom:1px solid var(--line)}
+.sidebox .row:last-child{border-bottom:0}
+.sidebox .ic{width:36px;height:36px;border:1px solid var(--line);border-radius:var(--r);display:grid;place-items:center;color:var(--acc-2)}
+.sidebox h4{color:#fff;font-size:.98rem;margin-bottom:.25rem;letter-spacing:-.02em}
+.sidebox p{color:#8f999f;font-size:.88rem;line-height:1.5}
+.sidebox a{color:#fff;border-bottom:1px solid rgba(255,255,255,.25)}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#8f999f;border-top:1px solid var(--line)}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:clamp(1.8rem,4vw,3rem);padding-block:clamp(48px,7vw,84px)}
+.fgrid h5{color:#fff;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;margin:0 0 1.2rem;font-weight:560;font-family:ui-monospace,monospace}
+.fgrid a{display:block;padding:.3rem 0;font-size:.9rem;transition:color .25s,padding-left .3s}
+.fgrid a:hover{color:#fff;padding-left:5px}
+.fbot{border-top:1px solid var(--line);padding-block:1.4rem;display:flex;flex-wrap:wrap;gap:.8rem 1.6rem;justify-content:space-between;font-size:.78rem}
+.megaword{font-size:clamp(3.2rem,16.5vw,15rem);font-weight:560;letter-spacing:-.055em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.14);line-height:.8;padding-block:clamp(20px,4vw,40px);white-space:nowrap;text-align:center}
+
+/* ---------- misc ---------- */
+.hmsgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(1rem,2vw,1.6rem)}
+.hms{border:1px solid var(--line-d);background:#fff;border-radius:var(--r);padding:1.6rem;transition:.5s cubic-bezier(.16,1,.3,1)}
+.hms:hover{border-color:var(--ink);transform:translateY(-4px)}
+.hms .num{font-size:2.4rem;font-weight:560;letter-spacing:-.045em;line-height:1}
+.hms h4{font-size:.98rem;margin:.9rem 0 .35rem}
+.hms p{font-size:.86rem;color:var(--mut);line-height:1.5}
+.marq-logos{display:flex;gap:clamp(2rem,5vw,4.5rem);align-items:center;opacity:.55;flex-wrap:wrap;justify-content:center}
+.marq-logos b{font-size:clamp(.95rem,1.7vw,1.25rem);font-weight:600;letter-spacing:-.03em;color:#4d565b}
+.pfilter{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:1.8rem}
+.pfilter button{background:transparent;border:1px solid var(--line-d);padding:.55rem .95rem;border-radius:100px;font-size:.8rem;cursor:pointer;transition:.28s}
+.pfilter button.on,.pfilter button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hidecard{display:none}
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:100;width:0;transition:width .1s linear}
+
+@media(max-width:1080px){
+  .menu,.tel{display:none}
+  .burger{display:block}
+  .intro-grid,.formwrap,.shead{grid-template-columns:1fr}
+  .ph{grid-template-columns:repeat(2,1fr)}
+  .ph .st{border-bottom:1px solid var(--line-d);padding-right:1.2rem}
+  .ph .st:nth-child(2n){border-right:0}
+  .srv-row{grid-template-columns:44px 1fr auto;row-gap:.2rem}
+  .srv-row .d{grid-column:2/4}
+  .c-a,.c-b,.c-c,.c-d{grid-column:span 6}
+  .c-a .im,.c-b .im,.c-c .im,.c-d .im{aspect-ratio:4/3.2}
+}
+@media(max-width:720px){
+  .hbar .wrap{grid-template-columns:1fr 1fr}
+  .hbar div{border-left:0;padding:.9rem 0}
+  .hbar div:nth-child(2n){padding-left:1.1rem;border-left:1px solid var(--line)}
+  .hbar div:nth-child(n+3){border-top:1px solid var(--line)}
+  .scroll-i{display:none}
+  .c-a,.c-b,.c-c,.c-d{grid-column:span 12}
+  .ph{grid-template-columns:1fr}
+  .ph .st{border-right:0;padding-right:0}
+  .f2{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .fgrid>div:first-child{grid-column:1/-1}
+  .hbtns .btn{flex:1;justify-content:center}
+  .ba{aspect-ratio:4/3.4}
+  .hero .grid-l{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:420px){ .fgrid{grid-template-columns:1fr} }
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<div class="prog" id="prog"></div>
+
+<header id="hd">
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="NordGrunn AS forsiden">
+      <span class="mk" aria-hidden="true"></span>
+      <span>NordGrunn<small>Grunnentreprenør · Est. 2004</small></span>
+    </a>
+    <nav class="menu">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#prosjekter">Prosjekter</a>
+      <a href="#prosess">Prosess</a>
+      <a href="#maskinpark">Maskinpark</a>
+      <a href="#hms">HMS &amp; kvalitet</a>
+    </nav>
+    <div class="navcta">
+      <a class="tel" href="tel:+4722994400"><i aria-hidden="true"></i>22 99 44 00</a>
+      <a class="btn" href="#befaring"><span>Be om befaring <svg class="ar" width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true"><path d="M8 1l4 4-4 4M12 5H0" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+      <button class="burger" id="bg" aria-label="Meny" aria-expanded="false"><b></b><b></b></button>
+    </div>
+  </div>
+</header>
+
+<div class="mob" id="mob">
+  <a class="ml" href="#tjenester"><span>Tjenester</span><em>01</em></a>
+  <a class="ml" href="#prosjekter"><span>Prosjekter</span><em>02</em></a>
+  <a class="ml" href="#prosess"><span>Prosess</span><em>03</em></a>
+  <a class="ml" href="#maskinpark"><span>Maskinpark</span><em>04</em></a>
+  <a class="ml" href="#hms"><span>HMS</span><em>05</em></a>
+  <a class="ml" href="#befaring"><span>Befaring</span><em>06</em></a>
+  <div class="mfoot">
+    <a href="tel:+4722994400" style="color:#fff;font-size:1.3rem;letter-spacing:-.03em">22 99 44 00</a>
+    <a href="/cdn-cgi/l/email-protection#10607f6364507e7f62747762657e7e3e7e7f"><span class="__cf_email__" data-cfemail="72021d0106321c1d00161500071c1c5c1c1d">[email&#160;protected]</span></a>
+    <span>Kabelgata 18, 0580 Oslo · Org.nr 987 654 321 MVA</span>
+    <a class="btn" href="#befaring" style="justify-content:center"><span>Be om befaring</span></a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="bg" id="hbg"><img src="images/image-01.jpg" alt="Grunnarbeid på anleggsområde i blåtimen"></div>
+  <div class="grid-l" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap hcontent">
+    <span class="htag mono"><s>●</s> Kapasitet ledig fra uke 42 · Oslo &amp; Viken</span>
+    <h1>
+      <span class="l"><span>Vi bygger</span></span>
+      <span class="l"><span>grunnen andre</span></span>
+      <span class="l"><span><em>bygger på.</em></span></span>
+    </h1>
+    <div class="hrow">
+      <p>NordGrunn AS er grunnentreprenøren for prosjekter der toleransene er små og fremdriften ikke kan skli. Fra masseutskifting og VA til ferdig klargjort byggegrop — dokumentert i hver eneste fase.</p>
+      <div class="hbtns">
+        <a class="btn" href="#befaring"><span>Start prosjektet <svg class="ar" width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true"><path d="M8 1l4 4-4 4M12 5H0" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+        <a class="btn ghost" style="color:#fff" href="#prosjekter"><span>Se prosjekter</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="hbar">
+    <div class="wrap">
+      <div><b data-count="21" data-suf="">0</b><span class="mono">År i drift</span></div>
+      <div><b data-count="640" data-suf="+">0</b><span class="mono">Leverte prosjekter</span></div>
+      <div><b data-count="98" data-suf="%">0</b><span class="mono">Levert til avtalt tid</span></div>
+      <div><b data-count="0" data-suf="">0</b><span class="mono">Fraværsskader 2024</span></div>
+    </div>
+    <div class="scroll-i mono" aria-hidden="true">Scroll <b></b></div>
+  </div>
+</section>
+
+<div class="tick" aria-hidden="true">
+  <div class="t"><span class="mono">Grunnarbeid</span><span class="mono">Drenering</span><span class="mono">Sprengning &amp; pigging</span><span class="mono">VA-anlegg</span><span class="mono">Støttemurer</span><span class="mono">Masseutskifting</span><span class="mono">Tomteklargjøring</span><span class="mono">Planering</span><span class="mono">Kabelgrøfter</span><span class="mono">Vinterdrift</span></div>
+  <div class="t"><span class="mono">Grunnarbeid</span><span class="mono">Drenering</span><span class="mono">Sprengning &amp; pigging</span><span class="mono">VA-anlegg</span><span class="mono">Støttemurer</span><span class="mono">Masseutskifting</span><span class="mono">Tomteklargjøring</span><span class="mono">Planering</span><span class="mono">Kabelgrøfter</span><span class="mono">Vinterdrift</span></div>
+</div>
+
+<!-- INTRO -->
+<section class="pad">
+  <div class="wrap intro-grid">
+    <div class="rv">
+      <span class="eyebrow mono">Om NordGrunn</span>
+      <p class="big-claim">Millimeter betyr noe når 400 tonn betong skal stå i 60 år. <u>Vi setter av tiden det tar å gjøre det riktig første gang — og dokumenterer hvert lag, hver høyde og hver masse vi flytter.</u></p>
+      <div style="margin-top:clamp(1.8rem,4vw,2.8rem);display:flex;gap:.7rem;flex-wrap:wrap">
+        <a class="btn" href="#befaring"><span>Få tilbud <svg class="ar" width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true"><path d="M8 1l4 4-4 4M12 5H0" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+        <a class="btn ghost" href="#prosess"><span>Slik jobber vi</span></a>
+      </div>
+    </div>
+    <div class="facts rv" data-d="1">
+      <div><span class="k">01 / Fagfelt</span><span class="v"><b>Grunn, VA og utomhus</b> — komplett leveranse fra riving og sprengning til ferdig planert og komprimert byggeklar tomt.</span></div>
+      <div><span class="k">02 / Marked</span><span class="v"><b>Oslo, Viken og Innlandet.</b> Boligfelt, næringsbygg, offentlige anlegg og krevende eneboligtomter.</span></div>
+      <div><span class="k">03 / Kapasitet</span><span class="v"><b>34 ansatte</b> fordelt på fire produksjonslag, 22 maskiner og egen transportavdeling med seks lastebiler.</span></div>
+      <div><span class="k">04 / Kontroll</span><span class="v"><b>Startbank-godkjent</b>, sentral godkjenning tiltaksklasse 2, ISO 9001 og 14001, StartBANK og Achilles.</span></div>
+      <div><span class="k">05 / Dokumentasjon</span><span class="v"><b>GPS-styrte maskiner</b> og digital innmåling. Du får som-bygget-modell, komprimeringsrapport og bildeserie ved overlevering.</span></div>
+    </div>
+  </div>
+  <div class="wrap" style="padding-top:clamp(2.4rem,5vw,4rem)">
+    <div class="marq-logos rv"><b>Selvaag Bolig</b><b>OBOS Prosjekt</b><em style="width:1px;height:20px;background:var(--line-d)"></em><b>Bane NOR Eiendom</b><b>Bærum kommune</b><b>Backe Entreprenør</b><b>Ferd Eiendom</b></div>
+  </div>
+</section>
+
+<!-- TJENESTER -->
+<section class="dark pad" id="tjenester">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <span class="eyebrow mono">Tjenester</span>
+        <h2>Alt under bakken.<br>Levert av ett lag.</h2>
+      </div>
+      <p class="lede">Vi tar hele grunnleveransen i egen regi — det gir én ansvarlig, én fremdriftsplan og ingen tid tapt i grensesnitt mellom underleverandører.</p>
+    </div>
+    <div class="srv" style="margin-top:clamp(2.4rem,5vw,4rem)" id="srvlist"></div>
+  </div>
+</section>
+
+<!-- PROSJEKTER -->
+<section class="pad" id="prosjekter">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <span class="eyebrow mono">Utvalgte prosjekter</span>
+        <h2>Dokumentert arbeid,<br>ikke løse påstander.</h2>
+      </div>
+      <p class="lede">Hvert prosjekt under er levert med innmålingsdata, komprimeringskontroll og full bildedokumentasjon. Filtrer på fagområde for å se referanser som ligner ditt.</p>
+    </div>
+    <div class="pfilter rv" id="pf">
+      <button class="on" data-f="alle">Alle prosjekter</button>
+      <button data-f="grunn">Grunn &amp; tomt</button>
+      <button data-f="va">VA-anlegg</button>
+      <button data-f="mur">Støttemurer</button>
+      <button data-f="drenering">Drenering</button>
+    </div>
+    <div class="pj" style="margin-top:clamp(1.6rem,3.5vw,2.6rem)" id="pjgrid"></div>
+  </div>
+</section>
+
+<!-- FØR/ETTER -->
+<section class="dark pad">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <span class="eyebrow mono">Før / etter</span>
+        <h2>Fra ubrukelig<br>skråning til byggeklart.</h2>
+      </div>
+      <p class="lede">Nordre Skogvei 14, Bærum. En bratt, vannmettet leirtomt ble stabilisert, drenert og terrassert på ni uker. Dra i håndtaket for å se forskjellen.</p>
+    </div>
+    <div class="ba rv" id="ba" style="margin-top:clamp(2rem,4vw,3rem)" role="slider" tabindex="0" aria-label="Sammenlign før og etter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <img src="images/image-02.jpg" alt="Tomten før grunnarbeid">
+      <img class="aft" src="images/image-03.jpg" alt="Tomten etter ferdig grunnarbeid">
+      <div class="hd"><svg width="17" height="11" viewBox="0 0 17 11" fill="none" aria-hidden="true"><path d="M5 1L1 5.5 5 10M12 1l4 4.5-4 4.5" stroke="currentColor" stroke-width="1.6"/></svg></div>
+      <span class="lb l mono">Før · mars</span><span class="lb r mono">Etter · juni</span>
+    </div>
+    <div class="hbar" style="border-top:1px solid var(--line);margin-top:0;background:transparent">
+      <div class="wrap" style="padding-inline:0">
+        <div><b>1 340 m³</b><span class="mono">Masseutskiftet</span></div>
+        <div><b>62 lm</b><span class="mono">Naturstein støttemur</span></div>
+        <div><b>9 uker</b><span class="mono">Fra rigg til overlevering</span></div>
+        <div><b>±8 mm</b><span class="mono">Målt høydeavvik</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROSESS -->
+<section class="pad" id="prosess">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <span class="eyebrow mono">Prosess</span>
+        <h2>Fem faser.<br>Null overraskelser.</h2>
+      </div>
+      <p class="lede">Du vet til enhver tid hva som skjer, hvem som er på tomta og hva neste uke koster. Fremdriftsplanen oppdateres hver fredag og deles digitalt.</p>
+    </div>
+    <div class="ph" style="margin-top:clamp(2.2rem,4.5vw,3.4rem)">
+      <div class="st rv"><span class="n">Fase 01</span><h4>Befaring</h4><p>Vi er på tomta innen fem virkedager, vurderer grunnforhold, adkomst, fall og massebalanse — kostnadsfritt.</p></div>
+      <div class="st rv" data-d="1"><span class="n">Fase 02</span><h4>Tilbud &amp; plan</h4><p>Fastpris eller regningsarbeid med tak. Detaljert mengdeliste, fremdriftsplan og navngitt anleggsleder.</p></div>
+      <div class="st rv" data-d="2"><span class="n">Fase 03</span><h4>Rigg &amp; sikring</h4><p>SHA-plan, nabovarsel, gravemelding, kabelpåvisning og sikring av arbeidsområdet før første maskin ruller inn.</p></div>
+      <div class="st rv" data-d="3"><span class="n">Fase 04</span><h4>Utførelse</h4><p>GPS-styrt graving, lagvis komprimering med dokumentert kontroll og ukentlig statusrapport med bilder.</p></div>
+      <div class="st rv" data-d="4"><span class="n">Fase 05</span><h4>Overlevering</h4><p>Innmåling, som-bygget-dokumentasjon, FDV og fem års garanti på utført arbeid. Ryddig tomt, alltid.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MASKINPARK -->
+<section class="dark pad" id="maskinpark">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <span class="eyebrow mono">Maskinpark &amp; kapasitet</span>
+        <h2>22 maskiner.<br>Alle eid selv.</h2>
+      </div>
+      <p class="lede">Egen maskinpark betyr at vi ikke står og venter på innleie når fremdriften strammer seg til. Alt utstyr er GPS-utrustet, servicevedlikeholdt og under åtte år gammelt.</p>
+    </div>
+    <div class="fleet rv" style="margin-top:clamp(2.2rem,4.5vw,3.4rem)" id="fleet"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;margin-top:2rem" class="rv">
+      <p class="lede" style="max-width:52ch">Trenger du maskin med fører på timebasis? Vi leier ut ledig kapasitet til andre entreprenører i Oslo-området.</p>
+      <a class="btn lite" href="#befaring"><span>Sjekk ledig kapasitet <svg class="ar" width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true"><path d="M8 1l4 4-4 4M12 5H0" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- HMS -->
+<section class="pad" id="hms">
+  <div class="wrap">
+    <div class="shead rv">
+      <div>
+        <span class="eyebrow mono">HMS, kvalitet &amp; leveringsevne</span>
+        <h2>Sikkerheten er<br>ikke et vedlegg.</h2>
+      </div>
+      <p class="lede">Vi måler oss på tall vi tør å publisere. Alle mannskaper har HMS-kort, maskinførerbevis og gjennomført internopplæring i sikker graving nær kabler og rør.</p>
+    </div>
+    <div class="hmsgrid" style="margin-top:clamp(2rem,4vw,3rem)">
+      <div class="hms rv"><div class="num" data-count="0">0</div><h4>Fraværsskader i 2024</h4><p>1 412 dagsverk uten skade med fravær. Alle uønskede hendelser registreres og lukkes i vårt digitale HMS-system.</p></div>
+      <div class="hms rv" data-d="1"><div class="num" data-count="98" data-suf="%">0</div><h4>Levert til avtalt dato</h4><p>Målt på 640 leverte prosjekter. Ved forsinkelse varsler vi før den oppstår, ikke etter.</p></div>
+      <div class="hms rv" data-d="2"><div class="num" data-count="34">0</div><h4>Fast ansatte</h4><p>Ingen bemanningsbyråer på våre anlegg. Fast lag, kjente ansikter og lærlinger i alle produksjonsteam.</p></div>
+      <div class="hms rv" data-d="3"><div class="num" data-count="5" data-suf=" år">0</div><h4>Garanti på utført arbeid</h4><p>To år lovpålagt — vi gir fem. Med årlig oppfølgingsbefaring på drenerings- og muranlegg.</p></div>
+    </div>
+    <div class="qs rv" style="margin-top:clamp(2rem,4vw,3rem)" id="quotes"></div>
+  </div>
+</section>
+
+<!-- BEFARING -->
+<section class="dark pad" id="befaring">
+  <div class="wrap">
+    <div class="shead rv" style="margin-bottom:clamp(2.2rem,4.5vw,3.4rem)">
+      <div>
+        <span class="eyebrow mono">Prosjektforespørsel</span>
+        <h2>Be om befaring.<br>Svar innen 24 timer.</h2>
+      </div>
+      <p class="lede">Fyll ut det du vet — vi tar resten på telefon. Befaring og prisoverslag er alltid kostnadsfritt og uforpliktende.</p>
+    </div>
+    <div class="formwrap">
+      <div class="sidebox rv">
+        <div class="row"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5C5.5 1.5 3.5 3.4 3.5 5.9 3.5 9.3 8 14.5 8 14.5s4.5-5.2 4.5-8.6C12.5 3.4 10.5 1.5 8 1.5z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="5.9" r="1.6" stroke="currentColor" stroke-width="1.3"/></svg></span><div><h4>Kabelgata 18, 0580 Oslo</h4><p>Verksted, lager og masseoppstillingsplass. Besøk etter avtale.</p></div></div>
+        <div class="row"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 4.2c0 5.2 4.1 9.3 9.3 9.3l1.7-1.7-2.8-2-1.6 1.3a11 11 0 01-4.2-4.2l1.3-1.6-2-2.8L2.5 4.2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span><div><h4>22 99 44 00</h4><p>Bemannet 07:00–16:00. Vakttelefon for pågående anlegg: 909 12 340.</p></div></div>
+        <div class="row"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.8" y="3.5" width="12.4" height="9" rx="1.2" stroke="currentColor" stroke-width="1.3"/><path d="M2.2 4.4L8 8.6l5.8-4.2" stroke="currentColor" stroke-width="1.3"/></svg></span><div><h4><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="04746b7770446a6b76606376716a6a2a6a6b">[email&#160;protected]</a></h4><p>Anbud og tilbudsforespørsler: <a href="/cdn-cgi/l/email-protection#4a2b24283f2e0a2425382e2d383f2424642425"><span class="__cf_email__" data-cfemail="b9d8d7dbccddf9d7d6cbdddecbccd7d797d7d6">[email&#160;protected]</span></a></p></div></div>
+        <div class="row"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.3" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.4V8l2.4 1.6" stroke="currentColor" stroke-width="1.3"/></svg></span><div><h4>Ledig kapasitet fra uke 42</h4><p>To gravelag og ett murlag er tilgjengelige for oppstart i oktober og november.</p></div></div>
+      </div>
+
+      <form class="rq rv" data-d="1" id="rq" novalidate>
+        <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        <div id="fbody">
+          <div class="fg">
+            <span class="fl">Hva gjelder det? <s>*</s></span>
+            <div class="chips" id="chips"></div>
+          </div>
+          <div class="f2">
+            <div class="fg"><label class="fl" for="navn">Navn <s>*</s></label><input id="navn" name="navn" autocomplete="name" placeholder="Ola Nordmann" required></div>
+            <div class="fg"><label class="fl" for="tlf">Telefon <s>*</s></label><input id="tlf" name="tlf" type="tel" autocomplete="tel" inputmode="tel" placeholder="900 00 000" required></div>
+          </div>
+          <div class="f2">
+            <div class="fg"><label class="fl" for="epost">E-post</label><input id="epost" name="epost" type="email" autocomplete="email" inputmode="email" placeholder="ola@epost.no"></div>
+            <div class="fg"><label class="fl" for="start">Ønsket oppstart</label>
+              <select id="start" name="start"><option>Så snart som mulig</option><option selected>Innen 1–3 måneder</option><option>Om 3–6 måneder</option><option>Neste sesong</option><option>Vet ikke ennå</option></select>
+            </div>
+          </div>
+          <div class="fg"><label class="fl" for="adr">Adresse for arbeidet <s>*</s></label><input id="adr" name="adr" autocomplete="street-address" placeholder="Gateadresse, postnummer og sted" required></div>
+          <div class="fg">
+            <span class="fl">Omtrentlig størrelse på området</span>
+            <div class="rng">
+              <input type="range" id="areal" min="20" max="3000" step="20" value="400" aria-label="Omtrentlig areal i kvadratmeter">
+              <div class="rngv"><span>20 m²</span><b id="arealv">400 m²</b><span>3 000 m²+</span></div>
+            </div>
+          </div>
+          <div class="fg"><label class="fl" for="besk">Beskriv prosjektet</label><textarea id="besk" name="besk" placeholder="F.eks. «Enebolig fra 1978, vann i kjeller hver høst. Bratt tomt, trang adkomst. Ønsker ny drenering og støttemur mot nabogrense.»"></textarea></div>
+          <div class="formfoot">
+            <small>Vi svarer innen 24 timer på virkedager. Opplysningene brukes kun til å besvare henvendelsen.</small>
+            <button class="btn" type="submit"><span>Send forespørsel <svg class="ar" width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true"><path d="M8 1l4 4-4 4M12 5H0" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+          </div>
+        </div>
+        <div class="ok" id="ok">
+          <div class="ic"><svg width="26" height="20" viewBox="0 0 26 20" fill="none" aria-hidden="true"><path d="M2 10.5L9 17.5 24 2.5" stroke="currentColor" stroke-width="2.6"/></svg></div>
+          <h3>Takk — forespørselen er registrert.</h3>
+          <p class="lede" style="color:var(--mut);margin-top:.7rem;max-width:42ch;margin-inline:auto">En anleggsleder tar kontakt på telefon innen 24 timer for å avtale befaring. Referanse: <b id="ref" style="color:var(--fg)"></b></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <a href="#top" class="logo" style="color:#fff"><span class="mk" aria-hidden="true"></span><span>NordGrunn<small>Grunnentreprenør · Est. 2004</small></span></a>
+      <p style="margin-top:1.2rem;max-width:34ch;font-size:.9rem;line-height:1.6">Grunnentreprenør for Oslo, Viken og Innlandet. Vi leverer bæreevne, drenering og presisjon — og dokumentasjonen som beviser det.</p>
+      <a class="btn" href="#befaring" style="margin-top:1.4rem"><span>Kontakt oss <svg class="ar" width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true"><path d="M8 1l4 4-4 4M12 5H0" stroke="currentColor" stroke-width="1.5"/></svg></span></a>
+    </div>
+    <div><h5>Tjenester</h5><a href="#tjenester">Grunnarbeid</a><a href="#tjenester">Drenering</a><a href="#tjenester">VA-anlegg</a><a href="#tjenester">Støttemurer</a><a href="#tjenester">Masseutskifting</a><a href="#tjenester">Tomteklargjøring</a></div>
+    <div><h5>Selskap</h5><a href="#prosjekter">Prosjekter</a><a href="#prosess">Prosess</a><a href="#maskinpark">Maskinpark</a><a href="#hms">HMS &amp; kvalitet</a><a href="#befaring">Ledige stillinger</a></div>
+    <div>
+      <h5>Kontakt</h5>
+      <a href="tel:+4722994400">22 99 44 00</a>
+      <a href="/cdn-cgi/l/email-protection#f787988483b7999885939085829999d99998"><span class="__cf_email__" data-cfemail="12627d6166527c7d60767560677c7c3c7c7d">[email&#160;protected]</span></a>
+      <a href="#befaring">Kabelgata 18, 0580 Oslo</a>
+      <p style="font-size:.82rem;margin-top:1rem;line-height:1.6">Man–fre 07:00–16:00<br>Vakttelefon: 909 12 340</p>
+    </div>
+  </div>
+  <div class="megaword" aria-hidden="true">NORDGRUNN</div>
+  <div class="wrap fbot">
+    <span>© 2026 NordGrunn AS · Org.nr 987 654 321 MVA</span>
+    <span>Sentral godkjenning tiltaksklasse 2 · ISO 9001 &amp; 14001 · StartBANK</span>
+    <span>Demoside laget for porteføljebruk</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var $=function(s,c){return (c||document).querySelector(s)},
+    $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+/* ---- data ---- */
+var services=[
+ {t:"Grunnarbeid & byggegrop",d:"Utgraving, avretting og komprimering til ferdig byggeklar grop med dokumenterte bæreevner.",tags:["Utgraving","Komprimering","Innmåling"]},
+ {t:"Drenering & fuktsikring",d:"Ny drenering rundt eksisterende bygg, med grunnmursplate, filterduk og pumpekum der fallet krever det.",tags:["Grunnmur","Filterlag","Pumpekum"]},
+ {t:"VA-anlegg",d:"Vann, spillvann og overvann fra stikkledning til kommunalt påkoblingspunkt. ADK-1 sertifiserte utførende.",tags:["ADK-1","Stikkledning","Overvann"]},
+ {t:"Støttemurer & natursteinsarbeid",d:"Naturstein, betongelement og armerte jordmurer prosjektert for høyder opp til 4,5 meter.",tags:["Naturstein","Betongelement","Prosjektert"]},
+ {t:"Masseutskifting",d:"Utskifting av bløt leire, torv og telefarlige masser, med geotekstil og lagvis oppbygging av bærelag.",tags:["Geotekstil","Bærelag","Kontroll"]},
+ {t:"Planering & tomteklargjøring",d:"Fra tett skog til ferdig planert tomt: rydding, stubbefresing, terrengforming og oppbygd adkomstvei.",tags:["Terrengform","Adkomst","Rydding"]},
+ {t:"Sprengning & pigging",d:"Fjellrensk, boring og salveplan i samarbeid med sertifisert sprengningsleder. Rystelsesmåling der det kreves.",tags:["Salveplan","Rystelsesmåling"]},
+ {t:"Vinterdrift & beredskap",d:"Brøyting, strøing og snødeponi for borettslag og næringseiendom, med GPS-logg på hvert oppdrag.",tags:["Brøyting","GPS-logg","Beredskap"]}
+];
+var projects=[
+ {c:"c-a",img:"images/image-04.jpg",k:"grunn",badge:"Tomteklargjøring",t:"Furukollen boligfelt, Lørenskog",d:"18 tomter klargjort for rekkehus: 9 400 m³ masseflytting, intern adkomstvei og komplett overvannshåndtering.",m:["2025","Selvaag Bolig","14 uker","9 400 m³"],alt:"Klargjort byggetomt sett fra luften"},
+ {c:"c-b",img:"images/image-05.jpg",k:"mur",badge:"Støttemur",t:"Holtefjellveien 7, Asker",d:"62 løpemeter naturstein i tre terrasser på bratt leirtomt, med drenerende bakfyll og skjult overvannsledning.",m:["2025","Privat","6 uker","4,2 m høyde"],alt:"Ferdig natursteins støttemur"},
+ {c:"c-c",img:"images/image-06.jpg",k:"va",badge:"VA-anlegg",t:"Bjerkeveien VA-fornyelse, Oslo",d:"310 meter ny vann- og spillvannsledning i tett bebyggelse, med midlertidig vannforsyning til 46 boenheter.",m:["2024","Oslo kommune","11 uker","310 lm"],alt:"VA-grøft med rørlegging i gate"},
+ {c:"c-d",img:"images/image-03.jpg",k:"drenering",badge:"Drenering & grunn",t:"Nordre Skogvei 14, Bærum",d:"Vannmettet leirtomt stabilisert og drenert. Masseutskifting, terrassering og ny adkomst med varmekabel.",m:["2024","Privat","9 uker","1 340 m³"],alt:"Ferdig drenert og planert tomt"}
+];
+var fleet=[
+ {n:"Beltegraver 30 t",q:"×4",s:"Volvo EC300E · GPS · rototilt",b:[["Rekkevidde",78],["Kapasitet",92]]},
+ {n:"Beltegraver 14 t",q:"×6",s:"Cat 315 · GPS · sorteringsklo",b:[["Presisjon",94],["Fleksibilitet",88]]},
+ {n:"Minigraver 2–6 t",q:"×5",s:"Kubota KX · trang adkomst",b:[["Adkomst",97],["Presisjon",90]]},
+ {n:"Hjullaster",q:"×3",s:"Volvo L70 · vekt i skuff",b:[["Masseflyt",86],["Vinterdrift",93]]},
+ {n:"Dumper 9–15 t",q:"×2",s:"Bell B20 · terrenggående",q2:"",b:[["Terreng",91],["Volum",80]]},
+ {n:"Lastebil & transport",q:"×6",s:"Kranbil, tippbil og maskinhenger",b:[["Rekkevidde",89],["Beredskap",95]]},
+ {n:"Valse & komprimering",q:"×4",s:"Dynapac · dokumentert komprimering",b:[["Kontroll",96],["Kapasitet",78]]},
+ {n:"Måleutstyr",q:"×8",s:"Trimble GNSS · totalstasjon",b:[["Nøyaktighet",99],["Rapportering",97]]}
+];
+var quotes=[
+ {q:"NordGrunn overtok en tomt to andre hadde gitt opp. De leverte innmålingsdata hver fredag og traff datoen på dagen. Det er sjelden vare.",n:"Marius Ødegård",r:"Prosjektsjef, Backe Entreprenør",i:"MØ"},
+ {q:"Vi hadde vann i kjelleren hver eneste høst i elleve år. Etter dreneringen har det vært knusktørt i tre vintre. Ryddige folk, ryddig tomt etterpå.",n:"Hilde Rønning",r:"Huseier, Bærum",i:"HR"},
+ {q:"Trang gate, 46 boenheter uten vann i tolv timer maks. De planla seg gjennom det uten en eneste klage fra beboerne. Vi bruker dem igjen.",n:"Tor Inge Lien",r:"Byggeleder, Oslo kommune",i:"TL"}
+];
+var chips=["Grunnarbeid","Drenering","Graving","Tomtearbeid","Støttemur","VA-arbeid","Planering","Masseutskifting","Klargjøring for bygg","Vinterdrift","Annet"];
+
+/* ---- render ---- */
+var arrow='<svg class="ar" width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true"><path d="M8 1l4 4-4 4M12 5H0" stroke="currentColor" stroke-width="1.5"/></svg>';
+$("#srvlist").innerHTML=services.map(function(s,i){
+ return '<a class="srv-row rv" href="#befaring"><span class="n">'+(i<9?"0":"")+(i+1)+'</span>'+
+ '<div><h3>'+s.t+'</h3><div class="srv-tags">'+s.tags.map(function(t){return "<i>"+t+"</i>"}).join("")+'</div></div>'+
+ '<p class="d">'+s.d+'</p>'+
+ '<span class="go">'+arrow+'</span></a>';
+}).join("");
+
+$("#pjgrid").innerHTML=projects.map(function(p){
+ return '<a class="card rv '+p.c+'" data-k="'+p.k+'" href="#befaring"><div class="im"><img loading="lazy" src="'+p.img+'" alt="'+p.alt+'"></div>'+
+ '<span class="badge mono">'+p.badge+'</span>'+
+ '<div class="ov"><h3>'+p.t+'</h3><p style="color:#c3cbd0;font-size:.93rem;max-width:46ch">'+p.d+'</p>'+
+ '<div class="meta mono">'+p.m.map(function(x){return "<span>"+x+"</span>"}).join("")+'</div>'+
+ '<span class="rd mono">Se prosjektet '+arrow+'</span></div></a>';
+}).join("");
+
+$("#fleet").innerHTML=fleet.map(function(f){
+ return '<div class="mach rv"><span class="qty">'+f.q+'</span>'+
+ '<svg class="sil" width="58" height="34" viewBox="0 0 58 34" fill="none" aria-hidden="true"><path d="M2 30h34M6 30v-6h24v6M10 24v-5h9v5M31 24l6-14 5 3-5 11M40 12l12-4 4 5-13 5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="30" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="26" cy="30" r="3" stroke="currentColor" stroke-width="1.6"/></svg>'+
+ '<h4>'+f.n+'</h4><p class="sp">'+f.s+'</p>'+
+ '<div class="bars">'+f.b.map(function(b){return '<div class="bar"><span class="mono" style="width:74px">'+b[0]+'</span><span class="tr"><i style="--w:'+b[1]+'%"></i></span></div>'}).join("")+'</div></div>';
+}).join("");
+
+$("#quotes").innerHTML=quotes.map(function(q,i){
+ return '<figure class="q rv" data-d="'+i+'"><div class="stars" aria-label="5 av 5">★★★★★</div>'+
+ '<blockquote>«'+q.q+'»</blockquote>'+
+ '<figcaption class="who"><span class="av">'+q.i+'</span><span><b>'+q.n+'</b><span>'+q.r+'</span></span></figcaption></figure>';
+}).join("");
+
+$("#chips").innerHTML=chips.map(function(c,i){
+ return '<span class="chip"><input type="checkbox" id="c'+i+'" value="'+c+'"><label for="c'+i+'">'+c+'</label></span>';
+}).join("");
+
+/* ---- reveal + counters + bars ---- */
+var io=new IntersectionObserver(function(es){
+ es.forEach(function(e){
+  if(!e.isIntersecting)return;
+  e.target.classList.add("in");
+  io.unobserve(e.target);
+  $$("[data-count]",e.target).concat(e.target.hasAttribute("data-count")?[e.target]:[]).forEach(count);
+ });
+},{threshold:.16,rootMargin:"0px 0px -8% 0px"});
+$$(".rv,.st,.mach,.hbar b").forEach(function(el){io.observe(el)});
+
+function count(el){
+ if(el._d)return;el._d=1;
+ var to=+el.getAttribute("data-count"),suf=el.getAttribute("data-suf")||"",t0=null,dur=1500;
+ if(to===0){el.textContent="0"+suf;return;}
+ function f(t){if(!t0)t0=t;var p=Math.min((t-t0)/dur,1);
+  el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString("nb-NO")+suf;
+  if(p<1)requestAnimationFrame(f);}
+ requestAnimationFrame(f);
+}
+
+/* ---- header ---- */
+var hd=$("#hd"),last=0,prog=$("#prog"),hbg=$("#hbg");
+function onScroll(){
+ var y=window.pageYOffset||document.documentElement.scrollTop;
+ hd.classList.toggle("solid",y>60);
+ hd.classList.toggle("up",y>last&&y>420&&!document.body.classList.contains("mopen"));
+ last=y;
+ var h=document.documentElement.scrollHeight-window.innerHeight;
+ prog.style.width=(h>0?(y/h)*100:0)+"%";
+ if(hbg&&y<window.innerHeight*1.2)hbg.style.transform="translate3d(0,"+(y*.22)+"px,0)";
+}
+addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+/* ---- mobile menu ---- */
+var bg=$("#bg");
+bg.addEventListener("click",function(){
+ var o=document.body.classList.toggle("mopen");
+ bg.setAttribute("aria-expanded",o?"true":"false");
+ document.documentElement.style.overflow=o?"hidden":"";
+});
+$$("#mob a").forEach(function(a){a.addEventListener("click",function(){
+ document.body.classList.remove("mopen");bg.setAttribute("aria-expanded","false");document.documentElement.style.overflow="";});});
+
+/* ---- smooth anchors ---- */
+$$('a[href^="#"]').forEach(function(a){a.addEventListener("click",function(e){
+ var id=a.getAttribute("href");if(id.length<2)return;
+ var t=document.querySelector(id);if(!t)return;
+ e.preventDefault();
+ setTimeout(function(){
+  var y=t.getBoundingClientRect().top+window.pageYOffset-(id==="#top"?0:64);
+  window.scrollTo({top:y,behavior:"smooth"});
+ },document.body.classList.contains("mopen")?0:0);
+});});
+
+/* ---- project filter ---- */
+$$("#pf button").forEach(function(b){b.addEventListener("click",function(){
+ $$("#pf button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");
+ var f=b.getAttribute("data-f");
+ $$("#pjgrid .card").forEach(function(c){
+  var show=f==="alle"||c.getAttribute("data-k")===f;
+  c.classList.toggle("hidecard",!show);
+ });
+});});
+
+/* ---- before/after ---- */
+(function(){
+ var ba=$("#ba");if(!ba)return;var drag=false;
+ function set(cx){
+  var r=ba.getBoundingClientRect();
+  var p=Math.max(2,Math.min(98,((cx-r.left)/r.width)*100));
+  ba.style.setProperty("--x",p+"%");ba.setAttribute("aria-valuenow",Math.round(p));
+ }
+ ba.addEventListener("pointerdown",function(e){drag=true;ba.setPointerCapture(e.pointerId);set(e.clientX)});
+ ba.addEventListener("pointermove",function(e){if(drag)set(e.clientX)});
+ ["pointerup","pointercancel"].forEach(function(t){ba.addEventListener(t,function(){drag=false})});
+ ba.addEventListener("keydown",function(e){
+  var cur=parseFloat(ba.getAttribute("aria-valuenow"))||50,d=0;
+  if(e.key==="ArrowLeft")d=-4;if(e.key==="ArrowRight")d=4;
+  if(d){e.preventDefault();var p=Math.max(2,Math.min(98,cur+d));ba.style.setProperty("--x",p+"%");ba.setAttribute("aria-valuenow",p);}
+ });
+})();
+
+/* ---- form ---- */
+var areal=$("#areal"),arealv=$("#arealv");
+function fmtA(){var v=+areal.value;arealv.textContent=(v>=3000?"3 000+":v.toLocaleString("nb-NO"))+" m²";}
+areal.addEventListener("input",fmtA);fmtA();
+
+var steps=$$(".steps i"),rq=$("#rq");
+function upSteps(){
+ var one=$$("#chips input:checked").length>0;
+ var two=$("#navn").value.trim()&&$("#tlf").value.trim();
+ var three=$("#adr").value.trim();
+ steps[0].classList.toggle("on",!!one||true);
+ steps[1].classList.toggle("on",!!two);
+ steps[2].classList.toggle("on",!!(two&&three));
+}
+rq.addEventListener("input",upSteps);rq.addEventListener("change",upSteps);
+
+rq.addEventListener("submit",function(e){
+ e.preventDefault();
+ var bad=null;
+ ["navn","tlf","adr"].forEach(function(id){var el=$("#"+id);
+  if(!el.value.trim()){el.style.borderColor="var(--acc)";bad=bad||el;}else{el.style.borderColor="";}});
+ if(bad){bad.focus();return;}
+ $("#ref").textContent="NG-"+new Date().getFullYear()+"-"+Math.floor(1000+Math.random()*9000);
+ $("#fbody").style.display="none";$("#ok").classList.add("on");
+ steps.forEach(function(s){s.classList.add("on")});
+ $("#ok").scrollIntoView({behavior:"smooth",block:"center"});
+});
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STUDIO ANDERSEN — Arkitektonisk Hårkunst & Frisørsalong i Oslo</title>
+  <meta name="description" content="Studio Andersen er en prisbelønt frisørsalong i Kvadraturen, Oslo. Spesialister på skulpturell klipp, skandinavisk balayage, farge og skreddersydd hårpleie." />
+
+  <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS v4 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    :root {
+      --bg-primary: #F5F2EB;
+      --bg-secondary: #EBE5DB;
+      --text-primary: #141312;
+      --text-secondary: #5C5751;
+      --accent-terracotta: #8C4A33;
+      --accent-brass: #C2A685;
+      --border-hairline: rgba(20, 19, 18, 0.12);
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      selection-background-color: #8C4A33;
+      selection-color: #F5F2EB;
+    }
+
+    ::selection {
+      background: #8C4A33;
+      color: #F5F2EB;
+    }
+
+    .font-serif-editorial {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    .font-mono-tech {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Film Grain Texture Overlay */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 45;
+      opacity: 0.032;
+      background-image: url("images/icon-01.svg");
+    }
+
+    /* Hairline architectural dividers */
+    .hairline-t { border-top: 1px solid var(--border-hairline); }
+    .hairline-b { border-bottom: 1px solid var(--border-hairline); }
+    .hairline-l { border-left: 1px solid var(--border-hairline); }
+    .hairline-r { border-right: 1px solid var(--border-hairline); }
+    .hairline-all { border: 1px solid var(--border-hairline); }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F5F2EB;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C2A685;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8C4A33;
+    }
+
+    /* Smooth image hover zoom */
+    .editorial-img-wrap {
+      overflow: hidden;
+    }
+    .editorial-img-wrap img {
+      transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+    }
+    .editorial-img-wrap:hover img {
+      transform: scale(1.045);
+    }
+
+    /* Interactive Before/After Slider */
+    .ba-slider-container {
+      position: relative;
+      user-select: none;
+      overflow: hidden;
+    }
+    .ba-after-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 50%;
+      overflow: hidden;
+    }
+    .ba-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: #F5F2EB;
+      transform: translateX(-50%);
+      pointer-events: none;
+      box-shadow: 0 0 15px rgba(0,0,0,0.35);
+    }
+
+    /* Animated marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 38s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Drawer transition */
+    .drawer-backdrop {
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .drawer-panel {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+
+<body class="antialiased selection:bg-[#8C4A33] selection:text-[#F5F2EB]">
+
+  <!-- Subtle Tactile Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Top Editorial Status Bar -->
+  <div class="bg-[#141312] text-[#F5F2EB] text-[11px] font-mono-tech tracking-[0.14em] uppercase py-2.5 px-4 sm:px-8 border-b border-white/10 relative z-40">
+    <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5">
+          <span id="live-status-dot" class="w-2 h-2 rounded-full bg-[#3A5A40] animate-pulse"></span>
+          <span id="live-status-text">ÅPENT I DAG · 09:00 – 19:00</span>
+        </span>
+        <span class="hidden md:inline text-white/30">|</span>
+        <span class="hidden md:inline text-[#C2A685]">PRINSENS GATE 18, KVADRATUREN, OSLO</span>
+      </div>
+      <div class="flex items-center gap-5">
+        <span class="hidden lg:inline text-white/70">ORIBE & DAVINES FLAGSHIP SALON</span>
+        <button onclick="openBookingDrawer()" class="text-[#C2A685] hover:text-white underline underline-offset-4 cursor-pointer transition-colors">
+          NESTE LEDIGE TIME: I DAG KL. 14:30 →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Architectural Navigation -->
+  <header id="site-header" class="sticky top-0 z-30 bg-[#F5F2EB]/90 backdrop-blur-md hairline-b transition-all duration-300">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+      
+      <!-- Left Navigation Links (Desktop) -->
+      <nav class="hidden lg:flex items-center gap-8 text-[13px] tracking-[0.08em] uppercase font-medium text-[#141312]/80">
+        <a href="#filosofi" class="hover:text-[#8C4A33] transition-colors">01 / Håndverket</a>
+        <a href="#behandlinger" class="hover:text-[#8C4A33] transition-colors">02 / Behandlinger & Priser</a>
+        <a href="#frisorer" class="hover:text-[#8C4A33] transition-colors">03 / Frisører</a>
+      </nav>
+
+      <!-- Center Brand Identity -->
+      <a href="#" class="text-center group focus:outline-none">
+        <span class="block font-serif-editorial text-2xl sm:text-3xl tracking-[-0.03em] font-medium text-[#141312] group-hover:text-[#8C4A33] transition-colors">
+          STUDIO ANDERSEN
+        </span>
+        <span class="block font-mono-tech text-[9px] tracking-[0.28em] uppercase text-[#5C5751] -mt-1">
+          OSLO · EST. 2012
+        </span>
+      </a>
+
+      <!-- Right Navigation & Primary CTA -->
+      <div class="flex items-center gap-4 sm:gap-7">
+        <nav class="hidden lg:flex items-center gap-8 text-[13px] tracking-[0.08em] uppercase font-medium text-[#141312]/80">
+          <a href="#lookbook" class="hover:text-[#8C4A33] transition-colors">04 / Lookbook</a>
+          <a href="#salongen" class="hover:text-[#8C4A33] transition-colors">05 / Salongen</a>
+        </nav>
+
+        <button 
+          onclick="openBookingDrawer()" 
+          class="bg-[#141312] text-[#F5F2EB] hover:bg-[#8C4A33] active:scale-[0.99] transition-all duration-300 px-5 sm:px-6 py-3 text-[12px] font-mono-tech uppercase tracking-[0.14em] cursor-pointer flex items-center gap-2.5">
+          <span>Bestill time</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button 
+          id="mobile-menu-btn" 
+          onclick="toggleMobileMenu()"
+          aria-label="Åpne meny"
+          class="lg:hidden p-2.5 text-[#141312] hover:text-[#8C4A33] focus:outline-none">
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 15h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#F5F2EB] hairline-b px-6 py-8 space-y-6">
+      <div class="grid grid-cols-1 gap-4 font-serif-editorial text-2xl">
+        <a href="#filosofi" onclick="toggleMobileMenu()" class="py-1 flex items-center justify-between border-b border-[#141312]/10">
+          <span>01 / Håndverket & Filosofi</span>
+          <span class="font-mono-tech text-xs text-[#8C4A33]">→</span>
+        </a>
+        <a href="#behandlinger" onclick="toggleMobileMenu()" class="py-1 flex items-center justify-between border-b border-[#141312]/10">
+          <span>02 / Behandlinger & Priser</span>
+          <span class="font-mono-tech text-xs text-[#8C4A33]">→</span>
+        </a>
+        <a href="#frisorer" onclick="toggleMobileMenu()" class="py-1 flex items-center justify-between border-b border-[#141312]/10">
+          <span>03 / Møt våre frisører</span>
+          <span class="font-mono-tech text-xs text-[#8C4A33]">→</span>
+        </a>
+        <a href="#lookbook" onclick="toggleMobileMenu()" class="py-1 flex items-center justify-between border-b border-[#141312]/10">
+          <span>04 / Lookbook & Omtaler</span>
+          <span class="font-mono-tech text-xs text-[#8C4A33]">→</span>
+        </a>
+        <a href="#salongen" onclick="toggleMobileMenu()" class="py-1 flex items-center justify-between border-b border-[#141312]/10">
+          <span>05 / Salongen & Kontakt</span>
+          <span class="font-mono-tech text-xs text-[#8C4A33]">→</span>
+        </a>
+      </div>
+      <div class="pt-2 flex flex-col sm:flex-row gap-3">
+        <button onclick="toggleMobileMenu(); openBookingDrawer();" class="w-full bg-[#141312] text-[#F5F2EB] py-3.5 text-center font-mono-tech text-xs uppercase tracking-[0.15em]">
+          Bestill time på nett
+        </button>
+        <a href="tel:+4722418890" class="w-full border border-[#141312] text-[#141312] py-3.5 text-center font-mono-tech text-xs uppercase tracking-[0.15em]">
+          Ring salongen: 22 41 88 90
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION: Architectural Asymmetrical Split Frame -->
+  <section class="relative overflow-hidden hairline-b">
+    <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12">
+      
+      <!-- Left Column: Editorial Typography & CTAs (7 Cols) -->
+      <div class="lg:col-span-7 px-5 sm:px-10 lg:px-14 py-14 sm:py-20 lg:py-28 flex flex-col justify-between hairline-r">
+        
+        <div>
+          <!-- Technical Metadata Pill -->
+          <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-[#EBE5DB] border border-[#141312]/10 mb-8">
+            <span class="font-mono-tech text-[11px] uppercase tracking-[0.16em] text-[#8C4A33]">
+              ARKITEKTONISK HÅRKUNST
+            </span>
+            <span class="text-[#141312]/30">•</span>
+            <span class="font-mono-tech text-[11px] text-[#5C5751]">59.9139° N, 10.7522° E</span>
+          </div>
+
+          <!-- Display Headline -->
+          <h1 class="font-serif-editorial text-5xl sm:text-7xl xl:text-[84px] leading-[0.98] tracking-[-0.025em] text-[#141312] mb-8">
+            Skulpturell <span class="italic font-normal text-[#8C4A33]">form</span>,<br />
+            nordisk lys &amp; skreddersydd karakter.
+          </h1>
+
+          <!-- Editorial Lead Paragraph -->
+          <p class="text-base sm:text-lg text-[#5C5751] max-w-xl leading-relaxed font-light mb-10">
+            Studio Andersen er et rom for ro, presisjon og kompromissløs kvalitet midt i Oslo sentrum. Vi kombinerer skandinavisk fargeestetikk med skreddersydd klipp som vokser vakkert – måned etter måned.
+          </p>
+
+          <!-- Primary & Secondary CTAs -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-14">
+            <button 
+              onclick="openBookingDrawer()" 
+              class="bg-[#141312] text-[#F5F2EB] hover:bg-[#8C4A33] transition-all duration-300 px-8 py-4 text-xs font-mono-tech uppercase tracking-[0.16em] flex items-center justify-center gap-3 cursor-pointer group">
+              <span>Bestill time nå</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </button>
+
+            <a 
+              href="#behandlinger" 
+              class="border border-[#141312]/30 hover:border-[#141312] text-[#141312] px-7 py-4 text-xs font-mono-tech uppercase tracking-[0.14em] text-center transition-colors">
+              Utforsk behandlinger &amp; priser
+            </a>
+          </div>
+        </div>
+
+        <!-- Bottom Architectural Metrics & Quick Booking Highlight -->
+        <div class="pt-8 hairline-t grid grid-cols-2 sm:grid-cols-3 gap-6">
+          <div>
+            <span class="block font-serif-editorial text-3xl sm:text-4xl text-[#141312]">4.98 ★</span>
+            <span class="font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751]">Basert på 430+ verifiserte anmeldelser</span>
+          </div>
+          <div>
+            <span class="block font-serif-editorial text-3xl sm:text-4xl text-[#141312]">Silent Time</span>
+            <span class="font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751]">Mulighet for stille behandling</span>
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <span class="block font-serif-editorial text-3xl sm:text-4xl text-[#8C4A33]">100% Skreddersøm</span>
+            <span class="font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751]">Alltid inkl. konsultasjon &amp; kur</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Tall Vertical Editorial Composition (5 Cols) -->
+      <div class="lg:col-span-5 relative bg-[#EBE5DB] min-h-[520px] lg:min-h-[720px] flex items-center justify-center p-6 sm:p-12 overflow-hidden">
+        
+        <!-- Main Portrait Image -->
+        <div class="relative w-full h-full max-h-[640px] editorial-img-wrap shadow-2xl">
+          <img 
+            src="images/photo-03.jpg" 
+            alt="Skandinavisk balayage og skulpturell klipp utført hos Studio Andersen Oslo" 
+            class="w-full h-full object-cover object-center"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#141312]/60 via-transparent to-transparent"></div>
+
+          <!-- Editorial Caption Overlay inside frame -->
+          <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between text-[#F5F2EB]">
+            <div>
+              <span class="font-mono-tech text-[10px] uppercase tracking-[0.2em] block text-[#C2A685]">SIGNATURBEHANDLING</span>
+              <p class="font-serif-editorial text-2xl italic">Nordic Cashmere Blonde &amp; Gloss</p>
+            </div>
+            <button 
+              onclick="openBookingDrawerWithTreatment('Balayage & Skreddersydd Glossing')" 
+              class="bg-[#F5F2EB]/95 text-[#141312] hover:bg-[#8C4A33] hover:text-white transition-colors px-3.5 py-2 font-mono-tech text-[10px] uppercase tracking-widest cursor-pointer">
+              Book denne looken →
+            </button>
+          </div>
+        </div>
+
+        <!-- Floating Secondary Architectural Card -->
+        <div class="hidden sm:block absolute top-10 left-6 bg-[#F5F2EB] p-4 shadow-xl border border-[#141312]/10 max-w-[220px]">
+          <div class="flex items-center gap-2.5 mb-2">
+            <span class="w-2 h-2 rounded-full bg-[#8C4A33]"></span>
+            <span class="font-mono-tech text-[10px] uppercase tracking-wider text-[#5C5751]">KONSULTASJON INKLUDERT</span>
+          </div>
+          <p class="font-serif-editorial text-sm leading-snug text-[#141312]">
+            «Vi starter hver time med en grundig analyse av ansiktsform, hudtone og din hverdag.»
+          </p>
+          <span class="block mt-2 font-mono-tech text-[10px] text-[#8C4A33]">— Astrid Andersen, Creative Director</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDITORIAL BRAND TICKER -->
+  <div class="bg-[#EBE5DB] hairline-b py-3.5 overflow-hidden">
+    <div class="animate-marquee flex items-center gap-12 font-mono-tech text-xs uppercase tracking-[0.22em] text-[#5C5751]">
+      <span>SKULPTURELL KLIPP</span>
+      <span class="text-[#8C4A33]">✦</span>
+      <span>DIMENSJONAL BALAYAGE</span>
+      <span class="text-[#8C4A33]">✦</span>
+      <span>ORIBE SIGNATURE TREATMENTS</span>
+      <span class="text-[#8C4A33]">✦</span>
+      <span>STILLE BEHANDLING (SILENT APPOINTMENT)</span>
+      <span class="text-[#8C4A33]">✦</span>
+      <span>SEREMONIELL MATCHA &amp; KAFFEBAR</span>
+      <span class="text-[#8C4A33]">✦</span>
+      <span>HODEBUNNSANALYSE &amp; SPA</span>
+      <span class="text-[#8C4A33]">✦</span>
+      <!-- Repeat for seamless loop -->
+      <span>SKULPTURELL KLIPP</span>
+      <span class="text-[#8C4A33]">✦</span>
+      <span>DIMENSJONAL BALAYAGE</span>
+      <span class="text-[#8C4A33]">✦</span>
+      <span>ORIBE SIGNATURE TREATMENTS</span>
+      <span class="text-[#8C4A33]">✦</span>
+      <span>STILLE BEHANDLING (SILENT APPOINTMENT)</span>
+      <span class="text-[#8C4A33]">✦</span>
+    </div>
+  </div>
+
+  <!-- SECTION 01: HÅNDVERKET & INTERAKTIV FØR / ETTER BALAYAGE SLIDER -->
+  <section id="filosofi" class="py-20 sm:py-28 lg:py-36 hairline-b">
+    <div class="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-14">
+      
+      <!-- Section Header -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 sm:mb-24">
+        <div class="lg:col-span-7">
+          <span class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#8C4A33] block mb-3">
+            01 / FILOSOFI &amp; FARGEDESIGN
+          </span>
+          <h2 class="font-serif-editorial text-4xl sm:text-6xl leading-[1.05] text-[#141312]">
+            Hår som lever med deg – ikke mot deg.
+          </h2>
+        </div>
+        <div class="lg:col-span-5">
+          <p class="text-[#5C5751] text-base sm:text-lg font-light leading-relaxed">
+            En vellykket klipp eller farge handler om hvordan håret faller tre måneder etter salongbesøket. Vi arbeider med organiske overganger, myke skygger i bunnen (root melt) og klippeteknikker som fremhever hårets naturlige bevegelse.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Before / After Transformation Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center bg-[#EBE5DB]/70 p-6 sm:p-10 lg:p-14 hairline-all">
+        
+        <!-- Left: Interactive Before / After Comparison Slider (7 Cols) -->
+        <div class="lg:col-span-7">
+          <div class="relative w-full h-[420px] sm:h-[540px] ba-slider-container shadow-xl" id="ba-slider">
+            
+            <!-- AFTER IMAGE (Full width base) -->
+            <img 
+              src="images/photo-01.jpg" 
+              alt="Etter skandinavisk balayage og glossing hos Studio Andersen" 
+              class="w-full h-full object-cover object-center pointer-events-none"
+            />
+            <span class="absolute top-4 right-4 bg-[#141312]/80 text-[#F5F2EB] font-mono-tech text-[10px] uppercase tracking-widest px-3 py-1.5 z-10">
+              ETTER · NORDIC HONEY BALAYAGE
+            </span>
+
+            <!-- BEFORE IMAGE (Clipped wrapper) -->
+            <div class="ba-after-wrapper" id="ba-before-layer" style="width: 48%;">
+              <img 
+                src="images/photo-02.jpg" 
+                alt="Før fargekorrigering og balayage" 
+                class="w-full h-full object-cover object-center pointer-events-none max-w-none"
+                id="ba-before-img"
+              />
+              <span class="absolute top-4 left-4 bg-[#F5F2EB]/90 text-[#141312] font-mono-tech text-[10px] uppercase tracking-widest px-3 py-1.5">
+                FØR · UJEVN UTVOKST TONE
+              </span>
+            </div>
+
+            <!-- Divider Handle -->
+            <div class="ba-handle" id="ba-handle" style="left: 48%;">
+              <div class="w-10 h-10 rounded-full bg-[#141312] text-[#F5F2EB] border-2 border-[#F5F2EB] flex items-center justify-center absolute top-1/2 -translate-y-1/2 -translate-x-1/2 shadow-lg">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7l-5 5m0 0l5 5m-5-5h18m-5-5l5 5m0 0l-5 5"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Interactive instruction badge -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#141312]/75 backdrop-blur-sm text-[#F5F2EB] px-4 py-1.5 font-mono-tech text-[10px] uppercase tracking-widest pointer-events-none">
+              Dra slideren for å se transformasjonen ↔
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Technical Formula & Case Study (5 Cols) -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="font-mono-tech text-[11px] uppercase tracking-[0.18em] text-[#8C4A33] block mb-2">
+              CASE STUDY #018 · FARGEARKITEKTUR
+            </span>
+            <h3 class="font-serif-editorial text-3xl sm:text-4xl text-[#141312] mb-4">
+              Fra livløs ettervekst til sømløs dimensjon.
+            </h3>
+            <p class="text-[#5C5751] text-sm sm:text-base leading-relaxed font-light">
+              Vår signatur-balayage legges frihånd med mikroskopiske overganger ved røttene, slik at du unngår harde skillelinjer når håret vokser. Avsluttes alltid med pH-balanserende glossing og K18 molekylær gjenoppbygging.
+            </p>
+          </div>
+
+          <!-- Technical Spec Table -->
+          <div class="space-y-3 pt-4 hairline-t font-mono-tech text-xs">
+            <div class="flex justify-between py-2 border-b border-[#141312]/10">
+              <span class="text-[#5C5751]">UTFØRT AV</span>
+              <span class="text-[#141312] font-medium">Henrik Lindqvist (Master Colorist)</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#141312]/10">
+              <span class="text-[#5C5751]">BEHANDLINGSTID</span>
+              <span class="text-[#141312] font-medium">180 Minutter</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#141312]/10">
+              <span class="text-[#5C5751]">VEDLIKEHOLDSINTERVALL</span>
+              <span class="text-[#3A5A40] font-medium">12 – 16 uker (myk utvekst)</span>
+            </div>
+            <div class="flex justify-between py-2">
+              <span class="text-[#5C5751]">PRIS FRA</span>
+              <span class="text-[#141312] font-medium">kr 3 250,- (inkl. kur &amp; styling)</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <button 
+              onclick="openBookingDrawerWithTreatment('Signatur Balayage & Glossing', 'Henrik Lindqvist')" 
+              class="w-full sm:w-auto bg-[#141312] text-[#F5F2EB] hover:bg-[#8C4A33] transition-colors px-7 py-4 font-mono-tech text-xs uppercase tracking-[0.15em] cursor-pointer">
+              Bestill Signatur Balayage hos Henrik →
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 02: BEHANDLINGER & PRISER (Interactive Editorial Treatment Menu) -->
+  <section id="behandlinger" class="py-20 sm:py-28 lg:py-36 hairline-b bg-[#F5F2EB]">
+    <div class="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-14">
+      
+      <!-- Section Title & Category Filter Pills -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
+        <div>
+          <span class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#8C4A33] block mb-3">
+            02 / MENY &amp; TRANSPARENTE PRISER
+          </span>
+          <h2 class="font-serif-editorial text-4xl sm:text-6xl text-[#141312]">
+            Våre behandlinger.
+          </h2>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2" role="tablist" aria-label="Behandlingskategorier">
+          <button onclick="filterTreatments('alle')" id="tab-alle" class="treatment-tab active bg-[#141312] text-[#F5F2EB] px-4 py-2.5 font-mono-tech text-xs uppercase tracking-widest cursor-pointer transition-all">
+            Alle (10)
+          </button>
+          <button onclick="filterTreatments('klipp')" id="tab-klipp" class="treatment-tab bg-[#EBE5DB] text-[#141312] hover:bg-[#141312]/10 px-4 py-2.5 font-mono-tech text-xs uppercase tracking-widest cursor-pointer transition-all">
+            Klipp &amp; Styling
+          </button>
+          <button onclick="filterTreatments('farge')" id="tab-farge" class="treatment-tab bg-[#EBE5DB] text-[#141312] hover:bg-[#141312]/10 px-4 py-2.5 font-mono-tech text-xs uppercase tracking-widest cursor-pointer transition-all">
+            Farge &amp; Balayage
+          </button>
+          <button onclick="filterTreatments('pleie')" id="tab-pleie" class="treatment-tab bg-[#EBE5DB] text-[#141312] hover:bg-[#141312]/10 px-4 py-2.5 font-mono-tech text-xs uppercase tracking-widest cursor-pointer transition-all">
+            Hårspa &amp; Kur
+          </button>
+        </div>
+      </div>
+
+      <!-- Asymmetrical Menu Layout: Left Treatment Rows (8 Cols) + Right Sticky Editorial Preview Card (4 Cols) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Interactive Treatment Rows (8 Cols) -->
+        <div class="lg:col-span-8 divide-y divide-[#141312]/15 hairline-t hairline-b" id="treatment-list">
+          
+          <!-- Item 1: Signatur Dameklipp -->
+          <div 
+            class="treatment-item py-7 group cursor-pointer transition-colors hover:bg-[#EBE5DB]/50 px-4 -mx-4" 
+            data-category="klipp"
+            onmouseenter="updatePreviewCard('Skreddersydd Klipp & Styling', '60 MIN', 'kr 1 190,-', 'Inkluderer grundig konsultasjon, avslappende hodebunnsmassasje med Oribe-produkter, skreddersydd klipp etter ansiktsform og tekstur, samt signatur-føn.', 'images/photo-09.jpg')"
+            onclick="openBookingDrawerWithTreatment('Skreddersydd Klipp & Styling')">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-3">
+                <h3 class="font-serif-editorial text-2xl sm:text-3xl text-[#141312] group-hover:text-[#8C4A33] transition-colors">
+                  Skreddersydd Klipp &amp; Styling
+                </h3>
+                <span class="bg-[#8C4A33]/10 text-[#8C4A33] font-mono-tech text-[10px] uppercase tracking-widest px-2.5 py-0.5">
+                  Mest populær
+                </span>
+              </div>
+              <div class="flex items-center gap-4 font-mono-tech">
+                <span class="text-xs text-[#5C5751]">60 MIN</span>
+                <span class="text-base font-medium text-[#141312]">kr 1 190,-</span>
+              </div>
+            </div>
+            <p class="text-sm text-[#5C5751] font-light max-w-2xl">
+              Konsultasjon, aromatisk hårvask med hodebunnsmassasje, presisjonsklipp tilpasset din hårtekstur og ferdig styling.
+            </p>
+          </div>
+
+          <!-- Item 2: Ny Frisyre / Transformasjonsklipp -->
+          <div 
+            class="treatment-item py-7 group cursor-pointer transition-colors hover:bg-[#EBE5DB]/50 px-4 -mx-4" 
+            data-category="klipp"
+            onmouseenter="updatePreviewCard('Transformasjonsklipp (Ny Frisyre)', '75 MIN', 'kr 1 450,-', 'For deg som har langt hår og ønsker en helt ny form (f.eks. French Bob, 90s Layers eller Pixie), eller trenger ekstra tid til analyse og stylingveiledning.', 'images/photo-10.jpg')"
+            onclick="openBookingDrawerWithTreatment('Transformasjonsklipp (Ny Frisyre)')">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <h3 class="font-serif-editorial text-2xl sm:text-3xl text-[#141312] group-hover:text-[#8C4A33] transition-colors">
+                Transformasjonsklipp (Ny Frisyre / Ekstra tid)
+              </h3>
+              <div class="flex items-center gap-4 font-mono-tech">
+                <span class="text-xs text-[#5C5751]">75 MIN</span>
+                <span class="text-base font-medium text-[#141312]">kr 1 450,-</span>
+              </div>
+            </div>
+            <p class="text-sm text-[#5C5751] font-light max-w-2xl">
+              Utvidet tid for deg som ønsker en større endring, fra langt til kort eller en skulpturell ny form med grundig stylingopplæring.
+            </p>
+          </div>
+
+          <!-- Item 3: Herreklipp & Skjeggform -->
+          <div 
+            class="treatment-item py-7 group cursor-pointer transition-colors hover:bg-[#EBE5DB]/50 px-4 -mx-4" 
+            data-category="klipp"
+            onmouseenter="updatePreviewCard('Herreklipp & Skreddersydd Form', '45 MIN', 'kr 980,-', 'Klassisk eller moderne herreklipp utført med saks-over-kam teknikk for en naturlig utvekst. Inkluderer vask, hodebunnsmassasje og styling.', 'images/photo-17.jpg')"
+            onclick="openBookingDrawerWithTreatment('Herreklipp & Skreddersydd Form')">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <h3 class="font-serif-editorial text-2xl sm:text-3xl text-[#141312] group-hover:text-[#8C4A33] transition-colors">
+                Herreklipp &amp; Skreddersydd Form
+              </h3>
+              <div class="flex items-center gap-4 font-mono-tech">
+                <span class="text-xs text-[#5C5751]">45 MIN</span>
+                <span class="text-base font-medium text-[#141312]">kr 980,-</span>
+              </div>
+            </div>
+            <p class="text-sm text-[#5C5751] font-light max-w-2xl">
+              Presisjonsklipp med saks og kniv for naturlig struktur, avslappende hårvask med varmt håndkle og styling.
+            </p>
+          </div>
+
+          <!-- Item 4: Signatur Balayage & Glossing -->
+          <div 
+            class="treatment-item py-7 group cursor-pointer transition-colors hover:bg-[#EBE5DB]/50 px-4 -mx-4" 
+            data-category="farge"
+            onmouseenter="updatePreviewCard('Signatur Balayage & Glossing', '180 MIN', 'kr 3 250,-', 'Vår mest ettertraktede fargebehandling. Frihånds-balayage med myk root-melt, Olaplex/K18 beskyttelse under hele prosessen, skreddersydd glossing og luksuriøs føn.', 'images/photo-04.jpg')"
+            onclick="openBookingDrawerWithTreatment('Signatur Balayage & Glossing')">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-3">
+                <h3 class="font-serif-editorial text-2xl sm:text-3xl text-[#141312] group-hover:text-[#8C4A33] transition-colors">
+                  Signatur Balayage &amp; Skreddersydd Glossing
+                </h3>
+                <span class="bg-[#141312] text-[#F5F2EB] font-mono-tech text-[10px] uppercase tracking-widest px-2.5 py-0.5">
+                  Signatur
+                </span>
+              </div>
+              <div class="flex items-center gap-4 font-mono-tech">
+                <span class="text-xs text-[#5C5751]">180 MIN</span>
+                <span class="text-base font-medium text-[#141312]">fra kr 3 250,-</span>
+              </div>
+            </div>
+            <p class="text-sm text-[#5C5751] font-light max-w-2xl">
+              Dimensjonell fargedesign lagt for hånd for sømløse overganger og lang holdbarhet. Inkluderer K18 bond builder og glossing.
+            </p>
+          </div>
+
+          <!-- Item 5: Nordic Babylights / Helbleking & Tone -->
+          <div 
+            class="treatment-item py-7 group cursor-pointer transition-colors hover:bg-[#EBE5DB]/50 px-4 -mx-4" 
+            data-category="farge"
+            onmouseenter="updatePreviewCard('Nordic Babylights & Scandi Blonde', '195 MIN', 'kr 3 490,-', 'Mikro-striper lagt tett i tett for en krystallklar, ren skandinavisk blondtone med maksimal glans og skånsom lysning.', 'images/photo-12.jpg')"
+            onclick="openBookingDrawerWithTreatment('Nordic Babylights & Scandi Blonde')">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <h3 class="font-serif-editorial text-2xl sm:text-3xl text-[#141312] group-hover:text-[#8C4A33] transition-colors">
+                Nordic Babylights &amp; Scandi Blonde
+              </h3>
+              <div class="flex items-center gap-4 font-mono-tech">
+                <span class="text-xs text-[#5C5751]">195 MIN</span>
+                <span class="text-base font-medium text-[#141312]">fra kr 3 490,-</span>
+              </div>
+            </div>
+            <p class="text-sm text-[#5C5751] font-light max-w-2xl">
+              Ultratynne folie-striper som gir en naturlig, solkysset lysning fra rot til spiss uten synlige overganger.
+            </p>
+          </div>
+
+          <!-- Item 6: Express Glossing & Blowout -->
+          <div 
+            class="treatment-item py-7 group cursor-pointer transition-colors hover:bg-[#EBE5DB]/50 px-4 -mx-4" 
+            data-category="farge"
+            onmouseenter="updatePreviewCard('Express Glossing & Silk Blowout', '60 MIN', 'kr 1 390,-', 'Den perfekte oppfriskningen mellom fargetimene. Nøytraliserer uønskede toner, tilfører speilblank glans og avsluttes med vår signatur-føn.', 'images/photo-06.jpg')"
+            onclick="openBookingDrawerWithTreatment('Express Glossing & Silk Blowout')">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <h3 class="font-serif-editorial text-2xl sm:text-3xl text-[#141312] group-hover:text-[#8C4A33] transition-colors">
+                Express Glossing &amp; Silk Blowout
+              </h3>
+              <div class="flex items-center gap-4 font-mono-tech">
+                <span class="text-xs text-[#5C5751]">60 MIN</span>
+                <span class="text-base font-medium text-[#141312]">kr 1 390,-</span>
+              </div>
+            </div>
+            <p class="text-sm text-[#5C5751] font-light max-w-2xl">
+              Frisker opp fargen, fjerner gulskjær eller gir dypere glans til mørkt hår, etterfulgt av voluminøs salongføn.
+            </p>
+          </div>
+
+          <!-- Item 7: Oribe Renewal Remedies Hårspa -->
+          <div 
+            class="treatment-item py-7 group cursor-pointer transition-colors hover:bg-[#EBE5DB]/50 px-4 -mx-4" 
+            data-category="pleie"
+            onmouseenter="updatePreviewCard('Oribe Renewal Remedies Hårspa & Føn', '60 MIN', 'kr 1 250,-', 'Skreddersydd dybdebehandling som gjenoppretter hårets indre struktur, fuktbalanse og elastisitet. Inkluderer 20 minutters akupressur hodebunnsmassasje.', 'images/photo-13.jpg')"
+            onclick="openBookingDrawerWithTreatment('Oribe Renewal Remedies Hårspa & Føn')">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <h3 class="font-serif-editorial text-2xl sm:text-3xl text-[#141312] group-hover:text-[#8C4A33] transition-colors">
+                Oribe Renewal Remedies Hårspa &amp; Føn
+              </h3>
+              <div class="flex items-center gap-4 font-mono-tech">
+                <span class="text-xs text-[#5C5751]">60 MIN</span>
+                <span class="text-base font-medium text-[#141312]">kr 1 250,-</span>
+              </div>
+            </div>
+            <p class="text-sm text-[#5C5751] font-light max-w-2xl">
+              Intensiv gjenoppbyggende kur skreddersydd etter hårets porøsitet, inkludert dyp hodebunnsmassasje og styling.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Right: Sticky Editorial Treatment Preview Card (4 Cols) -->
+        <div class="lg:col-span-4 lg:sticky lg:top-28 bg-[#EBE5DB] p-6 sm:p-8 hairline-all">
+          <div class="editorial-img-wrap h-64 mb-6 relative">
+            <img 
+              id="preview-card-img"
+              src="images/photo-09.jpg" 
+              alt="Valgt behandling forhåndsvisning" 
+              class="w-full h-full object-cover"
+            />
+            <span id="preview-card-duration" class="absolute top-3 left-3 bg-[#141312] text-[#F5F2EB] font-mono-tech text-[10px] uppercase tracking-widest px-3 py-1">
+              60 MIN
+            </span>
+          </div>
+
+          <span class="font-mono-tech text-[10px] uppercase tracking-[0.2em] text-[#8C4A33] block mb-1">
+            BEHANDLINGSDETALJER
+          </span>
+          <h4 id="preview-card-title" class="font-serif-editorial text-2xl sm:text-3xl text-[#141312] mb-2">
+            Skreddersydd Klipp &amp; Styling
+          </h4>
+          <div id="preview-card-price" class="font-mono-tech text-lg text-[#141312] mb-4">
+            kr 1 190,-
+          </div>
+
+          <p id="preview-card-desc" class="text-sm text-[#5C5751] leading-relaxed font-light mb-6">
+            Inkluderer grundig konsultasjon, avslappende hodebunnsmassasje med Oribe-produkter, skreddersydd klipp etter ansiktsform og tekstur, samt signatur-føn.
+          </p>
+
+          <button 
+            id="preview-card-cta"
+            onclick="openBookingDrawerWithTreatment('Skreddersydd Klipp & Styling')" 
+            class="w-full bg-[#141312] text-[#F5F2EB] hover:bg-[#8C4A33] transition-colors py-3.5 font-mono-tech text-xs uppercase tracking-[0.15em] cursor-pointer">
+            Velg denne behandlingen →
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 03: KREATIVT TEAM ("Møt våre frisører") -->
+  <section id="frisorer" class="py-20 sm:py-28 lg:py-36 hairline-b bg-[#EBE5DB]/40">
+    <div class="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-14">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 sm:mb-24">
+        <div>
+          <span class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#8C4A33] block mb-3">
+            03 / KREATIVT TEAM
+          </span>
+          <h2 class="font-serif-editorial text-4xl sm:text-6xl text-[#141312]">
+            Møt våre frisører.
+          </h2>
+        </div>
+        <p class="text-[#5C5751] text-base sm:text-lg font-light max-w-xl">
+          Vårt team består av prisbelønte stylister og fargeeksperter med bakgrunn fra moteuker i København, Paris og Oslo. Velg din frisør direkte under.
+        </p>
+      </div>
+
+      <!-- Stylist Portrait Grid (4 Editorial Profiles) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Stylist 1: Astrid Andersen -->
+        <article class="bg-[#F5F2EB] hairline-all flex flex-col justify-between group">
+          <div>
+            <div class="relative h-96 editorial-img-wrap">
+              <img 
+                src="images/photo-07.jpg" 
+                alt="Astrid Andersen – Creative Director & Grunnlegger" 
+                class="w-full h-full object-cover object-top"
+              />
+              <span class="absolute top-3 left-3 bg-[#141312]/85 text-[#F5F2EB] font-mono-tech text-[10px] uppercase tracking-widest px-2.5 py-1">
+                CREATIVE DIRECTOR
+              </span>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="font-serif-editorial text-2xl text-[#141312]">Astrid Andersen</h3>
+                <span class="font-mono-tech text-[11px] text-[#8C4A33]">14 års erfaring</span>
+              </div>
+              <p class="font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751] mb-4">
+                Spesialist: Skulpturell klipp &amp; Blond-arkitektur
+              </p>
+              <p class="text-sm text-[#5C5751] font-light leading-relaxed mb-4">
+                Grunnlegger av Studio Andersen. Kjent for sine presise bob-klipper og evne til å skape frisyrer som krever minimalt med styling i hverdagen.
+              </p>
+              <div class="text-xs font-mono-tech text-[#141312]/80 bg-[#EBE5DB]/60 p-2.5">
+                Favorittprodukt: <span class="italic">Oribe Dry Texturizing Spray</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <button 
+              onclick="openBookingDrawerWithStylist('Astrid Andersen')" 
+              class="w-full border border-[#141312] text-[#141312] group-hover:bg-[#141312] group-hover:text-[#F5F2EB] transition-colors py-3 font-mono-tech text-xs uppercase tracking-[0.14em] cursor-pointer">
+              Bestill hos Astrid →
+            </button>
+          </div>
+        </article>
+
+        <!-- Stylist 2: Henrik Lindqvist -->
+        <article class="bg-[#F5F2EB] hairline-all flex flex-col justify-between group">
+          <div>
+            <div class="relative h-96 editorial-img-wrap">
+              <img 
+                src="images/photo-18.jpg" 
+                alt="Henrik Lindqvist – Master Colorist" 
+                class="w-full h-full object-cover object-center"
+              />
+              <span class="absolute top-3 left-3 bg-[#8C4A33] text-[#F5F2EB] font-mono-tech text-[10px] uppercase tracking-widest px-2.5 py-1">
+                MASTER COLORIST
+              </span>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="font-serif-editorial text-2xl text-[#141312]">Henrik Lindqvist</h3>
+                <span class="font-mono-tech text-[11px] text-[#8C4A33]">10 års erfaring</span>
+              </div>
+              <p class="font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751] mb-4">
+                Spesialist: Balayage, Glossing &amp; Fargekorrigering
+              </p>
+              <p class="text-sm text-[#5C5751] font-light leading-relaxed mb-4">
+                Tidligere fargetrener i Stockholm og København. Henrik skaper dimensjonelle farger med sømløse overganger som ser naturlige ut i måneder.
+              </p>
+              <div class="text-xs font-mono-tech text-[#141312]/80 bg-[#EBE5DB]/60 p-2.5">
+                Favorittprodukt: <span class="italic">Davines OI All in One Milk</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <button 
+              onclick="openBookingDrawerWithStylist('Henrik Lindqvist')" 
+              class="w-full border border-[#141312] text-[#141312] group-hover:bg-[#141312] group-hover:text-[#F5F2EB] transition-colors py-3 font-mono-tech text-xs uppercase tracking-[0.14em] cursor-pointer">
+              Bestill hos Henrik →
+            </button>
+          </div>
+        </article>
+
+        <!-- Stylist 3: Sunniva Hofseth -->
+        <article class="bg-[#F5F2EB] hairline-all flex flex-col justify-between group">
+          <div>
+            <div class="relative h-96 editorial-img-wrap">
+              <img 
+                src="images/photo-05.jpg" 
+                alt="Sunniva Hofseth – Senior Stylist & Editorial" 
+                class="w-full h-full object-cover object-center"
+              />
+              <span class="absolute top-3 left-3 bg-[#141312]/85 text-[#F5F2EB] font-mono-tech text-[10px] uppercase tracking-widest px-2.5 py-1">
+                SENIOR STYLIST
+              </span>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="font-serif-editorial text-2xl text-[#141312]">Sunniva Hofseth</h3>
+                <span class="font-mono-tech text-[11px] text-[#8C4A33]">8 års erfaring</span>
+              </div>
+              <p class="font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751] mb-4">
+                Spesialist: 90s Layers, Blowouts &amp; Brudestyling
+              </p>
+              <p class="text-sm text-[#5C5751] font-light leading-relaxed mb-4">
+                Fast hårstylist for norske motemagasiner. Sunniva er eksperten du går til for luftige lag, gardinlugg og voluminøse blowouts.
+              </p>
+              <div class="text-xs font-mono-tech text-[#141312]/80 bg-[#EBE5DB]/60 p-2.5">
+                Favorittprodukt: <span class="italic">Oribe Imperial Blowout</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <button 
+              onclick="openBookingDrawerWithStylist('Sunniva Hofseth')" 
+              class="w-full border border-[#141312] text-[#141312] group-hover:bg-[#141312] group-hover:text-[#F5F2EB] transition-colors py-3 font-mono-tech text-xs uppercase tracking-[0.14em] cursor-pointer">
+              Bestill hos Sunniva →
+            </button>
+          </div>
+        </article>
+
+        <!-- Stylist 4: Emil Solberg -->
+        <article class="bg-[#F5F2EB] hairline-all flex flex-col justify-between group">
+          <div>
+            <div class="relative h-96 editorial-img-wrap">
+              <img 
+                src="images/photo-16.jpg" 
+                alt="Emil Solberg – Curl & Precision Specialist" 
+                class="w-full h-full object-cover object-center"
+              />
+              <span class="absolute top-3 left-3 bg-[#141312]/85 text-[#F5F2EB] font-mono-tech text-[10px] uppercase tracking-widest px-2.5 py-1">
+                CURL &amp; PRECISION
+              </span>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-1">
+                <h3 class="font-serif-editorial text-2xl text-[#141312]">Emil Solberg</h3>
+                <span class="font-mono-tech text-[11px] text-[#8C4A33]">7 års erfaring</span>
+              </div>
+              <p class="font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751] mb-4">
+                Spesialist: Krøller, Tekstur &amp; Herreklipp
+              </p>
+              <p class="text-sm text-[#5C5751] font-light leading-relaxed mb-4">
+                Sertifisert krølle-spesialist som klipper krøller i tørr tilstand for å respektere hvert enkelt krøllemønster. Også svært ettertraktet for herreklipp.
+              </p>
+              <div class="text-xs font-mono-tech text-[#141312]/80 bg-[#EBE5DB]/60 p-2.5">
+                Favorittprodukt: <span class="italic">Davines Love Curl Cream</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <button 
+              onclick="openBookingDrawerWithStylist('Emil Solberg')" 
+              class="w-full border border-[#141312] text-[#141312] group-hover:bg-[#141312] group-hover:text-[#F5F2EB] transition-colors py-3 font-mono-tech text-xs uppercase tracking-[0.14em] cursor-pointer">
+              Bestill hos Emil →
+            </button>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 04: LOOKBOOK & KUNDEOMTALER -->
+  <section id="lookbook" class="py-20 sm:py-28 lg:py-36 hairline-b bg-[#141312] text-[#F5F2EB]">
+    <div class="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-14">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+        <div>
+          <span class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#C2A685] block mb-3">
+            04 / LOOKBOOK &amp; VERIFISERTE KUNDEOMTALER
+          </span>
+          <h2 class="font-serif-editorial text-4xl sm:text-6xl text-[#F5F2EB]">
+            Utvalgte arbeider &amp; ord fra våre gjester.
+          </h2>
+        </div>
+        <div class="font-mono-tech text-xs text-[#C2A685] uppercase tracking-widest">
+          @STUDIOANDERSEN.OSLO
+        </div>
+      </div>
+
+      <!-- Editorial Masonry Grid: 3 Columns mixing Lookbook Photos & Client Reviews -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Column 1 -->
+        <div class="space-y-8">
+          <div class="relative editorial-img-wrap h-96 border border-white/10">
+            <img 
+              src="images/photo-11.jpg" 
+              alt="Nordic Pearl Blonde utført hos Studio Andersen" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute bottom-4 left-4 right-4 bg-[#141312]/85 backdrop-blur-sm p-4 border border-white/10">
+              <span class="font-mono-tech text-[10px] text-[#C2A685] uppercase tracking-wider block">LOOK #01</span>
+              <p class="font-serif-editorial text-xl">Scandinavian Pearl Blonde &amp; Curtain Fringe</p>
+            </div>
+          </div>
+
+          <!-- Client Testimonial Card 1 -->
+          <div class="bg-[#1F1D1B] p-8 border border-white/10">
+            <div class="flex items-center gap-1 text-[#C2A685] mb-4">
+              ★★★★★
+            </div>
+            <p class="font-serif-editorial text-xl sm:text-2xl italic leading-relaxed text-[#F5F2EB]/90 mb-6">
+              «Den beste salongopplevelsen i Oslo. Henrik forstod nøyaktig hvilken nyanse av kaldt og varmt blondt jeg var ute etter. Fire måneder senere ser balayagen fortsatt helt nystelt ut.»
+            </p>
+            <div class="flex items-center justify-between font-mono-tech text-xs text-white/60 pt-4 border-t border-white/10">
+              <span>CAMILLA KORSMO · ARKITEKT</span>
+              <span class="text-[#C2A685]">VERIFISERT KUNDE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="space-y-8">
+          <!-- Client Testimonial Card 2 -->
+          <div class="bg-[#1F1D1B] p-8 border border-white/10">
+            <div class="flex items-center gap-1 text-[#C2A685] mb-4">
+              ★★★★★
+            </div>
+            <p class="font-serif-editorial text-xl sm:text-2xl italic leading-relaxed text-[#F5F2EB]/90 mb-6">
+              «Jeg bestilte 'Stille Time' hos Astrid etter en hektisk uke. Å få servert nydelig seremoniell matcha og få en klipp som sitter perfekt uten påtvunget småprat var ren luksus.»
+            </p>
+            <div class="flex items-center justify-between font-mono-tech text-xs text-white/60 pt-4 border-t border-white/10">
+              <span>SOFIE LINDBERG · GRÜNDER</span>
+              <span class="text-[#C2A685]">VERIFISERT KUNDE</span>
+            </div>
+          </div>
+
+          <div class="relative editorial-img-wrap h-96 border border-white/10">
+            <img 
+              src="images/photo-08.jpg" 
+              alt="90s Layered Blowout utført hos Studio Andersen" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute bottom-4 left-4 right-4 bg-[#141312]/85 backdrop-blur-sm p-4 border border-white/10">
+              <span class="font-mono-tech text-[10px] text-[#C2A685] uppercase tracking-wider block">LOOK #02</span>
+              <p class="font-serif-editorial text-xl">90s Sculpted Layers &amp; Gloss</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="space-y-8">
+          <div class="relative editorial-img-wrap h-80 border border-white/10">
+            <img 
+              src="images/photo-14.jpg" 
+              alt="Interiør hos Studio Andersen Oslo" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute bottom-4 left-4 right-4 bg-[#141312]/85 backdrop-blur-sm p-4 border border-white/10">
+              <span class="font-mono-tech text-[10px] text-[#C2A685] uppercase tracking-wider block">ATMOSFÆRE</span>
+              <p class="font-serif-editorial text-xl">Ro, travertin &amp; nordisk eik i Kvadraturen</p>
+            </div>
+          </div>
+
+          <!-- Client Testimonial Card 3 -->
+          <div class="bg-[#1F1D1B] p-8 border border-white/10">
+            <div class="flex items-center gap-1 text-[#C2A685] mb-4">
+              ★★★★★
+            </div>
+            <p class="font-serif-editorial text-xl sm:text-2xl italic leading-relaxed text-[#F5F2EB]/90 mb-6">
+              «Emil er den eneste frisøren i Norge som virkelig kan klippe naturlige krøller. Endelig en salong som tar seg god tid til konsultasjon.»
+            </p>
+            <div class="flex items-center justify-between font-mono-tech text-xs text-white/60 pt-4 border-t border-white/10">
+              <span>JONAS W. · DESIGNER</span>
+              <span class="text-[#C2A685]">VERIFISERT KUNDE</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 05: SALONGEN, ÅPNINGSTIDER & KONTAKT -->
+  <section id="salongen" class="py-20 sm:py-28 lg:py-36 bg-[#F5F2EB]">
+    <div class="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-14">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
+        
+        <!-- Left Column: Location, Atmosphere & Opening Hours (6 Cols) -->
+        <div class="lg:col-span-6 space-y-10">
+          <div>
+            <span class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#8C4A33] block mb-3">
+              05 / BESØK OSS I OSLO SENTRUM
+            </span>
+            <h2 class="font-serif-editorial text-4xl sm:text-6xl text-[#141312] mb-6">
+              Prinsens gate 18,<br />Kvadraturen.
+            </h2>
+            <p class="text-[#5C5751] text-base sm:text-lg font-light leading-relaxed">
+              Salongen ligger i en fredet bygård fra 1898, innredet med rå travertinstein, akustiske eikespiler og skreddersydd belysning som gjengir hårfarger i 100% korrekt dagslysspekter (CRI 98+).
+            </p>
+          </div>
+
+          <!-- Opening Hours Architectural Table -->
+          <div class="bg-[#EBE5DB] p-6 sm:p-8 hairline-all">
+            <div class="flex items-center justify-between mb-6 pb-4 hairline-b">
+              <span class="font-mono-tech text-xs uppercase tracking-[0.18em] text-[#141312]">ÅPNINGSTIDER</span>
+              <span class="inline-flex items-center gap-2 font-mono-tech text-xs text-[#3A5A40]">
+                <span class="w-2 h-2 rounded-full bg-[#3A5A40]"></span>
+                <span>ÅPENT FOR TIMEBESTILLING</span>
+              </span>
+            </div>
+
+            <div class="space-y-3 font-mono-tech text-xs">
+              <div class="flex justify-between py-1.5 border-b border-[#141312]/10">
+                <span class="text-[#5C5751]">MANDAG – ONSDAG</span>
+                <span class="text-[#141312] font-medium">09:00 – 19:00</span>
+              </div>
+              <div class="flex justify-between py-1.5 border-b border-[#141312]/10">
+                <span class="text-[#5C5751]">TORSDAG – FREDAG</span>
+                <span class="text-[#141312] font-medium">09:00 – 20:00</span>
+              </div>
+              <div class="flex justify-between py-1.5 border-b border-[#141312]/10">
+                <span class="text-[#5C5751]">LØRDAG</span>
+                <span class="text-[#141312] font-medium">10:00 – 17:00</span>
+              </div>
+              <div class="flex justify-between py-1.5">
+                <span class="text-[#5C5751]">SØNDAG</span>
+                <span class="text-[#8C4A33]">Stengt (Kun redaksjonelle oppdrag)</span>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 hairline-t grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono-tech text-xs">
+              <div>
+                <span class="block text-[#5C5751] mb-1">TELEFON RESEPSJON</span>
+                <a href="tel:+4722418890" class="text-[#141312] hover:text-[#8C4A33] underline underline-offset-4">+47 22 41 88 90</a>
+              </div>
+              <div>
+                <span class="block text-[#5C5751] mb-1">E-POST FORESPØRSLER</span>
+                <a href="mailto:booking@studioandersen.no" class="text-[#141312] hover:text-[#8C4A33] underline underline-offset-4">booking@studioandersen.no</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="space-y-4 pt-4">
+            <h3 class="font-serif-editorial text-2xl text-[#141312] mb-2">Ofte stilte spørsmål</h3>
+            
+            <details class="group bg-[#EBE5DB]/60 hairline-all p-5 cursor-pointer">
+              <summary class="flex items-center justify-between font-serif-editorial text-xl text-[#141312] list-none">
+                <span>Hva er «Stille Time» (Silent Appointment)?</span>
+                <span class="font-mono-tech text-xs text-[#8C4A33] group-open:rotate-45 transition-transform">+</span>
+              </summary>
+              <p class="mt-3 text-sm text-[#5C5751] font-light leading-relaxed">
+                Etter grundig konsultasjon i starten av timen, kan du velge at resten av behandlingen foregår i ro og stillhet. Perfekt om du ønsker å lese, jobbe eller bare koble helt av. Du kan huke av for dette når du bestiller time.
+              </p>
+            </details>
+
+            <details class="group bg-[#EBE5DB]/60 hairline-all p-5 cursor-pointer">
+              <summary class="flex items-center justify-between font-serif-editorial text-xl text-[#141312] list-none">
+                <span>Usikker på hvilken fargebehandling du bør velge?</span>
+                <span class="font-mono-tech text-xs text-[#8C4A33] group-open:rotate-45 transition-transform">+</span>
+              </summary>
+              <p class="mt-3 text-sm text-[#5C5751] font-light leading-relaxed">
+                Velg «Signatur Balayage &amp; Glossing» i bookingmenyen, så setter vi av rikelig med tid. Vi tilpasser alltid teknikk og pris etter hårets utgangspunkt under konsultasjonen før vi starter.
+              </p>
+            </details>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Salon Visual & Direct Booking Prompt (6 Cols) -->
+        <div class="lg:col-span-6">
+          <div class="relative editorial-img-wrap h-[520px] sm:h-[640px] shadow-2xl">
+            <img 
+              src="images/photo-15.jpg" 
+              alt="Interiør hos Studio Andersen i Prinsens gate 18" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#141312]/80 via-transparent to-transparent"></div>
+
+            <div class="absolute bottom-8 left-8 right-8 text-[#F5F2EB]">
+              <span class="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#C2A685] block mb-2">
+                KLAR FOR DIN NESTE TIME?
+              </span>
+              <h3 class="font-serif-editorial text-3xl sm:text-4xl mb-6">
+                Bestill din time på under 60 sekunder.
+              </h3>
+              <button 
+                onclick="openBookingDrawer()" 
+                class="bg-[#F5F2EB] text-[#141312] hover:bg-[#8C4A33] hover:text-white transition-all px-8 py-4 font-mono-tech text-xs uppercase tracking-[0.16em] cursor-pointer">
+                Åpne online timebestilling →
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDITORIAL FOOTER -->
+  <footer class="bg-[#141312] text-[#F5F2EB] pt-20 pb-12 hairline-t border-white/10">
+    <div class="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-14">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+        
+        <!-- Brand Column (5 Cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <span class="font-serif-editorial text-3xl tracking-tight block">STUDIO ANDERSEN</span>
+          <p class="text-sm text-white/60 max-w-sm font-light leading-relaxed">
+            Arkitektonisk hårkunst, skandinavisk fargeestetikk og skreddersydd hårpleie i hjertet av Oslo.
+          </p>
+          <div class="pt-2 font-mono-tech text-xs text-[#C2A685]">
+            ORG.NR: 928 491 023 MVA · PRINSENS GATE 18, 0152 OSLO
+          </div>
+        </div>
+
+        <!-- Navigation Links (3 Cols) -->
+        <div class="lg:col-span-3 space-y-3 font-mono-tech text-xs uppercase tracking-widest">
+          <span class="block text-[#C2A685] mb-4">NAVIGASJON</span>
+          <div><a href="#filosofi" class="hover:text-[#C2A685] transition-colors">01 / Håndverket</a></div>
+          <div><a href="#behandlinger" class="hover:text-[#C2A685] transition-colors">02 / Behandlinger &amp; Priser</a></div>
+          <div><a href="#frisorer" class="hover:text-[#C2A685] transition-colors">03 / Våre frisører</a></div>
+          <div><a href="#lookbook" class="hover:text-[#C2A685] transition-colors">04 / Lookbook</a></div>
+          <div><a href="#salongen" class="hover:text-[#C2A685] transition-colors">05 / Salongen &amp; Kontakt</a></div>
+        </div>
+
+        <!-- Direct Booking Callout (4 Cols) -->
+        <div class="lg:col-span-4 space-y-4">
+          <span class="font-mono-tech text-xs uppercase tracking-widest text-[#C2A685] block">ONLINE TIMEBESTILLING</span>
+          <p class="text-sm text-white/70 font-light">
+            Velg ønsket behandling, frisør og tidspunkt direkte i vårt bookingsystem.
+          </p>
+          <button 
+            onclick="openBookingDrawer()" 
+            class="w-full bg-[#F5F2EB] text-[#141312] hover:bg-[#8C4A33] hover:text-white transition-colors py-4 font-mono-tech text-xs uppercase tracking-[0.16em] cursor-pointer">
+            Bestill time nå →
+          </button>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono-tech text-[11px] text-white/40">
+        <span>© 2026 STUDIO ANDERSEN AS. ALLE RETTIGHETER RESERVERT.</span>
+        <span>DESIGN &amp; ART DIRECTION: PORTFOLIODEMO FOR WEBBYRÅ</span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ========================================================================= -->
+  <!-- INTERACTIVE MULTI-STEP BOOKING DRAWER ("BESTILL TIME")                     -->
+  <!-- ========================================================================= -->
+  <div 
+    id="booking-drawer-backdrop" 
+    class="fixed inset-0 bg-[#141312]/60 backdrop-blur-xs z-50 hidden opacity-0 drawer-backdrop"
+    onclick="closeBookingDrawer()">
+  </div>
+
+  <aside 
+    id="booking-drawer-panel" 
+    aria-label="Bestill time hos Studio Andersen"
+    class="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-[#F5F2EB] text-[#141312] z-50 shadow-2xl translate-x-full drawer-panel flex flex-col justify-between overflow-hidden">
+    
+    <!-- Drawer Header -->
+    <div class="px-6 sm:px-8 py-6 bg-[#141312] text-[#F5F2EB] flex items-center justify-between">
+      <div>
+        <span class="font-mono-tech text-[10px] uppercase tracking-[0.2em] text-[#C2A685] block">
+          ONLINE BOOKING · STUDIO ANDERSEN
+        </span>
+        <h3 class="font-serif-editorial text-2xl sm:text-3xl">Bestill din time</h3>
+      </div>
+      <button 
+        onclick="closeBookingDrawer()" 
+        aria-label="Lukk booking"
+        class="p-2 text-white/70 hover:text-white cursor-pointer font-mono-tech text-xs uppercase tracking-widest flex items-center gap-1">
+        <span>LUKK</span>
+        <span class="text-lg">✕</span>
+      </button>
+    </div>
+
+    <!-- Step Indicator Bar -->
+    <div class="px-6 sm:px-8 py-3 bg-[#EBE5DB] hairline-b flex items-center justify-between font-mono-tech text-[11px] uppercase tracking-wider">
+      <button onclick="goToBookingStep(1)" id="step-ind-1" class="text-[#8C4A33] font-medium cursor-pointer">1. Behandling</button>
+      <span class="text-[#141312]/30">→</span>
+      <button onclick="goToBookingStep(2)" id="step-ind-2" class="text-[#5C5751] cursor-pointer">2. Frisør</button>
+      <span class="text-[#141312]/30">→</span>
+      <button onclick="goToBookingStep(3)" id="step-ind-3" class="text-[#5C5751] cursor-pointer">3. Tidspunkt</button>
+      <span class="text-[#141312]/30">→</span>
+      <button onclick="goToBookingStep(4)" id="step-ind-4" class="text-[#5C5751] cursor-pointer">4. Bekreft</button>
+    </div>
+
+    <!-- Drawer Scrollable Body -->
+    <div class="p-6 sm:p-8 overflow-y-auto flex-1 space-y-6" id="booking-drawer-body">
+      
+      <!-- STEP 1: VELG BEHANDLING -->
+      <div id="booking-step-1" class="space-y-4">
+        <div class="mb-4">
+          <h4 class="font-serif-editorial text-2xl text-[#141312]">Velg behandling</h4>
+          <p class="text-xs text-[#5C5751]">Alle behandlinger inkluderer konsultasjon, hårvask og hodebunnsmassasje.</p>
+        </div>
+
+        <div class="space-y-2.5" id="drawer-treatment-options">
+          <!-- Dynamically populated or selectable radio cards -->
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer transition-all">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_treatment" value="Skreddersydd Klipp & Styling" data-price="1190" data-duration="60 MIN" checked onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block text-[#141312]">Skreddersydd Klipp &amp; Styling</span>
+                  <span class="font-mono-tech text-[11px] text-[#5C5751]">60 MIN · Inkl. vask, hodebunnsmassasje &amp; føn</span>
+                </div>
+              </div>
+              <span class="font-mono-tech text-sm font-medium">kr 1 190,-</span>
+            </div>
+          </label>
+
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer transition-all">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_treatment" value="Signatur Balayage & Glossing" data-price="3250" data-duration="180 MIN" onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block text-[#141312]">Signatur Balayage &amp; Glossing</span>
+                  <span class="font-mono-tech text-[11px] text-[#5C5751]">180 MIN · Frihånds-balayage, K18 kur &amp; gloss</span>
+                </div>
+              </div>
+              <span class="font-mono-tech text-sm font-medium">kr 3 250,-</span>
+            </div>
+          </label>
+
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer transition-all">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_treatment" value="Transformasjonsklipp (Ny Frisyre)" data-price="1450" data-duration="75 MIN" onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block text-[#141312]">Transformasjonsklipp (Ny Frisyre)</span>
+                  <span class="font-mono-tech text-[11px] text-[#5C5751]">75 MIN · Ekstra tid for helt ny form</span>
+                </div>
+              </div>
+              <span class="font-mono-tech text-sm font-medium">kr 1 450,-</span>
+            </div>
+          </label>
+
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer transition-all">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_treatment" value="Nordic Babylights & Scandi Blonde" data-price="3490" data-duration="195 MIN" onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block text-[#141312]">Nordic Babylights &amp; Scandi Blonde</span>
+                  <span class="font-mono-tech text-[11px] text-[#5C5751]">195 MIN · Tette folie-striper &amp; kald/varm gloss</span>
+                </div>
+              </div>
+              <span class="font-mono-tech text-sm font-medium">kr 3 490,-</span>
+            </div>
+          </label>
+
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer transition-all">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_treatment" value="Herreklipp & Skreddersydd Form" data-price="980" data-duration="45 MIN" onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block text-[#141312]">Herreklipp &amp; Skreddersydd Form</span>
+                  <span class="font-mono-tech text-[11px] text-[#5C5751]">45 MIN · Presisjonsklipp, vask &amp; styling</span>
+                </div>
+              </div>
+              <span class="font-mono-tech text-sm font-medium">kr 980,-</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- STEP 2: VELG FRISØR -->
+      <div id="booking-step-2" class="hidden space-y-4">
+        <div class="mb-4">
+          <h4 class="font-serif-editorial text-2xl text-[#141312]">Velg din frisør</h4>
+          <p class="text-xs text-[#5C5751]">Velg en spesifikk ekspert eller første ledige frisør.</p>
+        </div>
+
+        <div class="space-y-3">
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_stylist" value="Første ledige ekspert" checked onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block">Første ledige ekspert</span>
+                  <span class="font-mono-tech text-[11px] text-[#3A5A40]">Ledig i dag kl. 14:30</span>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_stylist" value="Astrid Andersen" onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block">Astrid Andersen (Creative Director)</span>
+                  <span class="font-mono-tech text-[11px] text-[#5C5751]">Spesialist på skulpturell klipp &amp; blond</span>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_stylist" value="Henrik Lindqvist" onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block">Henrik Lindqvist (Master Colorist)</span>
+                  <span class="font-mono-tech text-[11px] text-[#5C5751]">Spesialist på balayage &amp; fargedesign</span>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_stylist" value="Sunniva Hofseth" onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block">Sunniva Hofseth (Senior Stylist)</span>
+                  <span class="font-mono-tech text-[11px] text-[#5C5751]">Spesialist på 90s layers &amp; blowouts</span>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <label class="block p-4 bg-[#EBE5DB]/60 hover:bg-[#EBE5DB] border border-[#141312]/15 cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="booking_stylist" value="Emil Solberg" onchange="updateBookingSelection()" class="accent-[#8C4A33] w-4 h-4" />
+                <div>
+                  <span class="font-serif-editorial text-xl block">Emil Solberg (Curl &amp; Precision)</span>
+                  <span class="font-mono-tech text-[11px] text-[#5C5751]">Spesialist på krøller &amp; herreklipp</span>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- STEP 3: VELG DATO & KLOKKESLETT -->
+      <div id="booking-step-3" class="hidden space-y-5">
+        <div>
+          <h4 class="font-serif-editorial text-2xl text-[#141312]">Velg dato &amp; klokkeslett</h4>
+          <p class="text-xs text-[#5C5751]">Ledige timer i salongen i Prinsens gate 18.</p>
+        </div>
+
+        <!-- Date Picker Pills -->
+        <div class="grid grid-cols-3 gap-2.5 font-mono-tech text-xs">
+          <button type="button" onclick="selectDateSlot(this, 'I dag, 14. mai')" class="date-slot active bg-[#141312] text-[#F5F2EB] py-3 px-2 text-center cursor-pointer">
+            I DAG<br /><span class="text-[10px] opacity-75">Få plasser</span>
+          </button>
+          <button type="button" onclick="selectDateSlot(this, 'I morgen, 15. mai')" class="date-slot bg-[#EBE5DB] text-[#141312] py-3 px-2 text-center cursor-pointer">
+            I MORGEN<br /><span class="text-[10px] opacity-75">Ledig</span>
+          </button>
+          <button type="button" onclick="selectDateSlot(this, 'Torsdag 16. mai')" class="date-slot bg-[#EBE5DB] text-[#141312] py-3 px-2 text-center cursor-pointer">
+            TORSDAG<br /><span class="text-[10px] opacity-75">Ledig</span>
+          </button>
+        </div>
+
+        <!-- Time Slot Pills -->
+        <div>
+          <span class="font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751] block mb-2">VELG KLOKKESLETT</span>
+          <div class="grid grid-cols-3 gap-2.5 font-mono-tech text-xs">
+            <button type="button" onclick="selectTimeSlot(this, '10:00')" class="time-slot bg-[#EBE5DB] text-[#141312] py-3 text-center cursor-pointer">10:00</button>
+            <button type="button" onclick="selectTimeSlot(this, '12:15')" class="time-slot bg-[#EBE5DB] text-[#141312] py-3 text-center cursor-pointer">12:15</button>
+            <button type="button" onclick="selectTimeSlot(this, '14:30')" class="time-slot active bg-[#8C4A33] text-[#F5F2EB] py-3 text-center cursor-pointer">14:30</button>
+            <button type="button" onclick="selectTimeSlot(this, '16:00')" class="time-slot bg-[#EBE5DB] text-[#141312] py-3 text-center cursor-pointer">16:00</button>
+            <button type="button" onclick="selectTimeSlot(this, '17:15')" class="time-slot bg-[#EBE5DB] text-[#141312] py-3 text-center cursor-pointer">17:15</button>
+            <button type="button" onclick="selectTimeSlot(this, '18:00')" class="time-slot bg-[#EBE5DB] text-[#141312] py-3 text-center cursor-pointer">18:00</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: KONTAKTINFO & SILENT APPOINTMENT -->
+      <div id="booking-step-4" class="hidden space-y-4">
+        <div>
+          <h4 class="font-serif-editorial text-2xl text-[#141312]">Fullfør din reservasjon</h4>
+          <p class="text-xs text-[#5C5751]">Du mottar umiddelbar bekreftelse på SMS og e-post.</p>
+        </div>
+
+        <form id="booking-form" onsubmit="submitBookingForm(event)" class="space-y-4">
+          <div>
+            <label class="block font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751] mb-1">Fullt navn *</label>
+            <input type="text" id="client-name" required placeholder="F.eks. Ingrid Solbakken" class="w-full bg-[#EBE5DB] border border-[#141312]/20 px-4 py-3 text-sm focus:outline-none focus:border-[#8C4A33]" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751] mb-1">Mobilnummer *</label>
+              <input type="tel" id="client-phone" required placeholder="98 76 54 32" class="w-full bg-[#EBE5DB] border border-[#141312]/20 px-4 py-3 text-sm focus:outline-none focus:border-[#8C4A33]" />
+            </div>
+            <div>
+              <label class="block font-mono-tech text-[11px] uppercase tracking-wider text-[#5C5751] mb-1">E-postadresse *</label>
+              <input type="email" id="client-email" required placeholder="ingrid@eksempel.no" class="w-full bg-[#EBE5DB] border border-[#141312]/20 px-4 py-3 text-sm focus:outline-none focus:border-[#8C4A33]" />
+            </div>
+          </div>
+
+          <!-- Silent Appointment Checkbox -->
+          <label class="flex items-start gap-3 p-3.5 bg-[#EBE5DB]/70 border border-[#141312]/15 cursor-pointer">
+            <input type="checkbox" id="silent-appointment" class="mt-1 accent-[#8C4A33]" />
+            <div class="text-xs">
+              <span class="font-medium text-[#141312] block">Ønsker «Stille Time» (Silent Appointment)</span>
+              <span class="text-[#5C5751]">Vi tar en god konsultasjon først, deretter kan du slappe helt av i ro og stillhet under behandlingen.</span>
+            </div>
+          </label>
+
+          <button 
+            type="submit" 
+            class="w-full bg-[#141312] text-[#F5F2EB] hover:bg-[#8C4A33] transition-colors py-4 font-mono-tech text-xs uppercase tracking-[0.16em] cursor-pointer">
+            Bekreft timebestilling →
+          </button>
+        </form>
+      </div>
+
+      <!-- STEP 5: CONFIRMED RECEIPT VIEW -->
+      <div id="booking-step-confirmed" class="hidden space-y-6 py-4">
+        <div class="bg-[#3A5A40]/10 border border-[#3A5A40] p-6 text-center">
+          <span class="inline-block w-10 h-10 rounded-full bg-[#3A5A40] text-white leading-10 text-lg mb-3">✓</span>
+          <span class="font-mono-tech text-[10px] uppercase tracking-[0.2em] text-[#3A5A40] block mb-1">
+            TIMEBESTILLING BEKREFTET · REF #SA-8492
+          </span>
+          <h4 class="font-serif-editorial text-3xl text-[#141312]">Velkommen til Studio Andersen</h4>
+          <p class="text-xs text-[#5C5751] mt-1">Bekreftelse og kalenderinvitasjon er sendt til din telefon.</p>
+        </div>
+
+        <div class="bg-[#EBE5DB] p-6 space-y-3 font-mono-tech text-xs">
+          <div class="flex justify-between py-1 border-b border-[#141312]/10">
+            <span class="text-[#5C5751]">BEHANDLING</span>
+            <span id="receipt-treatment" class="font-medium text-[#141312]">Skreddersydd Klipp &amp; Styling</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-[#141312]/10">
+            <span class="text-[#5C5751]">FRISØR</span>
+            <span id="receipt-stylist" class="font-medium text-[#141312]">Første ledige ekspert</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-[#141312]/10">
+            <span class="text-[#5C5751]">TIDSPUNKT</span>
+            <span id="receipt-datetime" class="font-medium text-[#141312]">I dag kl. 14:30</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-[#141312]/10">
+            <span class="text-[#5C5751]">STED</span>
+            <span class="font-medium text-[#141312]">Prinsens gate 18, Oslo</span>
+          </div>
+          <div class="flex justify-between py-1">
+            <span class="text-[#5C5751]">ESTIMERT TOTALPRIS</span>
+            <span id="receipt-price" class="font-medium text-[#8C4A33]">kr 1 190,-</span>
+          </div>
+        </div>
+
+        <button 
+          onclick="closeBookingDrawer()" 
+          class="w-full bg-[#141312] text-[#F5F2EB] py-3.5 font-mono-tech text-xs uppercase tracking-widest cursor-pointer">
+          Ferdig &amp; Lukk vindu
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Sticky Drawer Footer: Summary & Step Navigation -->
+    <div id="booking-drawer-footer" class="px-6 sm:px-8 py-5 bg-[#EBE5DB] hairline-t flex items-center justify-between">
+      <div>
+        <span class="font-mono-tech text-[10px] uppercase tracking-wider text-[#5C5751] block">VALGT BEHANDLING</span>
+        <div class="flex items-baseline gap-2">
+          <span id="drawer-summary-price" class="font-mono-tech text-lg font-medium text-[#141312]">kr 1 190,-</span>
+          <span id="drawer-summary-duration" class="font-mono-tech text-xs text-[#5C5751]">(60 MIN)</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button 
+          id="btn-prev-step"
+          onclick="prevBookingStep()" 
+          class="hidden border border-[#141312]/30 px-4 py-3 font-mono-tech text-xs uppercase tracking-wider cursor-pointer">
+          ← Tilbake
+        </button>
+        <button 
+          id="btn-next-step"
+          onclick="nextBookingStep()" 
+          class="bg-[#141312] text-[#F5F2EB] hover:bg-[#8C4A33] transition-colors px-6 py-3 font-mono-tech text-xs uppercase tracking-widest cursor-pointer">
+          Neste steg →
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+
+  <!-- ========================================================================= -->
+  <!-- INTERACTIVE JAVASCRIPT LOGIC                                              -->
+  <!-- ========================================================================= -->
+  <script>
+    // 1. Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // 2. Interactive Before / After Balayage Slider
+    (function initBeforeAfterSlider() {
+      const slider = document.getElementById('ba-slider');
+      const beforeLayer = document.getElementById('ba-before-layer');
+      const beforeImg = document.getElementById('ba-before-img');
+      const handle = document.getElementById('ba-handle');
+      let isDragging = false;
+
+      function syncBeforeImageWidth() {
+        if (slider && beforeImg) {
+          beforeImg.style.width = slider.offsetWidth + 'px';
+        }
+      }
+
+      window.addEventListener('resize', syncBeforeImageWidth);
+      setTimeout(syncBeforeImageWidth, 100);
+
+      function moveSlider(clientX) {
+        const rect = slider.getBoundingClientRect();
+        let offsetX = clientX - rect.left;
+        if (offsetX < 20) offsetX = 20;
+        if (offsetX > rect.width - 20) offsetX = rect.width - 20;
+        const percentage = (offsetX / rect.width) * 100;
+        beforeLayer.style.width = percentage + '%';
+        handle.style.left = percentage + '%';
+      }
+
+      slider.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        moveSlider(e.clientX);
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        moveSlider(e.clientX);
+      });
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      // Touch support
+      slider.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        moveSlider(e.touches[0].clientX);
+      }, { passive: true });
+      slider.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        moveSlider(e.touches[0].clientX);
+      }, { passive: true });
+      slider.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+    })();
+
+    // 3. Treatment Category Filter & Live Preview Update
+    function filterTreatments(category) {
+      const items = document.querySelectorAll('.treatment-item');
+      const tabs = document.querySelectorAll('.treatment-tab');
+
+      tabs.forEach(tab => {
+        tab.classList.remove('bg-[#141312]', 'text-[#F5F2EB]');
+        tab.classList.add('bg-[#EBE5DB]', 'text-[#141312]');
+      });
+
+      const activeTab = document.getElementById('tab-' + category);
+      if (activeTab) {
+        activeTab.classList.remove('bg-[#EBE5DB]', 'text-[#141312]');
+        activeTab.classList.add('bg-[#141312]', 'text-[#F5F2EB]');
+      }
+
+      items.forEach(item => {
+        if (category === 'alle' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function updatePreviewCard(title, duration, price, desc, imgSrc) {
+      document.getElementById('preview-card-title').textContent = title;
+      document.getElementById('preview-card-duration').textContent = duration;
+      document.getElementById('preview-card-price').textContent = price;
+      document.getElementById('preview-card-desc').textContent = desc;
+      document.getElementById('preview-card-img').src = imgSrc;
+      document.getElementById('preview-card-cta').setAttribute('onclick', `openBookingDrawerWithTreatment('${title}')`);
+    }
+
+    // 4. Multi-Step Booking Drawer State Management
+    let currentBookingStep = 1;
+    let selectedDate = 'I dag, 14. mai';
+    let selectedTime = '14:30';
+
+    function openBookingDrawer() {
+      const backdrop = document.getElementById('booking-drawer-backdrop');
+      const panel = document.getElementById('booking-drawer-panel');
+      backdrop.classList.remove('hidden');
+      setTimeout(() => {
+        backdrop.classList.remove('opacity-0');
+        panel.classList.remove('translate-x-full');
+      }, 15);
+      goToBookingStep(1);
+    }
+
+    function openBookingDrawerWithTreatment(treatmentName, stylistName) {
+      const radios = document.querySelectorAll('input[name="booking_treatment"]');
+      radios.forEach(radio => {
+        if (radio.value.toLowerCase().includes(treatmentName.toLowerCase().substring(0, 12))) {
+          radio.checked = true;
+        }
+      });
+
+      if (stylistName) {
+        const stylistRadios = document.querySelectorAll('input[name="booking_stylist"]');
+        stylistRadios.forEach(sRadio => {
+          if (sRadio.value.toLowerCase().includes(stylistName.toLowerCase())) {
+            sRadio.checked = true;
+          }
+        });
+      }
+
+      updateBookingSelection();
+      openBookingDrawer();
+    }
+
+    function openBookingDrawerWithStylist(stylistName) {
+      const stylistRadios = document.querySelectorAll('input[name="booking_stylist"]');
+      stylistRadios.forEach(sRadio => {
+        if (sRadio.value.toLowerCase().includes(stylistName.toLowerCase())) {
+          sRadio.checked = true;
+        }
+      });
+      openBookingDrawer();
+      goToBookingStep(2);
+    }
+
+    function closeBookingDrawer() {
+      const backdrop = document.getElementById('booking-drawer-backdrop');
+      const panel = document.getElementById('booking-drawer-panel');
+      backdrop.classList.add('opacity-0');
+      panel.classList.add('translate-x-full');
+      setTimeout(() => {
+        backdrop.classList.add('hidden');
+      }, 450);
+    }
+
+    function updateBookingSelection() {
+      const checkedTreatment = document.querySelector('input[name="booking_treatment"]:checked');
+      if (checkedTreatment) {
+        const price = checkedTreatment.getAttribute('data-price');
+        const duration = checkedTreatment.getAttribute('data-duration');
+        document.getElementById('drawer-summary-price').textContent = `kr ${Number(price).toLocaleString('nb-NO')},-`;
+        document.getElementById('drawer-summary-duration').textContent = `(${duration})`;
+      }
+    }
+
+    function goToBookingStep(step) {
+      currentBookingStep = step;
+      for (let i = 1; i <= 4; i++) {
+        const el = document.getElementById(`booking-step-${i}`);
+        const ind = document.getElementById(`step-ind-${i}`);
+        if (el) el.classList.add('hidden');
+        if (ind) {
+          ind.classList.remove('text-[#8C4A33]', 'font-medium');
+          ind.classList.add('text-[#5C5751]');
+        }
+      }
+
+      const confirmedEl = document.getElementById('booking-step-confirmed');
+      if (confirmedEl) confirmedEl.classList.add('hidden');
+
+      const activeEl = document.getElementById(`booking-step-${step}`);
+      const activeInd = document.getElementById(`step-ind-${step}`);
+      if (activeEl) activeEl.classList.remove('hidden');
+      if (activeInd) {
+        activeInd.classList.remove('text-[#5C5751]');
+        activeInd.classList.add('text-[#8C4A33]', 'font-medium');
+      }
+
+      const prevBtn = document.getElementById('btn-prev-step');
+      const nextBtn = document.getElementById('btn-next-step');
+      const footer = document.getElementById('booking-drawer-footer');
+      if (footer) footer.classList.remove('hidden');
+
+      if (step === 1) {
+        prevBtn.classList.add('hidden');
+      } else {
+        prevBtn.classList.remove('hidden');
+      }
+
+      if (step === 4) {
+        nextBtn.classList.add('hidden');
+      } else {
+        nextBtn.classList.remove('hidden');
+      }
+    }
+
+    function nextBookingStep() {
+      if (currentBookingStep < 4) {
+        goToBookingStep(currentBookingStep + 1);
+      }
+    }
+
+    function prevBookingStep() {
+      if (currentBookingStep > 1) {
+        goToBookingStep(currentBookingStep - 1);
+      }
+    }
+
+    function selectDateSlot(btn, dateStr) {
+      selectedDate = dateStr;
+      document.querySelectorAll('.date-slot').forEach(el => {
+        el.classList.remove('bg-[#141312]', 'text-[#F5F2EB]');
+        el.classList.add('bg-[#EBE5DB]', 'text-[#141312]');
+      });
+      btn.classList.remove('bg-[#EBE5DB]', 'text-[#141312]');
+      btn.classList.add('bg-[#141312]', 'text-[#F5F2EB]');
+    }
+
+    function selectTimeSlot(btn, timeStr) {
+      selectedTime = timeStr;
+      document.querySelectorAll('.time-slot').forEach(el => {
+        el.classList.remove('bg-[#8C4A33]', 'text-[#F5F2EB]');
+        el.classList.add('bg-[#EBE5DB]', 'text-[#141312]');
+      });
+      btn.classList.remove('bg-[#EBE5DB]', 'text-[#141312]');
+      btn.classList.add('bg-[#8C4A33]', 'text-[#F5F2EB]');
+    }
+
+    function submitBookingForm(e) {
+      e.preventDefault();
+      const treatment = document.querySelector('input[name="booking_treatment"]:checked').value;
+      const price = document.querySelector('input[name="booking_treatment"]:checked').getAttribute('data-price');
+      const stylist = document.querySelector('input[name="booking_stylist"]:checked').value;
+
+      document.getElementById('receipt-treatment').textContent = treatment;
+      document.getElementById('receipt-stylist').textContent = stylist;
+      document.getElementById('receipt-datetime').textContent = `${selectedDate} kl. ${selectedTime}`;
+      document.getElementById('receipt-price').textContent = `kr ${Number(price).toLocaleString('nb-NO')},-`;
+
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`booking-step-${i}`).classList.add('hidden');
+      }
+      document.getElementById('booking-drawer-footer').classList.add('hidden');
+      document.getElementById('booking-step-confirmed').classList.remove('hidden');
+    }
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

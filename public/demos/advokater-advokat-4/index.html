@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Andersen &amp; Co Advokatfirma — Juridisk rådgivning for mennesker og virksomheter</title>
+<meta name="description" content="Andersen &amp; Co Advokatfirma bistår privatpersoner og bedrifter innen arbeidsrett, familierett, arv og skifte, eiendom, kontraktsrett, selskapsrett og tvisteløsning. Oslo.">
+<meta name="theme-color" content="#101215">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="images/icon-01.svg">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ink:#101215;
+  --ink-2:#191c21;
+  --ink-3:#23272d;
+  --paper:#f5f2ed;
+  --paper-2:#ece8e1;
+  --paper-3:#e0dbd2;
+  --brass:#9b7b46;
+  --brass-lt:#c9a86c;
+  --txt:#191c21;
+  --txt-mut:#6d6a64;
+  --txt-inv:#f5f2ed;
+  --txt-inv-mut:#9a978f;
+  --line:rgba(25,28,33,.13);
+  --line-inv:rgba(245,242,237,.15);
+  --serif:"Instrument Serif",'Times New Roman',serif;
+  --sans:"Inter Tight",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease2:cubic-bezier(.65,0,.35,1);
+  --pad:clamp(20px,5vw,80px);
+  --maxw:1440px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--txt);font-family:var(--sans);
+  font-size:16px;line-height:1.6;font-weight:400;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"ss01","cv05";
+}
+body.locked{overflow:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:1.5px solid var(--brass);outline-offset:3px;border-radius:2px}
+
+/* ============ GRAIN ============ */
+.grain{position:fixed;inset:-120%;z-index:9998;pointer-events:none;opacity:.035;
+  background-image:url("images/icon-02.svg");
+  animation:grainMove 8s steps(6) infinite;will-change:transform}
+@keyframes grainMove{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,1%)}100%{transform:translate(0,0)}}
+
+/* ============ TYPO ============ */
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--txt-mut);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--brass);flex:none}
+.eyebrow.inv{color:var(--txt-inv-mut)}
+.d1{font-family:var(--serif);font-weight:400;font-size:clamp(3.2rem,9.2vw,9.5rem);line-height:.92;letter-spacing:-.025em}
+.d2{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,5.2rem);line-height:1;letter-spacing:-.02em}
+.d3{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.6vw,3.1rem);line-height:1.06;letter-spacing:-.015em}
+.d4{font-family:var(--serif);font-weight:400;font-size:clamp(1.35rem,2.2vw,1.85rem);line-height:1.15}
+em.it{font-style:italic;color:var(--brass)}
+.lead{font-size:clamp(1.02rem,1.35vw,1.24rem);line-height:1.62;color:var(--txt-mut);font-weight:300}
+.lead.inv{color:var(--txt-inv-mut)}
+.small{font-size:13.5px;line-height:1.6;color:var(--txt-mut)}
+
+/* ============ LAYOUT ============ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+section{position:relative}
+section[id]{scroll-margin-top:80px}
+.sec{padding-block:clamp(72px,10vw,150px)}
+.rule{height:1px;background:var(--line);width:100%}
+.dark{background:var(--ink);color:var(--txt-inv)}
+.dark .rule{background:var(--line-inv)}
+
+/* ============ REVEAL ============ */
+[data-rv]{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1.1s var(--ease)}
+[data-rv].in{opacity:1;transform:none}
+[data-rv][data-rv="fade"]{transform:none}
+.msk{display:block;overflow:hidden}
+.msk>span{display:block;transform:translateY(105%);transition:transform 1.05s var(--ease)}
+.in .msk>span{transform:none}
+.msk.in>span{transform:translateY(105%);animation:mskUp 1.2s var(--ease) forwards}
+.msk>span.eyebrow{display:flex}
+@keyframes mskUp{to{transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  [data-rv]{opacity:1;transform:none}.msk>span{transform:none}
+}
+
+/* ============ BUTTONS ============ */
+.btn{position:relative;display:inline-flex;align-items:center;gap:14px;padding:16px 26px;border:1px solid var(--ink);
+  border-radius:999px;font-size:13.5px;font-weight:500;letter-spacing:.02em;overflow:hidden;cursor:pointer;background:none;
+  transition:color .5s var(--ease),border-color .5s var(--ease);isolation:isolate}
+.btn>span{position:relative;z-index:2}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ink);z-index:1;transform:translateY(101%);transition:transform .55s var(--ease)}
+.btn:hover::before{transform:translateY(0)}
+.btn:hover{color:var(--paper)}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.solid::before{background:var(--brass)}
+.btn.solid:hover{color:#fff;border-color:var(--brass)}
+.btn.inv{border-color:rgba(245,242,237,.35);color:var(--txt-inv)}
+.btn.inv::before{background:var(--paper)}
+.btn.inv:hover{color:var(--ink);border-color:var(--paper)}
+.btn.gold{background:var(--brass);border-color:var(--brass);color:#fff}
+.btn.gold::before{background:#fff}
+.btn.gold:hover{color:var(--ink)}
+.btn .ar{transition:transform .5s var(--ease);position:relative;z-index:2;display:block}
+.btn:hover .ar{transform:translateX(5px)}
+.lnk{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  padding-bottom:5px;border-bottom:1px solid var(--line);transition:border-color .4s,gap .4s var(--ease)}
+.lnk:hover{border-color:var(--brass);gap:15px}
+.lnk .ar{transition:transform .45s var(--ease)}
+.lnk:hover .ar{transform:translateX(3px)}
+
+/* ============ HEADER ============ */
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--brass);z-index:10000;width:0%;transition:width .12s linear}
+header{position:fixed;top:0;left:0;right:0;z-index:9000;transition:transform .6s var(--ease),background .5s,backdrop-filter .5s,box-shadow .5s;}
+header.hide{transform:translateY(-102%)}
+header.stuck{background:rgba(245,242,237,.88);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 1px 0 var(--line)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--hh,86px);max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);transition:height .5s var(--ease)}
+header.stuck .hdr{--hh:68px}
+.logo{display:flex;align-items:center;gap:12px;flex:none}
+.logo .mk{width:34px;height:34px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:16px;line-height:1;padding-top:2px;transition:.5s var(--ease)}
+.logo:hover .mk{background:var(--ink);color:var(--paper);transform:rotate(-8deg)}
+.logo .nm{font-family:var(--serif);font-size:20px;letter-spacing:-.01em;line-height:1;white-space:nowrap}
+.logo .nm small{display:block;font-family:var(--sans);font-size:8.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--txt-mut);margin-top:4px;font-weight:500}
+nav.main{display:flex;align-items:center;gap:34px}
+nav.main a{font-size:13.5px;font-weight:400;position:relative;padding:6px 0;color:var(--txt)}
+nav.main a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--brass);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+nav.main a:hover::after,nav.main a.act::after{transform:scaleX(1);transform-origin:left}
+.hdr-r{display:flex;align-items:center;gap:16px;flex:none}
+.tel{font-size:13.5px;display:flex;align-items:center;gap:8px;color:var(--txt-mut);transition:color .3s}
+.tel:hover{color:var(--brass)}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:none;cursor:pointer;position:relative}
+.burger i{position:absolute;left:13px;width:18px;height:1.2px;background:var(--ink);transition:.45s var(--ease)}
+.burger i:nth-child(1){top:19px}.burger i:nth-child(2){top:24px}
+body.menu-open .burger i:nth-child(1){transform:translateY(2.5px) rotate(45deg)}
+body.menu-open .burger i:nth-child(2){transform:translateY(-2.5px) rotate(-45deg)}
+
+/* mobile menu */
+.mob{position:fixed;inset:0;z-index:8900;background:var(--ink);color:var(--txt-inv);padding:104px var(--pad) 40px;
+  display:flex;flex-direction:column;justify-content:space-between;clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--ease);pointer-events:none;overflow-y:auto}
+body.menu-open .mob{clip-path:inset(0 0 0 0);pointer-events:auto}
+.mob nav{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+.mob nav a{font-family:var(--serif);font-size:clamp(2.1rem,10vw,3rem);line-height:1.24;display:flex;align-items:baseline;gap:14px;
+  opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .7s var(--ease),color .3s}
+.mob nav a:active{color:var(--brass-lt)}
+body.menu-open .mob nav a{opacity:1;transform:none}
+.mob nav a i{font-style:normal;font-family:var(--sans);font-size:10px;letter-spacing:.15em;color:var(--brass-lt);opacity:.8}
+.mob .mfoot{border-top:1px solid var(--line-inv);padding-top:26px;margin-top:40px;display:grid;gap:6px;opacity:0;transition:opacity .6s .45s}
+body.menu-open .mob .mfoot{opacity:1}
+.mob .mfoot .big{font-family:var(--serif);font-size:1.5rem}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:150px;overflow:hidden}
+.hero-bgline{position:absolute;inset:0;max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);pointer-events:none;display:flex;justify-content:space-between}
+.hero-bgline span{width:1px;background:var(--line);height:100%;transform:scaleY(0);transform-origin:top;animation:gl 1.6s var(--ease) forwards}
+.hero-bgline span:nth-child(2){animation-delay:.1s}.hero-bgline span:nth-child(3){animation-delay:.2s}
+.hero-bgline span:nth-child(4){animation-delay:.3s}.hero-bgline span:nth-child(5){animation-delay:.4s}
+@keyframes gl{to{transform:scaleY(1)}}
+.hero-in{position:relative;z-index:3;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding-bottom:clamp(30px,5vw,60px)}
+.hero h1{margin-bottom:0}
+.hero h1 .l2{padding-left:clamp(0px,9vw,180px)}
+.hero-sub{max-width:400px;padding-bottom:12px}
+.hero-sub p{font-size:15px;line-height:1.65;color:var(--txt-mut);font-weight:300;margin-bottom:24px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero-media{position:relative;z-index:2;margin-top:clamp(30px,5vw,56px);height:clamp(240px,42vh,430px);overflow:hidden;border-radius:3px}
+.hero-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06) brightness(.92);transform:scale(1.14);transition:transform .3s linear}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,18,21,.42),rgba(16,18,21,.12) 45%,rgba(16,18,21,.6))}
+.hero-badge{position:absolute;z-index:4;left:var(--pad);bottom:26px;right:var(--pad);display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:var(--paper);pointer-events:none}
+.hero-badge .t{font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.6rem);line-height:1.2;max-width:420px}
+.hero-badge .e{font-size:10px;letter-spacing:.24em;text-transform:uppercase;opacity:.72}
+.scrollcue{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:5;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--paper);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.8}
+.scrollcue i{display:block;width:1px;height:28px;background:linear-gradient(var(--paper),transparent);animation:cue 2s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ============ MARQUEE ============ */
+.mq{overflow:hidden;border-block:1px solid var(--line);padding-block:16px;background:var(--paper-2)}
+.mq-t{display:flex;gap:0;width:max-content;animation:mqa 38s linear infinite}
+.mq:hover .mq-t{animation-play-state:paused}
+.mq-t span{display:inline-flex;align-items:center;gap:34px;padding-inline:17px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-mut);white-space:nowrap}
+.mq-t span::after{content:"";width:4px;height:4px;border-radius:50%;background:var(--brass);flex:none}
+@keyframes mqa{to{transform:translateX(-50%)}}
+
+/* ============ STATS ============ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.stats div{padding:clamp(26px,3.5vw,44px) clamp(14px,2vw,30px);border-right:1px solid var(--line)}
+.stats div:last-child{border-right:0}
+.stats .n{font-family:var(--serif);font-size:clamp(2.1rem,4.4vw,3.6rem);line-height:1;letter-spacing:-.02em}
+.stats .n sup{font-size:.42em;vertical-align:super;color:var(--brass)}
+.stats .l{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--txt-mut);margin-top:12px}
+
+/* ============ INTRO ============ */
+.intro-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,90px);align-items:start}
+.intro-sticky{position:sticky;top:120px}
+.mani p{font-family:var(--serif);font-size:clamp(1.5rem,3.1vw,2.6rem);line-height:1.28;letter-spacing:-.01em;margin-bottom:30px}
+.mani p:last-of-type{margin-bottom:38px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:12px;color:var(--txt-mut);transition:.4s var(--ease)}
+.pill:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-2px)}
+.sig{font-family:var(--serif);font-style:italic;font-size:1.6rem;margin-top:6px}
+
+/* ============ PRACTICE LIST ============ */
+.pa-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:clamp(36px,5vw,64px)}
+.pa-list{border-top:1px solid var(--line-inv);position:relative}
+.pa-row{position:relative;display:grid;grid-template-columns:74px 1fr auto;gap:20px;align-items:center;padding:clamp(20px,2.6vw,32px) 0;
+  border-bottom:1px solid var(--line-inv);cursor:pointer;transition:padding .5s var(--ease)}
+.pa-row::before{content:"";position:absolute;left:-24px;right:-24px;top:0;bottom:0;background:rgba(245,242,237,.045);opacity:0;transition:opacity .5s;border-radius:2px}
+.pa-row:hover::before{opacity:1}
+.pa-row .num{font-size:11px;letter-spacing:.14em;color:var(--brass-lt);font-variant-numeric:tabular-nums}
+.pa-row h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.1;letter-spacing:-.015em;transition:transform .6s var(--ease),color .4s}
+.pa-row:hover h3{transform:translateX(14px);color:var(--brass-lt)}
+.pa-row .meta{font-size:12.5px;color:var(--txt-inv-mut);max-width:290px;text-align:right;transition:.5s var(--ease)}
+.pa-row .plus{width:34px;height:34px;border:1px solid var(--line-inv);border-radius:50%;display:grid;place-items:center;flex:none;transition:.5s var(--ease)}
+.pa-row:hover .plus{background:var(--brass);border-color:var(--brass);transform:rotate(90deg)}
+.pa-row .rt{display:flex;align-items:center;gap:22px}
+.pa-body{grid-column:1/-1;display:grid;grid-template-rows:0fr;transition:grid-template-rows .65s var(--ease),opacity .5s;opacity:0}
+.pa-row.open .pa-body{grid-template-rows:1fr;opacity:1;padding-top:22px}
+.pa-body>div{overflow:hidden}
+.pa-body .cols{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding-left:74px;max-width:1000px}
+.pa-body p{font-size:14.5px;line-height:1.7;color:var(--txt-inv-mut);font-weight:300}
+.pa-body ul{list-style:none;display:grid;gap:9px}
+.pa-body li{font-size:13.5px;color:var(--txt-inv-mut);display:flex;gap:11px;align-items:baseline}
+.pa-body li::before{content:"";width:5px;height:1px;background:var(--brass-lt);flex:none;transform:translateY(-4px)}
+.pa-row.open .plus{transform:rotate(45deg);background:var(--brass);border-color:var(--brass)}
+.pa-float{position:fixed;width:250px;height:320px;pointer-events:none;z-index:60;opacity:0;transform:translate(-50%,-50%) scale(.9);
+  transition:opacity .45s var(--ease),transform .55s var(--ease);overflow:hidden;border-radius:2px}
+.pa-float.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.pa-float img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1)}
+
+/* ============ PROCESS ============ */
+.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.proc article{background:var(--paper);padding:clamp(24px,2.6vw,38px);position:relative;transition:background .5s var(--ease)}
+.proc article:hover{background:var(--paper-2)}
+.proc .n{font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--paper-3);transition:color .5s}
+.proc article:hover .n{color:var(--brass)}
+.proc h4{font-family:var(--serif);font-weight:400;font-size:1.35rem;margin:22px 0 12px;line-height:1.2}
+.proc p{font-size:13.8px;color:var(--txt-mut);line-height:1.65;font-weight:300}
+
+/* ============ TEAM ============ */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,26px)}
+.card{position:relative;cursor:pointer;background:var(--paper-2)}
+.card .ph{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--paper-3)}
+.card .ph img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:grayscale(1) contrast(1.04);
+  transition:transform 1.1s var(--ease),filter .8s var(--ease)}
+.card:hover .ph img{transform:scale(1.055);filter:grayscale(.15) contrast(1.02)}
+.card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(16,18,21,.75));opacity:0;transition:opacity .6s}
+.card:hover .ph::after{opacity:1}
+.card .ov{position:absolute;left:20px;right:20px;bottom:20px;z-index:2;opacity:0;transform:translateY(14px);transition:.6s var(--ease);color:var(--paper)}
+.card:hover .ov{opacity:1;transform:none}
+.card .ov .em{font-size:12px;letter-spacing:.04em;display:block;opacity:.85}
+.card .ov .rd{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-top:12px;border-bottom:1px solid rgba(245,242,237,.4);padding-bottom:4px}
+.card .inf{padding:18px 2px 4px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.card .inf h4{font-family:var(--serif);font-weight:400;font-size:1.3rem;line-height:1.15}
+.card .inf .r{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt-mut);margin-top:7px}
+.card .inf .f{font-size:12px;color:var(--brass);text-align:right;flex:none;max-width:130px;line-height:1.45}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:9500;display:flex;justify-content:flex-end;pointer-events:none}
+.modal .bd{position:absolute;inset:0;background:rgba(16,18,21,.55);opacity:0;transition:opacity .6s;backdrop-filter:blur(3px)}
+.modal .pn{position:relative;width:min(560px,100%);background:var(--paper);height:100%;overflow-y:auto;transform:translateX(100%);
+  transition:transform .75s var(--ease);box-shadow:-20px 0 60px rgba(0,0,0,.16)}
+.modal.on{pointer-events:auto}
+.modal.on .bd{opacity:1}
+.modal.on .pn{transform:none}
+.modal .cl{position:absolute;top:20px;right:20px;z-index:5;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+  background:rgba(245,242,237,.85);backdrop-filter:blur(6px);cursor:pointer;display:grid;place-items:center;transition:.4s}
+.modal .cl:hover{background:var(--ink);color:var(--paper);transform:rotate(90deg)}
+.modal .mimg{height:330px;overflow:hidden;background:var(--paper-3)}
+.modal .mimg img{width:100%;height:100%;object-fit:cover;object-position:center 15%;filter:grayscale(1)}
+.modal .mbody{padding:clamp(26px,4vw,44px)}
+.modal .mbody h3{font-family:var(--serif);font-weight:400;font-size:2.2rem;line-height:1.05;margin-bottom:8px}
+.modal .mbody .rl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);margin-bottom:24px}
+.modal .mbody p{font-size:14.6px;line-height:1.72;color:var(--txt-mut);font-weight:300;margin-bottom:18px}
+.mfacts{border-top:1px solid var(--line);margin-top:26px}
+.mfacts div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.mfacts dt{color:var(--txt-mut);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding-top:3px}
+
+/* ============ TESTIMONIAL ============ */
+.tst{position:relative;min-height:clamp(300px,36vw,400px)}
+.tslide{position:absolute;inset:0;opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .9s var(--ease);pointer-events:none}
+.tslide.on{opacity:1;transform:none;pointer-events:auto;position:relative}
+.tslide blockquote{font-family:var(--serif);font-size:clamp(1.5rem,3.4vw,2.85rem);line-height:1.24;letter-spacing:-.015em;max-width:19ch;margin-bottom:34px}
+.tslide blockquote::before{content:"“";color:var(--brass);margin-right:2px}
+.tmeta{display:flex;align-items:center;gap:14px}
+.tmeta .av{width:44px;height:44px;border-radius:50%;background:var(--ink-3);display:grid;place-items:center;font-family:var(--serif);font-size:16px;color:var(--brass-lt);flex:none}
+.tmeta .nm{font-size:14.5px}
+.tmeta .co{font-size:12px;color:var(--txt-inv-mut)}
+.tnav{display:flex;align-items:center;gap:10px;margin-top:40px}
+.tdot{width:34px;height:2px;background:var(--line-inv);border:0;cursor:pointer;padding:0;position:relative;overflow:hidden}
+.tdot span{position:absolute;inset:0;background:var(--brass-lt);transform:scaleX(0);transform-origin:left}
+.tdot.on span{animation:tprog 7s linear forwards}
+@keyframes tprog{to{transform:scaleX(1)}}
+.tst-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(30px,6vw,80px);align-items:start}
+
+/* ============ INSIGHT ============ */
+.ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,34px)}
+.art{display:flex;flex-direction:column;gap:16px;cursor:pointer;padding-top:22px;border-top:1px solid var(--line);transition:border-color .5s}
+.art:hover{border-color:var(--ink)}
+.art .thumb{overflow:hidden;aspect-ratio:16/11;background:var(--paper-3);order:-1;margin-bottom:6px;border-radius:2px}
+.art .thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:transform 1.1s var(--ease),filter .7s}
+.art:hover .thumb img{transform:scale(1.06);filter:grayscale(.2)}
+.art .tags{display:flex;gap:12px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-mut)}
+.art .tags b{color:var(--brass);font-weight:500}
+.art h4{font-family:var(--serif);font-weight:400;font-size:clamp(1.25rem,1.75vw,1.6rem);line-height:1.2;transition:color .4s}
+.art:hover h4{color:var(--brass)}
+.art p{font-size:13.8px;color:var(--txt-mut);line-height:1.62;font-weight:300}
+
+/* ============ PRIS ============ */
+.pris{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-inv);border:1px solid var(--line-inv)}
+.pris article{background:var(--ink);padding:clamp(26px,3vw,42px);transition:background .5s}
+.pris article:hover{background:var(--ink-2)}
+.pris .tg{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-lt)}
+.pris h4{font-family:var(--serif);font-weight:400;font-size:1.6rem;margin:16px 0 12px}
+.pris p{font-size:13.8px;color:var(--txt-inv-mut);line-height:1.65;font-weight:300}
+
+/* ============ CTA BAND ============ */
+.band{position:relative;overflow:hidden;background:var(--ink);color:var(--txt-inv)}
+.band .bg{position:absolute;inset:0;opacity:.2}
+.band .bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+.band .in{position:relative;z-index:2;text-align:center;padding-block:clamp(70px,9vw,130px);display:grid;justify-items:center;gap:26px}
+.band .in .eyebrow{justify-content:center}
+.band h2{max-width:16ch}
+
+/* ============ FORM ============ */
+.ct-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(34px,6vw,90px);align-items:start}
+.ct-info dl{margin-top:34px;border-top:1px solid var(--line)}
+.ct-info .row{padding:18px 0;border-bottom:1px solid var(--line)}
+.ct-info dt{font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--txt-mut);margin-bottom:7px}
+.ct-info dd{font-size:15.5px;line-height:1.5}
+.ct-info dd a{transition:color .3s;border-bottom:1px solid transparent}
+.ct-info dd a:hover{color:var(--brass);border-color:var(--brass)}
+form{display:grid;gap:22px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.fld{position:relative}
+.fld label{position:absolute;left:0;top:14px;font-size:14.5px;color:var(--txt-mut);pointer-events:none;transition:.35s var(--ease);font-weight:300}
+.fld input,.fld textarea,.fld select{width:100%;background:none;border:0;border-bottom:1px solid var(--line);padding:14px 0 12px;font-size:15px;
+  border-radius:0;transition:border-color .4s;appearance:none}
+.fld textarea{resize:vertical;min-height:96px}
+.fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--ink)}
+.fld input:focus~label,.fld input:not(:placeholder-shown)~label,
+.fld textarea:focus~label,.fld textarea:not(:placeholder-shown)~label{top:-9px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+.fld select{color:var(--txt);cursor:pointer;background-image:url("images/icon-03.svg");background-repeat:no-repeat;background-position:right 2px center}
+.fld .slbl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-mut);display:block;margin-bottom:2px}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{position:static;border:1px solid var(--line);border-radius:999px;padding:10px 20px;font-size:13.5px;cursor:pointer;transition:.4s var(--ease);color:var(--txt-mut)}
+.seg input:checked+label{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.seg label:hover{border-color:var(--ink);color:var(--txt)}
+.chk{display:flex;gap:12px;align-items:flex-start;cursor:pointer}
+.chk input{position:absolute;opacity:0}
+.chk .box{width:19px;height:19px;border:1px solid var(--line);flex:none;margin-top:2px;display:grid;place-items:center;transition:.35s;border-radius:2px}
+.chk input:checked+.box{background:var(--ink);border-color:var(--ink)}
+.chk .box svg{opacity:0;transition:.3s;stroke:var(--paper)}
+.chk input:checked+.box svg{opacity:1}
+.chk span.t{font-size:12.6px;color:var(--txt-mut);line-height:1.55}
+.fsuccess{border:1px solid var(--brass);background:rgba(155,123,70,.07);padding:32px;text-align:center;display:none;border-radius:3px}
+.fsuccess.on{display:block;animation:pop .6s var(--ease)}
+@keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.fsuccess h4{font-family:var(--serif);font-size:1.7rem;margin-bottom:10px}
+form.hid{display:none}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:var(--txt-inv);padding-top:clamp(56px,7vw,90px)}
+.f-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.1fr;gap:40px;padding-bottom:56px}
+.f-top h5{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt-inv-mut);margin-bottom:20px}
+.f-top ul{list-style:none;display:grid;gap:11px}
+.f-top a{font-size:14px;color:var(--txt-inv);opacity:.82;transition:.35s}
+.f-top a:hover{opacity:1;color:var(--brass-lt)}
+.f-brand .nm{font-family:var(--serif);font-size:1.9rem;line-height:1.1;margin-bottom:14px}
+.f-brand p{font-size:13.6px;color:var(--txt-inv-mut);max-width:34ch;line-height:1.65;font-weight:300}
+.f-bot{border-top:1px solid var(--line-inv);padding-block:24px 30px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--txt-inv-mut)}
+.f-bot a:hover{color:var(--brass-lt)}
+.fbig{overflow:hidden;border-top:1px solid var(--line-inv)}
+.fbig div{font-family:var(--serif);font-size:clamp(3rem,15.5vw,15rem);line-height:.9;letter-spacing:-.035em;text-align:center;
+  padding-block:clamp(24px,3vw,40px) 0;color:transparent;-webkit-text-stroke:1px rgba(245,242,237,.19);white-space:nowrap;transform:translateY(18%)}
+
+/* floating cta mobile */
+.fab{position:fixed;left:16px;right:16px;bottom:16px;z-index:8000;display:none;gap:10px;transform:translateY(140%);transition:transform .6s var(--ease)}
+.fab.on{transform:none}
+.fab a{flex:1;justify-content:center;padding:15px;background:var(--ink);color:var(--paper);border-radius:999px;font-size:13.5px;
+  font-weight:500;display:flex;align-items:center;gap:8px;box-shadow:0 8px 30px rgba(16,18,21,.28)}
+.fab a.g{background:var(--brass);flex:none;width:54px;color:#fff}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1080px){
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .proc{grid-template-columns:repeat(2,1fr)}
+  .ins-grid{grid-template-columns:1fr 1fr}
+  .f-top{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  nav.main,.tel{display:none}
+  .burger{display:block}
+  .hero-in{grid-template-columns:1fr;align-items:start;gap:26px}
+  .hero h1 .l2{padding-left:0}
+  .hero-sub{max-width:none}
+  .intro-grid{grid-template-columns:1fr}
+  .intro-sticky{position:static}
+  .tst-grid{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr}
+  .pris{grid-template-columns:1fr}
+  .pa-body .cols{grid-template-columns:1fr;padding-left:0;gap:18px}
+  .pa-float{display:none}
+  .fab{display:flex}
+  footer{padding-bottom:84px}
+}
+@media (max-width:720px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stats div:nth-child(2){border-right:0}
+  .stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .ins-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .card .inf{flex-direction:column;gap:6px}
+  .card .inf .f{text-align:left;max-width:none}
+  .pa-row{grid-template-columns:1fr auto;gap:12px;padding:18px 0}
+  .pa-row .num{display:none}
+  .pa-row .meta{display:none}
+  .pa-row:hover h3{transform:none}
+  .f2{grid-template-columns:1fr}
+  .f-top{grid-template-columns:1fr;gap:34px}
+  .hero{padding-top:118px}
+  .hero-badge{position:static;padding:18px 0 0;color:var(--txt);align-items:flex-start;flex-direction:column;gap:6px}
+  .hero-badge .e{color:var(--txt-mut)}
+  .scrollcue{display:none}
+  .modal .pn{width:100%}
+  .modal .mimg{height:250px}
+  .band h2{max-width:none}
+}
+@media (max-width:420px){
+  .team-grid{grid-template-columns:1fr}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<div class="grain"></div>
+<div class="prog" id="prog"></div>
+
+<!-- ===== HEADER ===== -->
+<header id="hdr">
+  <div class="hdr">
+    <a href="#top" class="logo" aria-label="Andersen og Co Advokatfirma">
+      <span class="mk">A</span>
+      <span class="nm">Andersen&nbsp;&amp;&nbsp;Co<small>Advokatfirma</small></span>
+    </a>
+    <nav class="main" id="navmain">
+      <a href="#fagomrader">Fagområder</a>
+      <a href="#advokater">Advokater</a>
+      <a href="#om-oss">Om oss</a>
+      <a href="#innsikt">Innsikt</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="hdr-r">
+      <a href="tel:+4722846000" class="tel">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        22 84 60 00
+      </a>
+      <a href="#kontakt" class="btn solid" style="padding:13px 22px"><span>Bestill en samtale</span></a>
+      <button class="burger" id="burger" aria-label="Meny" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mob" id="mob">
+  <nav>
+    <a href="#fagomrader"><i>01</i> Fagområder</a>
+    <a href="#advokater"><i>02</i> Advokater</a>
+    <a href="#om-oss"><i>03</i> Om oss</a>
+    <a href="#innsikt"><i>04</i> Innsikt</a>
+    <a href="#kontakt"><i>05</i> Kontakt</a>
+  </nav>
+  <div class="mfoot">
+    <div class="big"><a href="tel:+4722846000">+47 22 84 60 00</a></div>
+    <div class="big"><a href="mailto:post@andersenco.no">post@andersenco.no</a></div>
+    <p style="font-size:13px;color:var(--txt-inv-mut);margin-top:14px">Kirkegata 15, 0153 Oslo<br>Man–fre 08:00–17:00</p>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<main id="top">
+<section class="hero">
+  <div class="hero-bgline" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="wrap hero-in">
+    <div>
+      <div class="msk in" style="margin-bottom:28px"><span class="eyebrow" style="animation-delay:.1s">Advokatfirma i Oslo — Etablert 1997</span></div>
+      <h1 class="d1">
+        <span class="msk in"><span style="animation-delay:.22s">Juridisk tyngde,</span></span>
+        <span class="msk in l2"><span style="animation-delay:.34s"><em class="it">menneskelig</em> nærhet.</span></span>
+      </h1>
+    </div>
+    <div class="hero-sub" data-rv style="transition-delay:.45s">
+      <p>Vi bistår privatpersoner og virksomheter gjennom saker som betyr noe. Presist, forutsigbart og uten juridisk tåkeprat.</p>
+      <div class="hero-cta">
+        <a href="#kontakt" class="btn solid"><span>Bestill en samtale</span><span class="ar">→</span></a>
+        <a href="#fagomrader" class="btn"><span>Se fagområder</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="position:relative">
+    <div class="hero-media" data-rv="fade">
+      <img id="heroImg" src="images/photo-05.jpg" alt="Moderne arkitektur i Oslo" fetchpriority="high">
+    </div>
+    <div class="hero-badge">
+      <div class="t">Første samtale er alltid uforpliktende — og kostnadsfri.</div>
+      <div class="e">Oslo · Bergen · Trondheim</div>
+    </div>
+    <div class="scrollcue"><span>Scroll</span><i></i></div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="mq" aria-hidden="true">
+  <div class="mq-t">
+    <span>Arbeidsrett</span><span>Familierett</span><span>Arv og skifte</span><span>Fast eiendom</span><span>Kontraktsrett</span><span>Selskapsrett</span><span>Tvisteløsning</span><span>Entrepriserett</span>
+    <span>Arbeidsrett</span><span>Familierett</span><span>Arv og skifte</span><span>Fast eiendom</span><span>Kontraktsrett</span><span>Selskapsrett</span><span>Tvisteløsning</span><span>Entrepriserett</span>
+  </div>
+</div>
+
+<!-- ===== STATS ===== -->
+<section class="wrap" style="padding-top:0">
+  <div class="stats">
+    <div data-rv><div class="n" data-count="1997">1997</div><div class="l">Etablert i Oslo</div></div>
+    <div data-rv style="transition-delay:.08s"><div class="n"><span data-count="24">24</span></div><div class="l">Advokater og jurister</div></div>
+    <div data-rv style="transition-delay:.16s"><div class="n"><span data-count="1400">1400</span><sup>+</sup></div><div class="l">Saker siste fem år</div></div>
+    <div data-rv style="transition-delay:.24s"><div class="n"><span data-count="96">96</span><sup>%</sup></div><div class="l">Klienter kommer tilbake</div></div>
+  </div>
+</section>
+
+<!-- ===== OM OSS / MANIFEST ===== -->
+<section class="sec" id="om-oss">
+  <div class="wrap intro-grid">
+    <div class="intro-sticky" data-rv>
+      <div class="eyebrow" style="margin-bottom:26px"><span>Om firmaet</span></div>
+      <h2 class="d3">Et lite firma<br>med stor <em class="it">rekkevidde</em></h2>
+      <p class="lead" style="margin-top:24px;max-width:38ch">Andersen &amp; Co ble etablert i 1997 av Marte Andersen. I dag er vi 24 advokater og jurister fordelt på tre kontorer — fortsatt med samme utgangspunkt: at god juss begynner med å forstå mennesket eller virksomheten bak saken.</p>
+      <div class="pill-row">
+        <span class="pill">Medlem av Advokatforeningen</span>
+        <span class="pill">Møterett for Høyesterett</span>
+        <span class="pill">ISO 27001-sertifisert</span>
+        <span class="pill">Fast pris på utvalgte oppdrag</span>
+      </div>
+    </div>
+    <div class="mani">
+      <p data-rv>Vi tror at juridisk rådgivning skal gjøre kompliserte situasjoner <em class="it">enklere</em> — ikke motsatt.</p>
+      <p data-rv style="transition-delay:.1s">Derfor får du én fast kontaktperson, klare svar på et språk du forstår, og et kostnadsbilde du kjenner før vi starter.</p>
+      <p data-rv style="transition-delay:.18s">Enten du står i en oppsigelse, et generasjonsskifte eller en kommersiell tvist: du skal aldri lure på hvor saken din står.</p>
+      <div data-rv style="transition-delay:.24s;border-top:1px solid var(--line);padding-top:28px">
+        <div class="sig">Marte Andersen</div>
+        <p class="small" style="margin-top:6px">Managing partner &amp; grunnlegger</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAGOMRÅDER ===== -->
+<section class="sec dark" id="fagomrader">
+  <div class="wrap">
+    <div class="pa-head">
+      <div data-rv>
+        <div class="eyebrow inv" style="margin-bottom:24px"><span>Fagområder</span></div>
+        <h2 class="d2">Vi løser saker for<br>privatpersoner <em class="it">og</em> bedrifter</h2>
+      </div>
+      <p class="lead inv" data-rv style="max-width:34ch">Sju kjerneområder — dyp spisskompetanse i hvert enkelt. Trykk for å se hva vi typisk bistår med.</p>
+    </div>
+    <div class="pa-list" id="paList"></div>
+    <div style="margin-top:44px;display:flex;gap:14px;flex-wrap:wrap" data-rv>
+      <a href="#kontakt" class="btn inv"><span>Be om en vurdering av din sak</span><span class="ar">→</span></a>
+    </div>
+  </div>
+  <div class="pa-float" id="paFloat"><img src="" alt=""></div>
+</section>
+
+<!-- ===== PROSESS ===== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="pa-head" style="margin-bottom:clamp(30px,4vw,54px)">
+      <div data-rv>
+        <div class="eyebrow" style="margin-bottom:24px"><span>Slik jobber vi</span></div>
+        <h2 class="d3">Fire steg — null <em class="it">overraskelser</em></h2>
+      </div>
+      <p class="lead" data-rv style="max-width:32ch">En tydelig prosess gjør det lettere å ta gode beslutninger underveis.</p>
+    </div>
+    <div class="proc">
+      <article data-rv><div class="n">01</div><h4>Første samtale</h4><p>30 minutter, kostnadsfritt og uforpliktende. Vi kartlegger situasjonen og sier ærlig fra om du trenger advokat.</p></article>
+      <article data-rv style="transition-delay:.08s"><div class="n">02</div><h4>Vurdering og strategi</h4><p>Du får en skriftlig vurdering med mulige veier videre, sannsynlig utfall, tidsløp og et konkret prisestimat.</p></article>
+      <article data-rv style="transition-delay:.16s"><div class="n">03</div><h4>Gjennomføring</h4><p>Vi forhandler, prosederer eller utformer avtalene. Fast kontaktperson og statusoppdatering hver 14. dag.</p></article>
+      <article data-rv style="transition-delay:.24s"><div class="n">04</div><h4>Oppfølging</h4><p>Saken avsluttes med et sluttnotat. Har du spørsmål i etterkant, tar vi dem uten ny fakturering.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ADVOKATER ===== -->
+<section class="sec" id="advokater" style="background:var(--paper-2);padding-top:clamp(60px,8vw,120px)">
+  <div class="wrap">
+    <div class="pa-head">
+      <div data-rv>
+        <div class="eyebrow" style="margin-bottom:24px"><span>Menneskene</span></div>
+        <h2 class="d2">Advokaten din er<br>en <em class="it">person</em>, ikke et nummer</h2>
+      </div>
+      <p class="lead" data-rv style="max-width:32ch">Trykk på en profil for å lese mer om erfaring, fagområder og kontaktinformasjon.</p>
+    </div>
+    <div class="team-grid" id="teamGrid"></div>
+    <div style="margin-top:44px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center" data-rv>
+      <p class="small" style="max-width:44ch">Vi er 24 advokater og jurister totalt. Er du usikker på hvem du bør snakke med, setter vi deg i kontakt med riktig person innen én virkedag.</p>
+      <a href="#kontakt" class="btn"><span>Kontakt advokat</span><span class="ar">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="sec dark">
+  <div class="wrap tst-grid">
+    <div data-rv>
+      <div class="eyebrow inv" style="margin-bottom:24px"><span>Klientomtaler</span></div>
+      <p class="lead inv" style="max-width:30ch">Vi måler oss på resultater — og på hvordan klientene våre opplever veien dit.</p>
+      <div class="tnav" id="tnav"></div>
+    </div>
+    <div class="tst" id="tst"></div>
+  </div>
+</section>
+
+<!-- ===== PRIS ===== -->
+<section class="sec dark" style="padding-top:0">
+  <div class="wrap">
+    <div class="pa-head">
+      <div data-rv>
+        <div class="eyebrow inv" style="margin-bottom:24px"><span>Pris og forutsigbarhet</span></div>
+        <h2 class="d3">Du skal vite hva det <em class="it">koster</em></h2>
+      </div>
+    </div>
+    <div class="pris">
+      <article data-rv><div class="tg">Fastpris</div><h4>Avtaler og dokumenter</h4><p>Testament, samboeravtale, ektepakt, aksjonæravtale og standardkontrakter leveres til avtalt fastpris — fra 6 900 kr eks. mva.</p></article>
+      <article data-rv style="transition-delay:.08s"><div class="tg">Timepris</div><h4>Løpende bistand</h4><p>1 950–2 950 kr eks. mva. avhengig av sakstype og erfaringsnivå. Du får alltid et skriftlig estimat og varsel før taket nås.</p></article>
+      <article data-rv style="transition-delay:.16s"><div class="tg">Dekning</div><h4>Forsikring og fri rettshjelp</h4><p>Mange saker dekkes helt eller delvis av innboforsikring, rettshjelpsdekning eller fri rettshjelp. Vi sjekker dette kostnadsfritt for deg.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INNSIKT ===== -->
+<section class="sec" id="innsikt">
+  <div class="wrap">
+    <div class="pa-head">
+      <div data-rv>
+        <div class="eyebrow" style="margin-bottom:24px"><span>Innsikt &amp; guider</span></div>
+        <h2 class="d2">Juss, forklart <em class="it">forståelig</em></h2>
+      </div>
+      <a href="#innsikt" class="lnk" data-rv>Alle artikler <span class="ar">→</span></a>
+    </div>
+    <div class="ins-grid" id="insGrid"></div>
+  </div>
+</section>
+
+<!-- ===== BAND ===== -->
+<section class="band">
+  <div class="bg"><img src="images/photo-03.jpg" alt="" loading="lazy"></div>
+  <div class="wrap in">
+    <div class="eyebrow inv"><span>Uforpliktende</span></div>
+    <h2 class="d2" data-rv>La oss se på saken din</h2>
+    <p class="lead inv" data-rv style="max-width:52ch">Fortell oss kort hva det gjelder. Du hører fra en advokat innen 24 timer på virkedager — helt uten kostnad.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center" data-rv>
+      <a href="#kontakt" class="btn gold"><span>Be om vurdering</span><span class="ar">→</span></a>
+      <a href="tel:+4722846000" class="btn inv"><span>Ring 22 84 60 00</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KONTAKT ===== -->
+<section class="sec" id="kontakt">
+  <div class="wrap ct-grid">
+    <div class="ct-info" data-rv>
+      <div class="eyebrow" style="margin-bottom:24px"><span>Kontakt</span></div>
+      <h2 class="d3">Ta kontakt —<br>vi svarer <em class="it">raskt</em></h2>
+      <dl>
+        <div class="row"><dt>Besøksadresse</dt><dd>Kirkegata 15, 6. etasje<br>0153 Oslo</dd></div>
+        <div class="row"><dt>Telefon</dt><dd><a href="tel:+4722846000">+47 22 84 60 00</a></dd></div>
+        <div class="row"><dt>E-post</dt><dd><a href="mailto:post@andersenco.no">post@andersenco.no</a></dd></div>
+        <div class="row"><dt>Åpningstider</dt><dd>Man–fre 08:00–17:00<br><span class="small">Akutte saker: døgnåpen vakttelefon</span></dd></div>
+        <div class="row"><dt>Organisasjonsnr.</dt><dd>987 654 321 MVA</dd></div>
+      </dl>
+    </div>
+
+    <div data-rv style="transition-delay:.1s">
+      <div class="fsuccess" id="fsuccess">
+        <h4>Takk for henvendelsen</h4>
+        <p class="small" style="max-width:44ch;margin:0 auto 20px">Vi har mottatt saken din og tar kontakt innen 24 timer på virkedager. Haster det, ring oss gjerne direkte på 22 84 60 00.</p>
+        <button class="btn" type="button" id="resetForm"><span>Send en ny henvendelse</span></button>
+      </div>
+
+      <form id="ctform" novalidate>
+        <div>
+          <span class="slbl" style="margin-bottom:12px;display:block">Jeg henvender meg som</span>
+          <div class="seg">
+            <input type="radio" name="type" id="tPriv" value="Privatperson" checked><label for="tPriv">Privatperson</label>
+            <input type="radio" name="type" id="tBed" value="Bedrift"><label for="tBed">Bedrift</label>
+            <input type="radio" name="type" id="tOff" value="Offentlig virksomhet"><label for="tOff">Offentlig virksomhet</label>
+          </div>
+        </div>
+        <div class="f2">
+          <div class="fld"><input type="text" id="navn" placeholder=" " required><label for="navn">Fullt navn</label></div>
+          <div class="fld"><input type="email" id="epost" placeholder=" " required><label for="epost">E-postadresse</label></div>
+        </div>
+        <div class="f2">
+          <div class="fld"><input type="tel" id="tlf" placeholder=" "><label for="tlf">Telefon (valgfritt)</label></div>
+          <div class="fld">
+            <span class="slbl">Fagområde</span>
+            <select id="fag" required>
+              <option value="">Velg fagområde…</option>
+              <option>Arbeidsrett</option>
+              <option>Familierett</option>
+              <option>Arv og skifte</option>
+              <option>Fast eiendom</option>
+              <option>Kontraktsrett</option>
+              <option>Selskapsrett og transaksjoner</option>
+              <option>Tvisteløsning og prosedyre</option>
+              <option>Vet ikke / annet</option>
+            </select>
+          </div>
+        </div>
+        <div class="fld"><textarea id="melding" placeholder=" " required></textarea><label for="melding">Kort om saken</label></div>
+        <label class="chk">
+          <input type="checkbox" id="samtykke" required>
+          <span class="box"><svg width="11" height="9" viewBox="0 0 11 9" fill="none" stroke-width="2" stroke-linecap="round"><path d="M1 4.5L4 7.5L10 1.5"/></svg></span>
+          <span class="t">Jeg samtykker til at Andersen &amp; Co behandler opplysningene for å besvare henvendelsen. Vi deler aldri informasjon med tredjepart. Se personvernerklæringen.</span>
+        </label>
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <button type="submit" class="btn solid"><span>Send henvendelse</span><span class="ar">→</span></button>
+          <span class="small" id="fmsg">Konfidensielt · Svar innen 24 timer</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap f-top">
+    <div class="f-brand">
+      <div class="nm">Andersen &amp; Co<br>Advokatfirma</div>
+      <p>Juridisk rådgivning for privatpersoner og virksomheter siden 1997. Kontorer i Oslo, Bergen og Trondheim.</p>
+      <div style="margin-top:24px"><a href="#kontakt" class="btn inv" style="padding:13px 22px"><span>Bestill en samtale</span></a></div>
+    </div>
+    <div>
+      <h5>Fagområder</h5>
+      <ul>
+        <li><a href="#fagomrader">Arbeidsrett</a></li>
+        <li><a href="#fagomrader">Familierett</a></li>
+        <li><a href="#fagomrader">Arv og skifte</a></li>
+        <li><a href="#fagomrader">Fast eiendom</a></li>
+        <li><a href="#fagomrader">Kontraktsrett</a></li>
+        <li><a href="#fagomrader">Selskapsrett</a></li>
+        <li><a href="#fagomrader">Tvisteløsning</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Firmaet</h5>
+      <ul>
+        <li><a href="#om-oss">Om oss</a></li>
+        <li><a href="#advokater">Advokater</a></li>
+        <li><a href="#innsikt">Innsikt</a></li>
+        <li><a href="#kontakt">Karriere</a></li>
+        <li><a href="#kontakt">Priser</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Kontakt</h5>
+      <ul>
+        <li><a href="tel:+4722846000">+47 22 84 60 00</a></li>
+        <li><a href="mailto:post@andersenco.no">post@andersenco.no</a></li>
+        <li style="color:var(--txt-inv-mut);font-size:14px">Kirkegata 15, 0153 Oslo</li>
+        <li style="color:var(--txt-inv-mut);font-size:14px">Man–fre 08:00–17:00</li>
+      </ul>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <a href="#top" aria-label="LinkedIn" style="width:36px;height:36px;border:1px solid var(--line-inv);border-radius:50%;display:grid;place-items:center;font-size:11px">in</a>
+        <a href="#top" aria-label="Instagram" style="width:36px;height:36px;border:1px solid var(--line-inv);border-radius:50%;display:grid;place-items:center;font-size:11px">ig</a>
+      </div>
+    </div>
+  </div>
+  <div class="fbig" aria-hidden="true"><div>ANDERSEN &amp; CO</div></div>
+  <div class="wrap f-bot">
+    <span>© 2026 Andersen &amp; Co Advokatfirma AS. Org.nr 987 654 321 MVA.</span>
+    <span style="display:flex;gap:22px;flex-wrap:wrap"><a href="#top">Personvern</a><a href="#top">Cookies</a><a href="#top">Vilkår</a><a href="#top">Demoside</a></span>
+  </div>
+</footer>
+
+<!-- ===== FAB (mobil) ===== -->
+<div class="fab" id="fab">
+  <a href="#kontakt">Bestill en samtale <span>→</span></a>
+  <a href="tel:+4722846000" class="g" aria-label="Ring oss">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+  </a>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="bd" data-close></div>
+  <div class="pn">
+    <button class="cl" data-close aria-label="Lukk">
+      <svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="1.4"><path d="M1 1l12 12M13 1L1 13"/></svg>
+    </button>
+    <div class="mimg"><img id="mImg" src="" alt=""></div>
+    <div class="mbody">
+      <h3 id="mName"></h3>
+      <div class="rl" id="mRole"></div>
+      <div id="mBio"></div>
+      <dl class="mfacts" id="mFacts"></dl>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:30px">
+        <a href="#kontakt" class="btn solid" data-close><span>Bestill samtale</span><span class="ar">→</span></a>
+        <a id="mMail" href="#" class="btn"><span>Send e-post</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ DATA ============ */
+const AREAS=[
+ {t:"Arbeidsrett",m:"Oppsigelse · nedbemanning · varsling",
+  d:"Arbeidslivet er der de fleste konfliktene oppstår. Vi bistår både arbeidstakere som står i en vanskelig situasjon, og arbeidsgivere som må gjennomføre krevende prosesser riktig — første gang.",
+  l:["Oppsigelse, avskjed og sluttavtaler","Nedbemanning og omstillingsprosesser","Varsling og arbeidsmiljøsaker","Arbeidsavtaler, bonus og konkurranseklausuler","Virksomhetsoverdragelse"],
+  img:"images/photo-17.jpg"},
+ {t:"Familierett",m:"Samlivsbrudd · barnefordeling · avtaler",
+  d:"Når familielivet endrer seg, trenger du en rådgiver som er både juridisk presis og menneskelig til stede. Vi jobber for løsninger utenfor rettssalen der det er mulig — og står støtt i retten når det er nødvendig.",
+  l:["Separasjon, skilsmisse og økonomisk oppgjør","Foreldreansvar, fast bosted og samvær","Samboeravtale og ektepakt","Barnevernssaker","Mekling og forhandlinger"],
+  img:"images/photo-12.jpg"},
+ {t:"Arv og skifte",m:"Testament · generasjonsskifte · uskifte",
+  d:"Gode ordninger i tide forebygger konflikt senere. Vi hjelper familier og eiere med å planlegge overføring av verdier — og bistår ved arveoppgjør som har låst seg.",
+  l:["Testament og fremtidsfullmakt","Generasjonsskifte i familiebedrift","Uskiftet bo og arveoppgjør","Tvist mellom arvinger","Skifte av dødsbo og felleseie"],
+  img:"images/photo-15.jpg"},
+ {t:"Fast eiendom",m:"Boligkjøp · mangler · entreprise",
+  d:"Fra reklamasjon etter boligkjøp til større utviklingsprosjekter og entreprisetvister. Vi kjenner både forbrukersiden og den profesjonelle siden av eiendomsmarkedet.",
+  l:["Mangelskrav etter bolig- og eiendomskjøp","Entreprise og byggeprosjekter (NS-kontrakter)","Husleie, næringsleie og utleieforhold","Plan- og bygningsrett","Nabotvister og servitutter"],
+  img:"images/photo-11.jpg"},
+ {t:"Kontraktsrett",m:"Avtaler · mislighold · forhandling",
+  d:"En god avtale er den beste forsikringen mot fremtidig tvist. Vi utformer, kvalitetssikrer og reforhandler avtaler — og håndterer mislighold når det først har skjedd.",
+  l:["Kommersielle avtaler og rammeavtaler","Distribusjons-, agent- og leverandøravtaler","IT-, lisens- og utviklingsavtaler","Mislighold, erstatning og heving","Kontraktsforhandlinger"],
+  img:"images/photo-02.jpg"},
+ {t:"Selskapsrett",m:"Transaksjoner · aksjonæravtaler · styre",
+  d:"Vi er forretningsadvokater med kommersiell forståelse. Vi følger virksomheter fra oppstart og emisjoner til fusjoner, oppkjøp og exit.",
+  l:["Kjøp og salg av virksomhet (M&A)","Aksjonæravtaler og emisjoner","Styrearbeid og styreansvar","Selskapsetablering og omorganisering","Due diligence"],
+  img:"images/photo-09.jpg"},
+ {t:"Tvisteløsning",m:"Forhandling · voldgift · prosedyre",
+  d:"Vi prosederer saker for alle instanser, og har møterett for Høyesterett. Men først vurderer vi alltid nøkternt om saken bør løses utenfor rettsapparatet.",
+  l:["Prosedyre for tingrett, lagmannsrett og Høyesterett","Voldgift og alternativ tvisteløsning","Forliksforhandlinger og mekling","Midlertidig forføyning og arrest","Inkasso og tvangsfullbyrdelse"],
+  img:"images/photo-18.jpg"}
+];
+
+const TEAM=[
+ {n:"Marte Andersen",r:"Managing partner",f:"Arbeidsrett, tvisteløsning",e:"m.andersen@andersenco.no",
+  img:"images/photo-13.jpg",
+  b:["Marte grunnla Andersen &amp; Co i 1997 etter åtte år i et av landets største forretningsadvokatfirmaer. Hun leder firmaets arbeidsrettsavdeling og har prosedert over 200 saker for domstolene.","Hun er en hyppig benyttet foredragsholder om nedbemanning og varslingssaker, og har vært rådgiver i flere av de mest omtalte omstillingsprosessene i norsk næringsliv det siste tiåret."],
+  fa:[["Utdannelse","Cand.jur. UiO 1989, LL.M. London School of Economics"],["Erfaring","35 år · Møterett for Høyesterett"],["Språk","Norsk, engelsk, tysk"],["Telefon","+47 22 84 60 01"]]},
+ {n:"Henrik Solberg",r:"Partner",f:"Selskapsrett, M&amp;A",e:"h.solberg@andersenco.no",
+  img:"images/photo-07.jpg",
+  b:["Henrik leder firmaets transaksjonsteam og har gjennomført over 90 virksomhetsoverdragelser i spennet fra eierskifter i familiebedrifter til strukturerte salgsprosesser med internasjonale kjøpere.","Han er kjent for en pragmatisk forhandlingsstil og for å holde prosesser i bevegelse uten å gå på akkord med risikobildet."],
+  fa:[["Utdannelse","Cand.jur. UiB 2004, BI Executive MBA"],["Erfaring","20 år · Tidl. advokat i London"],["Språk","Norsk, engelsk"],["Telefon","+47 22 84 60 04"]]},
+ {n:"Ingrid Fjeld",r:"Partner",f:"Familierett, arv og skifte",e:"i.fjeld@andersenco.no",
+  img:"images/photo-06.jpg",
+  b:["Ingrid har arbeidet med familie- og arverett i hele sin karriere, og er oppnevnt som bostyrer i en rekke dødsboer. Hun har særlig erfaring med generasjonsskifter der familiebedrift og familieforhold henger tett sammen.","Hun er sertifisert mekler og prioriterer alltid løsninger som barn og familier kan leve godt med over tid."],
+  fa:[["Utdannelse","Master i rettsvitenskap UiO 2008"],["Erfaring","17 år · Sertifisert mekler"],["Språk","Norsk, engelsk, fransk"],["Telefon","+47 22 84 60 07"]]},
+ {n:"Jonas Wold",r:"Senioradvokat",f:"Fast eiendom, entreprise",e:"j.wold@andersenco.no",
+  img:"images/photo-08.jpg",
+  b:["Jonas bistår entreprenører, byggherrer og boligkjøpere i hele landet. Han har bakgrunn som byggingeniør, noe som gir ham en uvanlig god teknisk forståelse av sakene han fører.","Han har prosedert flere prinsipielle entreprisesaker og underviser i NS-kontrakter."],
+  fa:[["Utdannelse","Master i rettsvitenskap UiT 2013, B.Sc. bygg NTNU"],["Erfaring","12 år"],["Språk","Norsk, engelsk"],["Telefon","+47 22 84 60 12"]]},
+ {n:"Camilla Lund",r:"Advokat",f:"Arbeidsrett, personvern",e:"c.lund@andersenco.no",
+  img:"images/photo-01.jpg",
+  b:["Camilla arbeider i skjæringspunktet mellom arbeidsrett og personvern, og bistår virksomheter med alt fra kontrolltiltak og varslingsrutiner til GDPR-etterlevelse.","Hun har tidligere arbeidet i Datatilsynet og kjenner tilsynsmyndighetenes perspektiv fra innsiden."],
+  fa:[["Utdannelse","Master i rettsvitenskap UiO 2017"],["Erfaring","8 år · Tidl. Datatilsynet"],["Språk","Norsk, engelsk, spansk"],["Telefon","+47 22 84 60 18"]]},
+ {n:"Erik Nordhaug",r:"Partner",f:"Tvisteløsning, prosedyre",e:"e.nordhaug@andersenco.no",
+  img:"images/photo-04.jpg",
+  b:["Erik er firmaets mest erfarne prosedyreadvokat, med møterett for Høyesterett og over 300 hovedforhandlinger bak seg. Han tar saker på tvers av fagområdene når konflikten først er et faktum.","Han er også oppnevnt voldgiftsdommer og benyttes jevnlig som mekler i kommersielle tvister."],
+  fa:[["Utdannelse","Cand.jur. UiO 1996"],["Erfaring","29 år · Møterett for Høyesterett"],["Språk","Norsk, engelsk"],["Telefon","+47 22 84 60 03"]]}
+];
+
+const QUOTES=[
+ {q:"De tok en oppsigelsessak vi trodde var tapt, og landet et forlik vi kunne leve godt med. Ryddig, ærlig og alltid tilgjengelig.",n:"Kristine H.",c:"Privatklient, Oslo",a:"K"},
+ {q:"Andersen &amp; Co har fulgt oss gjennom tre oppkjøp. De forstår forretningen vår like godt som jussen — det er sjeldnere enn man skulle tro.",n:"Ole Marius Bjerke",c:"CEO, Nordvik Industri AS",a:"O"},
+ {q:"Et generasjonsskifte som kunne ha splittet familien, ble i stedet gjennomført med respekt for alle parter. Vi er dypt takknemlige.",n:"Familien Aasheim",c:"Familiebedrift, Vestland",a:"A"},
+ {q:"Vi fikk en fast kontaktperson, faste statusoppdateringer og et prisestimat som holdt. Så enkelt burde det være overalt.",n:"Line Fredriksen",c:"HR-direktør, Bergen Logistikk",a:"L"}
+];
+
+const ARTS=[
+ {c:"Arbeidsrett",t:"7 min",h:"Oppsigelse i prøvetid: dette har arbeidsgiver faktisk lov til",p:"Terskelen er lavere i prøvetiden — men den er ikke fraværende. Vi går gjennom kravene til saklighet, dokumentasjon og prosess.",i:"images/photo-16.jpg"},
+ {c:"Arv og skifte",t:"9 min",h:"Slik sikrer du et generasjonsskifte uten familiekonflikt",p:"En praktisk guide til planlegging, verdsettelse, dokumentasjon og de fem vanligste feilene eiere gjør for sent i prosessen.",i:"images/photo-14.jpg"},
+ {c:"Fast eiendom",t:"6 min",h:"Mangler ved boligkjøp — hva kan du kreve, og når?",p:"Reklamasjonsfrister, vesentlighetskravet og bevisbyrde. En oversikt for deg som nettopp har oppdaget noe du ikke visste om.",i:"images/photo-10.jpg"}
+];
+
+/* ============ RENDER ============ */
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h.trim();return d.firstElementChild};
+
+// Practice areas
+const paList=document.getElementById('paList');
+AREAS.forEach((a,i)=>{
+  const row=el(`<div class="pa-row" data-rv data-img="${a.img}" style="transition-delay:${i*.05}s">
+    <div class="num">${String(i+1).padStart(2,'0')}</div>
+    <h3>${a.t}</h3>
+    <div class="rt"><div class="meta">${a.m}</div><div class="plus"><svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" stroke-width="1.3"><path d="M6 1v10M1 6h10"/></svg></div></div>
+    <div class="pa-body"><div><div class="cols">
+      <p>${a.d}</p>
+      <ul>${a.l.map(x=>`<li>${x}</li>`).join('')}</ul>
+    </div></div></div>
+  </div>`);
+  row.addEventListener('click',()=>{
+    const open=row.classList.contains('open');
+    paList.querySelectorAll('.pa-row').forEach(r=>r.classList.remove('open'));
+    if(!open)row.classList.add('open');
+  });
+  paList.appendChild(row);
+});
+
+// Floating hover image (desktop)
+const paFloat=document.getElementById('paFloat'),paFImg=paFloat.querySelector('img');
+if(window.matchMedia('(hover:hover) and (min-width:901px)').matches){
+  let tx=0,ty=0,cx=0,cy=0,raf=null;
+  const loop=()=>{cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;paFloat.style.left=cx+'px';paFloat.style.top=cy+'px';raf=requestAnimationFrame(loop)};
+  paList.querySelectorAll('.pa-row').forEach(r=>{
+    r.addEventListener('mouseenter',()=>{paFImg.src=r.dataset.img;paFloat.classList.add('on');if(!raf)loop()});
+    r.addEventListener('mouseleave',()=>{paFloat.classList.remove('on')});
+  });
+  paList.addEventListener('mousemove',e=>{tx=e.clientX+170;ty=e.clientY;if(!cx){cx=tx;cy=ty}});
+  paList.addEventListener('mouseleave',()=>{paFloat.classList.remove('on');cancelAnimationFrame(raf);raf=null});
+}
+
+// Team
+const teamGrid=document.getElementById('teamGrid');
+TEAM.forEach((p,i)=>{
+  const c=el(`<article class="card" data-rv data-i="${i}" style="transition-delay:${(i%3)*.08}s">
+    <div class="ph"><img src="${p.img}" alt="${p.n}" loading="lazy">
+      <div class="ov"><span class="em">${p.e}</span><span class="rd">Les profil <span>→</span></span></div>
+    </div>
+    <div class="inf"><div><h4>${p.n}</h4><div class="r">${p.r}</div></div><div class="f">${p.f}</div></div>
+  </article>`);
+  c.addEventListener('click',()=>openModal(i));
+  teamGrid.appendChild(c);
+});
+
+// Testimonials
+const tst=document.getElementById('tst'),tnav=document.getElementById('tnav');
+QUOTES.forEach((q,i)=>{
+  tst.appendChild(el(`<div class="tslide${i===0?' on':''}"><blockquote>${q.q}”</blockquote>
+    <div class="tmeta"><div class="av">${q.a}</div><div><div class="nm">${q.n}</div><div class="co">${q.c}</div></div></div></div>`));
+  const b=el(`<button class="tdot${i===0?' on':''}" aria-label="Omtale ${i+1}"><span></span></button>`);
+  b.addEventListener('click',()=>go(i,true));tnav.appendChild(b);
+});
+let ti=0,tt=null;
+function go(i,manual){
+  const s=tst.children,d=tnav.children;
+  s[ti].classList.remove('on');d[ti].classList.remove('on');
+  ti=(i+QUOTES.length)%QUOTES.length;
+  s[ti].classList.add('on');
+  const nd=d[ti];nd.classList.remove('on');void nd.offsetWidth;nd.classList.add('on');
+  clearTimeout(tt);tt=setTimeout(()=>go(ti+1),7000);
+}
+tt=setTimeout(()=>go(1),7000);
+
+// Articles
+const insGrid=document.getElementById('insGrid');
+ARTS.forEach((a,i)=>{
+  insGrid.appendChild(el(`<article class="art" data-rv style="transition-delay:${i*.08}s">
+    <div class="thumb"><img src="${a.i}" alt="" loading="lazy"></div>
+    <div class="tags"><b>${a.c}</b><span>${a.t} lesning</span></div>
+    <h4>${a.h}</h4><p>${a.p}</p>
+    <span class="lnk" style="align-self:flex-start;margin-top:4px">Les artikkel <span class="ar">→</span></span>
+  </article>`));
+});
+
+/* ============ MODAL ============ */
+const modal=document.getElementById('modal');
+function openModal(i){
+  const p=TEAM[i];
+  document.getElementById('mImg').src=p.img;
+  document.getElementById('mImg').alt=p.n;
+  document.getElementById('mName').innerHTML=p.n;
+  document.getElementById('mRole').innerHTML=p.r+' — '+p.f;
+  document.getElementById('mBio').innerHTML=p.b.map(x=>`<p>${x}</p>`).join('');
+  document.getElementById('mFacts').innerHTML=p.fa.map(f=>`<div><dt>${f[0]}</dt><dd>${f[1]}</dd></div>`).join('')+
+    `<div><dt>E-post</dt><dd><a href="mailto:${p.e}" style="border-bottom:1px solid var(--line)">${p.e}</a></dd></div>`;
+  document.getElementById('mMail').href='mailto:'+p.e;
+  modal.classList.add('on');modal.setAttribute('aria-hidden','false');document.body.classList.add('locked');
+}
+function closeModal(){modal.classList.remove('on');modal.setAttribute('aria-hidden','true');document.body.classList.remove('locked')}
+modal.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',closeModal));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeMenu()}});
+
+/* ============ REVEAL ============ */
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+const obs=()=>document.querySelectorAll('[data-rv]:not(.in)').forEach(n=>io.observe(n));
+obs();
+
+// counters
+const cio=new IntersectionObserver(es=>{es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const n=e.target,to=+n.dataset.count,st=performance.now(),dur=1400;
+  const f=(t)=>{const p=Math.min((t-st)/dur,1),ev=1-Math.pow(1-p,3);
+    n.textContent=to>1000&&to<2000&&to>=1997?Math.floor(1900+(to-1900)*ev):Math.floor(to*ev);
+    if(p<1)requestAnimationFrame(f);else n.textContent=to};
+  requestAnimationFrame(f);
+})},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(n=>cio.observe(n));
+
+/* ============ HEADER / SCROLL ============ */
+const hdr=document.getElementById('hdr'),prog=document.getElementById('prog'),fab=document.getElementById('fab'),heroImg=document.getElementById('heroImg');
+let last=0;
+function onScroll(){
+  const y=window.scrollY,h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(y/h*100)+'%';
+  hdr.classList.toggle('stuck',y>40);
+  if(y>last&&y>320&&!document.body.classList.contains('menu-open'))hdr.classList.add('hide');else hdr.classList.remove('hide');
+  fab.classList.toggle('on',y>500);
+  last=y;
+  if(heroImg&&y<innerHeight*1.2)heroImg.style.transform='scale(1.14) translateY('+(y*.055)+'px)';
+  // active nav
+  let cur='';
+  document.querySelectorAll('section[id]').forEach(s=>{if(y>=s.offsetTop-160)cur=s.id});
+  document.querySelectorAll('#navmain a').forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+cur));
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ============ MENU ============ */
+const burger=document.getElementById('burger'),mob=document.getElementById('mob');
+function closeMenu(){document.body.classList.remove('menu-open','locked');burger.setAttribute('aria-expanded','false')}
+burger.addEventListener('click',()=>{
+  const o=document.body.classList.toggle('menu-open');
+  document.body.classList.toggle('locked',o);burger.setAttribute('aria-expanded',o);
+  if(o)mob.querySelectorAll('nav a').forEach((a,i)=>a.style.transitionDelay=(.18+i*.06)+'s');
+});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+
+/* ============ FORM ============ */
+const form=document.getElementById('ctform'),succ=document.getElementById('fsuccess'),fmsg=document.getElementById('fmsg');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const req=['navn','epost','melding','fag'];let ok=true;
+  req.forEach(id=>{const f=document.getElementById(id);
+    if(!f.value.trim()){f.style.borderColor='#b4483f';ok=false}else f.style.borderColor='';});
+  const s=document.getElementById('samtykke');
+  if(!s.checked){ok=false;s.nextElementSibling.style.borderColor='#b4483f'}else s.nextElementSibling.style.borderColor='';
+  if(!ok){fmsg.textContent='Vennligst fyll ut feltene som mangler.';fmsg.style.color='#b4483f';return}
+  const btn=form.querySelector('button[type=submit] span');btn.textContent='Sender…';
+  setTimeout(()=>{form.classList.add('hid');succ.classList.add('on');succ.scrollIntoView({block:'center',behavior:'smooth'})},700);
+});
+form.querySelectorAll('input,textarea,select').forEach(f=>f.addEventListener('input',()=>{
+  f.style.borderColor='';fmsg.textContent='Konfidensielt · Svar innen 24 timer';fmsg.style.color=''}));
+document.getElementById('resetForm').addEventListener('click',()=>{
+  form.reset();form.classList.remove('hid');succ.classList.remove('on');
+  form.querySelector('button[type=submit] span').textContent='Send henvendelse';
+});
+
+/* prefill fagområde from practice area click */
+paList.querySelectorAll('.pa-row').forEach((r,i)=>{
+  r.querySelector('h3').addEventListener('dblclick',()=>{
+    const sel=document.getElementById('fag');
+    [...sel.options].forEach(o=>{if(o.text.startsWith(AREAS[i].t.slice(0,8)))sel.value=o.value});
+  });
+});
+
+/* footer big text parallax */
+const fbig=document.querySelector('.fbig div');
+if(fbig){addEventListener('scroll',()=>{
+  const r=fbig.getBoundingClientRect();
+  if(r.top<innerHeight&&r.bottom>0){const p=1-(r.top/innerHeight);fbig.style.transform=`translateY(${18-p*16}%)`}
+},{passive:true})}
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

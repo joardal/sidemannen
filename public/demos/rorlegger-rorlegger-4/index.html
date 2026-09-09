@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andersen Rør AS — Rørlegger i Oslo | Døgnvakt 24/7</title>
+<meta name="description" content="Andersen Rør AS er en sertifisert rørleggerbedrift i Oslo med 28 års erfaring. Bad, varmtvannsbereder, lekkasjer, rør-i-rør og døgnvakt 24/7. Fast pris og 10 års garanti.">
+<meta name="theme-color" content="#0B0F14">
+<link rel="icon" href="images/icon-01.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Fraunces:ital,opsz,wght@1,9..144,300..600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<style type="text/tailwindcss">
+@theme {
+  --color-ink: #0B0F14;
+  --color-ink-2: #141B25;
+  --color-ink-3: #2A3442;
+  --color-paper: #F7F4EE;
+  --color-paper-2: #EFEAE0;
+  --color-card: #FDFCF9;
+  --color-copper: #BF6A38;
+  --color-copper-2: #9E5224;
+  --color-copper-soft: #E9D2BE;
+  --color-line: #DED7C9;
+  --color-live: #3ED68B;
+  --color-error: #B3261E;
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+</style>
+
+<style>
+  :root{
+    --ink:#0B0F14; --paper:#F7F4EE; --copper:#BF6A38; --copper-2:#9E5224;
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ background:var(--paper); color:var(--ink); overflow-x:hidden; }
+  ::selection{ background:var(--copper); color:var(--paper); }
+  :focus-visible{ outline:2px solid var(--copper); outline-offset:3px; border-radius:2px; }
+  img{ -webkit-user-drag:none; }
+
+  /* film grain */
+  body::after{
+    content:""; position:fixed; inset:-50%; z-index:120; pointer-events:none; opacity:.05;
+    background-image:url("images/icon-02.svg");
+  }
+
+  .f-wide{ font-stretch:118%; font-variation-settings:"wdth" 118; }
+  .f-wider{ font-stretch:124%; font-variation-settings:"wdth" 124; }
+  .mono-label{ font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:500; }
+
+  /* blueprint grid on hero */
+  .blueprint{
+    background-image:
+      linear-gradient(to right, rgba(11,15,20,.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11,15,20,.045) 1px, transparent 1px);
+    background-size:88px 88px;
+    mask-image:linear-gradient(to bottom, black 30%, transparent 100%);
+  }
+
+  /* buttons */
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+    font-family:var(--font-mono); font-size:11.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+    padding:1.05rem 1.7rem; border-radius:5px; cursor:pointer; white-space:nowrap;
+    transition:background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), transform .25s var(--ease); }
+  .btn:active{ transform:scale(.97); }
+  .btn svg{ transition:transform .35s var(--ease); }
+  .btn:hover svg.arr{ transform:translate(3px,-3px); }
+  .btn:hover svg.arr-r{ transform:translateX(4px); }
+  .btn-ink{ background:var(--ink); color:var(--paper); }
+  .btn-ink:hover{ background:var(--copper); color:var(--paper); }
+  .btn-copper{ background:var(--copper); color:var(--paper); }
+  .btn-copper:hover{ background:var(--ink); color:var(--paper); }
+  .btn-paper{ background:var(--paper); color:var(--ink); }
+  .btn-paper:hover{ background:var(--copper); color:var(--paper); }
+  .btn-ghost{ border:1px solid rgba(11,15,20,.28); color:var(--ink); background:transparent; }
+  .btn-ghost:hover{ background:var(--ink); border-color:var(--ink); color:var(--paper); }
+  .btn-ghost-l{ border:1px solid rgba(247,244,238,.32); color:var(--paper); background:transparent; }
+  .btn-ghost-l:hover{ background:var(--paper); border-color:var(--paper); color:var(--ink); }
+
+  /* nav underline */
+  .nu{ position:relative; }
+  .nu::after{ content:""; position:absolute; left:0; bottom:-7px; height:1.5px; width:100%;
+    background:var(--copper); transform:scaleX(0); transform-origin:right; transition:transform .4s var(--ease); }
+  .nu:hover::after,.nu[aria-current="true"]::after{ transform:scaleX(1); transform-origin:left; }
+  .nu[aria-current="true"]{ color:var(--ink); }
+
+  /* header */
+  .topbar{ max-height:38px; opacity:1; transition:max-height .45s var(--ease), opacity .3s; overflow:hidden; }
+  #hdr.scrolled{ background:rgba(247,244,238,.97); border-bottom:1px solid rgba(11,15,20,.1); box-shadow:0 1px 0 rgba(11,15,20,.02); }
+  #hdr.scrolled .topbar{ max-height:0; opacity:0; }
+
+  /* scroll progress */
+  #progress{ position:fixed; top:0; left:0; z-index:110; height:2.5px; width:100%;
+    background:var(--copper); transform-origin:left; transform:scaleX(0); }
+
+  /* reveal */
+  [data-reveal]{ opacity:0; transform:translateY(30px); transition:opacity 1s var(--ease), transform 1s var(--ease); transition-delay:var(--rd,0ms); will-change:opacity,transform; }
+  [data-reveal].in{ opacity:1; transform:none; }
+
+  /* marquee */
+  .mq{ overflow:hidden; }
+  .mq-track{ display:flex; width:max-content; animation:mq 34s linear infinite; }
+  .mq:hover .mq-track{ animation-play-state:paused; }
+  @keyframes mq{ to{ transform:translateX(-50%); } }
+  .mq-item{ position:relative; display:inline-flex; align-items:center; white-space:nowrap;
+    font-family:var(--font-mono); font-size:13px; font-weight:500; letter-spacing:.16em;
+    text-transform:uppercase; color:rgba(247,244,238,.72); padding:.35rem 2.6rem; }
+  .mq-item::after{ content:""; position:absolute; right:-3.5px; top:50%; width:7px; height:7px;
+    background:var(--copper); transform:translateY(-50%) rotate(45deg); }
+
+  /* service rows */
+  .serv{ transition:background .4s var(--ease); }
+  .serv .serv-arr{ transition:background .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease), transform .4s var(--ease); }
+  .serv:hover .serv-arr{ background:var(--copper); border-color:var(--copper); color:var(--paper); transform:rotate(45deg); }
+  .serv:hover .serv-title{ color:var(--copper); }
+  .serv-title{ transition:color .35s var(--ease), transform .5s var(--ease); }
+  .serv:hover .serv-title{ transform:translateX(6px); }
+
+  /* hover-follow media */
+  #hm{ position:fixed; left:0; top:0; z-index:60; pointer-events:none; will-change:transform; }
+  #hm-frame{ width:min(340px,24vw); aspect-ratio:4/3; border-radius:14px; overflow:hidden;
+    box-shadow:0 30px 60px -18px rgba(11,15,20,.45);
+    opacity:0; transform:scale(.88) rotate(-2deg); transition:opacity .3s var(--ease), transform .45s var(--ease); }
+  #hm.on #hm-frame{ opacity:1; transform:scale(1) rotate(0deg); }
+  #hm-frame img{ width:100%; height:100%; object-fit:cover; }
+
+  /* before / after */
+  .ba{ --x:50%; touch-action:pan-y; }
+  .ba-before{ clip-path:inset(0 calc(100% - var(--x)) 0 0); }
+  .ba-handle{ left:var(--x); }
+  .ba .grip{ transform:translate(-50%,-50%); transition:transform .25s var(--ease), background .25s; }
+  .ba:active .grip{ transform:translate(-50%,-50%) scale(1.12); background:var(--copper); color:var(--paper); }
+
+  /* image zoom cards */
+  .zoom-img{ transition:transform 1.1s var(--ease); }
+  .group:hover .zoom-img{ transform:scale(1.06); }
+
+  /* live dot */
+  @keyframes pulse-dot{ 0%{ box-shadow:0 0 0 0 rgba(62,214,139,.55);} 70%{ box-shadow:0 0 0 9px rgba(62,214,139,0);} 100%{ box-shadow:0 0 0 0 rgba(62,214,139,0);} }
+  .dot-live{ animation:pulse-dot 1.8s infinite; }
+
+  svg[data-lucide="star"]{ fill:currentColor; }
+
+  /* forms */
+  .lbl{ display:flex; justify-content:space-between; align-items:baseline; font-family:var(--font-mono);
+    font-size:10.5px; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:rgba(11,15,20,.55); margin-bottom:.55rem; }
+  .inp{ width:100%; background:#FDFCF9; border:1px solid #DAD4C8; border-radius:9px;
+    padding:.9rem 1rem; font-size:15px; color:var(--ink); transition:border-color .3s, box-shadow .3s; }
+  .inp::placeholder{ color:rgba(11,15,20,.32); }
+  .inp:focus{ outline:none; border-color:var(--copper); box-shadow:0 0 0 3.5px rgba(191,106,56,.16); }
+  .inp-err{ border-color:var(--color-error,#B3261E) !important; box-shadow:0 0 0 3.5px rgba(179,38,30,.12) !important; }
+  select.inp{ appearance:none; -webkit-appearance:none; }
+
+  /* faq */
+  .faq-a{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s var(--ease); }
+  .faq.open .faq-a{ grid-template-rows:1fr; }
+  .faq-a > div{ overflow:hidden; }
+  .faq .plus{ transition:transform .4s var(--ease); }
+  .faq.open .plus{ transform:rotate(45deg); color:var(--copper); }
+  .faq.open .faq-qtxt{ color:var(--copper); }
+
+  /* mobile menu */
+  #mm{ transform:translateY(-102%); visibility:hidden; transition:transform .7s var(--ease), visibility 0s .75s; }
+  body.mm-open{ overflow:hidden; }
+  body.mm-open #mm{ transform:translateY(0); visibility:visible; transition:transform .7s var(--ease); }
+  body.mm-open #hdr{ z-index:100; }
+  body.mm-open #hdr.scrolled{ background:transparent; border-color:transparent; box-shadow:none; }
+  body.mm-open #hdr .btn-copper:hover{ background:rgba(247,244,238,.14); }
+  .cbx{ opacity:0; transition:opacity .25s; }
+  .peer:checked ~ span .cbx{ opacity:1; }
+  .mm-link{ opacity:0; transform:translateY(26px); transition:opacity .55s var(--ease), transform .55s var(--ease); transition-delay:calc(var(--i)*70ms + 180ms); }
+  body.mm-open .mm-link{ opacity:1; transform:none; }
+  #nav-btn span{ transition:transform .4s var(--ease), opacity .3s, background .3s; }
+  body.mm-open #nav-btn .l1{ transform:translateY(4.5px) rotate(45deg); background:var(--paper); }
+  body.mm-open #nav-btn .l2{ transform:translateY(-4.5px) rotate(-45deg); background:var(--paper); }
+  body.mm-open #logo, body.mm-open #nav-btn{ z-index:100; position:relative; }
+  body.mm-open #logo .wm{ color:var(--paper); }
+  body.mm-open #logo .wm-sub{ color:rgba(247,244,238,.55); }
+
+  /* success pop */
+  @keyframes pop{ 0%{ transform:scale(.4); opacity:0;} 60%{ transform:scale(1.08);} 100%{ transform:scale(1); opacity:1;} }
+  .pop{ animation:pop .6s var(--ease) both; }
+
+  .num-ghost{ -webkit-text-stroke:1px rgba(247,244,238,.13); color:transparent; }
+
+  #to-top{ opacity:0; pointer-events:none; transform:translateY(10px); transition:opacity .4s, transform .4s var(--ease); }
+  #to-top.show{ opacity:1; pointer-events:auto; transform:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .mq-track{ animation:none; }
+    [data-reveal]{ opacity:1 !important; transform:none !important; transition:none; }
+    .zoom-img{ transition:none; }
+    .dot-live{ animation:none; }
+  }
+</style>
+<noscript><style>[data-reveal]{opacity:1 !important; transform:none !important}</style></noscript>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+
+<body class="font-sans antialiased bg-paper text-ink">
+
+<div id="progress"></div>
+
+<!-- hover-follow media -->
+<div id="hm" aria-hidden="true"><div id="hm-frame"><img id="hm-img" src="" alt=""></div></div>
+
+<!-- ============ HEADER ============ -->
+<header id="hdr" class="fixed inset-x-0 top-0 z-[80]">
+  <!-- topbar -->
+  <div class="topbar hidden md:block border-b border-ink/10 bg-ink text-paper">
+    <div class="mx-auto flex h-[38px] w-full max-w-[1440px] items-center justify-between px-5 md:px-10 xl:px-14">
+      <p class="mono-label text-paper/55">Sentral godkjent rørleggerbedrift · Oslo &amp; Akershus</p>
+      <div class="flex items-center gap-6">
+        <span class="mono-label flex items-center gap-2 text-paper/55"><i data-lucide="clock" class="h-3.5 w-3.5 text-copper"></i>Døgnvakt — alltid åpent</span>
+        <a href="tel:+4722461000" class="mono-label flex items-center gap-2 text-paper transition-colors hover:text-copper"><i data-lucide="phone" class="h-3.5 w-3.5"></i>22 46 10 00</a>
+      </div>
+    </div>
+  </div>
+  <!-- main bar -->
+  <div class="mx-auto flex h-[72px] w-full max-w-[1440px] items-center justify-between px-5 md:px-10 xl:px-14">
+    <a href="#" id="logo" class="flex items-center gap-3" aria-label="Andersen Rør AS — til toppen">
+      <span class="grid h-10 w-10 place-items-center rounded-[10px] bg-copper">
+        <svg viewBox="0 0 40 40" class="h-6 w-6" fill="none" aria-hidden="true"><path d="M13 31V18a6 6 0 0 1 6-6h12" stroke="#F7F4EE" stroke-width="4.2" stroke-linecap="round"/><circle cx="31.4" cy="12" r="2.6" fill="#F7F4EE"/></svg>
+      </span>
+      <span class="leading-none">
+        <span class="wm f-wider block text-[17px] font-[750] uppercase tracking-tight text-ink">Andersen Rør</span>
+        <span class="wm-sub mono-label mt-1 block text-[9.5px] text-ink/50">Rørleggerbedrift</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-9 lg:flex" aria-label="Hovedmeny">
+      <a href="#tjenester" data-nav="tjenester" class="nu mono-label text-ink/65 transition-colors hover:text-ink">Tjenester</a>
+      <a href="#prosjekter" data-nav="prosjekter" class="nu mono-label text-ink/65 transition-colors hover:text-ink">Prosjekter</a>
+      <a href="#slik-jobber-vi" data-nav="slik-jobber-vi" class="nu mono-label text-ink/65 transition-colors hover:text-ink">Slik jobber vi</a>
+      <a href="#anmeldelser" data-nav="anmeldelser" class="nu mono-label text-ink/65 transition-colors hover:text-ink">Anmeldelser</a>
+      <a href="#kontakt" data-nav="kontakt" class="nu mono-label text-ink/65 transition-colors hover:text-ink">Kontakt</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="tel:+4722461000" class="mono-label hidden items-center gap-2 rounded-[5px] border border-ink/20 px-4 py-3 text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper xl:inline-flex">
+        <i data-lucide="phone" class="h-3.5 w-3.5 text-copper"></i>22 46 10 00
+      </a>
+      <a href="#kontakt" class="btn btn-copper hidden sm:inline-flex">Få tilbud<i data-lucide="arrow-up-right" class="arr h-4 w-4"></i></a>
+      <button id="nav-btn" class="grid h-11 w-11 place-items-center lg:hidden" aria-label="Åpne meny" aria-expanded="false">
+        <span class="relative block h-4 w-6">
+          <span class="l1 absolute left-0 top-0 block h-[2px] w-6 bg-ink"></span>
+          <span class="l2 absolute bottom-0 left-0 block h-[2px] w-6 bg-ink"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div id="mm" class="fixed inset-0 z-[90] bg-ink text-paper lg:hidden" aria-hidden="true">
+  <div class="flex h-full flex-col justify-between px-5 pb-8 pt-28 sm:px-10">
+    <nav class="flex flex-col gap-1" aria-label="Mobilmeny">
+      <a href="#tjenester" class="mm-link flex items-baseline justify-between border-b border-paper/10 py-4" style="--i:0">
+        <span class="f-wider text-[34px] font-[700] uppercase tracking-tight">Tjenester</span><span class="mono-label text-copper">01</span>
+      </a>
+      <a href="#prosjekter" class="mm-link flex items-baseline justify-between border-b border-paper/10 py-4" style="--i:1">
+        <span class="f-wider text-[34px] font-[700] uppercase tracking-tight">Prosjekter</span><span class="mono-label text-copper">02</span>
+      </a>
+      <a href="#slik-jobber-vi" class="mm-link flex items-baseline justify-between border-b border-paper/10 py-4" style="--i:2">
+        <span class="f-wider text-[34px] font-[700] uppercase tracking-tight">Slik jobber vi</span><span class="mono-label text-copper">03</span>
+      </a>
+      <a href="#anmeldelser" class="mm-link flex items-baseline justify-between border-b border-paper/10 py-4" style="--i:3">
+        <span class="f-wider text-[34px] font-[700] uppercase tracking-tight">Anmeldelser</span><span class="mono-label text-copper">04</span>
+      </a>
+      <a href="#kontakt" class="mm-link flex items-baseline justify-between border-b border-paper/10 py-4" style="--i:4">
+        <span class="f-wider text-[34px] font-[700] uppercase tracking-tight">Kontakt</span><span class="mono-label text-copper">05</span>
+      </a>
+      <a href="tel:+4722461000" class="mm-link mt-6 flex items-center gap-3 rounded-[8px] border border-copper/50 bg-copper/10 px-4 py-4" style="--i:5">
+        <span class="dot-live h-2.5 w-2.5 rounded-full bg-live"></span>
+        <span class="mono-label text-paper/85">Døgnvakt 24/7 — Ring 22 46 10 00</span>
+      </a>
+    </nav>
+    <div class="mm-link grid gap-4" style="--i:6">
+      <a href="#kontakt" class="btn btn-copper w-full">Få et uforpliktende tilbud<i data-lucide="arrow-up-right" class="arr h-4 w-4"></i></a>
+      <p class="mono-label text-center text-paper/40">post@andersenror.no · Industrigata 42, 0264 Oslo</p>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="blueprint relative overflow-hidden pb-14 pt-[118px] md:pb-20 md:pt-[168px] lg:pb-24">
+  <div class="mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="grid items-end gap-12 lg:grid-cols-12 lg:gap-8">
+
+      <div class="lg:col-span-7">
+        <div class="mb-7 flex flex-wrap items-center gap-3" data-reveal>
+          <span class="grid h-7 w-7 place-items-center rounded-[6px] bg-copper text-paper"><i data-lucide="badge-check" class="h-4 w-4"></i></span>
+          <span class="mono-label text-ink/60">Sertifiserte rørleggere — Oslo &amp; Akershus</span>
+        </div>
+
+        <h1 class="f-wide text-[clamp(2.9rem,7.4vw,6.4rem)] font-[680] uppercase leading-[0.97] tracking-[-0.02em]" data-reveal data-delay="60">
+          Rørleggere som<br>
+          fikser det —<br>
+          <span class="font-serif font-[420] normal-case italic tracking-[-0.01em] text-copper">første gang.</span>
+        </h1>
+
+        <p class="mt-7 max-w-[52ch] text-[16.5px] leading-[1.65] text-ink/70 md:text-[18px]" data-reveal data-delay="140">
+          Andersen Rør er en mesterbedrift med 28 års erfaring. Vi hjelper privatpersoner, bedrifter
+          og borettslag med alt fra akutte lekkasjer til komplette baderom — raskt, ryddig og med
+          garanti på arbeidet.
+        </p>
+
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" data-reveal data-delay="200">
+          <a href="#kontakt" class="btn btn-ink">Få et uforpliktende tilbud<i data-lucide="arrow-up-right" class="arr h-4 w-4"></i></a>
+          <a href="tel:+4722461000" class="btn btn-ghost"><i data-lucide="phone" class="h-4 w-4 text-copper"></i>Ring 22 46 10 00</a>
+        </div>
+
+        <ul class="mt-9 flex flex-wrap gap-x-7 gap-y-3" data-reveal data-delay="260">
+          <li class="flex items-center gap-2 text-[13px] font-medium text-ink/70"><i data-lucide="circle-check" class="h-4 w-4 text-copper"></i>Sentral godkjenning</li>
+          <li class="flex items-center gap-2 text-[13px] font-medium text-ink/70"><i data-lucide="shield-check" class="h-4 w-4 text-copper"></i>10 års garanti på våtrom</li>
+          <li class="flex items-center gap-2 text-[13px] font-medium text-ink/70"><i data-lucide="star" class="h-4 w-4 text-copper"></i>4,9 av 5 hos kundene</li>
+        </ul>
+      </div>
+
+      <div class="relative lg:col-span-5" data-reveal data-delay="180">
+        <div class="group relative overflow-hidden rounded-[20px] ring-1 ring-ink/10">
+          <img src="images/photo-16.jpg"
+               alt="Moderne baderom levert av Andersen Rør — rundt speil, panelvegg og nye armaturer"
+               class="zoom-img aspect-[4/3] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]" fetchpriority="high">
+          <span class="mono-label absolute left-4 top-4 rounded-[6px] bg-paper/95 px-3 py-2 text-ink shadow-sm">Est. 1998 · Familiebedrift</span>
+        </div>
+        <div class="absolute -bottom-6 left-4 w-[248px] rounded-[14px] bg-ink p-5 text-paper shadow-2xl ring-1 ring-white/5 sm:left-6">
+          <p class="mono-label flex items-center gap-2 text-paper/60"><span class="dot-live h-2 w-2 rounded-full bg-live"></span>Vaktteam aktiv nå</p>
+          <p class="f-wide mt-3 text-[30px] font-[700] uppercase leading-none">Ute på <span class="text-copper">&lt; 2 t</span></p>
+          <p class="mt-2 text-[12.5px] leading-snug text-paper/55">Snitt responstid ved akutt lekkasje i Oslo og Akershus</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- stats -->
+    <div class="mt-24 border-t border-ink/12 pt-9 lg:mt-28" data-reveal>
+      <div class="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
+        <div>
+          <p class="f-wide text-[clamp(2.3rem,3.6vw,3.4rem)] font-[720] leading-none"><span class="count" data-target="28">0</span><span class="text-copper"> år</span></p>
+          <p class="mono-label mt-3 text-ink/50">I faget — siden 1998</p>
+        </div>
+        <div>
+          <p class="f-wide text-[clamp(2.3rem,3.6vw,3.4rem)] font-[720] leading-none"><span class="count" data-target="3400" data-suffix="+">0</span></p>
+          <p class="mono-label mt-3 text-ink/50">Fullførte oppdrag</p>
+        </div>
+        <div>
+          <p class="f-wide text-[clamp(2.3rem,3.6vw,3.4rem)] font-[720] leading-none"><span class="count" data-target="4.9" data-decimals="1">0</span><span class="text-copper">/5</span></p>
+          <p class="mono-label mt-3 text-ink/50">Kundescore — 187 anmeldelser</p>
+        </div>
+        <div>
+          <p class="f-wide text-[clamp(2.3rem,3.6vw,3.4rem)] font-[720] leading-none"><span class="count" data-target="14">0</span><span class="text-copper">+</span></p>
+          <p class="mono-label mt-3 text-ink/50">Sertifiserte fagfolk på laget</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="mq border-y border-white/5 bg-ink py-5 text-paper" aria-hidden="true">
+  <div class="mq-track">
+    <div class="flex shrink-0 items-center">
+      <span class="mq-item">Bad &amp; renovering</span><span class="mq-item">Varmtvannsbereder</span><span class="mq-item">Lekkasjesøk</span><span class="mq-item">Rør-i-rør</span><span class="mq-item">Tette avløp</span><span class="mq-item">Døgnvakt 24/7</span><span class="mq-item">Fast pris</span><span class="mq-item">Garanti på arbeidet</span>
+    </div>
+    <div class="flex shrink-0 items-center">
+      <span class="mq-item">Bad &amp; renovering</span><span class="mq-item">Varmtvannsbereder</span><span class="mq-item">Lekkasjesøk</span><span class="mq-item">Rør-i-rør</span><span class="mq-item">Tette avløp</span><span class="mq-item">Døgnvakt 24/7</span><span class="mq-item">Fast pris</span><span class="mq-item">Garanti på arbeidet</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TJENESTER ============ -->
+<section id="tjenester" class="scroll-mt-24 py-24 md:py-32">
+  <div class="mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="mb-14 grid gap-8 md:mb-20 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-8" data-reveal>
+        <p class="mono-label mb-5 flex items-center gap-3 text-ink/50"><span class="text-copper">01</span><span class="h-px w-10 bg-ink/20"></span>Våre tjenester</p>
+        <h2 class="f-wide text-[clamp(2.1rem,4.6vw,3.8rem)] font-[680] uppercase leading-[1.02] tracking-[-0.015em]">
+          Étt telefonnummer.<br>Alt innen <span class="font-serif font-[420] normal-case italic text-copper">rør.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-4" data-reveal data-delay="120">
+        <p class="max-w-[38ch] text-[15.5px] leading-[1.7] text-ink/65">Fra den minste dråpe til den største totalrehabiliteringen — vi har folkene, utstyret og erfaringen. Velg tjenesten, så tar vi resten.</p>
+      </div>
+    </div>
+
+    <div id="service-list" class="border-b border-ink/12">
+
+      <a href="#kontakt" class="serv group block border-t border-ink/12 px-1 py-7 md:px-4 md:py-9" data-service="Bad og renovering" data-img="images/photo-12.jpg" data-reveal>
+        <div class="grid items-center gap-x-6 gap-y-4 md:grid-cols-12">
+          <span class="mono-label text-copper md:col-span-1">/01</span>
+          <div class="md:col-span-4">
+            <h3 class="serv-title f-wide text-[22px] font-[660] uppercase tracking-tight md:text-[26px]">Bad &amp; renovering</h3>
+            <p class="mt-1 flex items-center gap-2 font-serif text-[15px] italic text-ink/50"><i data-lucide="bath" class="h-4 w-4 text-copper/70"></i>Våtrom · Totalentreprise</p>
+          </div>
+          <p class="text-[15px] leading-[1.65] text-ink/65 md:col-span-5">Komplett rehabilitering av bad og vaskerom — fra riving og NTE-godkjent rørarbeid til ferdig flislagt våtrom. Én kontaktperson hele veien.</p>
+          <div class="flex items-center md:col-span-2 md:justify-end">
+            <img src="images/photo-11.jpg" alt="" class="h-16 w-24 rounded-[8px] object-cover md:hidden">
+            <span class="serv-arr ml-auto grid h-12 w-12 place-items-center rounded-full border border-ink/20 text-ink"><i data-lucide="arrow-up-right" class="h-5 w-5"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#kontakt" class="serv group block border-t border-ink/12 px-1 py-7 md:px-4 md:py-9" data-service="Varmtvannsbereder" data-img="images/photo-02.jpg" data-reveal>
+        <div class="grid items-center gap-x-6 gap-y-4 md:grid-cols-12">
+          <span class="mono-label text-copper md:col-span-1">/02</span>
+          <div class="md:col-span-4">
+            <h3 class="serv-title f-wide text-[22px] font-[660] uppercase tracking-tight md:text-[26px]">Varmtvannsbereder</h3>
+            <p class="mt-1 flex items-center gap-2 font-serif text-[15px] italic text-ink/50"><i data-lucide="flame" class="h-4 w-4 text-copper/70"></i>Alle merker · Ofte samme dag</p>
+          </div>
+          <p class="text-[15px] leading-[1.65] text-ink/65 md:col-span-5">Utskifting, montering og service på beredere fra alle merker. Tar berederen kvelden, får du som regel varmt vann igjen samme dag.</p>
+          <div class="flex items-center md:col-span-2 md:justify-end">
+            <img src="images/photo-01.jpg" alt="" class="h-16 w-24 rounded-[8px] object-cover md:hidden">
+            <span class="serv-arr ml-auto grid h-12 w-12 place-items-center rounded-full border border-ink/20 text-ink"><i data-lucide="arrow-up-right" class="h-5 w-5"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#kontakt" class="serv group block border-t border-ink/12 px-1 py-7 md:px-4 md:py-9" data-service="Lekkasje / vannskade" data-img="images/photo-08.jpg" data-reveal>
+        <div class="grid items-center gap-x-6 gap-y-4 md:grid-cols-12">
+          <span class="mono-label text-copper md:col-span-1">/03</span>
+          <div class="md:col-span-4">
+            <h3 class="serv-title f-wide text-[22px] font-[660] uppercase tracking-tight md:text-[26px]">Lekkasje &amp; vannskade</h3>
+            <p class="mt-1 flex items-center gap-2 font-serif text-[15px] italic text-ink/50"><i data-lucide="search" class="h-4 w-4 text-copper/70"></i>Termografi · Dokumentasjon</p>
+          </div>
+          <p class="text-[15px] leading-[1.65] text-ink/65 md:col-span-5">Vi lokaliserer lekkasjen med termografi og akustisk søk — uten å rive mer enn nødvendig. Utbedrer skaden og dokumenterer til forsikringen din.</p>
+          <div class="flex items-center md:col-span-2 md:justify-end">
+            <img src="images/photo-07.jpg" alt="" class="h-16 w-24 rounded-[8px] object-cover md:hidden">
+            <span class="serv-arr ml-auto grid h-12 w-12 place-items-center rounded-full border border-ink/20 text-ink"><i data-lucide="arrow-up-right" class="h-5 w-5"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#kontakt" class="serv group block border-t border-ink/12 px-1 py-7 md:px-4 md:py-9" data-service="Rør-i-rør / vannledning" data-img="images/photo-15.jpg" data-reveal>
+        <div class="grid items-center gap-x-6 gap-y-4 md:grid-cols-12">
+          <span class="mono-label text-copper md:col-span-1">/04</span>
+          <div class="md:col-span-4">
+            <h3 class="serv-title f-wide text-[22px] font-[660] uppercase tracking-tight md:text-[26px]">Rør-i-rør &amp; vannledning</h3>
+            <p class="mt-1 flex items-center gap-2 font-serif text-[15px] italic text-ink/50"><i data-lucide="layers" class="h-4 w-4 text-copper/70"></i>Utskifting · Stoppekraner</p>
+          </div>
+          <p class="text-[15px] leading-[1.65] text-ink/65 md:col-span-5">Byte av gamle vann- og avløpsrør, stoppekraner og fordelerskap — i mange tilfeller uten å åpne veggene. Minimal støy, maksimal trygghet.</p>
+          <div class="flex items-center md:col-span-2 md:justify-end">
+            <img src="images/photo-14.jpg" alt="" class="h-16 w-24 rounded-[8px] object-cover md:hidden">
+            <span class="serv-arr ml-auto grid h-12 w-12 place-items-center rounded-full border border-ink/20 text-ink"><i data-lucide="arrow-up-right" class="h-5 w-5"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#kontakt" class="serv group block border-t border-ink/12 px-1 py-7 md:px-4 md:py-9" data-service="Tett avløp" data-img="images/photo-22.jpg" data-reveal>
+        <div class="grid items-center gap-x-6 gap-y-4 md:grid-cols-12">
+          <span class="mono-label text-copper md:col-span-1">/05</span>
+          <div class="md:col-span-4">
+            <h3 class="serv-title f-wide text-[22px] font-[660] uppercase tracking-tight md:text-[26px]">Tette avløp</h3>
+            <p class="mt-1 flex items-center gap-2 font-serif text-[15px] italic text-ink/50"><i data-lucide="waves" class="h-4 w-4 text-copper/70"></i>Spyling · Kamerainspeksjon</p>
+          </div>
+          <p class="text-[15px] leading-[1.65] text-ink/65 md:col-span-5">Effektiv åpning av tette avløp og stikkledninger. Ved gjentatte problemer kjører vi kamerainspeksjon og finner roten til problemet.</p>
+          <div class="flex items-center md:col-span-2 md:justify-end">
+            <img src="images/photo-21.jpg" alt="" class="h-16 w-24 rounded-[8px] object-cover md:hidden">
+            <span class="serv-arr ml-auto grid h-12 w-12 place-items-center rounded-full border border-ink/20 text-ink"><i data-lucide="arrow-up-right" class="h-5 w-5"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#kontakt" class="serv group block border-t border-ink/12 px-1 py-7 md:px-4 md:py-9" data-service="Service og vedlikehold" data-img="images/photo-19.jpg" data-reveal>
+        <div class="grid items-center gap-x-6 gap-y-4 md:grid-cols-12">
+          <span class="mono-label text-copper md:col-span-1">/06</span>
+          <div class="md:col-span-4">
+            <h3 class="serv-title f-wide text-[22px] font-[660] uppercase tracking-tight md:text-[26px]">Service &amp; vedlikehold</h3>
+            <p class="mt-1 flex items-center gap-2 font-serif text-[15px] italic text-ink/50"><i data-lucide="wrench" class="h-4 w-4 text-copper/70"></i>Borettslag · Bedrift</p>
+          </div>
+          <p class="text-[15px] leading-[1.65] text-ink/65 md:col-span-5">Faste serviceavtaler for borettslag, bedrifter og eiendomsforvaltere. Vi tar ansvar for det tekniske, slik at du kan prioritere driften.</p>
+          <div class="flex items-center md:col-span-2 md:justify-end">
+            <img src="images/photo-17.jpg" alt="" class="h-16 w-24 rounded-[8px] object-cover md:hidden">
+            <span class="serv-arr ml-auto grid h-12 w-12 place-items-center rounded-full border border-ink/20 text-ink"><i data-lucide="arrow-up-right" class="h-5 w-5"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="tel:+4722461000" class="serv group block border-t border-copper/40 bg-ink px-4 py-7 text-paper md:px-6 md:py-9" data-img="images/photo-04.jpg" data-reveal>
+        <div class="grid items-center gap-x-6 gap-y-4 md:grid-cols-12">
+          <span class="mono-label text-copper md:col-span-1">/07</span>
+          <div class="md:col-span-4">
+            <h3 class="serv-title f-wide flex flex-wrap items-center gap-3 text-[22px] font-[660] uppercase tracking-tight md:text-[26px]">Døgnvakt 24/7 <span class="mono-label flex items-center gap-2 rounded-[5px] border border-live/40 bg-live/10 px-2.5 py-1 text-[9.5px] text-live"><span class="dot-live h-1.5 w-1.5 rounded-full bg-live"></span>På vakt nå</span></h3>
+            <p class="mt-1 flex items-center gap-2 font-serif text-[15px] italic text-paper/50"><i data-lucide="siren" class="h-4 w-4 text-copper"></i>Akutt hjelp — hele året</p>
+          </div>
+          <p class="text-[15px] leading-[1.65] text-paper/65 md:col-span-5">Vannledningen sprakk klokken tre om natta? Ring oss. Vaktteamet rykker ut hele døgnet, alle dager — også i julen. <span class="whitespace-nowrap font-medium text-copper">22 46 10 00</span></p>
+          <div class="flex items-center md:col-span-2 md:justify-end">
+            <span class="serv-arr ml-auto grid h-12 w-12 place-items-center rounded-full border border-copper bg-copper text-paper"><i data-lucide="phone-call" class="h-5 w-5"></i></span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ DØGNVAKT CTA ============ -->
+<section id="dognvakt" class="relative scroll-mt-24 overflow-hidden bg-ink py-24 text-paper md:py-28">
+  <div class="pointer-events-none absolute -right-24 top-1/2 hidden -translate-y-1/2 select-none lg:block" aria-hidden="true">
+    <p class="f-wider num-ghost whitespace-nowrap text-[15rem] font-[800] uppercase leading-none">24 / 7</p>
+  </div>
+  <div class="relative mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="grid items-center gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-7" data-reveal>
+        <p class="mono-label mb-5 flex items-center gap-3 text-paper/50"><span class="text-copper">02</span><span class="h-px w-10 bg-paper/25"></span>Døgnvakt</p>
+        <h2 class="f-wide max-w-[16ch] text-[clamp(2.1rem,4.8vw,3.9rem)] font-[680] uppercase leading-[1.03]">Vannlekkasje klokken <span class="font-serif font-[420] normal-case italic text-copper">tre om natta?</span></h2>
+        <p class="mt-6 max-w-[52ch] text-[16px] leading-[1.7] text-paper/65">Vårt vaktteam rykker ut hele døgnet, hele året — også i helger og på helligdager. Lukk hovedstoppekranen, så er vi på vei.</p>
+        <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <a href="tel:+4722461000" class="btn btn-copper"><i data-lucide="phone-call" class="h-4 w-4"></i>Ring vakttelefonen</a>
+          <a href="#kontakt" class="btn btn-ghost-l">Bestill rørlegger</a>
+        </div>
+      </div>
+      <div class="lg:col-span-5" data-reveal data-delay="120">
+        <div class="rounded-[18px] border border-paper/12 bg-ink-2 p-7 md:p-9">
+          <p class="mono-label flex items-center gap-2.5 text-paper/55"><span class="dot-live h-2.5 w-2.5 rounded-full bg-live"></span>Vaktteamet er tilgjengelig nå</p>
+          <a href="tel:+4722461000" class="f-wide mt-5 block text-[clamp(2rem,4.5vw,3.1rem)] font-[720] tracking-tight text-paper transition-colors hover:text-copper">22 46 10 00</a>
+          <div class="mt-7 grid grid-cols-2 gap-5 border-t border-paper/12 pt-6">
+            <div>
+              <p class="f-wide text-[26px] font-[700] text-copper">&lt; 2 t</p>
+              <p class="mt-1 text-[12.5px] leading-snug text-paper/50">Snitt fremme i Oslo og Akershus</p>
+            </div>
+            <div>
+              <p class="f-wide text-[26px] font-[700] text-copper">365 d</p>
+              <p class="mt-1 text-[12.5px] leading-snug text-paper/50">Bemannet vaktteam, hele året</p>
+            </div>
+          </div>
+          <p class="mt-6 border-t border-paper/12 pt-5 text-[12.5px] leading-relaxed text-paper/45">Fast pris på utrykning — du godkjenner alltid kostnaden før vi starter. Kvelds- og helgetillegg opplyses på forhånd.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FØR / ETTER ============ -->
+<section id="resultater" class="scroll-mt-24 bg-paper-2 py-24 md:py-32">
+  <div class="mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="mb-12 grid gap-8 md:mb-16 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7" data-reveal>
+        <p class="mono-label mb-5 flex items-center gap-3 text-ink/50"><span class="text-copper">03</span><span class="h-px w-10 bg-ink/20"></span>Før og etter</p>
+        <h2 class="f-wide text-[clamp(2.1rem,4.6vw,3.8rem)] font-[680] uppercase leading-[1.02]">Se forskjellen <span class="font-serif font-[420] normal-case italic text-copper">selv.</span></h2>
+      </div>
+      <div class="lg:col-span-5" data-reveal data-delay="120">
+        <p class="max-w-[42ch] text-[15.5px] leading-[1.7] text-ink/65">Dra i håndtaket og se hva seks uker med norsk håndverk gjør med et slitent 70-tallsbad på St. Hanshaugen, Oslo.</p>
+        <p class="mono-label mt-4 flex items-center gap-2 text-copper"><i data-lucide="chevrons-left-right" class="h-4 w-4"></i>Dra for å sammenligne</p>
+      </div>
+    </div>
+
+    <div class="ba group relative aspect-[3/2.6] cursor-ew-resize select-none overflow-hidden rounded-[20px] bg-ink ring-1 ring-ink/10 sm:aspect-[16/9] lg:aspect-[21/10]" data-reveal role="slider" aria-label="Før og etter sammenligning" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+      <!-- etter (base) -->
+      <img src="images/photo-03.jpg" alt="Nyrenovert bad med grønne fliser og sorte armaturer" class="absolute inset-0 h-full w-full object-cover" draggable="false" loading="lazy">
+      <!-- før (clipped) -->
+      <img src="images/photo-05.jpg" alt="Slitt baderom før renovering med gamle fliser" class="ba-before absolute inset-0 h-full w-full object-cover" draggable="false" loading="lazy">
+      <!-- labels -->
+      <span class="mono-label absolute left-4 top-4 rounded-[6px] bg-ink/85 px-3 py-2 text-paper backdrop-blur-none">Før</span>
+      <span class="mono-label absolute right-4 top-4 rounded-[6px] bg-copper px-3 py-2 text-paper">Etter</span>
+      <!-- handle -->
+      <div class="ba-handle absolute bottom-0 top-0 w-px bg-paper/90" aria-hidden="true">
+        <span class="grip absolute left-1/2 top-1/2 grid h-14 w-14 place-items-center rounded-full bg-paper text-ink shadow-xl ring-1 ring-ink/10">
+          <i data-lucide="chevrons-left-right" class="h-6 w-6"></i>
+        </span>
+      </div>
+      <!-- meta -->
+      <div class="absolute bottom-4 left-4 right-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-[10px] bg-ink/85 px-4 py-3 text-paper sm:bottom-5 sm:left-5 sm:right-auto">
+        <span class="mono-label text-copper">Bad, St. Hanshaugen</span>
+        <span class="hidden h-3 w-px bg-paper/25 sm:block"></span>
+        <span class="text-[12.5px] text-paper/70">2025 · 8 kvm · 6 uker · Rør-i-rør</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROSJEKTER ============ -->
+<section id="prosjekter" class="scroll-mt-24 py-24 md:py-32">
+  <div class="mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="mb-14 flex flex-wrap items-end justify-between gap-6 md:mb-20">
+      <div data-reveal>
+        <p class="mono-label mb-5 flex items-center gap-3 text-ink/50"><span class="text-copper">04</span><span class="h-px w-10 bg-ink/20"></span>Utvalgte prosjekter</p>
+        <h2 class="f-wide text-[clamp(2.1rem,4.6vw,3.8rem)] font-[680] uppercase leading-[1.02]">Arbeid vi er <span class="font-serif font-[420] normal-case italic text-copper">stolte av.</span></h2>
+      </div>
+      <a href="#kontakt" class="btn btn-ghost" data-reveal data-delay="100">Start ditt prosjekt<i data-lucide="arrow-up-right" class="arr h-4 w-4"></i></a>
+    </div>
+
+    <div class="grid gap-10 md:grid-cols-12 md:gap-x-8 md:gap-y-16">
+
+      <article class="group md:col-span-7" data-reveal>
+        <a href="#kontakt" class="block">
+          <div class="overflow-hidden rounded-[16px] ring-1 ring-ink/10">
+            <img src="images/photo-13.jpg" alt="Lys, moderne baderomsinnredning med badekar og åpent vindu" class="zoom-img aspect-[16/10] w-full object-cover" loading="lazy">
+          </div>
+          <div class="mt-5 flex items-start justify-between gap-4">
+            <div>
+              <p class="mono-label text-ink/45">Bad &amp; renovering · Frogner, Oslo · 2025</p>
+              <h3 class="f-wide mt-2 text-[22px] font-[660] uppercase tracking-tight transition-colors group-hover:text-copper md:text-[24px]">Bad i frognerleilighet fra 1923</h3>
+              <p class="mt-2 max-w-[46ch] text-[14.5px] leading-[1.65] text-ink/60">Rør-i-rør, nytt membran og håndlagde fliser på 8 kvm — med oljet eik og børstet messing som kontrast.</p>
+            </div>
+            <span class="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-full border border-ink/20 transition-all duration-300 group-hover:border-copper group-hover:bg-copper group-hover:text-paper"><i data-lucide="arrow-up-right" class="h-4.5 w-4.5"></i></span>
+          </div>
+        </a>
+      </article>
+
+      <article class="group md:col-span-5" data-reveal data-delay="100">
+        <a href="#kontakt" class="block">
+          <div class="overflow-hidden rounded-[16px] ring-1 ring-ink/10">
+            <img src="images/photo-10.jpg" alt="Moderne leilighetsbygg i mur" class="zoom-img aspect-[16/10] w-full object-cover" loading="lazy">
+          </div>
+          <div class="mt-5 flex items-start justify-between gap-4">
+            <div>
+              <p class="mono-label text-ink/45">Borettslag · Majorstuen · 2024</p>
+              <h3 class="f-wide mt-2 text-[22px] font-[660] uppercase tracking-tight transition-colors group-hover:text-copper md:text-[24px]">Rør-i-rør i 32 leiligheter</h3>
+              <p class="mt-2 max-w-[46ch] text-[14.5px] leading-[1.65] text-ink/60">Komplett utskifting av vann- og avløpsledninger for Majorstuen Terrasse BRL — levert to uker før fristen.</p>
+            </div>
+            <span class="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-full border border-ink/20 transition-all duration-300 group-hover:border-copper group-hover:bg-copper group-hover:text-paper"><i data-lucide="arrow-up-right" class="h-4.5 w-4.5"></i></span>
+          </div>
+        </a>
+      </article>
+
+      <article class="group md:col-span-5" data-reveal>
+        <a href="#kontakt" class="block">
+          <div class="overflow-hidden rounded-[16px] ring-1 ring-ink/10">
+            <img src="images/photo-09.jpg" alt="Moderne kontorbygg i glass og mur" class="zoom-img aspect-[16/10] w-full object-cover" loading="lazy">
+          </div>
+          <div class="mt-5 flex items-start justify-between gap-4">
+            <div>
+              <p class="mono-label text-ink/45">Bedrift · Lysaker · 2025</p>
+              <h3 class="f-wide mt-2 text-[22px] font-[660] uppercase tracking-tight transition-colors group-hover:text-copper md:text-[24px]">VVS for kontorbygg, 4 200 kvm</h3>
+              <p class="mt-2 max-w-[46ch] text-[14.5px] leading-[1.65] text-ink/60">Sanitæranlegg, tekniske rom og kjøkkenforpleining for tre etasjer kontor — i tett samarbeid med totalentreprenør.</p>
+            </div>
+            <span class="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-full border border-ink/20 transition-all duration-300 group-hover:border-copper group-hover:bg-copper group-hover:text-paper"><i data-lucide="arrow-up-right" class="h-4.5 w-4.5"></i></span>
+          </div>
+        </a>
+      </article>
+
+      <article class="group md:col-span-7" data-reveal data-delay="100">
+        <a href="#kontakt" class="block">
+          <div class="overflow-hidden rounded-[16px] ring-1 ring-ink/10">
+            <img src="images/photo-20.jpg" alt="Ny dusjnisje med hvite fliser" class="zoom-img aspect-[16/10] w-full object-cover" loading="lazy">
+          </div>
+          <div class="mt-5 flex items-start justify-between gap-4">
+            <div>
+              <p class="mono-label text-ink/45">Serviceinstallasjon · Nordstrand · 2024</p>
+              <h3 class="f-wide mt-2 text-[22px] font-[660] uppercase tracking-tight transition-colors group-hover:text-copper md:text-[24px]">Ny dusj og 200 l-bereder</h3>
+              <p class="mt-2 max-w-[46ch] text-[14.5px] leading-[1.65] text-ink/60">Ny dusjvegg, opplegg for vaskemaskin og energieffektiv bereder i enebolig fra 70-tallet — ferdig på tre dager.</p>
+            </div>
+            <span class="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-full border border-ink/20 transition-all duration-300 group-hover:border-copper group-hover:bg-copper group-hover:text-paper"><i data-lucide="arrow-up-right" class="h-4.5 w-4.5"></i></span>
+          </div>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROSESS ============ -->
+<section id="slik-jobber-vi" class="scroll-mt-24 bg-ink py-24 text-paper md:py-32">
+  <div class="mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="mb-14 grid gap-8 md:mb-20 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-8" data-reveal>
+        <p class="mono-label mb-5 flex items-center gap-3 text-paper/50"><span class="text-copper">05</span><span class="h-px w-10 bg-paper/25"></span>Slik jobber vi</p>
+        <h2 class="f-wide text-[clamp(2.1rem,4.6vw,3.8rem)] font-[680] uppercase leading-[1.02]">Forutsigbart fra<br><span class="font-serif font-[420] normal-case italic text-copper">første telefon.</span></h2>
+      </div>
+      <div class="lg:col-span-4" data-reveal data-delay="120">
+        <p class="max-w-[40ch] text-[15.5px] leading-[1.7] text-paper/60">De fleste som ringer oss, har aldri hyret rørlegger før. Derfor har vi gjort prosessen like enkel som faget vårt er grundig.</p>
+      </div>
+    </div>
+
+    <div class="grid gap-px overflow-hidden rounded-[16px] bg-paper/12 sm:grid-cols-2 lg:grid-cols-4" data-reveal>
+      <div class="bg-ink p-8 pt-9 transition-colors duration-500 hover:bg-ink-2 md:p-10">
+        <p class="f-wide text-[42px] font-[720] leading-none text-copper">01</p>
+        <i data-lucide="clipboard-list" class="mt-8 h-6 w-6 text-paper/40"></i>
+        <h3 class="f-wide mt-4 text-[19px] font-[660] uppercase tracking-tight">Befaring</h3>
+        <p class="mt-3 text-[14px] leading-[1.7] text-paper/60">Vi ser på jobben, lytter til hva du vil og måler opp. Befaring i Oslo og Akershus er alltid gratis og uforpliktende.</p>
+      </div>
+      <div class="bg-ink p-8 pt-9 transition-colors duration-500 hover:bg-ink-2 md:p-10">
+        <p class="f-wide text-[42px] font-[720] leading-none text-copper">02</p>
+        <i data-lucide="file-text" class="mt-8 h-6 w-6 text-paper/40"></i>
+        <h3 class="f-wide mt-4 text-[19px] font-[660] uppercase tracking-tight">Fast pris</h3>
+        <p class="mt-3 text-[14px] leading-[1.7] text-paper/60">Du får et ryddig tilbud med fast pris og tydelig omfang. Ingen overraskelser på fakturaen — punktum.</p>
+      </div>
+      <div class="bg-ink p-8 pt-9 transition-colors duration-500 hover:bg-ink-2 md:p-10">
+        <p class="f-wide text-[42px] font-[720] leading-none text-copper">03</p>
+        <i data-lucide="wrench" class="mt-8 h-6 w-6 text-paper/40"></i>
+        <h3 class="f-wide mt-4 text-[19px] font-[660] uppercase tracking-tight">Utførelse</h3>
+        <p class="mt-3 text-[14px] leading-[1.7] text-paper/60">Sertifiserte fagfolk gjør jobben effektivt og til avtalt tid. Vi dekker av, rydder etter oss og holder deg oppdatert.</p>
+      </div>
+      <div class="bg-ink p-8 pt-9 transition-colors duration-500 hover:bg-ink-2 md:p-10">
+        <p class="f-wide text-[42px] font-[720] leading-none text-copper">04</p>
+        <i data-lucide="shield-check" class="mt-8 h-6 w-6 text-paper/40"></i>
+        <h3 class="f-wide mt-4 text-[19px] font-[660] uppercase tracking-tight">Garanti</h3>
+        <p class="mt-3 text-[14px] leading-[1.7] text-paper/60">Alt dokumenteres og overleveres med papirer i boks: 10 års garanti på våtrom, 5 år på øvrig arbeid.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANMELDELSER ============ -->
+<section id="anmeldelser" class="scroll-mt-24 py-24 md:py-32">
+  <div class="mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="grid gap-14 lg:grid-cols-12 lg:gap-10">
+
+      <div class="lg:col-span-4" data-reveal>
+        <p class="mono-label mb-5 flex items-center gap-3 text-ink/50"><span class="text-copper">06</span><span class="h-px w-10 bg-ink/20"></span>Kundene sier</p>
+        <h2 class="f-wide text-[clamp(2.1rem,4.4vw,3.4rem)] font-[680] uppercase leading-[1.02]">Ord er billig.<br><span class="font-serif font-[420] normal-case italic text-copper">Tall er ikke.</span></h2>
+        <div class="mt-9 flex items-end gap-4">
+          <p class="f-wide text-[86px] font-[740] leading-[0.85]">4,9</p>
+          <div class="pb-2">
+            <div class="flex gap-1 text-copper">
+              <i data-lucide="star" class="h-5 w-5"></i><i data-lucide="star" class="h-5 w-5"></i><i data-lucide="star" class="h-5 w-5"></i><i data-lucide="star" class="h-5 w-5"></i><i data-lucide="star" class="h-5 w-5"></i>
+            </div>
+            <p class="mt-2 text-[13px] text-ink/55">187 verifiserte anmeldelser<br>Google · MittVVS · Byggstart</p>
+          </div>
+        </div>
+        <div class="mt-9 border-t border-ink/12 pt-7">
+          <a href="#kontakt" class="btn btn-ink">Bli neste fornøyde kunde<i data-lucide="arrow-right" class="arr-r h-4 w-4"></i></a>
+        </div>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:col-span-8">
+        <figure class="flex flex-col justify-between rounded-[16px] border border-ink/10 bg-card p-7 transition-shadow duration-500 hover:shadow-[0_24px_50px_-24px_rgba(11,15,20,.25)] md:p-8" data-reveal>
+          <div>
+            <div class="flex items-center justify-between">
+              <div class="flex gap-1 text-copper"><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i></div>
+              <span class="mono-label text-ink/35">Lekkasje</span>
+            </div>
+            <blockquote class="mt-5 text-[15.5px] leading-[1.7] text-ink/80">«De kom innen to timer, fant lekkasjen med varmekamera og hadde alt utbedret samme dag. Dokumentasjonen til forsikringsselskapet var klar før de dro. Utrolig profesjonelt.»</blockquote>
+          </div>
+          <figcaption class="mt-6 border-t border-ink/10 pt-4">
+            <p class="text-[14px] font-semibold">Kari Solberg</p>
+            <p class="mt-0.5 text-[12.5px] text-ink/50">Privatkunde · Frogner</p>
+          </figcaption>
+        </figure>
+
+        <figure class="flex flex-col justify-between rounded-[16px] border border-ink/10 bg-card p-7 transition-shadow duration-500 hover:shadow-[0_24px_50px_-24px_rgba(11,15,20,.25)] md:p-8" data-reveal data-delay="80">
+          <div>
+            <div class="flex items-center justify-between">
+              <div class="flex gap-1 text-copper"><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i></div>
+              <span class="mono-label text-ink/35">Serviceavtale</span>
+            </div>
+            <blockquote class="mt-5 text-[15.5px] leading-[1.7] text-ink/80">«Andersen Rør har det tekniske ansvaret i alle byggene våre. Når noe skjer, er de der — hver eneste gang. Det er den tryggheten vi betaler for, og den er verdt hver krone.»</blockquote>
+          </div>
+          <figcaption class="mt-6 border-t border-ink/10 pt-4">
+            <p class="text-[14px] font-semibold">Morten Lie</p>
+            <p class="mt-0.5 text-[12.5px] text-ink/50">Driftsleder · Nord &amp; Sønn Eiendom</p>
+          </figcaption>
+        </figure>
+
+        <figure class="flex flex-col justify-between rounded-[16px] border border-ink/10 bg-card p-7 transition-shadow duration-500 hover:shadow-[0_24px_50px_-24px_rgba(11,15,20,.25)] md:p-8" data-reveal data-delay="140">
+          <div>
+            <div class="flex items-center justify-between">
+              <div class="flex gap-1 text-copper"><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i></div>
+              <span class="mono-label text-ink/35">Totalrenovering</span>
+            </div>
+            <blockquote class="mt-5 text-[15.5px] leading-[1.7] text-ink/80">«Badet ble levert på tid, på budsjett — og finishen er helt rå. De gjemte de gamle rørene penere enn vi turte håpe på. Fast pris viste seg å bety fast pris. Anbefales.»</blockquote>
+          </div>
+          <figcaption class="mt-6 border-t border-ink/10 pt-4">
+            <p class="text-[14px] font-semibold">Ahmed &amp; Lise Hassan</p>
+            <p class="mt-0.5 text-[12.5px] text-ink/50">Privatkunder · Skøyen</p>
+          </figcaption>
+        </figure>
+
+        <figure class="flex flex-col justify-between rounded-[16px] border border-ink/10 bg-card p-7 transition-shadow duration-500 hover:shadow-[0_24px_50px_-24px_rgba(11,15,20,.25)] md:p-8" data-reveal data-delay="200">
+          <div>
+            <div class="flex items-center justify-between">
+              <div class="flex gap-1 text-copper"><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i><i data-lucide="star" class="h-4 w-4"></i></div>
+              <span class="mono-label text-ink/35">Rør-i-rør</span>
+            </div>
+            <blockquote class="mt-5 text-[15.5px] leading-[1.7] text-ink/80">«32 leiligheter, null klager. Ryddig logistikk, daglige statusmeldinger til styret og beboerne — og alt dokumentert leilighet for leilighet. Slik skal det gjøres.»</blockquote>
+          </div>
+          <figcaption class="mt-6 border-t border-ink/10 pt-4">
+            <p class="text-[14px] font-semibold">Janne Krogstad</p>
+            <p class="mt-0.5 text-[12.5px] text-ink/50">Styreleder · Majorstuen Terrasse BRL</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OM OSS ============ -->
+<section id="om-oss" class="scroll-mt-24 border-t border-ink/10 bg-paper-2 py-24 md:py-32">
+  <div class="mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
+
+      <div class="relative lg:col-span-5" data-reveal>
+        <div class="group overflow-hidden rounded-[18px] ring-1 ring-ink/10">
+          <img src="images/photo-06.jpg" alt="Rørlegger fra Andersen Rør i arbeid på byggeplass" class="zoom-img aspect-[4/5] w-full object-cover" loading="lazy">
+        </div>
+        <div class="absolute -bottom-8 -right-3 hidden w-[190px] overflow-hidden rounded-[14px] ring-4 ring-paper-2 sm:block md:right-8">
+          <img src="images/photo-18.jpg" alt="Verktøy på arbeidsbenk" class="aspect-[4/5] w-full object-cover" loading="lazy">
+        </div>
+        <div class="mt-6 flex items-center gap-3 sm:mt-12 sm:pl-1">
+          <i data-lucide="badge-check" class="h-5 w-5 text-copper"></i>
+          <p class="mono-label text-ink/55">Godkjent våtromsbedrift · Siden 1998</p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 lg:col-start-7">
+        <p class="mono-label mb-5 flex items-center gap-3 text-ink/50" data-reveal><span class="text-copper">07</span><span class="h-px w-10 bg-ink/20"></span>Om oss</p>
+        <h2 class="f-wide text-[clamp(2.1rem,4.4vw,3.4rem)] font-[680] uppercase leading-[1.03]" data-reveal>En familiebedrift med <span class="font-serif font-[420] normal-case italic text-copper">røtter i faget.</span></h2>
+        <div class="mt-7 space-y-5 text-[15.5px] leading-[1.75] text-ink/70" data-reveal data-delay="80">
+          <p>Andersen Rør ble startet i 1998 av rørleggermester Odd Andersen, med en transittvogn, en skiftenøkkel og et enkelt prinsipp: gjør jobben så god at kunden ringer deg neste gang også.</p>
+          <p>I dag er vi 14 sertifiserte fagfolk, to lærlinger — og andre generasjon ved roret. Vi tar like mye ansvar for et tett kjøkkenavløp som for et kontorbygg på 4 000 kvadratmeter. Kvaliteten kjenner nemlig ikke størrelse.</p>
+        </div>
+        <ul class="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2" data-reveal data-delay="140">
+          <li class="flex items-center gap-3 text-[14px] font-medium"><span class="grid h-8 w-8 shrink-0 place-items-center rounded-[8px] border border-copper/35 bg-copper/10 text-copper"><i data-lucide="check" class="h-4 w-4"></i></span>Sentral godkjenning</li>
+          <li class="flex items-center gap-3 text-[14px] font-medium"><span class="grid h-8 w-8 shrink-0 place-items-center rounded-[8px] border border-copper/35 bg-copper/10 text-copper"><i data-lucide="check" class="h-4 w-4"></i></span>Godkjent våtromsbedrift</li>
+          <li class="flex items-center gap-3 text-[14px] font-medium"><span class="grid h-8 w-8 shrink-0 place-items-center rounded-[8px] border border-copper/35 bg-copper/10 text-copper"><i data-lucide="check" class="h-4 w-4"></i></span>Mesterbrev i faget</li>
+          <li class="flex items-center gap-3 text-[14px] font-medium"><span class="grid h-8 w-8 shrink-0 place-items-center rounded-[8px] border border-copper/35 bg-copper/10 text-copper"><i data-lucide="check" class="h-4 w-4"></i></span>Medlem av RBF</li>
+        </ul>
+        <div class="mt-10 border-t border-ink/12 pt-7" data-reveal data-delay="180">
+          <p class="font-serif text-[19px] italic leading-[1.55] text-ink/80">«Vi har aldri hatt behov for å skjule noe. Derfor gir vi fast pris, tydelige papirer — og godtar aldri en jobb vi ikke mestrer.»</p>
+          <p class="mono-label mt-4 text-ink/50">Håkon Andersen — Daglig leder · Rørleggermester</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="scroll-mt-24 border-t border-ink/10 py-24 md:py-32">
+  <div class="mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="grid gap-14 lg:grid-cols-12 lg:gap-10">
+      <div class="lg:col-span-4" data-reveal>
+        <p class="mono-label mb-5 flex items-center gap-3 text-ink/50"><span class="text-copper">08</span><span class="h-px w-10 bg-ink/20"></span>Vanlige spørsmål</p>
+        <h2 class="f-wide text-[clamp(2.1rem,4.4vw,3.2rem)] font-[680] uppercase leading-[1.03]">Lurer du på <span class="font-serif font-[420] normal-case italic text-copper">noe?</span></h2>
+        <p class="mt-6 max-w-[36ch] text-[15px] leading-[1.7] text-ink/65">Fant du ikke svaret? Ring oss — du snakker med en faktisk rørlegger, ikke et vekselbord.</p>
+        <a href="tel:+4722461000" class="mt-7 inline-flex items-center gap-2 text-[15px] font-semibold text-ink underline decoration-copper decoration-2 underline-offset-8 transition-colors hover:text-copper"><i data-lucide="phone" class="h-4 w-4 text-copper"></i>22 46 10 00</a>
+      </div>
+
+      <div class="lg:col-span-8" data-reveal data-delay="100">
+        <div class="faq border-t border-ink/12">
+          <button class="faq-q flex w-full items-center justify-between gap-6 py-6 text-left" aria-expanded="false">
+            <span class="faq-qtxt f-wide text-[17px] font-[640] uppercase tracking-tight transition-colors md:text-[19px]">Hva koster en befaring?</span>
+            <i data-lucide="plus" class="plus h-5 w-5 shrink-0 text-ink/60"></i>
+          </button>
+          <div class="faq-a"><div><p class="max-w-[62ch] pb-7 text-[15px] leading-[1.75] text-ink/65">Befaring er gratis og uforpliktende i Oslo og Akershus. Vi kommer til avtalt tid, ser på jobben og gir deg et skriftlig tilbud med fast pris — som regel innen 24 timer. Du sier først ja når alt er på bordet.</p></div></div>
+        </div>
+        <div class="faq border-t border-ink/12">
+          <button class="faq-q flex w-full items-center justify-between gap-6 py-6 text-left" aria-expanded="false">
+            <span class="faq-qtxt f-wide text-[17px] font-[640] uppercase tracking-tight transition-colors md:text-[19px]">Får jeg fast pris før dere starter?</span>
+            <i data-lucide="plus" class="plus h-5 w-5 shrink-0 text-ink/60"></i>
+          </button>
+          <div class="faq-a"><div><p class="max-w-[62ch] pb-7 text-[15px] leading-[1.75] text-ink/65">Ja — alltid. Tilbudet vårt spesifiserer omfang, materiell og sluttpris. Oppdager vi noe uforutsett underveis (det hender i gamle bygg), stopper vi og tar en prat med deg før vi gjør noe som helst videre.</p></div></div>
+        </div>
+        <div class="faq border-t border-ink/12">
+          <button class="faq-q flex w-full items-center justify-between gap-6 py-6 text-left" aria-expanded="false">
+            <span class="faq-qtxt f-wide text-[17px] font-[640] uppercase tracking-tight transition-colors md:text-[19px]">Hvor raskt er dere fremme ved akutt lekkasje?</span>
+            <i data-lucide="plus" class="plus h-5 w-5 shrink-0 text-ink/60"></i>
+          </button>
+          <div class="faq-a"><div><p class="max-w-[62ch] pb-7 text-[15px] leading-[1.75] text-ink/65">I Oslo og Akershus er vi i snitt fremme innen to timer — døgnet rundt, alle dager i året. Utrykning har fast pris som du godkjenner på forhånd. Før vi kommer: lukk hovedstoppekranen, den sitter nesten alltid ved inntaksrøret eller i kjelleren.</p></div></div>
+        </div>
+        <div class="faq border-t border-ink/12">
+          <button class="faq-q flex w-full items-center justify-between gap-6 py-6 text-left" aria-expanded="false">
+            <span class="faq-qtxt f-wide text-[17px] font-[640] uppercase tracking-tight transition-colors md:text-[19px]">Hva gjelder garantien?</span>
+            <i data-lucide="plus" class="plus h-5 w-5 shrink-0 text-ink/60"></i>
+          </button>
+          <div class="faq-a"><div><p class="max-w-[62ch] pb-7 text-[15px] leading-[1.75] text-ink/65">Du får 10 års garanti på våtromsarbeid og 5 år på øvrig rørleggerarbeid — i tillegg til 5 års reklamasjonsrett etter håndverkertjenesteloven. Alt dokumenteres digitalt og sendes deg ved overlevering.</p></div></div>
+        </div>
+        <div class="faq border-y border-ink/12">
+          <button class="faq-q flex w-full items-center justify-between gap-6 py-6 text-left" aria-expanded="false">
+            <span class="faq-qtxt f-wide text-[17px] font-[640] uppercase tracking-tight transition-colors md:text-[19px]">Tar dere oppdrag for bedrifter og borettslag?</span>
+            <i data-lucide="plus" class="plus h-5 w-5 shrink-0 text-ink/60"></i>
+          </button>
+          <div class="faq-a"><div><p class="max-w-[62ch] pb-7 text-[15px] leading-[1.75] text-ink/65">Ja, omtrent halvparten av omsetningen vår er bedrift. Vi tilbyr serviceavtaler med prioritert responstid, årlig gjennomgang og fast kontaktperson — brukt av alt fra nabolagsbakerier til bygg på 4 000 kvm.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section id="kontakt" class="scroll-mt-24 border-t border-ink/10 bg-paper-2 py-24 md:py-32">
+  <div class="mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-14">
+    <div class="grid gap-14 lg:grid-cols-12 lg:gap-12">
+
+      <div class="lg:col-span-5" data-reveal>
+        <p class="mono-label mb-5 flex items-center gap-3 text-ink/50"><span class="text-copper">09</span><span class="h-px w-10 bg-ink/20"></span>Kontakt</p>
+        <h2 class="f-wide text-[clamp(2.1rem,4.6vw,3.8rem)] font-[680] uppercase leading-[1.02]">Få et uforpliktende <span class="font-serif font-[420] normal-case italic text-copper">tilbud.</span></h2>
+        <p class="mt-6 max-w-[44ch] text-[15.5px] leading-[1.7] text-ink/65">Fortell oss hva du trenger hjelp med — så svarer vi innen <strong class="font-semibold text-ink">2 arbeidstimer</strong> (man–fre 07–16). Haster det? Ring heller.</p>
+
+        <div class="mt-10 space-y-6">
+          <a href="tel:+4722461000" class="group flex items-center gap-5">
+            <span class="grid h-13 w-13 shrink-0 place-items-center rounded-[12px] bg-ink text-paper transition-colors duration-300 group-hover:bg-copper"><i data-lucide="phone-call" class="h-5 w-5"></i></span>
+            <span>
+              <span class="mono-label block text-ink/45">Ring oss — vakttelefon 24/7</span>
+              <span class="f-wide mt-1 block text-[24px] font-[700] tracking-tight transition-colors group-hover:text-copper">22 46 10 00</span>
+            </span>
+          </a>
+          <a href="mailto:post@andersenror.no" class="group flex items-center gap-5">
+            <span class="grid h-13 w-13 shrink-0 place-items-center rounded-[12px] bg-ink text-paper transition-colors duration-300 group-hover:bg-copper"><i data-lucide="mail" class="h-5 w-5"></i></span>
+            <span>
+              <span class="mono-label block text-ink/45">E-post</span>
+              <span class="mt-1 block text-[17px] font-semibold transition-colors group-hover:text-copper">post@andersenror.no</span>
+            </span>
+          </a>
+          <div class="flex items-center gap-5">
+            <span class="grid h-13 w-13 shrink-0 place-items-center rounded-[12px] bg-ink text-paper"><i data-lucide="map-pin" class="h-5 w-5"></i></span>
+            <span>
+              <span class="mono-label block text-ink/45">Verksted og kontor</span>
+              <span class="mt-1 block text-[17px] font-semibold">Industrigata 42, 0264 Oslo</span>
+            </span>
+          </div>
+          <div class="flex items-center gap-5">
+            <span class="grid h-13 w-13 shrink-0 place-items-center rounded-[12px] bg-ink text-paper"><i data-lucide="clock" class="h-5 w-5"></i></span>
+            <span>
+              <span class="mono-label block text-ink/45">Åpningstider</span>
+              <span class="mt-1 block text-[17px] font-semibold">Man–fre 07.00–16.00 · Døgnvakt alltid</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="mt-10 flex items-center gap-3 rounded-[12px] border border-copper/30 bg-copper/10 px-5 py-4">
+          <i data-lucide="calendar-check" class="h-5 w-5 shrink-0 text-copper"></i>
+          <p class="text-[13.5px] leading-snug text-ink/75">Neste ledige befaring: <strong id="next-slot" class="font-semibold text-ink">—</strong></p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7" data-reveal data-delay="120">
+        <div class="relative rounded-[20px] border border-ink/10 bg-card p-6 shadow-[0_30px_70px_-40px_rgba(11,15,20,.35)] sm:p-10">
+
+          <form id="c-form" novalidate>
+            <div class="mb-8 flex items-center justify-between gap-4">
+              <div>
+                <h3 class="f-wide text-[20px] font-[700] uppercase tracking-tight">Bestill rørlegger</h3>
+                <p class="mt-1.5 flex items-center gap-2 text-[13px] text-ink/55"><i data-lucide="shield-check" class="h-4 w-4 text-copper"></i>Fast pris før vi starter — ingen skjulte kostnader</p>
+              </div>
+              <span class="mono-label hidden rounded-[5px] border border-ink/15 px-3 py-2 text-ink/50 sm:block">Svar &lt; 2 t</span>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label class="lbl" for="f-navn">Navn <span class="text-ink/30">*</span></label>
+                <input class="inp" type="text" id="f-navn" name="navn" placeholder="Ola Nordmann" autocomplete="name">
+                <p class="err mt-1.5 hidden items-center gap-1.5 text-[12.5px] text-error"><i data-lucide="triangle-alert" class="h-3.5 w-3.5"></i><span>Skriv inn navnet ditt</span></p>
+              </div>
+              <div>
+                <label class="lbl" for="f-tel">Telefon <span class="text-ink/30">*</span></label>
+                <input class="inp" type="tel" id="f-tel" name="telefon" inputmode="tel" placeholder="99 88 77 66" autocomplete="tel">
+                <p class="err mt-1.5 hidden items-center gap-1.5 text-[12.5px] text-error"><i data-lucide="triangle-alert" class="h-3.5 w-3.5"></i><span>Skriv inn et gyldig telefonnummer</span></p>
+              </div>
+              <div>
+                <label class="lbl" for="f-epost">E-post <span class="text-ink/30">*</span></label>
+                <input class="inp" type="email" id="f-epost" name="epost" inputmode="email" placeholder="deg@epost.no" autocomplete="email">
+                <p class="err mt-1.5 hidden items-center gap-1.5 text-[12.5px] text-error"><i data-lucide="triangle-alert" class="h-3.5 w-3.5"></i><span>Skriv inn en gyldig e-postadresse</span></p>
+              </div>
+              <div>
+                <label class="lbl" for="f-postnr">Postnummer <span class="normal-case tracking-normal text-ink/35">Valgfritt</span></label>
+                <input class="inp" type="text" id="f-postnr" name="postnummer" inputmode="numeric" maxlength="4" placeholder="0264">
+              </div>
+              <div class="sm:col-span-2">
+                <label class="lbl" for="f-tjeneste">Hva gjelder det? <span class="text-ink/30">*</span></label>
+                <div class="relative">
+                  <select class="inp pr-11" id="f-tjeneste" name="tjeneste">
+                    <option value="" selected disabled>Velg tjeneste …</option>
+                    <option>Bad og renovering</option>
+                    <option>Varmtvannsbereder</option>
+                    <option>Lekkasje / vannskade</option>
+                    <option>Rør-i-rør / vannledning</option>
+                    <option>Tett avløp</option>
+                    <option>Service og vedlikehold</option>
+                    <option>Bedrift / borettslag</option>
+                    <option>Annet</option>
+                  </select>
+                  <i data-lucide="chevron-down" class="pointer-events-none absolute right-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-ink/40"></i>
+                </div>
+                <p class="err mt-1.5 hidden items-center gap-1.5 text-[12.5px] text-error"><i data-lucide="triangle-alert" class="h-3.5 w-3.5"></i><span>Velg hva henvendelsen gjelder</span></p>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="lbl" for="f-melding">Beskjed <span class="text-ink/30">*</span></label>
+                <textarea class="inp min-h-[128px] resize-y" id="f-melding" name="melding" placeholder="Beskriv kort hva du trenger hjelp med — f.eks. «dusjen drypper», «vil bytte bereder» eller «ønsker tilbud på nytt bad»."></textarea>
+                <p class="err mt-1.5 hidden items-center gap-1.5 text-[12.5px] text-error"><i data-lucide="triangle-alert" class="h-3.5 w-3.5"></i><span>Skriv noen ord om hva du trenger hjelp med</span></p>
+              </div>
+            </div>
+
+            <input type="text" name="selskap_ws" id="f-gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="mt-6">
+              <label class="flex cursor-pointer items-start gap-3 select-none">
+                <input type="checkbox" id="f-samtykke" class="peer sr-only">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-[5px] border border-ink/30 bg-card transition-all duration-200 peer-checked:border-copper peer-checked:bg-copper peer-focus-visible:outline-2 peer-focus-visible:outline-copper">
+                  <i data-lucide="check" class="cbx h-3.5 w-3.5 text-paper"></i>
+                </span>
+                <span class="text-[13px] leading-relaxed text-ink/65">Jeg godtar at Andersen Rør lagrer opplysningene mine for å kunne svare på henvendelsen. <a href="#" class="underline decoration-copper underline-offset-2 hover:text-copper">Les personvernerklæringen</a></span>
+              </label>
+              <p class="err mt-1.5 hidden items-center gap-1.5 text-[12.5px] text-error" id="err-samtykke"><i data-lucide="triangle-alert" class="h-3.5 w-3.5"></i><span>Du må godta vilkårene for å sende inn</span></p>
+            </div>
+
+            <button type="submit" id="f-submit" class="btn btn-copper mt-8 w-full py-[1.2rem]">
+              <span id="submit-txt">Send forespørsel — gratis og uforpliktende</span>
+              <i data-lucide="arrow-right" class="arr-r h-4 w-4" id="submit-ico"></i>
+            </button>
+            <p class="mt-4 text-center text-[12px] leading-relaxed text-ink/40">Ved å sende inn godtar du å bli kontaktet av Andersen Rør AS. Vi svarer vanligvis innen 2 arbeidstimer.</p>
+          </form>
+
+          <!-- success -->
+          <div id="form-done" class="hidden py-8 text-center" tabindex="-1">
+            <span class="pop mx-auto grid h-20 w-20 place-items-center rounded-full bg-copper text-paper"><i data-lucide="check" class="h-10 w-10"></i></span>
+            <h3 class="f-wide mt-7 text-[26px] font-[700] uppercase tracking-tight">Forespørselen er sendt!</h3>
+            <p class="mx-auto mt-4 max-w-[44ch] text-[15px] leading-[1.7] text-ink/65">Takk, <strong id="done-name" class="font-semibold text-ink">deg</strong>! Vi har mottatt meldingen din og svarer innen 2 arbeidstimer (man–fre 07–16).</p>
+            <div class="mx-auto mt-7 flex max-w-[380px] items-center gap-3 rounded-[10px] border border-ink/12 bg-paper px-5 py-4 text-left">
+              <i data-lucide="siren" class="h-5 w-5 shrink-0 text-copper"></i>
+              <p class="text-[13px] leading-snug text-ink/70">Haster det mye? Ikke vent på svar — ring vakttelefonen <a href="tel:+4722461000" class="font-semibold text-ink underline decoration-copper underline-offset-2">22 46 10 00</a>.</p>
+            </div>
+            <button id="form-reset" class="btn btn-ghost mt-8">Send ny melding</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative overflow-hidden bg-ink text-paper">
+  <div class="mx-auto w-full max-w-[1440px] px-5 pb-10 pt-20 md:px-10 md:pt-28 xl:px-14">
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-8">
+
+      <div class="lg:col-span-5">
+        <a href="#" class="flex items-center gap-3">
+          <span class="grid h-10 w-10 place-items-center rounded-[10px] bg-copper">
+            <svg viewBox="0 0 40 40" class="h-6 w-6" fill="none" aria-hidden="true"><path d="M13 31V18a6 6 0 0 1 6-6h12" stroke="#F7F4EE" stroke-width="4.2" stroke-linecap="round"/><circle cx="31.4" cy="12" r="2.6" fill="#F7F4EE"/></svg>
+          </span>
+          <span class="leading-none">
+            <span class="f-wider block text-[17px] font-[750] uppercase tracking-tight">Andersen Rør</span>
+            <span class="mono-label mt-1 block text-[9.5px] text-paper/45">Rørleggerbedrift</span>
+          </span>
+        </a>
+        <p class="mt-6 max-w-[38ch] text-[14.5px] leading-[1.75] text-paper/55">Sertifisert rørleggerbedrift i Oslo siden 1998. Vi hjelper privatpersoner, bedrifter og borettslag — fra akutt lekkasje til komplett baderom.</p>
+        <div class="mt-7 flex flex-wrap gap-2.5">
+          <span class="mono-label flex items-center gap-2 rounded-[6px] border border-paper/15 px-3 py-2 text-[10px] text-paper/60"><i data-lucide="badge-check" class="h-3.5 w-3.5 text-copper"></i>Sentral godkjent</span>
+          <span class="mono-label flex items-center gap-2 rounded-[6px] border border-paper/15 px-3 py-2 text-[10px] text-paper/60"><i data-lucide="shield-check" class="h-3.5 w-3.5 text-copper"></i>Godkjent våtrom</span>
+          <span class="mono-label flex items-center gap-2 rounded-[6px] border border-paper/15 px-3 py-2 text-[10px] text-paper/60"><i data-lucide="star" class="h-3.5 w-3.5 text-copper"></i>4,9 / 5</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="mono-label mb-6 text-paper/40">Tjenester</p>
+        <ul class="space-y-3.5 text-[14px]">
+          <li><a href="#tjenester" class="text-paper/65 transition-colors hover:text-copper">Bad &amp; renovering</a></li>
+          <li><a href="#tjenester" class="text-paper/65 transition-colors hover:text-copper">Varmtvannsbereder</a></li>
+          <li><a href="#tjenester" class="text-paper/65 transition-colors hover:text-copper">Lekkasje &amp; vannskade</a></li>
+          <li><a href="#tjenester" class="text-paper/65 transition-colors hover:text-copper">Rør-i-rør</a></li>
+          <li><a href="#tjenester" class="text-paper/65 transition-colors hover:text-copper">Tette avløp</a></li>
+          <li><a href="#dognvakt" class="text-paper/65 transition-colors hover:text-copper">Døgnvakt 24/7</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="mono-label mb-6 text-paper/40">Selskap</p>
+        <ul class="space-y-3.5 text-[14px]">
+          <li><a href="#om-oss" class="text-paper/65 transition-colors hover:text-copper">Om oss</a></li>
+          <li><a href="#prosjekter" class="text-paper/65 transition-colors hover:text-copper">Prosjekter</a></li>
+          <li><a href="#anmeldelser" class="text-paper/65 transition-colors hover:text-copper">Anmeldelser</a></li>
+          <li><a href="#faq" class="text-paper/65 transition-colors hover:text-copper">Vanlige spørsmål</a></li>
+          <li><a href="#kontakt" class="text-paper/65 transition-colors hover:text-copper">Kontakt</a></li>
+          <li><a href="#kontakt" class="text-paper/65 transition-colors hover:text-copper">Bli rørlegger hos oss</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <p class="mono-label mb-6 text-paper/40">Kontakt</p>
+        <ul class="space-y-4 text-[14px]">
+          <li><a href="tel:+4722461000" class="flex items-center gap-3 text-paper/65 transition-colors hover:text-copper"><i data-lucide="phone" class="h-4 w-4 text-copper"></i>22 46 10 00 — døgnvakt 24/7</a></li>
+          <li><a href="mailto:post@andersenror.no" class="flex items-center gap-3 text-paper/65 transition-colors hover:text-copper"><i data-lucide="mail" class="h-4 w-4 text-copper"></i>post@andersenror.no</a></li>
+          <li class="flex items-start gap-3 text-paper/65"><i data-lucide="map-pin" class="mt-0.5 h-4 w-4 shrink-0 text-copper"></i>Industrigata 42<br>0264 Oslo</li>
+          <li class="flex items-start gap-3 text-paper/65"><i data-lucide="building-2" class="mt-0.5 h-4 w-4 shrink-0 text-copper"></i>Org.nr 928 344 671 MVA</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-copper mt-7">Få tilbud<i data-lucide="arrow-up-right" class="arr h-4 w-4"></i></a>
+      </div>
+    </div>
+
+    <div class="pointer-events-none mt-20 select-none overflow-hidden md:mt-24" aria-hidden="true">
+      <p class="num-ghost f-wider whitespace-nowrap text-center text-[15.5vw] font-[820] uppercase leading-[0.8]">Andersen Rør</p>
+    </div>
+
+    <div class="mt-4 flex flex-col items-center justify-between gap-4 border-t border-paper/12 pt-7 sm:flex-row">
+      <p class="mono-label text-[10px] text-paper/40">© <span id="yr">2026</span> Andersen Rør AS · Alle rettigheter reservert</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="mono-label text-[10px] text-paper/40 transition-colors hover:text-paper">Personvern</a>
+        <a href="#" class="mono-label text-[10px] text-paper/40 transition-colors hover:text-paper">Vilkår</a>
+        <a href="#" class="mono-label text-[10px] text-paper/40 transition-colors hover:text-paper">Cookies</a>
+      </div>
+      <p class="mono-label text-[10px] text-paper/30">Demoside — fiktivt innhold · Foto: Pexels</p>
+    </div>
+  </div>
+</footer>
+
+<!-- back to top -->
+<button id="to-top" class="fixed bottom-5 right-5 z-[70] grid h-12 w-12 place-items-center rounded-full bg-ink text-paper shadow-xl ring-1 ring-white/10 transition-colors hover:bg-copper" aria-label="Til toppen">
+  <i data-lucide="arrow-up" class="h-5 w-5"></i>
+</button>
+
+<script>
+(function(){
+  'use strict';
+  try { lucide.createIcons(); } catch(e){}
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ---------- header + progress + to-top ---------- */
+  const hdr = document.getElementById('hdr');
+  const progress = document.getElementById('progress');
+  const toTop = document.getElementById('to-top');
+  let ticking = false;
+  function onScroll(){
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      const y = window.scrollY;
+      hdr.classList.toggle('scrolled', y > 28);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+      toTop.classList.toggle('show', y > 800);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+  toTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior: prefersReduced ? 'auto' : 'smooth' }); });
+
+  /* ---------- mobile menu ---------- */
+  const navBtn = document.getElementById('nav-btn');
+  const mm = document.getElementById('mm');
+  function setMenu(open){
+    document.body.classList.toggle('mm-open', open);
+    navBtn.setAttribute('aria-expanded', open);
+    navBtn.setAttribute('aria-label', open ? 'Lukk meny' : 'Åpne meny');
+    mm.setAttribute('aria-hidden', !open);
+  }
+  navBtn.addEventListener('click', function(){ setMenu(!document.body.classList.contains('mm-open')); });
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+
+  /* ---------- reveal on scroll ---------- */
+  document.querySelectorAll('[data-reveal]').forEach(function(el){
+    if(el.dataset.delay) el.style.setProperty('--rd', el.dataset.delay + 'ms');
+  });
+  const revealIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); revealIO.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ revealIO.observe(el); });
+
+  /* ---------- counters ---------- */
+  function animateCount(el){
+    const target = parseFloat(el.dataset.target);
+    const dec = +(el.dataset.decimals || 0);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1600, t0 = performance.now();
+    function step(t){
+      const p = Math.min((t - t0) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * e).toLocaleString('nb-NO', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + (p === 1 ? suffix : '');
+      if(p < 1) requestAnimationFrame(step);
+    }
+    if(prefersReduced){ el.textContent = target.toLocaleString('nb-NO', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suffix; return; }
+    requestAnimationFrame(step);
+  }
+  const cntIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ animateCount(en.target); cntIO.unobserve(en.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(function(el){ cntIO.observe(el); });
+
+  /* ---------- active nav link ---------- */
+  const navMap = {};
+  document.querySelectorAll('[data-nav]').forEach(function(a){ navMap[a.dataset.nav] = a; });
+  const secIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        Object.values(navMap).forEach(function(a){ a.removeAttribute('aria-current'); });
+        const link = navMap[en.target.id];
+        if(link) link.setAttribute('aria-current', 'true');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  Object.keys(navMap).forEach(function(id){ const s = document.getElementById(id); if(s) secIO.observe(s); });
+
+  /* ---------- service rows: hover-follow media + preselect ---------- */
+  const hm = document.getElementById('hm');
+  const hmImg = document.getElementById('hm-img');
+  const serviceList = document.getElementById('service-list');
+  const rows = document.querySelectorAll('#service-list .serv');
+
+  // preselect service in contact form
+  const tjenesteSelect = document.getElementById('f-tjeneste');
+  rows.forEach(function(r){
+    if(r.dataset.service){
+      r.addEventListener('click', function(){
+        const opt = Array.from(tjenesteSelect.options).find(function(o){ return o.text === r.dataset.service; });
+        if(opt) tjenesteSelect.value = opt.value || opt.text;
+        tjenesteSelect.classList.remove('inp-err');
+      });
+    }
+  });
+  tjenesteSelect.addEventListener('change', function(){ tjenesteSelect.classList.remove('inp-err'); });
+
+  /* neutralise placeholder links */
+  document.querySelectorAll('a[href="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); });
+  });
+
+  if(finePointer && !prefersReduced){
+    let tx = 0, ty = 0, cx = 0, cy = 0, rot = 0, active = false, lastX = 0;
+    // preload
+    rows.forEach(function(r){ const im = new Image(); im.src = r.dataset.img; });
+    rows.forEach(function(r){
+      r.addEventListener('mouseenter', function(){
+        if(!r.dataset.img) return;
+        hmImg.src = r.dataset.img;
+        hm.classList.add('on');
+        active = true;
+      });
+    });
+    serviceList.addEventListener('mouseleave', function(){ hm.classList.remove('on'); active = false; });
+    window.addEventListener('mousemove', function(e){
+      lastX = tx;
+      tx = Math.min(e.clientX + 36, window.innerWidth - 380);
+      ty = Math.min(e.clientY + 40, window.innerHeight - 280);
+    }, { passive:true });
+    (function loop(){
+      cx += (tx - cx) * 0.14;
+      cy += (ty - cy) * 0.14;
+      rot += ((tx - cx) * 0.045 - rot) * 0.1;
+      hm.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) rotate(' + Math.max(-4, Math.min(4, rot)) + 'deg)';
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ---------- before / after slider ---------- */
+  const ba = document.querySelector('.ba');
+  if(ba){
+    let dragging = false;
+    function setX(clientX){
+      const rect = ba.getBoundingClientRect();
+      const x = Math.max(0.05, Math.min(0.95, (clientX - rect.left) / rect.width));
+      ba.style.setProperty('--x', (x * 100) + '%');
+      ba.setAttribute('aria-valuenow', Math.round(x * 100));
+    }
+    ba.addEventListener('pointerdown', function(e){
+      dragging = true;
+      ba.setPointerCapture(e.pointerId);
+      setX(e.clientX);
+    });
+    ba.addEventListener('pointermove', function(e){ if(dragging) setX(e.clientX); });
+    ['pointerup','pointercancel'].forEach(function(ev){ ba.addEventListener(ev, function(){ dragging = false; }); });
+    ba.addEventListener('keydown', function(e){
+      if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      const cur = parseFloat(getComputedStyle(ba).getPropertyValue('--x')) || 50;
+      const next = Math.max(5, Math.min(95, cur + (e.key === 'ArrowRight' ? 5 : -5)));
+      ba.style.setProperty('--x', next + '%');
+      ba.setAttribute('aria-valuenow', next);
+    });
+    // gentle intro wiggle
+    if(!prefersReduced){
+      const io2 = new IntersectionObserver(function(en){
+        if(en[0].isIntersecting){
+          let t = 0; const start = 50;
+          const wiggle = setInterval(function(){
+            t += 0.08;
+            const v = start + Math.sin(t * 2.4) * Math.max(0, 8 - t * 2.6);
+            ba.style.setProperty('--x', v + '%');
+            if(t > 3){ clearInterval(wiggle); ba.style.setProperty('--x', '50%'); }
+          }, 16);
+          io2.unobserve(ba);
+        }
+      }, { threshold: 0.4 });
+      io2.observe(ba);
+    }
+  }
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll('.faq').forEach(function(f){
+    const btn = f.querySelector('.faq-q');
+    btn.addEventListener('click', function(){
+      const open = f.classList.contains('open');
+      document.querySelectorAll('.faq.open').forEach(function(o){ o.classList.remove('open'); o.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
+      if(!open){ f.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  /* ---------- next available slot ---------- */
+  (function(){
+    const el = document.getElementById('next-slot');
+    if(!el) return;
+    const days = ['søndag','mandag','tirsdag','onsdag','torsdag','fredag','lørdag'];
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    while(d.getDay() === 0 || d.getDay() === 6){ d.setDate(d.getDate() + 1); }
+    el.textContent = days[d.getDay()] + ' ' + String(d.getDate()).padStart(2,'0') + '.' + String(d.getMonth()+1).padStart(2,'0') + ', kl. 07.30';
+  })();
+
+  /* ---------- contact form ---------- */
+  const form = document.getElementById('c-form');
+  if(form){
+    const fields = {
+      navn:   { el: document.getElementById('f-navn'),   test: function(v){ return v.trim().length >= 2; } },
+      tel:    { el: document.getElementById('f-tel'),    test: function(v){ return v.replace(/[\s()+-]/g,'').replace(/^0047|\+47/,'').length >= 8 && /\d/.test(v); } },
+      epost:  { el: document.getElementById('f-epost'),  test: function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); } },
+      tjeneste:{ el: tjenesteSelect,                     test: function(v){ return v !== ''; } },
+      melding:{ el: document.getElementById('f-melding'),test: function(v){ return v.trim().length >= 8; } }
+    };
+    function errFor(input){
+      let p = input.parentElement;
+      while(p && !p.querySelector(':scope > .err')) p = p.parentElement;
+      return p ? p.querySelector(':scope > .err') : null;
+    }
+    function showErr(err, show){
+      if(!err) return;
+      err.classList.toggle('hidden', !show);
+      err.classList.toggle('flex', show);
+    }
+    Object.values(fields).forEach(function(f){
+      f.el.addEventListener('input', function(){
+        if(f.test(f.el.value)){ f.el.classList.remove('inp-err'); showErr(errFor(f.el), false); }
+      });
+    });
+    const samtykke = document.getElementById('f-samtykke');
+    samtykke.addEventListener('change', function(){ if(samtykke.checked) showErr(document.getElementById('err-samtykke'), false); });
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(document.getElementById('f-gotcha').value) return;
+      let firstBad = null;
+      Object.values(fields).forEach(function(f){
+        const ok = f.test(f.el.value);
+        f.el.classList.toggle('inp-err', !ok);
+        showErr(errFor(f.el), !ok);
+        if(!ok && !firstBad) firstBad = f.el;
+      });
+      const consentOk = samtykke.checked;
+      showErr(document.getElementById('err-samtykke'), !consentOk);
+      if(!consentOk && !firstBad) firstBad = samtykke;
+      if(firstBad){ firstBad.focus({ preventScroll:false }); return; }
+
+      // simulate sending
+      const btn = document.getElementById('f-submit');
+      const txt = document.getElementById('submit-txt');
+      btn.disabled = true;
+      btn.classList.add('opacity-80','pointer-events-none');
+      document.getElementById('submit-ico').style.display = 'none';
+      txt.textContent = 'Sender forespørsel …';
+      setTimeout(function(){
+        form.classList.add('hidden');
+        const done = document.getElementById('form-done');
+        const name = fields.navn.el.value.trim().split(' ')[0];
+        if(name) document.getElementById('done-name').textContent = name.charAt(0).toUpperCase() + name.slice(1);
+        done.classList.remove('hidden');
+        try { lucide.createIcons(); } catch(err){}
+        done.focus({ preventScroll:true });
+        done.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' });
+      }, 1300);
+    });
+
+    document.getElementById('form-reset').addEventListener('click', function(){
+      document.getElementById('form-done').classList.add('hidden');
+      form.reset();
+      form.classList.remove('hidden');
+      const btn = document.getElementById('f-submit');
+      btn.disabled = false;
+      btn.classList.remove('opacity-80','pointer-events-none');
+      document.getElementById('submit-ico').style.display = '';
+      document.getElementById('submit-txt').textContent = 'Send forespørsel — gratis og uforpliktende';
+      document.getElementById('f-navn').focus();
+    });
+  }
+
+  /* ---------- year ---------- */
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

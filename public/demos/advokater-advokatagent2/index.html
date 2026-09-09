@@ -1,0 +1,2858 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andersen & Co Advokatfirma | Juridisk spisskompetanse i Oslo</title>
+  <meta name="description" content="Andersen & Co Advokatfirma DA tilbyr spesialisert juridisk rådgivning og målrettet tvisteløsning for næringsliv og privatpersoner i Oslo.">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond, Newsreader, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0B0F17',
+              darker: '#06080D',
+              surface: '#111722',
+              card: '#161F2E',
+              border: 'rgba(212, 188, 150, 0.15)',
+              gold: '#C5A880',
+              goldLight: '#E2CDB0',
+              goldDark: '#9E8055',
+              sand: '#F7F5F0',
+              sandDark: '#EAE6DD',
+              muted: '#8E9BAE',
+              subtle: '#4B5565',
+              accent: '#2A3649'
+            }
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Cormorant Garamond', 'Georgia', 'serif'],
+            display: ['Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scandinavian Luxury Styling */
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0B0F17;
+      color: #E2E8F0;
+      overflow-x: hidden;
+    }
+    
+    ::selection {
+      background: #C5A880;
+      color: #0B0F17;
+    }
+
+    .font-serif-title {
+      font-family: 'Newsreader', 'Cormorant Garamond', Georgia, serif;
+      letter-spacing: -0.02em;
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF8ED 0%, #E2CDB0 45%, #C5A880 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glass-nav {
+      background: rgba(11, 15, 23, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(212, 188, 150, 0.14);
+    }
+
+    .glass-card {
+      background: rgba(22, 31, 46, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 188, 150, 0.14);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      background: rgba(26, 38, 56, 0.88);
+      border-color: rgba(212, 188, 150, 0.38);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 25px rgba(197, 168, 128, 0.08);
+    }
+
+    .badge-subtle {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      border: 1px solid rgba(197, 168, 128, 0.25);
+      background: rgba(197, 168, 128, 0.06);
+      color: #E2CDB0;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #232E40;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C5A880;
+    }
+
+    .modal-backdrop {
+      background: rgba(6, 8, 13, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+      opacity: 0;
+    }
+    .faq-answer.open {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .ambient-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197, 168, 128, 0.08) 0%, rgba(11, 15, 23, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .btn-luxury {
+      position: relative;
+      background: #C5A880;
+      color: #0B0F17;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-luxury:hover {
+      background: #D4BC96;
+      box-shadow: 0 0 30px rgba(197, 168, 128, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-luxury-outline {
+      border: 1px solid rgba(197, 168, 128, 0.35);
+      color: #E2CDB0;
+      background: rgba(197, 168, 128, 0.04);
+      transition: all 0.3s ease;
+    }
+    .btn-luxury-outline:hover {
+      border-color: #C5A880;
+      background: rgba(197, 168, 128, 0.12);
+      color: #FFF;
+      transform: translateY(-1px);
+    }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body class="bg-brand-dark text-slate-200 antialiased selection:bg-brand-gold selection:text-brand-darker">
+
+  <!-- TOP TICKER / STATUS BAR -->
+  <div class="bg-brand-darker border-b border-brand-border/40 text-xs py-2 px-4 text-brand-muted hidden md:block relative z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-6">
+        <span class="inline-flex items-center text-brand-goldLight">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
+          Oslo-kontoret: Åpent i dag 08:00 – 17:00
+        </span>
+        <span class="text-brand-subtle">|</span>
+        <span class="text-slate-400">Dronning Eufemias gate 16, 0191 Oslo</span>
+        <span class="text-brand-subtle">|</span>
+        <span class="text-brand-goldLight font-medium">Hasteoppdrag: Vakttelefon 24/7</span>
+      </div>
+      <div class="flex items-center space-x-5">
+        <a href="tel:+4722004500" class="hover:text-brand-gold transition flex items-center gap-1.5">
+          <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-gold"></i>
+          <span>+47 22 00 45 00</span>
+        </a>
+        <a href="mailto:post@andersen-advokat.no" class="hover:text-brand-gold transition flex items-center gap-1.5">
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-brand-gold"></i>
+          <span>post@andersen-advokat.no</span>
+        </a>
+        <button onclick="toggleQuickSearch()" class="text-slate-400 hover:text-brand-gold transition flex items-center gap-1 pl-2 border-l border-brand-subtle/50">
+          <i data-lucide="search" class="w-3.5 h-3.5"></i>
+          <span>Søk (Ctrl+K)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY HEADER NAVIGATION -->
+  <header class="sticky top-0 z-40 glass-nav transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="#" class="group flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-sm bg-gradient-to-br from-brand-gold to-brand-goldDark flex items-center justify-center text-brand-darker font-serif font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
+            A&C
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg sm:text-xl font-bold tracking-tight font-serif-title text-white group-hover:text-brand-goldLight transition-colors">
+              ANDERSEN & CO
+            </span>
+            <span class="text-[10px] tracking-[0.22em] text-brand-gold uppercase font-semibold">
+              ADVOKATFIRMA — OSLO
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+          <a href="#fagomraader" class="text-slate-300 hover:text-brand-gold transition-colors py-1">Fagområder</a>
+          <a href="#advokater" class="text-slate-300 hover:text-brand-gold transition-colors py-1">Våre Advokater</a>
+          <a href="#metode" class="text-slate-300 hover:text-brand-gold transition-colors py-1">Vår Metode</a>
+          <a href="#priser" class="text-slate-300 hover:text-brand-gold transition-colors py-1">Priser & Dekning</a>
+          <a href="#innsikt" class="text-slate-300 hover:text-brand-gold transition-colors py-1">Innsikt & Guider</a>
+          <a href="#om-oss" class="text-slate-300 hover:text-brand-gold transition-colors py-1">Om Firmaet</a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="hidden sm:flex items-center space-x-4">
+          <div class="bg-brand-surface p-1 rounded-full border border-brand-border/60 text-xs flex">
+            <button onclick="setAudience('bedrift')" id="navPillBedrift" class="px-3 py-1 rounded-full text-slate-300 hover:text-white transition">Bedrift</button>
+            <button onclick="setAudience('privat')" id="navPillPrivat" class="px-3 py-1 rounded-full text-slate-300 hover:text-white transition">Privat</button>
+          </div>
+
+          <button onclick="openBookingModal()" class="btn-luxury px-5 py-2.5 rounded-sm text-xs uppercase tracking-wider font-bold shadow-md flex items-center gap-2">
+            <span>Be om vurdering</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="flex lg:hidden items-center space-x-3">
+          <button onclick="openBookingModal()" class="btn-luxury px-3 py-1.5 rounded text-xs font-bold sm:hidden">
+            Kontakt
+          </button>
+          <button onclick="toggleMobileMenu()" id="menuToggleBtn" aria-label="Åpne meny" class="p-2 rounded-md bg-brand-surface border border-brand-border text-slate-200 hover:text-brand-gold transition">
+            <i data-lucide="menu" class="w-6 h-6" id="menuIcon"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scrollProgress" class="h-[2px] bg-gradient-to-r from-brand-goldDark via-brand-gold to-brand-goldLight w-0 transition-all duration-75"></div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div id="mobileMenu" class="fixed inset-0 z-50 bg-brand-darker/95 backdrop-blur-xl transition-all duration-300 -translate-x-full lg:hidden flex flex-col justify-between p-6">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-brand-border">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 bg-brand-gold rounded flex items-center justify-center text-brand-dark font-serif font-bold text-lg">A&C</div>
+          <div>
+            <div class="text-white font-bold font-serif text-lg">ANDERSEN & CO</div>
+            <div class="text-[9px] tracking-widest text-brand-gold">ADVOKATFIRMA</div>
+          </div>
+        </div>
+        <button onclick="toggleMobileMenu()" class="p-2 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <div class="mt-6 flex bg-brand-surface p-1 rounded-lg border border-brand-border">
+        <button onclick="setAudience('bedrift'); toggleMobileMenu();" class="flex-1 py-2 text-xs font-medium rounded-md text-center bg-brand-card text-brand-goldLight">For Bedrifter</button>
+        <button onclick="setAudience('privat'); toggleMobileMenu();" class="flex-1 py-2 text-xs font-medium rounded-md text-center text-slate-400">For Privatpersoner</button>
+      </div>
+
+      <nav class="mt-8 flex flex-col space-y-4 text-lg">
+        <a href="#fagomraader" onclick="toggleMobileMenu()" class="text-slate-200 hover:text-brand-gold py-2 border-b border-white/5 flex items-center justify-between">
+          <span>Fagområder</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-brand-muted"></i>
+        </a>
+        <a href="#advokater" onclick="toggleMobileMenu()" class="text-slate-200 hover:text-brand-gold py-2 border-b border-white/5 flex items-center justify-between">
+          <span>Våre Advokater</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-brand-muted"></i>
+        </a>
+        <a href="#metode" onclick="toggleMobileMenu()" class="text-slate-200 hover:text-brand-gold py-2 border-b border-white/5 flex items-center justify-between">
+          <span>Vår Metode</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-brand-muted"></i>
+        </a>
+        <a href="#priser" onclick="toggleMobileMenu()" class="text-slate-200 hover:text-brand-gold py-2 border-b border-white/5 flex items-center justify-between">
+          <span>Priser & Rettshjelpsdekning</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-brand-muted"></i>
+        </a>
+        <a href="#innsikt" onclick="toggleMobileMenu()" class="text-slate-200 hover:text-brand-gold py-2 border-b border-white/5 flex items-center justify-between">
+          <span>Innsikt & Artikler</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-brand-muted"></i>
+        </a>
+        <a href="#om-oss" onclick="toggleMobileMenu()" class="text-slate-200 hover:text-brand-gold py-2 border-b border-white/5 flex items-center justify-between">
+          <span>Om Firmaet</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-brand-muted"></i>
+        </a>
+        <a href="#kontakt" onclick="toggleMobileMenu()" class="text-slate-200 hover:text-brand-gold py-2 flex items-center justify-between">
+          <span>Kontakt & Lokasjon</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-brand-muted"></i>
+        </a>
+      </nav>
+    </div>
+
+    <div class="space-y-4 pt-6 border-t border-brand-border">
+      <button onclick="toggleMobileMenu(); openBookingModal();" class="w-full btn-luxury py-3.5 rounded text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2">
+        <span>Be om en samtale</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+      <div class="flex items-center justify-around text-xs text-brand-muted pt-2">
+        <a href="tel:+4722004500" class="flex items-center gap-1 hover:text-brand-gold">
+          <i data-lucide="phone" class="w-4 h-4 text-brand-gold"></i> 22 00 45 00
+        </a>
+        <a href="mailto:post@andersen-advokat.no" class="flex items-center gap-1 hover:text-brand-gold">
+          <i data-lucide="mail" class="w-4 h-4 text-brand-gold"></i> E-post
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden border-b border-brand-border/30">
+      <div class="ambient-glow -top-40 -left-40"></div>
+      <div class="ambient-glow top-1/2 -right-40 opacity-50"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Left Column: Copy & Actions -->
+          <div class="lg:col-span-7 space-y-8">
+            
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-brand-surface border border-brand-border/80 text-brand-goldLight text-xs font-semibold tracking-wide">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping"></span>
+              <span>LEDENDE FORRETNINGS- OG PRIVATRETTSLIG ADVOKATFIRMA</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif-title font-medium text-white leading-[1.12]">
+              Klarhet i kompleksitet.<br>
+              <span class="gold-gradient-text italic font-serif">Trygghet når verdiene teller.</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-300 max-w-2xl font-light leading-relaxed">
+              Andersen & Co Advokatfirma bistår ledende virksomheter, gründere og privatpersoner med strategisk juridisk rådgivning og målrettet tvisteløsning. Vi kombinerer akademisk spisskompetanse med kommersiell handlekraft.
+            </p>
+
+            <!-- Dual Segment Action Switcher -->
+            <div class="p-1.5 rounded-xl bg-brand-surface/90 border border-brand-border max-w-xl shadow-xl">
+              <div class="grid grid-cols-2 gap-1">
+                <button onclick="setAudienceHero('bedrift')" id="heroTabBedrift" class="py-3 px-4 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 bg-brand-card text-brand-goldLight shadow-sm border border-brand-gold/30">
+                  <i data-lucide="briefcase" class="w-4 h-4 text-brand-gold"></i>
+                  <span>For Næringsliv & Bedrifter</span>
+                </button>
+                <button onclick="setAudienceHero('privat')" id="heroTabPrivat" class="py-3 px-4 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 text-slate-400 hover:text-white">
+                  <i data-lucide="user-check" class="w-4 h-4"></i>
+                  <span>For Privatpersoner</span>
+                </button>
+              </div>
+              
+              <div id="heroAudienceDetails" class="p-4 mt-1 rounded-lg bg-brand-darker/60 text-xs sm:text-sm text-slate-300 flex items-start gap-3 transition-opacity duration-300">
+                <i data-lucide="sparkles" class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="text-white block mb-0.5" id="heroAudienceTitle">Skreddersydd for selskaper, styrer og ledere</strong>
+                  <span id="heroAudienceDesc" class="text-slate-400">Strategisk bistand ved oppkjøp, restrukturering, arbeidsrettslige tvister og kommersielle kontraktsforhandlinger.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Primary CTAs -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+              <button onclick="openBookingModal()" class="btn-luxury px-8 py-4 rounded-sm text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-3 shadow-xl">
+                <span>Be om saksvurdering</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              </button>
+
+              <a href="#saksvurderer" class="btn-luxury-outline px-6 py-4 rounded-sm text-xs sm:text-sm font-medium flex items-center justify-center gap-2">
+                <i data-lucide="calculator" class="w-4 h-4 text-brand-gold"></i>
+                <span>Test vår 2-minutters sakssjekk</span>
+              </a>
+            </div>
+
+            <!-- Trust Highlights -->
+            <div class="pt-4 flex flex-wrap items-center gap-6 text-xs text-brand-muted border-t border-brand-border/40">
+              <div class="flex items-center gap-2">
+                <i data-lucide="shield-check" class="w-4 h-4 text-brand-gold"></i>
+                <span>Medlem av Advokatforeningen</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="lock" class="w-4 h-4 text-brand-gold"></i>
+                <span>100% lovfestet taushetsplikt</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i data-lucide="clock" class="w-4 h-4 text-brand-gold"></i>
+                <span>Rask respons innen 24 timer</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Visual Luxury Editorial Showcase -->
+          <div class="lg:col-span-5">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              
+              <div class="relative rounded-2xl overflow-hidden border border-brand-border shadow-2xl bg-brand-surface">
+                <img 
+                  src="images/photo-04.jpg" 
+                  alt="Andersen & Co Advokatfirma kontorlokaler i Oslo" 
+                  class="w-full h-[440px] sm:h-[480px] object-cover filter brightness-[0.82] contrast-[1.08] hover:scale-105 transition duration-700"
+                />
+
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-brand-darker/40 to-transparent"></div>
+
+                <div class="absolute top-4 right-4 bg-brand-darker/80 backdrop-blur-md border border-brand-border/80 px-3.5 py-1.5 rounded-full flex items-center gap-2 text-xs text-brand-goldLight">
+                  <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+                  <span>Barcode, Oslo</span>
+                </div>
+
+                <!-- Floating Metric Card at Bottom -->
+                <div class="absolute bottom-6 left-6 right-6 p-5 rounded-xl bg-brand-darker/90 backdrop-blur-lg border border-brand-border/90 shadow-2xl space-y-3">
+                  <div class="flex items-center justify-between pb-3 border-b border-brand-border/40">
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold">
+                        <i data-lucide="scale" class="w-4 h-4"></i>
+                      </div>
+                      <div>
+                        <div class="text-xs font-bold text-white uppercase tracking-wider">Erfaring & Presisjon</div>
+                        <div class="text-[11px] text-brand-muted">Dokumenterte resultater</div>
+                      </div>
+                    </div>
+                    <span class="text-xs text-brand-goldLight font-mono">2026</span>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-2 text-center pt-1">
+                    <div>
+                      <div class="text-lg sm:text-xl font-bold font-serif text-white">98.4%</div>
+                      <div class="text-[10px] text-brand-muted uppercase">Løst før domstol</div>
+                    </div>
+                    <div class="border-x border-brand-border/40">
+                      <div class="text-lg sm:text-xl font-bold font-serif text-brand-gold">1 800+</div>
+                      <div class="text-[10px] text-brand-muted uppercase">Saker bistått</div>
+                    </div>
+                    <div>
+                      <div class="text-lg sm:text-xl font-bold font-serif text-white">20+ år</div>
+                      <div class="text-[10px] text-brand-muted uppercase">I bransjen</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Floating badge bottom left -->
+              <div class="hidden sm:flex absolute -bottom-5 -left-5 bg-brand-surface border border-brand-border/90 p-3.5 rounded-lg shadow-xl items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                  <i data-lucide="award" class="w-4 h-4"></i>
+                </div>
+                <div class="text-left">
+                  <div class="text-xs font-bold text-white">Høyesterettsmøterett</div>
+                  <div class="text-[10px] text-brand-muted">Topprosedyre i alle instanser</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE 2-MINUTE CASE EVALUATOR -->
+    <section id="saksvurderer" class="py-16 bg-brand-surface/40 border-b border-brand-border/30 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-4xl mx-auto bg-brand-surface border border-brand-border rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          
+          <div class="absolute -top-24 -right-24 w-60 h-60 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="text-center max-w-2xl mx-auto mb-8 space-y-2">
+            <span class="badge-subtle text-brand-gold">INTERAKTIV VEILEDER</span>
+            <h2 class="text-2xl sm:text-3xl font-serif-title font-medium text-white">
+              Hvilken type juridisk bistand har du behov for?
+            </h2>
+            <p class="text-sm text-slate-300">
+              Svar på tre enkle spørsmål for å se hvilken spesialist som passer ditt behov og få et innledende handlingsestimat.
+            </p>
+          </div>
+
+          <!-- Step Container -->
+          <div id="evaluatorContainer" class="space-y-6">
+            
+            <div class="flex items-center justify-between max-w-xs mx-auto mb-6 text-xs text-brand-muted">
+              <span id="stepIndicator1" class="font-bold text-brand-gold">1. Klienttype</span>
+              <i data-lucide="chevron-right" class="w-3 h-3 text-brand-subtle"></i>
+              <span id="stepIndicator2" class="text-slate-500">2. Fagområde</span>
+              <i data-lucide="chevron-right" class="w-3 h-3 text-brand-subtle"></i>
+              <span id="stepIndicator3" class="text-slate-500">3. Tidslinje</span>
+            </div>
+
+            <!-- STEP 1: Client Type -->
+            <div id="step1" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <button onclick="selectEvaluatorType('Bedrift / Selskap')" class="p-5 rounded-xl bg-brand-card hover:bg-brand-card/80 border border-brand-border hover:border-brand-gold/60 text-left transition group">
+                <div class="w-10 h-10 rounded-lg bg-brand-gold/10 text-brand-gold flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                  <i data-lucide="building-2" class="w-5 h-5"></i>
+                </div>
+                <div class="text-base font-bold text-white group-hover:text-brand-goldLight transition">Næringsliv & Bedrift</div>
+                <div class="text-xs text-slate-400 mt-1">Selskapsrett, arbeidsrett, kontrakter, oppkjøp eller kommersielle tvister.</div>
+              </button>
+
+              <button onclick="selectEvaluatorType('Privatperson')" class="p-5 rounded-xl bg-brand-card hover:bg-brand-card/80 border border-brand-border hover:border-brand-gold/60 text-left transition group">
+                <div class="w-10 h-10 rounded-lg bg-brand-gold/10 text-brand-gold flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                  <i data-lucide="user" class="w-5 h-5"></i>
+                </div>
+                <div class="text-base font-bold text-white group-hover:text-brand-goldLight transition">Privatperson</div>
+                <div class="text-xs text-slate-400 mt-1">Arveoppgjør, fremtidsfullmakt, boligtvist, skifte, ektepakt eller arbeidsforhold.</div>
+              </button>
+            </div>
+
+            <!-- STEP 2: Subject Area -->
+            <div id="step2" class="hidden space-y-4">
+              <div class="text-xs font-semibold text-brand-goldLight uppercase tracking-wider">Velg saksområde:</div>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="step2Options"></div>
+            </div>
+
+            <!-- STEP 3: Urgency & Scenario -->
+            <div id="step3" class="hidden space-y-4">
+              <div class="text-xs font-semibold text-brand-goldLight uppercase tracking-wider">Hva er tidsaspektet og situasjonen?</div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <button onclick="selectEvaluatorUrgency('Akutt konflikt / Frist løper', 'Høy prioritet')" class="p-4 rounded-lg bg-brand-card border border-brand-border hover:border-brand-gold text-left transition">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 mb-2">Akutt</span>
+                  <div class="text-sm font-bold text-white">Akutt konflikt / Frist</div>
+                  <div class="text-xs text-slate-400 mt-1">Stevning, oppsigelse eller heving som krever rask handling innen 24–48 timer.</div>
+                </button>
+
+                <button onclick="selectEvaluatorUrgency('Forhandling / Avtaleinngåelse', 'Middels prioritet')" class="p-4 rounded-lg bg-brand-card border border-brand-border hover:border-brand-gold text-left transition">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 mb-2">Pågående</span>
+                  <div class="text-sm font-bold text-white">Forhandling & Avtale</div>
+                  <div class="text-xs text-slate-400 mt-1">Avtaleinngåelse, generasjonsskifte eller tvist under utvikling.</div>
+                </button>
+
+                <button onclick="selectEvaluatorUrgency('Forebyggende rådgivning', 'Strategisk')" class="p-4 rounded-lg bg-brand-card border border-brand-border hover:border-brand-gold text-left transition">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 mb-2">Planlegging</span>
+                  <div class="text-sm font-bold text-white">Forebyggende råd</div>
+                  <div class="text-xs text-slate-400 mt-1">Gjennomgang av dokumenter, utarbeidelse av testament/aksjonæravtale.</div>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 4: Evaluator Result Summary -->
+            <div id="stepResult" class="hidden p-6 rounded-xl bg-brand-card border border-brand-gold/40 space-y-4">
+              <div class="flex items-center justify-between pb-4 border-b border-brand-border">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                    <i data-lucide="check-circle" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-brand-gold">Vår anbefaling for din sak</div>
+                    <div class="text-base sm:text-lg font-bold text-white" id="evalResultHeader">Spesialisert team tildelt</div>
+                  </div>
+                </div>
+                <button onclick="resetEvaluator()" class="text-xs text-brand-muted hover:text-white underline">Start på nytt</button>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                <div class="space-y-2 bg-brand-surface p-4 rounded-lg border border-brand-border/60">
+                  <div class="text-slate-400">Oppsummering av ditt behov:</div>
+                  <div class="text-white font-medium" id="evalResultSummary">Privatperson • Arv & Skifte • Forhandling</div>
+                  <div class="text-slate-400 text-xs mt-2" id="evalResultActionPlan">
+                    Vi anbefaler en innledende 30-minutters gjennomgang for å kartlegge rettsstillingen og vurdere eventuell forsikringsdekning.
+                  </div>
+                </div>
+
+                <div class="space-y-2 bg-brand-surface p-4 rounded-lg border border-brand-border/60 flex flex-col justify-between">
+                  <div>
+                    <div class="text-slate-400 text-xs">Ansvarlig fagpartner:</div>
+                    <div class="text-white font-bold text-sm flex items-center gap-2 mt-1" id="evalResultPartner">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      <span>Advokat Henrik C. Andersen / Sofia Bergmann</span>
+                    </div>
+                  </div>
+                  <button onclick="proceedWithEvaluation()" class="w-full btn-luxury py-2.5 rounded text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2">
+                    <span>Gå videre med denne saken</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PRACTICE AREAS / FAGOMRÅDER -->
+    <section id="fagomraader" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div class="space-y-3 max-w-2xl">
+            <span class="badge-subtle text-brand-gold">FAGOMRÅDER & SPESIALISERING</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-title font-medium text-white">
+              Spisskompetanse på tvers av <span class="gold-gradient-text italic">næring og privatliv.</span>
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base">
+              Våre advokater har spesialisert seg innen sentrale rettsområder for å levere presis rådgivning med høyeste faglige integritet.
+            </p>
+          </div>
+
+          <div class="flex items-center p-1 bg-brand-surface rounded-xl border border-brand-border/80 self-start md:self-end">
+            <button onclick="filterPractices('all')" id="tabAll" class="px-4 py-2 rounded-lg text-xs font-semibold bg-brand-card text-brand-goldLight border border-brand-gold/30 transition">
+              Alle områder (8)
+            </button>
+            <button onclick="filterPractices('bedrift')" id="tabBedrift" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition">
+              Næringsliv & Bedrift
+            </button>
+            <button onclick="filterPractices('privat')" id="tabPrivat" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition">
+              Privatpersoner
+            </button>
+          </div>
+        </div>
+
+        <!-- Practice Area Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="practiceGrid">
+          
+          <!-- Card 1: Arbeidsrett -->
+          <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer" data-category="both" onclick="openPracticeModal('arbeidsrett')">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
+                  <i data-lucide="briefcase" class="w-6 h-6"></i>
+                </div>
+                <span class="badge-pill">Bedrift & Privat</span>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white group-hover:text-brand-goldLight transition-colors">
+                Arbeidsrett & Varsling
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Bistand ved nedbemanninger, oppsigelser, sluttavtaler, varslingssaker, granskninger og styring av personalsaker.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-brand-border/40 pt-3">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Nedbemanningsprosesser & 15-1</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Forhandling av sluttpakker</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Konkurranseklausuler</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-border/30 flex items-center justify-between text-xs font-semibold text-brand-gold group-hover:text-brand-goldLight">
+              <span>Les om fagområdet</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+
+          <!-- Card 2: Selskapsrett & M&A -->
+          <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer" data-category="bedrift" onclick="openPracticeModal('selskapsrett')">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
+                  <i data-lucide="landmark" class="w-6 h-6"></i>
+                </div>
+                <span class="badge-pill">Næringsliv</span>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white group-hover:text-brand-goldLight transition-colors">
+                Selskapsrett & M&A
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Transaksjoner, oppkjøp og fusjoner, aksjonæravtaler, emisjoner, restruktureringer og styreansvar.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-brand-border/40 pt-3">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Aksjonæravtaler & vedtekter</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Due diligence & transaksjonsstøtte</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Styreansvar & granskning</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-border/30 flex items-center justify-between text-xs font-semibold text-brand-gold group-hover:text-brand-goldLight">
+              <span>Les om fagområdet</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+
+          <!-- Card 3: Fast Eiendom & Entreprise -->
+          <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer" data-category="both" onclick="openPracticeModal('eiendom')">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
+                  <i data-lucide="building" class="w-6 h-6"></i>
+                </div>
+                <span class="badge-pill">Bedrift & Privat</span>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white group-hover:text-brand-goldLight transition-colors">
+                Fast Eiendom & Entreprise
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Kjøp og salg av eiendom, mangelskrav etter avhendingsloven, plan- og bygningsrett, samt entreprisetvister.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-brand-border/40 pt-3">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Avhendingslov & skjulte mangler</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> NS 8405 / 8407 entreprisetvister</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Tomtefeste & seksjonering</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-border/30 flex items-center justify-between text-xs font-semibold text-brand-gold group-hover:text-brand-goldLight">
+              <span>Les om fagområdet</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+
+          <!-- Card 4: Arv, Generasjonsskifte & Skifte -->
+          <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer" data-category="privat" onclick="openPracticeModal('arv')">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
+                  <i data-lucide="scroll" class="w-6 h-6"></i>
+                </div>
+                <span class="badge-pill">Privat & Familie</span>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white group-hover:text-brand-goldLight transition-colors">
+                Arv & Generasjonsskifte
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Skreddersøm av testamenter, fremtidsfullmakter, arveoppgjør og skifte. Sikring av formue og overdragelse av familieselskaper.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-brand-border/40 pt-3">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Gyldige testament & pliktdelsarv</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Fremtidsfullmakt med vergemål</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Generasjonsskifte i familiebedrift</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-border/30 flex items-center justify-between text-xs font-semibold text-brand-gold group-hover:text-brand-goldLight">
+              <span>Les om fagområdet</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+
+          <!-- Card 5: Tvisteløsning & Prosedyre -->
+          <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer" data-category="both" onclick="openPracticeModal('prosedyre')">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
+                  <i data-lucide="scale" class="w-6 h-6"></i>
+                </div>
+                <span class="badge-pill">Alle instanser</span>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white group-hover:text-brand-goldLight transition-colors">
+                Tvisteløsning & Prosedyre
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Erfarne prosedyreadvokater med møterett for Høyesterett. Representasjon i forhandlinger, rettsmekling, voldgift og ordinære domstoler.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-brand-border/40 pt-3">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Tingrett, Lagmannsrett & Høyesterett</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Rettsmekling & forliksforhandlinger</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Voldgiftssaker (Arbitration)</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-border/30 flex items-center justify-between text-xs font-semibold text-brand-gold group-hover:text-brand-goldLight">
+              <span>Les om fagområdet</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+
+          <!-- Card 6: Kontraktsrett & Kommersielle Avtaler -->
+          <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer" data-category="bedrift" onclick="openPracticeModal('kontraktsrett')">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
+                  <i data-lucide="file-check-2" class="w-6 h-6"></i>
+                </div>
+                <span class="badge-pill">Næringsliv</span>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white group-hover:text-brand-goldLight transition-colors">
+                Kontraktsrett & Avtaler
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Næringsavtaler, leverandørkontrakter, lisensavtaler, taushetsavtaler og håndtering av kontraktsmislighold.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-brand-border/40 pt-3">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Leverandør- & rammeavtaler</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> IT-, SaaS- og lisensavtaler</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Hevings- og erstatningskrav</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-border/30 flex items-center justify-between text-xs font-semibold text-brand-gold group-hover:text-brand-goldLight">
+              <span>Les om fagområdet</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+
+          <!-- Card 7: Familierett & Økonomisk Oppgjør -->
+          <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer" data-category="privat" onclick="openPracticeModal('familierett')">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
+                  <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                </div>
+                <span class="badge-pill">Privat</span>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white group-hover:text-brand-goldLight transition-colors">
+                Familierett & Ektepakter
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Rammer rundt ekteskap og samboerskap, ektepakter og samboerkontrakter, samt bistand ved samlivsbrudd og skifte.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-brand-border/40 pt-3">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Ektepakt & særeiebestemmelser</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Samboeravtaler & medeierskap</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Økonomisk oppgjør ved brudd</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-border/30 flex items-center justify-between text-xs font-semibold text-brand-gold group-hover:text-brand-goldLight">
+              <span>Les om fagområdet</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+
+          <!-- Card 8: Restrukturering & Finansiell Regulering -->
+          <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group cursor-pointer" data-category="bedrift" onclick="openPracticeModal('restrukturering')">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors duration-300">
+                  <i data-lucide="coins" class="w-6 h-6"></i>
+                </div>
+                <span class="badge-pill">Næringsliv</span>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white group-hover:text-brand-goldLight transition-colors">
+                Restrukturering & Insolvens
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                Likviditetsutfordringer, gjeldsforhandlinger, rekonstruksjon etter rekonstruksjonsloven og styrets handlingsplikt.
+              </p>
+              <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-brand-border/40 pt-3">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Rekonstruksjon & gjeldsordning</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Kreditorforhandlinger</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-gold"></i> Frist- og tapsbegrensningsplikt</li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-border/30 flex items-center justify-between text-xs font-semibold text-brand-gold group-hover:text-brand-goldLight">
+              <span>Les om fagområdet</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- METHOD / VÅR METODE & VERDILØFTE -->
+    <section id="metode" class="py-24 bg-brand-darker border-y border-brand-border/30 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <span class="badge-subtle text-brand-gold">VÅR ARBEIDSMETODE</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-title font-medium text-white leading-tight">
+              Kvalitet skapes gjennom <span class="gold-gradient-text italic">struktur og tilstedeværelse.</span>
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Vi vet at juridiske prosesser kan oppleves som uforutsigbare. Derfor arbeider vi etter fire ufravikelige prinsipper som sikrer deg full kontroll, kontinuerlig transparens og det beste strategiske utgangspunktet.
+            </p>
+
+            <div class="p-5 rounded-xl bg-brand-surface border border-brand-border/80 space-y-3">
+              <div class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <i data-lucide="check-check" class="w-4 h-4 text-brand-gold"></i>
+                <span>Garantier til våre klienter</span>
+              </div>
+              <p class="text-xs text-slate-400">
+                Du møter alltid en senioradvokat med spisskompetanse i din sak, og du mottar løpende skriftlige oppdateringer om status, risiko og kostnader.
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            
+            <div class="p-6 rounded-2xl bg-brand-surface/80 border border-brand-border/70 hover:border-brand-gold/40 transition duration-300 space-y-3">
+              <span class="text-3xl font-serif font-bold text-brand-gold/40">01</span>
+              <h3 class="text-lg font-bold text-white">Grundig forhåndsanalyse</h3>
+              <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Vi kartlegger sakens faktiske og rettslige sider før store kostnader påløper. Du får en ærlig vurdering av vinnersjanser og fallgruver.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-brand-surface/80 border border-brand-border/70 hover:border-brand-gold/40 transition duration-300 space-y-3">
+              <span class="text-3xl font-serif font-bold text-brand-gold/40">02</span>
+              <h3 class="text-lg font-bold text-white">Kommersiell pragmatisme</h3>
+              <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Juss er et verktøy for å nå dine mål. Den beste løsningen er ofte en solid forhandlet avtale som unngår langvarig domstolsbehandling.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-brand-surface/80 border border-brand-border/70 hover:border-brand-gold/40 transition duration-300 space-y-3">
+              <span class="text-3xl font-serif font-bold text-brand-gold/40">03</span>
+              <h3 class="text-lg font-bold text-white">Senior tilgjengelighet</h3>
+              <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Hos oss blir du ikke delegert bort. Du forholder deg direkte til partneren og senioradvokaten som har det faglige hovedansvaret.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-brand-surface/80 border border-brand-border/70 hover:border-brand-gold/40 transition duration-300 space-y-3">
+              <span class="text-3xl font-serif font-bold text-brand-gold/40">04</span>
+              <h3 class="text-lg font-bold text-white">Forutsigbar salærmodell</h3>
+              <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                Vi avklarer alltid kostnadsrammer på forhånd, sjekker rettshjelpsforsikringer og gir månedlige detaljspesifiserte fakturaer.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- THE TEAM / VÅRE ADVOKATER -->
+    <section id="advokater" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-2xl mx-auto text-center mb-16 space-y-3">
+          <span class="badge-subtle text-brand-gold">VÅRE ADVOKATER OG PARTNERE</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-title font-medium text-white">
+            Menneskene bak <span class="gold-gradient-text italic">resultatene.</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Vårt team består av høyt respekterte advokater med bakgrunn fra ledende forretningsadvokatfirmaer, domstolsvesenet og offentlig forvaltning.
+          </p>
+        </div>
+
+        <!-- Lawyer Grid (6 Profiles) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Lawyer 1: Henrik C. Andersen -->
+          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLawyerModal('henrik')">
+            <div class="relative h-80 overflow-hidden bg-brand-darker">
+              <img 
+                src="images/photo-07.jpg" 
+                alt="Henrik Christian Andersen - Managing Partner" 
+                class="w-full h-full object-cover object-top filter grayscale contrast-125 group-hover:scale-105 group-hover:grayscale-0 transition duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent"></div>
+              <div class="absolute top-4 right-4 bg-brand-darker/90 backdrop-blur-md border border-brand-border px-2.5 py-1 rounded text-[10px] text-brand-gold font-bold uppercase tracking-wider">
+                Møterett for Høyesterett
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Managing Partner</span>
+                <span class="text-xs text-brand-muted font-mono">Cand.jur. UiO</span>
+              </div>
+              <h3 class="text-2xl font-serif-title font-bold text-white group-hover:text-brand-goldLight transition-colors">
+                Henrik C. Andersen
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                Spesialist innen selskapsrett, M&A og kommersiell tvisteløsning. Over 22 års erfaring med komplekse forhandlinger og prosedyre for Høyesterett.
+              </p>
+              <div class="pt-4 border-t border-brand-border/40 flex items-center justify-between text-xs">
+                <span class="text-slate-400 group-hover:text-white transition">Se profil & erfaring →</span>
+                <div class="flex items-center gap-3 text-brand-muted">
+                  <a href="tel:+4722004501" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="phone" class="w-4 h-4"></i></a>
+                  <a href="mailto:henrik@andersen-advokat.no" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="mail" class="w-4 h-4"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lawyer 2: Marianne Lindqvist -->
+          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLawyerModal('marianne')">
+            <div class="relative h-80 overflow-hidden bg-brand-darker">
+              <img 
+                src="images/photo-09.jpg" 
+                alt="Marianne Lindqvist - Partner Arbeidsrett" 
+                class="w-full h-full object-cover object-top filter grayscale contrast-125 group-hover:scale-105 group-hover:grayscale-0 transition duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent"></div>
+              <div class="absolute top-4 right-4 bg-brand-darker/90 backdrop-blur-md border border-brand-border px-2.5 py-1 rounded text-[10px] text-brand-gold font-bold uppercase tracking-wider">
+                Fagleder Arbeidsrett
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Partner</span>
+                <span class="text-xs text-brand-muted font-mono">Master i rettsvitenskap</span>
+              </div>
+              <h3 class="text-2xl font-serif-title font-bold text-white group-hover:text-brand-goldLight transition-colors">
+                Marianne Lindqvist
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                En av landets fremste rådgivere innen individuell og kollektiv arbeidsrett, varslingssaker, granskninger og sluttavtaler på toppledernivå.
+              </p>
+              <div class="pt-4 border-t border-brand-border/40 flex items-center justify-between text-xs">
+                <span class="text-slate-400 group-hover:text-white transition">Se profil & erfaring →</span>
+                <div class="flex items-center gap-3 text-brand-muted">
+                  <a href="tel:+4722004502" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="phone" class="w-4 h-4"></i></a>
+                  <a href="mailto:marianne@andersen-advokat.no" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="mail" class="w-4 h-4"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lawyer 3: Christian Faye-Lund -->
+          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLawyerModal('christian')">
+            <div class="relative h-80 overflow-hidden bg-brand-darker">
+              <img 
+                src="images/photo-08.jpg" 
+                alt="Christian Faye-Lund - Partner Fast Eiendom" 
+                class="w-full h-full object-cover object-top filter grayscale contrast-125 group-hover:scale-105 group-hover:grayscale-0 transition duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent"></div>
+              <div class="absolute top-4 right-4 bg-brand-darker/90 backdrop-blur-md border border-brand-border px-2.5 py-1 rounded text-[10px] text-brand-gold font-bold uppercase tracking-wider">
+                Eiendom & Entreprise
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Partner</span>
+                <span class="text-xs text-brand-muted font-mono">Cand.jur. UiB</span>
+              </div>
+              <h3 class="text-2xl font-serif-title font-bold text-white group-hover:text-brand-goldLight transition-colors">
+                Christian Faye-Lund
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                Tidligere dommerfullmektig. Omfattende prosedyreerfaring innen entreprisetvister, avhendingsloven, plan- og bygningsrett og næringseiendom.
+              </p>
+              <div class="pt-4 border-t border-brand-border/40 flex items-center justify-between text-xs">
+                <span class="text-slate-400 group-hover:text-white transition">Se profil & erfaring →</span>
+                <div class="flex items-center gap-3 text-brand-muted">
+                  <a href="tel:+4722004503" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="phone" class="w-4 h-4"></i></a>
+                  <a href="mailto:christian@andersen-advokat.no" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="mail" class="w-4 h-4"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lawyer 4: Sofia V. Bergmann -->
+          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLawyerModal('sofia')">
+            <div class="relative h-80 overflow-hidden bg-brand-darker">
+              <img 
+                src="images/photo-11.jpg" 
+                alt="Sofia V. Bergmann - Partner Arv og Familie" 
+                class="w-full h-full object-cover object-top filter grayscale contrast-125 group-hover:scale-105 group-hover:grayscale-0 transition duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent"></div>
+              <div class="absolute top-4 right-4 bg-brand-darker/90 backdrop-blur-md border border-brand-border px-2.5 py-1 rounded text-[10px] text-brand-gold font-bold uppercase tracking-wider">
+                Arv & Formue
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Partner</span>
+                <span class="text-xs text-brand-muted font-mono">Master i rettsvitenskap</span>
+              </div>
+              <h3 class="text-2xl font-serif-title font-bold text-white group-hover:text-brand-goldLight transition-colors">
+                Sofia V. Bergmann
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                Ekspertise på formuesforvaltning, generasjonsskifte i familieeide bedrifter, arveoppgjør, kompliserte ektepakter og internasjonale arvetvister.
+              </p>
+              <div class="pt-4 border-t border-brand-border/40 flex items-center justify-between text-xs">
+                <span class="text-slate-400 group-hover:text-white transition">Se profil & erfaring →</span>
+                <div class="flex items-center gap-3 text-brand-muted">
+                  <a href="tel:+4722004504" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="phone" class="w-4 h-4"></i></a>
+                  <a href="mailto:sofia@andersen-advokat.no" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="mail" class="w-4 h-4"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lawyer 5: Eirik Thorne -->
+          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLawyerModal('eirik')">
+            <div class="relative h-80 overflow-hidden bg-brand-darker">
+              <img 
+                src="images/photo-05.jpg" 
+                alt="Eirik Thorne - Senioradvokat Kontraktsrett" 
+                class="w-full h-full object-cover object-top filter grayscale contrast-125 group-hover:scale-105 group-hover:grayscale-0 transition duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent"></div>
+              <div class="absolute top-4 right-4 bg-brand-darker/90 backdrop-blur-md border border-brand-border px-2.5 py-1 rounded text-[10px] text-brand-gold font-bold uppercase tracking-wider">
+                Tech & Kontrakter
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Senioradvokat</span>
+                <span class="text-xs text-brand-muted font-mono">LL.M. King's College</span>
+              </div>
+              <h3 class="text-2xl font-serif-title font-bold text-white group-hover:text-brand-goldLight transition-colors">
+                Eirik Thorne
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                Rådgiver for teknologiselskaper, SaaS-leverandører og investorer. Spesialisert på immaterialrett (IPR), lisenser og kommersiell avtalerett.
+              </p>
+              <div class="pt-4 border-t border-brand-border/40 flex items-center justify-between text-xs">
+                <span class="text-slate-400 group-hover:text-white transition">Se profil & erfaring →</span>
+                <div class="flex items-center gap-3 text-brand-muted">
+                  <a href="tel:+4722004505" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="phone" class="w-4 h-4"></i></a>
+                  <a href="mailto:eirik@andersen-advokat.no" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="mail" class="w-4 h-4"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lawyer 6: Camilla Holm Strand -->
+          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer" onclick="openLawyerModal('camilla')">
+            <div class="relative h-80 overflow-hidden bg-brand-darker">
+              <img 
+                src="images/photo-10.jpg" 
+                alt="Camilla Holm Strand - Advokat Prosedyre" 
+                class="w-full h-full object-cover object-top filter grayscale contrast-125 group-hover:scale-105 group-hover:grayscale-0 transition duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent"></div>
+              <div class="absolute top-4 right-4 bg-brand-darker/90 backdrop-blur-md border border-brand-border px-2.5 py-1 rounded text-[10px] text-brand-gold font-bold uppercase tracking-wider">
+                Prosedyre & Tvist
+              </div>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Advokat</span>
+                <span class="text-xs text-brand-muted font-mono">Master i rettsvitenskap</span>
+              </div>
+              <h3 class="text-2xl font-serif-title font-bold text-white group-hover:text-brand-goldLight transition-colors">
+                Camilla Holm Strand
+              </h3>
+              <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                Spesialisert innen prosedyre, pengekrav, erstatningsrett og styreansvar. Prosederer jevnlig for tingrett og lagmannsrett i hele Norge.
+              </p>
+              <div class="pt-4 border-t border-brand-border/40 flex items-center justify-between text-xs">
+                <span class="text-slate-400 group-hover:text-white transition">Se profil & erfaring →</span>
+                <div class="flex items-center gap-3 text-brand-muted">
+                  <a href="tel:+4722004506" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="phone" class="w-4 h-4"></i></a>
+                  <a href="mailto:camilla@andersen-advokat.no" onclick="event.stopPropagation();" class="hover:text-brand-gold"><i data-lucide="mail" class="w-4 h-4"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CASE HIGHLIGHTS & TESTIMONIALS -->
+    <section class="py-24 bg-brand-darker border-y border-brand-border/30 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <span class="badge-subtle text-brand-gold">DOKUMENTERTE RESULTATER</span>
+            <h2 class="text-3xl sm:text-4xl font-serif-title font-medium text-white">
+              Hva våre klienter <span class="gold-gradient-text italic">sier om oss.</span>
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Vi måler vår suksess i den tryggheten og de resultatene vi skaper for dem vi bistår. Diskresjon og kompromissløst engasjement er kjernen i ethvert oppdrag.
+            </p>
+
+            <div class="flex items-center gap-4 pt-2">
+              <div class="flex text-brand-gold">
+                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+              </div>
+              <span class="text-xs font-semibold text-slate-300">4.9 / 5 basert på over 240 klienttilbakemeldinger</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            
+            <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border/70 space-y-4 relative flex flex-col justify-between">
+              <i data-lucide="quote" class="w-8 h-8 text-brand-gold/20 absolute top-6 right-6"></i>
+              <p class="text-xs sm:text-sm text-slate-200 italic leading-relaxed">
+                "Andersen & Co bisto oss under et krevende oppkjøp av en nordisk konkurrent. Henrik og hans team var uovertrufne i forhandlingene og fant løsninger der andre advokater så problemer."
+              </p>
+              <div class="pt-4 border-t border-brand-border/30">
+                <div class="text-sm font-bold text-white">Lars Petter Thorne</div>
+                <div class="text-xs text-brand-gold">Konsernsjef, Nordic Tech Group AS</div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border/70 space-y-4 relative flex flex-col justify-between">
+              <i data-lucide="quote" class="w-8 h-8 text-brand-gold/20 absolute top-6 right-6"></i>
+              <p class="text-xs sm:text-sm text-slate-200 italic leading-relaxed">
+                "Da vi stod midt i et svært betent arveoppgjør med store verdier, var Sofia Bergmann en uerstattelig støttespiller. Hun kombinerte skyhøy juridisk presisjon med usedvanlig god mellommenneskelig klokskap."
+              </p>
+              <div class="pt-4 border-t border-brand-border/30">
+                <div class="text-sm font-bold text-white">Elisabeth M. Kielland</div>
+                <div class="text-xs text-brand-gold">Privatklient, Oslo</div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border/70 space-y-4 relative flex flex-col justify-between">
+              <i data-lucide="quote" class="w-8 h-8 text-brand-gold/20 absolute top-6 right-6"></i>
+              <p class="text-xs sm:text-sm text-slate-200 italic leading-relaxed">
+                "Marianne Lindqvist guidet ledelsen trygt gjennom en omfattende omorganisering og nedbemanning for 120 ansatte. Prosessen forløp uten en eneste tvist i etterkant. Enormt profesjonelt."
+              </p>
+              <div class="pt-4 border-t border-brand-border/30">
+                <div class="text-sm font-bold text-white">Kjetil Solvang</div>
+                <div class="text-xs text-brand-gold">HR-direktør, Logistikkpartner Norge</div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-brand-surface border border-brand-border/70 space-y-4 relative flex flex-col justify-between">
+              <i data-lucide="quote" class="w-8 h-8 text-brand-gold/20 absolute top-6 right-6"></i>
+              <p class="text-xs sm:text-sm text-slate-200 italic leading-relaxed">
+                "Christian Faye-Lund vant en prinsipiell entreprisetvist for vårt borettslag i lagmannsretten. Hans faglige trygghet og formidlingsevne i retten var i en egen klasse."
+              </p>
+              <div class="pt-4 border-t border-brand-border/30">
+                <div class="text-sm font-bold text-white">Bjørn Helge Wold</div>
+                <div class="text-xs text-brand-gold">Styreleder, Frogner Terrasse Boligsameie</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TRANSPARENCY: SALÆR & RETTSHJELPSFORSIKRING -->
+    <section id="priser" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mx-auto text-center mb-16 space-y-3">
+          <span class="badge-subtle text-brand-gold">TRANSPARENS & TRYGGHET</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-title font-medium text-white">
+            Forutsigbare rammer. <span class="gold-gradient-text italic">Ingen overraskelser.</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base">
+            Vi mener at full åpenhet rundt kostnader og forsikringsrettigheter er en forutsetning for et godt tillitsforhold mellom klient og advokat.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Box 1: Timebasert Salær -->
+          <div class="glass-card rounded-2xl p-8 space-y-6 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center">
+                <i data-lucide="clock-4" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white">Timebasert rådgivning</h3>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                For løpende bistand, forhandlinger og rettsprosesser faktureres det etter medgått tid. Vi fastsetter alltid en ramme for innledende fase.
+              </p>
+              <div class="space-y-2 pt-2 text-xs text-slate-300">
+                <div class="flex justify-between py-1 border-b border-brand-border/30">
+                  <span>Advokatfullmektig:</span>
+                  <span class="font-bold text-white">fra kr 2 100,- / time</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-brand-border/30">
+                  <span>Advokat / Senioradvokat:</span>
+                  <span class="font-bold text-white">fra kr 2 900,- / time</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-brand-border/30">
+                  <span>Partner / Høyesterettsadvokat:</span>
+                  <span class="font-bold text-white">fra kr 3 800,- / time</span>
+                </div>
+                <div class="text-[11px] text-brand-muted italic mt-1">*Alle priser er ekskl. mva for bedrifter.</div>
+              </div>
+            </div>
+            <button onclick="openBookingModal('Timebasert bistand')" class="w-full btn-luxury-outline py-3 rounded text-xs uppercase font-bold tracking-wider">
+              Avtal innledende time
+            </button>
+          </div>
+
+          <!-- Box 2: Fastpriser på standardoppdrag -->
+          <div class="glass-card rounded-2xl p-8 space-y-6 flex flex-col justify-between border-brand-gold/40 relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-gold text-brand-dark px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
+              Mest etterspurt
+            </div>
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-brand-gold/20 text-brand-gold flex items-center justify-center">
+                <i data-lucide="package-check" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white">Fastpris på dokumenter</h3>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                For standardiserte privatrettslige og selskapsrettslige dokumenter tilbyr vi faste, garanterte pakkepriser.
+              </p>
+              <div class="space-y-2 pt-2 text-xs text-slate-300">
+                <div class="flex justify-between py-1 border-b border-brand-border/30">
+                  <span>Fremtidsfullmakt (inkl. registrering):</span>
+                  <span class="font-bold text-white">kr 4 900,-</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-brand-border/30">
+                  <span>Testament (skreddersydd):</span>
+                  <span class="font-bold text-white">kr 5 800,-</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-brand-border/30">
+                  <span>Ektepakt / Samboeravtale:</span>
+                  <span class="font-bold text-white">kr 5 500,-</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-brand-border/30">
+                  <span>Aksjonæravtale (SMB):</span>
+                  <span class="font-bold text-white">fra kr 9 500,-</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openBookingModal('Fastprisoppdrag')" class="w-full btn-luxury py-3 rounded text-xs uppercase font-bold tracking-wider">
+              Bestill fastprispakke
+            </button>
+          </div>
+
+          <!-- Box 3: Rettshjelpsforsikring & Dekning -->
+          <div class="glass-card rounded-2xl p-8 space-y-6 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center">
+                <i data-lucide="shield-alert" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-bold font-serif-title text-white">Rettshjelpsdekning</h3>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Visste du at innboforsikringen, husforsikringen eller bedriftsforsikringen din ofte dekker opptil <strong>80–100 000 kr</strong> av advokatutgiftene ved tvist?
+              </p>
+              <div class="bg-brand-surface p-4 rounded-xl border border-brand-border/50 text-xs text-slate-300 space-y-2">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                  <span>Vi undersøker din forsikringsdekning kostnadsfritt ved oppstart.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                  <span>Vi tar all dialog og søknadsprosess direkte med forsikringsselskapet.</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="openInsuranceCheckerModal()" class="w-full btn-luxury-outline py-3 rounded text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2">
+              <i data-lucide="search" class="w-4 h-4 text-brand-gold"></i>
+              <span>Sjekk om du har rettshjelp</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LEGAL INSIGHTS & ARTICLES / FAGINNSINKT -->
+    <section id="innsikt" class="py-24 bg-brand-darker border-y border-brand-border/30 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div class="space-y-3 max-w-2xl">
+            <span class="badge-subtle text-brand-gold">JURIDISK INNSIKT & ARTIKLER</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-title font-medium text-white">
+              Kunnskap som gir deg et <span class="gold-gradient-text italic">fortrinn.</span>
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base">
+              Våre advokater deler jevnlig analyser av lovendringer, rettspraksis og strategiske vurderinger for næringsliv og privatpersoner.
+            </p>
+          </div>
+
+          <a href="#kontakt" class="btn-luxury-outline px-5 py-2.5 rounded-sm text-xs font-semibold uppercase tracking-wider self-start md:self-end flex items-center gap-2">
+            <span>Motta vårt månedlige nyhetsbrev</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Article 1 -->
+          <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('arvelov')">
+            <div>
+              <div class="h-44 overflow-hidden relative">
+                <img 
+                  src="images/photo-01.jpg" 
+                  alt="Generasjonsskifte og arv" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter brightness-90"
+                />
+                <span class="absolute top-3 left-3 bg-brand-darker/90 backdrop-blur-md px-2.5 py-0.5 rounded text-[10px] text-brand-gold font-bold uppercase">
+                  Arverett & Familie
+                </span>
+              </div>
+              <div class="p-5 space-y-2">
+                <div class="text-[11px] text-brand-muted flex items-center gap-2">
+                  <span>14. feb 2026</span>
+                  <span>•</span>
+                  <span>5 min lesetid</span>
+                </div>
+                <h3 class="text-lg font-bold font-serif-title text-white group-hover:text-brand-goldLight transition leading-snug">
+                  Generasjonsskifte i 2026: Slik unngår dere arvefellen og sikrer familiebedriften.
+                </h3>
+                <p class="text-xs text-slate-400 line-clamp-3">
+                  Nye føringer for formuesoverføring og selskapsrettslige bindinger stiller skjerpede krav til aksjonæravtaler og testamenter.
+                </p>
+              </div>
+            </div>
+            <div class="p-5 pt-0 text-xs font-semibold text-brand-gold flex items-center justify-between">
+              <span>Les hele analysen</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('nedbemanning')">
+            <div>
+              <div class="h-44 overflow-hidden relative">
+                <img 
+                  src="images/photo-06.jpg" 
+                  alt="Nedbemanning og arbeidsmiljøloven" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter brightness-90"
+                />
+                <span class="absolute top-3 left-3 bg-brand-darker/90 backdrop-blur-md px-2.5 py-0.5 rounded text-[10px] text-brand-gold font-bold uppercase">
+                  Arbeidsrett
+                </span>
+              </div>
+              <div class="p-5 space-y-2">
+                <div class="text-[11px] text-brand-muted flex items-center gap-2">
+                  <span>28. jan 2026</span>
+                  <span>•</span>
+                  <span>7 min lesetid</span>
+                </div>
+                <h3 class="text-lg font-bold font-serif-title text-white group-hover:text-brand-goldLight transition leading-snug">
+                  Nedbemanning og sluttavtaler: Ledelsens sjekkliste etter arbeidsmiljøloven.
+                </h3>
+                <p class="text-xs text-slate-400 line-clamp-3">
+                  En grundig gjennomgang av utvelgelseskretser, ansiennitet, drøftelsesmøter etter § 15-1 og fallgruvene som oftest fører til ansvar.
+                </p>
+              </div>
+            </div>
+            <div class="p-5 pt-0 text-xs font-semibold text-brand-gold flex items-center justify-between">
+              <span>Les hele analysen</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('avhendingslov')">
+            <div>
+              <div class="h-44 overflow-hidden relative">
+                <img 
+                  src="images/photo-12.jpg" 
+                  alt="Fast eiendom og avhendingslov" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter brightness-90"
+                />
+                <span class="absolute top-3 left-3 bg-brand-darker/90 backdrop-blur-md px-2.5 py-0.5 rounded text-[10px] text-brand-gold font-bold uppercase">
+                  Fast Eiendom
+                </span>
+              </div>
+              <div class="p-5 space-y-2">
+                <div class="text-[11px] text-brand-muted flex items-center gap-2">
+                  <span>10. jan 2026</span>
+                  <span>•</span>
+                  <span>4 min lesetid</span>
+                </div>
+                <h3 class="text-lg font-bold font-serif-title text-white group-hover:text-brand-goldLight transition leading-snug">
+                  Kjøpt bolig med skjulte feil? Reklamasjonsfrister og beviskrav du må kunne.
+                </h3>
+                <p class="text-xs text-slate-400 line-clamp-3">
+                  Slik navigerer du reklamasjonsreglene overfor selger og eierskifteforsikringsselskap etter reglene i avhendingsloven.
+                </p>
+              </div>
+            </div>
+            <div class="p-5 pt-0 text-xs font-semibold text-brand-gold flex items-center justify-between">
+              <span>Les hele analysen</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </article>
+
+          <!-- Article 4 -->
+          <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group cursor-pointer" onclick="openArticleModal('aksjonaer')">
+            <div>
+              <div class="h-44 overflow-hidden relative">
+                <img 
+                  src="images/photo-02.jpg" 
+                  alt="Aksjonæravtaler og selskapsrett" 
+                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter brightness-90"
+                />
+                <span class="absolute top-3 left-3 bg-brand-darker/90 backdrop-blur-md px-2.5 py-0.5 rounded text-[10px] text-brand-gold font-bold uppercase">
+                  Selskapsrett
+                </span>
+              </div>
+              <div class="p-5 space-y-2">
+                <div class="text-[11px] text-brand-muted flex items-center gap-2">
+                  <span>18. des 2025</span>
+                  <span>•</span>
+                  <span>6 min lesetid</span>
+                </div>
+                <h3 class="text-lg font-bold font-serif-title text-white group-hover:text-brand-goldLight transition leading-snug">
+                  Aksjonæravtalen du ikke visste du trengte før konflikten oppsto.
+                </h3>
+                <p class="text-xs text-slate-400 line-clamp-3">
+                  5 kritiske klausuler om forkjøpsrett, medsalgsplikt (drag-along), deadlock-mekanismer og verdsettelse ved tvungen uttreden.
+                </p>
+              </div>
+            </div>
+            <div class="p-5 pt-0 text-xs font-semibold text-brand-gold flex items-center justify-between">
+              <span>Les hele analysen</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION / OM FIRMAET -->
+    <section id="om-oss" class="py-24 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-6 relative">
+            <div class="relative rounded-2xl overflow-hidden border border-brand-border shadow-2xl">
+              <img 
+                src="images/photo-03.jpg" 
+                alt="Andersen & Co møterom i Oslo" 
+                class="w-full h-[400px] object-cover filter brightness-90"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-darker via-transparent to-transparent"></div>
+              
+              <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-brand-surface/90 backdrop-blur-md border border-brand-border text-xs text-slate-300">
+                <div class="font-serif font-bold text-base text-white mb-1">Etablert i Oslo, 2004</div>
+                <span>Over to tiår med uavhengig juridisk rådgivning for verdiskapere og familier over hele Norge.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-6">
+            <span class="badge-subtle text-brand-gold">OM ANDERSEN & CO ADVOKATFIRMA</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-title font-medium text-white leading-tight">
+              En advokatpartner med <span class="gold-gradient-text italic">engasjement og integritet.</span>
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Andersen & Co Advokatfirma DA ble grunnlagt med en klar visjon: Å skape et advokatmiljø hvor klientene aldri er saksnumre, men partnere vi bygger langvarige relasjoner med.
+            </p>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Våre advokater kombinerer solid akademisk tyngde med praktisk forretningsforståelse. Vi bistår både børsnoterte konsern, familiebedrifter og enkeltpersoner i avgjørende livsfaser. Hos oss er taushetsplikten, etikken og den faglige nøyaktigheten ufravikelig.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 pt-4">
+              <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+                <div class="text-2xl font-serif font-bold text-brand-gold">100%</div>
+                <div class="text-xs text-slate-300 font-medium mt-1">Uavhengig og partnereid</div>
+              </div>
+              <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+                <div class="text-2xl font-serif font-bold text-brand-gold">Oslo Sentrum</div>
+                <div class="text-xs text-slate-300 font-medium mt-1">Barcode & Dronning Eufemias gate</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="py-20 bg-brand-surface/40 border-t border-brand-border/30">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-12 space-y-2">
+          <span class="badge-subtle text-brand-gold">OFTE STILTE SPØRSMÅL</span>
+          <h2 class="text-2xl sm:text-3xl font-serif-title font-medium text-white">
+            Alt du lurer på før du kontakter oss
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          
+          <div class="p-5 rounded-xl bg-brand-surface border border-brand-border cursor-pointer transition" onclick="toggleFaq(1)">
+            <div class="flex items-center justify-between font-bold text-white text-sm sm:text-base">
+              <span>Hva koster den første innledende samtalen?</span>
+              <i data-lucide="chevron-down" id="faqIcon1" class="w-5 h-5 text-brand-gold transition-transform duration-300"></i>
+            </div>
+            <div id="faqAnswer1" class="faq-answer text-xs sm:text-sm text-slate-300 mt-3 pt-3 border-t border-brand-border/40 leading-relaxed">
+              En innledende telefonisk avklaring på inntil 15 minutter er alltid uforpliktende og kostnadsfri. Her avklarer vi sakens kjerne, habilitet og om vi er rett advokatfirma for ditt behov. Før oppdraget starter, mottar du en skriftlig oppdragsbekreftelse med full prisoversikt.
+            </div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-brand-surface border border-brand-border cursor-pointer transition" onclick="toggleFaq(2)">
+            <div class="flex items-center justify-between font-bold text-white text-sm sm:text-base">
+              <span>Hvordan vet jeg om forsikringen min dekker advokatutgiftene?</span>
+              <i data-lucide="chevron-down" id="faqIcon2" class="w-5 h-5 text-brand-gold transition-transform duration-300"></i>
+            </div>
+            <div id="faqAnswer2" class="faq-answer text-xs sm:text-sm text-slate-300 mt-3 pt-3 border-t border-brand-border/40 leading-relaxed">
+              De fleste standard innboforsikringer, husforsikringer, hytteforsikringer og næringsforsikringer inneholder en rettshjelpsklausul. Dersom det har oppstått en tvist (uenighet mellom to parter), dekker selskapet vanligvis inntil 80-100 000 kr (mot en mindre egenandel). Vi sjekker dine poliser og sender inn kravet for deg uten ekstra kostnad.
+            </div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-brand-surface border border-brand-border cursor-pointer transition" onclick="toggleFaq(3)">
+            <div class="flex items-center justify-between font-bold text-white text-sm sm:text-base">
+              <span>Hvor raskt kan dere starte på en hastesak?</span>
+              <i data-lucide="chevron-down" id="faqIcon3" class="w-5 h-5 text-brand-gold transition-transform duration-300"></i>
+            </div>
+            <div id="faqAnswer3" class="faq-answer text-xs sm:text-sm text-slate-300 mt-3 pt-3 border-t border-brand-border/40 leading-relaxed">
+              Ved akutte hendelser – som midlertidig forføyning, arrest, ulovlig oppsigelse eller akutte forhandlingsfrister – har vi beredskap for å starte arbeidet innen få timer. Vår vakttelefon er bemannet for hastehenvendelser.
+            </div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-brand-surface border border-brand-border cursor-pointer transition" onclick="toggleFaq(4)">
+            <div class="flex items-center justify-between font-bold text-white text-sm sm:text-base">
+              <span>Gjennomfører dere møter digitalt eller kun i Oslo?</span>
+              <i data-lucide="chevron-down" id="faqIcon4" class="w-5 h-5 text-brand-gold transition-transform duration-300"></i>
+            </div>
+            <div id="faqAnswer4" class="faq-answer text-xs sm:text-sm text-slate-300 mt-3 pt-3 border-t border-brand-border/40 leading-relaxed">
+              Vi bistår klienter over hele landet og internasjonalt. Vi avholder jevnlig sikre videomøter via Teams, telefonkonferanser eller fysiske møter i våre representative lokaler i Barcode i Oslo sentrum.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT & BOOKING FORM SECTION -->
+    <section id="kontakt" class="py-24 relative overflow-hidden">
+      <div class="ambient-glow -bottom-40 -left-40"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <!-- Left Column: Contact Information -->
+          <div class="lg:col-span-5 space-y-8">
+            <div class="space-y-3">
+              <span class="badge-subtle text-brand-gold">KONTAKT & KONSULTASJON</span>
+              <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif-title font-medium text-white leading-tight">
+                Ta kontakt for en <span class="gold-gradient-text italic">konfidensiell samtale.</span>
+              </h2>
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Send oss en henvendelse via skjemaet, eller ring oss direkte. Alle henvendelser behandles med strengeste konfidensialitet og underlagt advokaters lovfestede taushetsplikt.
+              </p>
+            </div>
+
+            <div class="space-y-5 pt-2">
+              
+              <!-- Address -->
+              <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-surface border border-brand-border/60">
+                <div class="w-10 h-10 rounded-lg bg-brand-gold/10 text-brand-gold flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white uppercase tracking-wider">Besøksadresse i Oslo</div>
+                  <div class="text-sm text-slate-300 mt-0.5">Dronning Eufemias gate 16, 0191 Oslo (Barcode / Bjørvika)</div>
+                  <div class="text-xs text-brand-muted mt-1">Gjesteparkering i underjordisk anlegg med heis direkte til resepsjon.</div>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-surface border border-brand-border/60">
+                <div class="w-10 h-10 rounded-lg bg-brand-gold/10 text-brand-gold flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="phone-call" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white uppercase tracking-wider">Telefon & Sentralbord</div>
+                  <a href="tel:+4722004500" class="text-sm font-bold text-brand-goldLight hover:underline block mt-0.5">+47 22 00 45 00</a>
+                  <div class="text-xs text-slate-400 mt-1">Mandag–Fredag: 08:00 – 17:00 (Hastevakt: 24/7)</div>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-surface border border-brand-border/60">
+                <div class="w-10 h-10 rounded-lg bg-brand-gold/10 text-brand-gold flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="mail" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white uppercase tracking-wider">Sikker E-post</div>
+                  <a href="mailto:post@andersen-advokat.no" class="text-sm font-bold text-brand-goldLight hover:underline block mt-0.5">post@andersen-advokat.no</a>
+                  <div class="text-xs text-slate-400 mt-1">Kryptert mottak av saksdokumenter og henvendelser.</div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="p-4 rounded-xl bg-brand-card/70 border border-brand-border text-xs text-slate-400 flex items-center gap-3">
+              <i data-lucide="shield-check" class="w-6 h-6 text-brand-gold flex-shrink-0"></i>
+              <span>Vi garanterer tilbakemelding innen 24 timer på alle henvendelser på hverdager.</span>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Luxury Contact Form -->
+          <div class="lg:col-span-7">
+            <div class="bg-brand-surface border border-brand-border rounded-2xl p-6 sm:p-10 shadow-2xl relative">
+              
+              <div class="pb-6 border-b border-brand-border/50 mb-6">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-xl sm:text-2xl font-serif-title font-bold text-white">Be om saksvurdering</h3>
+                  <span class="badge-pill">Uforpliktende</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1">Fyll ut feltene under så ringer en spesialisert advokat deg opp.</p>
+              </div>
+
+              <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Hvem representerer du?</label>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button type="button" onclick="setFormType('bedrift')" id="formBtnBedrift" class="py-2.5 px-4 rounded-lg text-xs font-bold border transition text-center bg-brand-card text-brand-goldLight border-brand-gold/40">
+                      Næringsliv / Bedrift
+                    </button>
+                    <button type="button" onclick="setFormType('privat')" id="formBtnPrivat" class="py-2.5 px-4 rounded-lg text-xs font-bold border transition text-center border-brand-border text-slate-400 hover:text-white">
+                      Privatperson
+                    </button>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="fullName" class="block text-xs font-medium text-slate-300 mb-1">Ditt fulle navn *</label>
+                    <input 
+                      type="text" 
+                      id="fullName" 
+                      required 
+                      placeholder="F.eks. Henrik Hansen"
+                      class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition"
+                    />
+                  </div>
+                  <div id="companyFieldContainer">
+                    <label for="companyName" class="block text-xs font-medium text-slate-300 mb-1">Selskapsnavn / Org.nr</label>
+                    <input 
+                      type="text" 
+                      id="companyName" 
+                      placeholder="F.eks. Hansen Eiendom AS"
+                      class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition"
+                    />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="email" class="block text-xs font-medium text-slate-300 mb-1">E-postadresse *</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      required 
+                      placeholder="navn@epost.no"
+                      class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition"
+                    />
+                  </div>
+                  <div>
+                    <label for="phone" class="block text-xs font-medium text-slate-300 mb-1">Telefonnummer *</label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      required 
+                      placeholder="+47 000 00 000"
+                      class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="practiceSelect" class="block text-xs font-medium text-slate-300 mb-1">Hvilket rettsområde gjelder saken? *</label>
+                  <select 
+                    id="practiceSelect" 
+                    required 
+                    class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition cursor-pointer"
+                  >
+                    <option value="" disabled selected>-- Velg juridisk fagområde --</option>
+                    <option value="Arbeidsrett & Varsling">Arbeidsrett & Varsling</option>
+                    <option value="Selskapsrett & M&A">Selskapsrett, M&A & Styreansvar</option>
+                    <option value="Fast Eiendom & Entreprise">Fast Eiendom & Entreprise</option>
+                    <option value="Kontraktsrett & Avtaler">Kontraktsrett & Kommersielle Avtaler</option>
+                    <option value="Arv, Generasjonsskifte & Skifte">Arv, Generasjonsskifte & Fremtidsfullmakt</option>
+                    <option value="Familierett & Ektepakt">Familierett & Økonomisk Oppgjør</option>
+                    <option value="Tvisteløsning & Prosedyre">Tvisteløsning, Voldgift & Rettsak</option>
+                    <option value="Restrukturering & Insolvens">Restrukturering & Insolvens</option>
+                    <option value="Annet juridisk spørsmål">Annet spørsmål / Usikker</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="caseDescription" class="block text-xs font-medium text-slate-300 mb-1">Kort beskrivelse av saken eller spørsmålet</label>
+                  <textarea 
+                    id="caseDescription" 
+                    rows="3" 
+                    placeholder="Beskriv kort situasjonen, motpart (hvis relevant for habilitetssjekk) og eventuelle tidsfrister..."
+                    class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition"
+                  ></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-300 mb-1">Ønsket møteform</label>
+                  <div class="grid grid-cols-3 gap-2 text-xs">
+                    <label class="flex items-center gap-2 p-2.5 rounded-lg bg-brand-card border border-brand-border cursor-pointer hover:border-brand-gold">
+                      <input type="radio" name="meetingType" value="Telefon" checked class="text-brand-gold focus:ring-brand-gold">
+                      <span>Telefon</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2.5 rounded-lg bg-brand-card border border-brand-border cursor-pointer hover:border-brand-gold">
+                      <input type="radio" name="meetingType" value="Videomøte" class="text-brand-gold focus:ring-brand-gold">
+                      <span>Teams / Video</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2.5 rounded-lg bg-brand-card border border-brand-border cursor-pointer hover:border-brand-gold">
+                      <input type="radio" name="meetingType" value="Kontor i Oslo" class="text-brand-gold focus:ring-brand-gold">
+                      <span>Møte i Oslo</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-2.5 pt-1">
+                  <input 
+                    type="checkbox" 
+                    id="privacyConsent" 
+                    required 
+                    class="mt-1 w-4 h-4 rounded bg-brand-card border-brand-border text-brand-gold focus:ring-brand-gold cursor-pointer"
+                  />
+                  <label for="privacyConsent" class="text-xs text-slate-400">
+                    Jeg forstår at henvendelsen behandles konfidensielt etter advokatetiske regler og samtykker til at Andersen & Co kan kontakte meg vedrørende denne saken.
+                  </label>
+                </div>
+
+                <button 
+                  type="submit" 
+                  id="submitBtn"
+                  class="w-full btn-luxury py-4 rounded-lg text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl"
+                >
+                  <i data-lucide="send" class="w-4 h-4"></i>
+                  <span>Send konfidensiell henvendelse</span>
+                </button>
+
+              </form>
+
+              <!-- Form Success State Message -->
+              <div id="formSuccessState" class="hidden text-center py-12 space-y-4">
+                <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 mx-auto flex items-center justify-center">
+                  <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h4 class="text-2xl font-serif-title font-bold text-white">Takk for din henvendelse</h4>
+                <p class="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+                  Vi har mottatt din sak og tildelt referansenummer <strong class="text-brand-goldLight font-mono" id="formRefNumber">#AC-2026-849</strong>. En spesialisert advokat vil gjennomgå saken og kontakte deg innen kort tid.
+                </p>
+                <div class="pt-4">
+                  <button onclick="resetContactForm()" class="btn-luxury-outline px-6 py-2 rounded text-xs uppercase font-bold">
+                    Send en ny melding
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-darker border-t border-brand-border text-slate-400 text-xs pt-16 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        
+        <!-- Col 1: Brand & Bio -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded bg-brand-gold flex items-center justify-center text-brand-dark font-serif font-bold text-lg">A&C</div>
+            <div>
+              <div class="text-white font-bold font-serif text-lg">ANDERSEN & CO</div>
+              <div class="text-[9px] tracking-widest text-brand-gold uppercase">ADVOKATFIRMA DA</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+            Spesialisert forretnings- og privatrettslig advokatfirma med kontorer i Oslo sentrum. Dedikert til presisjon, forretningsforståelse og klientens beste interesse.
+          </p>
+          <div class="space-y-1 text-xs text-slate-400">
+            <div>Org.nr: <span class="text-slate-300 font-mono">928 471 930 MVA</span></div>
+            <div>Medlem av <strong class="text-slate-300">Den Norske Advokatforening</strong></div>
+            <div>Underlagt Tilsynsrådet for advokatvirksomhet</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Næringsliv -->
+        <div class="space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-white">For Næringsliv</div>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Selskapsrett & M&A</a></li>
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Arbeidsrett & Varsling</a></li>
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Fast Eiendom & Entreprise</a></li>
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Kontraktsrett & Avtaler</a></li>
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Tvisteløsning & Voldgift</a></li>
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Restrukturering & Insolvens</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Privat -->
+        <div class="space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-white">For Privatpersoner</div>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Arverett & Testament</a></li>
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Fremtidsfullmakt</a></li>
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Generasjonsskifte</a></li>
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Ektepakt & Samboeravtaler</a></li>
+            <li><a href="#fagomraader" class="hover:text-brand-gold transition">Boligtvist & Avhendingslov</a></li>
+            <li><a href="#priser" class="hover:text-brand-gold transition">Rettshjelpsforsikring</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Nyhetsbrev & Direkte kontakt -->
+        <div class="space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-white">Juridisk Nyhetsbrev</div>
+          <p class="text-[11px] text-slate-400">Motta månedlige faglige analyser og oppdateringer om nye dommer og lover.</p>
+          <form onsubmit="handleNewsletter(event)" class="space-y-2">
+            <input 
+              type="email" 
+              required 
+              id="newsletterEmail" 
+              placeholder="Din e-postadresse" 
+              class="w-full bg-brand-surface border border-brand-border rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-gold"
+            />
+            <button type="submit" class="w-full btn-luxury py-2 rounded text-[11px] uppercase font-bold tracking-wider">
+              Meld meg på
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-brand-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-brand-muted">
+        <div>
+          © 2026 Andersen & Co Advokatfirma DA. Alle rettigheter reservert.
+        </div>
+        <div class="flex items-center space-x-6">
+          <button onclick="openInfoModal('personvern')" class="hover:text-brand-gold transition">Personvernerklæring</button>
+          <button onclick="openInfoModal('cookies')" class="hover:text-brand-gold transition">Informasjonskapsler</button>
+          <button onclick="openInfoModal('aapenhet')" class="hover:text-brand-gold transition">Åpenhetsloven</button>
+          <button onclick="openInfoModal('etikk')" class="hover:text-brand-gold transition">Advokatetiske regler</button>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= MODALS & DRAWERS ================= -->
+
+  <!-- 1. GENERAL BOOKING MODAL -->
+  <div id="bookingModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-brand-surface border border-brand-border rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
+      
+      <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="space-y-2 mb-6">
+        <span class="badge-subtle text-brand-gold">DIREKTE BESTILLING</span>
+        <h3 class="text-2xl font-serif-title font-bold text-white" id="modalBookingTitle">Bestill innledende konsultasjon</h3>
+        <p class="text-xs text-slate-300">Vi kontakter deg for å bekrefte tidspunkt og tildele rett spesialist.</p>
+      </div>
+
+      <form onsubmit="handleModalBooking(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Fullt navn *</label>
+          <input type="text" required id="modalName" class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold" placeholder="Ditt navn">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Telefonnummer *</label>
+            <input type="tel" required id="modalPhone" class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold" placeholder="+47 000 00 000">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">E-postadresse *</label>
+            <input type="email" required id="modalEmail" class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold" placeholder="deg@epost.no">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Ønsket fagområde</label>
+          <select id="modalPractice" class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold">
+            <option value="Arbeidsrett">Arbeidsrett & Varsling</option>
+            <option value="Selskapsrett & M&A">Selskapsrett & M&A</option>
+            <option value="Fast Eiendom">Fast Eiendom & Entreprise</option>
+            <option value="Arv & Generasjonsskifte">Arv, Generasjonsskifte & Fremtidsfullmakt</option>
+            <option value="Familierett">Familierett & Ektepakt</option>
+            <option value="Tvisteløsning">Tvisteløsning & Prosedyre</option>
+            <option value="Annet">Annet spørsmål</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Kort om saken</label>
+          <textarea id="modalNote" rows="2" class="w-full bg-brand-card border border-brand-border rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-gold" placeholder="Hva kan vi hjelpe deg med?"></textarea>
+        </div>
+
+        <button type="submit" class="w-full btn-luxury py-3 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2">
+          <span>Bekreft henvendelse</span>
+          <i data-lucide="check" class="w-4 h-4"></i>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- 2. LAWYER PROFILE DEEP DIVE MODAL -->
+  <div id="lawyerModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-brand-surface border border-brand-border rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
+      
+      <button onclick="closeLawyerModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex flex-col sm:flex-row gap-6 items-start pb-6 border-b border-brand-border">
+        <img id="lawyerModalImg" src="" alt="" class="w-24 h-24 sm:w-32 sm:h-32 rounded-xl object-cover border border-brand-border shadow-lg">
+        <div class="space-y-1">
+          <span id="lawyerModalRole" class="text-xs font-semibold text-brand-gold uppercase tracking-wider">Managing Partner</span>
+          <h3 id="lawyerModalName" class="text-2xl font-serif-title font-bold text-white">Henrik C. Andersen</h3>
+          <p id="lawyerModalDegree" class="text-xs text-brand-muted font-mono">Cand.jur., Universitetet i Oslo | Møterett for Høyesterett</p>
+          <div class="flex items-center gap-4 pt-2 text-xs">
+            <a id="lawyerModalPhone" href="#" class="text-brand-goldLight hover:underline flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5"></i> <span></span></a>
+            <a id="lawyerModalEmail" href="#" class="text-brand-goldLight hover:underline flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5"></i> <span></span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-4 py-6 text-xs sm:text-sm text-slate-300 leading-relaxed max-h-[50vh] overflow-y-auto pr-2" id="lawyerModalBio"></div>
+
+      <div class="pt-4 border-t border-brand-border flex items-center justify-between gap-4">
+        <button onclick="closeLawyerModal(); openBookingModal('Konsultasjon med advokat');" class="btn-luxury px-6 py-2.5 rounded text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+          <span>Book samtale med denne advokaten</span>
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+        </button>
+        <button onclick="closeLawyerModal()" class="text-xs text-brand-muted hover:text-white">Lukk</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3. PRACTICE AREA DETAIL MODAL -->
+  <div id="practiceModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-brand-surface border border-brand-border rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
+      
+      <button onclick="closePracticeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="space-y-2 pb-6 border-b border-brand-border">
+        <span id="practiceModalTag" class="badge-subtle text-brand-gold">FAGOMRÅDE</span>
+        <h3 id="practiceModalTitle" class="text-2xl font-serif-title font-bold text-white">Arbeidsrett & Varsling</h3>
+        <p id="practiceModalSubtitle" class="text-xs text-slate-300">Skreddersydd strategisk rådgivning og tvisteløsning.</p>
+      </div>
+
+      <div class="py-6 space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed max-h-[50vh] overflow-y-auto pr-2" id="practiceModalContent"></div>
+
+      <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+        <button onclick="closePracticeModal(); openBookingModal('Sak innen fagområde');" class="btn-luxury px-6 py-2.5 rounded text-xs font-bold uppercase tracking-wider">
+          Be om vurdering innen dette feltet
+        </button>
+        <button onclick="closePracticeModal()" class="text-xs text-brand-muted hover:text-white">Lukk</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. ARTICLE READER MODAL -->
+  <div id="articleModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-brand-surface border border-brand-border rounded-2xl max-w-3xl w-full p-6 sm:p-10 shadow-2xl relative my-8">
+      
+      <button onclick="closeArticleModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="space-y-2 pb-6 border-b border-brand-border">
+        <div class="flex items-center gap-3 text-xs text-brand-gold font-semibold uppercase">
+          <span id="articleModalTag">Arverett & Familie</span>
+          <span>•</span>
+          <span id="articleModalDate" class="text-brand-muted">Februar 2026</span>
+        </div>
+        <h3 id="articleModalTitle" class="text-2xl sm:text-3xl font-serif-title font-bold text-white leading-tight">Artikkeltittel</h3>
+        <div class="text-xs text-brand-muted flex items-center gap-2 pt-1" id="articleModalAuthor">
+          <span>Skrevet av: Advokat Sofia V. Bergmann</span>
+        </div>
+      </div>
+
+      <div class="py-6 space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed max-h-[55vh] overflow-y-auto pr-3" id="articleModalBody"></div>
+
+      <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+        <button onclick="closeArticleModal(); openBookingModal('Henvendelse basert på fagartikkel');" class="btn-luxury px-6 py-2.5 rounded text-xs font-bold uppercase tracking-wider">
+          Kontakt forfatteren for rådgivning
+        </button>
+        <button onclick="closeArticleModal()" class="text-xs text-brand-muted hover:text-white">Lukk artikkel</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 5. QUICK SEARCH MODAL -->
+  <div id="searchModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-start justify-center p-4 pt-20">
+    <div class="bg-brand-surface border border-brand-border rounded-2xl max-w-xl w-full p-6 shadow-2xl relative">
+      
+      <div class="flex items-center gap-3 pb-4 border-b border-brand-border">
+        <i data-lucide="search" class="w-5 h-5 text-brand-gold"></i>
+        <input 
+          type="text" 
+          id="globalSearchInput" 
+          oninput="handleQuickSearch(this.value)" 
+          placeholder="Søk etter fagområde, advokat, artikkel eller tema..." 
+          class="w-full bg-transparent text-sm text-white focus:outline-none placeholder-slate-500"
+        />
+        <button onclick="toggleQuickSearch()" class="text-xs text-brand-muted hover:text-white px-2 py-1 rounded bg-brand-card">ESC</button>
+      </div>
+
+      <div class="mt-4 space-y-2 max-h-60 overflow-y-auto text-xs" id="searchResultsList">
+        <div class="text-slate-400 p-2">Begynn å skrive for å søke... (f.eks. "oppsigelse", "arv", "testament", "aksjonæravtale", "Henrik")</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 6. INFORMATION MODAL (GDPR, COOKIES, ÅPENHET) -->
+  <div id="infoModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-brand-surface border border-brand-border rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
+      <button onclick="closeInfoModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <h3 id="infoModalTitle" class="text-xl font-serif-title font-bold text-white mb-4">Informasjon</h3>
+      <div id="infoModalBody" class="text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed max-h-[50vh] overflow-y-auto pr-2"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 space-y-2 pointer-events-none"></div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+      initScrollProgress();
+    });
+
+    function initScrollProgress() {
+      window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const bar = document.getElementById('scrollProgress');
+        if (bar) bar.style.width = scrolled + '%';
+      });
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu.classList.contains('-translate-x-full')) {
+        menu.classList.remove('-translate-x-full');
+      } else {
+        menu.classList.add('-translate-x-full');
+      }
+    }
+
+    function setAudience(type) {
+      const btnBedrift = document.getElementById('navPillBedrift');
+      const btnPrivat = document.getElementById('navPillPrivat');
+      
+      if (type === 'bedrift') {
+        btnBedrift.className = "px-3 py-1 rounded-full bg-brand-gold text-brand-dark font-bold shadow transition";
+        btnPrivat.className = "px-3 py-1 rounded-full text-slate-300 hover:text-white transition";
+        filterPractices('bedrift');
+        showToast('Viser tjenester for Næringsliv & Bedrifter');
+      } else {
+        btnPrivat.className = "px-3 py-1 rounded-full bg-brand-gold text-brand-dark font-bold shadow transition";
+        btnBedrift.className = "px-3 py-1 rounded-full text-slate-300 hover:text-white transition";
+        filterPractices('privat');
+        showToast('Viser tjenester for Privatpersoner');
+      }
+    }
+
+    function setAudienceHero(type) {
+      const tabB = document.getElementById('heroTabBedrift');
+      const tabP = document.getElementById('heroTabPrivat');
+      const title = document.getElementById('heroAudienceTitle');
+      const desc = document.getElementById('heroAudienceDesc');
+
+      if (type === 'bedrift') {
+        tabB.className = "py-3 px-4 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 bg-brand-card text-brand-goldLight shadow-sm border border-brand-gold/30";
+        tabP.className = "py-3 px-4 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 text-slate-400 hover:text-white";
+        title.innerText = "Skreddersydd for selskaper, styrer og eiere";
+        desc.innerText = "Strategisk bistand ved oppkjøp, restrukturering, arbeidsrettslige tvister og kommersielle kontraktsforhandlinger.";
+        setFormType('bedrift');
+      } else {
+        tabP.className = "py-3 px-4 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 bg-brand-card text-brand-goldLight shadow-sm border border-brand-gold/30";
+        tabB.className = "py-3 px-4 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 text-slate-400 hover:text-white";
+        title.innerText = "Skreddersydd for privatpersoner og familier";
+        desc.innerText = "Trygghet ved arveoppgjør, fremtidsfullmakter, samboerkontrakter, boligtvister og personlige avtaler.";
+        setFormType('privat');
+      }
+    }
+
+    function filterPractices(category) {
+      const cards = document.querySelectorAll('#practiceGrid > div');
+      const tabAll = document.getElementById('tabAll');
+      const tabBedrift = document.getElementById('tabBedrift');
+      const tabPrivat = document.getElementById('tabPrivat');
+
+      [tabAll, tabBedrift, tabPrivat].forEach(t => {
+        if(t) t.className = "px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition";
+      });
+
+      if (category === 'all') {
+        tabAll.className = "px-4 py-2 rounded-lg text-xs font-semibold bg-brand-card text-brand-goldLight border border-brand-gold/30 transition";
+      } else if (category === 'bedrift') {
+        tabBedrift.className = "px-4 py-2 rounded-lg text-xs font-semibold bg-brand-card text-brand-goldLight border border-brand-gold/30 transition";
+      } else if (category === 'privat') {
+        tabPrivat.className = "px-4 py-2 rounded-lg text-xs font-semibold bg-brand-card text-brand-goldLight border border-brand-gold/30 transition";
+      }
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (category === 'all' || cat === 'both' || cat === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    let evaluatorState = { type: '', area: '', urgency: '' };
+
+    function selectEvaluatorType(type) {
+      evaluatorState.type = type;
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+      document.getElementById('stepIndicator1').className = "text-slate-500";
+      document.getElementById('stepIndicator2').className = "font-bold text-brand-gold";
+
+      const step2Container = document.getElementById('step2Options');
+      step2Container.innerHTML = '';
+
+      let options = [];
+      if (type.includes('Bedrift')) {
+        options = [
+          { name: 'Arbeidsrett & Nedbemanning', icon: 'briefcase' },
+          { name: 'Selskapsrett & Oppkjøp (M&A)', icon: 'landmark' },
+          { name: 'Kontrakt & Leverandøravtaler', icon: 'file-text' },
+          { name: 'Fast Eiendom & Entreprise', icon: 'building' },
+          { name: 'Tvist & Domstolsbehandling', icon: 'scale' },
+          { name: 'Insolvens & Restrukturering', icon: 'coins' }
+        ];
+      } else {
+        options = [
+          { name: 'Arv, Skifte & Generasjonsskifte', icon: 'scroll' },
+          { name: 'Fremtidsfullmakt & Testament', icon: 'file-check' },
+          { name: 'Eiendoms- & Boligtvist', icon: 'home' },
+          { name: 'Familierett & Samboeravtale', icon: 'heart' },
+          { name: 'Oppsigelse i arbeidsforhold', icon: 'user-x' },
+          { name: 'Pengekrav & Forhandlinger', icon: 'scale' }
+        ];
+      }
+
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = "p-3 rounded-lg bg-brand-card border border-brand-border hover:border-brand-gold text-left text-xs text-white font-medium flex items-center gap-2 transition";
+        btn.innerHTML = `<i data-lucide="${opt.icon}" class="w-4 h-4 text-brand-gold flex-shrink-0"></i> <span>${opt.name}</span>`;
+        btn.onclick = () => selectEvaluatorArea(opt.name);
+        step2Container.appendChild(btn);
+      });
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function selectEvaluatorArea(area) {
+      evaluatorState.area = area;
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.remove('hidden');
+      document.getElementById('stepIndicator2').className = "text-slate-500";
+      document.getElementById('stepIndicator3').className = "font-bold text-brand-gold";
+    }
+
+    function selectEvaluatorUrgency(urgency, priority) {
+      evaluatorState.urgency = urgency;
+      document.getElementById('step3').classList.add('hidden');
+      document.getElementById('stepResult').classList.remove('hidden');
+
+      document.getElementById('evalResultHeader').innerText = `${evaluatorState.area} (${priority})`;
+      document.getElementById('evalResultSummary').innerText = `${evaluatorState.type} • ${evaluatorState.area} • ${urgency}`;
+      
+      let partner = "Henrik C. Andersen / Marianne Lindqvist";
+      if (evaluatorState.area.includes('Arv') || evaluatorState.area.includes('Familie')) {
+        partner = "Sofia V. Bergmann (Partner, Arv & Familie)";
+      } else if (evaluatorState.area.includes('Eiendom')) {
+        partner = "Christian Faye-Lund (Partner, Fast Eiendom)";
+      } else if (evaluatorState.area.includes('Arbeidsrett') || evaluatorState.area.includes('Oppsigelse')) {
+        partner = "Marianne Lindqvist (Partner, Arbeidsrett)";
+      } else if (evaluatorState.area.includes('Kontrakt')) {
+        partner = "Eirik Thorne (Senioradvokat, Kontrakter & Tech)";
+      }
+
+      document.getElementById('evalResultPartner').innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> <span>${partner}</span>`;
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function resetEvaluator() {
+      evaluatorState = { type: '', area: '', urgency: '' };
+      document.getElementById('stepResult').classList.add('hidden');
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.add('hidden');
+      document.getElementById('step1').classList.remove('hidden');
+      document.getElementById('stepIndicator1').className = "font-bold text-brand-gold";
+      document.getElementById('stepIndicator2').className = "text-slate-500";
+      document.getElementById('stepIndicator3').className = "text-slate-500";
+    }
+
+    function proceedWithEvaluation() {
+      openBookingModal(`Saksvurdering: ${evaluatorState.area}`);
+      const practiceSelect = document.getElementById('practiceSelect');
+      if (practiceSelect) {
+        for (let i = 0; i < practiceSelect.options.length; i++) {
+          if (practiceSelect.options[i].text.includes(evaluatorState.area.split(' ')[0])) {
+            practiceSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    function setFormType(type) {
+      const btnB = document.getElementById('formBtnBedrift');
+      const btnP = document.getElementById('formBtnPrivat');
+      const compField = document.getElementById('companyFieldContainer');
+
+      if (type === 'bedrift') {
+        btnB.className = "py-2.5 px-4 rounded-lg text-xs font-bold border transition text-center bg-brand-card text-brand-goldLight border-brand-gold/40";
+        btnP.className = "py-2.5 px-4 rounded-lg text-xs font-bold border transition text-center border-brand-border text-slate-400 hover:text-white";
+        compField.style.display = 'block';
+      } else {
+        btnP.className = "py-2.5 px-4 rounded-lg text-xs font-bold border transition text-center bg-brand-card text-brand-goldLight border-brand-gold/40";
+        btnB.className = "py-2.5 px-4 rounded-lg text-xs font-bold border transition text-center border-brand-border text-slate-400 hover:text-white";
+        compField.style.display = 'none';
+      }
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('formSuccessState');
+      const refNumber = document.getElementById('formRefNumber');
+      
+      const randomRef = '#AC-2026-' + Math.floor(100 + Math.random() * 900);
+      refNumber.innerText = randomRef;
+
+      form.classList.add('hidden');
+      success.classList.remove('hidden');
+      showToast('Henvendelse mottatt! Saksreferanse: ' + randomRef);
+    }
+
+    function resetContactForm() {
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('formSuccessState');
+      form.reset();
+      form.classList.remove('hidden');
+      success.classList.add('hidden');
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletterEmail').value;
+      showToast(`Takk! ${email} er meldt på Andersen & Co nyhetsbrev.`);
+      document.getElementById('newsletterEmail').value = '';
+    }
+
+    function toggleFaq(index) {
+      const answer = document.getElementById(`faqAnswer${index}`);
+      const icon = document.getElementById(`faqIcon${index}`);
+      if (answer.classList.contains('open')) {
+        answer.classList.remove('open');
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        answer.classList.add('open');
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    function openBookingModal(customTitle) {
+      const modal = document.getElementById('bookingModal');
+      if (customTitle) {
+        document.getElementById('modalBookingTitle').innerText = customTitle;
+      } else {
+        document.getElementById('modalBookingTitle').innerText = 'Bestill innledende konsultasjon';
+      }
+      modal.classList.remove('hidden');
+    }
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.add('hidden');
+    }
+
+    function handleModalBooking(e) {
+      e.preventDefault();
+      closeBookingModal();
+      showToast('Takk! Din bestilling er registrert. Vi ringer deg innen kort tid.');
+    }
+
+    const lawyerData = {
+      henrik: {
+        name: "Henrik C. Andersen",
+        role: "Managing Partner",
+        degree: "Cand.jur., Universitetet i Oslo | Møterett for Høyesterett",
+        phone: "+47 22 00 45 01",
+        email: "henrik@andersen-advokat.no",
+        img: "images/photo-07.jpg",
+        bio: `
+          <p><strong>Henrik C. Andersen</strong> er grunnlegger og Managing Partner i Andersen & Co Advokatfirma DA. Han har over 22 års erfaring som forretningsadvokat og har opparbeidet seg møterett for Høyesterett.</p>
+          <p>Han bistår norske og internasjonale konsern med komplekse transaksjoner (M&A), aksjonæravtaler, restruktureringer og strategisk tvisteløsning. Henrik er kjent for sin evne til å finne forhandlingsløsninger der andre advokater låser seg i konflikter, men er også en usedvanlig skarp prosedyreadvokat i rettssalen.</p>
+          <div class="p-3 bg-brand-surface rounded border border-brand-border mt-2 space-y-1">
+            <div class="text-white font-bold">Spesialområder:</div>
+            <div class="text-brand-muted">• Fusjoner og oppkjøp (M&A) • Selskapsrett & styreansvar • Kommersiell prosedyre for Høyesterett • Aksjonærkonflikter</div>
+          </div>
+        `
+      },
+      marianne: {
+        name: "Marianne Lindqvist",
+        role: "Partner & Fagleder Arbeidsrett",
+        degree: "Master i rettsvitenskap, UiO | Spesialisering i EU-arbeidsrett",
+        phone: "+47 22 00 45 02",
+        email: "marianne@andersen-advokat.no",
+        img: "images/photo-09.jpg",
+        bio: `
+          <p><strong>Marianne Lindqvist</strong> leder firmaets faggruppe for arbeidsrett og compliance. Hun har bistått over 300 norske og internasjonale virksomheter med omstillingsprosesser, varslingssaker og topplederoppsigelser.</p>
+          <p>Marianne er en ettertraktet foredragsholder innen arbeidsrettslige temaer og forfatter av flere juridiske artikler om arbeidsmiljølovens krav til saklig oppsigelse og personvern på arbeidsplassen.</p>
+          <div class="p-3 bg-brand-surface rounded border border-brand-border mt-2 space-y-1">
+            <div class="text-white font-bold">Spesialområder:</div>
+            <div class="text-brand-muted">• Omstilling & nedbemanning • Varsling & faktaundersøkelser • Sluttavtaler for toppledere • Virksomhetsoverdragelse</div>
+          </div>
+        `
+      },
+      christian: {
+        name: "Christian Faye-Lund",
+        role: "Partner Fast Eiendom & Entreprise",
+        degree: "Cand.jur., Universitetet i Bergen | Tidligere dommerfullmektig",
+        phone: "+47 22 00 45 03",
+        email: "christian@andersen-advokat.no",
+        img: "images/photo-08.jpg",
+        bio: `
+          <p><strong>Christian Faye-Lund</strong> har omfattende erfaring fra både domstolen som dommerfullmektig og som spesialisert eiendomsadvokat. Han bistår eiendomsutviklere, entreprenører, borettslag og privatpersoner.</p>
+          <p>Han har prosedert over 120 saker for tingrett og lagmannsrett innen entreprisekontrakter (NS 8405/8407), mangelskrav ved boligkjøp (avhendingsloven) og plan- og bygningsrett.</p>
+          <div class="p-3 bg-brand-surface rounded border border-brand-border mt-2 space-y-1">
+            <div class="text-white font-bold">Spesialområder:</div>
+            <div class="text-brand-muted">• Entrepriserett & sluttoppgjørstvister • Avhendingsloven & boligmangler • Tomtefeste & seksjonering • Næringsleiekontrakter</div>
+          </div>
+        `
+      },
+      sofia: {
+        name: "Sofia V. Bergmann",
+        role: "Partner Arv, Familie & Generasjonsskifte",
+        degree: "Master i rettsvitenskap, UiO | Medlem av Advokatforeningens lovutvalg for arverett",
+        phone: "+47 22 00 45 04",
+        email: "sofia@andersen-advokat.no",
+        img: "images/photo-11.jpg",
+        bio: `
+          <p><strong>Sofia V. Bergmann</strong> er en av landets ledende eksperter innen arveplanlegging, generasjonsskifte og familierettslige formuesordninger. Hun rådgir formuende familier og privatpersoner med å sikre verdier og forebygge konflikter.</p>
+          <p>Sofia har særlig ekspertise i grensesnittet mellom selskapsrett og arverett, der familiebedrifter skal overføres til neste generasjon uten at det oppstår uenighet eller uhensiktsmessige skattekonsekvenser.</p>
+          <div class="p-3 bg-brand-surface rounded border border-brand-border mt-2 space-y-1">
+            <div class="text-white font-bold">Spesialområder:</div>
+            <div class="text-brand-muted">• Arveoppgjør & skifte • Skreddersydde testamenter & fremtidsfullmakter • Ektepakter & særeie • Generasjonsskifte i familiebedrifter</div>
+          </div>
+        `
+      },
+      eirik: {
+        name: "Eirik Thorne",
+        role: "Senioradvokat Kontraktsrett & Tech",
+        degree: "Master i rettsvitenskap, UiB | LL.M. King's College London",
+        phone: "+47 22 00 45 05",
+        email: "eirik@andersen-advokat.no",
+        img: "images/photo-05.jpg",
+        bio: `
+          <p><strong>Eirik Thorne</strong> har spesialisert seg innen kommersiell kontraktsrett, IT-avtaler, immaterialrett (IPR) og teknologi-juss. Han bistår teknologiselskaper, gründere og etablerte leverandører.</p>
+          <p>Med sin internasjonale mastergrad fra London forhandler Eirik jevnlig grensekryssende lisensavtaler, SaaS-kontrakter og partnerskapsavtaler på engelsk og norsk.</p>
+          <div class="p-3 bg-brand-surface rounded border border-brand-border mt-2 space-y-1">
+            <div class="text-white font-bold">Spesialområder:</div>
+            <div class="text-brand-muted">• IT- og SaaS-avtaler • Lisensiering & IPR • Kommersielle rammeavtaler • Internasjonale forhandlinger</div>
+          </div>
+        `
+      },
+      camilla: {
+        name: "Camilla Holm Strand",
+        role: "Advokat Prosedyre & Tvisteløsning",
+        degree: "Master i rettsvitenskap, Universitetet i Tromsø / Oslo",
+        phone: "+47 22 00 45 06",
+        email: "camilla@andersen-advokat.no",
+        img: "images/photo-10.jpg",
+        bio: `
+          <p><strong>Camilla Holm Strand</strong> arbeider bredt med sivilrettslig prosedyre, pengekrav, erstatningsrett og kontraktsbrudd. Hun har markert seg som en grundig saksbehandler med en usedvanlig god struktur i komplekse saksforhold.</p>
+          <p>Camilla bistår jevnlig ved rettsmeklinger og forhandlinger for å oppnå kostnadseffektive løsninger for klienten før saken når hovedforhandling.</p>
+          <div class="p-3 bg-brand-surface rounded border border-brand-border mt-2 space-y-1">
+            <div class="text-white font-bold">Spesialområder:</div>
+            <div class="text-brand-muted">• Sivilprosess & rettsmekling • Kontraktsmislighold & erstatning • Pengekrav & arrest/sikring • Forbruker- og kjøpsrett</div>
+          </div>
+        `
+      }
+    };
+
+    function openLawyerModal(id) {
+      const data = lawyerData[id];
+      if (!data) return;
+
+      document.getElementById('lawyerModalName').innerText = data.name;
+      document.getElementById('lawyerModalRole').innerText = data.role;
+      document.getElementById('lawyerModalDegree').innerText = data.degree;
+      document.getElementById('lawyerModalImg').src = data.img;
+      document.getElementById('lawyerModalPhone').href = 'tel:' + data.phone.replace(/\s/g, '');
+      document.getElementById('lawyerModalPhone').querySelector('span').innerText = data.phone;
+      document.getElementById('lawyerModalEmail').href = 'mailto:' + data.email;
+      document.getElementById('lawyerModalEmail').querySelector('span').innerText = data.email;
+      document.getElementById('lawyerModalBio').innerHTML = data.bio;
+
+      document.getElementById('lawyerModal').classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+    }
+    function closeLawyerModal() {
+      document.getElementById('lawyerModal').classList.add('hidden');
+    }
+
+    const practiceData = {
+      arbeidsrett: {
+        tag: "NÆRINGSLIV & PRIVAT",
+        title: "Arbeidsrett, Varsling & Omstilling",
+        subtitle: "Leder: Partner Marianne Lindqvist",
+        content: `
+          <p>Arbeidslivet stiller stadig strengere krav til prosess, dokumentasjon og saklighet. Andersen & Co bistår både arbeidsgivere og arbeidstakere med å navigere komplekse arbeidsrettslige problemstillinger.</p>
+          <h4 class="text-white font-bold text-sm pt-2">For arbeidsgivere:</h4>
+          <p>Vi bistår styrer og ledelse ved omorganiseringer, rasjonalisering, nedbemanningsprosesser, utarbeidelse av ansettelsesavtaler, håndtering av varslingssaker og forhandling av fratredelsesavtaler for toppledere.</p>
+          <h4 class="text-white font-bold text-sm pt-2">For arbeidstakere og ledere:</h4>
+          <p>Står du i fare for å bli oppsagt, eller opplever du usaklig behandling på arbeidsplassen? Vi vurderer din rettsstilling, bistår i drøftelsesmøter etter aml. § 15-1 og forhandler frem gode sluttpakker eller oppreisning.</p>
+        `
+      },
+      selskapsrett: {
+        tag: "NÆRINGSLIV",
+        title: "Selskapsrett, M&A & Styreansvar",
+        subtitle: "Leder: Managing Partner Henrik C. Andersen",
+        content: `
+          <p>Vi er strategiske rådgivere for bedrifter i alle faser – fra etablering og vekstfinansiering til oppkjøp, fusjoner og generasjonsskifter.</p>
+          <h4 class="text-white font-bold text-sm pt-2">Våre nøkkeloppgaver:</h4>
+          <p>• Due Diligence og forhandling av aksjekjøpsavtaler (SPA).<br>• Utarbeidelse av skreddersydde aksjonæravtaler for å forhindre framtidige deadlocks.<br>• Rådgivning ved styreansvar og habilitetsvurderinger.<br>• Kapitalendringer, emisjoner og konvertible lån.</p>
+        `
+      },
+      eiendom: {
+        tag: "NÆRINGSLIV & PRIVAT",
+        title: "Fast Eiendom & Entreprise",
+        subtitle: "Leder: Partner Christian Faye-Lund",
+        content: `
+          <p>Fast eiendom representerer ofte de største verdiene for både virksomheter og privatpersoner. Vår eiendomsavdeling sikrer dine rettigheter ved kjøp, salg, utvikling og tvister.</p>
+          <h4 class="text-white font-bold text-sm pt-2">Typiske oppdrag:</h4>
+          <p>• Mangelskrav etter boligkjøp (Avhendingsloven) overfor selger og eierskifteforsikring.<br>• Entrepriserett (NS 8405, 8406, 8407) for entreprenører og byggherrer.<br>• Seksjonering, tomtefeste og servitutter.<br>• Tvister i borettslag og eierseksjonssameier.</p>
+        `
+      },
+      arv: {
+        tag: "PRIVATPERSONER & FAMILIE",
+        title: "Arv, Generasjonsskifte & Fremtidsfullmakt",
+        subtitle: "Leder: Partner Sofia V. Bergmann",
+        content: `
+          <p>Et godt planlagt arveoppgjør og generasjonsskifte bevarer familieverdiene og forhindrer opprivende konflikter mellom arvinger.</p>
+          <h4 class="text-white font-bold text-sm pt-2">Hva vi kan hjelpe deg med:</h4>
+          <p>• Opprettelse av gyldige testamenter tilpasset nye arvelovsregler.<br>• Fremtidsfullmakter som sikrer handlefrihet ved eventuell sykdom eller demens.<br>• Skifteoppgjør (privat og offentlig skifte).<br>• Skatte- og formuesoptimalisering ved overdragelse av eiendom og familiebedrift.</p>
+        `
+      },
+      prosedyre: {
+        tag: "ALLE INSTANSER",
+        title: "Tvisteløsning & Prosedyre",
+        subtitle: "Møterett for Høyesterett",
+        content: `
+          <p>Når forhandlinger ikke fører frem, kreves det advokater med solid rettssalerfaring og høy strategisk gjennomføringskraft. Våre prosedyreadvokater har bred erfaring fra tingrett, lagmannsrett og Høyesterett.</p>
+          <h4 class="text-white font-bold text-sm pt-2">Vår tilnærming til rettssaker:</h4>
+          <p>Vi gjør en grundig risikovurdering før stevning tas ut. Underveis utforsker vi alltid muligheten for rettsmekling for å spare klienten for unødvendig tidsbruk og prosessrisiko.</p>
+        `
+      },
+      kontraktsrett: {
+        tag: "NÆRINGSLIV",
+        title: "Kontraktsrett & Kommersielle Avtaler",
+        subtitle: "Leder: Senioradvokat Eirik Thorne",
+        content: `
+          <p>En god kontrakt er virksomhetens viktigste forsikring. Vi designer avtaler som balanserer kommersiell handlekraft med juridisk risikostyring.</p>
+          <h4 class="text-white font-bold text-sm pt-2">Felt vi dekker:</h4>
+          <p>• Leverandør-, distribusjons- og agentavtaler.<br>• IT-, programvare- og lisensavtaler (SaaS/IPR).<br>• Taushetserklæringer (NDA) og intensjonsavtaler (LOI).<br>• Håndtering av kontraktsbrudd, heving og erstatningskrav.</p>
+        `
+      },
+      familierett: {
+        tag: "PRIVATPERSONER",
+        title: "Familierett, Ektepakter & Samboeravtaler",
+        subtitle: "Leder: Partner Sofia V. Bergmann",
+        content: `
+          <p>Klare økonomiske avtaler i gode tider skaper forutsigbarhet dersom samlivet skulle opphøre. Vi hjelper par og familier med trygge rammer.</p>
+          <h4 class="text-white font-bold text-sm pt-2">Våre tjenester:</h4>
+          <p>• Ektepakter med særeiebestemmelser og skjevdelingsklausuler.<br>• Samboerkontrakter med eierbrøker og gjeldsfordeling.<br>• Økonomisk skilsmisseoppgjør og skifte ved samlivsbrudd.</p>
+        `
+      },
+      restrukturering: {
+        tag: "NÆRINGSLIV",
+        title: "Restrukturering, Insolvens & Styrebistand",
+        subtitle: "Managing Partner Henrik C. Andersen",
+        content: `
+          <p>Når en virksomhet opplever likviditetspress eller truende insolvens, er rask og presis rådgivning avgjørende for å redde verdier og unngå personlig styreansvar.</p>
+          <h4 class="text-white font-bold text-sm pt-2">Hva vi gjør:</h4>
+          <p>• Gjeldsforhandlinger og rekonstruksjon etter rekonstruksjonsloven.<br>• Rådgivning for styremedlemmer om handlingsplikt og egenkapital.<br>• Kreditorvern og sikring av panterettigheter.</p>
+        `
+      }
+    };
+
+    function openPracticeModal(id) {
+      const data = practiceData[id];
+      if (!data) return;
+
+      document.getElementById('practiceModalTag').innerText = data.tag;
+      document.getElementById('practiceModalTitle').innerText = data.title;
+      document.getElementById('practiceModalSubtitle').innerText = data.subtitle;
+      document.getElementById('practiceModalContent').innerHTML = data.content;
+
+      document.getElementById('practiceModal').classList.remove('hidden');
+    }
+    function closePracticeModal() {
+      document.getElementById('practiceModal').classList.add('hidden');
+    }
+
+    const articleData = {
+      arvelov: {
+        tag: "Arverett & Familie",
+        date: "14. februar 2026",
+        author: "Advokat Sofia V. Bergmann, Partner",
+        title: "Generasjonsskifte i 2026: Slik unngår dere arvefellen og sikrer familiebedriften.",
+        body: `
+          <p class="font-medium text-white text-base">Overføring av verdier og styring i et familieselskap er en av de mest krevende prosessene en familie kan gå gjennom. Her deler vi våre viktigste erfaringer.</p>
+          <p>Mange venter for lenge med å planlegge generasjonsskiftet. Når arvelater plutselig faller fra eller blir ute av stand til å styre, kan usikkerhet rundt aksjefordeling og vedtekter lamme selskapets daglige drift.</p>
+          <h4 class="text-white font-bold text-sm pt-2">1. Skille mellom eierskap og styring</h4>
+          <p>Ikke alle barn ønsker eller har forutsetninger for å lede familieselskapet operativt. En velprøvd løsning er å etablere A- og B-aksjeklasser, der stemmeberettigede aksjer overføres til de som skal drive videre, mens de øvrige arvingene sikres økonomisk avkastning.</p>
+          <h4 class="text-white font-bold text-sm pt-2">2. Oppdater testamentet og opprett fremtidsfullmakt</h4>
+          <p>Uten en gyldig fremtidsfullmakt risikerer man at statsforvalteren oppnevner en verge dersom hovedaksjonær blir rammet av demens eller ulykke. Dette kan stoppe viktige strategiske investeringer.</p>
+          <h4 class="text-white font-bold text-sm pt-2">3. Aksjonæravtale med forkjøpsrett</h4>
+          <p>En robust aksjonæravtale bør alltid inneholde klare regler om forkjøpsrett og innløsningskurs for å hindre at aksjer selges til eksterne parter ved eventuelle samlivsbrudd blant arvingene.</p>
+        `
+      },
+      nedbemanning: {
+        tag: "Arbeidsrett",
+        date: "28. januar 2026",
+        author: "Advokat Marianne Lindqvist, Partner",
+        title: "Nedbemanning og sluttavtaler: Ledelsens sjekkliste etter arbeidsmiljøloven.",
+        body: `
+          <p class="font-medium text-white text-base">En nedbemanningsprosess krever pinlig nøyaktighet fra ledelsens side for å unngå ugyldige oppsigelser og kostbare rettssaker.</p>
+          <p>Arbeidsmiljøloven § 15-7 stiller krav om at en oppsigelse må være saklig begrunnet i virksomhetens forhold. Domstolene stiller strenge krav til saksbehandlingen.</p>
+          <h4 class="text-white font-bold text-sm pt-2">Sjekkliste for styret og ledelsen:</h4>
+          <p><strong>1. Dokumenter behovet grundig:</strong> Styret må kunne fremlegge klare økonomiske eller strategiske analyser som underbygger behovet for kostnadskutt.<br>
+          <strong>2. Fastsett utvelgelseskretser og kriterier:</strong> Hovedregelen er hele selskapet. Avvik må være saklig begrunnet. Typiske kriterier er kompetanse, ansiennitet og sosiale forhold.<br>
+          <strong>3. Gjennomfør reelle drøftelsesmøter:</strong> Hver enkelt arbeidstaker som vurderes oppsagt må innkalles til individuelt drøftelsesmøte etter § 15-1 før beslutningen fattes.<br>
+          <strong>4. Vurder annet passende arbeid:</strong> Arbeidsgiver har plikt til å undersøke om det finnes andre ledige stillinger i konsernet.</p>
+        `
+      },
+      avhendingslov: {
+        tag: "Fast Eiendom",
+        date: "10. januar 2026",
+        author: "Advokat Christian Faye-Lund, Partner",
+        title: "Kjøpt bolig med skjulte feil? Reklamasjonsfrister og beviskrav du må kunne.",
+        body: `
+          <p class="font-medium text-white text-base">Etter endringene i avhendingsloven kan ikke boliger lenger selges «som de er». Likevel oppstår det stadige tvister om fuktskader, baderom og ulovlighetsmangler.</p>
+          <p>Dersom du oppdager feil ved din nykjøpte bolig, er det avgjørende å handle raskt.</p>
+          <h4 class="text-white font-bold text-sm pt-2">Viktige huskeregler:</h4>
+          <p>• <strong>Reklamer umiddelbart:</strong> Loven krever at du reklamerer «innen rimelig tid» – i praksis innen 2-3 måneder etter at feilen ble oppdaget.<br>
+          • <strong>Bruk uavhengig takstmann:</strong> Få en grundig fagkyndig rapport som dokumenterer årsak, omfang og utbedringskostnad.<br>
+          • <strong>Husk innboforsikringen:</strong> Din innboforsikring dekker normalt 80% av advokatutgiftene dine i slike tvister etter at egenandelen er betalt.</p>
+        `
+      },
+      aksjonaer: {
+        tag: "Selskapsrett",
+        date: "18. desember 2025",
+        author: "Advokat Henrik C. Andersen & Eirik Thorne",
+        title: "Aksjonæravtalen du ikke visste du trengte før konflikten oppsto.",
+        body: `
+          <p class="font-medium text-white text-base">Når gründere og investorer starter et selskap, er stemningen god. Men uten en grundig aksjonæravtale kan selv mindre uenigheter lamme hele driften.</p>
+          <p>Aksjelovens standardregler gir dårlig beskyttelse mot fastlåste situasjoner (deadlocks) mellom likeverdige aksjonærer.</p>
+          <h4 class="text-white font-bold text-sm pt-2">5 klausuler enhver avtale må ha:</h4>
+          <p>1. <strong>Medsalgsrett og medsalgsplikt (Tag-along / Drag-along):</strong> Sikrer at minoriteten kan bli med på et salg, eller at majoriteten kan kreve at alle selger ved et attraktivt oppkjøpstilbud.<br>
+          2. <strong>Deadlock-løsning (Russian Roulette / Texas Shootout):</strong> Mekanismer som tvinger frem en løsning hvis styret eller generalforsamlingen blir stående 50/50.<br>
+          3. <strong>Vesting og Bad Leaver-klausuler:</strong> Hva skjer dersom en nøkkelperson slutter etter 6 måneder? Kan de beholde aksjene til markedspris?<br>
+          4. <strong>Konkurranse- og kundeforbud:</strong> Forhindrer at en uttredende aksjonær starter en konkurrerende virksomhet dagen etter.<br>
+          5. <strong>Konfidensialitet og tvisteløsning:</strong> Bestemmelser om at tvister skal løses ved voldgift for å unngå offentlig omtale.</p>
+        `
+      }
+    };
+
+    function openArticleModal(id) {
+      const data = articleData[id];
+      if (!data) return;
+
+      document.getElementById('articleModalTag').innerText = data.tag;
+      document.getElementById('articleModalDate').innerText = data.date;
+      document.getElementById('articleModalAuthor').innerHTML = `<span>Skrevet av: <strong>${data.author}</strong></span>`;
+      document.getElementById('articleModalTitle').innerText = data.title;
+      document.getElementById('articleModalBody').innerHTML = data.body;
+
+      document.getElementById('articleModal').classList.remove('hidden');
+    }
+    function closeArticleModal() {
+      document.getElementById('articleModal').classList.add('hidden');
+    }
+
+    function toggleQuickSearch() {
+      const modal = document.getElementById('searchModal');
+      if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        setTimeout(() => document.getElementById('globalSearchInput').focus(), 50);
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        toggleQuickSearch();
+      }
+      if (e.key === 'Escape') {
+        document.getElementById('searchModal').classList.add('hidden');
+        closeBookingModal();
+        closeLawyerModal();
+        closePracticeModal();
+        closeArticleModal();
+        closeInfoModal();
+      }
+    });
+
+    const searchCatalog = [
+      { title: "Arbeidsrett & Varsling", type: "Fagområde", action: () => openPracticeModal('arbeidsrett') },
+      { title: "Selskapsrett & M&A", type: "Fagområde", action: () => openPracticeModal('selskapsrett') },
+      { title: "Fast Eiendom & Entreprise", type: "Fagområde", action: () => openPracticeModal('eiendom') },
+      { title: "Arv, Generasjonsskifte & Fremtidsfullmakt", type: "Fagområde", action: () => openPracticeModal('arv') },
+      { title: "Henrik C. Andersen (Managing Partner)", type: "Advokat", action: () => openLawyerModal('henrik') },
+      { title: "Marianne Lindqvist (Partner Arbeidsrett)", type: "Advokat", action: () => openLawyerModal('marianne') },
+      { title: "Christian Faye-Lund (Partner Eiendom)", type: "Advokat", action: () => openLawyerModal('christian') },
+      { title: "Sofia V. Bergmann (Partner Arverett)", type: "Advokat", action: () => openLawyerModal('sofia') },
+      { title: "Eirik Thorne (Senioradvokat Tech)", type: "Advokat", action: () => openLawyerModal('eirik') },
+      { title: "Camilla Holm Strand (Advokat Prosedyre)", type: "Advokat", action: () => openLawyerModal('camilla') },
+      { title: "Rettshjelpsforsikring & Priser", type: "Priser", action: () => { window.location.href = '#priser'; toggleQuickSearch(); } },
+      { title: "Artikkel: Generasjonsskifte i 2026", type: "Innsikt", action: () => openArticleModal('arvelov') },
+      { title: "Artikkel: Nedbemanning & sluttavtaler", type: "Innsikt", action: () => openArticleModal('nedbemanning') },
+      { title: "Artikkel: Avhendingslov & boligmangler", type: "Innsikt", action: () => openArticleModal('avhendingslov') },
+      { title: "Artikkel: Aksjonæravtaler & selskapsrett", type: "Innsikt", action: () => openArticleModal('aksjonaer') }
+    ];
+
+    function handleQuickSearch(query) {
+      const list = document.getElementById('searchResultsList');
+      list.innerHTML = '';
+
+      if (!query.trim()) {
+        list.innerHTML = '<div class="text-slate-400 p-2">Begynn å skrive for å søke...</div>';
+        return;
+      }
+
+      const q = query.toLowerCase();
+      const results = searchCatalog.filter(item => 
+        item.title.toLowerCase().includes(q) || item.type.toLowerCase().includes(q)
+      );
+
+      if (results.length === 0) {
+        list.innerHTML = '<div class="text-slate-400 p-2">Ingen treff funnet for "' + query + '"</div>';
+        return;
+      }
+
+      results.forEach(res => {
+        const item = document.createElement('div');
+        item.className = "p-3 rounded-lg bg-brand-card hover:bg-brand-surface border border-brand-border/60 hover:border-brand-gold cursor-pointer flex items-center justify-between text-white transition";
+        item.innerHTML = `
+          <div>
+            <div class="font-bold text-xs">${res.title}</div>
+            <div class="text-[10px] text-brand-gold">${res.type}</div>
+          </div>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-brand-muted"></i>
+        `;
+        item.onclick = () => {
+          toggleQuickSearch();
+          res.action();
+        };
+        list.appendChild(item);
+      });
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function openInfoModal(type) {
+      const modal = document.getElementById('infoModal');
+      const title = document.getElementById('infoModalTitle');
+      const body = document.getElementById('infoModalBody');
+
+      if (type === 'personvern') {
+        title.innerText = "Personvernerklæring & GDPR";
+        body.innerHTML = `
+          <p>Andersen & Co Advokatfirma DA behandler personopplysninger i henhold til personopplysningsloven og EUs personvernforordning (GDPR).</p>
+          <p>Når du kontakter oss, lagres dine opplysninger utelukkende med det formål å gjennomføre nødvendig habilitetssjekk og yte juridisk bistand i samsvar med Regler for god advokatskikk.</p>
+          <p>Vi deler aldri dine personopplysninger med tredjeparter uten ditt uttrykkelige forhåndssamtykke, med mindre det følger av lovfestet plikt.</p>
+        `;
+      } else if (type === 'cookies') {
+        title.innerText = "Informasjonskapsler (Cookies)";
+        body.innerHTML = `
+          <p>Vår nettside benytter kun nødvendige tekniske informasjonskapsler for å sikre nettsidens funksjonalitet og sikkerhet.</p>
+          <p>Vi benytter ingen tredjeparts sporingscookies for markedsføring uten at du har gitt eksplisitt samtykke.</p>
+        `;
+      } else if (type === 'aapenhet') {
+        title.innerText = "Redegjørelse etter Åpenhetsloven";
+        body.innerHTML = `
+          <p>Andersen & Co Advokatfirma DA utfører aktsomhetsvurderinger i tråd med OECDs retningslinjer for flernasjonale selskaper og åpenhetsloven.</p>
+          <p>Vi stiller høye etiske krav til alle våre leverandører av IT-systemer, kontorrekvisita og fasilitetstjenester vedrørende menneskerettigheter og anstendige arbeidsforhold.</p>
+        `;
+      } else {
+        title.innerText = "Advokatetiske regler";
+        body.innerHTML = `
+          <p>Alle våre advokater er medlemmer av Den Norske Advokatforening og underlagt Tilsynsrådet for advokatvirksomhet.</p>
+          <p>Vi arbeider etter de til enhver tid gjeldende Regler for god advokatskikk (RGA), som sikrer uavhengighet, streng taushetsplikt og lojalitet overfor klienten.</p>
+        `;
+      }
+
+      modal.classList.remove('hidden');
+    }
+    function closeInfoModal() {
+      document.getElementById('infoModal').classList.add('hidden');
+    }
+
+    function openInsuranceCheckerModal() {
+      openBookingModal('Sjekk av rettshjelpsdekning');
+      document.getElementById('modalNote').value = 'Jeg ønsker en kostnadsfri vurdering av om forsikringen min dekker advokatutgifter for min sak.';
+    }
+
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = "bg-brand-surface border border-brand-gold/60 text-white px-4 py-3 rounded-xl shadow-2xl text-xs flex items-center gap-3 transition-all duration-300 transform translate-y-4 opacity-0 pointer-events-auto max-w-sm";
+      toast.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center flex-shrink-0">
+          <i data-lucide="bell" class="w-3.5 h-3.5"></i>
+        </div>
+        <span class="flex-1">${message}</span>
+      `;
+      container.appendChild(toast);
+      if (window.lucide) lucide.createIcons();
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      }, 20);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 4500);
+    }
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

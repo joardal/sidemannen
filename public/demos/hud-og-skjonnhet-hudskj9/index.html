@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nordic Skin Clinic — Kosmetisk hudklinikk i Oslo</title>
+<meta name="description" content="Nordic Skin Clinic kombinerer klinisk kompetanse med skandinavisk presisjon. Hudanalyse, kjemisk peeling, microneedling, laser, avansert hudpleie og kosmetiske behandlinger i Oslo.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F1EA">
+<link rel="icon" href="images/image-17.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS & RESET ============ */
+:root{
+  --bg:#F4F1EA; --bg2:#ECE7DC; --card:#FBF9F4;
+  --ink:#1B231E; --ink2:#5A625C; --ink3:#8B928B;
+  --dark:#151D18; --dark2:#1C2620; --dark3:#243029;
+  --dtext:#EDE8DC; --dtext2:#A9B1A6; --dtext3:#7C857B;
+  --dhair:rgba(237,232,220,.15);
+  --copper:#A2653F; --copper2:#C68B5F; --sage:#7E9184;
+  --hair:rgba(27,35,30,.16); --hair2:rgba(27,35,30,.32);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --fd:'Fraunces',Georgia,'Times New Roman',serif;
+  --fb:'Instrument Sans',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --fm:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
+  --pad:clamp(20px,5vw,64px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font-family:inherit;color:inherit}
+::selection{background:rgba(162,101,63,.25)}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(27,35,30,.22);border-radius:99px;border:3px solid var(--bg)}
+section{scroll-margin-top:92px}
+:focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:2px}
+.container{max-width:1280px;margin:0 auto;padding-inline:var(--pad)}
+.mono{font-family:var(--fm)}
+
+/* ============ FIXED LAYERS ============ */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--copper);z-index:1300}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1100;opacity:.05;background-image:url("images/image-18.svg")}
+.frame{position:fixed;inset:10px;border:1px solid rgba(128,128,118,.24);pointer-events:none;z-index:1200}
+@media (max-width:640px){.frame{inset:7px}}
+body.locked{overflow:hidden}
+
+/* ============ REVEAL SYSTEM ============ */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .95s var(--ease) var(--d,0s),transform .95s var(--ease) var(--d,0s)}
+[data-reveal].in{opacity:1;transform:none}
+.lines[data-reveal]{opacity:1;transform:none}
+.lines .ln{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.lines .ln>span{display:block;transform:translateY(118%);transition:transform 1.15s var(--ease) var(--d,0s)}
+.lines.in .ln>span{transform:none}
+
+/* ============ TYPO HELPERS ============ */
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--fm);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);margin-bottom:22px}
+.eyebrow .eb-line{width:22px;height:1px;background:var(--copper);flex:none}
+.eb-light{color:var(--dtext2)}
+em{font-style:italic}
+.sec-title{font-family:var(--fd);font-weight:480;font-size:clamp(2.15rem,4.6vw,3.55rem);line-height:1.06;letter-spacing:-.01em}
+.sec-title em{color:var(--copper);font-weight:460}
+.sec-dark .sec-title em{color:var(--copper2)}
+.stars{color:var(--copper);letter-spacing:3px;font-size:12px;white-space:nowrap}
+.sec-dark .stars{color:var(--copper2)}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--fb);font-weight:550;font-size:14.5px;letter-spacing:.01em;border-radius:999px;height:50px;padding:0 26px;border:1px solid transparent;cursor:pointer;position:relative;overflow:hidden;text-decoration:none;white-space:nowrap;transition:color .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease),transform .2s var(--ease)}
+.btn:active{transform:translateY(1px)}
+.btn::before{content:'';position:absolute;inset:0;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);z-index:0}
+.btn:hover::before{transform:scaleX(1)}
+.btn-t,.btn-arr{position:relative;z-index:1}
+.btn-arr{transition:transform .4s var(--ease);font-size:15px;line-height:1}
+.btn:hover .btn-arr{transform:translateX(4px)}
+.btn-sm{height:42px;padding:0 20px;font-size:13.5px}
+.btn-lg{height:56px;padding:0 30px;font-size:15px}
+.btn-full{width:100%}
+.btn-ink{background:var(--ink);color:#F6F3EC}
+.btn-ink:hover{color:#fff}
+.btn-paper{background:#F4F1EA;color:var(--ink)}
+.btn-paper:hover{color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--hair2)}
+.btn-ghost::before{display:none}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(27,35,30,.05)}
+.btn-ghostl{background:transparent;color:var(--dtext);border-color:var(--dhair)}
+.btn-ghostl::before{display:none}
+.btn-ghostl:hover{border-color:var(--dtext);background:rgba(237,232,220,.07)}
+.btn[disabled]{opacity:.55;cursor:wait}
+.spinner{width:15px;height:15px;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ============ HEADER ============ */
+#siteHeader{position:fixed;top:0;left:0;right:0;z-index:800;transition:background .4s var(--ease),box-shadow .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
+#siteHeader.scrolled{background:rgba(244,241,234,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--hair)}
+.h-in{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.brand{display:flex;flex-direction:column;gap:2px;text-decoration:none}
+.brand-serif{font-family:var(--fd);font-size:19px;font-weight:520;letter-spacing:.005em;line-height:1;color:var(--ink)}
+.brand-serif em{color:var(--copper);font-weight:480}
+.brand-sub{font-family:var(--fm);font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink3)}
+.h-nav{display:flex;gap:30px}
+.h-nav a{font-size:13.5px;font-weight:500;color:var(--ink2);text-decoration:none;position:relative;padding:6px 0;transition:color .3s}
+.h-nav a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--copper);transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+.h-nav a:hover{color:var(--ink)}
+.h-nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.h-cta{display:flex;align-items:center;gap:20px}
+.h-tel{font-family:var(--fm);font-size:12px;color:var(--ink2);text-decoration:none;letter-spacing:.02em;transition:color .3s}
+.h-tel:hover{color:var(--copper)}
+#menuBtn{display:none;width:44px;height:44px;border:none;background:none;cursor:pointer;position:relative;z-index:1001}
+#menuBtn span{position:absolute;left:11px;right:11px;height:1.5px;background:var(--ink);transition:transform .45s var(--ease),background .3s,top .45s var(--ease)}
+#menuBtn span:nth-child(1){top:19px}
+#menuBtn span:nth-child(2){top:25px}
+#menuBtn.is-open span{background:var(--dtext)}
+#menuBtn.is-open span:nth-child(1){top:22px;transform:rotate(45deg)}
+#menuBtn.is-open span:nth-child(2){top:22px;transform:rotate(-45deg)}
+
+/* ============ MOBILE MENU ============ */
+.mm{position:fixed;inset:0;z-index:1000;background:var(--dark);display:flex;flex-direction:column;justify-content:space-between;padding:100px var(--pad) 40px;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility 0s .5s}
+.mm.open{opacity:1;visibility:visible;transition:opacity .5s var(--ease)}
+.mm nav{display:flex;flex-direction:column}
+.mm-link{display:flex;align-items:baseline;gap:18px;font-family:var(--fd);font-size:clamp(30px,8.5vw,44px);font-weight:420;color:var(--dtext);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--dhair);opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease) calc(var(--i)*70ms + 150ms),transform .6s var(--ease) calc(var(--i)*70ms + 150ms),color .3s}
+.mm-link:hover{color:var(--copper2)}
+.mm.open .mm-link{opacity:1;transform:none}
+.mm-link .mm-no{font-family:var(--fm);font-size:11px;color:var(--copper2);letter-spacing:.15em}
+.mm-close{position:absolute;top:18px;right:20px;width:46px;height:46px;border:1px solid var(--dhair);border-radius:50%;background:none;cursor:pointer;z-index:2;transition:border-color .3s}
+.mm-close:hover{border-color:var(--dtext)}
+.mm-close span{position:absolute;left:15px;right:15px;top:50%;height:1.5px;background:var(--dtext);transition:transform .4s var(--ease)}
+.mm-close span:nth-child(1){transform:rotate(45deg)}
+.mm-close span:nth-child(2){transform:rotate(-45deg)}
+.mm-foot{display:flex;flex-direction:column;gap:18px}
+.mm-info{font-family:var(--fm);font-size:11.5px;color:var(--dtext2);line-height:1.8}
+.mm-info a{color:var(--dtext);text-decoration:none}
+
+/* ============ HERO ============ */
+.hero{min-height:max(660px,100svh);display:flex;align-items:center;padding-top:130px;padding-bottom:60px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(36px,5.5vw,80px);align-items:center;width:100%}
+.hero h1{font-family:var(--fd);font-weight:460;font-size:clamp(2.9rem,6.2vw,5.3rem);line-height:1.02;letter-spacing:-.015em;margin-bottom:26px}
+.hero h1 em{color:var(--copper);font-weight:440}
+.hero-sub{font-size:clamp(15.5px,1.4vw,17.5px);color:var(--ink2);max-width:46ch;margin-bottom:36px;line-height:1.65}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.hero-trust{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ht-txt{font-size:12.5px;color:var(--ink2)}
+.ht-sep{width:1px;height:18px;background:var(--hair2)}
+.ht-txt2{font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.hero-media{position:relative}
+.hm-frame{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/4.6;will-change:transform}
+.hm-img{width:100%;height:100%;object-fit:cover;object-position:42% 40%;animation:kb 24s ease-in-out infinite alternate;filter:saturate(.95)}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hm-tint{position:absolute;inset:0;background:linear-gradient(200deg,rgba(244,241,234,0) 55%,rgba(244,241,234,.14));pointer-events:none}
+.hero-card{position:absolute;left:-26px;bottom:36px;width:242px;background:var(--card);border:1px solid var(--hair);border-radius:6px;padding:18px 18px 16px;box-shadow:0 34px 60px -32px rgba(27,35,30,.4);z-index:3}
+.hc-top{display:flex;align-items:center;gap:9px;font-family:var(--fm);font-size:10px;color:var(--ink2);margin-bottom:14px;text-transform:uppercase;letter-spacing:.1em;min-height:16px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--sage);position:relative;flex:none}
+.dot.closed{background:var(--copper)}
+.dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid currentColor;color:var(--sage);opacity:.55;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{from{transform:scale(.55);opacity:.7}to{transform:scale(1.6);opacity:0}}
+.hc-k{font-family:var(--fm);font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink3);display:block}
+.hc-v{font-family:var(--fd);font-size:19px;display:block;margin-top:7px;line-height:1.25;color:var(--ink)}
+.hc-link{display:inline-block;margin-top:15px;font-family:var(--fm);font-size:10.5px;color:var(--copper);text-decoration:none;letter-spacing:.06em}
+.hc-link:hover{text-decoration:underline}
+
+/* ============ MARQUEE ============ */
+.marquee{background:var(--dark);border-top:1px solid var(--dhair);border-bottom:1px solid var(--dhair);overflow:hidden;padding:17px 0}
+.mq-track{display:flex;width:max-content;animation:mq 32s linear infinite}
+.mq-set{display:flex;align-items:center;gap:36px;padding-right:36px}
+.mq-set span{font-family:var(--fd);font-style:italic;font-weight:420;font-size:19px;color:var(--dtext);white-space:nowrap;letter-spacing:.01em}
+.mq-set i{font-style:normal;color:var(--copper2);font-size:13px}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS (GENERIC) ============ */
+.sec{padding-block:clamp(84px,10vw,140px)}
+.sec-soft{background:var(--bg2)}
+.sec-dark{background:var(--dark);color:var(--dtext)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(44px,6vw,72px);flex-wrap:wrap}
+.sec-note{font-size:13.5px;color:var(--ink2);max-width:300px;line-height:1.6;flex:none}
+.note-light{color:var(--dtext2)}
+
+/* ============ STATEMENT / KLINIKKEN ============ */
+.st-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(32px,6vw,90px);align-items:end;margin-bottom:clamp(48px,7vw,84px)}
+.st-lines{font-family:var(--fd);font-weight:460;font-size:clamp(2.3rem,5vw,4.1rem);line-height:1.05;letter-spacing:-.012em}
+.st-lines em{color:var(--copper);font-weight:440}
+.st-side p{font-size:15.5px;color:var(--ink2);line-height:1.7}
+.st-sign{margin-top:18px;font-family:var(--fm);font-size:11px;color:var(--ink3);letter-spacing:.08em}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair)}
+.stat{padding:30px 28px 6px;border-left:1px solid var(--hair)}
+.stat:first-child{border-left:none;padding-left:0}
+.stat-n{font-family:var(--fd);font-weight:440;font-size:clamp(2.3rem,3.6vw,3.3rem);line-height:1;color:var(--ink);display:block;margin-bottom:12px;font-variant-numeric:tabular-nums}
+.stat-l{font-family:var(--fm);font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink2);line-height:1.7;display:block}
+
+/* ============ TREATMENTS ============ */
+.trt-wrap{display:grid;grid-template-columns:1.28fr .82fr;gap:clamp(36px,5vw,76px);align-items:start}
+.trt{border-top:1px solid var(--hair)}
+.trt:last-child{border-bottom:1px solid var(--hair)}
+.trt-head{display:grid;grid-template-columns:44px 1fr auto auto 32px;align-items:center;gap:18px;padding:25px 8px;text-align:left;background:none;border:none;width:100%;cursor:pointer}
+.trt-no{font-family:var(--fm);font-size:12px;color:var(--ink3);letter-spacing:.05em}
+.trt-name{font-family:var(--fd);font-weight:500;font-size:clamp(20px,2.3vw,26px);line-height:1.15;transition:color .35s}
+.trt:hover .trt-name,.trt.open .trt-name{color:var(--copper)}
+.trt-tag{font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--hair);padding:6px 12px;border-radius:999px;white-space:nowrap}
+.trt-price{font-family:var(--fm);font-size:13px;color:var(--ink);white-space:nowrap}
+.trt-x{position:relative;width:30px;height:30px;border:1px solid var(--hair2);border-radius:50%;justify-self:end;transition:border-color .4s var(--ease),transform .5s var(--ease)}
+.trt-x::before,.trt-x::after{content:'';position:absolute;background:var(--ink);top:50%;left:50%;transition:transform .45s var(--ease),background .3s}
+.trt-x::before{width:11px;height:1.5px;transform:translate(-50%,-50%)}
+.trt-x::after{width:1.5px;height:11px;transform:translate(-50%,-50%)}
+.trt.open .trt-x{border-color:var(--copper);transform:rotate(180deg)}
+.trt.open .trt-x::after{transform:translate(-50%,-50%) scaleY(0)}
+.trt.open .trt-x::before{background:var(--copper)}
+.trt-body{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .65s var(--ease),visibility 0s linear .65s}
+.trt.open .trt-body{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .65s var(--ease)}
+.trt-body>div{overflow:hidden;min-height:0}
+.trt-in{padding:6px 8px 32px 62px;display:grid;grid-template-columns:1.15fr .85fr;gap:30px}
+.trt-desc{font-size:15px;line-height:1.7;color:var(--ink2);max-width:52ch}
+.trt-for{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin-top:18px}
+.trt-for li{font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);border:1px solid var(--hair);padding:7px 12px;border-radius:999px}
+.trt-for li::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--copper);margin-right:8px;vertical-align:1px}
+.trt-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;margin-bottom:20px;filter:saturate(.92)}
+.trt-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;border-top:1px solid var(--hair);padding-top:18px;margin:0}
+.trt-meta dt{font-family:var(--fm);font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink3);margin-bottom:7px}
+.trt-meta dd{font-size:13.5px;font-weight:550;line-height:1.45;color:var(--ink)}
+.trt-foot{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px;padding-top:20px;border-top:1px solid var(--hair);flex-wrap:wrap}
+.trt-note{font-family:var(--fm);font-size:10.5px;color:var(--ink3);letter-spacing:.04em}
+.trt-media{position:sticky;top:104px}
+.tm-stack{position:relative;aspect-ratio:3/3.55;border-radius:6px;overflow:hidden;background:var(--bg2)}
+.tm-stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity .75s var(--ease),transform 1.4s var(--ease);filter:saturate(.94)}
+.tm-stack img.on{opacity:1;transform:scale(1)}
+.tm-cap{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-top:14px;margin-top:14px;border-top:1px solid var(--hair)}
+#trtCapName{font-family:var(--fd);font-size:16.5px;font-weight:500}
+#trtCapPrice{font-family:var(--fm);font-size:12px;color:var(--copper);white-space:nowrap}
+
+/* ============ QUIZ ============ */
+.quiz{background:var(--dark2);border:1px solid var(--dhair);border-radius:10px;padding:clamp(26px,4vw,48px);position:relative;overflow:hidden}
+.quiz::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--copper2),transparent);opacity:.6}
+.quiz-top{display:flex;align-items:center;gap:18px;margin-bottom:34px}
+#qStepInd{font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dtext2);white-space:nowrap}
+.qbar{flex:1;height:2px;background:var(--dhair);border-radius:2px;overflow:hidden}
+.qbar.l{margin-top:26px}
+.qbar>span{display:block;height:100%;width:0;background:var(--copper2);transition:width .7s var(--ease)}
+.qstep{display:none}
+.qstep.on{display:block;animation:qin .55s var(--ease)}
+@keyframes qin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.q-q{font-family:var(--fd);font-weight:480;font-size:clamp(22px,2.6vw,30px);margin-bottom:26px;letter-spacing:-.01em}
+.q-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.quiz-opt{display:flex;gap:15px;align-items:flex-start;text-align:left;background:var(--dark3);border:1px solid var(--dhair);border-radius:7px;padding:18px;cursor:pointer;width:100%;transition:border-color .35s,transform .35s var(--ease),background .35s}
+.quiz-opt:hover{border-color:rgba(237,232,220,.4);transform:translateY(-2px)}
+.quiz-opt.sel{border-color:var(--copper2);background:rgba(198,139,95,.1)}
+.qo-ic{width:36px;height:36px;flex:none;display:grid;place-items:center;border:1px solid var(--dhair);border-radius:50%;color:var(--copper2)}
+.qo-ic svg{width:19px;height:19px}
+.qo-l{display:block;font-size:15.5px;font-weight:600;color:var(--dtext);line-height:1.3}
+.qo-d{display:block;font-size:12.5px;color:var(--dtext2);margin-top:4px;line-height:1.45}
+.q-grid2{display:flex;flex-wrap:wrap;gap:10px}
+.quiz-opt2{font-family:var(--fm);font-size:12.5px;letter-spacing:.04em;padding:13px 22px;border-radius:999px;border:1px solid var(--dhair);background:transparent;color:var(--dtext);cursor:pointer;transition:all .3s var(--ease)}
+.quiz-opt2:hover{border-color:var(--dtext)}
+.quiz-opt2.sel{background:var(--dtext);color:var(--dark);border-color:var(--dtext)}
+.q-note{font-size:14px;color:var(--dtext2);line-height:1.65;margin:-8px 0 22px;max-width:64ch;min-height:0}
+.q-recs{display:flex;flex-direction:column;gap:10px}
+.rec{display:flex;align-items:center;gap:18px;padding:17px 20px;border:1px solid var(--dhair);border-radius:7px;cursor:pointer;width:100%;text-align:left;background:transparent;transition:border-color .3s,transform .35s var(--ease),background .3s}
+.rec:hover{border-color:var(--copper2);transform:translateX(5px);background:rgba(198,139,95,.06)}
+.rec-name{display:block;font-family:var(--fd);font-size:19.5px;font-weight:500;color:var(--dtext);line-height:1.2}
+.rec-why{display:block;font-size:12.5px;color:var(--dtext2);margin-top:5px;line-height:1.55}
+.rec-arrow{margin-left:auto;color:var(--copper2);font-size:19px;flex:none}
+.q-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.q-fine{margin-top:18px;font-family:var(--fm);font-size:10.5px;color:var(--dtext3);letter-spacing:.03em;line-height:1.7;max-width:60ch}
+.q-back{margin-top:30px;background:none;border:none;font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dtext2);cursor:pointer;padding:6px 0;transition:color .3s}
+.q-back:hover{color:var(--dtext)}
+
+/* ============ STEPS / FORLØP ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,40px);position:relative;counter-reset:st}
+.steps::before{content:'';position:absolute;top:5px;left:0;right:0;height:1px;background:var(--hair2);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease) .2s}
+.steps.in::before{transform:none}
+.step{position:relative;padding-top:40px}
+.step::before{content:'';position:absolute;top:0;left:0;width:11px;height:11px;border-radius:50%;background:var(--copper);box-shadow:0 0 0 6px var(--bg2)}
+.step-no{font-family:var(--fd);font-style:italic;font-weight:400;font-size:34px;color:var(--copper);display:block;line-height:1;margin-bottom:14px}
+.step-t{font-size:16.5px;font-weight:600;display:block;margin-bottom:10px;letter-spacing:-.01em}
+.step-d{font-size:14px;color:var(--ink2);line-height:1.65;display:block}
+.step-m{font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:block;margin-top:14px}
+
+/* ============ BEFORE / AFTER ============ */
+.ba-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(32px,4.5vw,64px);align-items:start}
+.ba{position:relative;aspect-ratio:1/1;max-height:700px;border-radius:6px;overflow:hidden;background:var(--bg2);cursor:ew-resize}
+.ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.97) contrast(1.03) brightness(1.015);transition:transform 1s var(--ease)}
+.ba-before{position:absolute;inset:0;overflow:hidden;clip-path:inset(0 50% 0 0);will-change:clip-path}
+.ba-before img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(.96) brightness(.965) sepia(.07)}
+.ba-blot{position:absolute;inset:0;mix-blend-mode:multiply;opacity:.42;background-image:url("images/image-19.svg");background-size:cover}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:1px;background:#F6F3EC;z-index:4;pointer-events:none}
+.ba-grip{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#F6F3EC;display:grid;place-items:center;font-family:var(--fm);font-size:11px;color:var(--ink);box-shadow:0 10px 26px -8px rgba(27,35,30,.5);letter-spacing:-2px}
+.ba-label{position:absolute;top:16px;z-index:5;font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;background:rgba(21,29,24,.62);backdrop-filter:blur(4px);color:#F4F1EA;padding:7px 13px;border-radius:999px;transition:opacity .4s;pointer-events:none}
+#baLabelL{left:16px}
+#baLabelR{right:16px}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;-webkit-appearance:none;appearance:none;z-index:6}
+.ba-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:48px;height:100%}
+.ba-range::-moz-range-thumb{width:48px;height:100%;border:none;background:transparent}
+.ba-stash{display:none}
+.ba-side{display:flex;flex-direction:column;gap:26px}
+.ba-cases{display:flex;flex-direction:column;gap:10px}
+.case-tab{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:var(--fm);font-size:11.5px;letter-spacing:.06em;padding:14px 16px;border:1px solid var(--hair);border-radius:5px;background:transparent;cursor:pointer;text-align:left;transition:all .35s var(--ease)}
+.case-tab:hover{border-color:var(--ink2)}
+.case-tab.on{background:var(--ink);color:#F4F1EA;border-color:var(--ink)}
+.case-tab .ct-no{color:var(--copper)}
+.case-tab.on .ct-no{color:var(--copper2)}
+.ba-mt{font-family:var(--fd);font-size:23px;font-weight:500;display:block;line-height:1.2}
+.ba-md{font-family:var(--fm);font-size:11px;color:var(--copper);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:8px}
+.ba-meta p{font-size:14px;color:var(--ink2);line-height:1.65;margin-top:14px}
+.ba-badges{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ba-badges li{font-family:var(--fm);font-size:11.5px;color:var(--ink2);display:flex;gap:10px;align-items:baseline}
+.ba-badges li::before{content:'✓';color:var(--copper);font-weight:600}
+.ba-fine{font-size:11px;color:var(--ink3);line-height:1.7;border-top:1px solid var(--hair);padding-top:16px}
+
+/* ============ TEAM ============ */
+.team{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(24px,3vw,40px);row-gap:clamp(48px,6vw,72px)}
+.t-card{grid-column:span 4}
+.t-card:nth-child(1){grid-column:1/6}
+.t-card:nth-child(2){grid-column:6/10;margin-top:64px}
+.t-card:nth-child(3){grid-column:10/13;margin-top:128px}
+.t-img{aspect-ratio:4/4.7;overflow:hidden;border-radius:5px;background:var(--bg);margin-bottom:22px}
+.t-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;filter:saturate(.88);transition:transform 1.2s var(--ease),filter .8s var(--ease)}
+.t-card:hover .t-img img{transform:scale(1.045);filter:saturate(1)}
+.t-name{font-family:var(--fd);font-weight:500;font-size:24px;letter-spacing:-.01em}
+.t-role{font-family:var(--fm);font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--copper);margin-top:8px;display:block}
+.t-bio{font-size:14px;color:var(--ink2);line-height:1.65;margin-top:14px}
+.t-tags{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.t-tags li{font-family:var(--fm);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--hair);border-radius:999px;padding:6px 11px}
+.trust{margin-top:clamp(48px,6vw,72px);display:flex;flex-wrap:wrap;gap:12px 34px;border-top:1px solid var(--hair);padding-top:28px}
+.trust span{font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:flex;align-items:center;gap:12px}
+.trust span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--sage);flex:none}
+
+/* ============ REVIEWS ============ */
+.rev-grid{display:grid;grid-template-columns:1.5fr .85fr;gap:clamp(40px,6vw,88px);align-items:start}
+.quotebox{position:relative;min-height:330px;margin-top:10px}
+.quote{position:absolute;inset:0;opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);pointer-events:none}
+.quote.on{opacity:1;transform:none;pointer-events:auto}
+.q-t{font-family:var(--fd);font-weight:420;font-size:clamp(21px,2.6vw,29px);line-height:1.4;color:var(--dtext);letter-spacing:-.005em}
+.q-t::before{content:'« ';color:var(--copper2)}
+.q-t::after{content:' »';color:var(--copper2)}
+.q-m{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:26px}
+.q-name{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dtext)}
+.q-tgt{font-family:var(--fm);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dtext2);border:1px solid var(--dhair);border-radius:999px;padding:6px 12px}
+.rev-side{display:flex;flex-direction:column}
+.rev-score{display:flex;flex-direction:column;gap:8px;border:1px solid var(--dhair);border-radius:8px;padding:26px;background:var(--dark2)}
+.rs-n{font-family:var(--fd);font-weight:440;font-size:56px;line-height:1}
+.rs-l{font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dtext2);margin-top:4px}
+.rev-nav{display:flex;align-items:center;gap:16px;margin-top:26px}
+.rev-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--dhair);background:transparent;color:var(--dtext);font-size:16px;cursor:pointer;transition:all .3s var(--ease)}
+.rev-nav button:hover{border-color:var(--dtext);background:rgba(237,232,220,.07)}
+.rev-idx{font-size:11px;letter-spacing:.14em;color:var(--dtext2)}
+
+/* ============ PRICES ============ */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px)}
+.pc-h{font-family:var(--fm);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--copper);margin:34px 0 16px}
+.pc-h:first-child{margin-top:0}
+.p-row{display:flex;align-items:baseline;gap:14px;padding:13px 0}
+.p-n{flex:1;display:flex;flex-direction:column;gap:3px}
+.p-name{font-size:16px;font-weight:550;letter-spacing:-.005em}
+.p-sub{font-size:12px;color:var(--ink3)}
+.p-dots{flex:0 1 120px;min-width:34px;border-bottom:1px dotted var(--hair2);transform:translateY(-5px)}
+.p-v{font-family:var(--fm);font-size:13.5px;white-space:nowrap}
+.prices-fine{margin-top:44px;font-size:12px;color:var(--ink3);max-width:600px;line-height:1.7;border-top:1px solid var(--hair);padding-top:20px}
+
+/* ============ FAQ ============ */
+.faq-grid{display:grid;grid-template-columns:.85fr 1.35fr;gap:clamp(40px,6vw,90px);align-items:start}
+.faq-left{position:sticky;top:110px}
+.faq-more{margin-top:24px;font-size:14px;color:var(--ink2);line-height:1.7}
+.faq-more a{color:var(--copper);text-decoration:none}
+.faq-more a:hover{text-decoration:underline}
+.faq-item{border-top:1px solid var(--hair)}
+.faq-item:last-child{border-bottom:1px solid var(--hair)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:20px;width:100%;text-align:left;background:none;border:none;padding:22px 4px;font-size:16.5px;font-weight:550;letter-spacing:-.005em;cursor:pointer;transition:color .3s}
+.faq-q:hover{color:var(--copper)}
+.faq-item.open .faq-q{color:var(--copper)}
+.faq-x{position:relative;width:14px;height:14px;flex:none}
+.faq-x::before,.faq-x::after{content:'';position:absolute;background:var(--ink);transition:transform .45s var(--ease),background .3s}
+.faq-x::before{left:0;right:0;top:6.25px;height:1.5px}
+.faq-x::after{top:0;bottom:0;left:6.25px;width:1.5px}
+.faq-item.open .faq-x::after{transform:scaleY(0)}
+.faq-item.open .faq-x::before{background:var(--copper)}
+.faq-a{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .55s var(--ease),visibility 0s .55s}
+.faq-item.open .faq-a{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .55s var(--ease)}
+.faq-a>div{overflow:hidden;min-height:0}
+.faq-a p{font-size:14.5px;color:var(--ink2);line-height:1.7;max-width:62ch;padding:0 4px 24px}
+
+/* ============ BOOKING ============ */
+.bk-grid{display:grid;grid-template-columns:1fr 1.12fr;gap:clamp(40px,5.5vw,80px);align-items:start}
+.bk-lead{font-size:15.5px;color:var(--dtext2);line-height:1.7;max-width:44ch;margin-bottom:34px}
+.bk-rows{border-top:1px solid var(--dhair)}
+.bk-row{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:17px 0;border-bottom:1px solid var(--dhair)}
+.bk-k{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dtext3);padding-top:3px}
+.bk-v{font-size:15px;color:var(--dtext);line-height:1.55}
+.bk-v a{color:var(--dtext);text-decoration:none;border-bottom:1px solid var(--dhair);transition:border-color .3s,color .3s}
+.bk-v a:hover{color:var(--copper2);border-color:var(--copper2)}
+.bk-v small{display:block;font-family:var(--fm);font-size:11px;color:var(--dtext3);margin-top:4px}
+.map{position:relative;margin-top:30px;border:1px solid var(--dhair);border-radius:7px;overflow:hidden;aspect-ratio:16/10;background:var(--dark2)}
+.map svg{width:100%;height:100%;display:block}
+.map-ping{transform-origin:center;transform-box:fill-box;animation:mapPing 2.6s ease-out infinite}
+@keyframes mapPing{0%{transform:scale(.4);opacity:.8}100%{transform:scale(2.4);opacity:0}}
+.map-chip{position:absolute;left:14px;bottom:14px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;background:rgba(21,29,24,.78);backdrop-filter:blur(6px);color:var(--dtext);padding:8px 13px;border-radius:999px}
+.pill{display:inline-flex;align-items:center;gap:10px;margin-top:24px;border:1px solid var(--dhair);border-radius:999px;padding:11px 18px;font-family:var(--fm);font-size:11px;letter-spacing:.06em;color:var(--dtext2)}
+.bk-card{background:var(--bg);color:var(--ink);border-radius:10px;padding:clamp(24px,3.4vw,42px);box-shadow:0 50px 90px -50px rgba(0,0,0,.55)}
+.bk-card.pulse{animation:cardPulse 1.1s ease-out 2}
+@keyframes cardPulse{0%{box-shadow:0 0 0 0 rgba(198,139,95,.5)}100%{box-shadow:0 0 0 22px rgba(198,139,95,0)}}
+.bk-steps-ind{display:flex;align-items:center;gap:14px;font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:30px}
+.bk-steps-ind .on{color:var(--copper)}
+.bk-line{flex:1;height:1px;background:var(--hair)}
+.bk-step{display:none}
+.bk-step.on{display:block;animation:qin .5s var(--ease)}
+.f-label{display:block;font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);margin:22px 0 9px}
+.f-label:first-child{margin-top:0}
+.f-selwrap{position:relative}
+.f-selwrap::after{content:'↓';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--ink2);pointer-events:none}
+select#bkTreatment{-webkit-appearance:none;appearance:none;width:100%;background:transparent;border:none;border-bottom:1px solid var(--hair2);font-family:var(--fb);font-size:15px;color:var(--ink);padding:11px 30px 11px 2px;cursor:pointer;transition:border-color .3s;border-radius:0}
+select#bkTreatment:focus{outline:none;border-bottom-color:var(--copper)}
+select#bkTreatment:invalid{color:var(--ink3)}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chips-hint{font-family:var(--fm);font-size:11px;color:var(--ink3)}
+.chip{font-family:var(--fm);font-size:12px;background:transparent;border:1px solid var(--hair2);border-radius:999px;padding:11px 15px;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:2px;min-width:62px;color:var(--ink);transition:all .3s var(--ease)}
+.chip .chip-d{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);transition:color .3s}
+.chip .chip-n{font-weight:500}
+.chip:hover{border-color:var(--ink)}
+.chip.sel{background:var(--ink);border-color:var(--ink);color:#F4F1EA}
+.chip.sel .chip-d{color:rgba(244,241,234,.65)}
+.chip.off{opacity:.35;cursor:not-allowed;border-style:dashed}
+.chips.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.chip.slot{min-width:0;justify-content:center}
+.f-err{display:none;color:#A64B31;font-size:13px;margin-top:16px}
+.f-err.on{display:block;animation:qin .4s var(--ease)}
+.f-input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--hair2);font-family:var(--fb);font-size:15px;color:var(--ink);padding:11px 2px;transition:border-color .3s;border-radius:0}
+.f-input::placeholder{color:var(--ink3)}
+.f-input:focus{outline:none;border-bottom-color:var(--copper)}
+textarea.f-input{resize:vertical;min-height:74px;line-height:1.55}
+.f-row2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.f-agree{display:flex;gap:12px;align-items:flex-start;margin-top:24px;cursor:pointer;font-size:12.5px;color:var(--ink2);line-height:1.55;position:relative}
+.f-agree input{position:absolute;opacity:0;width:1px;height:1px;left:0;top:0}
+.f-box{width:17px;height:17px;flex:none;border:1px solid var(--hair2);border-radius:4px;margin-top:1px;display:grid;place-items:center;transition:all .3s var(--ease);font-size:11px;color:transparent}
+.f-agree input:checked~.f-box{background:var(--ink);border-color:var(--ink);color:#F4F1EA}
+.f-agree input:focus-visible~.f-box{outline:2px solid var(--copper);outline-offset:2px}
+.bk-btnrow{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.bk-btnrow .btn-ink{flex:1}
+.bk-sel{font-size:11px;letter-spacing:.08em;color:var(--copper);background:rgba(162,101,63,.08);border:1px solid rgba(162,101,63,.25);border-radius:6px;padding:12px 15px;margin-bottom:6px}
+#bkDone{text-align:center;padding:26px 6px}
+.done-check{margin:0 auto 24px;width:66px;height:66px}
+.dc-c{stroke-dasharray:183;stroke-dashoffset:183}
+.dc-p{stroke-dasharray:42;stroke-dashoffset:42}
+#bkDone.on .dc-c{animation:draw 1s var(--ease) .1s forwards}
+#bkDone.on .dc-p{animation:draw .5s var(--ease) .9s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.done-t{font-family:var(--fd);font-weight:480;font-size:27px;margin-bottom:14px}
+.done-d{font-size:14px;color:var(--ink2);line-height:1.65;max-width:44ch;margin:0 auto 10px}
+.done-fine{font-family:var(--fm);font-size:11px;color:var(--ink3);line-height:1.7;max-width:44ch;margin:0 auto 26px}
+
+/* ============ FOOTER ============ */
+.foot{background:#0F1511;color:var(--dtext);padding-top:clamp(56px,7vw,88px)}
+.foot-word{font-family:var(--fd);font-weight:420;font-size:clamp(3rem,10.5vw,9.6rem);line-height:.95;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;color:var(--dtext);opacity:.92;padding-bottom:clamp(30px,4vw,54px);border-bottom:1px solid var(--dhair)}
+.foot-word em{color:var(--copper2);font-weight:400}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:clamp(28px,4vw,56px);padding:clamp(40px,5vw,60px) 0}
+.f-brand p{font-size:13.5px;color:var(--dtext2);line-height:1.7;max-width:30ch;margin-top:14px}
+.f-h{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dtext3);margin-bottom:18px}
+.f-col a{display:block;font-size:14px;color:var(--dtext);opacity:.78;text-decoration:none;padding:5px 0;transition:opacity .3s,color .3s}
+.f-col a:hover{opacity:1;color:var(--copper2)}
+.f-col p{font-size:13.5px;color:var(--dtext2);line-height:1.8}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;border-top:1px solid var(--dhair);padding:24px 0 34px;font-family:var(--fm);font-size:10.5px;letter-spacing:.06em;color:rgba(237,232,220,.42)}
+.foot-demo{max-width:430px;line-height:1.7}
+.f-social{display:flex;gap:10px}
+.f-social a{width:38px;height:38px;border:1px solid var(--dhair);border-radius:50%;display:grid;place-items:center;color:var(--dtext2);transition:all .3s}
+.f-social a:hover{color:var(--dtext);border-color:var(--dtext)}
+.f-social svg{width:16px;height:16px}
+
+/* ============ MOBILE BAR ============ */
+.mbar{display:none}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1080px){
+  .h-nav{gap:20px}
+  .h-tel{display:none}
+  .st-grid{grid-template-columns:1fr;align-items:start;gap:36px}
+}
+@media (max-width:960px){
+  .trt-wrap{grid-template-columns:1fr}
+  .trt-media{display:none}
+  .ba-grid{grid-template-columns:1fr}
+  .ba{aspect-ratio:4/4.4}
+  .rev-grid{grid-template-columns:1fr}
+  .rev-side{max-width:460px}
+  .bk-grid{grid-template-columns:1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .faq-left{position:static}
+  .team{grid-template-columns:repeat(6,1fr)}
+  .t-card{grid-column:span 3 !important;margin-top:0 !important}
+  .t-card:nth-child(3){grid-column:1/4 !important}
+  .t-card:nth-child(3) .t-img{aspect-ratio:16/9;object-fit:cover}
+}
+@media (max-width:880px){
+  .h-nav{display:none}
+  #menuBtn{display:block}
+  .hero{padding-top:110px;min-height:0}
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hm-frame{aspect-ratio:4/3.4}
+  .hero-card{position:static;width:100%;margin-top:18px;display:flex;align-items:center;gap:20px}
+  .hero-card .hc-top{margin-bottom:0}
+  .hero-card .hc-body{flex:1}
+  .hero-card .hc-v{margin-top:2px;font-size:17px}
+  .hero-card .hc-link{display:none}
+  .steps{grid-template-columns:1fr 1fr;gap:44px 28px}
+  .steps::before{display:none}
+  .step::before{box-shadow:0 0 0 6px var(--bg)}
+  .sec-soft .step::before{box-shadow:0 0 0 6px var(--bg2)}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{padding:24px 20px}
+  .stat:nth-child(odd){border-left:none;padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--hair)}
+}
+@media (max-width:640px){
+  .h-in{height:62px}
+  #siteHeader.scrolled{background:rgba(244,241,234,.92)}
+  section{scroll-margin-top:74px}
+  .sec{padding-block:64px}
+  .sec-head{margin-bottom:36px}
+  .sec-note{max-width:none}
+  .hero-cta .btn{width:100%}
+  .hero-cta{flex-direction:column}
+  .hero-trust{gap:10px}
+  .trt-head{grid-template-columns:30px 1fr 32px;gap:12px;padding:20px 4px}
+  .trt-tag{display:none}
+  .trt-price{grid-column:2;grid-row:2;justify-self:start;margin-top:2px;font-size:11.5px;color:var(--ink2)}
+  .trt-no{font-size:11px}
+  .trt-in{grid-template-columns:1fr;padding:2px 4px 26px 42px;gap:22px}
+  .trt-meta{grid-template-columns:1fr 1fr}
+  .q-grid{grid-template-columns:1fr}
+  .chips.slots{grid-template-columns:repeat(3,1fr)}
+  .f-row2{grid-template-columns:1fr;gap:0}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .f-brand{grid-column:1/-1}
+  .quotebox{min-height:400px}
+  .mbar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:900;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(21,29,24,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--dhair);transform:translateY(110%);transition:transform .5s var(--ease)}
+  .mbar.show{transform:none}
+  .mbar-t{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dtext2)}
+  .foot{padding-bottom:96px}
+  .steps{grid-template-columns:1fr}
+  .team{grid-template-columns:1fr}
+  .t-card{grid-column:1/-1 !important}
+  .t-card:nth-child(3) .t-img{aspect-ratio:4/4.7}
+  .prices{grid-template-columns:1fr;gap:8px}
+  .p-dots{flex-basis:60px}
+  .bm-date-scroll{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;padding-bottom:4px}
+  .bm-date-scroll::-webkit-scrollbar{display:none}
+  .bm-date-scroll .chip{flex:none}
+}
+@media (max-width:480px){
+  .stats{grid-template-columns:1fr}
+  .stat{border-left:none;padding-left:0}
+  .stat:nth-child(n+2){border-top:1px solid var(--hair)}
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .mq-track{animation:none}
+  [data-reveal]{opacity:1;transform:none}
+  .lines .ln>span{transform:none}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="frame" aria-hidden="true"></div>
+
+<!-- ============ HEADER ============ -->
+<header id="siteHeader">
+  <div class="container h-in">
+    <a class="brand" href="#top" aria-label="Nordic Skin Clinic — toppen av siden">
+      <span class="brand-serif">Nordic Skin <em>Clinic</em></span>
+      <span class="brand-sub">Oslo · Est. 2016</span>
+    </a>
+    <nav class="h-nav" aria-label="Hovedmeny">
+      <a href="#behandlinger">Behandlinger</a>
+      <a href="#forlop">Forløp</a>
+      <a href="#team">Team</a>
+      <a href="#resultater">Resultater</a>
+      <a href="#priser">Priser</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="h-cta">
+      <a class="h-tel" href="tel:+4722468810">+47 22 46 88 10</a>
+      <a class="btn btn-ink btn-sm" href="#kontakt"><span class="btn-t">Bestill time</span></a>
+      <button id="menuBtn" aria-label="Åpne meny" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mm" id="mobileMenu" aria-hidden="true">
+  <button id="mmClose" class="mm-close" type="button" aria-label="Lukk meny"><span></span><span></span></button>
+  <nav aria-label="Mobilmeny">
+    <a class="mm-link" style="--i:0" href="#behandlinger"><span class="mm-no">01</span>Behandlinger</a>
+    <a class="mm-link" style="--i:1" href="#finn"><span class="mm-no">02</span>Finn behandlingen</a>
+    <a class="mm-link" style="--i:2" href="#forlop"><span class="mm-no">03</span>Forløpet</a>
+    <a class="mm-link" style="--i:3" href="#team"><span class="mm-no">04</span>Teamet</a>
+    <a class="mm-link" style="--i:4" href="#resultater"><span class="mm-no">05</span>Resultater</a>
+    <a class="mm-link" style="--i:5" href="#priser"><span class="mm-no">06</span>Priser</a>
+    <a class="mm-link" style="--i:6" href="#kontakt"><span class="mm-no">07</span>Kontakt</a>
+  </nav>
+  <div class="mm-foot">
+    <a class="btn btn-paper btn-lg" href="#kontakt"><span class="btn-t">Bestill time</span><span class="btn-arr">→</span></a>
+    <div class="mm-info">Storgata 14, 0184 Oslo<br><a href="tel:+4722468810">+47 22 46 88 10</a> · <a href="/cdn-cgi/l/email-protection#0f7f607c7b4f61607d6b666c7c646661216160"><span class="__cf_email__" data-cfemail="0979667a7d4967667b6d606a7a626067276766">[email&#160;protected]</span></a></div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow" data-reveal style="--d:.05s"><span class="eb-line"></span>Kosmetisk hudklinikk · Oslo</p>
+      <h1 class="lines" data-reveal>
+        <span class="ln" style="--d:.1s"><span>Huden din,</span></span>
+        <span class="ln" style="--d:.2s"><span><em>tatt på alvor.</em></span></span>
+      </h1>
+      <p class="hero-sub" data-reveal style="--d:.34s">Vi kombinerer klinisk kompetanse med rolig, skandinavisk behandlingsskikk. Hver behandling starter med en grundig analyse – ikke med antagelser.</p>
+      <div class="hero-cta" data-reveal style="--d:.44s">
+        <a class="btn btn-ink btn-lg" href="#kontakt"><span class="btn-t">Bestill konsultasjon</span><span class="btn-arr">→</span></a>
+        <a class="btn btn-ghost btn-lg" href="#finn"><span class="btn-t">Finn riktig behandling</span></a>
+      </div>
+      <div class="hero-trust" data-reveal style="--d:.54s">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span class="ht-txt">4,9 på Google · 380+ omtaler</span>
+        <span class="ht-sep" aria-hidden="true"></span>
+        <span class="ht-txt2">Registrert helsepersonell</span>
+      </div>
+    </div>
+    <div class="hero-media" data-reveal style="--d:.2s">
+      <div class="hm-frame" id="hmFrame">
+        <img class="hm-img" src="images/image-01.jpg" alt="Ro og klar hud — en pasient ved Nordic Skin Clinic">
+        <div class="hm-tint"></div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-top"><span class="dot" id="openDot1"></span><span id="openPill1">Åpen nå</span></div>
+        <div class="hc-body">
+          <span class="hc-k">Neste ledige time</span>
+          <span class="hc-v">i dag, kl 15:00<br>Hudanalyse &amp; konsultasjon</span>
+        </div>
+        <a class="hc-link" href="#kontakt">Bestill time →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <div class="mq-set">
+      <span>Hudanalyse</span><i>✳</i><span>Kjemisk peeling</span><i>✳</i><span>Microneedling</span><i>✳</i><span>Laser &amp; IPL</span><i>✳</i><span>HydraFacial</span><i>✳</i><span>Botulinum &amp; filler</span><i>✳</i><span>Avansert hudpleie</span><i>✳</i>
+    </div>
+    <div class="mq-set">
+      <span>Hudanalyse</span><i>✳</i><span>Kjemisk peeling</span><i>✳</i><span>Microneedling</span><i>✳</i><span>Laser &amp; IPL</span><i>✳</i><span>HydraFacial</span><i>✳</i><span>Botulinum &amp; filler</span><i>✳</i><span>Avansert hudpleie</span><i>✳</i>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 01 KLINIKKEN ============ -->
+<section class="sec" id="klinikk">
+  <div class="container">
+    <p class="eyebrow" data-reveal><span class="eb-line"></span>01 — Klinikken</p>
+    <div class="st-grid">
+      <h2 class="st-lines lines" data-reveal>
+        <span class="ln" style="--d:.1s"><span>Vi behandler hud,</span></span>
+        <span class="ln" style="--d:.2s"><span>ikke <em>symptomer.</em></span></span>
+      </h2>
+      <div class="st-side" data-reveal style="--d:.25s">
+        <p>Siden 2016 har vi kombinert dermatologisk kunnskap med presisjonsteknologi i et rolig, klinisk miljø. Behandlingene våre bygger på analyse, dokumentasjon og oppfølging – fordi det som ser likt ut, sjelden behandles likt.</p>
+        <p class="st-sign">— Teamet ved Nordic Skin Clinic</p>
+      </div>
+    </div>
+    <div class="stats" data-reveal>
+      <div class="stat"><span class="stat-n"><span data-count="12400" data-suffix="+">0</span></span><span class="stat-l">behandlinger gjennomført</span></div>
+      <div class="stat"><span class="stat-n"><span data-count="98" data-suffix=" %">0</span></span><span class="stat-l">av pasientene våre anbefaler oss</span></div>
+      <div class="stat"><span class="stat-n"><span data-count="4.9">0</span></span><span class="stat-l">gjennomsnittlig vurdering på Google</span></div>
+      <div class="stat"><span class="stat-n"><span data-count="6">0</span></span><span class="stat-l">behandlere med faglig bakgrunn</span></div>
+    </div>
+  </div>
+</section>
+<!-- ============ 02 BEHANDLINGER ============ -->
+<section class="sec sec-soft" id="behandlinger">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow" data-reveal><span class="eb-line"></span>02 — Behandlingene</p>
+        <h2 class="sec-title lines" data-reveal>
+          <span class="ln" style="--d:.1s"><span>En behandling</span></span>
+          <span class="ln" style="--d:.2s"><span>for <em>hvert mål.</em></span></span>
+        </h2>
+      </div>
+      <p class="sec-note" data-reveal style="--d:.2s">Prisene er veiledende. Fast pris fastsettes alltid ved konsultasjon – før du bestiller noe.</p>
+    </div>
+
+    <div class="trt-wrap">
+      <div class="trt-list" data-reveal>
+
+        <article class="trt" data-price="fra kr 990">
+          <button class="trt-head" aria-expanded="false">
+            <span class="trt-no">01</span>
+            <span class="trt-name">Hudanalyse &amp; konsultasjon</span>
+            <span class="trt-tag">Steg én</span>
+            <span class="trt-price">fra kr 990</span>
+            <span class="trt-x" aria-hidden="true"></span>
+          </button>
+          <div class="trt-body"><div>
+            <div class="trt-in">
+              <div>
+                <p class="trt-desc">Vi kartlegger huden din med klinisk analyseutstyr: dermoskopi, sebummåling og fuktighetsmåling. Du forlater klinikken med en skriftlig behandlingsplan – og uten forpliktelse.</p>
+                <ul class="trt-for"><li>Første skritt</li><li>Ujevn hud</li><li>Usikker på hva du trenger</li></ul>
+              </div>
+              <div>
+                <img class="trt-thumb" src="images/image-02.jpg" alt="Hudanalyse med klinisk skanner ved Nordic Skin Clinic">
+                <dl class="trt-meta">
+                  <div><dt>Varighet</dt><dd>45 min</dd></div>
+                  <div><dt>Antall</dt><dd>1, så vedlikehold</dd></div>
+                  <div><dt>Effekt</dt><dd>Skjellig innsikt, øyeblikkelig</dd></div>
+                </dl>
+              </div>
+              <div class="trt-foot">
+                <span class="trt-note">Utføres av: Dr. Ingrid Solberg</span>
+                <a class="btn btn-ink btn-sm" href="#kontakt" data-book="analyse"><span class="btn-t">Bestill time</span><span class="btn-arr">→</span></a>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <article class="trt" data-price="fra kr 1 890">
+          <button class="trt-head" aria-expanded="false">
+            <span class="trt-no">02</span>
+            <span class="trt-name">Kjemisk peeling</span>
+            <span class="trt-tag">Tone · Tekstur</span>
+            <span class="trt-price">fra kr 1 890</span>
+            <span class="trt-x" aria-hidden="true"></span>
+          </button>
+          <div class="trt-body"><div>
+            <div class="trt-in">
+              <div>
+                <p class="trt-desc">Kontrollert eksfoliasjon med medisinske syrer. Avslører frisk hud, glatter tekstur og letter pigmentering – med minimal restitusjonstid og ingen nedstenging.</p>
+                <ul class="trt-for"><li>Pigmentering</li><li>Ujevn tone</li><li>Matt hud</li><li>Kviskearr</li></ul>
+              </div>
+              <div>
+                <img class="trt-thumb" src="images/image-03.jpg" alt="Kjemisk peeling utføres med brush">
+                <dl class="trt-meta">
+                  <div><dt>Varighet</dt><dd>30–45 min</dd></div>
+                  <div><dt>Antall</dt><dd>3–4, 4 uker imellom</dd></div>
+                  <div><dt>Effekt</dt><dd>Synlig etter 2. behandling</dd></div>
+                </dl>
+              </div>
+              <div class="trt-foot">
+                <span class="trt-note">Behandles av: Sigrid Vangen · Dr. Ingrid Solberg</span>
+                <a class="btn btn-ink btn-sm" href="#kontakt" data-book="peeling"><span class="btn-t">Bestill time</span><span class="btn-arr">→</span></a>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <article class="trt" data-price="fra kr 2 490">
+          <button class="trt-head" aria-expanded="false">
+            <span class="trt-no">03</span>
+            <span class="trt-name">Microneedling</span>
+            <span class="trt-tag">Arr · Porer</span>
+            <span class="trt-price">fra kr 2 490</span>
+            <span class="trt-x" aria-hidden="true"></span>
+          </button>
+          <div class="trt-body"><div>
+            <div class="trt-in">
+              <div>
+                <p class="trt-desc">Medisinsk microneedling aktiverer hudens egen produksjon av kollagen og elastin. Resultatet er fastere, jevnere hud med mindre synlige porer og arr – en effekt som bygger seg opp over tid.</p>
+                <ul class="trt-for"><li>Arr fra akne</li><li>Store porer</li><li>Fine linjer</li><li>Slapp hud</li></ul>
+              </div>
+              <div>
+                <img class="trt-thumb" src="images/image-04.jpg" alt="Microneedling med Dermapen på kinn">
+                <dl class="trt-meta">
+                  <div><dt>Varighet</dt><dd>45–60 min</dd></div>
+                  <div><dt>Antall</dt><dd>3–5, 4 uker imellom</dd></div>
+                  <div><dt>Effekt</dt><dd>Bygger seg opp over 8–12 uker</dd></div>
+                </dl>
+              </div>
+              <div class="trt-foot">
+                <span class="trt-note">Behandles av: Sigrid Vangen · Marta Haugen</span>
+                <a class="btn btn-ink btn-sm" href="#kontakt" data-book="microneedling"><span class="btn-t">Bestill time</span><span class="btn-arr">→</span></a>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <article class="trt" data-price="fra kr 2 950">
+          <button class="trt-head" aria-expanded="false">
+            <span class="trt-no">04</span>
+            <span class="trt-name">Laser &amp; IPL</span>
+            <span class="trt-tag">Pigment · Rødhet</span>
+            <span class="trt-price">fra kr 2 950</span>
+            <span class="trt-x" aria-hidden="true"></span>
+          </button>
+          <div class="trt-body"><div>
+            <div class="trt-in">
+              <div>
+                <p class="trt-desc">Presisjonsrettet lysbehandling for pigment, rødhet og uønsket behåring. Vi bruker klinisk godkjente lasersystemer, justert punkt for punkt til din hudtype – aldri «standardprogram».</p>
+                <ul class="trt-for"><li>Pigmentflekker</li><li>Rødhet / rosacea</li><li>Solskader</li><li>Behåring</li></ul>
+              </div>
+              <div>
+                <img class="trt-thumb" src="images/image-05.jpg" alt="Laserbehandling med vernebriller">
+                <dl class="trt-meta">
+                  <div><dt>Varighet</dt><dd>30–60 min</dd></div>
+                  <div><dt>Antall</dt><dd>3–6, avhengig av mål</dd></div>
+                  <div><dt>Effekt</dt><dd>Synlig fra 2.–3. behandling</dd></div>
+                </dl>
+              </div>
+              <div class="trt-foot">
+                <span class="trt-note">Utføres av: Dr. Ingrid Solberg</span>
+                <a class="btn btn-ink btn-sm" href="#kontakt" data-book="laser"><span class="btn-t">Bestill time</span><span class="btn-arr">→</span></a>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <article class="trt" data-price="kr 2 190">
+          <button class="trt-head" aria-expanded="false">
+            <span class="trt-no">05</span>
+            <span class="trt-name">HydraFacial &amp; avansert hudpleie</span>
+            <span class="trt-tag">Glans · Fukt</span>
+            <span class="trt-price">kr 2 190</span>
+            <span class="trt-x" aria-hidden="true"></span>
+          </button>
+          <div class="trt-body"><div>
+            <div class="trt-in">
+              <div>
+                <p class="trt-desc">Dyprens, mild eksfoliasjon, ekstraksjon og fuktighetsboost i én behandling på 60 minutter. Resultatet er øyeblikkelig – huden stråler på dagen, og beholder glansen med riktig vedlikehold.</p>
+                <ul class="trt-for"><li>Tørr hud</li><li>Trøtte porer</li><li>Store dager</li><li>Vedlikehold</li></ul>
+              </div>
+              <div>
+                <img class="trt-thumb" src="images/image-06.jpg" alt="Avansert ansiktsbehandling med fuktighetsgel">
+                <dl class="trt-meta">
+                  <div><dt>Varighet</dt><dd>60 min</dd></div>
+                  <div><dt>Antall</dt><dd>1, eller jevnlig vedlikehold</dd></div>
+                  <div><dt>Effekt</dt><dd>Øyeblikkelig</dd></div>
+                </dl>
+              </div>
+              <div class="trt-foot">
+                <span class="trt-note">Utføres av: Sigrid Vangen</span>
+                <a class="btn btn-ink btn-sm" href="#kontakt" data-book="hydra"><span class="btn-t">Bestill time</span><span class="btn-arr">→</span></a>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <article class="trt" data-price="fra kr 1 750">
+          <button class="trt-head" aria-expanded="false">
+            <span class="trt-no">06</span>
+            <span class="trt-name">Botulinum &amp; filler</span>
+            <span class="trt-tag">Linjer · Volum</span>
+            <span class="trt-price">fra kr 1 750</span>
+            <span class="trt-x" aria-hidden="true"></span>
+          </button>
+          <div class="trt-body"><div>
+            <div class="trt-in">
+              <div>
+                <p class="trt-desc">Naturlige, diskrete resultater utført av legemedisiner. Vi jobber for å beholde uttrykket – ikke å fjerne det. Fyllere settes kun der det gir mening, og alltid i moderate doser.</p>
+                <ul class="trt-for"><li>Uttryksrynker</li><li>Volum i kinn</li><li>Kontur</li><li>Utligning</li></ul>
+              </div>
+              <div>
+                <img class="trt-thumb" src="images/image-07.jpg" alt="Legemedisiner forbereder kosmetisk behandling">
+                <dl class="trt-meta">
+                  <div><dt>Varighet</dt><dd>30–45 min</dd></div>
+                  <div><dt>Antall</dt><dd>1 + eventuell retusj</dd></div>
+                  <div><dt>Effekt</dt><dd>3–6 mnd / 9–12 mnd</dd></div>
+                </dl>
+              </div>
+              <div class="trt-foot">
+                <span class="trt-note">Utføres av: Marta Haugen, lic. med.</span>
+                <a class="btn btn-ink btn-sm" href="#kontakt" data-book="kosmetikk"><span class="btn-t">Bestill time</span><span class="btn-arr">→</span></a>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+      </div>
+
+      <aside class="trt-media" aria-hidden="true" data-reveal style="--d:.15s">
+        <div class="tm-stack">
+          <img src="images/image-08.jpg" alt="" style="object-position:62% 45%">
+          <img src="images/image-09.jpg" alt="" style="object-position:38% 45%">
+          <img src="images/image-10.jpg" alt="" style="object-position:32% 42%">
+          <img src="images/image-11.jpg" alt="" style="object-position:44% 45%">
+          <img src="images/image-12.jpg" alt="" style="object-position:48% 42%">
+          <img src="images/image-13.jpg" alt="" style="object-position:64% 40%">
+        </div>
+        <div class="tm-cap">
+          <span id="trtCapName">Hudanalyse &amp; konsultasjon</span>
+          <span id="trtCapPrice">fra kr 990</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 QUIZ ============ -->
+<section class="sec sec-dark" id="finn">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow eb-light" data-reveal><span class="eb-line"></span>03 — Finn behandlingen</p>
+        <h2 class="sec-title lines" data-reveal>
+          <span class="ln" style="--d:.1s"><span>Hvilken behandling</span></span>
+          <span class="ln" style="--d:.2s"><span>passer <em>din hud?</em></span></span>
+        </h2>
+      </div>
+      <p class="sec-note note-light" data-reveal style="--d:.2s">To spørsmål. Tre anbefalinger. Helt uten forpliktelse.</p>
+    </div>
+
+    <div class="quiz" id="quizCard" data-reveal>
+      <div class="quiz-top">
+        <span id="qStepInd">Steg 1 av 2</span>
+        <div class="qbar"><span id="qBar" style="width:18%"></span></div>
+      </div>
+
+      <div class="qstep on" id="qStep1">
+        <h3 class="q-q">Hva ønsker du å jobbe med?</h3>
+        <div class="q-grid">
+          <button class="quiz-opt" data-concern="pigmentering" type="button">
+            <span class="qo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c3.4 4.1 5.8 7.2 5.8 10.2a5.8 5.8 0 0 1-11.6 0c0-3 2.4-6.1 5.8-10.2z"/></svg></span>
+            <span><span class="qo-l">Pigmentering</span><span class="qo-d">Flekker og uregelmessig hudtone</span></span>
+          </button>
+          <button class="quiz-opt" data-concern="akne" type="button">
+            <span class="qo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="8.2"/><circle cx="9.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15.5" r=".8" fill="currentColor" stroke="none"/></svg></span>
+            <span><span class="qo-l">Akne &amp; arr</span><span class="qo-d">Arr, uregelmessigheter og aktive kviser</span></span>
+          </button>
+          <button class="quiz-opt" data-concern="linjer" type="button">
+            <span class="qo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 10c2.7 0 2.7-2 5.3-2s2.7 2 5.4 2 2.6-2 5.3-2"/><path d="M4 15c2.7 0 2.7-2 5.3-2s2.7 2 5.4 2 2.6-2 5.3-2"/></svg></span>
+            <span><span class="qo-l">Linjer &amp; volum</span><span class="qo-d">Rynker, slapp hud, kontur og volum</span></span>
+          </button>
+          <button class="quiz-opt" data-concern="torr" type="button">
+            <span class="qo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.2"/><path d="M12 5.5v5.2l-2 2 2 3"/></svg></span>
+            <span><span class="qo-l">Tørr &amp; sensitiv hud</span><span class="qo-d">Tørst, tetthetsfølelse og rødhet</span></span>
+          </button>
+          <button class="quiz-opt" data-concern="porer" type="button">
+            <span class="qo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8.5" cy="8.5" r="1.4"/><circle cx="15.5" cy="8.5" r="1.4"/><circle cx="8.5" cy="15.5" r="1.4"/><circle cx="15.5" cy="15.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/></svg></span>
+            <span><span class="qo-l">Matt hud &amp; porer</span><span class="qo-d">Ubalanse, glans og trøtt hud</span></span>
+          </button>
+          <button class="quiz-opt" data-concern="forebygging" type="button">
+            <span class="qo-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6.3v5c0 4.4-2.9 7.9-7 9.7-4.1-1.8-7-5.3-7-9.7v-5z"/></svg></span>
+            <span><span class="qo-l">Forebygging</span><span class="qo-d">Vedlikehold og tidlig, diskrete inngrep</span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="qstep" id="qStep2">
+        <h3 class="q-q">Hva er huden din vanligvis?</h3>
+        <div class="q-grid2">
+          <button class="quiz-opt2" data-skin="torr" type="button">Tørr</button>
+          <button class="quiz-opt2" data-skin="normal" type="button">Normal</button>
+          <button class="quiz-opt2" data-skin="kombinasjon" type="button">Kombinasjon</button>
+          <button class="quiz-opt2" data-skin="fet" type="button">Fet</button>
+          <button class="quiz-opt2" data-skin="irritabel" type="button">Irritabel</button>
+        </div>
+      </div>
+
+      <div class="qstep" id="qResult">
+        <h3 class="q-q">Dine anbefalinger</h3>
+        <p class="q-note" id="qNote"></p>
+        <div class="q-recs" id="qRecs"></div>
+        <div class="q-cta-row">
+          <button class="btn btn-paper btn-lg" type="button" id="qCtaBtn" data-book="analyse"><span class="btn-t">Book konsultasjon</span><span class="btn-arr">→</span></button>
+          <button class="btn btn-ghostl btn-lg" type="button" id="qReset"><span class="btn-t">Svar på nytt</span></button>
+        </div>
+        <p class="q-fine">Anbefalingen er veiledende. Din behandler justerer planen basert på analyse under første time – aldri omvendt.</p>
+      </div>
+
+      <button class="q-back" id="quizBack" type="button">← Tilbake</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 FORLØP ============ -->
+<section class="sec sec-soft" id="forlop">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow" data-reveal><span class="eb-line"></span>04 — Forløpet</p>
+        <h2 class="sec-title lines" data-reveal>
+          <span class="ln" style="--d:.1s"><span>Slik går</span></span>
+          <span class="ln" style="--d:.2s"><span>det <em>for seg.</em></span></span>
+        </h2>
+      </div>
+      <p class="sec-note" data-reveal style="--d:.2s">Fra første analyse til varig resultat – du vet alltid hva som skjer, og hvorfor.</p>
+    </div>
+    <ol class="steps" data-reveal style="list-style:none">
+      <li class="step">
+        <span class="step-no">1</span>
+        <span class="step-t">Konsultasjon &amp; analyse</span>
+        <span class="step-d">Vi kartlegger hudtype, historie og mål. Du får en skriftlig plan – og forplikter deg til ingenting.</span>
+        <span class="step-m">45 min</span>
+      </li>
+      <li class="step">
+        <span class="step-no">2</span>
+        <span class="step-t">Din personlige plan</span>
+        <span class="step-d">Rekkefølge, antall behandlinger og budsjett – skreddersydd for akkurat deg, ikke en pakkeløsning.</span>
+        <span class="step-m">Samme dag</span>
+      </li>
+      <li class="step">
+        <span class="step-no">3</span>
+        <span class="step-t">Behandling</span>
+        <span class="step-d">Utført av behandler med faglig bakgrunn i akkurat behandlingen. Du får veiledning steg for steg.</span>
+        <span class="step-m">30–60 min</span>
+      </li>
+      <li class="step">
+        <span class="step-no">4</span>
+        <span class="step-t">Oppfølging</span>
+        <span class="step-d">Kontrollmåling, produktveiledning og vedlikeholdsplan. Vi følger effekten over tid – ikke bare i stolen.</span>
+        <span class="step-m">1–4 uker etter</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 05 RESULTATER ============ -->
+<section class="sec" id="resultater">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow" data-reveal><span class="eb-line"></span>05 — Resultater</p>
+        <h2 class="sec-title lines" data-reveal>
+          <span class="ln" style="--d:.1s"><span>Resultater vi</span></span>
+          <span class="ln" style="--d:.2s"><span>kan <em>stå bak.</em></span></span>
+        </h2>
+      </div>
+      <p class="sec-note" data-reveal style="--d:.2s">Dra for å sammenligne før og etter fra to behandlingsforløp hos oss.</p>
+    </div>
+
+    <div class="ba-grid">
+      <div class="ba" id="ba" data-reveal>
+        <img class="ba-img" id="baAfter" src="images/image-10.jpg" alt="Hud etter microneedling-behandling" style="transform:scale(1.3);transform-origin:30% 42%">
+        <div class="ba-before" id="baBefore">
+          <img id="baBeforeImg" alt="" style="transform:scale(1.3);transform-origin:30% 42%">
+          <span class="ba-blot"></span>
+        </div>
+        <span class="ba-label" id="baLabelL">Før</span>
+        <span class="ba-label" id="baLabelR">Etter</span>
+        <div class="ba-handle" id="baHandle"><span class="ba-grip">↔</span></div>
+        <input type="range" class="ba-range" id="baRange" min="0" max="100" value="50" aria-label="Sammenlign før og etter">
+        <img id="srcCase1" class="ba-stash" src="images/image-10.jpg" alt="">
+        <img id="srcCase2" class="ba-stash" src="images/image-12.jpg" alt="">
+      </div>
+      <aside class="ba-side" data-reveal style="--d:.15s">
+        <div class="ba-cases">
+          <button class="case-tab on" type="button" data-case="0"><span>Case 01 — Kviskearr &amp; tekstur</span><span class="ct-no">A</span></button>
+          <button class="case-tab" type="button" data-case="1"><span>Case 02 — Tørr, matt hud</span><span class="ct-no">B</span></button>
+        </div>
+        <div class="ba-meta">
+          <span class="ba-mt" id="baMetaTitle">Microneedling</span>
+          <span class="ba-md" id="baMetaDur">3 behandlinger · 8 uker</span>
+          <p id="baMetaCase">Kviskearr og uregelmessig tekstur, behandlet med medisinsk microneedling og barriererstyrkende pleie i etterkant.</p>
+        </div>
+        <ul class="ba-badges">
+          <li>Bedøvelseskrem før behandling</li>
+          <li>Rødhet i 24–48 timer, ellers normal hverdag</li>
+          <li>Effekt vedlikeholdes med SPF 50</li>
+        </ul>
+        <p class="ba-fine">Bildene er illustrative og behandlet. Resultatet avhenger av hudtype, alder og individuelle forhold – det er ingen garanti for identisk resultat.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 TEAM ============ -->
+<section class="sec sec-soft" id="team">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow" data-reveal><span class="eb-line"></span>06 — Teamet</p>
+        <h2 class="sec-title lines" data-reveal>
+          <span class="ln" style="--d:.1s"><span>Kompetansen bak</span></span>
+          <span class="ln" style="--d:.2s"><span><em>behandlingen.</em></span></span>
+        </h2>
+      </div>
+      <p class="sec-note" data-reveal style="--d:.2s">Alle behandlinger utføres av personell med faglig bakgrunn i akkurat fagfeltet.</p>
+    </div>
+
+    <div class="team">
+      <article class="t-card" data-reveal>
+        <div class="t-img"><img src="images/image-14.jpg" alt="Dr. Ingrid Solberg, leder for klinikken"></div>
+        <div class="t-info">
+          <h3 class="t-name">Dr. Ingrid Solberg</h3>
+          <span class="t-role">Leder for klinikken · Hudlege, ph.d.</span>
+          <p class="t-bio">15 år i hudmedisin, derav 8 år med kosmetisk laser. Stiller seg alltid bak det som er evidensbasert – og sier tydelig fra når en behandling ikke er riktig for deg.</p>
+          <ul class="t-tags"><li>Spesialist i hudmedisin</li><li>Laser- &amp; IPL-utdanning</li><li>Norsk Dermatologisk Forening</li></ul>
+        </div>
+      </article>
+      <article class="t-card" data-reveal style="--d:.12s">
+        <div class="t-img"><img src="images/image-15.jpg" alt="Marta Haugen, senior legemedisiner"></div>
+        <div class="t-info">
+          <h3 class="t-name">Marta Haugen, lic. med.</h3>
+          <span class="t-role">Senior legemedisiner · Aesthetisk medisin</span>
+          <p class="t-bio">10 års erfaring med botulinum og filler. Filosofien hennes er enkel: resultatet skal se ut som en bedre versjon av deg – aldri som noe annet.</p>
+          <ul class="t-tags"><li>CME: Aesthetisk medisin</li><li>10 000+ behandlinger</li><li>Instructor, Nordic Aesthetics</li></ul>
+        </div>
+      </article>
+      <article class="t-card" data-reveal style="--d:.24s">
+        <div class="t-img"><img src="images/image-16.jpg" alt="Sigrid Vangen, senior hudterapeut"></div>
+        <div class="t-info">
+          <h3 class="t-name">Sigrid Vangen</h3>
+          <span class="t-role">Senior hudterapeut · Klinisk hudpleie</span>
+          <p class="t-bio">8 års klinisk erfaring med peeling og microneedling. Er den du prater med når det gjelder daglig hudpleie – og den som husker hva huden din gjorde i mars.</p>
+          <ul class="t-tags"><li>Klinisk hudterapeut</li><li>Sertifisert peelingspesialist</li><li>Dermapen-utdanning</li></ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="trust" data-reveal>
+      <span>Registrert helsepersonell · Helsetilsynet</span>
+      <span>Medlem av Norsk Selskap for Aesthetisk Medisin</span>
+      <span>Medisinsk kvalitetsstyring</span>
+      <span>Vipps · Kort · Delbetaling via Klarna</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 OMMELER ============ -->
+<section class="sec sec-dark" id="omtaler">
+  <div class="container rev-grid">
+    <div class="rev-main">
+      <p class="eyebrow eb-light" data-reveal><span class="eb-line"></span>07 — Omtaler</p>
+      <div class="quotebox" id="quoteBox" data-reveal style="--d:.1s">
+        <blockquote class="quote on">
+          <p class="q-t">Jeg gikk fra å skjule ansiktet mitt på bilder til å faktisk like det jeg ser i speilet.</p>
+          <footer class="q-m"><span class="q-name">Line A., 34</span><span class="q-tgt">Kjemisk peeling</span><span class="stars" aria-hidden="true">★★★★★</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p class="q-t">Profesjonelt fra første minutt. Hudanalysen ga meg et bilde av huden min jeg aldri hadde hatt.</p>
+          <footer class="q-m"><span class="q-name">Anders K., 41</span><span class="q-tgt">Hudanalyse &amp; laser</span><span class="stars" aria-hidden="true">★★★★★</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p class="q-t">Microneedling gjorde mer for kviskearr mine enn tre år med tradisjonell behandling.</p>
+          <footer class="q-m"><span class="q-name">Nora B., 27</span><span class="q-tgt">Microneedling</span><span class="stars" aria-hidden="true">★★★★★</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p class="q-t">Ingen pressing, bare kunnskap og en plan som faktisk fungerer. Tilbakelent i det hele tatt.</p>
+          <footer class="q-m"><span class="q-name">Kari M., 52</span><span class="q-tgt">Botulinum &amp; hudpleie</span><span class="stars" aria-hidden="true">★★★★★</span></footer>
+        </blockquote>
+        <blockquote class="quote">
+          <p class="q-t">Folk spør om hvordan huden min er så bra – ikke om jeg har hatt filler. Det var hele poenget.</p>
+          <footer class="q-m"><span class="q-name">Jonas T., 39</span><span class="q-tgt">Filler</span><span class="stars" aria-hidden="true">★★★★★</span></footer>
+        </blockquote>
+      </div>
+    </div>
+    <aside class="rev-side" data-reveal style="--d:.2s">
+      <div class="rev-score">
+        <span class="rs-n">4,9</span>
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span class="rs-l">380+ omtaler på Google</span>
+      </div>
+      <div class="rev-nav">
+        <button id="revPrev" type="button" aria-label="Forrige omtale">←</button>
+        <span class="rev-idx mono"><span id="qIdx">01</span> / 05</span>
+        <button id="revNext" type="button" aria-label="Neste omtale">→</button>
+      </div>
+      <div class="qbar l"><span id="qBarRev" style="width:0%"></span></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 08 PRISER ============ -->
+<section class="sec" id="priser">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow" data-reveal><span class="eb-line"></span>08 — Priser</p>
+        <h2 class="sec-title lines" data-reveal>
+          <span class="ln" style="--d:.1s"><span>Prisliste,</span></span>
+          <span class="ln" style="--d:.2s"><span>gjennom<em>skuet.</em></span></span>
+        </h2>
+      </div>
+      <p class="sec-note" data-reveal style="--d:.2s">Pakker gir gunstigere pris. Fast pris fastsettes alltid ved konsultasjon.</p>
+    </div>
+
+    <div class="prices" data-reveal>
+      <div class="price-col">
+        <p class="pc-h">Diagnostikk</p>
+        <div class="p-row"><div class="p-n"><span class="p-name">Konsultasjon &amp; hudanalyse</span><span class="p-sub">45 min · skriftlig behandlingsplan</span></div><span class="p-dots"></span><span class="p-v">990,-</span></div>
+        <p class="pc-h">Behandling</p>
+        <div class="p-row"><div class="p-n"><span class="p-name">Kjemisk peeling</span><span class="p-sub">Per omgang, medisinsk kvalitet</span></div><span class="p-dots"></span><span class="p-v">fra 1 890,-</span></div>
+        <div class="p-row"><div class="p-n"><span class="p-name">Microneedling</span><span class="p-sub">Dermapen · per omgang</span></div><span class="p-dots"></span><span class="p-v">fra 2 490,-</span></div>
+        <div class="p-row"><div class="p-n"><span class="p-name">Laser &amp; IPL</span><span class="p-sub">Per behandlingsområde</span></div><span class="p-dots"></span><span class="p-v">fra 2 950,-</span></div>
+        <div class="p-row"><div class="p-n"><span class="p-name">HydraFacial &amp; avansert hudpleie</span><span class="p-sub">60 min</span></div><span class="p-dots"></span><span class="p-v">2 190,-</span></div>
+        <div class="p-row"><div class="p-n"><span class="p-name">Botulinum</span><span class="p-sub">Per behandlingsområde</span></div><span class="p-dots"></span><span class="p-v">fra 1 750,-</span></div>
+      </div>
+      <div class="price-col">
+        <p class="pc-h">Filler</p>
+        <div class="p-row"><div class="p-n"><span class="p-name">Hyluronsyre / filler</span><span class="p-sub">Per ml · legemedisiner</span></div><span class="p-dots"></span><span class="p-v">fra 3 900,-</span></div>
+        <p class="pc-h">Pakker</p>
+        <div class="p-row"><div class="p-n"><span class="p-name">3× kjemisk peeling</span><span class="p-sub">Over 6 uker</span></div><span class="p-dots"></span><span class="p-v">5 250,-</span></div>
+        <div class="p-row"><div class="p-n"><span class="p-name">3× microneedling</span><span class="p-sub">Over 8 uker</span></div><span class="p-dots"></span><span class="p-v">6 750,-</span></div>
+        <div class="p-row"><div class="p-n"><span class="p-name">5× HydraFacial</span><span class="p-sub">Vedlikeholdspakke</span></div><span class="p-dots"></span><span class="p-v">9 500,-</span></div>
+        <div class="p-row"><div class="p-n"><span class="p-name">Nordic Skin Club</span><span class="p-sub">Månedlig: prioritetsbooking, rabatt og oppfølging</span></div><span class="p-dots"></span><span class="p-v">490,-/mnd</span></div>
+      </div>
+    </div>
+    <p class="prices-fine" data-reveal>Alle priser er i NOK inkl. mva. Prisene er veiledende – fast pris avhenger av omfang og hudtype, og avklares alltid ved konsultasjon før behandling. Delbetaling via Klarna på pakker over kr 5 000.</p>
+  </div>
+</section>
+
+<!-- ============ 09 FAQ ============ -->
+<section class="sec sec-soft" id="faq">
+  <div class="container faq-grid">
+    <div class="faq-left">
+      <p class="eyebrow" data-reveal><span class="eb-line"></span>09 — Spørsmål</p>
+      <h2 class="sec-title lines" data-reveal>
+        <span class="ln" style="--d:.1s"><span>Spørsmål vi</span></span>
+        <span class="ln" style="--d:.2s"><span>ofte <em>får.</em></span></span>
+      </h2>
+      <p class="faq-more" data-reveal style="--d:.25s">Stiller du et spørsmål vi ikke har besvart? Ring oss på <a href="tel:+4722468810">22 46 88 10</a> – vi svarer fort.</p>
+    </div>
+    <div class="faq-right" data-reveal style="--d:.15s">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Hva skjer ved første time?<span class="faq-x" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Første time er en komplett hudanalyse og konsultasjon på 45 minutter. Vi ser på hudtype, historie og mål, og du får en skriftlig behandlingsplan. Du er ikke forpliktet til noe – mange velger å ta planen med seg hjem først.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Er behandlingene smertefulle?<span class="faq-x" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Det varierer fra person til person. Ved laser, peeling og microneedling bruker vi bedøvelseskrem der det passer. De fleste beskriver det som et varmt pust eller mildt prikkende – ikke som smerte.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Hvor lenge varer effekten?<span class="faq-x" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Botulinum varer typisk 3–6 måneder, filler 9–12 måneder. Peeling og microneedling bygger langsiktig effekt ved hjelp av hudens egen kollagenproduksjon, og vedlikeholdes med riktig hudpleie og solariumfri solvan.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Kan jeg betale i deler?<span class="faq-x" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Ja. Vi tilbyr delbetaling via Klarna på behandlingspakker over kr 5 000, uten ekstra kostnad. Vi tar også Vipps og alle vanlige kort.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Må jeg unngå sol før og etter?<span class="faq-x" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Ja. To uker før laser og peeling bør du unngå sterk sol og solarium. Etter behandlingen bruker du SPF 50 i minimum fire uker – det er med på å sikre at effekten holder.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">Behandler dere også menn?<span class="faq-x" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Absolutt. Om lag 30 % av pasientene våre er menn – fra bryllupsforberedelse til etablert vedlikehold. Samme klinikk, samme analyse, samme resultatstandard.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 KONTAKT & BOOKING ============ -->
+<section class="sec sec-dark" id="kontakt">
+  <div class="container bk-grid">
+    <div class="bk-info">
+      <p class="eyebrow eb-light" data-reveal><span class="eb-line"></span>10 — Kontakt &amp; booking</p>
+      <h2 class="sec-title lines" data-reveal>
+        <span class="ln" style="--d:.1s"><span>Book din</span></span>
+        <span class="ln" style="--d:.2s"><span><em>konsultasjon.</em></span></span>
+      </h2>
+      <p class="bk-lead" data-reveal style="--d:.25s">Første time er en komplett hudanalyse og planlegging. Du forlater klinikken med et bilde av huden din – og en plan du kan ta med deg.</p>
+
+      <div class="bk-rows" data-reveal style="--d:.3s">
+        <div class="bk-row"><span class="bk-k">Adresse</span><span class="bk-v">Storgata 14, 0184 Oslo<small>2. etasje · Gratis parkering Parkgata 2</small></span></div>
+        <div class="bk-row"><span class="bk-k">Telefon</span><span class="bk-v"><a href="tel:+4722468810">+47 22 46 88 10</a></span></div>
+        <div class="bk-row"><span class="bk-k">E-post</span><span class="bk-v"><a href="/cdn-cgi/l/email-protection#01716e7275416f6e73656862726a686f2f6f6e"><span class="__cf_email__" data-cfemail="abdbc4d8dfebc5c4d9cfc2c8d8c0c2c585c5c4">[email&#160;protected]</span></a></span></div>
+        <div class="bk-row"><span class="bk-k">Åpningstider</span><span class="bk-v">Man–fre 09:00–18:00<small>Lør 10:00–16:00 · Søn stengt</small></span></div>
+      </div>
+
+      <div class="map" data-reveal style="--d:.35s">
+        <svg viewBox="0 0 640 400" role="img" aria-label="Kartet viser nærheten av Storgata 14 i Oslo">
+          <rect width="640" height="400" fill="#1C2620"/>
+          <path d="M0 0 L640 0 L640 130 C500 170 420 110 300 150 C190 186 90 150 0 190 Z" fill="#232F28"/>
+          <g stroke="rgba(237,232,220,.13)" stroke-width="1.5" fill="none">
+            <path d="M-10 250 H650"/>
+            <path d="M-10 320 H650"/>
+            <path d="M140 -10 V410"/>
+            <path d="M330 -10 C320 140 340 260 330 410"/>
+            <path d="M520 -10 V410"/>
+            <path d="M-10 200 L650 236"/>
+          </g>
+          <rect x="540" y="270" width="76" height="112" fill="rgba(126,145,132,.16)" rx="4"/>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="rgba(237,232,220,.38)">
+            <text x="20" y="240">Storgata</text>
+            <text x="344" y="392">Parkgata</text>
+            <text x="430" y="86" transform="rotate(8 430 86)">Oslo Vika</text>
+          </g>
+          <circle class="map-ping" cx="330" cy="262" r="12" fill="none" stroke="#C68B5F" stroke-width="1.5"/>
+          <circle cx="330" cy="262" r="6" fill="#C68B5F"/>
+          <circle cx="330" cy="262" r="2.4" fill="#151D18"/>
+        </svg>
+        <span class="map-chip mono">Storgata 14 · Oslo</span>
+      </div>
+
+      <div class="pill" data-reveal style="--d:.4s"><span class="dot" id="openDot2"></span><span id="openPill2">Åpen nå</span></div>
+    </div>
+
+    <div class="bk-card" id="bkCard" data-reveal style="--d:.2s">
+      <div class="bk-steps-ind">
+        <span id="bkInd1" class="on">1 · Behandling &amp; tid</span>
+        <span class="bk-line"></span>
+        <span id="bkInd2">2 · Dine opplysninger</span>
+      </div>
+
+      <form id="bookingForm" novalidate>
+        <div class="bk-step on" id="bkStep1">
+          <label class="f-label" for="bkTreatment">Velg behandling</label>
+          <div class="f-selwrap">
+            <select id="bkTreatment" required>
+              <option value="" disabled selected>Velg fra listen…</option>
+              <option value="analyse">Hudanalyse &amp; konsultasjon — 990,-</option>
+              <option value="peeling">Kjemisk peeling — fra 1 890,-</option>
+              <option value="microneedling">Microneedling — fra 2 490,-</option>
+              <option value="laser">Laser &amp; IPL — fra 2 950,-</option>
+              <option value="hydra">HydraFacial &amp; avansert hudpleie — 2 190,-</option>
+              <option value="kosmetikk">Botulinum &amp; filler — fra 1 750,-</option>
+              <option value="usikker">Er usikker — hjelp meg å velge</option>
+            </select>
+          </div>
+          <label class="f-label">Velg dag</label>
+          <div class="chips bm-date-scroll" id="dateChips"></div>
+          <label class="f-label">Velg tidspunkt</label>
+          <div class="chips slots" id="slotChips"><span class="chips-hint">Velg en dag først</span></div>
+          <p class="f-err" id="stepErr1"></p>
+          <button type="button" class="btn btn-ink btn-lg btn-full" id="bkContinue"><span class="btn-t">Fortsett</span><span class="btn-arr">→</span></button>
+        </div>
+
+        <div class="bk-step" id="bkStep2">
+          <p class="bk-sel mono" id="bkSelSummary"></p>
+          <div class="f-row2">
+            <div>
+              <label class="f-label" for="bkName">Fornavn &amp; etternavn</label>
+              <input class="f-input" id="bkName" type="text" autocomplete="name" placeholder="Anna Berg">
+            </div>
+            <div>
+              <label class="f-label" for="bkPhone">Telefon</label>
+              <input class="f-input" id="bkPhone" type="tel" autocomplete="tel" placeholder="+47 900 00 000">
+            </div>
+          </div>
+          <label class="f-label" for="bkEmail">E-post</label>
+          <input class="f-input" id="bkEmail" type="email" autocomplete="email" placeholder="anna@eksempel.no">
+          <label class="f-label" for="bkMsg">Fortell om huden din (valgfritt)</label>
+          <textarea class="f-input" id="bkMsg" rows="3" placeholder="Hva ønsker du å jobbe med? Eventuell medisin eller allergier…"></textarea>
+          <label class="f-agree">
+            <input type="checkbox" id="bkAgree">
+            <span class="f-box">✓</span>
+            <span>Jeg godtar personvernerklæringen og at klinikken kan kontakte meg angående timebestilling.</span>
+          </label>
+          <p class="f-err" id="stepErr2"></p>
+          <div class="bk-btnrow">
+            <button type="button" class="btn btn-ghost btn-lg" id="bkBack"><span class="btn-arr">←</span><span class="btn-t">Tilbake</span></button>
+            <button type="submit" class="btn btn-ink btn-lg" id="bkSubmit"><span class="btn-t">Bekreft bookingforespørsel</span></button>
+          </div>
+        </div>
+
+        <div class="bk-step" id="bkDone">
+          <div class="done-check">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <circle class="dc-c" cx="32" cy="32" r="29" fill="none" stroke="#A2653F" stroke-width="1.5"/>
+              <path class="dc-p" d="M20 33.5 28.5 42 44 25" fill="none" stroke="#A2653F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="done-t">Takken for henvendelsen!</h3>
+          <p class="done-d" id="bkSummary"></p>
+          <p class="done-fine">Vi bekrefter time din via SMS innen 1 virkedag. Ønsker du å endre noe, ring oss på 22 46 88 10.</p>
+          <button type="button" class="btn btn-ghost btn-lg" id="bkNew"><span class="btn-t">Ny forespørsel</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-word" aria-hidden="true">Nordic Skin <em>Clinic</em></div>
+    <div class="foot-grid">
+      <div class="f-brand">
+        <p class="f-h">Klinikken</p>
+        <p>Medisinsk hudbehandling i Oslo siden 2016. Analyse først, resultater deretter – alltid i et rolig, klinisk miljø.</p>
+      </div>
+      <div class="f-col">
+        <p class="f-h">Behandlinger</p>
+        <a href="#behandlinger">Hudanalyse</a>
+        <a href="#behandlinger">Kjemisk peeling</a>
+        <a href="#behandlinger">Microneedling</a>
+        <a href="#behandlinger">Laser &amp; IPL</a>
+        <a href="#behandlinger">Avansert hudpleie</a>
+        <a href="#behandlinger">Botulinum &amp; filler</a>
+      </div>
+      <div class="f-col">
+        <p class="f-h">Klinikken</p>
+        <a href="#klinikk">Om klinikken</a>
+        <a href="#finn">Finn behandlingen</a>
+        <a href="#forlop">Forløpet</a>
+        <a href="#team">Teamet</a>
+        <a href="#priser">Priser</a>
+        <a href="#faq">Spørsmål</a>
+      </div>
+      <div class="f-col">
+        <p class="f-h">Kontakt</p>
+        <p>Storgata 14, 0184 Oslo<br>
+        <a href="tel:+4722468810">+47 22 46 88 10</a><br>
+        <a href="/cdn-cgi/l/email-protection#b0c0dfc3c4f0dedfc2d4d9d3c3dbd9de9ededf"><span class="__cf_email__" data-cfemail="ee9e819d9aae80819c8a878d9d858780c08081">[email&#160;protected]</span></a><br>
+        Man–fre 09–18 · Lør 10–16</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Nordic Skin Clinic AS · Org.nr. 923 456 789</span>
+      <span class="foot-demo">Designvisning – et fiktivt konsept. Alle navn, priser og bilder på siden er dummydata.</span>
+      <div class="f-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V16.5M8 7.6v.1M12 16.5v-3.6c0-1.5 3-1.6 3 0v3.6M12 16.5v-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE CTA BAR ============ -->
+<div class="mbar" id="mobileBar">
+  <span class="mbar-t mono">Neste ledige: i dag 15:00</span>
+  <a href="#kontakt" class="btn btn-paper btn-sm"><span class="btn-t">Bestill time</span><span class="btn-arr">→</span></a>
+</div>
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- scroll: progress, header, mobile bar, parallax ---------- */
+var header=$('#siteHeader'), progress=$('#progress'), mobileBar=$('#mobileBar'), hmFrame=$('#hmFrame');
+var bookingVisible=false;
+function onScroll(){
+  var y=window.scrollY||document.documentElement.scrollTop||0;
+  var h=document.documentElement.scrollHeight-window.innerHeight;
+  if(progress){progress.style.width=(h>0?(y/h)*100:0)+'%';}
+  if(header){header.classList.toggle('scrolled',y>20);}
+  if(mobileBar){mobileBar.classList.toggle('show',y>620 && !bookingVisible);}
+  if(hmFrame && !reduced){
+    var p=Math.min(y,900)*0.045;
+    hmFrame.style.transform='translate3d(0,'+p+'px,0)';
+  }
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+var bkIO=new IntersectionObserver(function(es){
+  es.forEach(function(e){bookingVisible=e.isIntersecting;onScroll();});
+},{threshold:.12});
+var kontaktSec=$('#kontakt');
+if(bkIO&&kontaktSec){bkIO.observe(kontaktSec);}
+
+/* ---------- mobile menu ---------- */
+var menu=$('#mobileMenu'), menuBtn=$('#menuBtn'), mmClose=$('#mmClose');
+function setMenu(open){
+  if(!menu||!menuBtn){return;}
+  menu.classList.toggle('open',open);
+  menu.setAttribute('aria-hidden',open?'false':'true');
+  document.body.classList.toggle('locked',open);
+  menuBtn.setAttribute('aria-expanded',open?'true':'false');
+  menuBtn.classList.toggle('is-open',open);
+}
+if(menuBtn){menuBtn.addEventListener('click',function(){setMenu(true);});}
+if(mmClose){mmClose.addEventListener('click',function(){setMenu(false);});}
+$$('.mm-link, .mm-cta, .mm-foot .btn').forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){setMenu(false);}});
+
+/* ---------- reveal on scroll ---------- */
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+  });
+},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+$$('[data-reveal]').forEach(function(el){
+  if(reduced){el.classList.add('in');}else{io.observe(el);}
+});
+
+/* ---------- counters ---------- */
+function fmtNb(v,dec){
+  if(dec){return v.toFixed(dec).replace('.',',');}
+  return Math.round(v).toLocaleString('nb-NO');
+}
+function countUp(el){
+  var raw=String(el.getAttribute('data-count')||'0');
+  var dec=(raw.split('.')[1]||'').length;
+  var target=parseFloat(raw.replace(',','.'));
+  var suf=el.getAttribute('data-suffix')||'';
+  if(isNaN(target)){return;}
+  if(reduced){el.textContent=fmtNb(target,dec)+suf;return;}
+  var dur=1500,t0=null;
+  function f(t){
+    if(t0===null){t0=t;}
+    var p=Math.min(1,(t-t0)/dur);
+    var e=1-Math.pow(1-p,3);
+    el.textContent=fmtNb(target*e,dec)+suf;
+    if(p<1){requestAnimationFrame(f);}
+  }
+  requestAnimationFrame(f);
+}
+var cio=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target);}
+  });
+},{threshold:.5});
+$$('[data-count]').forEach(function(el){cio.observe(el);});
+
+/* ---------- treatments accordion + media ---------- */
+var trts=$$('.trt');
+var mediaImgs=$$('.tm-stack img');
+var capName=$('#trtCapName'), capPrice=$('#trtCapPrice');
+function updateMedia(i){
+  mediaImgs.forEach(function(m,k){m.classList.toggle('on',k===i);});
+  if(capName&&trts[i]){
+    var n=$('.trt-name',trts[i]);
+    if(n){capName.textContent=n.textContent;}
+    var p=trts[i].getAttribute('data-price');
+    if(capPrice&&p){capPrice.textContent=p;}
+  }
+}
+trts.forEach(function(t,i){
+  var head=$('.trt-head',t);
+  head.addEventListener('click',function(){
+    var isOpen=t.classList.contains('open');
+    trts.forEach(function(x,k){
+      var on=(k===i && !isOpen);
+      x.classList.toggle('open',on);
+      var h=$('.trt-head',x);
+      if(h){h.setAttribute('aria-expanded',on?'true':'false');}
+    });
+    if(!isOpen){updateMedia(i);}
+  });
+  head.addEventListener('mouseenter',function(){updateMedia(i);});
+});
+if(trts[0]){
+  trts[0].classList.add('open');
+  var h0=$('.trt-head',trts[0]);
+  if(h0){h0.setAttribute('aria-expanded','true');}
+  updateMedia(0);
+}
+
+/* ---------- quiz ---------- */
+var RECS={
+  pigmentering:{items:[
+    {t:'laser',n:'Laser & IPL',w:'Bryter ned pigment lag for lag – synlig lysere hudtone etter 3–4 behandlinger.'},
+    {t:'peeling',n:'Kjemisk peeling',w:'Syrer eksfolierer overflaten og jevner ut tonen i løpet av 3–4 uker.'},
+    {t:'analyse',n:'Hudanalyse først',w:'Pigmenttypen avgjør behandlingsvalget – kartlegging gir trygghet og retning.'}
+  ]},
+  akne:{items:[
+    {t:'microneedling',n:'Microneedling',w:'Stimulerer ny kollagenproduksjon som glatter ut arr og strammer porene.'},
+    {t:'peeling',n:'Kjemisk peeling',w:'Salisyl- og mandelsyrer renser porene og hindrer nye utbrudd.'},
+    {t:'hydra',n:'HydraFacial',w:'Dyprensing og beroligende behandling tar det akutte, og gir huden pust mellom behandlinger.'}
+  ]},
+  linjer:{items:[
+    {t:'kosmetikk',n:'Botulinum & filler',w:'Botulinum demper uttryksrynker, filler gir tilbake volum – diskret og utført av lege.'},
+    {t:'microneedling',n:'Microneedling',w:'Bygger fastere hud og finere linjer gjennom kollagen, over 8–12 uker.'},
+    {t:'hydra',n:'HydraFacial',w:'Fukt og glans gir øyeblikkelig effekt mens den langsiktige behandlingen virker.'}
+  ]},
+  torr:{items:[
+    {t:'hydra',n:'HydraFacial',w:'Fuktighetsboost i dybden som gjenoppretter barrieren på 60 minutter.'},
+    {t:'analyse',n:'Hudanalyse',w:'Tørr hud kan skyldes barriereskade, hormoner eller feil produkter – analysen finner årsaken.'},
+    {t:'peeling',n:'Mild syrebehandling',w:'Milde melkesyrepelleter gjenfukter og glatter uten å tørke ut huden ytterligere.'}
+  ]},
+  porer:{items:[
+    {t:'microneedling',n:'Microneedling',w:'Gullstandarden mot store porer – hudens stramming skjer gjennom ny kollagen.'},
+    {t:'hydra',n:'HydraFacial',w:'Ekstraksjon og porestrammende serum gir en øyeblikkelig jevnere overflate.'},
+    {t:'peeling',n:'Kjemisk peeling',w:'Kontrollert eksfoliasjon holder porene rene og mindre synlige over tid.'}
+  ]},
+  forebygging:{items:[
+    {t:'hydra',n:'HydraFacial',w:'En gang i kvartalet holder huden på topp og fungerer som vedlikehold mellom behandlinger.'},
+    {t:'analyse',n:'Hudanalyse',w:'En årlig analyse er forsikringen din: vi fanger endringer tidlig, mens de er enkle å behandle.'},
+    {t:'kosmetikk',n:'Botulinum (diskret)',w:'Tidlige, milde inngrep beholder uttrykket i mange år fremover.'}
+  ]}
+};
+var SKIN_NOTES={
+  torr:'Med tørr hud starter vi med å styrke barrieren – vi velger milde, beroligende behandlinger og fuktighetsfokusert pleie.',
+  normal:'Normal hud tåler et bredt spekter av behandlinger – vi kan gå rett til hovedmålet uten omveier.',
+  kombinasjon:'Med kombinasjonshud behandler vi hudområdene forskjellig, slik at T-sone og kinn hver får det de trenger.',
+  fet:'Ved fet hud prioriterer vi porestrammende og oljeregulerende behandling, med lettkonsisterte produkter i etterkant.',
+  irritabel:'Irritabel hud krever en forsiktig tilnærming: lavere intensitet over lengre tid, og fokus på beroligende ingredienser.'
+};
+var qConcern=null,qSkin=null,qStepN=1;
+function showQStep(n){
+  qStepN=n;
+  var s1=$('#qStep1'),s2=$('#qStep2'),sr=$('#qResult');
+  if(s1){s1.classList.toggle('on',n===1);}
+  if(s2){s2.classList.toggle('on',n===2);}
+  if(sr){sr.classList.toggle('on',n===3);}
+  var ind=$('#qStepInd');
+  if(ind){ind.textContent=(n===3)?'Anbefaling':'Steg '+n+' av 2';}
+  var bar=$('#qBar');
+  if(bar){bar.style.width=(n===1?'18%':(n===2?'52%':'100%'));}
+  var back=$('#quizBack');
+  if(back){back.style.visibility=(n===1)?'hidden':'visible';}
+}
+$$('.quiz-opt').forEach(function(o){
+  o.addEventListener('click',function(){
+    $$('.quiz-opt').forEach(function(x){x.classList.remove('sel');});
+    o.classList.add('sel');
+    qConcern=o.getAttribute('data-concern');
+    showQStep(2);
+  });
+});
+$$('.quiz-opt2').forEach(function(o){
+  o.addEventListener('click',function(){
+    $$('.quiz-opt2').forEach(function(x){x.classList.remove('sel');});
+    o.classList.add('sel');
+    qSkin=o.getAttribute('data-skin');
+    buildRecs();
+  });
+});
+var quizBack=$('#quizBack');
+if(quizBack){quizBack.addEventListener('click',function(){
+  if(qStepN===3){
+    var note=$('#qNote'),recs=$('#qRecs');
+    if(note){note.textContent='';}
+    if(recs){recs.innerHTML='';}
+    showQStep(2);
+  }else if(qStepN===2){showQStep(1);}
+});}
+var qReset=$('#qReset');
+if(qReset){qReset.addEventListener('click',function(){
+  qConcern=null;qSkin=null;
+  $$('.quiz-opt, .quiz-opt2').forEach(function(x){x.classList.remove('sel');});
+  showQStep(1);
+});}
+function buildRecs(){
+  var r=RECS[qConcern];
+  if(!r){return;}
+  var wrap=$('#qRecs');
+  if(!wrap){return;}
+  wrap.innerHTML='';
+  r.items.forEach(function(it){
+    var d=document.createElement('button');
+    d.type='button';
+    d.className='rec';
+    var main=document.createElement('span');
+    var nm=document.createElement('span');nm.className='rec-name';nm.textContent=it.n;
+    var why=document.createElement('span');why.className='rec-why';why.textContent=it.w;
+    main.appendChild(nm);main.appendChild(why);
+    var arr=document.createElement('span');arr.className='rec-arrow';arr.textContent='→';
+    d.appendChild(main);d.appendChild(arr);
+    d.addEventListener('click',function(){goBooking(it.t);});
+    wrap.appendChild(d);
+  });
+  var note=$('#qNote');
+  if(note){note.textContent=SKIN_NOTES[qSkin]||'';}
+  var cta=$('#qCtaBtn');
+  if(cta){cta.setAttribute('data-book',r.items[0].t);}
+  showQStep(3);
+}
+function goBooking(t){
+  var sel=$('#bkTreatment');
+  if(sel&&t){sel.value=t;}
+  var target=$('#kontakt');
+  if(target){target.scrollIntoView({behavior:reduced?'auto':'smooth'});}
+  var card=$('#bkCard');
+  if(card){
+    card.classList.remove('pulse');
+    void card.offsetWidth;
+    card.classList.add('pulse');
+  }
+}
+showQStep(1);
+
+/* ---------- data-book links ---------- */
+$$('[data-book]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    goBooking(a.getAttribute('data-book'));
+  });
+});
+
+/* ---------- before / after ---------- */
+var ba=$('#ba');
+if(ba){
+  var range=$('#baRange'), after=$('#baAfter'), beforeWrap=$('#baBefore'), beforeImg=$('#baBeforeImg'), handle=$('#baHandle');
+  var lL=$('#baLabelL'), lR=$('#baLabelR');
+  var stash=[$('#srcCase1'),$('#srcCase2')].map(function(e){return e?e.src:null;});
+  var CASES=[
+    {t:'Microneedling',d:'3 behandlinger · 8 uker',c:'Kviskearr og uregelmessig tekstur, behandlet med medisinsk microneedling og barriererstyrkende pleie i etterkant.',tf:'scale(1.3)',to:'30% 42%'},
+    {t:'HydraFacial & avansert hudpleie',d:'2 behandlinger · 4 uker',c:'Tørr, matt hud med redusert glans. Resultat etter dypfuktighetsbehandling, barrierepleie og solvern.',tf:'scale(1.24)',to:'46% 38%'}
+  ];
+  function setPos(v){
+    v=Math.max(0,Math.min(100,v));
+    if(beforeWrap){beforeWrap.style.clipPath='inset(0 '+(100-v)+'% 0 0)';}
+    if(handle){handle.style.left=v+'%';}
+    if(lL){lL.style.opacity=v>14?'1':'0';}
+    if(lR){lR.style.opacity=v<86?'1':'0';}
+  }
+  function applyTransform(tf,to){
+    if(after){after.style.transform=tf;after.style.transformOrigin=to;}
+    if(beforeImg){beforeImg.style.transform=tf;beforeImg.style.transformOrigin=to;}
+  }
+  if(beforeImg){beforeImg.src=after?after.src:'';}
+  if(range){range.addEventListener('input',function(){setPos(parseFloat(range.value)||0);});}
+  var caseIdx=0;
+  function switchCase(i){
+    caseIdx=i;
+    var c=CASES[i];
+    if(!c){return;}
+    var s=stash[i];
+    if(s){if(after){after.src=s;}if(beforeImg){beforeImg.src=s;}}
+    applyTransform(c.tf,c.to);
+    $$('.case-tab').forEach(function(b,k){b.classList.toggle('on',k===i);});
+    var mt=$('#baMetaTitle'),md=$('#baMetaDur'),mc=$('#baMetaCase');
+    if(mt){mt.textContent=c.t;}
+    if(md){md.textContent=c.d;}
+    if(mc){mc.textContent=c.c;}
+    setPos(50);
+    if(range){range.value=50;}
+  }
+  $$('.case-tab').forEach(function(b,i){
+    b.addEventListener('click',function(){switchCase(i);});
+  });
+  setPos(50);
+  applyTransform(CASES[0].tf,CASES[0].to);
+  if(!reduced){
+    var pio=new IntersectionObserver(function(es){
+      if(es[0].isIntersecting){
+        pio.disconnect();
+        var t0=null;
+        function f(t){
+          if(t0===null){t0=t;}
+          var p=Math.min(1,(t-t0)/1700);
+          var v=50+Math.sin(p*Math.PI)*24;
+          setPos(v);
+          if(range){range.value=Math.round(v);}
+          if(p<1){requestAnimationFrame(f);}else{setPos(50);if(range){range.value=50;}}
+        }
+        requestAnimationFrame(f);
+      }
+    },{threshold:.35});
+    pio.observe(ba);
+  }
+}
+
+/* ---------- reviews rotator ---------- */
+var quotes=$$('.quote');
+if(quotes.length){
+  var qi=0,revTimer=null,revTotal=quotes.length;
+  var idx=$('#qIdx'),rbar=$('#qBarRev'),box=$('#quoteBox');
+  function restartBar(){
+    if(!rbar){return;}
+    rbar.style.transition='none';
+    rbar.style.width='0%';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      rbar.style.transition='width 6s linear';
+      rbar.style.width='100%';
+    });});
+  }
+  function showQ(i){
+    qi=((i%revTotal)+revTotal)%revTotal;
+    quotes.forEach(function(q,k){q.classList.toggle('on',k===qi);});
+    if(idx){idx.textContent=String(qi+1).length<2?('0'+String(qi+1)):String(qi+1);}
+    restartBar();
+  }
+  function stopRev(){if(revTimer){clearInterval(revTimer);revTimer=null;}}
+  function startRev(){stopRev();if(!reduced){revTimer=setInterval(function(){showQ(qi+1);},6000);}}
+  var rp=$('#revPrev'),rn=$('#revNext');
+  if(rp){rp.addEventListener('click',function(){showQ(qi-1);startRev();});}
+  if(rn){rn.addEventListener('click',function(){showQ(qi+1);startRev();});}
+  if(box){
+    box.addEventListener('mouseenter',stopRev);
+    box.addEventListener('mouseleave',startRev);
+  }
+  showQ(0);
+  startRev();
+}
+
+/* ---------- FAQ ---------- */
+$$('.faq-item').forEach(function(f){
+  var q=$('.faq-q',f);
+  if(!q){return;}
+  q.addEventListener('click',function(){
+    var open=f.classList.contains('open');
+    $$('.faq-item').forEach(function(x){
+      x.classList.remove('open');
+      var bq=$('.faq-q',x);
+      if(bq){bq.setAttribute('aria-expanded','false');}
+    });
+    if(!open){
+      f.classList.add('open');
+      q.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
+/* ---------- booking form ---------- */
+var DOWS=['søn','man','tir','ons','tor','fre','lør'];
+var DOWFULL=['søndag','mandag','tirsdag','onsdag','torsdag','fredag','lørdag'];
+var MONTHS=['jan','feb','mar','apr','mai','jun','jul','aug','sep','okt','nov','des'];
+var SLOTS=['09:00','10:30','12:00','13:30','15:00','16:30','17:30'];
+var TREAT={
+  analyse:'Hudanalyse & konsultasjon',
+  peeling:'Kjemisk peeling',
+  microneedling:'Microneedling',
+  laser:'Laser & IPL',
+  hydra:'HydraFacial & avansert hudpleie',
+  kosmetikk:'Botulinum & filler',
+  usikker:'Er usikker – hjelp meg å velge'
+};
+var bk={step:1,treatment:'',date:null,slot:''};
+var dateChips=$('#dateChips'),slotChips=$('#slotChips'),treatSel=$('#bkTreatment');
+function pad2(n){return (n<10?'0':'')+n;}
+function ddmm(d){return pad2(d.getDate())+'.'+pad2(d.getMonth()+1);}
+function ddmmFull(d){return pad2(d.getDate())+'.'+MONTHS[d.getMonth()]+'.'+d.getFullYear();}
+function showErr(sel,msg){var el=$(sel);if(el){el.textContent=msg;el.classList.add('on');}}
+function clearErrs(){$('#stepErr1').classList.remove('on');$('#stepErr2').classList.remove('on');}
+function buildSlots(d){
+  if(!slotChips){return;}
+  slotChips.innerHTML='';
+  SLOTS.forEach(function(s,i){
+    var off=((d.getDate()*3+i)%7)===3;
+    var b=document.createElement('button');
+    b.type='button';
+    b.className='chip slot'+(off?' off':'');
+    b.textContent=s;
+    if(off){
+      b.disabled=true;
+    }else{
+      b.addEventListener('click',function(){
+        bk.slot=s;
+        $$('.slot',slotChips).forEach(function(x){x.classList.remove('sel');});
+        b.classList.add('sel');
+        clearErrs();
+      });
+    }
+    slotChips.appendChild(b);
+  });
+}
+function buildDates(){
+  if(!dateChips){return;}
+  dateChips.innerHTML='';
+  var days=[];
+  var base=new Date();
+  for(var i=1;i<30 && days.length<10;i++){
+    var d=new Date(base.getTime());
+    d.setDate(base.getDate()+i);
+    if(d.getDay()!==0){days.push(d);}
+  }
+  days.forEach(function(d){
+    var b=document.createElement('button');
+    b.type='button';
+    b.className='chip';
+    var sd=document.createElement('span');sd.className='chip-d';sd.textContent=DOWS[d.getDay()];
+    var sn=document.createElement('span');sn.className='chip-n';sn.textContent=pad2(d.getDate())+'.'+MONTHS[d.getMonth()];
+    b.appendChild(sd);b.appendChild(sn);
+    b.addEventListener('click',function(){
+      bk.date=d;bk.slot='';
+      $$('.chip',dateChips).forEach(function(x){x.classList.remove('sel');});
+      b.classList.add('sel');
+      buildSlots(d);
+      clearErrs();
+    });
+    dateChips.appendChild(b);
+  });
+}
+function setBkStep(n){
+  bk.step=n;
+  var s1=$('#bkStep1'),s2=$('#bkStep2'),sd=$('#bkDone');
+  if(s1){s1.classList.toggle('on',n===1);}
+  if(s2){s2.classList.toggle('on',n===2);}
+  if(sd){sd.classList.remove('on');}
+  var i1=$('#bkInd1'),i2=$('#bkInd2');
+  if(i1){i1.classList.toggle('on',n===1);}
+  if(i2){i2.classList.toggle('on',n===2);}
+}
+buildDates();
+if(treatSel){treatSel.addEventListener('change',function(){bk.treatment=treatSel.value;clearErrs();});}
+var bkContinue=$('#bkContinue');
+if(bkContinue){bkContinue.addEventListener('click',function(){
+  if(!bk.treatment){showErr('#stepErr1','Velg en behandling for å fortsette.');return;}
+  if(!bk.date){showErr('#stepErr1','Velg en dag for timebestillingen.');return;}
+  if(!bk.slot){showErr('#stepErr1','Velg et tidspunkt for timebestillingen.');return;}
+  var sum=$('#bkSelSummary');
+  if(sum){sum.textContent=(TREAT[bk.treatment]||'')+ ' · '+DOWFULL[bk.date.getDay()]+' '+ddmm(bk.date)+', kl '+bk.slot;}
+  setBkStep(2);
+});}
+var bkBack=$('#bkBack');
+if(bkBack){bkBack.addEventListener('click',function(){setBkStep(1);});}
+var form=$('#bookingForm');
+if(form){form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var name=$('#bkName').value.trim();
+  var email=$('#bkEmail').value.trim();
+  var phone=$('#bkPhone').value.trim();
+  var agree=$('#bkAgree').checked;
+  if(name.length<2){showErr('#stepErr2','Skriv inn ditt navn.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){showErr('#stepErr2','Skriv inn en gyldig e-postadresse.');return;}
+  if(phone.replace(/[^\d+]/g,'').length<8){showErr('#stepErr2','Skriv inn et gyldig telefonnummer.');return;}
+  if(!agree){showErr('#stepErr2','Du må godta personvernerklæringen for å fortsette.');return;}
+  var btn=$('#bkSubmit');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spinner"></span>Sender forespørsel…';
+  setTimeout(function(){
+    var sum=$('#bkSummary');
+    if(sum){sum.textContent=(TREAT[bk.treatment]||'')+' · '+DOWFULL[bk.date.getDay()]+' '+ddmmFull(bk.date)+', kl '+bk.slot+'. Bekreftelse sendes til '+email+' innen 1 virkedag.';}
+    setBkStep(3);
+    $('#bkDone').classList.add('on');
+    btn.disabled=false;
+    btn.innerHTML='<span class="btn-t">Bekreft bookingforespørsel</span>';
+  },900);
+});}
+var bkNew=$('#bkNew');
+if(bkNew){bkNew.addEventListener('click',function(){
+  bk.treatment='';bk.date=null;bk.slot='';
+  if(treatSel){treatSel.value='';}
+  buildDates();
+  if(slotChips){slotChips.innerHTML='<span class="chips-hint">Velg en dag først</span>';}
+  clearErrs();
+  setBkStep(1);
+});}
+
+/* ---------- open now ---------- */
+var HOURS={0:null,1:[9,18],2:[9,18],3:[9,18],4:[9,18],5:[9,18],6:[10,16]};
+function fH(x){return (x<10?'0':'')+x+':00';}
+function openInfo(){
+  var now=new Date();
+  var dow=now.getDay();
+  var h=now.getHours()+now.getMinutes()/60;
+  var cur=HOURS[dow];
+  if(cur&&h>=cur[0]&&h<cur[1]){
+    return {open:true,txt:'Åpen nå · stenger kl. '+fH(cur[1])};
+  }
+  for(var i=1;i<=7;i++){
+    var d2=(dow+i)%7;
+    if(HOURS[d2]){
+      var when=(i===1)?'i morgen':DOWS[d2];
+      return {open:false,txt:'Stengt nå · åpner '+when+' kl. '+fH(HOURS[d2][0])};
+    }
+  }
+  return {open:false,txt:'Stengt'};
+}
+function applyOpen(){
+  var info=openInfo();
+  ['#openPill1','#openPill2'].forEach(function(s){
+    var el=$(s);
+    if(el){el.textContent=info.txt;}
+  });
+  ['#openDot1','#openDot2'].forEach(function(s){
+    var el=$(s);
+    if(el){el.classList.toggle('closed',!info.open);}
+  });
+}
+applyOpen();
+setInterval(applyOpen,60000);
+
+/* ---------- year ---------- */
+var yr=$('#year');
+if(yr){yr.textContent=String(new Date().getFullYear());}
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a37298442b975691',t:'MTc4ODc1MTQwNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

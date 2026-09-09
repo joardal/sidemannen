@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0d0b09" />
+<title>EMBER Oslo — Ild, råvarer og norsk fine dining</title>
+<meta name="description" content="EMBER Oslo er en moderne restaurant der alt møter ilden. Nordiske råvarer, levende glør og en vinkjeller i verdensklasse — midt i Oslo." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#0d0b09;
+  --ink-2:#141110;
+  --char:#1c1815;
+  --paper:#f4ede1;
+  --paper-dim:#d8cdba;
+  --ember:#e8622a;
+  --ember-2:#ff8a3d;
+  --gold:#c8a26a;
+  --ash:#8a8078;
+  --line:rgba(244,237,225,.14);
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Inter",system-ui,-apple-system,sans-serif;
+  --edge:clamp(20px,5vw,90px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ember);color:#fff}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-.01em}
+.eyebrow{
+  font-family:var(--sans);
+  font-size:.72rem;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--gold);
+  display:inline-flex;
+  align-items:center;
+  gap:.7em;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);opacity:.7}
+.eyebrow.center::after{content:"";width:26px;height:1px;background:var(--gold);opacity:.7}
+.eyebrow.center{justify-content:center}
+
+/* ---------- Grain + ember cursor glow ---------- */
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("images/image-09.svg");}
+
+/* ---------- Loader ---------- */
+#loader{position:fixed;inset:0;z-index:10000;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:opacity .8s ease,visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+.load-mark{font-family:var(--serif);font-size:clamp(2.4rem,9vw,4.6rem);letter-spacing:.16em;position:relative;color:transparent;
+  background:linear-gradient(180deg,#5a504a 0%,#5a504a 100%);-webkit-background-clip:text;background-clip:text}
+.load-mark span{position:absolute;inset:0;color:transparent;background:linear-gradient(180deg,var(--ember-2),var(--ember));-webkit-background-clip:text;background-clip:text;clip-path:inset(100% 0 0 0);animation:fillup 1.9s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes fillup{to{clip-path:inset(0 0 0 0)}}
+.load-bar{width:140px;height:2px;background:rgba(244,237,225,.12);overflow:hidden;border-radius:2px}
+.load-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),var(--gold));animation:barfill 1.9s ease forwards}
+@keyframes barfill{to{width:100%}}
+
+/* ---------- Nav ---------- */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
+  padding:22px var(--edge);transition:padding .4s ease,background .4s ease,border-color .4s;border-bottom:1px solid transparent}
+header.nav.scrolled{padding:14px var(--edge);background:rgba(13,11,9,.82);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--serif);font-size:1.5rem;letter-spacing:.22em;font-weight:500;display:flex;align-items:center;gap:.5em}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--ember);box-shadow:0 0 14px 2px var(--ember);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.82)}}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-size:.82rem;letter-spacing:.06em;color:var(--paper-dim);position:relative;padding:4px 0;transition:color .3s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--ember);transition:width .35s ease}
+.nav-links a:hover{color:var(--paper)}
+.nav-links a:hover::after{width:100%}
+.btn{font-family:var(--sans);font-size:.8rem;letter-spacing:.08em;font-weight:500;cursor:pointer;border:none;
+  display:inline-flex;align-items:center;gap:.6em;transition:transform .3s ease,background .3s,color .3s,box-shadow .3s}
+.btn-primary{background:var(--ember);color:#fff;padding:14px 26px;border-radius:100px;box-shadow:0 8px 30px -8px rgba(232,98,42,.7)}
+.btn-primary:hover{background:var(--ember-2);transform:translateY(-2px);box-shadow:0 14px 40px -8px rgba(255,138,61,.8)}
+.btn-ghost{background:transparent;color:var(--paper);border:1px solid var(--line);padding:13px 26px;border-radius:100px}
+.btn-ghost:hover{border-color:var(--paper);background:rgba(244,237,225,.06)}
+.btn-text{background:none;color:var(--paper);letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;padding:6px 0;border-bottom:1px solid var(--ember)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:1002}
+.burger span{width:26px;height:2px;background:var(--paper);transition:.35s;transform-origin:center}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Mobile menu */
+.mobile-menu{position:fixed;inset:0;z-index:1001;background:var(--ink-2);display:flex;flex-direction:column;justify-content:center;padding:0 var(--edge);
+  clip-path:circle(0% at 100% 0);transition:clip-path .7s cubic-bezier(.76,0,.24,1);visibility:hidden}
+.mobile-menu.open{clip-path:circle(150% at 100% 0);visibility:visible}
+.mobile-menu a{font-family:var(--serif);font-size:clamp(2rem,10vw,3.2rem);color:var(--paper);padding:10px 0;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s;display:flex;align-items:baseline;gap:16px}
+.mobile-menu a .num{font-family:var(--sans);font-size:.8rem;color:var(--gold);letter-spacing:.2em}
+.mobile-menu.open a{opacity:1;transform:none}
+.mobile-menu.open a:nth-child(1){transition-delay:.15s}
+.mobile-menu.open a:nth-child(2){transition-delay:.22s}
+.mobile-menu.open a:nth-child(3){transition-delay:.29s}
+.mobile-menu.open a:nth-child(4){transition-delay:.36s}
+.mobile-menu.open a:nth-child(5){transition-delay:.43s}
+.mm-foot{margin-top:44px;opacity:0;transition:opacity .5s .5s;color:var(--ash);font-size:.85rem;line-height:1.9}
+.mobile-menu.open .mm-foot{opacity:1}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%;transform:scale(1.12);will-change:transform}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(13,11,9,.55) 0%,rgba(13,11,9,.15) 32%,rgba(13,11,9,.4) 62%,rgba(13,11,9,.96) 100%)}
+.hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(120% 80% at 78% 30%,rgba(232,98,42,.28) 0%,transparent 55%);mix-blend-mode:screen}
+.hero-inner{position:relative;z-index:2;padding:0 var(--edge) clamp(48px,8vh,110px);width:100%}
+.hero-kicker{margin-bottom:28px;opacity:0;animation:rise 1s ease .3s forwards}
+.hero h1{font-size:clamp(3.6rem,15.5vw,15rem);line-height:.86;font-weight:300;letter-spacing:-.02em;margin-bottom:6px}
+.hero h1 .l{display:inline-block;opacity:0;transform:translateY(120%) rotate(6deg);animation:letterUp .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 .em{font-style:italic;color:transparent;background:linear-gradient(180deg,var(--ember-2),var(--ember));-webkit-background-clip:text;background-clip:text}
+.hero-sub{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:30px;margin-top:34px;
+  border-top:1px solid var(--line);padding-top:26px;opacity:0;animation:rise 1s ease 1.1s forwards}
+.hero-sub p{max-width:40ch;color:var(--paper-dim);font-size:clamp(.95rem,1.4vw,1.15rem)}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.scroll-hint{position:absolute;right:var(--edge);bottom:clamp(48px,8vh,110px);z-index:2;writing-mode:vertical-rl;
+  font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ash);display:flex;align-items:center;gap:14px;opacity:0;animation:rise 1s ease 1.4s forwards}
+.scroll-hint .ln{width:1px;height:52px;background:linear-gradient(var(--ember),transparent);position:relative;overflow:hidden}
+.scroll-hint .ln::after{content:"";position:absolute;top:0;left:0;width:100%;height:40%;background:var(--paper);animation:scrolldot 2s ease-in-out infinite}
+@keyframes scrolldot{0%{transform:translateY(-100%)}100%{transform:translateY(280%)}}
+@keyframes letterUp{to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+/* ---------- Marquee ---------- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--ink-2);padding:20px 0}
+.marquee-track{display:flex;gap:0;white-space:nowrap;width:max-content;animation:scrollx 34s linear infinite}
+.marquee-track span{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--paper);padding:0 30px;display:inline-flex;align-items:center;gap:60px}
+.marquee-track span::after{content:"✦";color:var(--ember);font-style:normal;font-size:.7em}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ---------- Section shell ---------- */
+section{position:relative}
+.wrap{padding:clamp(80px,12vh,160px) var(--edge)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:60px}
+.sec-head h2{font-size:clamp(2.4rem,6vw,5rem);font-weight:300}
+.sec-head .side{max-width:34ch;color:var(--ash);font-size:.98rem}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(42px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}
+
+/* ---------- Philosophy / split ---------- */
+.philo{background:var(--ink-2)}
+.philo-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,90px);align-items:center}
+.philo-copy h2{font-size:clamp(2.2rem,5vw,4.2rem);font-weight:300;margin:22px 0 26px}
+.philo-copy h2 em{font-style:italic;color:var(--ember)}
+.philo-copy p{color:var(--paper-dim);max-width:52ch;margin-bottom:20px}
+.philo-stats{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap}
+.stat .n{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);color:var(--paper);line-height:1}
+.stat .l{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);margin-top:8px}
+.philo-media{position:relative}
+.philo-media .frame{position:relative;overflow:hidden;border-radius:4px;aspect-ratio:3/4}
+.philo-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s ease}
+.philo-media:hover img{transform:scale(1.05)}
+.philo-media .tag{position:absolute;left:-1px;bottom:24px;background:var(--ember);color:#fff;padding:10px 20px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.philo-media .ring{position:absolute;top:-26px;right:-26px;width:120px;height:120px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--gold);background:rgba(13,11,9,.5);backdrop-filter:blur(4px)}
+
+/* ---------- Signature dishes (horizontal) ---------- */
+.dishes{background:var(--ink);overflow:hidden}
+.dish-head{padding:0 var(--edge)}
+.h-scroll{display:flex;gap:26px;padding:50px var(--edge);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.h-scroll::-webkit-scrollbar{display:none}
+.dcard{scroll-snap-align:center;flex:0 0 min(80vw,420px);position:relative;border-radius:6px;overflow:hidden;background:var(--char);
+  border:1px solid var(--line);transition:transform .5s ease,border-color .5s}
+.dcard:hover{transform:translateY(-8px);border-color:rgba(232,98,42,.5)}
+.dcard .img{aspect-ratio:4/3;overflow:hidden;position:relative}
+.dcard .img img{width:100%;height:100%;object-fit:cover;transition:transform 1s ease}
+.dcard:hover .img img{transform:scale(1.08)}
+.dcard .img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(20,17,16,.85))}
+.dcard .no{position:absolute;top:16px;left:18px;font-family:var(--serif);font-size:1rem;color:var(--gold);z-index:2;letter-spacing:.1em}
+.dcard .body{padding:22px 24px 26px}
+.dcard h3{font-size:1.6rem;font-weight:400;margin-bottom:6px}
+.dcard .meta{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ember);margin-bottom:14px}
+.dcard p{color:var(--ash);font-size:.9rem;margin-bottom:18px}
+.dcard .price{font-family:var(--serif);font-size:1.3rem;color:var(--paper);display:flex;align-items:baseline;justify-content:space-between}
+.dcard .price small{font-size:.72rem;color:var(--ash);letter-spacing:.1em;font-family:var(--sans)}
+.drag-hint{padding:0 var(--edge) 10px;color:var(--ash);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.drag-hint .bar{flex:1;max-width:200px;height:1px;background:var(--line);position:relative}
+.drag-hint .bar i{position:absolute;left:0;top:0;height:100%;width:30%;background:var(--ember);transition:left .2s}
+
+/* ---------- Menu ---------- */
+.menu{background:var(--ink-2);position:relative}
+.menu::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 50% at 15% 0%,rgba(232,98,42,.1),transparent 60%);pointer-events:none}
+.menu-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:44px;border:1px solid var(--line);border-radius:100px;padding:6px;width:fit-content;max-width:100%}
+.menu-tab{background:none;border:none;color:var(--paper-dim);font-family:var(--sans);font-size:.82rem;letter-spacing:.06em;padding:11px 22px;border-radius:100px;cursor:pointer;transition:.35s;white-space:nowrap}
+.menu-tab.active{background:var(--ember);color:#fff}
+.menu-tab:not(.active):hover{color:var(--paper)}
+.menu-panel{display:none;animation:fadeIn .6s ease}
+.menu-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.menu-list{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(40px,6vw,100px)}
+.mitem{display:grid;grid-template-columns:1fr auto;gap:6px 18px;padding:24px 0;border-bottom:1px solid var(--line);align-items:baseline;position:relative;transition:padding-left .4s ease}
+.mitem:hover{padding-left:16px}
+.mitem::before{content:"";position:absolute;left:0;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ember);opacity:0;transform:translateY(-50%) translateX(-14px);transition:opacity .4s,transform .4s}
+.mitem:hover::before{opacity:1;transform:translateY(-50%) translateX(0)}
+.mitem .nm{font-family:var(--serif);font-size:1.35rem;font-weight:400;display:flex;align-items:center;gap:10px}
+.mitem .badge{font-family:var(--sans);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,162,106,.4);padding:2px 7px;border-radius:100px}
+.mitem .pr{font-family:var(--serif);font-size:1.25rem;color:var(--ember);white-space:nowrap}
+.mitem .ds{grid-column:1/-1;color:var(--ash);font-size:.86rem;max-width:52ch}
+.menu-foot{margin-top:50px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;
+  background:var(--char);border:1px solid var(--line);border-radius:8px;padding:30px clamp(24px,4vw,44px)}
+.menu-foot h3{font-size:1.7rem;font-weight:400}
+.menu-foot h3 em{font-style:italic;color:var(--ember)}
+.menu-foot p{color:var(--ash);font-size:.9rem;margin-top:6px}
+
+/* ---------- Fire strip parallax ---------- */
+.firestrip{position:relative;height:52vh;min-height:340px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.firestrip img{position:absolute;inset:0;width:100%;height:120%;object-fit:cover;object-position:center;will-change:transform}
+.firestrip::after{content:"";position:absolute;inset:0;background:rgba(13,11,9,.5)}
+.firestrip .fs-inner{position:relative;z-index:2;padding:0 var(--edge)}
+.firestrip h2{font-size:clamp(1.9rem,5vw,4rem);font-weight:300;font-style:italic;max-width:20ch;margin:0 auto}
+.firestrip h2 span{color:var(--ember);font-style:normal}
+.firestrip .attr{margin-top:20px;font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+
+/* ---------- Wine ---------- */
+.wine{background:var(--ink)}
+.wine-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(40px,6vw,90px);align-items:center}
+.wine-media{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/5}
+.wine-media img{width:100%;height:100%;object-fit:cover}
+.wine-copy h2{font-size:clamp(2.2rem,5vw,4rem);font-weight:300;margin:20px 0 22px}
+.wine-copy h2 em{font-style:italic;color:var(--ember)}
+.wine-copy>p{color:var(--paper-dim);max-width:50ch;margin-bottom:34px}
+.wine-rows{border-top:1px solid var(--line)}
+.wrow{display:grid;grid-template-columns:auto 1fr auto;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);align-items:center}
+.wrow .yr{font-family:var(--serif);color:var(--gold);font-size:1.1rem;min-width:52px}
+.wrow .info b{font-family:var(--serif);font-weight:400;font-size:1.1rem;display:block}
+.wrow .info span{color:var(--ash);font-size:.82rem}
+.wrow .gl{color:var(--ember);font-family:var(--serif);font-size:1.05rem;white-space:nowrap}
+
+/* ---------- Reviews ---------- */
+.reviews{background:var(--ink-2);overflow:hidden}
+.rev-track{display:flex;gap:26px;padding-top:20px}
+.rcard{flex:0 0 min(86vw,440px);background:var(--char);border:1px solid var(--line);border-radius:8px;padding:36px 34px;display:flex;flex-direction:column;gap:20px}
+.rcard .stars{color:var(--ember);letter-spacing:4px;font-size:.9rem}
+.rcard p{font-family:var(--serif);font-size:1.3rem;font-weight:300;line-height:1.4;color:var(--paper)}
+.rcard .who{display:flex;align-items:center;gap:14px;margin-top:auto}
+.rcard .who .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--ember),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--serif);color:#fff;font-size:1.1rem}
+.rcard .who b{font-weight:500;font-size:.92rem;display:block}
+.rcard .who span{color:var(--ash);font-size:.78rem}
+.rev-marq{margin-top:10px}
+
+/* ---------- Booking ---------- */
+.booking{background:var(--ink);position:relative}
+.booking::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 85% 20%,rgba(232,98,42,.12),transparent 60%);pointer-events:none}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:start}
+.book-left h2{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:300;margin:18px 0 24px}
+.book-left h2 em{font-style:italic;color:var(--ember)}
+.book-left>p{color:var(--paper-dim);max-width:44ch;margin-bottom:36px}
+.hours{border-top:1px solid var(--line)}
+.hrow{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.hrow span:first-child{color:var(--paper-dim)}
+.hrow span:last-child{color:var(--paper);font-family:var(--serif)}
+.hrow.closed span:last-child{color:var(--ash)}
+.info-line{display:flex;gap:12px;align-items:center;margin-top:26px;color:var(--paper-dim);font-size:.92rem}
+.info-line svg{flex:0 0 auto;stroke:var(--ember)}
+
+.book-card{background:var(--ink-2);border:1px solid var(--line);border-radius:12px;padding:clamp(26px,3vw,40px);position:relative;overflow:hidden}
+.book-card .steps{display:flex;gap:6px;margin-bottom:28px}
+.book-card .steps i{flex:1;height:3px;border-radius:3px;background:var(--line);transition:background .4s}
+.book-card .steps i.on{background:var(--ember)}
+.bstep{display:none}
+.bstep.active{display:block;animation:fadeIn .5s ease}
+.bstep h3{font-size:1.5rem;font-weight:400;margin-bottom:4px}
+.bstep .hint{color:var(--ash);font-size:.84rem;margin-bottom:22px}
+.field-label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);margin-bottom:12px;display:block}
+.chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.chip{background:var(--char);border:1px solid var(--line);color:var(--paper-dim);padding:12px 18px;border-radius:100px;cursor:pointer;font-size:.88rem;font-family:var(--sans);transition:.3s;flex:0 0 auto}
+.chip:hover{border-color:var(--ash)}
+.chip.sel{background:var(--ember);color:#fff;border-color:var(--ember)}
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:26px}
+.time-grid .chip{text-align:center;padding:12px 6px}
+.field{margin-bottom:18px}
+.field input,.field textarea{width:100%;background:var(--char);border:1px solid var(--line);border-radius:8px;color:var(--paper);
+  padding:14px 16px;font-family:var(--sans);font-size:.95rem;transition:border-color .3s}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--ember)}
+.field input::placeholder,.field textarea::placeholder{color:#6a6259}
+.book-nav{display:flex;justify-content:space-between;gap:14px;margin-top:8px}
+.book-nav .btn{flex:0 0 auto}
+.book-back{background:none;border:1px solid var(--line);color:var(--paper-dim);padding:14px 24px;border-radius:100px;cursor:pointer;font-family:var(--sans);font-size:.8rem;letter-spacing:.06em;transition:.3s}
+.book-back:hover{border-color:var(--paper);color:var(--paper)}
+.summary{background:var(--char);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:22px}
+.summary .srow{display:flex;justify-content:space-between;padding:8px 0;font-size:.9rem;border-bottom:1px dashed var(--line)}
+.summary .srow:last-child{border-bottom:none}
+.summary .srow span:first-child{color:var(--ash)}
+.summary .srow span:last-child{font-family:var(--serif);color:var(--paper)}
+.confirm{text-align:center;padding:20px 0}
+.confirm .ck{width:72px;height:72px;border-radius:50%;background:rgba(232,98,42,.14);border:1px solid var(--ember);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
+.confirm h3{font-size:1.9rem;margin-bottom:10px}
+.confirm p{color:var(--paper-dim);max-width:34ch;margin:0 auto 8px}
+.confirm .ref{color:var(--gold);font-family:var(--serif);letter-spacing:.1em;margin-top:8px}
+
+/* ---------- Footer ---------- */
+footer{background:var(--ink-2);border-top:1px solid var(--line);padding:clamp(60px,9vh,110px) var(--edge) 40px}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:60px;border-bottom:1px solid var(--line)}
+.foot-brand .brand{font-size:2rem;margin-bottom:18px}
+.foot-brand p{color:var(--ash);max-width:34ch;font-size:.92rem}
+.foot-col h4{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:600}
+.foot-col a,.foot-col p{display:block;color:var(--paper-dim);font-size:.92rem;margin-bottom:12px;transition:color .3s}
+.foot-col a:hover{color:var(--ember)}
+.foot-news form{display:flex;border:1px solid var(--line);border-radius:100px;overflow:hidden;margin-top:8px;background:var(--char)}
+.foot-news input{flex:1;background:none;border:none;color:var(--paper);padding:13px 18px;font-family:var(--sans);font-size:.88rem}
+.foot-news input:focus{outline:none}
+.foot-news button{background:var(--ember);border:none;color:#fff;padding:0 20px;cursor:pointer;font-size:1.1rem;transition:background .3s}
+.foot-news button:hover{background:var(--ember-2)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:30px;color:var(--ash);font-size:.8rem}
+.foot-bottom .socials{display:flex;gap:22px}
+.foot-bottom .socials a:hover{color:var(--ember)}
+.credit{font-size:.78rem;color:var(--ash)}
+.credit b{color:var(--paper-dim);font-weight:500}
+
+/* toast */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(140%);background:var(--char);border:1px solid var(--ember);
+  color:var(--paper);padding:15px 26px;border-radius:100px;z-index:2000;font-size:.9rem;transition:transform .5s cubic-bezier(.2,.8,.2,1);box-shadow:0 20px 50px -12px rgba(0,0,0,.7)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1024px){
+  .foot-top{grid-template-columns:1fr 1fr}
+  .philo-grid,.wine-grid,.book-grid{grid-template-columns:1fr}
+  .wine-media{max-width:460px}
+  .book-card{order:-1}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-cta .btn-ghost{display:none}
+  .burger{display:flex}
+  .menu-list{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr;gap:34px}
+  .hero-sub{flex-direction:column;align-items:flex-start}
+  .scroll-hint{display:none}
+  .time-grid{grid-template-columns:repeat(3,1fr)}
+  .sec-head{margin-bottom:40px}
+}
+@media(max-width:480px){
+  .time-grid{grid-template-columns:repeat(2,1fr)}
+  .menu-foot{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;transition-duration:.001s!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<div class="grain"></div>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="load-mark">EMBER<span>EMBER</span></div>
+  <div class="load-bar"><i></i></div>
+</div>
+
+<!-- Nav -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand"><span class="dot"></span>EMBER</a>
+  <nav class="nav-links">
+    <a href="#filosofi">Filosofi</a>
+    <a href="#retter">Signaturretter</a>
+    <a href="#meny">Menyen</a>
+    <a href="#vin">Vin</a>
+    <a href="#bord">Kontakt</a>
+  </nav>
+  <div class="nav-cta">
+    <a href="#meny" class="btn btn-ghost">Se menyen</a>
+    <a href="#bord" class="btn btn-primary">Bestill bord</a>
+    <button class="burger" id="burger" aria-label="Meny"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#filosofi"><span class="num">01</span>Filosofi</a>
+  <a href="#retter"><span class="num">02</span>Signaturretter</a>
+  <a href="#meny"><span class="num">03</span>Menyen</a>
+  <a href="#vin"><span class="num">04</span>Vin</a>
+  <a href="#bord"><span class="num">05</span>Bestill bord</a>
+  <div class="mm-foot">
+    Dronningens gate 27, 0154 Oslo<br>
+    +47 22 00 14 00 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ddb5b8b49db8b0bfb8afb2aeb1b2f3b3b2">[email&#160;protected]</a><br>
+    Tir–Lør fra 17:00
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg" id="heroBg"><img src="images/image-01.jpg" alt="Kjøkkensjef som griller over glør på EMBER Oslo" /></div>
+  <div class="hero-inner">
+    <div class="hero-kicker eyebrow">Oslo · Nordisk ild-kjøkken · Est. 2019</div>
+    <h1 id="heroTitle">
+      <span class="line">SMAK</span><br>
+      <span class="line em">ILDEN</span>
+    </h1>
+    <div class="hero-sub">
+      <p>En restaurant bygget rundt levende glør. Nordiske råvarer møter åpen ild — og blir til noe du kjenner lenge etter siste bit.</p>
+      <div class="hero-actions">
+        <a href="#bord" class="btn btn-primary">Bestill bord
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#retter" class="btn btn-ghost">Utforsk restauranten</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Bla ned</span><span class="ln"></span></div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Levende ild</span><span>Nordiske råvarer</span><span>Håndverk</span><span>Naturvin</span><span>Røyk &amp; glør</span>
+    <span>Levende ild</span><span>Nordiske råvarer</span><span>Håndverk</span><span>Naturvin</span><span>Røyk &amp; glør</span>
+  </div>
+</div>
+
+<!-- Philosophy -->
+<section class="philo wrap" id="filosofi">
+  <div class="philo-grid">
+    <div class="philo-copy">
+      <span class="eyebrow reveal">Vår filosofi</span>
+      <h2 class="reveal d1">Alt vi lager,<br>møter <em>ilden</em>.</h2>
+      <p class="reveal d2">EMBER ble født ut av én besettelse: å gjenoppdage smaken av ekte ild. Hos oss finnes ingen gassbluss og ingen snarveier — bare eik, bjørk og glør som ulmer fra morgen til kveld.</p>
+      <p class="reveal d3">Vi henter råvarene fra norske produsenter vi kjenner ved navn. Fjellstorfe fra Nord-Østerdal, kongekrabbe fra Finnmark, grønnsaker fra egne bønder på Ringerike. Deretter overlater vi resten til flammene.</p>
+      <div class="philo-stats reveal d3">
+        <div class="stat"><div class="n">40+</div><div class="l">Lokale produsenter</div></div>
+        <div class="stat"><div class="n">600°</div><div class="l">Glør på det heteste</div></div>
+        <div class="stat"><div class="n">2</div><div class="l">Michelin-anbefalt</div></div>
+      </div>
+    </div>
+    <div class="philo-media reveal d2">
+      <div class="frame"><img src="images/image-02.jpg" alt="Kjøkkensjef Henrik Bjørnstad ved grillen" /></div>
+      <div class="tag">Henrik Bjørnstad · Kjøkkensjef</div>
+      <div class="ring">Fra glør<br>til bord</div>
+    </div>
+  </div>
+</section>
+
+<!-- Signature dishes -->
+<section class="dishes wrap" id="retter" style="padding-bottom:40px">
+  <div class="dish-head sec-head">
+    <div>
+      <span class="eyebrow reveal">Signaturretter</span>
+      <h2 class="reveal d1" style="margin-top:18px">Rettene som<br>definerer oss</h2>
+    </div>
+    <p class="side reveal d2">Menyen skifter med sesongen, men noen retter har fulgt oss siden dag én. Dette er dem gjestene kommer tilbake for.</p>
+  </div>
+  <div class="drag-hint reveal">Dra for å bla <span class="bar"><i id="dragBar"></i></span></div>
+  <div class="h-scroll" id="hScroll">
+    <article class="dcard">
+      <div class="img"><img src="images/image-03.jpg" alt="Glødegrillet fjellstorfe"><span class="no">Nº 01</span></div>
+      <div class="body">
+        <div class="meta">Fra grillen</div>
+        <h3>Fjellstorfe over glør</h3>
+        <p>Mørnet i 45 dager, grillet over glødende eik, servert med røykt beinmargssjy, brente rotgrønnsaker og syltet løk.</p>
+        <div class="price">395 <small>kr</small></div>
+      </div>
+    </article>
+    <article class="dcard">
+      <div class="img"><img src="images/image-04.jpg" alt="Kamskjell og sjøkreps"><span class="no">Nº 02</span></div>
+      <div class="body">
+        <div class="meta">Fra havet</div>
+        <h3>Kamskjell &amp; sjøkreps</h3>
+        <p>Brent purre, emulsjon av røkt smør og brunet brød, avsluttet med sjøkreps fra Vestlandet og spiselige blomster.</p>
+        <div class="price">285 <small>kr</small></div>
+      </div>
+    </article>
+    <article class="dcard">
+      <div class="img"><img src="images/image-05.jpg" alt="Brent vanilje og multe"><span class="no">Nº 03</span></div>
+      <div class="body">
+        <div class="meta">Til slutt</div>
+        <h3>Brent vanilje &amp; multe</h3>
+        <p>Karamellisert over ild, med røkt sjokolade, multer fra Hardangervidda og et strøk bladgull. Vår mest fotograferte dessert.</p>
+        <div class="price">165 <small>kr</small></div>
+      </div>
+    </article>
+    <article class="dcard">
+      <div class="img"><img src="images/image-06.jpg" alt="Nordiske råvarer"><span class="no">Nº 04</span></div>
+      <div class="body">
+        <div class="meta">Råvarebordet</div>
+        <h3>Dagens fangst</h3>
+        <p>Et levende utvalg av det beste kjøkkenet fikk inn i dag — kongekrabbe, viltsopp og urter, valgt ut ved bordet ditt.</p>
+        <div class="price">Dagspris <small>· spør oss</small></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Menu -->
+<section class="menu wrap" id="meny">
+  <div class="sec-head">
+    <div>
+      <span class="eyebrow reveal">À la carte &amp; smaksmenyer</span>
+      <h2 class="reveal d1" style="margin-top:18px">Menyen</h2>
+    </div>
+    <p class="side reveal d2">Alt tilberedes over åpen ild i vårt åpne kjøkken. Fortell oss om allergier — vi tilpasser gjerne hver rett.</p>
+  </div>
+
+  <div class="menu-tabs reveal" id="menuTabs">
+    <button class="menu-tab active" data-tab="smak">Smaksmeny</button>
+    <button class="menu-tab" data-tab="forrett">Til å begynne</button>
+    <button class="menu-tab" data-tab="hoved">Fra ilden</button>
+    <button class="menu-tab" data-tab="dessert">Søtt</button>
+  </div>
+
+  <div class="menu-panel active" data-panel="smak">
+    <div class="menu-list">
+      <div class="mitem">
+        <div class="nm">Ilden — 5 retter</div><div class="pr">895 kr</div>
+        <div class="ds">Kjøkkensjefens reise gjennom sesongen. Fem serveringer der alt har møtt glørne. Anbefales for hele bordet.</div>
+      </div>
+      <div class="mitem">
+        <div class="nm">Glørne — 7 retter <span class="badge">Signatur</span></div><div class="pr">1250 kr</div>
+        <div class="ds">Vår største opplevelse. Syv retter fra hav, fjell og skog, med råvarer valgt samme morgen.</div>
+      </div>
+      <div class="mitem">
+        <div class="nm">Vinpakke — utvalgt</div><div class="pr">+ 745 kr</div>
+        <div class="ds">Sommelierens følge til smaksmenyen. Naturvin, klassikere og et par overraskelser i glasset.</div>
+      </div>
+      <div class="mitem">
+        <div class="nm">Alkoholfri pakke</div><div class="pr">+ 445 kr</div>
+        <div class="ds">Husets fermenterte juicer, kombucha og infusjoner — like gjennomtenkt som vinfølget.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-panel" data-panel="forrett">
+    <div class="menu-list">
+      <div class="mitem"><div class="nm">Røkt kongekrabbe</div><div class="pr">245 kr</div><div class="ds">Finnmark, brent smør, fermentert sitron og dill fra egen hage.</div></div>
+      <div class="mitem"><div class="nm">Glødebakt beter</div><div class="pr">165 kr</div><div class="ds">Bakt i asken, geitost fra Lom, ristede hasselnøtter og einer.</div></div>
+      <div class="mitem"><div class="nm">Rå fjellstorfe</div><div class="pr">195 kr</div><div class="ds">Håndskåret, røkt eggeplomme, sennepsfrø og sprøtt rugbrød.</div></div>
+      <div class="mitem"><div class="nm">Brent purre</div><div class="pr">155 kr</div><div class="ds">Vinaigrette av røyk, brunet smør og revet herdet eggeplomme.</div></div>
+      <div class="mitem"><div class="nm">Sjøkreps &amp; brød <span class="badge">Sesong</span></div><div class="pr">225 kr</div><div class="ds">Grillet sjøkreps, surdeigsbrød fra eget bakeri, aioli av røkt hvitløk.</div></div>
+      <div class="mitem"><div class="nm">Viltsopp på toast</div><div class="pr">175 kr</div><div class="ds">Håndplukket kantarell, timian, gløderistet brød og parmesan.</div></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" data-panel="hoved">
+    <div class="menu-list">
+      <div class="mitem"><div class="nm">Fjellstorfe over glør <span class="badge">Signatur</span></div><div class="pr">395 kr</div><div class="ds">45 dagers mørning, beinmargssjy, brente rotgrønnsaker og syltet løk.</div></div>
+      <div class="mitem"><div class="nm">Helstekt villtorsk</div><div class="pr">345 kr</div><div class="ds">Linjefanget torsk, brunet smør, blomkål fra ilden og sprøtt skinn.</div></div>
+      <div class="mitem"><div class="nm">Røykt andebryst</div><div class="pr">365 kr</div><div class="ds">Kaldrøkt over eik, glasert med tyttebær, sellerirot og andesjy.</div></div>
+      <div class="mitem"><div class="nm">Glødet blomkål</div><div class="pr">265 kr</div><div class="ds">Hel blomkål bakt i glørne, brunet smør, kapers og urter. Vår vegetariske signatur.</div></div>
+      <div class="mitem"><div class="nm">Reinsdyr fra Finnmark</div><div class="pr">425 kr</div><div class="ds">Grillet ytrefilet, einebær, sopp fra skogen og skysaus av vilt.</div></div>
+      <div class="mitem"><div class="nm">Kongekrabbe fra ilden</div><div class="pr">Dagspris</div><div class="ds">Hel klo grillet over glør, smør av brent sitron og urter.</div></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" data-panel="dessert">
+    <div class="menu-list">
+      <div class="mitem"><div class="nm">Brent vanilje &amp; multe <span class="badge">Signatur</span></div><div class="pr">165 kr</div><div class="ds">Karamellisert over ild, røkt sjokolade, multer og bladgull.</div></div>
+      <div class="mitem"><div class="nm">Røkt sjokolade</div><div class="pr">155 kr</div><div class="ds">Mørk ganache, havsalt, brent karamell og sprøtt kakaobrød.</div></div>
+      <div class="mitem"><div class="nm">Eplekake fra asken</div><div class="pr">145 kr</div><div class="ds">Norske epler bakt i glørne, brunet smørkrem og kanel.</div></div>
+      <div class="mitem"><div class="nm">Norske oster</div><div class="pr">185 kr</div><div class="ds">Utvalg fra norske gårder, gløderistet brød, honning og syltetøy.</div></div>
+    </div>
+  </div>
+
+  <div class="menu-foot reveal">
+    <div>
+      <h3>Klar til å <em>smake ilden?</em></h3>
+      <p>Smaksmenyene serveres til hele bordet. Reserver minst 24 timer i forveien.</p>
+    </div>
+    <a href="#bord" class="btn btn-primary">Bestill bord
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Fire strip parallax -->
+<section class="firestrip" aria-hidden="true">
+  <img src="images/image-07.jpg" alt="" id="fireImg" />
+  <div class="fs-inner">
+    <h2 class="reveal">«Ild er den eldste <span>teknikken</span> vi har — og fortsatt den ærligste.»</h2>
+    <div class="attr reveal d1">— Henrik Bjørnstad, Kjøkkensjef</div>
+  </div>
+</section>
+
+<!-- Wine -->
+<section class="wine wrap" id="vin">
+  <div class="wine-grid">
+    <div class="wine-media reveal"><img src="images/image-08.jpg" alt="Vin skjenkes ved bordet på EMBER Oslo" /></div>
+    <div class="wine-copy">
+      <span class="eyebrow reveal">Kjeller &amp; glass</span>
+      <h2 class="reveal d1">Vin som tåler <em>røyken</em></h2>
+      <p class="reveal d2">Vår kjeller teller over 400 etiketter, med tyngde på naturvin og små produsenter fra hele Europa. Sommelier Ingrid Fossheim setter sammen følget som løfter ilden i maten.</p>
+      <div class="wine-rows reveal d2">
+        <div class="wrow"><span class="yr">'21</span><div class="info"><b>Kerner, Alto Adige</b><span>Sitrus, fjellurter, saltmineralitet</span></div><span class="gl">145 kr</span></div>
+        <div class="wrow"><span class="yr">'20</span><div class="info"><b>Beaujolais, Gamay</b><span>Røde bær, røyk, silkemyk</span></div><span class="gl">165 kr</span></div>
+        <div class="wrow"><span class="yr">'19</span><div class="info"><b>Nebbiolo, Piemonte</b><span>Rose, tjære, kraftig struktur</span></div><span class="gl">195 kr</span></div>
+        <div class="wrow"><span class="yr">'22</span><div class="info"><b>Pet-Nat, Loire</b><span>Eple, brød, levende bobler</span></div><span class="gl">155 kr</span></div>
+      </div>
+      <div style="margin-top:30px" class="reveal d3"><a href="#bord" class="btn btn-text">Reserver med vinpakke →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews wrap" style="padding-bottom:60px">
+  <div class="sec-head">
+    <div>
+      <span class="eyebrow reveal">Gjestene våre</span>
+      <h2 class="reveal d1" style="margin-top:18px">Det sier de<br>etter besøket</h2>
+    </div>
+    <p class="side reveal d2">Vurdert 4,9 av 5 på tvers av over 1 800 anmeldelser. Men det som betyr mest, er hva folk husker.</p>
+  </div>
+  <div class="reviews-marq" id="revMarq">
+    <div class="rev-track" id="revTrack">
+      <article class="rcard"><div class="stars">★★★★★</div><p>«Det beste måltidet jeg har hatt i Oslo på mange år. Fjellstorfen alene er verdt reisen.»</p><div class="who"><div class="av">M</div><div><b>Marte Lund</b><span>Google · Oslo</span></div></div></article>
+      <article class="rcard"><div class="stars">★★★★★</div><p>«Stemningen, ilden, servicen — alt henger sammen. Vi følte oss som en del av kjøkkenet.»</p><div class="who"><div class="av">J</div><div><b>Jonas Aakre</b><span>TripAdvisor</span></div></div></article>
+      <article class="rcard"><div class="stars">★★★★★</div><p>«Sjelden opplever man en meny som er så modig og samtidig så presis. Vinfølget var upåklagelig.»</p><div class="who"><div class="av">S</div><div><b>Sofie Berg</b><span>Aftenposten A-magasinet</span></div></div></article>
+      <article class="rcard"><div class="stars">★★★★★</div><p>«Tok med en internasjonal kunde hit — de snakker fortsatt om den røkte desserten.»</p><div class="who"><div class="av">D</div><div><b>David Sæther</b><span>Google · Bærum</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- Booking -->
+<section class="booking wrap" id="bord">
+  <div class="book-grid">
+    <div class="book-left">
+      <span class="eyebrow reveal">Bestill bord</span>
+      <h2 class="reveal d1">Reserver din <em>plass ved ilden</em></h2>
+      <p class="reveal d2">Vi tar imot gjester tirsdag til lørdag. For selskap over 8 personer, ta kontakt direkte, så skreddersyr vi kvelden.</p>
+
+      <div class="hours reveal d2">
+        <div class="hrow"><span>Mandag</span><span class="closed" style="color:var(--ash)">Stengt</span></div>
+        <div class="hrow"><span>Tirsdag – Torsdag</span><span>17:00 – 23:00</span></div>
+        <div class="hrow"><span>Fredag – Lørdag</span><span>16:00 – 00:30</span></div>
+        <div class="hrow"><span>Søndag</span><span class="closed" style="color:var(--ash)">Stengt</span></div>
+      </div>
+
+      <div class="info-line reveal d3">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Dronningens gate 27, 0154 Oslo
+      </div>
+      <div class="info-line reveal d3">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.5-1.1a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg>
+        +47 22 00 14 00
+      </div>
+      <div class="info-line reveal d3">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b636e624b6e66696e7964786764256564">[email&#160;protected]</a>
+      </div>
+    </div>
+
+    <!-- Booking widget -->
+    <div class="book-card reveal d1">
+      <div class="steps"><i class="on" data-s="1"></i><i data-s="2"></i><i data-s="3"></i><i data-s="4"></i></div>
+
+      <!-- Step 1 -->
+      <div class="bstep active" data-step="1">
+        <h3>Antall gjester</h3>
+        <p class="hint">Hvor mange blir dere?</p>
+        <span class="field-label">Personer</span>
+        <div class="chip-row" id="guestRow">
+          <button class="chip" data-guest="1">1</button>
+          <button class="chip" data-guest="2">2</button>
+          <button class="chip" data-guest="3">3</button>
+          <button class="chip" data-guest="4">4</button>
+          <button class="chip" data-guest="5">5</button>
+          <button class="chip" data-guest="6">6</button>
+          <button class="chip" data-guest="7">7</button>
+          <button class="chip" data-guest="8+">8+</button>
+        </div>
+        <span class="field-label">Anledning (valgfritt)</span>
+        <div class="chip-row" id="occRow">
+          <button class="chip" data-occ="Middag">Middag</button>
+          <button class="chip" data-occ="Bursdag">Bursdag</button>
+          <button class="chip" data-occ="Jubileum">Jubileum</button>
+          <button class="chip" data-occ="Forretning">Forretning</button>
+        </div>
+        <div class="book-nav" style="justify-content:flex-end">
+          <button class="btn btn-primary" data-next>Videre
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="bstep" data-step="2">
+        <h3>Dato &amp; tid</h3>
+        <p class="hint">Vi serverer tirsdag til lørdag.</p>
+        <div class="field">
+          <span class="field-label">Velg dato</span>
+          <input type="date" id="dateInput" />
+        </div>
+        <span class="field-label">Ledige tider</span>
+        <div class="time-grid" id="timeRow">
+          <button class="chip" data-time="16:30">16:30</button>
+          <button class="chip" data-time="17:00">17:00</button>
+          <button class="chip" data-time="18:00">18:00</button>
+          <button class="chip" data-time="18:30">18:30</button>
+          <button class="chip" data-time="19:00">19:00</button>
+          <button class="chip" data-time="20:00">20:00</button>
+          <button class="chip" data-time="21:00">21:00</button>
+          <button class="chip" data-time="21:30">21:30</button>
+        </div>
+        <div class="book-nav">
+          <button class="book-back" data-back>Tilbake</button>
+          <button class="btn btn-primary" data-next>Videre
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="bstep" data-step="3">
+        <h3>Dine detaljer</h3>
+        <p class="hint">Så vi kan bekrefte reservasjonen.</p>
+        <div class="field"><span class="field-label">Navn</span><input type="text" id="fName" placeholder="Fullt navn" /></div>
+        <div class="field"><span class="field-label">E-post</span><input type="email" id="fEmail" placeholder="deg@epost.no" /></div>
+        <div class="field"><span class="field-label">Telefon</span><input type="tel" id="fPhone" placeholder="+47 000 00 000" /></div>
+        <div class="field"><span class="field-label">Allergier eller ønsker</span><textarea id="fNote" rows="2" placeholder="Fortell oss gjerne om allergier"></textarea></div>
+        <div class="book-nav">
+          <button class="book-back" data-back>Tilbake</button>
+          <button class="btn btn-primary" id="reviewBtn" data-next>Se over
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="bstep" data-step="4">
+        <div id="confirmWrap" style="display:none">
+          <div class="confirm">
+            <div class="ck"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--ember)" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <h3>Bordet er reservert</h3>
+            <p>Takk, <span id="cName">gjest</span>! Vi gleder oss til å ta imot deg ved ilden.</p>
+            <p>En bekreftelse er sendt til <span id="cEmail">e-posten din</span>.</p>
+            <div class="ref">Ref. <span id="cRef">EMB-0000</span></div>
+          </div>
+        </div>
+        <div id="summaryWrap">
+          <h3>Se over</h3>
+          <p class="hint">Stemmer detaljene?</p>
+          <div class="summary">
+            <div class="srow"><span>Gjester</span><span id="sGuests">—</span></div>
+            <div class="srow"><span>Anledning</span><span id="sOcc">Middag</span></div>
+            <div class="srow"><span>Dato</span><span id="sDate">—</span></div>
+            <div class="srow"><span>Tid</span><span id="sTime">—</span></div>
+            <div class="srow"><span>Navn</span><span id="sName">—</span></div>
+          </div>
+          <div class="book-nav">
+            <button class="book-back" data-back>Tilbake</button>
+            <button class="btn btn-primary" id="confirmBtn">Bekreft reservasjon</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="brand"><span class="dot"></span>EMBER</div>
+      <p>Nordisk ild-kjøkken i hjertet av Oslo. Levende glør, ærlige råvarer og en kveld du husker.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Besøk oss</h4>
+      <p>Dronningens gate 27</p>
+      <p>0154 Oslo, Norge</p>
+      <a href="#bord">Vis i kart</a>
+    </div>
+    <div class="foot-col">
+      <h4>Åpningstider</h4>
+      <p>Tir–Tor 17–23</p>
+      <p>Fre–Lør 16–00:30</p>
+      <p>Søn–Man stengt</p>
+    </div>
+    <div class="foot-col foot-news">
+      <h4>Nyhetsbrev</h4>
+      <p style="margin-bottom:4px">Sesongmenyer og eksklusive kvelder, rett i innboksen.</p>
+      <form id="newsForm">
+        <input type="email" placeholder="Din e-post" required />
+        <button type="submit" aria-label="Meld på">→</button>
+      </form>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 EMBER Oslo. Alle rettigheter forbeholdt.</span>
+    <div class="socials">
+      <a href="#">Instagram</a><a href="#">Facebook</a><a href="#">TikTok</a>
+    </div>
+    <span class="credit">Demo av <b>Nordlys Studio</b> · fiktiv restaurant</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Takk! Vi har notert deg.</div>
+
+<script>
+(function(){
+  // Loader
+  window.addEventListener('load',function(){
+    setTimeout(function(){document.getElementById('loader').classList.add('done')},1900);
+  });
+
+  // Nav scroll
+  var nav=document.getElementById('nav');
+  var heroBg=document.getElementById('heroBg');
+  var fireImg=document.getElementById('fireImg');
+  function onScroll(){
+    var y=window.pageYOffset;
+    nav.classList.toggle('scrolled',y>60);
+    if(heroBg){heroBg.querySelector('img').style.transform='scale(1.12) translateY('+(y*0.18)+'px)';}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  // Parallax fire strip
+  function fireParallax(){
+    if(!fireImg)return;
+    var r=fireImg.getBoundingClientRect();
+    var off=(window.innerHeight-r.top)*0.06;
+    fireImg.style.transform='translateY('+(-off)+'px)';
+  }
+  window.addEventListener('scroll',fireParallax,{passive:true});
+  fireParallax();
+
+  // Hero letters animation
+  window.addEventListener('DOMContentLoaded',function(){
+    document.querySelectorAll('.hero h1 .line').forEach(function(line){
+      var txt=line.textContent;line.textContent='';
+      txt.split('').forEach(function(ch,i){
+        var s=document.createElement('span');s.className='l';s.textContent=ch;
+        s.style.animationDelay=(0.5+i*0.06)+'s';line.appendChild(s);
+      });
+    });
+  });
+
+  // Burger
+  var burger=document.getElementById('burger');
+  var mm=document.getElementById('mobileMenu');
+  burger.addEventListener('click',function(){
+    var open=mm.classList.toggle('open');
+    burger.classList.toggle('open',open);
+    document.body.classList.toggle('locked',open);
+  });
+  mm.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      mm.classList.remove('open');burger.classList.remove('open');document.body.classList.remove('locked');
+    });
+  });
+
+  // Reveal on scroll
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.14});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // Menu tabs
+  var tabs=document.getElementById('menuTabs');
+  tabs.addEventListener('click',function(e){
+    var b=e.target.closest('.menu-tab');if(!b)return;
+    tabs.querySelectorAll('.menu-tab').forEach(function(t){t.classList.remove('active')});
+    b.classList.add('active');
+    var id=b.dataset.tab;
+    document.querySelectorAll('.menu-panel').forEach(function(p){p.classList.toggle('active',p.dataset.panel===id)});
+  });
+
+  // Horizontal drag scroll + progress
+  var hs=document.getElementById('hScroll');
+  var dragBar=document.getElementById('dragBar');
+  var isDown=false,startX,scrollLeft;
+  hs.addEventListener('mousedown',function(e){isDown=true;hs.style.cursor='grabbing';startX=e.pageX-hs.offsetLeft;scrollLeft=hs.scrollLeft;});
+  window.addEventListener('mouseup',function(){isDown=false;hs.style.cursor='';});
+  hs.addEventListener('mousemove',function(e){if(!isDown)return;e.preventDefault();var x=e.pageX-hs.offsetLeft;hs.scrollLeft=scrollLeft-(x-startX)*1.6;});
+  function updBar(){var max=hs.scrollWidth-hs.clientWidth;var p=max>0?hs.scrollLeft/max:0;if(dragBar)dragBar.style.left=(p*70)+'%';}
+  hs.addEventListener('scroll',updBar,{passive:true});updBar();
+
+  // Reviews auto-scroll (duplicate + translate)
+  var track=document.getElementById('revTrack');
+  if(track){
+    track.innerHTML+=track.innerHTML;
+    var pos=0,paused=false;
+    var marq=document.getElementById('revMarq');
+    marq.style.overflow='hidden';
+    marq.addEventListener('mouseenter',function(){paused=true});
+    marq.addEventListener('mouseleave',function(){paused=false});
+    function anim(){
+      if(!paused){pos-=0.4;var half=track.scrollWidth/2;if(-pos>=half)pos=0;track.style.transform='translateX('+pos+'px)';}
+      requestAnimationFrame(anim);
+    }
+    requestAnimationFrame(anim);
+  }
+
+  // ------- Booking widget -------
+  var state={guests:'',occ:'Middag',date:'',time:'',name:'',email:''};
+  var curStep=1;
+  var card=document.querySelector('.book-card');
+  var stepsBar=card.querySelectorAll('.steps i');
+
+  function selectGroup(row,attr,key){
+    row.addEventListener('click',function(e){
+      var c=e.target.closest('.chip');if(!c)return;
+      row.querySelectorAll('.chip').forEach(function(x){x.classList.remove('sel')});
+      c.classList.add('sel');state[key]=c.dataset[attr];
+    });
+  }
+  selectGroup(document.getElementById('guestRow'),'guest','guests');
+  selectGroup(document.getElementById('occRow'),'occ','occ');
+  selectGroup(document.getElementById('timeRow'),'time','time');
+
+  var dateInput=document.getElementById('dateInput');
+  var today=new Date();today.setDate(today.getDate()+1);
+  dateInput.min=new Date().toISOString().split('T')[0];
+  dateInput.value=today.toISOString().split('T')[0];
+  state.date=dateInput.value;
+  dateInput.addEventListener('change',function(){state.date=this.value;});
+
+  function showStep(n){
+    curStep=n;
+    card.querySelectorAll('.bstep').forEach(function(s){s.classList.toggle('active',+s.dataset.step===n)});
+    stepsBar.forEach(function(i){i.classList.toggle('on',+i.dataset.s<=n)});
+  }
+
+  function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2600);}
+
+  card.querySelectorAll('[data-next]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      if(curStep===1&&!state.guests){toast('Velg antall gjester');return;}
+      if(curStep===2&&!state.time){toast('Velg et tidspunkt');return;}
+      if(curStep===3){
+        state.name=document.getElementById('fName').value.trim();
+        state.email=document.getElementById('fEmail').value.trim();
+        if(!state.name){toast('Skriv inn navnet ditt');return;}
+        if(!state.email){toast('Skriv inn e-post');return;}
+        fillSummary();
+      }
+      showStep(curStep+1);
+    });
+  });
+  card.querySelectorAll('[data-back]').forEach(function(btn){
+    btn.addEventListener('click',function(){showStep(curStep-1)});
+  });
+
+  function fmtDate(d){
+    try{var dt=new Date(d+'T00:00:00');
+      return dt.toLocaleDateString('nb-NO',{weekday:'long',day:'numeric',month:'long'});
+    }catch(e){return d;}
+  }
+  function fillSummary(){
+    document.getElementById('sGuests').textContent=state.guests+(state.guests==='1'?' gjest':' gjester');
+    document.getElementById('sOcc').textContent=state.occ||'Middag';
+    document.getElementById('sDate').textContent=fmtDate(state.date);
+    document.getElementById('sTime').textContent=state.time;
+    document.getElementById('sName').textContent=state.name;
+  }
+
+  document.getElementById('confirmBtn').addEventListener('click',function(){
+    document.getElementById('summaryWrap').style.display='none';
+    var cw=document.getElementById('confirmWrap');cw.style.display='block';
+    document.getElementById('cName').textContent=state.name.split(' ')[0];
+    document.getElementById('cEmail').textContent=state.email;
+    document.getElementById('cRef').textContent='EMB-'+Math.floor(1000+Math.random()*8999);
+    stepsBar.forEach(function(i){i.classList.add('on')});
+  });
+
+  // Newsletter
+  document.getElementById('newsForm').addEventListener('submit',function(e){
+    e.preventDefault();this.reset();toast('Takk! Du er påmeldt nyhetsbrevet.');
+  });
+
+  // Smooth anchor with offset handled by scroll-margin fallback
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=this.getAttribute('href');if(id==='#')return;
+      var el=document.querySelector(id);if(!el)return;
+      e.preventDefault();
+      var y=el.getBoundingClientRect().top+window.pageYOffset-70;
+      window.scrollTo({top:y,behavior:'smooth'});
+    });
+  });
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a372bfd38c12783d',t:'MTc4ODc1MzAyNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

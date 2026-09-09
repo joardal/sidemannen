@@ -1,0 +1,3619 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c1422" />
+  <meta name="description" content="Eiendomspartner AS – moderne eiendomsservice for borettslag, sameier, næringsbygg og eiendomsforvaltere." />
+  <title>Eiendomspartner AS – Eiendomsservice med oversikt</title>
+  <style>
+    :root {
+      --bg: #09111d;
+      --bg-soft: #101a2a;
+      --bg-elevated: #132034;
+      --surface: rgba(15, 24, 38, 0.74);
+      --surface-strong: rgba(16, 26, 43, 0.94);
+      --line: rgba(149, 170, 200, 0.18);
+      --line-strong: rgba(149, 170, 200, 0.32);
+      --text: #f3f7fb;
+      --muted: #a8b7cd;
+      --dark-text: #0e1a2b;
+      --dark-muted: #55657b;
+      --canvas: #f5f7fb;
+      --canvas-soft: #eef2f7;
+      --card: #ffffff;
+      --accent: #63dfc1;
+      --accent-deep: #17a788;
+      --accent-2: #8da9ff;
+      --accent-3: #ffb76a;
+      --danger: #ff8c8c;
+      --success: #7de0a9;
+      --shadow: 0 22px 60px rgba(5, 12, 24, 0.18);
+      --shadow-soft: 0 12px 32px rgba(10, 24, 44, 0.08);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --container: 1240px;
+      --section-space: clamp(4rem, 8vw, 8rem);
+      --ease: 220ms cubic-bezier(.2,.7,.2,1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--dark-text);
+      background:
+        radial-gradient(circle at top left, rgba(99, 223, 193, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(141, 169, 255, 0.10), transparent 24%),
+        linear-gradient(180deg, #0a1322 0%, #0b1320 26%, #eef2f7 26%, #f7f9fc 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(99, 223, 193, 0.24);
+      color: var(--dark-text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, select, textarea { font: inherit; }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-shell {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .grid-backdrop {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 960px;
+      background:
+        linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 82px 82px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.12), transparent 92%);
+      pointer-events: none;
+      opacity: 0.55;
+      z-index: -1;
+    }
+
+    .ambient, .ambient::before, .ambient::after {
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: blur(20px);
+      z-index: -1;
+    }
+
+    .ambient {
+      inset: 120px auto auto min(50% - 520px);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(99,223,193,.24), transparent 65%);
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .ambient::before {
+      content: "";
+      inset: 180px auto auto 880px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(141,169,255,.18), transparent 70%);
+      animation: float 14s ease-in-out infinite reverse;
+    }
+
+    .ambient::after {
+      content: "";
+      inset: 420px auto auto 440px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(255,183,106,.14), transparent 65%);
+      animation: float 9s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -18px, 0); }
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 16px 0;
+      transition: background var(--ease), border-color var(--ease), box-shadow var(--ease), transform var(--ease);
+    }
+
+    .site-header.scrolled {
+      background: rgba(8, 14, 24, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(149, 170, 200, 0.14);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border: 1px solid rgba(149, 170, 200, 0.14);
+      background: rgba(8, 14, 24, 0.48);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      padding: 10px 14px 10px 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(141,169,255,.92), rgba(99,223,193,.92));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 10px 22px rgba(58, 118, 173, .28);
+      flex-shrink: 0;
+    }
+
+    .brand-mark svg { width: 22px; height: 22px; }
+
+    .brand-copy {
+      color: white;
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 0.98rem;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: rgba(220, 230, 245, 0.76);
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: rgba(237, 242, 249, 0.86);
+      font-size: 0.94rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: background var(--ease), color var(--ease), transform var(--ease);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn,
+    .chip-button,
+    .option-card,
+    .season-tab,
+    .toggle-btn {
+      transition: transform var(--ease), box-shadow var(--ease), background var(--ease), color var(--ease), border-color var(--ease), opacity var(--ease);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 650;
+      font-size: 0.96rem;
+      cursor: pointer;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .btn svg { width: 18px; height: 18px; }
+
+    .btn-primary {
+      color: #08101b;
+      background: linear-gradient(135deg, #6de4c8, #9eb5ff);
+      box-shadow: 0 12px 26px rgba(104, 187, 205, 0.26);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(104, 187, 205, 0.36);
+      outline: none;
+    }
+
+    .btn-secondary {
+      color: #f5f7fb;
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.14);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .btn-ghost {
+      color: var(--dark-text);
+      background: rgba(14,26,43,0.04);
+      border-color: rgba(14,26,43,0.08);
+    }
+
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      background: rgba(14,26,43,0.08);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: white;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .menu-toggle svg { width: 20px; height: 20px; }
+
+    .mobile-panel {
+      display: none;
+    }
+
+    .hero {
+      padding: clamp(2.2rem, 4vw, 3.5rem) 0 var(--section-space);
+      color: var(--text);
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr);
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding-top: clamp(0.5rem, 2vw, 2rem);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: rgba(243,247,251,0.88);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.84rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 8px rgba(99,223,193,0.12);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 6vw, 5.7rem);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+      max-width: 11.2ch;
+    }
+
+    .hero-lead {
+      margin: 24px 0 0;
+      max-width: 66ch;
+      font-size: clamp(1.04rem, 1.5vw, 1.22rem);
+      line-height: 1.72;
+      color: rgba(227, 236, 247, 0.78);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .hero-foot {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .persona-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .persona-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(243,247,251,0.78);
+      font-size: 0.9rem;
+    }
+
+    .persona-chip::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    .response-note {
+      color: rgba(243,247,251,0.74);
+      text-align: right;
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    .hero-board {
+      position: relative;
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+        rgba(11, 18, 30, 0.72);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 22px 48px rgba(0,0,0,0.24);
+      overflow: hidden;
+      min-height: 100%;
+    }
+
+    .hero-board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(130deg, rgba(255,255,255,0.08), transparent 28%),
+        radial-gradient(circle at 12% 8%, rgba(109,228,200,0.18), transparent 32%),
+        radial-gradient(circle at 88% 12%, rgba(157,182,255,0.16), transparent 28%);
+      pointer-events: none;
+    }
+
+    .board-header,
+    .board-grid,
+    .board-footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .board-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+
+    .board-title h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 650;
+      color: #fff;
+    }
+
+    .board-title p {
+      margin: 7px 0 0;
+      color: rgba(232,239,247,0.7);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      max-width: 32ch;
+    }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(245,248,252,0.88);
+      font-size: 0.78rem;
+      flex-shrink: 0;
+    }
+
+    .live-pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 0 8px rgba(125,224,169,0.14);
+      animation: pulse 1.7s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(125,224,169,0.24); }
+      80%,100% { box-shadow: 0 0 0 12px rgba(125,224,169,0); }
+    }
+
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .board-card {
+      border-radius: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 16px;
+    }
+
+    .board-card.stat { grid-column: span 4; }
+    .board-card.tall { grid-column: span 7; }
+    .board-card.side { grid-column: span 5; }
+    .board-card.full { grid-column: 1 / -1; }
+
+    .label {
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(235,241,249,0.62);
+      margin-bottom: 10px;
+    }
+
+    .metric {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      color: #fff;
+    }
+
+    .metric strong {
+      font-size: clamp(1.8rem, 3vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .metric span {
+      font-size: 0.92rem;
+      color: rgba(235,241,249,0.7);
+    }
+
+    .mini-trend {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(235,241,249,0.76);
+      font-size: 0.88rem;
+    }
+
+    .trend-line {
+      flex: 1;
+      height: 34px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(109,228,200,.15), rgba(157,182,255,.18));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trend-line::after {
+      content: "";
+      position: absolute;
+      inset: 8px 12px;
+      border-radius: 999px;
+      background:
+        linear-gradient(92deg,
+          transparent 0 4%,
+          rgba(109,228,200,0.5) 4% 18%,
+          rgba(157,182,255,0.8) 30% 46%,
+          rgba(109,228,200,0.65) 57% 68%,
+          rgba(255,183,106,0.7) 81% 92%,
+          transparent 92% 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .property-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .property-item {
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .property-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(109,228,200,.18), rgba(157,182,255,.18));
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .property-icon svg { width: 20px; height: 20px; }
+
+    .property-item strong {
+      display: block;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .property-item p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: rgba(229,236,245,0.72);
+    }
+
+    .signal-card {
+      display: grid;
+      gap: 12px;
+    }
+
+    .signal-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.92rem;
+      color: rgba(236,242,249,0.82);
+    }
+
+    .signal-bar {
+      flex: 1;
+      max-width: 130px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .signal-bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .board-footer {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .board-footer p {
+      margin: 0;
+      color: rgba(233,240,247,0.76);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .status-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.82rem;
+      color: rgba(241,245,251,0.84);
+    }
+
+    .status-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .status-badge.good { color: var(--success); }
+    .status-badge.fast { color: var(--accent); }
+    .status-badge.warn { color: var(--accent-3); }
+
+    section {
+      position: relative;
+    }
+
+    .light-zone {
+      padding: var(--section-space) 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(14,26,43,0.04);
+      border: 1px solid rgba(14,26,43,0.08);
+      color: var(--dark-muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section-kicker::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-deep), var(--accent-2));
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4.2vw, 3.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      color: var(--dark-text);
+      max-width: 12ch;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--dark-muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 55ch;
+      justify-self: end;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .service-card,
+    .adv-card,
+    .season-panel,
+    .testimonial-card,
+    .contact-card,
+    .config-panel,
+    .report-card,
+    .process-card {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(14,26,43,0.08);
+      box-shadow: var(--shadow-soft);
+      border-radius: var(--radius-lg);
+    }
+
+    .service-card {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -30px -30px auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(141,169,255,0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .service-card.large { grid-column: span 5; }
+    .service-card.medium { grid-column: span 4; }
+    .service-card.wide { grid-column: span 7; }
+    .service-card.small { grid-column: span 3; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .icon-chip {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(99,223,193,.16), rgba(141,169,255,.18));
+      color: var(--dark-text);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .icon-chip svg { width: 24px; height: 24px; }
+
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 650;
+      color: var(--dark-muted);
+      border: 1px solid rgba(14,26,43,0.08);
+      background: rgba(14,26,43,0.03);
+    }
+
+    .service-card h3,
+    .adv-card h3,
+    .testimonial-card h3,
+    .contact-card h3,
+    .config-panel h3,
+    .report-card h3,
+    .process-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      letter-spacing: -0.025em;
+      color: var(--dark-text);
+    }
+
+    .service-card p,
+    .adv-card p,
+    .contact-card p,
+    .config-panel p,
+    .report-card p,
+    .process-card p,
+    .testimonial-card p {
+      margin: 0;
+      color: var(--dark-muted);
+      line-height: 1.72;
+    }
+
+    .service-list,
+    .micro-list,
+    .season-list,
+    .contact-list,
+    .quote-list {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .service-list li,
+    .micro-list li,
+    .season-list li,
+    .contact-list li,
+    .quote-list li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--dark-muted);
+      line-height: 1.65;
+    }
+
+    .service-list li::before,
+    .micro-list li::before,
+    .season-list li::before,
+    .contact-list li::before,
+    .quote-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.76em;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-deep), var(--accent-2));
+      transform: translateY(-50%);
+    }
+
+    .micro-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .micro-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: rgba(14,26,43,0.04);
+      border: 1px solid rgba(14,26,43,0.08);
+      color: var(--dark-text);
+      font-size: 0.84rem;
+      font-weight: 540;
+    }
+
+    .micro-pill::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-deep), var(--accent-2));
+    }
+
+    .services-note {
+      margin-top: 22px;
+      padding: 20px 22px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(248,250,255,0.88));
+      border: 1px solid rgba(14,26,43,0.08);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .services-note strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--dark-text);
+    }
+
+    .services-note p {
+      margin: 0;
+      color: var(--dark-muted);
+      line-height: 1.65;
+      max-width: 70ch;
+    }
+
+    .services-note .btn { flex-shrink: 0; }
+
+    .dark-band {
+      padding: var(--section-space) 0;
+      background:
+        radial-gradient(circle at 0% 10%, rgba(99,223,193,0.10), transparent 24%),
+        radial-gradient(circle at 100% 0%, rgba(141,169,255,0.12), transparent 20%),
+        linear-gradient(180deg, #0c1524, #111c2d);
+      color: var(--text);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .dark-band .section-head h2,
+    .dark-band .config-panel h3,
+    .dark-band .report-card h3,
+    .dark-band .process-card h3,
+    .dark-band .testimonial-card h3,
+    .dark-band .contact-card h3,
+    .dark-band .adv-card h3 {
+      color: #fff;
+    }
+
+    .dark-band .section-head p,
+    .dark-band .config-panel p,
+    .dark-band .report-card p,
+    .dark-band .process-card p,
+    .dark-band .testimonial-card p,
+    .dark-band .contact-card p,
+    .dark-band .adv-card p,
+    .dark-band .service-list li,
+    .dark-band .micro-list li,
+    .dark-band .contact-list li,
+    .dark-band .quote-list li {
+      color: rgba(228,236,245,0.74);
+    }
+
+    .dark-band .section-kicker {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.09);
+      color: rgba(228,236,245,0.7);
+    }
+
+    .adv-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .adv-card {
+      padding: 22px;
+      min-height: 100%;
+    }
+
+    .adv-card.main {
+      grid-column: span 6;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)),
+        rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .adv-card.main::after {
+      content: "";
+      position: absolute;
+      inset: auto -50px -70px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(99,223,193,0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .adv-card.small {
+      grid-column: span 3;
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .adv-card.wide {
+      grid-column: span 6;
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .adv-matrix {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .mini-panel {
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini-panel strong {
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .mini-panel span {
+      color: rgba(228,236,245,0.72);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      display: block;
+    }
+
+    .process-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .step-chip {
+      position: relative;
+      padding: 18px 16px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .step-chip .step-index {
+      display: inline-flex;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(109,228,200,.16), rgba(157,182,255,.18));
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .step-chip strong {
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .step-chip span {
+      display: block;
+      color: rgba(228,236,245,0.72);
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    .config-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.42fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .config-panel,
+    .report-card,
+    .contact-card,
+    .testimonial-card,
+    .process-card {
+      padding: 26px;
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .config-panel .section-kicker,
+    .report-card .section-kicker,
+    .contact-card .section-kicker,
+    .testimonial-card .section-kicker,
+    .process-card .section-kicker {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.08);
+      color: rgba(228,236,245,0.7);
+      margin-bottom: 14px;
+    }
+
+    .config-group {
+      margin-top: 24px;
+    }
+
+    .config-group:first-of-type {
+      margin-top: 20px;
+    }
+
+    .group-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .group-label strong {
+      color: #fff;
+      font-size: 0.98rem;
+      letter-spacing: -0.015em;
+    }
+
+    .group-label span {
+      color: rgba(228,236,245,0.62);
+      font-size: 0.85rem;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .option-card {
+      appearance: none;
+      cursor: pointer;
+      border-radius: 18px;
+      padding: 15px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: rgba(238,243,250,0.84);
+      text-align: left;
+    }
+
+    .option-card strong {
+      display: block;
+      font-size: 0.96rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .option-card span {
+      display: block;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: rgba(228,236,245,0.7);
+    }
+
+    .option-card.active,
+    .option-card:hover,
+    .option-card:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(109,228,200,0.36);
+      background: linear-gradient(135deg, rgba(99,223,193,0.12), rgba(141,169,255,0.11));
+      box-shadow: 0 12px 28px rgba(4,8,16,0.14);
+      outline: none;
+    }
+
+    .size-wrap {
+      display: grid;
+      gap: 12px;
+    }
+
+    .size-display {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(235,242,250,0.84);
+    }
+
+    .size-display strong {
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .range-shell {
+      padding: 4px 2px 0;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      appearance: none;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(99,223,193,.55), rgba(141,169,255,.65));
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #fff;
+      border: 3px solid var(--accent-deep);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+      cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #fff;
+      border: 3px solid var(--accent-deep);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+      cursor: pointer;
+    }
+
+    .chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip-button {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: rgba(237,243,250,0.84);
+      padding: 11px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 540;
+    }
+
+    .chip-button.active,
+    .chip-button:hover,
+    .chip-button:focus-visible {
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, rgba(99,223,193,0.12), rgba(141,169,255,0.11));
+      border-color: rgba(109,228,200,0.36);
+      color: #fff;
+      outline: none;
+    }
+
+    .config-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .summary-card {
+      position: sticky;
+      top: 96px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .summary-card .config-panel {
+      padding: 24px;
+    }
+
+    .summary-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .summary-badge {
+      font-size: 0.78rem;
+      color: #08101b;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #6de4c8, #9eb5ff);
+      font-weight: 700;
+    }
+
+    .estimate {
+      display: grid;
+      gap: 10px;
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .estimate strong {
+      display: block;
+      color: #fff;
+      font-size: clamp(1.9rem, 3vw, 2.55rem);
+      letter-spacing: -0.05em;
+    }
+
+    .estimate span,
+    .muted-note {
+      color: rgba(228,236,245,0.72);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .summary-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: rgba(228,236,245,0.76);
+      font-size: 0.92rem;
+    }
+
+    .summary-list li:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .summary-list strong {
+      color: #fff;
+      font-size: 0.92rem;
+    }
+
+    .season-shell {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .season-tabs {
+      display: grid;
+      gap: 10px;
+      position: sticky;
+      top: 96px;
+    }
+
+    .season-tab {
+      appearance: none;
+      text-align: left;
+      border-radius: 22px;
+      border: 1px solid rgba(14,26,43,0.08);
+      background: rgba(255,255,255,0.88);
+      box-shadow: var(--shadow-soft);
+      padding: 18px;
+      cursor: pointer;
+    }
+
+    .season-tab strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: var(--dark-text);
+    }
+
+    .season-tab span {
+      display: block;
+      color: var(--dark-muted);
+      line-height: 1.55;
+      font-size: 0.9rem;
+    }
+
+    .season-tab.active,
+    .season-tab:hover,
+    .season-tab:focus-visible {
+      transform: translateX(4px);
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(245,249,255,0.98));
+      border-color: rgba(23,167,136,0.2);
+      outline: none;
+    }
+
+    .season-panels {
+      position: relative;
+      min-height: 520px;
+    }
+
+    .season-panel {
+      padding: 28px;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(18px);
+      transition: opacity 360ms ease, transform 360ms ease;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.92), rgba(247,249,253,0.94));
+    }
+
+    .season-panel.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .season-panel::before {
+      content: "";
+      position: absolute;
+      inset: auto -60px -80px auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(141,169,255,0.14), transparent 70%);
+      pointer-events: none;
+    }
+
+    .season-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 20px;
+      margin-bottom: 26px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .season-header h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: -0.045em;
+      color: var(--dark-text);
+    }
+
+    .season-header p {
+      margin: 0;
+      color: var(--dark-muted);
+      line-height: 1.72;
+    }
+
+    .season-badge-box {
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(14,26,43,0.04);
+      border: 1px solid rgba(14,26,43,0.08);
+      align-self: start;
+    }
+
+    .season-badge-box strong {
+      display: block;
+      font-size: 1.05rem;
+      color: var(--dark-text);
+      margin-bottom: 8px;
+    }
+
+    .season-badge-box span {
+      color: var(--dark-muted);
+      line-height: 1.6;
+      font-size: 0.92rem;
+      display: block;
+    }
+
+    .season-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 1fr;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .season-visual {
+      border-radius: 24px;
+      background:
+        linear-gradient(145deg, rgba(14,26,43,0.95), rgba(23,39,62,0.92));
+      color: #fff;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .season-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(109,228,200,0.12), transparent 24%),
+        radial-gradient(circle at 80% 30%, rgba(157,182,255,0.14), transparent 26%),
+        linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: auto, auto, 42px 42px, 42px 42px;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .season-visual > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .visual-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.78rem;
+      color: rgba(242,246,251,0.86);
+    }
+
+    .visual-label::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .visual-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .visual-stat {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .visual-stat strong {
+      display: block;
+      font-size: 1.3rem;
+      color: #fff;
+      letter-spacing: -0.04em;
+      margin-bottom: 4px;
+    }
+
+    .visual-stat span {
+      display: block;
+      color: rgba(229,237,245,0.72);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .report-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.55fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .report-progress {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0 24px;
+    }
+
+    .progress-step {
+      flex: 1;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-step span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 320ms ease;
+    }
+
+    .report-steps {
+      position: relative;
+    }
+
+    .report-step {
+      display: none;
+    }
+
+    .report-step.active {
+      display: block;
+      animation: fadeUp 320ms ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      color: rgba(238,243,250,0.88);
+      font-size: 0.9rem;
+      font-weight: 560;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color var(--ease), background var(--ease), transform var(--ease);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(228,236,245,0.44);
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(109,228,200,0.34);
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-1px);
+    }
+
+    .field textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .report-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .report-success {
+      display: none;
+      padding: 20px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(109,228,200,0.12), rgba(141,169,255,0.12));
+      border: 1px solid rgba(109,228,200,0.24);
+      margin-top: 18px;
+    }
+
+    .report-success.active {
+      display: block;
+      animation: fadeUp 320ms ease;
+    }
+
+    .report-success strong {
+      display: block;
+      color: #fff;
+      font-size: 1.04rem;
+      margin-bottom: 8px;
+    }
+
+    .report-success p {
+      margin: 0;
+      color: rgba(228,236,245,0.8);
+      line-height: 1.7;
+    }
+
+    .status-feed {
+      display: grid;
+      gap: 14px;
+    }
+
+    .feed-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .feed-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .feed-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(239,243,250,0.84);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .feed-tag::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .feed-meta {
+      color: rgba(228,236,245,0.64);
+      font-size: 0.82rem;
+    }
+
+    .feed-item strong {
+      display: block;
+      color: #fff;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .feed-item p {
+      margin: 0;
+      color: rgba(228,236,245,0.74);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .proof-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .proof-card strong {
+      display: block;
+      font-size: 1.45rem;
+      color: #fff;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+
+    .proof-card span {
+      color: rgba(228,236,245,0.72);
+      line-height: 1.6;
+      font-size: 0.88rem;
+      display: block;
+    }
+
+    .references-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.6fr) minmax(0, 0.4fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .testimonial-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .testimonial-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -50px -60px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(141,169,255,0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .quote-mark {
+      font-size: 3rem;
+      line-height: 1;
+      color: rgba(109,228,200,0.5);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .person-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .person-block strong {
+      display: block;
+      color: #fff;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+
+    .person-block span {
+      color: rgba(228,236,245,0.68);
+      font-size: 0.88rem;
+    }
+
+    .score-pill {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(240,244,250,0.84);
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .client-wall {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .client-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .client-card .client-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.76rem;
+      color: rgba(238,243,250,0.82);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .client-card .client-type::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .client-card strong {
+      display: block;
+      color: #fff;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .client-card p {
+      margin: 0;
+      color: rgba(228,236,245,0.72);
+      line-height: 1.65;
+      font-size: 0.9rem;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.54fr) minmax(0, 0.46fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .contact-card.light {
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(247,249,253,0.96));
+      border-color: rgba(14,26,43,0.08);
+    }
+
+    .contact-card.light h3,
+    .contact-card.light strong { color: var(--dark-text); }
+    .contact-card.light p,
+    .contact-card.light li,
+    .contact-card.light span { color: var(--dark-muted); }
+
+    .contact-card.light .section-kicker {
+      background: rgba(14,26,43,0.04);
+      border-color: rgba(14,26,43,0.08);
+      color: var(--dark-muted);
+    }
+
+    .contact-hero {
+      display: grid;
+      gap: 22px;
+      min-height: 100%;
+    }
+
+    .contact-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .contact-box {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(14,26,43,0.04);
+      border: 1px solid rgba(14,26,43,0.08);
+    }
+
+    .contact-box strong {
+      display: block;
+      font-size: 0.96rem;
+      margin-bottom: 8px;
+    }
+
+    .contact-box span {
+      display: block;
+      line-height: 1.65;
+      font-size: 0.92rem;
+    }
+
+    .cta-box {
+      padding: 22px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(10,17,29,0.96), rgba(20,32,51,0.93));
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 82% 14%, rgba(157,182,255,0.16), transparent 28%),
+        radial-gradient(circle at 0% 100%, rgba(109,228,200,0.14), transparent 26%);
+      pointer-events: none;
+    }
+
+    .cta-box > * { position: relative; z-index: 1; }
+
+    .cta-box h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      letter-spacing: -0.045em;
+    }
+
+    .cta-box p {
+      margin: 0;
+      color: rgba(230,237,245,0.76);
+      line-height: 1.75;
+      max-width: 58ch;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .site-footer {
+      padding: 28px 0 44px;
+      color: rgba(86,100,120,0.92);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      border-top: 1px solid rgba(14,26,43,0.08);
+      padding-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 480ms ease, transform 480ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .desktop-only { display: inline-flex; }
+
+    @media (max-width: 1160px) {
+      .hero-layout,
+      .config-wrap,
+      .season-shell,
+      .report-layout,
+      .references-grid,
+      .contact-layout,
+      .section-head,
+      .season-header,
+      .season-content {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-card,
+      .season-tabs {
+        position: static;
+      }
+
+      .season-panels {
+        min-height: 620px;
+      }
+
+      .season-tab.active,
+      .season-tab:hover,
+      .season-tab:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .response-note {
+        text-align: left;
+      }
+
+      .hero-foot,
+      .board-footer,
+      .section-head p {
+        justify-self: start;
+      }
+
+      .proof-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-meta,
+      .process-strip,
+      .visual-stats,
+      .option-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 920px) {
+      .nav-links,
+      .header-actions .desktop-only {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .mobile-panel {
+        display: none;
+        margin-top: 14px;
+        padding: 16px;
+        border-radius: 26px;
+        background: rgba(8, 14, 24, 0.92);
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 20px 48px rgba(0,0,0,0.24);
+      }
+
+      .mobile-panel.open {
+        display: grid;
+        gap: 10px;
+      }
+
+      .mobile-panel a {
+        color: rgba(239,243,249,0.86);
+        padding: 14px 12px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.04);
+      }
+
+      .mobile-panel .btn {
+        margin-top: 6px;
+      }
+
+      .board-card.stat,
+      .board-card.tall,
+      .board-card.side,
+      .service-card.large,
+      .service-card.medium,
+      .service-card.wide,
+      .service-card.small,
+      .adv-card.main,
+      .adv-card.small,
+      .adv-card.wide {
+        grid-column: 1 / -1;
+      }
+
+      .field-grid,
+      .proof-row,
+      .contact-meta,
+      .process-strip,
+      .visual-stats,
+      .client-wall,
+      .option-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .season-panels {
+        min-height: 700px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      body {
+        background: linear-gradient(180deg, #0a1322 0%, #0b1320 19%, #eef2f7 19%, #f7f9fc 100%);
+      }
+
+      .container {
+        width: min(var(--container), calc(100% - 20px));
+      }
+
+      .header-inner {
+        padding: 10px 10px 10px 14px;
+      }
+
+      .brand-copy span {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 1rem;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 13vw, 4rem);
+        max-width: 9.5ch;
+      }
+
+      .hero-actions,
+      .config-actions,
+      .report-actions,
+      .cta-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn,
+      .config-actions .btn,
+      .report-actions .btn,
+      .cta-actions .btn,
+      .services-note .btn {
+        width: 100%;
+      }
+
+      .hero-foot,
+      .board-footer,
+      .section-head,
+      .section-head p,
+      .season-header,
+      .season-content,
+      .person-row,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .persona-row,
+      .status-badges {
+        justify-content: flex-start;
+      }
+
+      .board-grid,
+      .bento-grid,
+      .adv-grid {
+        gap: 14px;
+      }
+
+      .hero-board,
+      .service-card,
+      .adv-card,
+      .season-panel,
+      .testimonial-card,
+      .contact-card,
+      .config-panel,
+      .report-card,
+      .process-card {
+        border-radius: 24px;
+      }
+
+      .season-panels {
+        min-height: 760px;
+      }
+
+      .section-head h2 {
+        max-width: 11ch;
+      }
+
+      .size-display,
+      .estimate,
+      .contact-box,
+      .mini-panel,
+      .step-chip,
+      .feed-item,
+      .proof-card,
+      .client-card {
+        border-radius: 18px;
+      }
+    }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+  <div class="site-shell">
+    <div class="grid-backdrop"></div>
+    <div class="ambient"></div>
+
+    <header class="site-header" id="top">
+      <div class="container">
+        <div class="header-inner">
+          <a href="#top" class="brand" aria-label="Eiendomspartner AS">
+            <div class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20V9.5L12 4l8 5.5V20"></path>
+                <path d="M9 20v-5h6v5"></path>
+                <path d="M8 10h.01"></path>
+                <path d="M16 10h.01"></path>
+              </svg>
+            </div>
+            <div class="brand-copy">
+              <strong>Eiendomspartner AS</strong>
+              <span>Vaktmestertjenester og eiendomsservice</span>
+            </div>
+          </a>
+
+          <div class="nav-wrap">
+            <nav class="nav-links" aria-label="Hovedmeny">
+              <a href="#tjenester">Tjenester</a>
+              <a href="#avtale">Serviceavtale</a>
+              <a href="#sesong">Sesongdrift</a>
+              <a href="#meld-inn">Meld inn sak</a>
+              <a href="#referanser">Referanser</a>
+              <a href="#kontakt">Kontakt</a>
+            </nav>
+
+            <div class="header-actions">
+              <a class="btn btn-secondary desktop-only" href="#kontakt">Bestill befaring</a>
+              <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobilePanel" aria-label="Åpne meny">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M4 7h16"></path>
+                  <path d="M4 12h16"></path>
+                  <path d="M4 17h16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mobile-panel" id="mobilePanel">
+          <a href="#tjenester">Tjenester</a>
+          <a href="#avtale">Serviceavtale</a>
+          <a href="#sesong">Sesongdrift</a>
+          <a href="#meld-inn">Meld inn sak</a>
+          <a href="#referanser">Referanser</a>
+          <a href="#kontakt">Kontakt</a>
+          <a class="btn btn-primary" href="#kontakt">Få tilbud</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-layout">
+            <div class="hero-copy reveal">
+              <div class="eyebrow"><span class="dot"></span> For borettslag, sameier, næringsbygg og forvaltere</div>
+              <h1>Eiendomsdrift som ser like ryddig ut som den faktisk er.</h1>
+              <p class="hero-lead">
+                Eiendomspartner AS leverer moderne vaktmestertjenester og eiendomsservice med tydelige rutiner, rask oppfølging og et driftsopplegg som gir styret, forvalteren og leietakerne mer ro i hverdagen.
+              </p>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#avtale">Be om fast avtale</a>
+                <a class="btn btn-secondary" href="#kontakt">Bestill befaring</a>
+                <a class="btn btn-secondary" href="#meld-inn">Meld inn oppdrag</a>
+              </div>
+
+              <div class="hero-foot">
+                <div class="persona-row">
+                  <div class="persona-chip">Borettslag</div>
+                  <div class="persona-chip">Sameier</div>
+                  <div class="persona-chip">Næringsbygg</div>
+                  <div class="persona-chip">Eiendomsforvaltere</div>
+                </div>
+                <div class="response-note">
+                  Planlagt drift, dokumentert oppfølging og faste kontaktpunkter —<br />
+                  uten at eiendommen føles som et evig prosjekt.
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-board reveal">
+              <div class="board-header">
+                <div class="board-title">
+                  <h2>Driftsoversikt · Eiendomspartner Portal</h2>
+                  <p>Et eksempel på hvordan service, prioritering og løpende status kan oppleves når eiendomsdriften faktisk er satt i system.</p>
+                </div>
+                <div class="live-pill">Aktiv driftsstatus</div>
+              </div>
+
+              <div class="board-grid">
+                <div class="board-card stat">
+                  <div class="label">Gjennomsnittlig responstid</div>
+                  <div class="metric"><strong data-count="3.2">3.2</strong><span>timer på hastehenvendelser</span></div>
+                  <div class="mini-trend"><span>12% raskere siste kvartal</span><div class="trend-line"></div></div>
+                </div>
+
+                <div class="board-card stat">
+                  <div class="label">Planlagte runder</div>
+                  <div class="metric"><strong data-count="184">184</strong><span>utført per måned</span></div>
+                  <div class="mini-trend"><span>Kontinuerlig tilsyn i faste soner</span></div>
+                </div>
+
+                <div class="board-card stat">
+                  <div class="label">Saksstatus</div>
+                  <div class="metric"><strong data-count="94">94</strong><span>% lukket innen avtalt frist</span></div>
+                  <div class="mini-trend"><span>Oppfølging, logging og dokumentasjon</span></div>
+                </div>
+
+                <div class="board-card tall">
+                  <div class="label">Pågående driftspakker</div>
+                  <div class="property-stack">
+                    <div class="property-item">
+                      <div class="property-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3 20h18"></path>
+                          <path d="M5 20V8l7-4 7 4v12"></path>
+                          <path d="M9 20v-4h6v4"></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <strong>Sameie · Grünerløkka</strong>
+                        <p>Teknisk tilsyn, avfallssoner, sesongvedlikehold og beboermeldinger samlet i én løpende avtale.</p>
+                      </div>
+                    </div>
+                    <div class="property-item">
+                      <div class="property-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M4 20V6h16v14"></path>
+                          <path d="M9 20v-4h6v4"></path>
+                          <path d="M8 10h.01"></path>
+                          <path d="M12 10h.01"></path>
+                          <path d="M16 10h.01"></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <strong>Næringsbygg · Skøyen</strong>
+                        <p>Daglig oppfølging av fellesarealer, tekniske kontroller og småreparasjoner med rapportering til forvalter.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="board-card side">
+                  <div class="label">Prioriteringssignal</div>
+                  <div class="signal-card">
+                    <div class="signal-row"><span>Uteområder</span><div class="signal-bar"><span style="width: 84%"></span></div></div>
+                    <div class="signal-row"><span>Teknisk tilsyn</span><div class="signal-bar"><span style="width: 72%"></span></div></div>
+                    <div class="signal-row"><span>Snøberedskap</span><div class="signal-bar"><span style="width: 91%"></span></div></div>
+                    <div class="signal-row"><span>Avfall og logistikk</span><div class="signal-bar"><span style="width: 64%"></span></div></div>
+                  </div>
+                </div>
+
+                <div class="board-card full">
+                  <div class="label">Ukens fokus</div>
+                  <div class="micro-row">
+                    <div class="micro-pill">Inngangsparti og belysning</div>
+                    <div class="micro-pill">Kontroll av tekniske rom</div>
+                    <div class="micro-pill">Ren flyt i avfallsstasjoner</div>
+                    <div class="micro-pill">Forberedelse til neste sesongskifte</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="board-footer">
+                <p>
+                  Eiendomspartner AS er rigget for forutsigbar drift, men også for de små tingene som skaper stor forskjell i opplevelsen av et bygg: detaljer, responstid og evnen til å følge opp uten friksjon.
+                </p>
+                <div class="status-badges">
+                  <div class="status-badge good">Stabil drift</div>
+                  <div class="status-badge fast">Rask oppfølging</div>
+                  <div class="status-badge warn">Sesongklar</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="light-zone" id="tjenester">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Tjenesteunivers</div>
+              <h2>Drift bygget rundt eiendommen, ikke rundt en standardpakke.</h2>
+            </div>
+            <p>
+              I stedet for å selge «litt av alt», setter vi sammen en operativ modell som passer faktisk behov, beboerflyt, teknisk nivå og forventninger til oppfølging. Resultatet er mindre støy og bedre kontroll.
+            </p>
+          </div>
+
+          <div class="bento-grid">
+            <article class="service-card large reveal">
+              <div class="card-top">
+                <div class="icon-chip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v18"></path>
+                    <path d="M5 8h14"></path>
+                    <path d="M7 14h10"></path>
+                  </svg>
+                </div>
+                <div class="service-tag">Teknisk tilsyn</div>
+              </div>
+              <h3>Kontroller som oppdager små avvik før de blir store saker.</h3>
+              <p>Rutinemessig tilsyn av felles tekniske områder, lys, dører, adgangspunkter, ventilasjonsnære soner, vannrelaterte risikoområder og andre driftspunkter som krever jevn oppmerksomhet.</p>
+              <ul class="service-list">
+                <li>Fast inspeksjonsplan og dokumenterte sjekkpunkter</li>
+                <li>Avviksrapportering med forslag til tiltak og prioritet</li>
+                <li>Praktisk oppfølging mellom styre, forvalter og leverandører</li>
+              </ul>
+            </article>
+
+            <article class="service-card medium reveal">
+              <div class="card-top">
+                <div class="icon-chip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 18c3.2-1 4.6-3.8 5.4-6.8"></path>
+                    <path d="M20 18c-3.2-1-4.6-3.8-5.4-6.8"></path>
+                    <path d="M12 5c2.1 1.7 2.6 3.7 2.2 6"></path>
+                    <path d="M9.8 11c-.4-2.3.1-4.3 2.2-6"></path>
+                  </svg>
+                </div>
+                <div class="service-tag">Uteområder</div>
+              </div>
+              <h3>Fellesarealer som holder nivået hele året.</h3>
+              <p>Vi følger opp inngangssoner, ganglinjer, grøntanlegg, sykkelparkering, renovasjonssoner og øvrige uteområder med fokus på orden, sikkerhet og helhetsinntrykk.</p>
+              <div class="micro-row">
+                <div class="micro-pill">Plen, kanter og bed</div>
+                <div class="micro-pill">Rydding og synlig standard</div>
+                <div class="micro-pill">Løpende utendørssjekk</div>
+              </div>
+            </article>
+
+            <article class="service-card small reveal">
+              <div class="card-top">
+                <div class="icon-chip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="16" height="16" rx="3"></rect>
+                    <path d="M8 12h8"></path>
+                    <path d="M12 8v8"></path>
+                  </svg>
+                </div>
+                <div class="service-tag">Småreparasjoner</div>
+              </div>
+              <h3>Enklere utbedringer uten unødvendig ventetid.</h3>
+              <p>Justeringer, bytter, festejobber, mindre vedlikehold og praktiske tiltak som ellers lett blir hengende.</p>
+            </article>
+
+            <article class="service-card wide reveal">
+              <div class="card-top">
+                <div class="icon-chip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 7h14"></path>
+                    <path d="M7 7V5.5A1.5 1.5 0 0 1 8.5 4h7A1.5 1.5 0 0 1 17 5.5V7"></path>
+                    <path d="M6 7l1 12h10l1-12"></path>
+                    <path d="M10 11v4"></path>
+                    <path d="M14 11v4"></path>
+                  </svg>
+                </div>
+                <div class="service-tag">Avfall og logistikk</div>
+              </div>
+              <h3>Bedre flyt i renovasjon, fellesrom og interne driftsrutiner.</h3>
+              <p>Avfallsstasjoner og felles logistikkpunkter er ofte blant de første stedene brukerne merker kvaliteten på driften. Vi sørger for struktur, ryddighet og tydelige løpende tiltak som minsker irritasjon og holder anlegget presentabelt.</p>
+              <ul class="service-list">
+                <li>Oppfølging av renovasjonssoner og avvik rundt kildesortering</li>
+                <li>Kontroll av bod- og kjellersoner, lager og vareflyt i næringsbygg</li>
+                <li>Koordinering ved ekstrahentinger, opprydding og sesongtopper</li>
+              </ul>
+            </article>
+
+            <article class="service-card medium reveal">
+              <div class="card-top">
+                <div class="icon-chip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3v4"></path>
+                    <path d="M16 3v4"></path>
+                    <path d="M4 9h16"></path>
+                    <rect x="4" y="5" width="16" height="15" rx="3"></rect>
+                    <path d="M8 13h3"></path>
+                    <path d="M13 13h3"></path>
+                  </svg>
+                </div>
+                <div class="service-tag">Faste serviceavtaler</div>
+              </div>
+              <h3>Avtaler som gir forutsigbarhet, ikke mer administrasjon.</h3>
+              <p>Velg et nivå som passer eiendommens størrelse og ambisjon. Alt fra enkel grunnservice til en helhetlig driftsmodell med rapportering og fast oppfølgingsstruktur.</p>
+              <div class="micro-row">
+                <div class="micro-pill">Månedlig rapport</div>
+                <div class="micro-pill">Fast kontaktperson</div>
+                <div class="micro-pill">Prioriteringsmatrise</div>
+              </div>
+            </article>
+
+            <article class="service-card medium reveal">
+              <div class="card-top">
+                <div class="icon-chip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 4v16"></path>
+                    <path d="M7 8l5-4 5 4"></path>
+                    <path d="M7 16l5 4 5-4"></path>
+                  </svg>
+                </div>
+                <div class="service-tag">Sesongvedlikehold</div>
+              </div>
+              <h3>Smidige overganger mellom vinterdrift, vårklargjøring og høsttiltak.</h3>
+              <p>Vi jobber sesongbasert i forkant, ikke bare når været allerede har skapt utfordringer.</p>
+            </article>
+
+            <article class="service-card small reveal">
+              <div class="card-top">
+                <div class="icon-chip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 12h12"></path>
+                    <path d="M10 8l-4 4 4 4"></path>
+                    <path d="M14 16l4-4-4-4"></path>
+                  </svg>
+                </div>
+                <div class="service-tag">Snø og beredskap</div>
+              </div>
+              <h3>Vinterdrift med klare responspunkter og trygg adkomst.</h3>
+              <p>Snørydding, strøing og beredskap rundt innganger, ganglinjer og prioriterte soner.</p>
+            </article>
+          </div>
+
+          <div class="services-note reveal">
+            <div>
+              <strong>Trenger du et oppsett som passer flere bygg eller ulike adresser?</strong>
+              <p>Vi setter gjerne opp en samlet driftsmodell for porteføljer med ulike behov, responstider og sesongprofiler. Perfekt for profesjonelle eiendomsforvaltere og styrer med flere enheter.</p>
+            </div>
+            <a class="btn btn-ghost" href="#kontakt">Få tilbud</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="dark-band">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Fast eiendomsservice</div>
+              <h2>Fordelene med å gå fra enkelthjelp til kontinuerlig drift.</h2>
+            </div>
+            <p>
+              Når oppfølging, rutiner og ansvar ligger fast, forsvinner mye av støyen som ellers oppstår mellom observasjon, bestilling og utførelse. Det gir færre overraskelser og en langt bedre eiendomsopplevelse.
+            </p>
+          </div>
+
+          <div class="adv-grid">
+            <article class="adv-card main reveal">
+              <h3>Fra «noen må ta det» til tydelig driftslogikk.</h3>
+              <p>Eiendomspartner AS organiserer arbeidet rundt faste intervaller, avvikshåndtering, kontaktpunkter og prioritering. Det betyr mindre ad hoc, færre mellomledd og mer oversikt for både styret og beboerne.</p>
+              <div class="adv-matrix">
+                <div class="mini-panel">
+                  <strong>Fast rytme</strong>
+                  <span>Planlagte runder, månedlige oppsummeringer og tydelige kontrollpunkter.</span>
+                </div>
+                <div class="mini-panel">
+                  <strong>Mindre friksjon</strong>
+                  <span>Færre løse tråder, bedre flyt i bestillinger og raskere beslutninger.</span>
+                </div>
+                <div class="mini-panel">
+                  <strong>Synlig kvalitet</strong>
+                  <span>Bygget oppleves mer velholdt når detaljene faktisk blir fulgt opp jevnlig.</span>
+                </div>
+                <div class="mini-panel">
+                  <strong>Bedre økonomi</strong>
+                  <span>Små tiltak i tide reduserer risikoen for dyrere hasteutbedringer senere.</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="adv-card small reveal">
+              <div class="label">Typisk gevinst</div>
+              <h3>Mer ro i styret.</h3>
+              <p>Mindre tid brukt på enkeltstående avklaringer, oppfølging av småsaker og rydding i uklare ansvarsforhold.</p>
+            </article>
+
+            <article class="adv-card small reveal">
+              <div class="label">Operativ styrke</div>
+              <h3>Én kontaktflate.</h3>
+              <p>Én partner som kjenner bygget, sesongen og prioriteringene gjør hele driften enklere å styre.</p>
+            </article>
+
+            <article class="adv-card wide reveal">
+              <div class="label">Arbeidsflyt</div>
+              <h3>En enkel modell som skaper merkbar effekt i praksis.</h3>
+              <div class="process-strip">
+                <div class="step-chip">
+                  <div class="step-index">1</div>
+                  <strong>Kartlegging</strong>
+                  <span>Vi går gjennom eiendomstype, soner, utfordringer og forventet nivå.</span>
+                </div>
+                <div class="step-chip">
+                  <div class="step-index">2</div>
+                  <strong>Plan</strong>
+                  <span>Det lages en tydelig serviceplan med frekvens, ansvarsområder og responstid.</span>
+                </div>
+                <div class="step-chip">
+                  <div class="step-index">3</div>
+                  <strong>Utførelse</strong>
+                  <span>Faste runder, løpende tiltak og oppfølging av meldte saker i samme system.</span>
+                </div>
+                <div class="step-chip">
+                  <div class="step-index">4</div>
+                  <strong>Rapportering</strong>
+                  <span>Styret og forvalter får oversikt uten å måtte etterspørre status manuelt.</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="dark-band" id="avtale">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Smart serviceavtale</div>
+              <h2>Sett sammen en avtale som matcher bygget ditt.</h2>
+            </div>
+            <p>
+              Denne demoen viser hvordan en moderne servicekonfigurator kan gjøre det enklere å be om tilbud: brukeren beskriver eiendommen, velger ønskede tjenester og får en umiddelbar retning på anbefalt opplegg.
+            </p>
+          </div>
+
+          <div class="config-wrap">
+            <div class="config-panel reveal">
+              <h3>Konfigurer ønsket driftsopplegg</h3>
+              <p>Velg type eiendom, størrelse og tjenestemoduler. Oppsummeringen oppdateres fortløpende.</p>
+
+              <div class="config-group">
+                <div class="group-label">
+                  <strong>Type eiendom</strong>
+                  <span>Velg det som ligner mest</span>
+                </div>
+                <div class="option-grid" id="propertyTypeOptions">
+                  <button type="button" class="option-card active" data-group="type" data-value="borettslag">
+                    <strong>Borettslag</strong>
+                    <span>Fellesområder, beboerflyt og løpende vedlikehold.</span>
+                  </button>
+                  <button type="button" class="option-card" data-group="type" data-value="sameie">
+                    <strong>Sameie</strong>
+                    <span>Ryddig drift med tydelige kontrollpunkter og sesongarbeid.</span>
+                  </button>
+                  <button type="button" class="option-card" data-group="type" data-value="naring">
+                    <strong>Næringsbygg</strong>
+                    <span>Høyere krav til tilgjengelighet, logistikk og presentasjon.</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="config-group">
+                <div class="group-label">
+                  <strong>Størrelse og omfang</strong>
+                  <span>Antall enheter / kompleksitet</span>
+                </div>
+                <div class="size-wrap">
+                  <div class="size-display">
+                    <div>
+                      <strong id="sizeTitle">Mellomstort bygg</strong>
+                      <div class="muted-note" id="sizeDescription">Typisk 35–70 boenheter eller et mindre/mellomstort næringsbygg.</div>
+                    </div>
+                    <div class="summary-badge" id="sizeBadge">Nivå 2</div>
+                  </div>
+                  <div class="range-shell">
+                    <input id="sizeRange" type="range" min="1" max="4" step="1" value="2" aria-label="Størrelse på eiendom" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="config-group">
+                <div class="group-label">
+                  <strong>Ønskede tjenester</strong>
+                  <span>Velg én eller flere</span>
+                </div>
+                <div class="chip-grid" id="serviceChips">
+                  <button type="button" class="chip-button active" data-service="vaktmester">Vaktmestertjenester</button>
+                  <button type="button" class="chip-button active" data-service="teknisk">Teknisk tilsyn</button>
+                  <button type="button" class="chip-button" data-service="reparasjon">Enklere reparasjoner</button>
+                  <button type="button" class="chip-button active" data-service="ute">Uteområder</button>
+                  <button type="button" class="chip-button" data-service="sno">Snørydding</button>
+                  <button type="button" class="chip-button" data-service="avfall">Avfallshåndtering</button>
+                  <button type="button" class="chip-button" data-service="sesong">Sesongvedlikehold</button>
+                </div>
+              </div>
+
+              <div class="config-group">
+                <div class="group-label">
+                  <strong>Oppfølgingsnivå</strong>
+                  <span>Hvor tett ønsker dere at vi følger opp?</span>
+                </div>
+                <div class="option-grid" id="serviceLevelOptions">
+                  <button type="button" class="option-card" data-group="level" data-value="grunn">
+                    <strong>Grunnservice</strong>
+                    <span>Faste runder og enkel oppfølging for mindre eiendommer.</span>
+                  </button>
+                  <button type="button" class="option-card active" data-group="level" data-value="fast">
+                    <strong>Fast avtale</strong>
+                    <span>Jevnlig drift, dokumentasjon og tydelig responstid.</span>
+                  </button>
+                  <button type="button" class="option-card" data-group="level" data-value="premium">
+                    <strong>Utvidet drift</strong>
+                    <span>Mer tett oppfølging, ekstra sesongberedskap og høyere tilgjengelighet.</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="config-actions">
+                <a class="btn btn-primary" href="#kontakt">Få tilbud</a>
+                <a class="btn btn-secondary" href="#kontakt">Bestill befaring</a>
+              </div>
+            </div>
+
+            <aside class="summary-card reveal">
+              <div class="config-panel">
+                <div class="summary-header">
+                  <div>
+                    <div class="section-kicker">Anbefalt modell</div>
+                    <h3 id="summaryTitle">Fast driftsavtale for borettslag</h3>
+                  </div>
+                  <div class="summary-badge" id="summaryBadge">Anbefalt</div>
+                </div>
+
+                <div class="estimate">
+                  <span>Estimert månedlig nivå</span>
+                  <strong id="estimatePrice">fra 18 900 kr</strong>
+                  <span id="estimateText">Basert på jevnlig oppfølging, teknisk tilsyn og løpende uteområdeservice.</span>
+                </div>
+
+                <ul class="summary-list">
+                  <li><span>Eiendomstype</span><strong id="summaryType">Borettslag</strong></li>
+                  <li><span>Størrelse</span><strong id="summarySize">Mellomstort bygg</strong></li>
+                  <li><span>Oppfølgingsnivå</span><strong id="summaryLevel">Fast avtale</strong></li>
+                  <li><span>Inkluderte moduler</span><strong id="summaryServices">3 tjenester</strong></li>
+                </ul>
+
+                <ul class="quote-list">
+                  <li id="quotePoint1">Fast kontaktperson og strukturert månedsrytme</li>
+                  <li id="quotePoint2">Dokumentert tilsyn og løpende prioritering av avvik</li>
+                  <li id="quotePoint3">Service som kan utvides med sesongdrift og snøberedskap</li>
+                </ul>
+              </div>
+
+              <div class="config-panel">
+                <div class="section-kicker">CTA</div>
+                <h3>Vil du ha et konkret tilbud?</h3>
+                <p>Vi kan tilpasse avtalen etter antall bygg, uteområder, tekniske soner og ønsket responstid.</p>
+                <div class="config-actions">
+                  <a class="btn btn-primary" href="#kontakt">Be om fast avtale</a>
+                  <a class="btn btn-secondary" href="#meld-inn">Meld inn oppdrag</a>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="light-zone" id="sesong">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Sesonghjulet</div>
+              <h2>Eiendommen trenger ulike ting til ulike tider av året.</h2>
+            </div>
+            <p>
+              God eiendomsservice handler også om timing. Her er et eksempel på hvordan tjenestene kan visualiseres sesong for sesong for å skape trygghet, planlegging og verdi i avtalen.
+            </p>
+          </div>
+
+          <div class="season-shell">
+            <div class="season-tabs reveal" role="tablist" aria-label="Velg sesong">
+              <button class="season-tab active" type="button" data-season="winter" role="tab" aria-selected="true">
+                <strong>Vinterdrift</strong>
+                <span>Snørydding, strøing, trygg adkomst og beredskap på dager som krever rask handling.</span>
+              </button>
+              <button class="season-tab" type="button" data-season="spring" role="tab" aria-selected="false">
+                <strong>Vårklargjøring</strong>
+                <span>Ettersyn etter vinteren, oppstart uteområder og kontroll av slitasje og avvik.</span>
+              </button>
+              <button class="season-tab" type="button" data-season="summer" role="tab" aria-selected="false">
+                <strong>Sommerstell</strong>
+                <span>Grøntanlegg, presentasjon, felles soner og jevnlig standard gjennom høysesongen.</span>
+              </button>
+              <button class="season-tab" type="button" data-season="autumn" role="tab" aria-selected="false">
+                <strong>Høstvedlikehold</strong>
+                <span>Klargjøring før kulde, løvhåndtering, kontroll av takrenner og tekniske risikopunkter.</span>
+              </button>
+            </div>
+
+            <div class="season-panels reveal">
+              <article class="season-panel active" data-season-panel="winter">
+                <div class="season-header">
+                  <div>
+                    <h3>Vinterdrift med forutsigbar beredskap og trygge ferdselslinjer.</h3>
+                    <p>Gjennom vintermånedene prioriteres inngangspartier, adkomst, interne gangveier og andre kritiske flater. Målet er at bygget skal fungere sømløst også når forholdene skifter raskt.</p>
+                  </div>
+                  <div class="season-badge-box">
+                    <strong>Fokusperiode</strong>
+                    <span>Desember til mars – med forhøyet beredskap ved værskifter og varslede nedbørstopper.</span>
+                  </div>
+                </div>
+                <div class="season-content">
+                  <div class="season-visual">
+                    <div class="visual-label">Sesongprioritet</div>
+                    <h3>Drift først. Friksjon sist.</h3>
+                    <p>Rask vurdering av behov, tydelig prioritering av soner og trygg adgang for beboere, ansatte og besøkende.</p>
+                    <div class="visual-stats">
+                      <div class="visual-stat"><strong>24/7</strong><span>Beredskapsvindu for varslede vinterhendelser</span></div>
+                      <div class="visual-stat"><strong>Sone A</strong><span>Innganger, hovedlinjer og kritiske trapper først</span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <ul class="season-list">
+                      <li>Snørydding på prioriterte flater og gangsoner</li>
+                      <li>Strøing og forebyggende tiltak ved glatte forhold</li>
+                      <li>Kontroll av belysning, dørmiljø og fremkommelighet</li>
+                      <li>Ekstra oppfølging rundt renovasjon og vinterlogistikk</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <article class="season-panel" data-season-panel="spring">
+                <div class="season-header">
+                  <div>
+                    <h3>Vårklargjøring som løfter inntrykket raskt og systematisk.</h3>
+                    <p>Når snø og slaps er borte, er det tid for å hente bygget tilbake til riktig standard. Vårsesongen er perfekt for å lukke vinteravvik og få uteområdene tilbake i flyt.</p>
+                  </div>
+                  <div class="season-badge-box">
+                    <strong>Fokusperiode</strong>
+                    <span>Mars til mai – opprydding, kontroll og ny grunnstandard før sommerhalvåret.</span>
+                  </div>
+                </div>
+                <div class="season-content">
+                  <div class="season-visual">
+                    <div class="visual-label">Etter vinteren</div>
+                    <h3>Fra rester til ny start.</h3>
+                    <p>Vi går metodisk gjennom eiendommen og lukker småskader, oppsamlet slitasje og forhold som svekker helhetsinntrykket.</p>
+                    <div class="visual-stats">
+                      <div class="visual-stat"><strong>360°</strong><span>Visuell gjennomgang av uteområder og felles soner</span></div>
+                      <div class="visual-stat"><strong>1 plan</strong><span>Prioritert liste over tiltak etter oppstartsbefaring</span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <ul class="season-list">
+                      <li>Feiing, rydding og oppfriskning av felles uteområder</li>
+                      <li>Kontroll av overflater, slitasje og mindre skader etter vinteren</li>
+                      <li>Oppstart grøntanlegg, bed, kanter og møblerte soner</li>
+                      <li>Gjennomgang av avfallssoner og praktiske brukerflater</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <article class="season-panel" data-season-panel="summer">
+                <div class="season-header">
+                  <div>
+                    <h3>Sommerstell som holder bygget representativt i den mest synlige perioden.</h3>
+                    <p>Sommeren er sesongen der kvaliteten på eiendomsservicen blir mest synlig. Derfor jobber vi både med trivsel, grønt og detaljnivå i soner som brukes mye.</p>
+                  </div>
+                  <div class="season-badge-box">
+                    <strong>Fokusperiode</strong>
+                    <span>Juni til august – løpende presentasjon, grøntdrift og vedlikehold i brukte soner.</span>
+                  </div>
+                </div>
+                <div class="season-content">
+                  <div class="season-visual">
+                    <div class="visual-label">Synlig kvalitet</div>
+                    <h3>Et bygg som virker ivaretatt.</h3>
+                    <p>Høyere bruk av uteområder stiller større krav til vedlikehold, ren flyt og visuelt nivå gjennom hele sommeren.</p>
+                    <div class="visual-stats">
+                      <div class="visual-stat"><strong>Ukentlig</strong><span>Oppfølging av utsatte områder i høysesong</span></div>
+                      <div class="visual-stat"><strong>Fellesrom+</strong><span>Ekstra fokus på inngangssoner og uteplasser</span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <ul class="season-list">
+                      <li>Plenklipp, kantarbeid og vedlikehold av grøntområder</li>
+                      <li>Rydding rundt innganger, sykkelsoner og møteplasser</li>
+                      <li>Løpende småtiltak som holder standarden oppe</li>
+                      <li>Oppfølging av felles utemøbler og oppholdsarealer</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <article class="season-panel" data-season-panel="autumn">
+                <div class="season-header">
+                  <div>
+                    <h3>Høstvedlikehold som forbereder bygget før kulde og mer krevende vær.</h3>
+                    <p>Høsten er den viktigste perioden for forebygging. Riktig oppfølging nå gir mindre uforutsett arbeid senere, spesielt rundt vannhåndtering, gangsoner og tekniske overganger.</p>
+                  </div>
+                  <div class="season-badge-box">
+                    <strong>Fokusperiode</strong>
+                    <span>September til november – klargjøring, kontroll og forebyggende sesongskifte.</span>
+                  </div>
+                </div>
+                <div class="season-content">
+                  <div class="season-visual">
+                    <div class="visual-label">Forebygging</div>
+                    <h3>Håndtert før vinteren merker det.</h3>
+                    <p>God høstdrift reduserer både driftsstøy, glatte situasjoner og småfeil som ellers forsterkes i kaldere vær.</p>
+                    <div class="visual-stats">
+                      <div class="visual-stat"><strong>Før frost</strong><span>Takrenner, sluk og sårbare punkter gjennomgås</span></div>
+                      <div class="visual-stat"><strong>Klar vinter</strong><span>Plan for beredskap, soner og prioritet er på plass</span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <ul class="season-list">
+                      <li>Løvhåndtering og renhold i utsatte soner</li>
+                      <li>Kontroll av sluk, takrenner og vannveier</li>
+                      <li>Klargjøring av uteområder før vinterdrift</li>
+                      <li>Gjennomgang av vinterkritiske risikopunkter</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dark-band" id="meld-inn">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Digital meld inn sak</div>
+              <h2>En smart saksgang gjør det lettere å få ting løst raskt.</h2>
+            </div>
+            <p>
+              For eiendommer med mange brukere er det avgjørende at innmelding av feil og behov føles enkel. Denne demoen viser et moderne, porteføljevennlig oppsett for oppdrag, avvik og kontaktinformasjon.
+            </p>
+          </div>
+
+          <div class="report-layout">
+            <div class="report-card reveal">
+              <h3>Meld inn oppdrag eller sak</h3>
+              <p>Velg problemtype, beskriv saken og legg inn kontaktinformasjon. Brukeropplevelsen er laget for å være rask, tydelig og trygg også på mobil.</p>
+
+              <div class="report-progress" aria-hidden="true">
+                <div class="progress-step"><span style="width: 100%"></span></div>
+                <div class="progress-step"><span></span></div>
+                <div class="progress-step"><span></span></div>
+              </div>
+
+              <form id="reportForm" novalidate>
+                <div class="report-steps">
+                  <div class="report-step active" data-step="1">
+                    <div class="config-group" style="margin-top:0">
+                      <div class="group-label">
+                        <strong>Hva gjelder saken?</strong>
+                        <span>Velg kategori</span>
+                      </div>
+                      <div class="option-grid" id="issueTypeOptions">
+                        <button type="button" class="option-card active" data-group="issue" data-value="teknisk">
+                          <strong>Teknisk avvik</strong>
+                          <span>Lys, dør, adgang, teknisk rom eller annet driftsrelatert.</span>
+                        </button>
+                        <button type="button" class="option-card" data-group="issue" data-value="ute">
+                          <strong>Uteområde</strong>
+                          <span>Rydding, grønt, avfall, vinterforhold eller skade ute.</span>
+                        </button>
+                        <button type="button" class="option-card" data-group="issue" data-value="reparasjon">
+                          <strong>Mindre reparasjon</strong>
+                          <span>Noe som bør justeres, festes eller utbedres praktisk.</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="field-grid">
+                      <div class="field">
+                        <label for="priority">Prioritet</label>
+                        <select id="priority" name="priority">
+                          <option>Normal</option>
+                          <option>Haster</option>
+                          <option>Kan planlegges</option>
+                        </select>
+                      </div>
+                      <div class="field">
+                        <label for="location">Hvor i eiendommen?</label>
+                        <input id="location" name="location" placeholder="F.eks. inngang B, teknisk rom eller gårdsplass" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="report-step" data-step="2">
+                    <div class="field full">
+                      <label for="description">Beskriv problemet</label>
+                      <textarea id="description" name="description" placeholder="Hva er observert, når ble det oppdaget, og hvordan påvirker det bruk av eiendommen?"></textarea>
+                    </div>
+                    <div class="field-grid">
+                      <div class="field">
+                        <label for="property">Eiendom / adresse</label>
+                        <input id="property" name="property" placeholder="F.eks. Parkveien 18, Oslo" />
+                      </div>
+                      <div class="field">
+                        <label for="access">Tilgangsinfo</label>
+                        <input id="access" name="access" placeholder="F.eks. portkode, kontaktperson eller åpningstid" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="report-step" data-step="3">
+                    <div class="field-grid">
+                      <div class="field">
+                        <label for="name">Navn</label>
+                        <input id="name" name="name" placeholder="Ditt navn" />
+                      </div>
+                      <div class="field">
+                        <label for="role">Rolle</label>
+                        <select id="role" name="role">
+                          <option>Styreleder</option>
+                          <option>Styremedlem</option>
+                          <option>Forvalter</option>
+                          <option>Beboer / leietaker</option>
+                        </select>
+                      </div>
+                      <div class="field">
+                        <label for="phone">Telefon</label>
+                        <input id="phone" name="phone" placeholder="F.eks. 400 00 000" />
+                      </div>
+                      <div class="field">
+                        <label for="email">E-post</label>
+                        <input id="email" name="email" type="email" placeholder="navn@epartner.no" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="report-actions">
+                  <button type="button" class="btn btn-secondary" id="prevStep">Forrige</button>
+                  <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                    <button type="button" class="btn btn-secondary" id="nextStep">Neste steg</button>
+                    <button type="submit" class="btn btn-primary" id="submitReport" style="display:none;">Send inn sak</button>
+                  </div>
+                </div>
+
+                <div class="report-success" id="reportSuccess">
+                  <strong>Sak registrert · Referanse EP-27418</strong>
+                  <p>Dette er en demosimulering, men i et reelt oppsett kunne brukeren nå mottatt bekreftelse på e-post, forventet responstid og videre statusoppdateringer i samme flyt.</p>
+                </div>
+              </form>
+            </div>
+
+            <aside class="report-card reveal">
+              <div class="section-kicker">Eksempel på statuslogg</div>
+              <h3>Slik kan oppfølgingen føles for brukeren.</h3>
+              <p>Kombinasjonen av tydelige steg, saksreferanse og løpende status er med på å bygge tillit — spesielt i eiendommer med mange brukere og mange små hendelser.</p>
+
+              <div class="status-feed">
+                <div class="feed-item">
+                  <div class="feed-top">
+                    <div class="feed-tag">Registrert</div>
+                    <div class="feed-meta">08:14</div>
+                  </div>
+                  <strong>Henvendelse mottatt</strong>
+                  <p>Saken er logget med kategori, plassering og prioritet, og sendt til riktig arbeidsflyt.</p>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-top">
+                    <div class="feed-tag">Vurdering</div>
+                    <div class="feed-meta">09:05</div>
+                  </div>
+                  <strong>Prioritert og planlagt</strong>
+                  <p>Driftsansvarlig vurderer tiltak, responstid og om saken løses direkte eller inngår i neste planlagte runde.</p>
+                </div>
+                <div class="feed-item">
+                  <div class="feed-top">
+                    <div class="feed-tag">Utførelse</div>
+                    <div class="feed-meta">11:40</div>
+                  </div>
+                  <strong>Oppdrag på vei</strong>
+                  <p>Brukeren kan se at saken er aktiv, hvem som følger opp og når oppmøte er forventet.</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="proof-row reveal">
+            <div class="proof-card">
+              <strong>1 kontaktflate</strong>
+              <span>Enkelt for styret å vite hvor ting skal inn og hvordan de følges opp.</span>
+            </div>
+            <div class="proof-card">
+              <strong>3 trinn</strong>
+              <span>Kort, mobilvennlig flyt som reduserer avbrudd og senker terskelen for innmelding.</span>
+            </div>
+            <div class="proof-card">
+              <strong>Statuslogg</strong>
+              <span>Tydelig historikk bygger tillit og fjerner behovet for ekstra oppfølgingshenvendelser.</span>
+            </div>
+            <div class="proof-card">
+              <strong>Porteføljeklar</strong>
+              <span>Kan brukes på tvers av flere bygg, adresser og brukergrupper i samme løsning.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dark-band" id="referanser">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Referanser og kundeopplevelse</div>
+              <h2>Det kundene merker er ikke bare at jobben blir gjort.</h2>
+            </div>
+            <p>
+              De merker flyten. Tonen. Tiden det tar. Hvor ryddig ting ser ut mellom oppdragene. Og at det faktisk finnes en partner som følger opp uten å bli purret på hele tiden.
+            </p>
+          </div>
+
+          <div class="references-grid">
+            <div class="testimonial-stack reveal">
+              <article class="testimonial-card">
+                <span class="quote-mark">“</span>
+                <h3>Det som imponerte oss mest, var ikke enkeltjobbene — det var hvor sømløs hele driften ble.</h3>
+                <p>Etter oppstart med Eiendomspartner AS fikk vi bedre struktur på både småsaker, sesongarbeid og tekniske avvik. Styret bruker mindre tid på oppfølging, og beboerne opplever at eiendommen er tydelig bedre ivaretatt.</p>
+                <div class="person-row">
+                  <div class="person-block">
+                    <strong>Marianne Berg</strong>
+                    <span>Styreleder, Solsiden Borettslag</span>
+                  </div>
+                  <div class="score-pill">Kundetilfredshet 4.9 / 5</div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <span class="quote-mark">“</span>
+                <h3>Perfekt for forvalterrollen: én aktør som forstår helheten og kommuniserer godt.</h3>
+                <p>Vi trengte en leverandør som kunne håndtere løpende drift med et profesjonelt nivå, ikke bare sporadiske oppdrag. Det har gitt oss bedre oversikt, færre misforståelser og et høyere servicenivå mot kundene våre.</p>
+                <div class="person-row">
+                  <div class="person-block">
+                    <strong>Jonas K. Lunde</strong>
+                    <span>Eiendomsforvalter, Urban Drift Forvaltning</span>
+                  </div>
+                  <div class="score-pill">Respons innen avtalt frist 96%</div>
+                </div>
+              </article>
+            </div>
+
+            <div class="testimonial-stack reveal">
+              <article class="process-card">
+                <div class="section-kicker">Eksempler på kunder</div>
+                <h3>Typiske eiendommer vi jobber med</h3>
+                <div class="client-wall">
+                  <div class="client-card">
+                    <div class="client-type">Sameie</div>
+                    <strong>Fjordtunet Sameie</strong>
+                    <p>58 leiligheter, to inngangssoner, avfallshus og uteområder med helårig oppfølging.</p>
+                  </div>
+                  <div class="client-card">
+                    <div class="client-type">Borettslag</div>
+                    <strong>Parkalléen Borettslag</strong>
+                    <p>Fire oppganger, tekniske rom, sykkelparkering og sesongbasert vinterberedskap.</p>
+                  </div>
+                  <div class="client-card">
+                    <div class="client-type">Næring</div>
+                    <strong>Skøyen Kontorhus</strong>
+                    <p>Felles resepsjonsflater, inngangsparti, utearealer og driftshenvendelser for leietakere.</p>
+                  </div>
+                  <div class="client-card">
+                    <div class="client-type">Forvaltning</div>
+                    <strong>Nordby Eiendomsdrift</strong>
+                    <p>Porteføljeavtale med flere bygg og felles rapporteringsstruktur til kundeansvarlige.</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="process-card">
+                <div class="section-kicker">Resultat</div>
+                <h3>Hva en god eiendomsservice ofte gir</h3>
+                <ul class="quote-list">
+                  <li>Færre småsaker som blir liggende mellom møter og e-poster</li>
+                  <li>Bedre standard i fellesarealer uten at styret må detaljstyre</li>
+                  <li>Mer profesjonell opplevelse for beboere, leietakere og besøkende</li>
+                  <li>Tryggere overganger mellom sesonger og mindre akuttstress</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="light-zone" id="kontakt">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Kontakt og neste steg</div>
+              <h2>La oss sette opp en eiendomsservice som faktisk føles gjennomført.</h2>
+            </div>
+            <p>
+              Enten dere ønsker fast serviceavtale, sesongstøtte eller bare vil vurdere hva som bør inngå i et moderne driftsopplegg, starter vi gjerne med en uforpliktende prat eller befaring.
+            </p>
+          </div>
+
+          <div class="contact-layout">
+            <div class="contact-hero reveal">
+              <article class="contact-card light">
+                <div class="section-kicker">Eiendomspartner AS</div>
+                <h3>Kontakt oss for tilbud, befaring eller løpende avtale</h3>
+                <p>Vi leverer eiendomsservice i Oslo og omegn med fokus på drift, kvalitet og forutsigbar oppfølging. Denne siden er en fiktiv demo laget for porteføljebruk, men innholdet er skrevet for å oppleves troverdig og salgssterkt.</p>
+                <ul class="contact-list">
+                  <li>post@eiendomspartner.no</li>
+                  <li>22 45 88 90</li>
+                  <li>Karenslyst allé 14, 0278 Oslo</li>
+                  <li>Mandag–fredag: 07:00–16:00 · beredskap etter avtale</li>
+                </ul>
+              </article>
+
+              <div class="contact-meta reveal">
+                <div class="contact-box">
+                  <strong>Få tilbud</strong>
+                  <span>Be om forslag til avtale basert på type eiendom, størrelse og tjenestebehov.</span>
+                </div>
+                <div class="contact-box">
+                  <strong>Bestill befaring</strong>
+                  <span>Vi går gjennom eiendommen og anbefaler et realistisk driftsopplegg.</span>
+                </div>
+                <div class="contact-box">
+                  <strong>Be om fast avtale</strong>
+                  <span>For dere som ønsker kontinuerlig oppfølging og tydeligere struktur.</span>
+                </div>
+                <div class="contact-box">
+                  <strong>Meld inn oppdrag</strong>
+                  <span>Har dere allerede en løpende relasjon? Registrer behov raskt og ryddig.</span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="cta-box reveal">
+              <h3>Klar for en nettside som får riktige kunder til å si ja?</h3>
+              <p>Denne demoproduksjonen er laget for å vise hvordan et webbyrå kan løfte et tradisjonelt tjenesteområde til noe som oppleves moderne, premium og konverterende — uten å miste troverdighet.</p>
+              <div class="cta-actions">
+                <a class="btn btn-primary" href="mailto:post@eiendomspartner.no">Få tilbud</a>
+                <a class="btn btn-secondary" href="tel:+4722458890">Ring oss</a>
+                <a class="btn btn-secondary" href="#avtale">Be om fast avtale</a>
+              </div>
+              <div class="proof-row" style="margin-top:20px; grid-template-columns:repeat(2,minmax(0,1fr));">
+                <div class="proof-card" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.08);">
+                  <strong>48 timer</strong>
+                  <span>Typisk tid til første tilbudsutkast etter befaring.</span>
+                </div>
+                <div class="proof-card" style="background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.08);">
+                  <strong>Fast kontakt</strong>
+                  <span>Én ansvarlig kontaktperson gjennom hele samarbeidet.</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-inner">
+          <div>© 2026 Eiendomspartner AS · Fiktiv demonettside for portefølje</div>
+          <div class="footer-links">
+            <a href="#top">Til toppen</a>
+            <a href="#tjenester">Tjenester</a>
+            <a href="#kontakt">Kontakt</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 12);
+    });
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        const open = mobilePanel.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+      });
+
+      mobilePanel.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobilePanel.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.count);
+        const isDecimal = String(el.dataset.count).includes('.');
+        const duration = 1200;
+        const start = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = target * eased;
+          el.textContent = isDecimal ? value.toFixed(1) : Math.round(value);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+    const optionCards = document.querySelectorAll('[data-group]');
+    const chipButtons = document.querySelectorAll('.chip-button');
+    const sizeRange = document.getElementById('sizeRange');
+
+    const summaryType = document.getElementById('summaryType');
+    const summarySize = document.getElementById('summarySize');
+    const summaryLevel = document.getElementById('summaryLevel');
+    const summaryServices = document.getElementById('summaryServices');
+    const summaryTitle = document.getElementById('summaryTitle');
+    const summaryBadge = document.getElementById('summaryBadge');
+    const estimatePrice = document.getElementById('estimatePrice');
+    const estimateText = document.getElementById('estimateText');
+    const quotePoint1 = document.getElementById('quotePoint1');
+    const quotePoint2 = document.getElementById('quotePoint2');
+    const quotePoint3 = document.getElementById('quotePoint3');
+    const sizeTitle = document.getElementById('sizeTitle');
+    const sizeDescription = document.getElementById('sizeDescription');
+    const sizeBadge = document.getElementById('sizeBadge');
+
+    const configState = {
+      type: 'borettslag',
+      level: 'fast',
+      size: 2,
+      services: new Set(['vaktmester', 'teknisk', 'ute'])
+    };
+
+    const typeLabels = {
+      borettslag: 'Borettslag',
+      sameie: 'Sameie',
+      naring: 'Næringsbygg'
+    };
+
+    const levelLabels = {
+      grunn: 'Grunnservice',
+      fast: 'Fast avtale',
+      premium: 'Utvidet drift'
+    };
+
+    const sizeMap = {
+      1: { title: 'Kompakt eiendom', desc: 'Typisk mindre sameie, borettslag eller et lite næringsbygg med lav til moderat kompleksitet.', badge: 'Nivå 1', factor: 0 },
+      2: { title: 'Mellomstort bygg', desc: 'Typisk 35–70 boenheter eller et mindre/mellomstort næringsbygg.', badge: 'Nivå 2', factor: 4500 },
+      3: { title: 'Større eiendom', desc: 'Flere oppganger, større uteområder eller høyere teknisk og administrativ kompleksitet.', badge: 'Nivå 3', factor: 9800 },
+      4: { title: 'Kompleks portefølje', desc: 'Større anlegg, flere bygg eller et oppsett som krever utvidet koordinering og sesongstyring.', badge: 'Nivå 4', factor: 16500 }
+    };
+
+    const typeFactor = { borettslag: 0, sameie: 900, naring: 3800 };
+    const levelFactor = { grunn: -2800, fast: 0, premium: 6200 };
+    const serviceFactor = {
+      vaktmester: 4200,
+      teknisk: 3600,
+      reparasjon: 2700,
+      ute: 2900,
+      sno: 3400,
+      avfall: 2200,
+      sesong: 2600
+    };
+
+    function updateConfigurator() {
+      const typeLabel = typeLabels[configState.type];
+      const levelLabel = levelLabels[configState.level];
+      const sizeInfo = sizeMap[configState.size];
+      const selectedServices = Array.from(configState.services);
+      const serviceCount = selectedServices.length;
+
+      const base = 7200;
+      const servicesTotal = selectedServices.reduce((sum, key) => sum + serviceFactor[key], 0);
+      const total = base + typeFactor[configState.type] + levelFactor[configState.level] + sizeInfo.factor + servicesTotal;
+      const rounded = Math.round(total / 100) * 100;
+
+      sizeTitle.textContent = sizeInfo.title;
+      sizeDescription.textContent = sizeInfo.desc;
+      sizeBadge.textContent = sizeInfo.badge;
+
+      summaryType.textContent = typeLabel;
+      summarySize.textContent = sizeInfo.title;
+      summaryLevel.textContent = levelLabel;
+      summaryServices.textContent = `${serviceCount} ${serviceCount === 1 ? 'tjeneste' : 'tjenester'}`;
+      summaryTitle.textContent = `${levelLabel} for ${typeLabel.toLowerCase()}`;
+      summaryBadge.textContent = configState.level === 'premium' ? 'Premium' : (configState.level === 'grunn' ? 'Effektiv' : 'Anbefalt');
+      estimatePrice.textContent = `fra ${rounded.toLocaleString('nb-NO')} kr`;
+
+      const serviceTextMap = {
+        vaktmester: 'vaktmestertjenester',
+        teknisk: 'teknisk tilsyn',
+        reparasjon: 'småreparasjoner',
+        ute: 'uteområdeservice',
+        sno: 'snøberedskap',
+        avfall: 'avfallshåndtering',
+        sesong: 'sesongvedlikehold'
+      };
+
+      const primaryServices = selectedServices.slice(0, 3).map(item => serviceTextMap[item]);
+      estimateText.textContent = `Basert på ${primaryServices.join(', ')}${selectedServices.length > 3 ? ' og flere valgte moduler' : ''}.`;
+
+      quotePoint1.textContent = configState.level === 'premium'
+        ? 'Utvidet tilgjengelighet, fast kontaktperson og høyere oppfølgingsfrekvens'
+        : configState.level === 'grunn'
+          ? 'Kostnadseffektiv grunnservice med tydelige faste runder'
+          : 'Fast kontaktperson og strukturert månedsrytme';
+
+      quotePoint2.textContent = configState.type === 'naring'
+        ? 'Særlig tilpasset næringsbygg med fokus på tilgjengelighet og presentasjon'
+        : 'Dokumentert tilsyn og løpende prioritering av avvik';
+
+      quotePoint3.textContent = configState.services.has('sno')
+        ? 'Vinterdrift og snøberedskap kan integreres i samme avtaleoppsett'
+        : 'Service som kan utvides med sesongdrift og snøberedskap';
+    }
+
+    optionCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const group = card.dataset.group;
+        const value = card.dataset.value;
+
+        document.querySelectorAll(`[data-group="${group}"]`).forEach(item => item.classList.remove('active'));
+        card.classList.add('active');
+
+        if (group === 'type') configState.type = value;
+        if (group === 'level') configState.level = value;
+        if (group === 'issue') reportState.issue = value;
+
+        updateConfigurator();
+      });
+    });
+
+    chipButtons.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const service = chip.dataset.service;
+        if (configState.services.has(service)) {
+          if (configState.services.size === 1) return;
+          configState.services.delete(service);
+          chip.classList.remove('active');
+        } else {
+          configState.services.add(service);
+          chip.classList.add('active');
+        }
+        updateConfigurator();
+      });
+    });
+
+    sizeRange?.addEventListener('input', (e) => {
+      configState.size = Number(e.target.value);
+      updateConfigurator();
+    });
+
+    updateConfigurator();
+
+    const seasonTabs = document.querySelectorAll('.season-tab');
+    const seasonPanels = document.querySelectorAll('[data-season-panel]');
+
+    seasonTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const season = tab.dataset.season;
+        seasonTabs.forEach(item => {
+          item.classList.toggle('active', item === tab);
+          item.setAttribute('aria-selected', item === tab ? 'true' : 'false');
+        });
+        seasonPanels.forEach(panel => panel.classList.toggle('active', panel.dataset.seasonPanel === season));
+      });
+    });
+
+    const reportState = { step: 1, issue: 'teknisk' };
+    const reportSteps = document.querySelectorAll('.report-step');
+    const progressBars = document.querySelectorAll('.progress-step span');
+    const prevStepBtn = document.getElementById('prevStep');
+    const nextStepBtn = document.getElementById('nextStep');
+    const submitReportBtn = document.getElementById('submitReport');
+    const reportForm = document.getElementById('reportForm');
+    const reportSuccess = document.getElementById('reportSuccess');
+
+    function renderReportStep() {
+      reportSteps.forEach(step => step.classList.toggle('active', Number(step.dataset.step) === reportState.step));
+      progressBars.forEach((bar, index) => {
+        bar.style.width = index < reportState.step ? '100%' : '0';
+      });
+      prevStepBtn.style.visibility = reportState.step === 1 ? 'hidden' : 'visible';
+      nextStepBtn.style.display = reportState.step === 3 ? 'none' : 'inline-flex';
+      submitReportBtn.style.display = reportState.step === 3 ? 'inline-flex' : 'none';
+    }
+
+    nextStepBtn?.addEventListener('click', () => {
+      reportState.step = Math.min(3, reportState.step + 1);
+      renderReportStep();
+    });
+
+    prevStepBtn?.addEventListener('click', () => {
+      reportState.step = Math.max(1, reportState.step - 1);
+      renderReportStep();
+    });
+
+    reportForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      reportSuccess.classList.add('active');
+      submitReportBtn.textContent = 'Sak sendt';
+      submitReportBtn.disabled = true;
+      nextStepBtn.disabled = true;
+      prevStepBtn.disabled = true;
+    });
+
+    renderReportStep();
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

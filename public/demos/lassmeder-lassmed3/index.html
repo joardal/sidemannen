@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sikker Lås AS — Døgnåpen låsesmed i Oslo · Låsbytte, innbruddssikring & adgangskontroll</title>
+<meta name="description" content="Sikker Lås AS er døgnåpen låsesmed i Oslo og Viken. Akutt opplåsing uten skader, låsbytte med fast pris, innbruddssikring, elektroniske låser og adgangskontroll. Ring 22 12 40 00.">
+<meta name="theme-color" content="#153830">
+<link rel="icon" href="images/image-01.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ================= TOKENS ================= */
+:root{
+  --bone:#F2EEE3;
+  --paper:#FBF8F1;
+  --card:#FFFFFF;
+  --ink:#1A2620;
+  --ink-2:#43524A;
+  --ink-3:#6C7A72;
+  --line:#DED6C4;
+  --line-2:#C9BFA9;
+  --pine:#153830;
+  --pine-2:#0D241E;
+  --pine-3:#081712;
+  --mint:#CBE4D6;
+  --mint-2:#8FBFA7;
+  --brass:#A8791F;
+  --brass-2:#D8B45E;
+  --brass-3:#F0E2BE;
+  --signal:#E14E1F;
+  --signal-2:#C63E14;
+  --signal-soft:#FBE9E0;
+  --ok:#2E7D5B;
+  --r-s:10px; --r-m:16px; --r-l:26px;
+  --sh-1:0 1px 2px rgba(26,38,32,.05),0 10px 28px -14px rgba(26,38,32,.14);
+  --sh-2:0 2px 4px rgba(26,38,32,.06),0 26px 52px -24px rgba(26,38,32,.24);
+  --fd:'Fraunces',Georgia,'Times New Roman',serif;
+  --fb:'Inter','Helvetica Neue',Arial,system-ui,sans-serif;
+  --fm:'JetBrains Mono','SF Mono',Consolas,'Liberation Mono',monospace;
+}
+/* ================= RESET / BASE ================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+body{
+  font-family:var(--fb); font-size:1.0625rem; line-height:1.7; color:var(--ink);
+  background:var(--bone); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+ul{list-style:none}
+[hidden]{display:none!important}
+::selection{background:var(--brass-3);color:var(--ink)}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:4px}
+section{scroll-margin-top:96px}
+.container{width:min(1180px,92%);margin-inline:auto}
+.mono{font-family:var(--fm);letter-spacing:.02em}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:.7rem 1.2rem;z-index:200;border-radius:0 0 8px 0}
+.skip-link:focus{left:0}
+/* pulse dot */
+.pulse-dot{position:relative;width:9px;height:9px;border-radius:50%;background:var(--signal);display:inline-block;flex:none}
+.pulse-dot--ok{background:var(--ok)}
+.pulse-dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid currentColor;color:var(--signal);opacity:.55;animation:ping 1.9s cubic-bezier(0,0,.2,1) infinite}
+.pulse-dot--ok::after{color:var(--ok)}
+@keyframes ping{0%{transform:scale(.5);opacity:.7}80%,100%{transform:scale(1.5);opacity:0}}
+/* eyebrow / section heads */
+.eyebrow{font-family:var(--fm);font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);display:inline-flex;align-items:center;gap:.7rem}
+.eyebrow::before{content:"";width:26px;height:1.5px;background:currentColor;flex:none}
+.sec-head{max-width:640px;margin-bottom:clamp(2.2rem,5vw,3.6rem)}
+.sec-head h2{font-family:var(--fd);font-weight:560;font-size:clamp(1.9rem,4.2vw,3.1rem);line-height:1.12;letter-spacing:-.01em;margin:.85rem 0 .9rem}
+.sec-head h2 em{font-style:italic;font-weight:520;color:var(--brass)}
+.sec-head p{color:var(--ink-2);font-size:1.05rem;max-width:56ch}
+.dark-sec .sec-head h2 em{color:var(--brass-2)}
+.dark-sec .sec-head p{color:var(--mint)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;font-weight:600;font-size:.98rem;line-height:1;
+  padding:1rem 1.5rem;border-radius:var(--r-s);border:1.5px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease;white-space:nowrap}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-signal{background:var(--signal);color:#fff;box-shadow:0 10px 24px -10px rgba(225,78,31,.55)}
+.btn-signal:hover{background:var(--signal-2);transform:translateY(-2px);box-shadow:0 16px 30px -10px rgba(225,78,31,.6)}
+.btn-dark{background:var(--ink);color:var(--paper)}
+.btn-dark:hover{background:var(--pine);transform:translateY(-2px)}
+.btn-brass{background:var(--brass-2);color:var(--pine-3)}
+.btn-brass:hover{background:var(--brass);color:#fff;transform:translateY(-2px)}
+.btn-outline{border-color:var(--line-2);color:var(--ink);background:transparent}
+.btn-outline:hover{border-color:var(--ink);transform:translateY(-2px)}
+.btn-outline-light{border-color:rgba(203,228,214,.4);color:var(--mint)}
+.btn-outline-light:hover{border-color:var(--mint);background:rgba(203,228,214,.08);transform:translateY(-2px)}
+.btn-sm{padding:.7rem 1.1rem;font-size:.9rem}
+.btn-block{width:100%}
+.arrow{display:inline-block;transition:transform .2s ease}
+.btn:hover .arrow,.t-link:hover .arrow{transform:translateX(4px)}
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.6,.2,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+/* ================= TOPBAR + HEADER ================= */
+.site-header{position:sticky;top:0;z-index:90;background:var(--bone);transition:box-shadow .25s ease}
+.site-header.scrolled{box-shadow:0 1px 0 var(--line),0 14px 34px -22px rgba(26,38,32,.35)}
+.topbar{background:var(--pine-2);color:var(--mint);font-family:var(--fm);font-size:.72rem;letter-spacing:.06em}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.48rem 0}
+.topbar-left{display:inline-flex;align-items:center;gap:.6rem}
+.topbar-right{display:inline-flex;align-items:center;gap:.5rem;color:rgba(203,228,214,.75)}
+.topbar-right strong{color:var(--mint);font-weight:500;font-variant-numeric:tabular-nums}
+.nav-row{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:.9rem 0}
+.brand{display:inline-flex;align-items:center;gap:.7rem}
+.brand-mark{width:40px;height:40px;flex:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.05}
+.brand-name{font-family:var(--fd);font-weight:600;font-size:1.28rem;letter-spacing:-.01em}
+.brand-sub{font-family:var(--fm);font-size:.6rem;letter-spacing:.32em;color:var(--brass);text-transform:uppercase;margin-top:2px}
+.main-nav{display:flex;gap:2rem}
+.main-nav a{font-size:.94rem;font-weight:500;color:var(--ink-2);position:relative;padding:.4rem 0}
+.main-nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--brass);transition:width .25s ease}
+.main-nav a:hover{color:var(--ink)}
+.main-nav a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:.9rem}
+.nav-call{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--fm);font-weight:600;font-size:.9rem;background:var(--ink);color:var(--paper);padding:.68rem 1.15rem;border-radius:var(--r-s);transition:background .2s,transform .2s}
+.nav-call:hover{background:var(--signal);transform:translateY(-2px)}
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:10px;border-radius:var(--r-s)}
+.burger span{display:block;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s ease,opacity .2s}
+/* mobile menu overlay */
+.m-menu{position:fixed;inset:0;background:var(--pine-2);color:var(--paper);z-index:94;display:flex;flex-direction:column;padding:1.1rem 6% 2rem;opacity:0;pointer-events:none;transform:translateY(-10px);transition:opacity .3s ease,transform .3s ease;overflow:auto}
+.m-menu.open{opacity:1;pointer-events:auto;transform:none}
+.m-menu__top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.2rem}
+.m-menu__close{width:44px;height:44px;border:1.5px solid rgba(203,228,214,.35);border-radius:50%;display:grid;place-items:center;color:var(--mint)}
+.m-menu nav{display:flex;flex-direction:column;gap:.2rem}
+.m-menu nav a{font-family:var(--fd);font-size:clamp(1.7rem,7vw,2.3rem);font-weight:520;padding:.55rem 0;border-bottom:1px solid rgba(203,228,214,.12);display:flex;align-items:baseline;gap:1rem}
+.m-menu nav a .n{font-family:var(--fm);font-size:.72rem;color:var(--brass-2)}
+.m-menu__foot{margin-top:auto;padding-top:2rem;display:flex;flex-direction:column;gap:1rem}
+.m-menu__foot .mono{font-size:.75rem;color:var(--mint);opacity:.85}
+body.menu-lock{overflow:hidden}
+/* ================= HERO ================= */
+.hero{position:relative;overflow:hidden;padding:clamp(3rem,7vw,5.5rem) 0 clamp(4rem,8vw,6.5rem)}
+.hero::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:58px 58px;opacity:.5;
+  -webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.hero::after{content:"";position:absolute;right:-10%;top:-20%;width:60%;height:120%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(216,180,94,.18),transparent 72%)}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;z-index:2}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--fm);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--pine);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem}
+.hero h1{font-family:var(--fd);font-weight:560;font-size:clamp(2.5rem,6vw,4.4rem);line-height:1.04;letter-spacing:-.015em;margin:1.4rem 0 1.3rem}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--brass)}
+.hero-sub{color:var(--ink-2);max-width:52ch;font-size:1.08rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.hero-note{font-family:var(--fm);font-size:.75rem;color:var(--ink-3);margin-top:1.1rem;letter-spacing:.03em}
+.hero-note a{text-decoration:underline;text-underline-offset:3px;color:var(--ink-2)}
+.hero-rating{display:flex;align-items:center;gap:.7rem;margin-top:2.2rem;padding-top:1.6rem;border-top:1px solid var(--line);max-width:420px}
+.hero-rating .stars{color:var(--brass);display:flex;gap:2px}
+.hero-rating .mono{font-size:.78rem;color:var(--ink-2)}
+/* hero coords */
+.hero-coords{position:absolute;right:10px;top:52%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--fm);font-size:.64rem;letter-spacing:.3em;color:var(--ink-3);opacity:.7;z-index:2}
+/* lock panel */
+.lock-panel{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-2);padding:clamp(1.4rem,3vw,2.2rem);will-change:transform;transition:transform .15s ease-out}
+.lock-panel::before{content:"";position:absolute;inset:0;border-radius:var(--r-l);pointer-events:none;
+  background:linear-gradient(160deg,rgba(216,180,94,.12),transparent 45%)}
+.lock-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;font-family:var(--fm);font-size:.72rem;letter-spacing:.14em;color:var(--ink-3);padding-bottom:1rem;border-bottom:1px dashed var(--line)}
+.lock-status{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;color:var(--pine)}
+.lock-status .led{width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 4px rgba(225,78,31,.15);transition:background .3s,box-shadow .3s}
+.lock-panel.unlocked .lock-status .led{background:var(--ok);box-shadow:0 0 0 4px rgba(46,125,91,.18)}
+.lock-svg-wrap{padding:1.4rem 0 .4rem}
+.keyway{transform-box:fill-box;transform-origin:50% 24.6%;transition:transform .75s cubic-bezier(.55,-.15,.25,1.35)}
+.bolt-g{transition:transform .6s cubic-bezier(.6,0,.25,1) .12s}
+.lock-panel.unlocked .keyway{transform:rotate(90deg)}
+.lock-panel.unlocked .bolt-g{transform:translateX(-96px)}
+.lock-toggle{margin-top:1rem;width:100%;display:flex;align-items:center;justify-content:center;gap:.7rem;background:var(--pine);color:var(--paper);font-weight:600;padding:1rem 1.2rem;border-radius:var(--r-s);transition:background .2s,transform .2s}
+.lock-toggle:hover{background:var(--pine-2);transform:translateY(-2px)}
+.lock-toggle svg{transition:transform .5s ease}
+.lock-panel.unlocked .lock-toggle svg{transform:rotate(90deg)}
+.lock-meta{font-family:var(--fm);font-size:.66rem;letter-spacing:.18em;color:var(--ink-3);text-align:center;margin-top:.9rem;text-transform:uppercase}
+/* floating chips */
+.hero-chip{position:absolute;display:inline-flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:999px;box-shadow:var(--sh-1);padding:.55rem 1rem;font-family:var(--fm);font-size:.7rem;letter-spacing:.06em;color:var(--ink-2);z-index:3;animation:float 5s ease-in-out infinite}
+.hero-chip--1{top:-18px;right:8%}
+.hero-chip--2{bottom:-16px;left:5%;animation-delay:-2.5s}
+.hero-chip .tick{color:var(--ok);font-weight:700}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+/* bitting line */
+.hero-bitting{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:70px;z-index:1}
+.hero-bitting path{stroke:var(--line-2);stroke-width:2;fill:none;stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.6s ease-out .4s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+/* ================= TRUST STRIP ================= */
+.trust{background:var(--paper);border-block:1px solid var(--line)}
+.trust-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem 2rem;padding:1.05rem 0}
+.trust-item{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--fm);font-size:.72rem;letter-spacing:.08em;color:var(--ink-2);text-transform:uppercase}
+.trust-item svg{color:var(--brass);flex:none}
+/* ================= TICKER ================= */
+.ticker{background:var(--ink);color:var(--bone);overflow:hidden;border-block:1px solid var(--pine-3)}
+.ticker-track{display:flex;width:max-content;animation:ticker 30s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-group{display:flex;align-items:center;flex:none}
+.ticker-group span{display:inline-flex;align-items:center;gap:1.6rem;padding:.85rem 1.6rem .85rem 0;font-family:var(--fm);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+.ticker-group span::after{content:"◆";color:var(--brass-2);font-size:.55rem}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ================= GUIDE ================= */
+.guide{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--bone)}
+.guide-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:1.6rem}
+.guide-tab{position:relative;text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:var(--r-m);padding:1.3rem 1.25rem 1.15rem;transition:border-color .2s,transform .2s,box-shadow .2s,background .2s;display:flex;flex-direction:column;gap:.7rem}
+.guide-tab svg{color:var(--brass);transition:transform .25s ease}
+.guide-tab:hover{transform:translateY(-3px);border-color:var(--line-2);box-shadow:var(--sh-1)}
+.guide-tab:hover svg{transform:rotate(-8deg) scale(1.08)}
+.guide-tab .t{font-weight:650;font-size:1.02rem;line-height:1.3}
+.guide-tab .h{font-family:var(--fm);font-size:.68rem;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
+.guide-tab[aria-selected="true"]{background:var(--pine);border-color:var(--pine);color:var(--paper);box-shadow:var(--sh-2)}
+.guide-tab[aria-selected="true"] svg{color:var(--brass-2)}
+.guide-tab[aria-selected="true"] .h{color:var(--mint-2)}
+.guide-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-1);padding:clamp(1.6rem,4vw,2.8rem);display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.6rem,4vw,3rem);animation:panelIn .45s cubic-bezier(.2,.6,.2,1)}
+@keyframes panelIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.guide-panel h3{font-family:var(--fd);font-weight:560;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.2;margin-bottom:.8rem}
+.guide-panel .lead{color:var(--ink-2);margin-bottom:1.4rem;max-width:52ch}
+.guide-steps{counter-reset:gs;display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.8rem}
+.guide-steps li{counter-increment:gs;display:flex;gap:.95rem;align-items:baseline;color:var(--ink-2)}
+.guide-steps li::before{content:"0" counter(gs);font-family:var(--fm);font-size:.75rem;font-weight:600;color:var(--brass);border:1px solid var(--line);border-radius:8px;padding:.22rem .5rem;flex:none;line-height:1}
+.guide-ctas{display:flex;flex-wrap:wrap;gap:.8rem}
+.guide-meta{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-m);padding:1.5rem;align-self:start}
+.guide-meta h4{font-family:var(--fm);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem}
+.guide-meta dl{display:flex;flex-direction:column}
+.guide-meta .row{display:flex;justify-content:space-between;gap:1rem;padding:.75rem 0;border-bottom:1px dashed var(--line)}
+.guide-meta .row:last-child{border-bottom:0}
+.guide-meta dt{font-size:.9rem;color:var(--ink-3)}
+.guide-meta dd{font-family:var(--fm);font-size:.85rem;font-weight:600;color:var(--pine);text-align:right}
+/* ================= SPLIT (akutt / planlagt) ================= */
+.split{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--paper)}
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:stretch}
+.mode{position:relative;border-radius:var(--r-l);padding:clamp(1.8rem,4vw,3rem);display:flex;flex-direction:column;overflow:hidden}
+.mode-acutt{background:var(--pine-2);color:var(--paper)}
+.mode-acutt::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 100% 0%,rgba(225,78,31,.22),transparent 55%)}
+.mode-plan{background:var(--card);border:1px solid var(--line);box-shadow:var(--sh-1)}
+.mode-tag{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--fm);font-size:.7rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;margin-bottom:1.6rem}
+.mode-acutt .mode-tag{color:#FFB59D}
+.mode-plan .mode-tag{color:var(--brass)}
+.mode h3{font-family:var(--fd);font-weight:560;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.15;margin-bottom:.9rem}
+.mode-acutt h3 em{font-style:italic;color:var(--brass-2)}
+.mode-plan h3 em{font-style:italic;color:var(--brass)}
+.mode .desc{margin-bottom:1.6rem}
+.mode-acutt .desc{color:var(--mint)}
+.mode-plan .desc{color:var(--ink-2)}
+.mode-list{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+.mode-list li{display:flex;gap:.7rem;align-items:flex-start;font-size:.97rem}
+.mode-list svg{flex:none;margin-top:.32rem}
+.mode-acutt .mode-list svg{color:var(--brass-2)}
+.mode-plan .mode-list svg{color:var(--brass)}
+.mode-phone{display:flex;align-items:baseline;gap:.8rem;margin-bottom:1.6rem;flex-wrap:wrap}
+.mode-phone .num{font-family:var(--fd);font-weight:600;font-size:clamp(1.9rem,4vw,2.7rem);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.mode-phone .lbl{font-family:var(--fm);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#FFB59D}
+.mode-ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:auto}
+.mode .grain{position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:url("images/image-02.svg")}
+/* stats strip */
+.stats{border-top:1px solid var(--line);margin-top:clamp(2.4rem,5vw,4rem);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:1.8rem 1.4rem 1.6rem;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat-num{font-family:var(--fd);font-weight:600;font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1;color:var(--pine);font-variant-numeric:tabular-nums;display:block}
+.stat-lbl{font-family:var(--fm);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:.55rem;display:block}
+/* ================= SERVICES BENTO ================= */
+.services{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--bone)}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem;grid-auto-flow:dense}
+.b-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r-m);padding:1.7rem 1.6rem;display:flex;flex-direction:column;gap:.85rem;transition:transform .22s ease,box-shadow .22s ease,border-color .22s;overflow:hidden}
+.b-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:var(--line-2)}
+.b-top{display:flex;align-items:center;justify-content:space-between}
+.b-num{font-family:var(--fm);font-size:.72rem;color:var(--ink-3);letter-spacing:.14em}
+.b-ico{color:var(--brass);transition:transform .3s ease}
+.b-card:hover .b-ico{transform:rotate(-8deg) scale(1.1)}
+.b-card h3{font-family:var(--fd);font-weight:560;font-size:1.35rem;line-height:1.2}
+.b-card p{color:var(--ink-2);font-size:.96rem}
+.b-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:auto;padding-top:.6rem}
+.b-tags span{font-family:var(--fm);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.28rem .7rem;color:var(--ink-3)}
+.b-hero{grid-column:span 7;grid-row:span 2;background:var(--pine);color:var(--paper);border-color:var(--pine)}
+.b-hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:url("images/image-02.svg")}
+.b-hero .b-num{color:var(--brass-2)}
+.b-hero .b-ico{color:var(--brass-2)}
+.b-hero h3{font-size:clamp(1.6rem,3vw,2.1rem)}
+.b-hero p{color:var(--mint);max-width:46ch}
+.b-hero .b-tags span{border-color:rgba(203,228,214,.3);color:var(--mint)}
+.b-hero-body{display:flex;flex-direction:column;gap:.85rem;flex:1}
+.b-hero .mini{display:flex;flex-direction:column;gap:.55rem;margin:.6rem 0 1rem}
+.b-hero .mini li{display:flex;gap:.6rem;align-items:center;font-size:.95rem;color:var(--mint)}
+.b-hero .mini svg{color:var(--brass-2);flex:none}
+.b-hero .hero-phone{font-family:var(--fd);font-weight:600;font-size:clamp(1.7rem,3.4vw,2.4rem);font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;gap:.8rem;margin-top:auto}
+.b-hero .hero-phone small{font-family:var(--fm);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mint-2)}
+.b-5{grid-column:span 5}
+.b-4{grid-column:span 4}
+.b-6{grid-column:span 6}
+.b-link{font-family:var(--fm);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);display:inline-flex;align-items:center;gap:.45rem;margin-top:.4rem}
+/* ================= PROCESS ================= */
+.process-sec{padding:clamp(4rem,8vw,6.5rem) 0;background:var(--paper);border-block:1px solid var(--line)}
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;position:relative;counter-reset:proc}
+.process::before{content:"";position:absolute;top:23px;left:4%;right:4%;height:1.5px;background:var(--line-2)}
+.p-step{position:relative;padding-top:0}
+.p-num{width:46px;height:46px;border-radius:50%;background:var(--bone);border:1.5px solid var(--line-2);display:grid;place-items:center;font-family:var(--fm);font-size:.78rem;font-weight:600;color:var(--brass);position:relative;z-index:1;margin-bottom:1.1rem;transition:background .25s,color .25s,border-color .25s}
+.p-step:hover .p-num{background:var(--pine);border-color:var(--pine);color:var(--brass-2)}
+.p-step h3{font-family:var(--fd);font-weight:560;font-size:1.2rem;margin-bottom:.4rem}
+.p-step p{color:var(--ink-2);font-size:.94rem}
+/* ================= TECH ================= */
+.tech{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--pine-2);color:var(--paper);position:relative;overflow:hidden}
+.tech::before{content:"";position:absolute;inset:0;opacity:.05;background-image:url("images/image-02.svg")}
+.tech .container{position:relative;z-index:1}
+.tech-tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.tech-tab{font-family:var(--fm);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.25rem;border-radius:999px;border:1.5px solid rgba(203,228,214,.25);color:var(--mint);transition:all .2s ease}
+.tech-tab:hover{border-color:var(--mint)}
+.tech-tab[aria-selected="true"]{background:var(--brass-2);border-color:var(--brass-2);color:var(--pine-3)}
+.tech-panel{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,3.5rem);background:rgba(255,255,255,.03);border:1px solid rgba(203,228,214,.14);border-radius:var(--r-l);padding:clamp(1.6rem,4vw,2.8rem);animation:panelIn .45s cubic-bezier(.2,.6,.2,1)}
+.tech-panel h3{font-family:var(--fd);font-weight:560;font-size:clamp(1.5rem,2.8vw,2rem);margin-bottom:.9rem}
+.tech-panel h3 em{font-style:italic;color:var(--brass-2)}
+.tech-panel .desc{color:var(--mint);margin-bottom:1.4rem;max-width:52ch}
+.tech-list{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.6rem}
+.tech-list li{display:flex;gap:.7rem;align-items:flex-start;color:var(--mint)}
+.tech-list svg{color:var(--brass-2);flex:none;margin-top:.3rem}
+.spec-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+.spec-chips span{font-family:var(--fm);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(216,180,94,.4);color:var(--brass-2);border-radius:999px;padding:.32rem .75rem}
+.tech-ctas{display:flex;flex-wrap:wrap;gap:.8rem}
+/* tech visuals */
+.tech-visual{background:var(--pine-3);border:1px solid rgba(203,228,214,.14);border-radius:var(--r-m);padding:1.6rem;display:flex;flex-direction:column;justify-content:center;gap:1rem;min-height:320px}
+.tv-label{font-family:var(--fm);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mint-2);display:flex;justify-content:space-between;gap:1rem}
+.mock-door{background:linear-gradient(150deg,#1D4A3E,#123028);border:1px solid rgba(203,228,214,.2);border-radius:var(--r-m);padding:1.6rem;display:grid;grid-template-columns:1fr auto;gap:1.4rem;align-items:center}
+.mock-door .handle{width:8px;height:74px;border-radius:6px;background:var(--brass-2);opacity:.85}
+.mock-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem}
+.mock-keypad i{width:30px;height:30px;border-radius:50%;background:rgba(203,228,214,.1);border:1px solid rgba(203,228,214,.22);display:block;animation:keyglow 3.2s infinite}
+.mock-keypad i:nth-child(2){animation-delay:.3s}.mock-keypad i:nth-child(4){animation-delay:.6s}
+.mock-keypad i:nth-child(7){animation-delay:.9s}.mock-keypad i:nth-child(9){animation-delay:1.2s}
+@keyframes keyglow{0%,20%,100%{background:rgba(203,228,214,.1)}10%{background:var(--brass-2);border-color:var(--brass-2)}}
+.mock-status{display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(46,125,91,.18);border:1px solid rgba(143,191,167,.35);border-radius:var(--r-s);padding:.7rem 1rem;font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;color:var(--mint)}
+.mock-status .ok{color:#8FE3BC}
+.mock-access{display:flex;flex-direction:column;gap:.9rem}
+.ma-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.9rem;background:rgba(203,228,214,.05);border:1px solid rgba(203,228,214,.14);border-radius:var(--r-s);padding:.75rem 1rem;font-family:var(--fm);font-size:.72rem;letter-spacing:.06em;color:var(--mint)}
+.ma-row .dot{width:8px;height:8px;border-radius:50%;background:var(--brass-2)}
+.ma-row .st{font-size:.62rem;letter-spacing:.14em;color:#8FE3BC}
+.ma-row.dim .st{color:rgba(203,228,214,.4)}
+.ma-row.dim{opacity:.6}
+.mock-keys{display:flex;flex-direction:column;align-items:center;gap:0}
+.mk{font-family:var(--fm);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(216,180,94,.45);color:var(--brass-2);border-radius:var(--r-s);padding:.55rem 1rem;background:rgba(216,180,94,.06)}
+.mk-line{width:1.5px;height:22px;background:rgba(203,228,214,.3)}
+.mk-row{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.mk--sub{border-color:rgba(203,228,214,.3);color:var(--mint)}
+.tech-live{margin-top:1.4rem;font-family:var(--fm);font-size:.7rem;letter-spacing:.14em;color:var(--mint-2);display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.tech-live .cursor{display:inline-block;width:8px;height:14px;background:var(--brass-2);animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+/* ================= QUIZ ================= */
+.quiz-sec{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--bone)}
+.quiz-shell{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.quiz-side .badge-row{display:flex;flex-direction:column;gap:.8rem;margin:1.8rem 0 2rem}
+.quiz-side .badge{display:flex;gap:.85rem;align-items:flex-start;color:var(--ink-2);font-size:.96rem}
+.quiz-side .badge svg{color:var(--brass);flex:none;margin-top:.25rem}
+.quiz-box{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--sh-2);overflow:hidden}
+.quiz-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.6rem;border-bottom:1px solid var(--line);font-family:var(--fm);font-size:.72rem;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase}
+.quiz-bar{height:3px;background:var(--line)}
+.quiz-bar i{display:block;height:100%;width:0;background:var(--brass);transition:width .5s cubic-bezier(.2,.6,.2,1)}
+.quiz-body{padding:clamp(1.6rem,4vw,2.4rem);min-height:380px;display:flex;flex-direction:column}
+.quiz-body.anim{animation:panelIn .4s cubic-bezier(.2,.6,.2,1)}
+.q-title{font-family:var(--fd);font-weight:560;font-size:clamp(1.3rem,2.4vw,1.7rem);line-height:1.25;margin-bottom:.4rem}
+.q-sub{color:var(--ink-3);font-size:.95rem;margin-bottom:1.4rem}
+.q-opts{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.6rem}
+.q-opt{text-align:left;border:1.5px solid var(--line);border-radius:var(--r-s);padding:1rem 1.15rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-weight:550;transition:border-color .18s,background .18s,transform .18s}
+.q-opt:hover{border-color:var(--brass);transform:translateX(4px);background:var(--paper)}
+.q-opt .k{font-family:var(--fm);font-size:.7rem;color:var(--ink-3)}
+.q-opt.picked{border-color:var(--pine);background:#EDF3EE}
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.q-back{font-family:var(--fm);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);display:inline-flex;gap:.4rem;align-items:center;padding:.4rem 0}
+.q-back:hover{color:var(--ink)}
+/* result */
+.q-score{display:flex;align-items:center;gap:1.6rem;margin:1rem 0 1.4rem;flex-wrap:wrap}
+.q-score .big{font-family:var(--fd);font-weight:600;font-size:clamp(3rem,7vw,4.4rem);line-height:1;color:var(--pine);font-variant-numeric:tabular-nums}
+.q-score .big small{font-size:.35em;color:var(--ink-3);font-family:var(--fm)}
+.q-level{font-weight:650}
+.q-level .tag{display:inline-block;font-family:var(--fm);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;padding:.35rem .8rem;margin-bottom:.3rem}
+.q-level.good .tag{background:#E3F0E8;color:var(--ok)}
+.q-level.mid .tag{background:#FBF0D9;color:#9A7116}
+.q-level.low .tag{background:var(--signal-soft);color:var(--signal-2)}
+.q-level p{font-size:.9rem;color:var(--ink-2);max-width:34ch}
+.q-gauge{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin-bottom:1.6rem}
+.q-gauge i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--signal),#E0A23A 55%,var(--ok));transition:width 1.2s cubic-bezier(.2,.6,.2,1)}
+.q-measures{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.8rem}
+.q-measures li{border:1px solid var(--line);border-radius:var(--r-s);padding:.9rem 1.05rem;display:flex;gap:.9rem;align-items:flex-start;background:var(--paper)}
+.q-measures .prio{flex:none;font-family:var(--fm);font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:6px;padding:.3rem .5rem;margin-top:.15rem}
+.prio-h{background:var(--signal-soft);color:var(--signal-2)}
+.prio-m{background:#FBF0D9;color:#9A7116}
+.prio-i{background:#EDF3EE;color:var(--ok)}
+.q-measures b{display:block;font-size:.95rem}
+.q-measures span{font-size:.86rem;color:var(--ink-3)}
+.q-fineprint{font-family:var(--fm);font-size:.68rem;color:var(--ink-3);letter-spacing:.04em;margin-top:1.2rem}
+/* ================= LOG ================= */
+.log-sec{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--paper);border-block:1px solid var(--line)}
+.log-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.log-live{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--fm);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.log{background:var(--card);border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden;box-shadow:var(--sh-1)}
+.log-row{display:grid;grid-template-columns:90px 1.35fr 1fr 1.2fr;gap:1.2rem;padding:1rem 1.4rem;border-bottom:1px solid var(--line);font-size:.92rem;transition:background .18s}
+.log-row:last-child{border-bottom:0}
+.log-row:hover{background:var(--paper)}
+.log-row .time{font-family:var(--fm);font-size:.8rem;color:var(--brass);font-weight:600;font-variant-numeric:tabular-nums}
+.log-row .type{font-weight:600}
+.log-row .place{color:var(--ink-3)}
+.log-row .note{color:var(--ink-2);font-size:.88rem}
+.log-row .note b{color:var(--ok);font-weight:600}
+/* ================= REVIEWS ================= */
+.reviews{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--bone);overflow:hidden}
+.rev-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:2.4rem}
+.rev-score{text-align:right}
+.rev-score .n{font-family:var(--fd);font-weight:600;font-size:clamp(2.6rem,5vw,3.6rem);line-height:1;color:var(--pine)}
+.rev-score .stars{color:var(--brass);display:flex;gap:2px;justify-content:flex-end;margin:.4rem 0 .3rem}
+.rev-score .mono{font-size:.7rem;color:var(--ink-3);letter-spacing:.08em}
+.rev-marquee{overflow:hidden;position:relative}
+.rev-marquee::before,.rev-marquee::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+.rev-marquee::before{left:0;background:linear-gradient(90deg,var(--bone),transparent)}
+.rev-marquee::after{right:0;background:linear-gradient(-90deg,var(--bone),transparent)}
+.rev-track{display:flex;gap:1.1rem;width:max-content;animation:ticker 55s linear infinite}
+.rev-track:hover{animation-play-state:paused}
+.rev-card{width:380px;flex:none;background:var(--card);border:1px solid var(--line);border-radius:var(--r-m);padding:1.6rem;display:flex;flex-direction:column;gap:.9rem;box-shadow:var(--sh-1)}
+.rev-card .stars{color:var(--brass);display:flex;gap:2px}
+.rev-card blockquote{font-size:.97rem;color:var(--ink);line-height:1.65}
+.rev-card blockquote::before{content:"«";color:var(--brass);font-family:var(--fd)}
+.rev-card blockquote::after{content:"»";color:var(--brass);font-family:var(--fd)}
+.rev-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:auto}
+.rev-who b{display:block;font-size:.92rem}
+.rev-who span{font-size:.8rem;color:var(--ink-3)}
+.rev-tag{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:.3rem .7rem;color:var(--ink-2);white-space:nowrap}
+/* ================= AREAS ================= */
+.areas{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--paper)}
+.areas-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,4vw,3.5rem)}
+.area-group h3{font-family:var(--fd);font-weight:560;font-size:1.35rem;margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
+.area-group h3 svg{color:var(--brass)}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem}
+.chips li{display:inline-flex;align-items:baseline;gap:.55rem;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:.5rem 1rem;font-size:.9rem;font-weight:550;transition:border-color .2s,transform .2s}
+.chips li:hover{border-color:var(--brass);transform:translateY(-2px)}
+.chips li .mono{font-size:.68rem;color:var(--brass);font-weight:600}
+.areas-note{margin-top:2.2rem;font-family:var(--fm);font-size:.72rem;color:var(--ink-3);letter-spacing:.05em;display:flex;gap:.6rem;align-items:flex-start;max-width:62ch}
+.areas-note svg{flex:none;color:var(--brass);margin-top:.15rem}
+/* ================= FAQ ================= */
+.faq-sec{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--bone)}
+.faq{max-width:820px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.4rem;text-align:left;padding:1.35rem 0;font-family:var(--fd);font-weight:560;font-size:clamp(1.05rem,2vw,1.25rem);transition:color .2s}
+.faq-q:hover{color:var(--brass)}
+.faq-q .plus{flex:none;width:34px;height:34px;border:1.5px solid var(--line-2);border-radius:50%;display:grid;place-items:center;transition:transform .35s ease,background .25s,border-color .25s}
+.faq-item.open .plus{transform:rotate(45deg);background:var(--pine);border-color:var(--pine)}
+.faq-item.open .plus svg{color:var(--paper)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.6,.2,1)}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-a > div{overflow:hidden}
+.faq-a p{color:var(--ink-2);padding:0 3rem 1.5rem 0;font-size:.99rem}
+/* ================= CONTACT ================= */
+.contact{padding:clamp(4.2rem,9vw,7.5rem) 0;background:var(--pine);color:var(--paper);position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;left:-15%;bottom:-40%;width:60%;height:120%;background:radial-gradient(closest-side,rgba(216,180,94,.14),transparent 70%);pointer-events:none}
+.contact .container{position:relative;z-index:1}
+.contact .eyebrow{color:var(--brass-2)}
+.contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2.4rem,6vw,5rem);align-items:start;margin-top:clamp(2rem,4vw,3rem)}
+.contact-left h2{font-family:var(--fd);font-weight:560;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.1;letter-spacing:-.01em}
+.contact-left h2 em{font-style:italic;color:var(--brass-2)}
+.big-phone{display:inline-flex;align-items:center;gap:1rem;font-family:var(--fd);font-weight:600;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.01em;margin:1.8rem 0 .4rem;font-variant-numeric:tabular-nums;position:relative}
+.big-phone::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--brass-2);transition:width .35s ease}
+.big-phone:hover::after{width:100%}
+.big-phone svg{color:var(--brass-2);flex:none}
+.contact-sub{color:var(--mint);max-width:44ch}
+.contact-meta{display:flex;flex-direction:column;gap:1.1rem;margin-top:2.4rem;padding-top:2rem;border-top:1px solid rgba(203,228,214,.18)}
+.cm-row{display:flex;gap:1rem;align-items:flex-start}
+.cm-row svg{color:var(--brass-2);flex:none;margin-top:.2rem}
+.cm-row b{display:block;font-size:.95rem}
+.cm-row span{color:var(--mint);font-size:.9rem;display:block}
+.cm-row .mono{font-size:.78rem}
+.hours{margin-top:2rem;width:100%;max-width:420px;border-collapse:collapse}
+.hours td{padding:.5rem 0;border-bottom:1px dashed rgba(203,228,214,.18);font-size:.9rem;color:var(--mint)}
+.hours td:last-child{text-align:right;font-family:var(--fm);font-size:.78rem;color:var(--paper)}
+.form-card{background:var(--paper);color:var(--ink);border-radius:var(--r-l);box-shadow:var(--sh-2);padding:clamp(1.6rem,3.5vw,2.6rem)}
+.form-card h3{font-family:var(--fd);font-weight:560;font-size:1.5rem;margin-bottom:.4rem}
+.form-card .fc-sub{color:var(--ink-3);font-size:.92rem;margin-bottom:1.6rem}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.f-field{display:flex;flex-direction:column;gap:.4rem}
+.f-field.full{grid-column:1/-1}
+.f-field label{font-family:var(--fm);font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.f-field input,.f-field select,.f-field textarea{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r-s);padding:.85rem 1rem;font-size:.98rem;transition:border-color .2s,box-shadow .2s;width:100%}
+.f-field textarea{resize:vertical;min-height:110px}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 4px rgba(168,121,31,.14)}
+.f-privacy{font-size:.78rem;color:var(--ink-3);margin:.9rem 0 1.2rem}
+.f-success{text-align:center;padding:2.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:1rem;animation:panelIn .5s ease}
+.f-success .ok-ring{width:72px;height:72px;border-radius:50%;background:#E3F0E8;display:grid;place-items:center;color:var(--ok);animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.f-success h4{font-family:var(--fd);font-size:1.5rem;font-weight:560}
+.f-success p{color:var(--ink-2);max-width:38ch;font-size:.95rem}
+/* ================= FOOTER ================= */
+.footer{background:var(--pine-3);color:var(--mint);padding:clamp(3.4rem,7vw,5rem) 0 8.5rem}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(203,228,214,.14)}
+.footer .brand-name{color:var(--paper)}
+.footer-blurb{color:rgba(203,228,214,.75);font-size:.92rem;max-width:34ch;margin:1rem 0 1.4rem}
+.f-badges{display:flex;flex-direction:column;gap:.5rem}
+.f-badges span{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mint-2)}
+.f-badges svg{color:var(--brass-2);flex:none}
+.footer h4{font-family:var(--fm);font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-2);margin-bottom:1.1rem}
+.footer-col ul{display:flex;flex-direction:column;gap:.55rem}
+.footer-col a{font-size:.93rem;color:rgba(203,228,214,.85);transition:color .2s}
+.footer-col a:hover{color:var(--brass-2)}
+.footer-col address{font-style:normal;font-size:.93rem;line-height:1.8;color:rgba(203,228,214,.85)}
+.footer-col address a:hover{color:var(--brass-2)}
+.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem 2rem;padding-top:1.8rem;font-family:var(--fm);font-size:.7rem;letter-spacing:.05em;color:rgba(203,228,214,.55)}
+.footer-bottom a{color:rgba(203,228,214,.7)}
+.footer-bottom a:hover{color:var(--brass-2)}
+/* ================= MOBILE STICKY CTA ================= */
+.mobile-cta{position:fixed;left:0;right:0;bottom:0;z-index:96;display:none;grid-template-columns:1.15fr .85fr;gap:.6rem;
+  padding:.65rem .8rem calc(.65rem + env(safe-area-inset-bottom));background:rgba(251,248,241,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+.mobile-cta .btn{padding:1rem .8rem;font-size:.95rem}
+/* ================= RESPONSIVE ================= */
+@media (max-width:1080px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem}
+  .hero-coords{display:none}
+  .lock-panel{max-width:560px}
+  .guide-grid{grid-template-columns:repeat(2,1fr)}
+  .guide-panel{grid-template-columns:1fr}
+  .b-hero{grid-column:span 12}
+  .b-5,.b-6{grid-column:span 6}
+  .b-4{grid-column:span 6}
+  .tech-panel{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  .split-grid{grid-template-columns:1fr}
+  .process{grid-template-columns:repeat(2,1fr);gap:2.2rem 1.4rem}
+  .process::before{display:none}
+  .quiz-shell{grid-template-columns:1fr}
+  .log-row{grid-template-columns:70px 1fr;gap:.4rem 1rem}
+  .log-row .place{grid-column:2}
+  .log-row .note{grid-column:2}
+  .areas-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .main-nav{display:none}
+  .burger{display:flex}
+  .nav-call{display:none}
+  .mobile-cta{display:grid}
+  body{padding-bottom:74px}
+  .footer{padding-bottom:9.5rem}
+  .topbar-right .coords{display:none}
+}
+@media (max-width:640px){
+  .b-5,.b-4,.b-6{grid-column:span 12}
+  .stats{grid-template-columns:repeat(2,1fr);gap:0 1rem}
+  .stat{border-left:0;padding-left:0}
+  .guide-grid{grid-template-columns:1fr}
+  .process{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-chip--1{right:2%}
+  .rev-card{width:300px}
+  .trust-inner{justify-content:flex-start}
+  .hero-ctas .btn{width:100%}
+  .mode-ctas .btn,.guide-ctas .btn,.tech-ctas .btn{width:100%}
+}
+/* ================= REDUCED MOTION ================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  .reveal{opacity:1;transform:none}
+  .ticker-track,.rev-track{animation:none;width:auto;flex-wrap:wrap}
+  .hero-bitting path{stroke-dashoffset:0;animation:none}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<a class="skip-link" href="#innhold">Hopp til innhold</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span class="topbar-left"><span class="pulse-dot"></span>DØGNÅPENT NÅ · UTRYKNINGSTID CA. 24 MIN</span>
+      <span class="topbar-right"><strong id="osloClock">--:--:--</strong> OSLO <span class="coords">· 59.9139° N, 10.7522° Ø</span></span>
+    </div>
+  </div>
+  <div class="nav-row container">
+    <a class="brand" href="#topp" aria-label="Sikker Lås AS — til toppen">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="15" fill="#153830"/>
+        <circle cx="32" cy="24.5" r="9.5" fill="none" stroke="#D8B45E" stroke-width="4"/>
+        <rect x="28.5" y="30" width="7" height="20" rx="3.2" fill="#D8B45E"/>
+        <rect x="35" y="38" width="6" height="4" rx="2" fill="#D8B45E"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">Sikker Lås</span>
+        <span class="brand-sub">Låsesmed · Oslo · AS</span>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Hovedmeny">
+      <a href="#akutt">Akutt</a>
+      <a href="#tjenester">Tjenester</a>
+      <a href="#teknologi">Teknologi</a>
+      <a href="#sikkerhetssjekk">Sikkerhetssjekk</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-call" href="tel:+4722124000">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        22 12 40 00
+      </a>
+      <button class="burger" id="burger" aria-label="Åpne meny" aria-expanded="false" aria-controls="mMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="m-menu" id="mMenu" aria-hidden="true">
+  <div class="m-menu__top">
+    <a class="brand" href="#topp" data-close-menu>
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" style="width:36px;height:36px">
+        <rect width="64" height="64" rx="15" fill="#D8B45E"/>
+        <circle cx="32" cy="24.5" r="9.5" fill="none" stroke="#0D241E" stroke-width="4"/>
+        <rect x="28.5" y="30" width="7" height="20" rx="3.2" fill="#0D241E"/>
+        <rect x="35" y="38" width="6" height="4" rx="2" fill="#0D241E"/>
+      </svg>
+      <span class="brand-text"><span class="brand-name" style="color:var(--paper)">Sikker Lås</span><span class="brand-sub">Låsesmed · Oslo · AS</span></span>
+    </a>
+    <button class="m-menu__close" id="mMenuClose" aria-label="Lukk meny">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Mobilmeny">
+    <a href="#akutt" data-close-menu><span class="n">01</span>Akutt hjelp</a>
+    <a href="#veiviser" data-close-menu><span class="n">02</span>Veiviser</a>
+    <a href="#tjenester" data-close-menu><span class="n">03</span>Tjenester</a>
+    <a href="#teknologi" data-close-menu><span class="n">04</span>Teknologi</a>
+    <a href="#sikkerhetssjekk" data-close-menu><span class="n">05</span>Sikkerhetssjekk</a>
+    <a href="#kontakt" data-close-menu><span class="n">06</span>Kontakt</a>
+  </nav>
+  <div class="m-menu__foot">
+    <a class="btn btn-signal btn-block" href="tel:+4722124000"><span class="pulse-dot" style="background:#fff"></span>Ring låsesmed nå · 22 12 40 00</a>
+    <p class="mono">DØGNÅPENT 24/7 · POST@SIKKERLAAS.NO · GRENSEN 12, 0159 OSLO</p>
+  </div>
+</div>
+
+<main id="innhold">
+<!-- ============ HERO ============ -->
+<section class="hero" id="topp">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="hero-eyebrow reveal"><span class="pulse-dot"></span>Døgnåpen låsesmed · Oslo &amp; Viken</span>
+      <h1 class="reveal" style="--d:.08s">Låst ute?<br><em>Vi er allerede på vei.</em></h1>
+      <p class="hero-sub reveal" style="--d:.16s">Sikker Lås er låsesmeden Oslo ringer først — døgnet rundt. Skånsom opplåsing, låsbytte med fast pris og moderne sikring for bolig og bedrift. Du snakker alltid med en fagperson, ikke en telefonsentral.</p>
+      <div class="hero-ctas reveal" style="--d:.24s">
+        <a class="btn btn-signal" href="tel:+4722124000"><span class="pulse-dot" style="background:#fff"></span>Ring låsesmed nå · 22 12 40 00</a>
+        <a class="btn btn-outline" href="#sikkerhetssjekk">Få sikkerhetssjekk <span class="arrow">→</span></a>
+      </div>
+      <p class="hero-note reveal" style="--d:.3s">Haster det ikke? <a href="#kontakt">Send en melding</a> — vi svarer innen få minutter i kontortiden.</p>
+      <div class="hero-rating reveal" style="--d:.36s">
+        <span class="stars" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </span>
+        <span class="mono">4,9 av 5 · 312 anmeldelser · Google &amp; Trustpilot</span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal" style="--d:.2s">
+      <div class="lock-panel" id="lockDemo">
+        <span class="hero-chip hero-chip--1"><span class="pulse-dot pulse-dot--ok"></span>Responstid nå · ca. 24 min</span>
+        <span class="hero-chip hero-chip--2"><span class="tick">✓</span>Skadefri åpning i 9 av 10 tilfeller</span>
+        <div class="lock-head">
+          <span>SYLINDER SG-2210 · EN 1303 KLASSE 3</span>
+          <span class="lock-status"><span class="led"></span><span id="lockStatusText" aria-live="polite">LÅST</span></span>
+        </div>
+        <div class="lock-svg-wrap">
+          <svg class="lock-svg" viewBox="0 0 340 240" role="img" aria-label="Illustrasjon av sylinderlås som kan låses opp">
+            <defs>
+              <linearGradient id="brassGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#E9D3A0"/><stop offset=".5" stop-color="#C39A4B"/><stop offset="1" stop-color="#8C6A26"/>
+              </linearGradient>
+            </defs>
+            <g class="bolt-g">
+              <rect x="190" y="96" width="122" height="48" rx="10" fill="url(#brassGrad)" stroke="#6E5320" stroke-width="2"/>
+            </g>
+            <rect x="304" y="76" width="22" height="88" rx="6" fill="#1A2620"/>
+            <rect x="310" y="92" width="10" height="56" rx="3" fill="#081712"/>
+            <circle cx="130" cy="120" r="92" fill="#153830"/>
+            <circle cx="130" cy="120" r="74" fill="#F8F5EC" stroke="#DED6C4" stroke-width="2"/>
+            <circle cx="130" cy="120" r="56" fill="url(#brassGrad)" opacity=".16"/>
+            <circle cx="130" cy="40" r="5" fill="#8C6A26" opacity=".65"/>
+            <circle cx="130" cy="200" r="5" fill="#8C6A26" opacity=".65"/>
+            <g class="keyway">
+              <circle cx="130" cy="106" r="15" fill="#1A2620"/>
+              <rect x="122" y="106" width="16" height="46" rx="6" fill="#1A2620"/>
+              <rect x="110" y="132" width="14" height="9" rx="3" fill="#1A2620"/>
+              <rect x="136" y="132" width="14" height="9" rx="3" fill="#1A2620"/>
+            </g>
+          </svg>
+        </div>
+        <button class="lock-toggle" id="lockToggle" aria-label="Snu nøkkelen — lås opp eller igjen">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 21 2"/><path d="M16.5 6.5 20 10"/></svg>
+          <span id="lockToggleLabel">Snu nøkkelen — lås opp</span>
+        </button>
+        <p class="lock-meta">Testmodus · Prøv interaksjonen · Ingen dører ble skadet</p>
+      </div>
+    </div>
+  </div>
+  <span class="hero-coords" aria-hidden="true">59.9139° N — 10.7522° Ø — OSLO, NO</span>
+  <svg class="hero-bitting" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+    <path pathLength="1000" d="M0 62 L60 62 60 32 110 32 110 54 160 54 160 18 215 18 215 46 270 46 270 62 330 62 330 26 390 26 390 52 450 52 450 36 520 36 520 62 600 62 600 22 660 22 660 48 730 48 730 30 800 30 800 56 880 56 880 40 950 40 950 62 1030 62 1030 28 1090 28 1090 50 1200 50"/>
+  </svg>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<div class="trust">
+  <div class="container trust-inner">
+    <span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Døgnåpent 365 dager</span>
+    <span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Fast pris før oppstart</span>
+    <span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>ID-kontroll ved opplåsing</span>
+    <span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>5 års garanti</span>
+    <span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Medlem av Norges Låsesmedforbund</span>
+  </div>
+</div>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-group">
+      <span>Døgnåpent 24/7</span><span>Utrykning i Oslo &amp; Viken</span><span>Opplåsing uten skader</span><span>Låsbytte</span><span>Innbruddssikring</span><span>Elektroniske låser</span><span>Adgangskontroll</span><span>Nøkkelsystemer</span><span>Sikkerhetsrådgivning</span>
+    </div>
+    <div class="ticker-group">
+      <span>Døgnåpent 24/7</span><span>Utrykning i Oslo &amp; Viken</span><span>Opplåsing uten skader</span><span>Låsbytte</span><span>Innbruddssikring</span><span>Elektroniske låser</span><span>Adgangskontroll</span><span>Nøkkelsystemer</span><span>Sikkerhetsrådgivning</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GUIDE ============ -->
+<section class="guide" id="veiviser">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">01 · Veiviser</span>
+      <h2>Velg situasjonen — <em>vi viser veien videre.</em></h2>
+      <p>Fire ulike behov, fire tydelige svar. Velg det som ligner mest på din situasjon, så forteller vi nøyaktig hva som skjer videre — og hva det koster.</p>
+    </div>
+    <div class="guide-grid reveal" role="tablist" aria-label="Velg din situasjon">
+      <button class="guide-tab" role="tab" id="gt-1" aria-selected="true" aria-controls="gp-1">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2.5" width="14" height="19" rx="1.5"/><circle cx="14.5" cy="12" r="1.2" fill="currentColor" stroke="none"/><path d="M20.5 12h1.8"/></svg>
+        <span class="t">Jeg er låst ute</span><span class="h">Akutt · 24/7</span>
+      </button>
+      <button class="guide-tab" role="tab" id="gt-2" aria-selected="false" aria-controls="gp-2">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 21 2"/><path d="M16.5 6.5 20 10"/></svg>
+        <span class="t">Mistet nøkkel</span><span class="h">Råd + bytte</span>
+      </button>
+      <button class="guide-tab" role="tab" id="gt-3" aria-selected="false" aria-controls="gp-3">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="10" r="2.4"/><path d="M12 12.4v4.2"/></svg>
+        <span class="t">Trenger ny lås</span><span class="h">Bytte · oppgradering</span>
+      </button>
+      <button class="guide-tab" role="tab" id="gt-4" aria-selected="false" aria-controls="gp-4">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3.2v5.3c0 4.4-2.9 7.6-7 9.5-4.1-1.9-7-5.1-7-9.5V6.2z"/><path d="M9.2 12l2 2 3.6-3.8"/></svg>
+        <span class="t">Vil sikre bedre</span><span class="h">Sikkerhetssjekk</span>
+      </button>
+    </div>
+
+    <div class="guide-panels reveal" style="--d:.12s">
+      <div class="guide-panel" role="tabpanel" id="gp-1" aria-labelledby="gt-1">
+        <div>
+          <h3>Låst ute? Det løser vi — fort og uten skader.</h3>
+          <p class="lead">Døren er igjen, og nøkkelen er på innsiden eller borte. Vi prioriterer utrykninger foran alt annet, og montøren har med seg alt som trengs for å åpne døren din pent.</p>
+          <ul class="guide-steps">
+            <li>Ring oss — du snakker med en låsesmed som gir deg fast pris før montøren kjører.</li>
+            <li>Nærmeste montør kjører direkte til deg. Du får melding med navn og ankomsttid.</li>
+            <li>Vi kontrollerer ID, åpner skånsomt og låser igjen med din eksisterende nøkkel der det er mulig.</li>
+          </ul>
+          <div class="guide-ctas">
+            <a class="btn btn-signal" href="tel:+4722124000"><span class="pulse-dot" style="background:#fff"></span>Ring låsesmed nå</a>
+            <a class="btn btn-outline" href="#faq">Se priser i FAQ <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <aside class="guide-meta">
+          <h4>Fakta om utrykningen</h4>
+          <dl>
+            <div class="row"><dt>Responstid i Oslo</dt><dd>20–30 min</dd></div>
+            <div class="row"><dt>Fra-pris dagtid</dt><dd>1 490 kr</dd></div>
+            <div class="row"><dt>Kveld, natt, helg</dt><dd>fra 2 490 kr</dd></div>
+            <div class="row"><dt>Skadefri åpning</dt><dd>9 av 10</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="guide-panel" role="tabpanel" id="gp-2" aria-labelledby="gt-2" hidden>
+        <div>
+          <h3>Mistet nøkkel? Tenk som om noen fant den.</h3>
+          <p class="lead">En nøkkel på avveie er en ukjent kopi i omløp — kanskje med adressehint fra nøkkelringen. Vi vurderer risikoen sammen med deg og bytter sylinder samme dag om du ønsker det.</p>
+          <ul class="guide-steps">
+            <li>Fortell oss hvor og når nøkkelen ble borte, og hva som sto på nøkkelringen.</li>
+            <li>Vi anbefaler riktig nivå: fra enkel sylinder til FG-godkjent med kopisperre.</li>
+            <li>Ny sylinder monteres — med registrerte nøkler som bare du kan bestille kopi av.</li>
+          </ul>
+          <div class="guide-ctas">
+            <a class="btn btn-dark" href="#kontakt">Bestill låsbytte <span class="arrow">→</span></a>
+            <a class="btn btn-outline" href="tel:+4722124000">Ring og rådfør deg</a>
+          </div>
+        </div>
+        <aside class="guide-meta">
+          <h4>Anbefalingen vår</h4>
+          <dl>
+            <div class="row"><dt>Tryggeste tiltak</dt><dd>Sylinderbytte</dd></div>
+            <div class="row"><dt>Kan gjennomføres</dt><dd>Samme dag</dd></div>
+            <div class="row"><dt>Kopisperre</dt><dd>Inkludert</dd></div>
+            <div class="row"><dt>Forsikring</dt><dd>Dekkes ofte</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="guide-panel" role="tabpanel" id="gp-3" aria-labelledby="gt-3" hidden>
+        <div>
+          <h3>Ny lås? Vi hjelper deg å velge riktig — én gang.</h3>
+          <p class="lead">Ny bolig, slitt mekanisme eller ønske om nøkkelfri hverdag. Vi fører de beste mekaniske, elektroniske og hybrid låsene, og monterer alt selv — med fast pris og 5 års garanti.</p>
+          <ul class="guide-steps">
+            <li>Vi kartlegger behovet: mekanisk presisjon, elektronisk frihet — eller begge deler.</li>
+            <li>Du får fast pris på lås og montering, uten overraskelser.</li>
+            <li>Sertifisert montør installerer, tester og dokumenterer. Gamle låser tar vi med oss.</li>
+          </ul>
+          <div class="guide-ctas">
+            <a class="btn btn-dark" href="#kontakt">Bestill låsbytte <span class="arrow">→</span></a>
+            <a class="btn btn-outline" href="#teknologi">Se elektroniske låser <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <aside class="guide-meta">
+          <h4>Populære valg</h4>
+          <dl>
+            <div class="row"><dt>Nøkkelfritt</dt><dd>Yale Doorman X</dd></div>
+            <div class="row"><dt>Mekanisk topp</dt><dd>FG-sylinder kl. 3</dd></div>
+            <div class="row"><dt>Montering fra</dt><dd>690 kr + lås</dd></div>
+            <div class="row"><dt>Garanti</dt><dd>5 år</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="guide-panel" role="tabpanel" id="gp-4" aria-labelledby="gt-4" hidden>
+        <div>
+          <h3>Bedre sikring? Start med et ærlig blikk på døren din.</h3>
+          <p class="lead">Innbrudd i nabolaget, ny livssituasjon — eller bare en god magefølelse. Vi kartlegger boligen eller bedriften din og foreslår konkrete tiltak i prioritert rekkefølge. Ingen selgersnakk.</p>
+          <ul class="guide-steps">
+            <li>Ta sikkerhetssjekken vår på to minutter — du får svar umiddelbart.</li>
+            <li>Book en gratis befaring. Du får en skriftlig rapport med faste priser.</li>
+            <li>Gjennomfør tiltakene i ditt tempo — vi utfører alt, eller bare det du velger.</li>
+          </ul>
+          <div class="guide-ctas">
+            <a class="btn btn-brass" href="#sikkerhetssjekk">Få sikkerhetssjekk <span class="arrow">→</span></a>
+            <a class="btn btn-outline" href="#kontakt">Book gratis befaring</a>
+          </div>
+        </div>
+        <aside class="guide-meta">
+          <h4>Godt å vite</h4>
+          <dl>
+            <div class="row"><dt>Sikkerhetssjekk</dt><dd>Gratis · 2 min</dd></div>
+            <div class="row"><dt>Befaring</dt><dd>Uforpliktende</dd></div>
+            <div class="row"><dt>Rapport</dt><dd>Skriftlig, m/ faste priser</dd></div>
+            <div class="row"><dt>Forsikring</dt><dd>Sjekk tilskudd</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPLIT: AKUTT / PLANLAGT ============ -->
+<section class="split" id="akutt">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">02 · To spor</span>
+      <h2>Akutt nå — <em>eller planlagt trygghet.</em></h2>
+      <p>Noen behov kan ikke vente. Andre bør planlegges. Vi er like gode på begge — men vi behandler dem forskjellig, slik de fortjener.</p>
+    </div>
+    <div class="split-grid">
+      <article class="mode mode-acutt reveal">
+        <span class="grain" aria-hidden="true"></span>
+        <span class="mode-tag"><span class="pulse-dot"></span>Spor A · Akutt — nå</span>
+        <h3>Står du utenfor <em>akkurat nå?</em></h3>
+        <p class="desc">Ring. Vi svarer innen tre ring, gir deg prisen på forhånd og sender nærmeste montør direkte — døgnet rundt, hele året.</p>
+        <div class="mode-phone">
+          <span class="num">22 12 40 00</span>
+          <span class="lbl">Nødnummer · 24/7</span>
+        </div>
+        <ul class="mode-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Fast pris før montøren kjører — ingen overraskelser</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>ID-kontroll på stedet — for din egen sikkerhet</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Skånsom åpning — døren din skal se likedan ut etterpå</li>
+        </ul>
+        <div class="mode-ctas">
+          <a class="btn btn-signal" href="tel:+4722124000"><span class="pulse-dot" style="background:#fff"></span>Ring låsesmed nå</a>
+        </div>
+      </article>
+
+      <article class="mode mode-plan reveal" style="--d:.1s">
+        <span class="mode-tag">◇ Spor B · Planlagt — denne uka</span>
+        <h3>Vil du heller være <em>i forkant?</em></h3>
+        <p class="desc">Låsbytte, innbruddssikring, elektroniske låser eller full gjennomgang av bolig og bedrift. Planlagte oppdrag får ro, grundighet — og de beste prisene.</p>
+        <ul class="mode-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Gratis befaring med skriftlig rapport og faste priser</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Sertifiserte montører — samme person fra start til slutt</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Dokumentasjon til forsikring, styre og gårdeier</li>
+        </ul>
+        <div class="mode-ctas">
+          <a class="btn btn-dark" href="#kontakt">Be om tilbud <span class="arrow">→</span></a>
+          <a class="btn btn-outline" href="#kontakt">Bestill time</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="stats reveal" style="--d:.15s">
+      <div class="stat"><span class="stat-num" data-count="4812">0</span><span class="stat-lbl">Oppdrag i 2025</span></div>
+      <div class="stat"><span class="stat-num" data-count="24" data-suffix=" min">0</span><span class="stat-lbl">Snitt responstid, Oslo</span></div>
+      <div class="stat"><span class="stat-num" data-count="4.9" data-decimals="1" data-suffix=" / 5">0</span><span class="stat-lbl">312 anmeldelser</span></div>
+      <div class="stat"><span class="stat-num" data-count="365">0</span><span class="stat-lbl">Døgn i året på vakt</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="tjenester">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">03 · Tjenester</span>
+      <h2>Alt innen lås og sikring. <em>Én telefon.</em></h2>
+      <p>Fra nødsamtalen klokka tre til adgangskontrollen som styrer hele bygget — vi dekker hele spektret, med fagbrev og forsikring i orden.</p>
+    </div>
+    <div class="bento">
+      <article class="b-card b-hero reveal">
+        <div class="b-top"><span class="b-num">01 / AKUTT</span>
+          <svg class="b-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+        </div>
+        <div class="b-hero-body">
+          <h3>Døgnåpen låsesmed</h3>
+          <p>Vakttelefonen vår er bemannet av fagfolk — hver eneste natt, hver eneste helg. Når du ringer, får du et navn, en pris og et ankomsttidspunkt.</p>
+          <ul class="mini">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Utrykning hele døgnet, hele året</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Snitt 24 minutter i Oslo sentrum</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Fast pris før vi kjører</li>
+          </ul>
+          <a class="hero-phone" href="tel:+4722124000">22 12 40 00 <small>Døgnvakt · trykk for å ringe</small></a>
+        </div>
+        <div class="b-tags"><span>Utrykning</span><span>Opplåsing</span><span>Nødhjelp</span></div>
+      </article>
+
+      <article class="b-card b-5 reveal" style="--d:.05s">
+        <div class="b-top"><span class="b-num">02</span>
+          <svg class="b-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="14" height="19" rx="1.5"/><circle cx="14.5" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <h3>Åpning av dører</h3>
+        <p>Skånsom opplåsing av bolig, kjellerbod, postkasse og bildører. Spesialverktøy og trent håndlag — døren din åpnes pent.</p>
+        <div class="b-tags"><span>Bolig</span><span>Næring</span><span>fra 1 490 kr</span></div>
+      </article>
+
+      <article class="b-card b-5 reveal" style="--d:.1s">
+        <div class="b-top"><span class="b-num">03</span>
+          <svg class="b-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="10" r="2.4"/><path d="M12 12.4v4.2"/></svg>
+        </div>
+        <h3>Låsbytte &amp; sylinder</h3>
+        <p>Bytte av sylinder, vriderlås og flerpunktslås. FG-godkjente modeller med anti-borr, anti-plock og kopisperrede nøkler.</p>
+        <div class="b-tags"><span>FG-godkjent</span><span>Samme dag</span><span>5 års garanti</span></div>
+      </article>
+
+      <article class="b-card b-4 reveal" style="--d:.05s">
+        <div class="b-top"><span class="b-num">04</span>
+          <svg class="b-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.4-2.9 7.6-7 9.5-4.1-1.9-7-5.1-7-9.5V6.2z"/></svg>
+        </div>
+        <h3>Innbruddssikring</h3>
+        <p>Forsterkningsbeslag, kjettinglås, vindussikring og sikkerhetsdør. Vi sikrer der tyvene faktisk prøver — ikke der det ser fint ut.</p>
+        <div class="b-tags"><span>Bolig</span><span>Etter innbrudd</span></div>
+      </article>
+
+      <article class="b-card b-4 reveal" style="--d:.1s">
+        <div class="b-top"><span class="b-num">05</span>
+          <svg class="b-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r=".9" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r=".9" fill="currentColor" stroke="none"/><circle cx="9" cy="12.5" r=".9" fill="currentColor" stroke="none"/><circle cx="15" cy="12.5" r=".9" fill="currentColor" stroke="none"/><path d="M9 16.4h6"/></svg>
+        </div>
+        <h3>Elektroniske låser</h3>
+        <p>Yale Doorman X, ASSA og TrioVing. Kode, brikke eller app — med auto-lås og full logg over hvem som kom inn.</p>
+        <div class="b-tags"><span>Nøkkelfritt</span><span>App</span></div>
+      </article>
+
+      <article class="b-card b-4 reveal" style="--d:.15s">
+        <div class="b-top"><span class="b-num">06</span>
+          <svg class="b-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9.5h19"/><path d="M6 14.5h5"/></svg>
+        </div>
+        <h3>Adgangskontroll</h3>
+        <p>Kort, brikke eller mobil for borettslag og næringsbygg. Rettigheter per person og tidssone, administrert i en skyportal.</p>
+        <div class="b-tags"><span>Næring</span><span>Borettslag</span></div>
+      </article>
+
+      <article class="b-card b-6 reveal" style="--d:.05s">
+        <div class="b-top"><span class="b-num">07</span>
+          <svg class="b-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 21 2"/><path d="M16.5 6.5 20 10"/></svg>
+        </div>
+        <h3>Nøkkelsystemer &amp; hovednøkler</h3>
+        <p>Systemnøkler for sameier, gårder og bedrifter: én nøkkel åpner det du skal, ingenting annet. Patentbeskyttede profiler som ikke kan kopieres, med full eierkontroll og dokumentert nøkkelutlevering.</p>
+        <div class="b-tags"><span>Sameie</span><span>Næring</span><span>Kopisperre</span></div>
+      </article>
+
+      <article class="b-card b-6 reveal" style="--d:.1s">
+        <div class="b-top"><span class="b-num">08</span>
+          <svg class="b-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 2.5h6v3H9z"/><path d="M9.5 13.2l1.8 1.8 3.4-3.6"/></svg>
+        </div>
+        <h3>Sikkerhetsrådgivning</h3>
+        <p>Gratis befaring for bolig, grundig sikkerhetsanalyse for bedrift. Du får en skriftlig rapport med prioriterte tiltak, faste priser og dokumentasjon som forsikringsselskapet godtar.</p>
+        <div class="b-tags"><span>Befaring</span><span>Rapport</span><span>Gratis for bolig</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process-sec" id="prosess">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">04 · Prosessen</span>
+      <h2>Fra nødsamtale til trygg dør — <em>fire steg.</em></h2>
+    </div>
+    <div class="process">
+      <div class="p-step reveal"><span class="p-num">01</span><h3>Ring eller skriv</h3><p>Du snakker med en låsesmed, ikke en sentral. Vi stiller de riktige spørsmålene og gir pris før vi kjører.</p></div>
+      <div class="p-step reveal" style="--d:.08s"><span class="p-num">02</span><h3>Bekreftelse &amp; avgang</h3><p>Du får pris, navn på montør og ankomsttid på SMS. Nærmeste montør rykker ut direkte.</p></div>
+      <div class="p-step reveal" style="--d:.16s"><span class="p-num">03</span><h3>Presis utførelse</h3><p>ID-kontroll, skånsom åpning eller ryddig montering. Alt arbeid dokumenteres med foto.</p></div>
+      <div class="p-step reveal" style="--d:.24s"><span class="p-num">04</span><h3>Trygghet etterpå</h3><p>5 års garanti, serviceavtale hvis du vil — og ærlige råd om hva du eventuelt bør gjøre senere.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH ============ -->
+<section class="tech dark-sec" id="teknologi">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">05 · Tilgangsteknologi</span>
+      <h2>Nøkkelen din blir <em>smartere enn lommetyven.</em></h2>
+      <p>Moderne adgang handler ikke om tyngre dører — det handler om kontroll. Hvem kommer inn, når, og hva skjedde egentlig klokka 02 i natt? Vi designer og installerer hele systemet.</p>
+    </div>
+
+    <div class="tech-tabs reveal" role="tablist" aria-label="Teknologiløsninger">
+      <button class="tech-tab" role="tab" id="tt-1" aria-selected="true" aria-controls="tp-1">Elektroniske låser</button>
+      <button class="tech-tab" role="tab" id="tt-2" aria-selected="false" aria-controls="tp-2">Adgangskontroll</button>
+      <button class="tech-tab" role="tab" id="tt-3" aria-selected="false" aria-controls="tp-3">Smart nøkkelsystem</button>
+    </div>
+
+    <div class="tech-panel reveal" style="--d:.08s" role="tabpanel" id="tp-1" aria-labelledby="tt-1">
+      <div>
+        <h3>Nøkkelfri hverdag, <em>full kontroll.</em></h3>
+        <p class="desc">Elektroniske låser fra Yale, ASSA og TrioVing gir deg kode, brikk og app — og en dør som aldri står ulåst igjen ved en glipp.</p>
+        <ul class="tech-list">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Auto-lås når du går — døren er alltid sikret</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Logg over hvem som låste opp, og når</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Del midlertidige koder med vaskehjelp og håndverkere</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Batterivarsel i god tid — og nødløsning ved strømbrudd</li>
+        </ul>
+        <div class="spec-chips"><span>Kode · RFID · App</span><span>Auto-lås</span><span>3 års batteritid</span><span>IP54</span></div>
+        <div class="tech-ctas">
+          <a class="btn btn-brass" href="#kontakt">Bestill låsbytte <span class="arrow">→</span></a>
+          <a class="btn btn-outline-light" href="#kontakt">Be om tilbud</a>
+        </div>
+      </div>
+      <div class="tech-visual" aria-hidden="true">
+        <span class="tv-label"><span>ENHET: DOOR-MAN X3</span><span>FW 4.2.1</span></span>
+        <div class="mock-door">
+          <div class="mock-keypad"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <span class="handle"></span>
+        </div>
+        <div class="mock-status"><span>KODE ●●●● AKSEPTERT</span><span class="ok">DØR ÅPNET 09:41</span></div>
+      </div>
+    </div>
+
+    <div class="tech-panel" role="tabpanel" id="tp-2" aria-labelledby="tt-2" hidden>
+      <div>
+        <h3>Adgangskontroll for <em>borettslag og bedrift.</em></h3>
+        <p class="desc">Erstatt nøkkelknippet med kort, brikk eller mobil. Gi hver person sine rettigheter — og ta dem tilbake på to sekunder når noen flytter eller slutter.</p>
+        <ul class="tech-list">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Rettigheter per person, dør og tidssone</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Sentral administrasjon i nettportal — ingen server hos deg</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Sanntidslogg og eksport ved behov</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Integrasjon med port, bom, heis og postkasser</li>
+        </ul>
+        <div class="spec-chips"><span>MIFARE DESFire EV3</span><span>Skyportal</span><span>Sanntidslogg</span><span>Mobile credentials</span></div>
+        <div class="tech-ctas">
+          <a class="btn btn-brass" href="#kontakt">Be om tilbud <span class="arrow">→</span></a>
+          <a class="btn btn-outline-light" href="#kontakt">Book demo</a>
+        </div>
+      </div>
+      <div class="tech-visual" aria-hidden="true">
+        <span class="tv-label"><span>PORTAL: TILGANGSOVERSIKT</span><span>BJØRVIKA KONTOR</span></span>
+        <div class="mock-access">
+          <div class="ma-row"><span class="dot"></span><span>KORT 042 · HILDE M.</span><span class="st">HOVEDINNGANG ✓</span></div>
+          <div class="ma-row"><span class="dot"></span><span>KORT 042 · HILDE M.</span><span class="st">SERVERROM ✓ 09:41</span></div>
+          <div class="ma-row dim"><span class="dot"></span><span>KORT 117 · EKSTERN</span><span class="st">SERVERROM AVSLÅTT</span></div>
+          <div class="ma-row"><span class="dot"></span><span>MOBIL · VAKT A</span><span class="st">GARASJE ✓ 03:00–07:00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech-panel" role="tabpanel" id="tp-3" aria-labelledby="tt-3" hidden>
+      <div>
+        <h3>Ett nøkkelknippe. <em>Akkurat passe tilgang.</em></h3>
+        <p class="desc">Smart nøkkelsystem kombinerer mekanisk presisjon med elektronisk kontroll. Hovednøkler, gruppenøkler og enkeltnøkler — i én logisk struktur du faktisk forstår.</p>
+        <ul class="tech-list">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Patentbeskyttet profil — nøkler kan ikke kopieres</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Utvid systemet rom for rom uten å bytte alt</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Eierkontroll: bare du kan bestille nye nøkler</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Dokumentert utlevering for styre og bedrift</li>
+        </ul>
+        <div class="spec-chips"><span>EN 1303 klasse 6</span><span>Patentbeskyttet</span><span>Hovednøkkel</span><span>Eierkontroll</span></div>
+        <div class="tech-ctas">
+          <a class="btn btn-brass" href="#kontakt">Be om tilbud <span class="arrow">→</span></a>
+          <a class="btn btn-outline-light" href="#kontakt">Snakk med rådgiver</a>
+        </div>
+      </div>
+      <div class="tech-visual" aria-hidden="true">
+        <span class="tv-label"><span>SYSTEM: NØKKELHIERARKI</span><span>SAMEIET FURULUNDEN</span></span>
+        <div class="mock-keys">
+          <span class="mk">Hovednøkkel · Styret</span>
+          <span class="mk-line"></span>
+          <div class="mk-row"><span class="mk mk--sub">Oppgang A</span><span class="mk mk--sub">Oppgang B</span><span class="mk mk--sub">Teknisk</span></div>
+          <span class="mk-line"></span>
+          <div class="mk-row"><span class="mk mk--sub">Leil. 101</span><span class="mk mk--sub">Leil. 102</span><span class="mk mk--sub">Leil. 201</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="tech-live reveal" style="--d:.1s"><span class="pulse-dot pulse-dot--ok"></span>SYSTEM: ONLINE · 128 AKTIVE KORT · SISTE HENDELSE 09:41:22 <span class="cursor"></span></p>
+  </div>
+</section>
+
+<!-- ============ SECURITY CHECK ============ -->
+<section class="quiz-sec" id="sikkerhetssjekk">
+  <div class="container">
+    <div class="quiz-shell">
+      <div class="quiz-side reveal">
+        <span class="eyebrow">06 · Sikkerhetssjekk</span>
+        <div class="sec-head" style="margin-bottom:0">
+          <h2>Hvor sikker er boligen din? <em>Ta testen.</em></h2>
+          <p>Sju spørsmål, ett minutt, null salgssnakk. Du får et estimat på sikkerhetsnivået — og konkrete tiltak i prioritert rekkefølge.</p>
+        </div>
+        <div class="badge-row">
+          <p class="badge"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>Utviklet av låsesmedene våre, basert på 4 800+ oppdrag i Oslo-området.</p>
+          <p class="badge"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.4-2.9 7.6-7 9.5-4.1-1.9-7-5.1-7-9.5V6.2z"/></svg>Ingen lagring av svar, ingen e-postadresse nødvendig.</p>
+          <p class="badge"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Vil du ha hele bildet, er befaringen vår gratis og helt uforpliktende.</p>
+        </div>
+        <a class="btn btn-outline" href="#kontakt">Hopp over testen — book gratis befaring <span class="arrow">→</span></a>
+      </div>
+
+      <div class="quiz-box reveal" style="--d:.12s">
+        <div class="quiz-top"><span>SIKKERLAAS·SJEEKK v2.1</span><span id="quizStep">Klar til start</span></div>
+        <div class="quiz-bar"><i id="quizBarFill"></i></div>
+        <div class="quiz-body" id="quizBody" aria-live="polite"><!-- fylles av JS --></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOG ============ -->
+<section class="log-sec" id="oppdrag">
+  <div class="container">
+    <div class="log-head-row">
+      <div class="sec-head reveal" style="margin-bottom:0">
+        <span class="eyebrow">07 · Fra oppdragsboka</span>
+        <h2> Dokumentasjon, <em>ikke lovnader.</em></h2>
+        <p>Et utdrag av oppdragsloggen vår fra siste 30 dager. Tidspunkter og steder er ekte mønstre — detaljer er anonymisert av hensyn til kundene.</p>
+      </div>
+      <span class="log-live reveal"><span class="pulse-dot pulse-dot--ok"></span>LOGGEN OPPDATERES FORTLØPENDE</span>
+    </div>
+    <div class="log reveal" style="--d:.1s">
+      <div class="log-row"><span class="time">03:12</span><span class="type">Nødvendig opplåsing</span><span class="place">Majorstua</span><span class="note"><b>Åpnet uten skade</b> · fremme på 22 min · ID kontrollert</span></div>
+      <div class="log-row"><span class="time">23:58</span><span class="type">Nøkkel på avveie</span><span class="place">Frogner</span><span class="note">Sylinder byttet natt til ny FG-klasse 3 · 3 registrerte nøkler</span></div>
+      <div class="log-row"><span class="time">11:40</span><span class="type">Sikring etter innbruddsforsøk</span><span class="place">Bjerke</span><span class="note">Forsterkningsbeslag + ny sylinder · forsikringsrapport levert</span></div>
+      <div class="log-row"><span class="time">09:15</span><span class="type">Adgangskontroll</span><span class="place">Kontorbygg, Bjørvika</span><span class="note">46 kort · 3 leserenheter · skyportal konfigurert</span></div>
+      <div class="log-row"><span class="time">17:32</span><span class="type">Elektronisk lås</span><span class="place">Grünerløkka</span><span class="note">Yale Doorman X på kjededør · auto-lås aktivert</span></div>
+      <div class="log-row"><span class="time">07:05</span><span class="type">Nøkkelsystem</span><span class="place">Sameie, Tåsen</span><span class="note">24 sylindere · hovednøkkel til styret · utleveringsprotokoll</span></div>
+      <div class="log-row"><span class="time">14:20</span><span class="type">Innbruddssikring</span><span class="place">Enebolig, Nordstrand</span><span class="note">Kjetting, beslag og vindussikring · befaring uka før</span></div>
+      <div class="log-row"><span class="time">02:44</span><span class="type">Nødvendig opplåsing</span><span class="place">Alna</span><span class="note"><b>Åpnet uten skade</b> · fremme på 19 min · barn alene inne, prioritert</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews" id="omtaler">
+  <div class="container">
+    <div class="rev-head">
+      <div class="sec-head reveal" style="margin-bottom:0">
+        <span class="eyebrow">08 · Omtaler</span>
+        <h2>Det kundene sier <em>når døren er låst igjen.</em></h2>
+      </div>
+      <div class="rev-score reveal" style="--d:.1s">
+        <span class="n">4,9</span>
+        <span class="stars" aria-label="4,9 av 5 stjerner">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </span>
+        <span class="mono">312 ANMELDELSER · GOOGLE &amp; TRUSTPILOT</span>
+      </div>
+    </div>
+  </div>
+  <div class="rev-marquee">
+    <div class="rev-track">
+      <article class="rev-card"><span class="stars" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Ringte 01:40 etter at nøkkelen røyk i døra. Montøren var her på 25 minutter og åpnet uten en eneste ripe. Rolig, hyggelig og helt uproblematisk.</blockquote><div class="rev-foot"><span class="rev-who"><b>Ingrid H.</b><span>Majorstua</span></span><span class="rev-tag">Natteutrykning</span></div></article>
+      <article class="rev-card"><span class="stars" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Byttet til elektroniske låser i hele borettslaget. Ryddig prosjekt, fast pris og god opplæring til styret. Anbefales på det sterkeste.</blockquote><div class="rev-foot"><span class="rev-who"><b>Thomas E.</b><span>Grünerløkka</span></span><span class="rev-tag">Borettslag</span></div></article>
+      <article class="rev-card"><span class="stars" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Etter innbruddsforsøket sikret de døra samme dag og kom tilbake uka etter med FG-sylinder og beslag. Nå føler jeg meg trygg igjen.</blockquote><div class="rev-foot"><span class="rev-who"><b>Amir S.</b><span>Bjerke</span></span><span class="rev-tag">Innbruddssikring</span></div></article>
+      <article class="rev-card"><span class="stars" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Tok sikkerhetssjekken på nett og booket befaring. Ærlige råd — de prøvde ikke å selge meg noe jeg ikke trengte. Det er sjelden vare.</blockquote><div class="rev-foot"><span class="rev-who"><b>Lise M.</b><span>Frogner</span></span><span class="rev-tag">Sikkerhetssjekk</span></div></article>
+      <article class="rev-card"><span class="stars" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Vi gikk fra nøkler til adgangskort med logging på hele bygget. Oppsettet sto på to dager, og supporten svarer faktisk når man ringer.</blockquote><div class="rev-foot"><span class="rev-who"><b>Petter A.</b><span>Facility manager, Bjørvika</span></span><span class="rev-tag">Adgangskontroll</span></div></article>
+      <article class="rev-card"><span class="stars" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Mistet nøkkelknippet på trikken. De byttet sylinder innen tre timer og leverte tre nye, registrerte nøkler. Helt smertefritt.</blockquote><div class="rev-foot"><span class="rev-who"><b>Sofie L.</b><span>Nordstrand</span></span><span class="rev-tag">Låsbytte</span></div></article>
+      <!-- duplikat for sømløs loop -->
+      <article class="rev-card" aria-hidden="true"><span class="stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Ringte 01:40 etter at nøkkelen røyk i døra. Montøren var her på 25 minutter og åpnet uten en eneste ripe. Rolig, hyggelig og helt uproblematisk.</blockquote><div class="rev-foot"><span class="rev-who"><b>Ingrid H.</b><span>Majorstua</span></span><span class="rev-tag">Natteutrykning</span></div></article>
+      <article class="rev-card" aria-hidden="true"><span class="stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Byttet til elektroniske låser i hele borettslaget. Ryddig prosjekt, fast pris og god opplæring til styret. Anbefales på det sterkeste.</blockquote><div class="rev-foot"><span class="rev-who"><b>Thomas E.</b><span>Grünerløkka</span></span><span class="rev-tag">Borettslag</span></div></article>
+      <article class="rev-card" aria-hidden="true"><span class="stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Etter innbruddsforsøket sikret de døra samme dag og kom tilbake uka etter med FG-sylinder og beslag. Nå føler jeg meg trygg igjen.</blockquote><div class="rev-foot"><span class="rev-who"><b>Amir S.</b><span>Bjerke</span></span><span class="rev-tag">Innbruddssikring</span></div></article>
+      <article class="rev-card" aria-hidden="true"><span class="stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Tok sikkerhetssjekken på nett og booket befaring. Ærlige råd — de prøvde ikke å selge meg noe jeg ikke trengte. Det er sjelden vare.</blockquote><div class="rev-foot"><span class="rev-who"><b>Lise M.</b><span>Frogner</span></span><span class="rev-tag">Sikkerhetssjekk</span></div></article>
+      <article class="rev-card" aria-hidden="true"><span class="stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Vi gikk fra nøkler til adgangskort med logging på hele bygget. Oppsettet sto på to dager, og supporten svarer faktisk når man ringer.</blockquote><div class="rev-foot"><span class="rev-who"><b>Petter A.</b><span>Facility manager, Bjørvika</span></span><span class="rev-tag">Adgangskontroll</span></div></article>
+      <article class="rev-card" aria-hidden="true"><span class="stars"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21.02 7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>Mistet nøkkelknippet på trikken. De byttet sylinder innen tre timer og leverte tre nye, registrerte nøkler. Helt smertefritt.</blockquote><div class="rev-foot"><span class="rev-who"><b>Sofie L.</b><span>Nordstrand</span></span><span class="rev-tag">Låsbytte</span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AREAS ============ -->
+<section class="areas" id="omraader">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">09 · Dekningsområde</span>
+      <h2>Vi kjenner byen din. <em>Gatene også.</em></h2>
+      <p>Montørene våre bor i områdene de kjører i. Det betyr kortere vei, raskere utrykning — og en låsesmed som vet hvor bakdøra di er.</p>
+    </div>
+    <div class="areas-grid">
+      <div class="area-group reveal">
+        <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Oslo</h3>
+        <ul class="chips">
+          <li>Sentrum <span class="mono">~20 MIN</span></li>
+          <li>Frogner &amp; Majorstua <span class="mono">20–25</span></li>
+          <li>Grünerløkka <span class="mono">20–25</span></li>
+          <li>Sagene &amp; St. Hanshaugen <span class="mono">20–25</span></li>
+          <li>Nordstrand <span class="mono">25–30</span></li>
+          <li>Vestre Aker <span class="mono">25–30</span></li>
+          <li>Alna &amp; Stovner <span class="mono">25–35</span></li>
+        </ul>
+      </div>
+      <div class="area-group reveal" style="--d:.1s">
+        <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Viken rundt</h3>
+        <ul class="chips">
+          <li>Bærum <span class="mono">30–40 MIN</span></li>
+          <li>Asker <span class="mono">35–45</span></li>
+          <li>Lillestrøm <span class="mono">30–40</span></li>
+          <li>Nordre Follo <span class="mono">30–40</span></li>
+          <li>Lørenskog <span class="mono">25–35</span></li>
+          <li>Nesodden <span class="mono">40–50</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="areas-note reveal"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16.4h.01"/></svg>Tidene er veiledende utenom rush. Akuttutrykninger prioriteres alltid — ved fare for liv, barn alene inne eller åpen komfyr, si fra i telefonen, så kjører vi uansett.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq-sec" id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">10 · Spørsmål &amp; svar</span>
+      <h2>Spørsmålene vi får <em>oftest.</em></h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hva koster det å ringe en låsesmed?<span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div><p>Du får alltid fast pris før vi kjører. Dagtid starter en opplåsing fra 1 490 kr inkludert kjøring i Oslo; kveld, natt og helg fra 2 490 kr. Låsbytte prises fast etter sylindermodell — du ser totalbeløpet før montøren begynner.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hvor raskt er dere fremme?<span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div><p>I Oslo sentrum og indre by typisk 20–30 minutter, i ytre by og Viken 30–45 minutter. Ved fare for liv, barn alene inne eller åpen komfyr prioriterer vi utrykningen foran alt annet — si fra når du ringer.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Må jeg legitimere meg ved opplåsing?<span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div><p>Ja — alltid. Vi kontrollerer gyldig legitimasjon før døren åpnes, fordi det beskytter deg. Har du ikke ID på stedet, kan identiteten bekreftes gjennom styre, nabo eller utleier. Vi åpner aldri en dør uten kontroll.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Kan dere åpne døren uten å skade låsen?<span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div><p>I rundt 9 av 10 tilfeller, ja. Montørene våre bruker spesialverktøy og åpningsteknikker som bevarer både dør og sylinder. Må en sylinder borres opp, gjør vi det bare med ditt samtykke — og erstatter den med en ny der og da.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Dekker forsikringen låsbytte?<span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div><p>Ved innbrudd, innbruddsforsøk eller tyveri av nøkler dekkes låsbytte ofte av innboforsikringen. Vi dokumenterer alt arbeid med foto og rapport, slik at du kan sende kravet direkte til selskapet ditt.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Kan bedrifter få faktura og serviceavtale?<span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-a"><div><p>Ja. Næringskunder får faste priser, faktura med EHF og valgfri serviceavtale med garantert responstid. Mange av kundene våre er gårdeiere, borettslag og facilities managers som har én fast kontakt hos oss.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact dark-sec" id="kontakt">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <span class="eyebrow">11 · Kontakt</span>
+        <h2>Snakk med <em>et menneske.</em></h2>
+        <a class="big-phone" href="tel:+4722124000">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          22 12 40 00
+        </a>
+        <p class="contact-sub">Døgnet rundt, hver dag i året. Står du utenfor en dør akkurat nå, er dette nummeret det eneste du trenger.</p>
+        <div class="contact-meta">
+          <div class="cm-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><b>Butikk &amp; verksted</b><span>Grensen 12, 0159 Oslo — to minutter fra Stortinget T-bane</span></div>
+          </div>
+          <div class="cm-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M22 7l-10 6L2 7"/></svg>
+            <div><b>E-post</b><span class="mono">post@sikkerlaas.no · vakt@sikkerlaas.no</span></div>
+          </div>
+          <div class="cm-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 2.5h6v3H9z"/></svg>
+            <div><b>Faktura &amp; forsikring</b><span>EHF-faktura, kort og Vipps. Dokumentasjon til forsikringsselskapet følger alltid med.</span></div>
+          </div>
+        </div>
+        <table class="hours">
+          <tbody>
+            <tr><td>Akuttvakt</td><td>DØGNÅPENT · 24/7/365</td></tr>
+            <tr><td>Kontor &amp; rådgivning</td><td>HVERDAGER 08–16</td></tr>
+            <tr><td>Butikk &amp; nøkkelservice</td><td>HVERDAGER 09–17 · LØR 10–14</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-card reveal" style="--d:.12s">
+        <form id="contactForm" novalidate>
+          <h3>Be om tilbud eller bestill time</h3>
+          <p class="fc-sub">For alt som ikke haster. Vi svarer innen 15 minutter i kontortiden — haster det, ring i stedet.</p>
+          <div class="f-grid">
+            <div class="f-field"><label for="fName">Navn *</label><input id="fName" name="name" type="text" autocomplete="name" placeholder="Kari Nordmann" required></div>
+            <div class="f-field"><label for="fPhone">Telefon *</label><input id="fPhone" name="phone" type="tel" autocomplete="tel" placeholder="900 00 000" required></div>
+            <div class="f-field"><label for="fZip">Postnummer / sted</label><input id="fZip" name="zip" type="text" autocomplete="postal-code" placeholder="0159 Oslo"></div>
+            <div class="f-field"><label for="fService">Hva gjelder det?</label>
+              <select id="fService" name="service">
+                <option>Låsbytte</option>
+                <option>Innbruddssikring</option>
+                <option>Elektronisk lås</option>
+                <option>Adgangskontroll</option>
+                <option>Nøkkelsystem</option>
+                <option>Gratis sikkerhetssjekk / befaring</option>
+                <option>Annet</option>
+              </select>
+            </div>
+            <div class="f-field full"><label for="fMsg">Melding</label><textarea id="fMsg" name="message" placeholder="Fortell kort om døren, låsen eller bygget — så stiller vi forberedt."></textarea></div>
+          </div>
+          <p class="f-privacy">Ved å sende inn godtar du at vi kontakter deg om henvendelsen. Ingen lagring utover det. Se personvernerklæringen vår.</p>
+          <button class="btn btn-signal btn-block" type="submit">Send forespørsel <span class="arrow">→</span></button>
+        </form>
+        <div class="f-success" id="formSuccess" hidden>
+          <span class="ok-ring"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>
+          <h4>Takk! Meldingen er mottatt.</h4>
+          <p>Vi svarer deg innen 15 minutter i kontortiden. Haster det likevel mer enn du trodde — ring <a href="tel:+4722124000" style="text-decoration:underline;text-underline-offset:3px"><strong>22 12 40 00</strong></a>.</p>
+          <button class="btn btn-outline btn-sm" id="formReset">Send en ny melding</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#topp">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" style="width:38px;height:38px">
+            <rect width="64" height="64" rx="15" fill="#D8B45E"/>
+            <circle cx="32" cy="24.5" r="9.5" fill="none" stroke="#081712" stroke-width="4"/>
+            <rect x="28.5" y="30" width="7" height="20" rx="3.2" fill="#081712"/>
+            <rect x="35" y="38" width="6" height="4" rx="2" fill="#081712"/>
+          </svg>
+          <span class="brand-text"><span class="brand-name">Sikker Lås</span><span class="brand-sub">Låsesmed · Oslo · AS</span></span>
+        </a>
+        <p class="footer-blurb">Låsesmedfaget siden 2009. Akutt hjelp når det gjelder, og moderne sikring som holder deg ett steg foran.</p>
+        <div class="f-badges">
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Medlem av Norges Låsesmedforbund</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>FG-godkjente produkter</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>Godkjent for forsikringsutbedring</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Tjenester</h4>
+        <ul>
+          <li><a href="#akutt">Døgnåpen låsesmed</a></li>
+          <li><a href="#tjenester">Åpning av dører</a></li>
+          <li><a href="#tjenester">Låsbytte &amp; sylinder</a></li>
+          <li><a href="#tjenester">Innbruddssikring</a></li>
+          <li><a href="#teknologi">Adgangskontroll</a></li>
+          <li><a href="#teknologi">Nøkkelsystemer</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Selskapet</h4>
+        <ul>
+          <li><a href="#prosess">Slik jobber vi</a></li>
+          <li><a href="#oppdrag">Oppdragslogg</a></li>
+          <li><a href="#omtaler">Anmeldelser</a></li>
+          <li><a href="#faq">Spørsmål &amp; svar</a></li>
+          <li><a href="#kontakt">Personvern</a></li>
+          <li><a href="#kontakt">Jobbe hos oss</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <address>
+          Grensen 12, 0159 Oslo<br>
+          <a href="tel:+4722124000">22 12 40 00</a> (døgnåpent)<br>
+          <a href="mailto:post@sikkerlaas.no">post@sikkerlaas.no</a><br>
+          Org.nr 921 847 365 MVA
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> SIKKER LÅS AS · ALLE RETTIGHETER FORBEHOLDT</span>
+      <span>KONSEPT &amp; DESIGN: <a href="#topp">FJELLROM STUDIO</a> — DEMOPROSJEKT FOR PORTEFØLJE</span>
+      <a href="#topp">TIL TOPPEN ↑</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky mobile CTA -->
+<div class="mobile-cta">
+  <a class="btn btn-signal" href="tel:+4722124000"><span class="pulse-dot" style="background:#fff"></span>Ring låsesmed nå</a>
+  <a class="btn btn-dark" href="#kontakt">Bestill time</a>
+</div>
+
+<noscript><style>.reveal{opacity:1;transform:none}</style><p style="text-align:center;padding:1rem;font-family:sans-serif">Noen interaktive funksjoner (veiviser, sikkerhetssjekk) krever JavaScript. Du kan alltid ringe oss på <a href="tel:+4722124000"><strong>22 12 40 00</strong></a>.</p></noscript>
+
+<script>
+(function(){
+"use strict";
+var $=function(s,c){return (c||document).querySelector(s);};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));};
+var reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var isTouch=window.matchMedia("(hover: none)").matches;
+
+/* ---- Klokke (Oslo) ---- */
+var clockEl=$("#osloClock");
+function tickClock(){
+  try{
+    clockEl.textContent=new Intl.DateTimeFormat("nb-NO",{timeZone:"Europe/Oslo",hour:"2-digit",minute:"2-digit",second:"2-digit"}).format(new Date());
+  }catch(e){ clockEl.textContent=new Date().toLocaleTimeString("nb-NO"); }
+}
+if(clockEl){ tickClock(); setInterval(tickClock,1000); }
+
+/* ---- År ---- */
+var y=$("#year"); if(y){ y.textContent=new Date().getFullYear(); }
+
+/* ---- Header-skygge ---- */
+var header=$("#siteHeader");
+window.addEventListener("scroll",function(){
+  header.classList.toggle("scrolled",window.scrollY>8);
+},{passive:true});
+
+/* ---- Mobilmeny ---- */
+var menu=$("#mMenu"),burger=$("#burger"),menuClose=$("#mMenuClose");
+function setMenu(open){
+  menu.classList.toggle("open",open);
+  menu.setAttribute("aria-hidden",String(!open));
+  burger.setAttribute("aria-expanded",String(open));
+  document.body.classList.toggle("menu-lock",open);
+}
+burger.addEventListener("click",function(){ setMenu(true); });
+menuClose.addEventListener("click",function(){ setMenu(false); });
+$$("[data-close-menu]",menu).forEach(function(a){ a.addEventListener("click",function(){ setMenu(false); }); });
+document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&menu.classList.contains("open")) setMenu(false); });
+
+/* ---- Scroll-reveal ---- */
+var revealEls=$$(".reveal");
+if("IntersectionObserver" in window && !reduced){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+  },{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+  revealEls.forEach(function(el){ io.observe(el); });
+}else{
+  revealEls.forEach(function(el){ el.classList.add("in"); });
+}
+
+/* ---- Tellere ---- */
+function runCounter(el){
+  var target=parseFloat(el.getAttribute("data-count"));
+  var dec=parseInt(el.getAttribute("data-decimals")||"0",10);
+  var suf=el.getAttribute("data-suffix")||"";
+  function fmt(v){ return v.toLocaleString("nb-NO",{minimumFractionDigits:dec,maximumFractionDigits:dec}); }
+  if(reduced){ el.textContent=fmt(target)+suf; return; }
+  var dur=1500,t0=null;
+  function step(t){
+    if(!t0) t0=t;
+    var p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=fmt(target*e)+suf;
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+var nums=$$(".stat-num");
+if("IntersectionObserver" in window){
+  var io2=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ runCounter(en.target); io2.unobserve(en.target); } });
+  },{threshold:.5});
+  nums.forEach(function(n){ io2.observe(n); });
+}else{ nums.forEach(runCounter); }
+
+/* ---- Lås-demo i hero ---- */
+var demo=$("#lockDemo"),lockBtn=$("#lockToggle"),lockTxt=$("#lockStatusText"),lockLbl=$("#lockToggleLabel");
+if(lockBtn){
+  lockBtn.addEventListener("click",function(){
+    var unlocked=demo.classList.toggle("unlocked");
+    lockTxt.textContent=unlocked?"ÅPEN":"LÅST";
+    lockLbl.textContent=unlocked?"Snu nøkkelen — lås igjen":"Snu nøkkelen — lås opp";
+    lockBtn.setAttribute("aria-label",lockLbl.textContent);
+  });
+}
+/* subtil 3D-tilt på panelet */
+if(demo && !reduced && !isTouch){
+  demo.addEventListener("mousemove",function(e){
+    var r=demo.getBoundingClientRect();
+    var px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+    demo.style.transform="perspective(950px) rotateX("+(py*-4)+"deg) rotateY("+(px*5)+"deg)";
+  });
+  demo.addEventListener("mouseleave",function(){ demo.style.transform=""; });
+}
+
+/* ---- Veiviser ---- */
+var gTabs=$$(".guide-tab");
+gTabs.forEach(function(tab,i){
+  tab.addEventListener("click",function(){
+    gTabs.forEach(function(t,j){
+      t.setAttribute("aria-selected",String(j===i));
+      var p=document.getElementById(t.getAttribute("aria-controls"));
+      if(p) p.hidden=(j!==i);
+    });
+    var panel=document.getElementById(tab.getAttribute("aria-controls"));
+    if(panel){ panel.style.animation="none"; void panel.offsetWidth; panel.style.animation=""; }
+  });
+});
+
+/* ---- Teknologi-tabs ---- */
+var tTabs=$$(".tech-tab");
+tTabs.forEach(function(tab,i){
+  tab.addEventListener("click",function(){
+    tTabs.forEach(function(t,j){
+      t.setAttribute("aria-selected",String(j===i));
+      var p=document.getElementById(t.getAttribute("aria-controls"));
+      if(p) p.hidden=(j!==i);
+    });
+  });
+});
+
+/* ---- FAQ ---- */
+$$(".faq-q").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var item=btn.closest(".faq-item"),wasOpen=item.classList.contains("open");
+    $$(".faq-item").forEach(function(it){
+      it.classList.remove("open");
+      $(".faq-q",it).setAttribute("aria-expanded","false");
+    });
+    if(!wasOpen){ item.classList.add("open"); btn.setAttribute("aria-expanded","true"); }
+  });
+});
+
+/* ---- Sikkerhetssjekk ---- */
+var quizBody=$("#quizBody"),quizStep=$("#quizStep"),quizFill=$("#quizBarFill");
+var QUESTIONS=[
+  {q:"Hva slags bolig eller lokale gjelder det?",sub:"Velg det som passer best.",opts:[
+    {t:"Leilighet",pts:0},{t:"Enebolig eller rekkehus",pts:2},{t:"Bedrift eller fellesareal",pts:2,biz:true}]},
+  {q:"Hvordan vil du beskrive hovedlåsen i dag?",sub:"",opts:[
+    {t:"Elektronisk lås eller ny FG-sylinder",pts:0},{t:"Nyere, vanlig sylinderlås",pts:2},{t:"Eldre enn ti år — eller vet ikke",pts:4}]},
+  {q:"Hvor mange innganger har boligen eller lokalet?",sub:"Tenk ytterdører, kjellerinngang og garasjedør.",opts:[
+    {t:"Én",pts:0},{t:"To",pts:2},{t:"Tre eller flere",pts:4}]},
+  {q:"Er det terrassedør, balkong eller vinduer som er lett tilgjengelige?",sub:"For eksempel fra bakkenivå, tak eller et tre.",opts:[
+    {t:"Nei, ikke spesielt",pts:0},{t:"Ja",pts:3}]},
+  {q:"Har noen nøkler kommet på avveie de siste årene?",sub:"Mistet, stjålet — eller et nøkkelknippe ingen helt husker hvor er.",opts:[
+    {t:"Nei",pts:0},{t:"Ja — eller jeg er usikker",pts:4}]},
+  {q:"Har du eller naboer hatt innbrudd eller forsøk de siste to årene?",sub:"",opts:[
+    {t:"Nei",pts:0},{t:"Ja",pts:3}]},
+  {q:"Hvor mange personer har nøkkel eller tilgang i dag?",sub:"Inkludert tidligere beboere, vaskehjelp og håndverkere.",opts:[
+    {t:"Bare meg / husstanden",pts:0},{t:"Fem eller flere — eller usikker",pts:3}]}
+];
+var MAXRISK=23, qIdx=0, answers=[];
+function setProgress(){
+  quizFill.style.width=((qIdx)/QUESTIONS.length*100)+"%";
+  quizStep.textContent="Steg "+(qIdx+1)+" av "+QUESTIONS.length;
+}
+function animBody(){
+  quizBody.classList.remove("anim"); void quizBody.offsetWidth; quizBody.classList.add("anim");
+}
+function renderIntro(){
+  qIdx=0; answers=[];
+  quizFill.style.width="0%";
+  quizStep.textContent="Klar til start";
+  quizBody.innerHTML=
+    '<h3 class="q-title">Sikkerhetssjekken for bolig og bedrift</h3>'+
+    '<p class="q-sub">Du svarer på sju raske spørsmål og får umiddelbart et estimat på sikkerhetsnivået — med forslag til tiltak i prioritert rekkefølge.</p>'+
+    '<ul class="guide-steps" style="margin-bottom:2rem">'+
+    '<li>Estimatet bygges av svarene dine, lokalt i nettleseren.</li>'+
+    '<li>Ingen kontaktinformasjon, ingen lagring, ingen oppfølgingssamtaler.</li>'+
+    '<li>Vil du heller ha proffene hit: befaringen er gratis og uforpliktende.</li>'+
+    '</ul>'+
+    '<div style="margin-top:auto"><button class="btn btn-dark btn-block" id="quizStart">Start sikkerhetssjekken <span class="arrow">→</span></button></div>';
+  $("#quizStart").addEventListener("click",function(){ renderQuestion(); });
+  animBody();
+}
+function renderQuestion(){
+  var q=QUESTIONS[qIdx];
+  setProgress();
+  var html='<h3 class="q-title">'+q.q+'</h3>'+(q.sub?'<p class="q-sub">'+q.sub+'</p>':'');
+  html+='<div class="q-opts">';
+  q.opts.forEach(function(o,i){
+    html+='<button class="q-opt" data-i="'+i+'"><span>'+o.t+'</span><span class="k">'+(i+1)+'/'+q.opts.length+'</span></button>';
+  });
+  html+='</div>';
+  html+='<div class="q-nav">'+(qIdx>0?'<button class="q-back" id="qBack">← Tilbake</button>':'<span></span>')+'<span class="mono" style="font-size:.68rem;color:var(--ink-3)">VELG FOR Å GÅ VIDERE</span></div>';
+  quizBody.innerHTML=html;
+  animBody();
+  $$(".q-opt",quizBody).forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var i=parseInt(btn.getAttribute("data-i"),10);
+      answers[qIdx]=q.opts[i];
+      btn.classList.add("picked");
+      setTimeout(function(){
+        qIdx++;
+        if(qIdx<QUESTIONS.length){ renderQuestion(); } else { renderResult(); }
+      },200);
+    });
+  });
+  var back=$("#qBack");
+  if(back){ back.addEventListener("click",function(){ qIdx--; renderQuestion(); }); }
+}
+function renderResult(){
+  quizFill.style.width="100%";
+  quizStep.textContent="Ferdig · resultatet ditt";
+  var risk=answers.reduce(function(s,o){ return s+o.pts; },0);
+  var score=Math.max(4,Math.round(100-(risk/MAXRISK)*100));
+  var biz=!!(answers[0]&&answers[0].biz);
+  var level,tone,desc;
+  if(score>=80){ level="Solid grunnlag"; tone="good"; desc="Du har allerede mye på plass. Noen få justeringer gjør deg enda vanskeligere å overraske."; }
+  else if(score>=60){ level="Godt — men med åpne flanker"; tone="mid"; desc="Grunnsikringen er grei, men svarene dine peker mot noen typiske svakheter. De er enkle å tette."; }
+  else { level="Sårbart"; tone="low"; desc="Svarene tyder på flere svake punkt enn vi liker å se. De gode nyhetene: alt er mulig å gjøre noe med — raskt."; }
+  var m=[];
+  var a1=answers[1];
+  if(a1&&a1.pts===4){ m.push({p:"h",t:"Bytt til FG-godkjent sikringssylinder",d:"Klasse 3 med anti-borr og anti-plock. Den vanligste svakheten vi finner — og den raskeste å fikse."}); }
+  else if(a1&&a1.pts===2){ m.push({p:"m",t:"Oppgrader sylinderen ved neste bytte",d:"En FG-godkjent sylinder med kopisperrede nøkler løfter nivået merkbart for en rimelig penge."}); }
+  var a2=answers[2];
+  if(a2&&a2.pts>=2){ m.push(biz
+    ?{p:"m",t:"Samle inngangene i adgangskontroll",d:"Rettigheter per person og tidssone, full logg — og én mistet enhet sperres på sekunder."}
+    :{p:"m",t:"Samle inngangene i én løsning",d:"Flere innganger betyr flere glemte dører. Elektroniske låser med auto-lås fjinner problemet."}); }
+  var a3=answers[3];
+  if(a3&&a3.pts>0){ m.push({p:"m",t:"Sikre terrasse- og vindusåpninger",d:"Låsbare hasper, vindussikring og fjerning av klatrehjelp. De fleste innbrudd skjer ikke gjennom hoveddøren."}); }
+  var a4=answers[4];
+  if(a4&&a4.pts>0){ m.push({p:"h",t:"Bytt sylinder — nøkler er på avveie",d:"En mistet nøkkel kan være kopiert uten at du vet det. Ny sylinder med registrerte nøkler nullstiller risikoen samme dag."}); }
+  var a5=answers[5];
+  if(a5&&a5.pts>0){ m.push({p:"h",t:"Forsterkningsbeslag og kjettinglås",d:"Mekanisk forsterkning av dør og karm gjør at forsøk tar tid og bråker — det tyvene minst vil ha."}); }
+  var a6=answers[6];
+  if(a6&&a6.pts>0){ m.push({p:"m",t:"Få kontroll på hvem som har tilgang",d:"Registrerte nøkler i et nøkkelsystem gir deg oversikt — og retten til å sperre kopiering."}); }
+  if(biz){ m.push({p:"m",t:"Vurder skybasert adgangsstyring",d:"For bedrifter: kort, mobil og logging i én portal. Slutt på nøkkelknipper som vandrer."}); }
+  m.push({p:"i",t:"Gratis befaring med skriftlig rapport",d:"En låsesmed ser det testen ikke kan se. Du får faste priser på hvert tiltak — helt uforpliktende."});
+  var prioLabel={h:"Høy",m:"Middels",i:"Tips"};
+  var html='<div class="q-score">'+
+    '<span class="big"><span id="scoreNum">0</span><small>/100</small></span>'+
+    '<div class="q-level '+tone+'"><span class="tag">'+level+'</span><p>'+desc+'</p></div></div>'+
+    '<div class="q-gauge"><i id="scoreFill"></i></div>'+
+    '<ul class="q-measures">';
+  m.forEach(function(item){
+    html+='<li><span class="prio prio-'+item.p+'">'+prioLabel[item.p]+'</span><span><b>'+item.t+'</b><span>'+item.d+'</span></span></li>';
+  });
+  html+='</ul><div class="guide-ctas" style="margin-top:auto">'+
+    '<a class="btn btn-dark" href="#kontakt">Få sikkerhetssjekk med befaring <span class="arrow">→</span></a>'+
+    '<button class="btn btn-outline" id="quizRestart">Start på nytt</button></div>'+
+    '<p class="q-fineprint">Forenklet estimat basert på '+QUESTIONS.length+' svar — en befaring gir deg det komplette bildet.</p>';
+  quizBody.innerHTML=html;
+  animBody();
+  requestAnimationFrame(function(){ $("#scoreFill").style.width=score+"%"; });
+  var numEl=$("#scoreNum");
+  if(reduced){ numEl.textContent=score; }
+  else{
+    var t0=null;
+    requestAnimationFrame(function step(t){
+      if(!t0) t0=t;
+      var p=Math.min(1,(t-t0)/1200), e=1-Math.pow(1-p,3);
+      numEl.textContent=Math.round(score*e);
+      if(p<1) requestAnimationFrame(step);
+    });
+  }
+  $("#quizRestart").addEventListener("click",renderIntro);
+}
+if(quizBody){ renderIntro(); }
+
+/* ---- Skjema ---- */
+var form=$("#contactForm"),success=$("#formSuccess");
+if(form){
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var name=$("#fName").value.trim(),phone=$("#fPhone").value.trim();
+    if(!name||!phone){
+      if(!name){ $("#fName").focus(); $("#fName").style.borderColor="var(--signal)"; }
+      else{ $("#fPhone").focus(); $("#fPhone").style.borderColor="var(--signal)"; }
+      return;
+    }
+    form.hidden=true;
+    success.hidden=false;
+  });
+  ["#fName","#fPhone"].forEach(function(sel){
+    $(sel).addEventListener("input",function(){ $(sel).style.borderColor=""; });
+  });
+  $("#formReset").addEventListener("click",function(){
+    form.reset(); success.hidden=true; form.hidden=false;
+  });
+}
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

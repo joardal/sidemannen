@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selskap & Smak Catering | Eksklusiv Catering & Eventer i Oslo & Viken</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0D10',
+                            charcoal: '#14171D',
+                            surface: '#1E222A',
+                            accent: '#C5A059',
+                            accentHover: '#B08C46',
+                            goldLight: '#EBD49B',
+                            cream: '#FAF8F5',
+                            creamDarker: '#F2EDE4',
+                            muted: '#8E95A2',
+                            sage: '#2D3A30',
+                            terracotta: '#C86D51'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0D10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A2F3A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C5A059;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-dark {
+            background: rgba(20, 23, 29, 0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 34, 42, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 89, 0.18);
+        }
+
+        /* Gold Gradient Text */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #F5E2B3 0%, #C5A059 50%, #8A682B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Image Zoom Hover */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-container img {
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.06);
+        }
+
+        /* Modal Transition */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: #2D333F;
+            height: 6px;
+            border-radius: 3px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            background: #C5A059;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(197, 160, 89, 0.6);
+            transition: transform 0.15s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body class="bg-brand-dark text-gray-200 font-sans antialiased selection:bg-brand-accent selection:text-brand-dark">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-brand-charcoal via-brand-sage to-brand-charcoal border-b border-brand-accent/20 py-2.5 px-4 text-center text-xs sm:text-sm font-medium tracking-wide text-brand-goldLight flex items-center justify-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+        <span>Åpent for booking julebord 2026 & vårbryllup 2027 • Reserver din dato i dag</span>
+        <a href="#kalkulator" class="underline ml-2 hover:text-white transition-colors">Planlegg arrangement &rarr;</a>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header id="main-header" class="sticky top-0 z-40 transition-all duration-300 glass-dark border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- LOGO -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border border-brand-accent/40 flex items-center justify-center bg-brand-surface/80 group-hover:border-brand-accent transition-colors">
+                    <span class="font-serif italic text-brand-accent text-xl font-bold">S&S</span>
+                </div>
+                <div>
+                    <span class="block font-serif text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-brand-goldLight transition-colors">
+                        Selskap & Smak
+                    </span>
+                    <span class="block text-[10px] uppercase tracking-[0.25em] text-brand-muted -mt-1 font-semibold">
+                        Catering & Events
+                    </span>
+                </div>
+            </a>
+
+            <!-- DESKTOP NAV -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#konsepter" class="hover:text-brand-accent transition-colors">Konsepter</a>
+                <a href="#menyer" class="hover:text-brand-accent transition-colors">Menyer & Pakker</a>
+                <a href="#opplevelsen" class="hover:text-brand-accent transition-colors">Opplevelsen</a>
+                <a href="#kalkulator" class="hover:text-brand-accent transition-colors">Priskalkulator</a>
+                <a href="#lokaler" class="hover:text-brand-accent transition-colors">Lokaler</a>
+                <a href="#referanser" class="hover:text-brand-accent transition-colors">Omtaler</a>
+                <a href="#kontakt" class="hover:text-brand-accent transition-colors">Kontakt</a>
+            </nav>
+
+            <!-- HEADER ACTIONS -->
+            <div class="flex items-center gap-3">
+                <!-- Basket trigger -->
+                <button onclick="toggleBasketDrawer()" class="relative p-2.5 rounded-full bg-brand-surface border border-brand-accent/30 text-brand-goldLight hover:bg-brand-accent hover:text-brand-dark transition-all duration-300 flex items-center gap-2 text-xs font-semibold px-3.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <span class="hidden sm:inline">Min Meny</span>
+                    <span id="basket-badge" class="w-5 h-5 rounded-full bg-brand-accent text-brand-dark font-bold text-[11px] flex items-center justify-center">0</span>
+                </button>
+
+                <a href="#kalkulator" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-brand-accent to-brand-accentHover text-brand-dark font-semibold text-xs tracking-wider uppercase shadow-lg shadow-brand-accent/20 hover:shadow-brand-accent/40 hover:scale-[1.02] transition-all">
+                    <span>Få Tilbud</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileNav()" class="lg:hidden p-2 rounded-lg bg-brand-surface text-gray-300 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- MOBILE NAV DRAWER -->
+        <div id="mobile-nav" class="hidden lg:hidden bg-brand-charcoal/95 border-b border-brand-accent/20 px-6 py-6 space-y-4">
+            <a href="#konsepter" onclick="toggleMobileNav()" class="block text-base font-medium text-gray-200 hover:text-brand-accent">Arrangementkonsepter</a>
+            <a href="#menyer" onclick="toggleMobileNav()" class="block text-base font-medium text-gray-200 hover:text-brand-accent">Menyer & Pakker</a>
+            <a href="#opplevelsen" onclick="toggleMobileNav()" class="block text-base font-medium text-gray-200 hover:text-brand-accent">Opplevelsen</a>
+            <a href="#kalkulator" onclick="toggleMobileNav()" class="block text-base font-medium text-gray-200 hover:text-brand-accent">Interaktiv Priskalkulator</a>
+            <a href="#lokaler" onclick="toggleMobileNav()" class="block text-base font-medium text-gray-200 hover:text-brand-accent">Selskapslokaler</a>
+            <a href="#referanser" onclick="toggleMobileNav()" class="block text-base font-medium text-gray-200 hover:text-brand-accent">Kundeomtaler</a>
+            <a href="#kontakt" onclick="toggleMobileNav()" class="block text-base font-medium text-gray-200 hover:text-brand-accent">Kontakt & Booking</a>
+            <div class="pt-4 border-t border-gray-800">
+                <a href="#kalkulator" onclick="toggleMobileNav()" class="block text-center w-full py-3 rounded-full bg-brand-accent text-brand-dark font-bold uppercase text-xs tracking-wider">
+                    Planlegg Arrangement
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-16 lg:py-24">
+        <!-- Hero Background Image & Gradient Overlays -->
+        <div class="absolute inset-0 z-0">
+            <img src="images/photo-11.jpg" 
+                 alt="Selskap & Smak Catering gourmet banquet" 
+                 class="w-full h-full object-cover object-center scale-105 filter brightness-75">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-brand-dark/40"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-brand-dark/50 to-brand-dark"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface/90 border border-brand-accent/40 text-brand-goldLight text-xs font-semibold tracking-wider uppercase mb-6 shadow-2xl backdrop-blur-md">
+                <svg class="w-4 h-4 text-brand-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <span>Skreddersydd Catering i Særklasse • Oslo & Viken</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.08] max-w-5xl mx-auto mb-6">
+                Kulinariske kunstverk for <span class="gold-gradient-text italic font-normal">uforglemmelige</span> øyeblikk.
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-base sm:text-xl text-gray-300 font-light max-w-3xl mx-auto mb-10 leading-relaxed">
+                Fra storslåtte bryllup og eksklusive firmafester til unike selskapsmenyer og sprudlende fingermat. Vi foredler kortreiste norske råvarer til uforglemmelige smaker og visuelle opplevelser.
+            </p>
+
+            <!-- Hero CTAs -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#kalkulator" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-brand-accent to-brand-accentHover text-brand-dark font-bold text-sm tracking-wider uppercase shadow-2xl shadow-brand-accent/30 hover:scale-105 transition-all flex items-center justify-center gap-3">
+                    <span>Planlegg Arrangement</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <a href="#menyer" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-surface/80 border border-white/20 text-white font-semibold text-sm tracking-wider uppercase hover:bg-white/10 hover:border-brand-accent transition-all flex items-center justify-center gap-2 backdrop-blur-md">
+                    <svg class="w-4 h-4 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <span>Se Menyer & Priser</span>
+                </a>
+            </div>
+
+            <!-- HERO QUICK SELECTOR BAR -->
+            <div class="max-w-4xl mx-auto glass-dark rounded-2xl p-4 sm:p-6 border border-brand-accent/30 shadow-2xl">
+                <div class="text-xs uppercase tracking-widest text-brand-accent font-semibold mb-3 text-left">Hva skal du feire?</div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
+                    <button onclick="quickFilterHero('bryllup')" class="p-3 rounded-xl bg-brand-surface/60 hover:bg-brand-accent/20 border border-white/5 hover:border-brand-accent text-left transition-all group">
+                        <span class="block text-xs font-bold text-white group-hover:text-brand-goldLight">Bryllup & Galla</span>
+                        <span class="text-[11px] text-brand-muted">3-5 retter & hovmester</span>
+                    </button>
+                    <button onclick="quickFilterHero('firma')" class="p-3 rounded-xl bg-brand-surface/60 hover:bg-brand-accent/20 border border-white/5 hover:border-brand-accent text-left transition-all group">
+                        <span class="block text-xs font-bold text-white group-hover:text-brand-goldLight">Firma & Event</span>
+                        <span class="text-[11px] text-brand-muted">Mingel & bedriftsmeny</span>
+                    </button>
+                    <button onclick="quickFilterHero('tapas')" class="p-3 rounded-xl bg-brand-surface/60 hover:bg-brand-accent/20 border border-white/5 hover:border-brand-accent text-left transition-all group">
+                        <span class="block text-xs font-bold text-white group-hover:text-brand-goldLight">Eksklusiv Tapas</span>
+                        <span class="text-[11px] text-brand-muted">12 unike delikatesser</span>
+                    </button>
+                    <button onclick="quickFilterHero('selskap')" class="p-3 rounded-xl bg-brand-surface/60 hover:bg-brand-accent/20 border border-white/5 hover:border-brand-accent text-left transition-all group">
+                        <span class="block text-xs font-bold text-white group-hover:text-brand-goldLight">Private Selskaper</span>
+                        <span class="text-[11px] text-brand-muted">Konfirmasjon & Jubileum</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROOF / STATS STRIP -->
+    <section class="bg-brand-charcoal border-y border-white/10 py-10 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4 border-r border-white/5 last:border-0">
+                    <div class="font-serif text-3xl sm:text-4xl font-bold text-brand-goldLight">1 200+</div>
+                    <div class="text-xs uppercase tracking-wider text-brand-muted mt-1 font-medium">Gjennomførte Eventer</div>
+                </div>
+                <div class="p-4 border-r border-white/5 last:border-0">
+                    <div class="font-serif text-3xl sm:text-4xl font-bold text-brand-goldLight">98%</div>
+                    <div class="text-xs uppercase tracking-wider text-brand-muted mt-1 font-medium">Fornøyde Arrangører</div>
+                </div>
+                <div class="p-4 border-r border-white/5 last:border-0">
+                    <div class="font-serif text-3xl sm:text-4xl font-bold text-brand-goldLight">100%</div>
+                    <div class="text-xs uppercase tracking-wider text-brand-muted mt-1 font-medium">Kortreiste Råvarer</div>
+                </div>
+                <div class="p-4">
+                    <div class="font-serif text-3xl sm:text-4xl font-bold text-brand-goldLight">15 År</div>
+                    <div class="text-xs uppercase tracking-wider text-brand-muted mt-1 font-medium">Mesterkokk-Erfaring</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONCEPT SHOWCASE SECTION -->
+    <section id="konsepter" class="py-24 bg-brand-dark relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-accent block mb-2">Visuelle Konsepter</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white">
+                        Mat som skaper <span class="italic font-normal gold-gradient-text">stemning</span>.
+                    </h2>
+                </div>
+                <p class="text-gray-400 max-w-md text-sm mt-4 md:mt-0 font-light">
+                    Hvert arrangement har sin egen karakter. Vi skreddersyr serveringsform, porsjonering og presentasjon til din visjon.
+                </p>
+            </div>
+
+            <!-- TAB CONTROLS -->
+            <div class="flex flex-wrap gap-2 mb-10 border-b border-white/10 pb-4">
+                <button onclick="switchConceptTab('bryllup')" id="tab-bryllup" class="concept-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-brand-accent text-brand-dark shadow-lg">
+                    Bryllup & Galla
+                </button>
+                <button onclick="switchConceptTab('firma')" id="tab-firma" class="concept-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-brand-surface text-gray-400 hover:text-white border border-white/5">
+                    Firma & Representasjon
+                </button>
+                <button onclick="switchConceptTab('tapas')" id="tab-tapas" class="concept-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-brand-surface text-gray-400 hover:text-white border border-white/5">
+                    Eksklusiv Tapas
+                </button>
+                <button onclick="switchConceptTab('selskapsmeny')" id="tab-selskapsmeny" class="concept-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-brand-surface text-gray-400 hover:text-white border border-white/5">
+                    Nordisk Chef's Table
+                </button>
+                <button onclick="switchConceptTab('fingermat')" id="tab-fingermat" class="concept-tab px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-brand-surface text-gray-400 hover:text-white border border-white/5">
+                    Fingermat & Cocktail
+                </button>
+            </div>
+
+            <!-- TAB CONTENT CONTAINER -->
+            <div id="concept-display" class="glass-card rounded-3xl p-6 lg:p-10 border border-brand-accent/20">
+                <!-- Dynamic Content injected via JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MENU EXPLORER SECTION -->
+    <section id="menyer" class="py-24 bg-brand-charcoal relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-accent block mb-2">Gastronomisk Menyutvalg</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mb-4">
+                    Smakfulle menyer for enhver <span class="italic font-normal gold-gradient-text">anledning</span>.
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base font-light">
+                    Alle våre menyer lages fra bunnen av med sesongens beste nordiske råvarer. Utforsk pakkene eller sett sammen din egen forespørsel.
+                </p>
+            </div>
+
+            <!-- MENU FILTERS -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+                <button onclick="filterMenus('all')" class="menu-filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-accent text-brand-dark transition-all">Alle Menyer</button>
+                <button onclick="filterMenus('treretters')" class="menu-filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-surface text-gray-400 hover:text-white border border-white/10 transition-all">3-5 Retters Selskap</button>
+                <button onclick="filterMenus('tapas')" class="menu-filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-surface text-gray-400 hover:text-white border border-white/10 transition-all">Tapas & Social Dining</button>
+                <button onclick="filterMenus('fingermat')" class="menu-filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-surface text-gray-400 hover:text-white border border-white/10 transition-all">Fingermat & Buffet</button>
+                <button onclick="filterMenus('bryllup')" class="menu-filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-surface text-gray-400 hover:text-white border border-white/10 transition-all">Bryllupspakker</button>
+                <button onclick="filterMenus('vegansk')" class="menu-filter-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-surface text-gray-400 hover:text-white border border-white/10 transition-all">Grønn & Vegansk</button>
+            </div>
+
+            <!-- MENU GRID -->
+            <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards injected via JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DISH / MENU DETAIL MODAL -->
+    <div id="dish-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 invisible">
+        <div class="bg-brand-surface border border-brand-accent/30 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col">
+            <button onclick="closeDishModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-brand-accent hover:text-brand-dark transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div id="dish-modal-content" class="overflow-y-auto p-6 sm:p-8 space-y-6">
+                <!-- Modal details dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- PROCESS / EXPERIENCE SECTION -->
+    <section id="opplevelsen" class="py-24 bg-brand-dark relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-accent block mb-2">Kvalitet I Hvert Ledd</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mb-4">
+                    Fra idé til <span class="italic font-normal gold-gradient-text">magisk servering</span>.
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base font-light">
+                    Slik sikrer vi at ditt arrangement gjennomføres med perfekt timing, fremragende smak og sømløs logistikk.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <!-- Connecting Line for desktop -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-brand-accent/0 via-brand-accent/40 to-brand-accent/0 -translate-y-12 z-0"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 glass-card p-8 rounded-2xl border border-white/10 hover:border-brand-accent/50 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-full bg-brand-surface border-2 border-brand-accent text-brand-accent font-serif font-bold text-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        01
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-2">Konsultasjon & Skisse</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed font-light">
+                        Vi avklarer format, gjesteantall, tema, sesong og allergier. Du får et komplett menyforslag og uforpliktende pristilbud innen 24 timer.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 glass-card p-8 rounded-2xl border border-white/10 hover:border-brand-accent/50 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-full bg-brand-surface border-2 border-brand-accent text-brand-accent font-serif font-bold text-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        02
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-2">Prøvesmaking</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed font-light">
+                        For større selskaper og bryllup inviterer vi brudepar eller arrangører til prøvesmaking i vårt prøvekjøkken på Skøyen.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 glass-card p-8 rounded-2xl border border-white/10 hover:border-brand-accent/50 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-full bg-brand-surface border-2 border-brand-accent text-brand-accent font-serif font-bold text-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        03
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-2">Kortreiste Råvarer</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed font-light">
+                        Vi henter ferske råvarer direkte fra våre faste gardsbruk i Valdres, Røros, Ryfylke og lokale fiskemottak på Rådhusbrygga.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative z-10 glass-card p-8 rounded-2xl border border-white/10 hover:border-brand-accent/50 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-full bg-brand-surface border-2 border-brand-accent text-brand-accent font-serif font-bold text-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        04
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-2">Sømløs Servering</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed font-light">
+                        Våre kokker og hovmestre rigger til, tilbereder og serverer rykende fersk mat med millimeterpresisjon – og rydder alt etter seg.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE EVENT CALCULATOR & QUOTE WIZARD -->
+    <section id="kalkulator" class="py-24 bg-gradient-to-b from-brand-charcoal via-brand-dark to-brand-charcoal relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-accent block mb-2">Beregne Pris & Planlegg</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mb-4">
+                    Interaktiv <span class="italic font-normal gold-gradient-text">Arrangementskalkulator</span>.
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base font-light">
+                    Test ut ulike kombinasjoner for ditt arrangement. Se estimert totalpris i sanntid og send en uforpliktende forespørsel med ett klikk.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                
+                <!-- WIZARD INPUTS (7 COLS) -->
+                <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-10 border border-brand-accent/30 space-y-8">
+                    
+                    <!-- STEP 1: Arrangementstype -->
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-brand-accent font-bold mb-3">1. Velg Anledning</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <button type="button" onclick="calcSelectType('bryllup', 1190)" class="calc-type-btn p-3 rounded-xl border border-brand-accent bg-brand-accent/20 text-white font-semibold text-xs text-left transition-all">
+                                <span class="block text-sm mb-1">💍 Bryllup & Galla</span>
+                                <span class="text-[10px] text-brand-muted">Fra 1 190,- / pers</span>
+                            </button>
+                            <button type="button" onclick="calcSelectType('firma', 790)" class="calc-type-btn p-3 rounded-xl border border-white/10 bg-brand-surface/60 text-gray-300 font-semibold text-xs text-left hover:border-brand-accent transition-all">
+                                <span class="block text-sm mb-1">🏢 Firma & Event</span>
+                                <span class="text-[10px] text-brand-muted">Fra 790,- / pers</span>
+                            </button>
+                            <button type="button" onclick="calcSelectType('tapas', 690)" class="calc-type-btn p-3 rounded-xl border border-white/10 bg-brand-surface/60 text-gray-300 font-semibold text-xs text-left hover:border-brand-accent transition-all">
+                                <span class="block text-sm mb-1">🍤 Eksklusiv Tapas</span>
+                                <span class="text-[10px] text-brand-muted">Fra 690,- / pers</span>
+                            </button>
+                            <button type="button" onclick="calcSelectType('selskap', 890)" class="calc-type-btn p-3 rounded-xl border border-white/10 bg-brand-surface/60 text-gray-300 font-semibold text-xs text-left hover:border-brand-accent transition-all">
+                                <span class="block text-sm mb-1">🎉 Jubileum / Privat</span>
+                                <span class="text-[10px] text-brand-muted">Fra 890,- / pers</span>
+                            </button>
+                            <button type="button" onclick="calcSelectType('fingermat', 540)" class="calc-type-btn p-3 rounded-xl border border-white/10 bg-brand-surface/60 text-gray-300 font-semibold text-xs text-left hover:border-brand-accent transition-all">
+                                <span class="block text-sm mb-1">🥂 Fingermat / Mingle</span>
+                                <span class="text-[10px] text-brand-muted">Fra 540,- / pers</span>
+                            </button>
+                            <button type="button" onclick="calcSelectType('vegansk', 620)" class="calc-type-btn p-3 rounded-xl border border-white/10 bg-brand-surface/60 text-gray-300 font-semibold text-xs text-left hover:border-brand-accent transition-all">
+                                <span class="block text-sm mb-1">🌱 Grønn Gastronomi</span>
+                                <span class="text-[10px] text-brand-muted">Fra 620,- / pers</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Antall Gjester Slider -->
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <label class="text-xs uppercase tracking-widest text-brand-accent font-bold">2. Antall Gjester</label>
+                            <span class="text-2xl font-serif font-bold text-brand-goldLight" id="calc-guests-val">45 gjester</span>
+                        </div>
+                        <input type="range" id="calc-guests-slider" min="10" max="300" value="45" step="5" oninput="updateCalc()" class="w-full">
+                        <div class="flex justify-between text-[11px] text-brand-muted mt-2">
+                            <span>10 (Intim middag)</span>
+                            <span>100 (Stort selskap)</span>
+                            <span>300+ (Storgalla)</span>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Tilleggstjenester -->
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-brand-accent font-bold mb-3">3. Ønskede Tilleggstjenester</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                            <label class="flex items-center p-3 rounded-xl bg-brand-surface border border-white/10 cursor-pointer hover:border-brand-accent/50 transition-all">
+                                <input type="checkbox" id="addon-chef" onchange="updateCalc()" class="w-4 h-4 rounded text-brand-accent focus:ring-brand-accent accent-brand-accent">
+                                <span class="ml-3 text-gray-200">Mesterkokk på stedet (+4 500 kr)</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl bg-brand-surface border border-white/10 cursor-pointer hover:border-brand-accent/50 transition-all">
+                                <input type="checkbox" id="addon-waiter" onchange="updateCalc()" class="w-4 h-4 rounded text-brand-accent focus:ring-brand-accent accent-brand-accent">
+                                <span class="ml-3 text-gray-200">Servitører (2 pers i 5t, +5 800 kr)</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl bg-brand-surface border border-white/10 cursor-pointer hover:border-brand-accent/50 transition-all">
+                                <input type="checkbox" id="addon-wine" onchange="updateCalc()" class="w-4 h-4 rounded text-brand-accent focus:ring-brand-accent accent-brand-accent">
+                                <span class="ml-3 text-gray-200">Sommelier Vinkurator (+290 kr/pers)</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl bg-brand-surface border border-white/10 cursor-pointer hover:border-brand-accent/50 transition-all">
+                                <input type="checkbox" id="addon-table" onchange="updateCalc()" class="w-4 h-4 rounded text-brand-accent focus:ring-brand-accent accent-brand-accent">
+                                <span class="ml-3 text-gray-200">Borddekking & Porselen (+120 kr/pers)</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl bg-brand-surface border border-white/10 cursor-pointer hover:border-brand-accent/50 transition-all">
+                                <input type="checkbox" id="addon-nightfood" onchange="updateCalc()" class="w-4 h-4 rounded text-brand-accent focus:ring-brand-accent accent-brand-accent">
+                                <span class="ml-3 text-gray-200">Eksklusiv Nattmat (+180 kr/pers)</span>
+                            </label>
+                            <label class="flex items-center p-3 rounded-xl bg-brand-surface border border-white/10 cursor-pointer hover:border-brand-accent/50 transition-all">
+                                <input type="checkbox" id="addon-tasting" onchange="updateCalc()" class="w-4 h-4 rounded text-brand-accent focus:ring-brand-accent accent-brand-accent">
+                                <span class="ml-3 text-gray-200">Prøvesmaking for 2 pers (+2 500 kr)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: Kontaktdetaljer -->
+                    <div class="pt-4 border-t border-white/10 space-y-4">
+                        <label class="block text-xs uppercase tracking-widest text-brand-accent font-bold">4. Eventuell Dato & Kontaktinfo</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                            <input type="text" id="calc-name" placeholder="Ditt Navn *" class="p-3.5 rounded-xl bg-brand-surface border border-white/10 text-white placeholder-gray-500 focus:border-brand-accent focus:outline-none">
+                            <input type="email" id="calc-email" placeholder="E-postadresse *" class="p-3.5 rounded-xl bg-brand-surface border border-white/10 text-white placeholder-gray-500 focus:border-brand-accent focus:outline-none">
+                            <input type="tel" id="calc-phone" placeholder="Telefonnummer" class="p-3.5 rounded-xl bg-brand-surface border border-white/10 text-white placeholder-gray-500 focus:border-brand-accent focus:outline-none">
+                            <input type="date" id="calc-date" class="p-3.5 rounded-xl bg-brand-surface border border-white/10 text-white placeholder-gray-500 focus:border-brand-accent focus:outline-none">
+                        </div>
+                        <textarea id="calc-notes" rows="2" placeholder="Spesielle ønsker, lokasjon eller matallergier (f.eks. cøliaki, laktose)..." class="w-full p-3.5 rounded-xl bg-brand-surface border border-white/10 text-white text-xs placeholder-gray-500 focus:border-brand-accent focus:outline-none"></textarea>
+                    </div>
+
+                </div>
+
+                <!-- LIVE ESTIMATE SUMMARY CARD (5 COLS) -->
+                <div class="lg:col-span-5 flex flex-col justify-between glass-dark rounded-3xl p-6 sm:p-8 border border-brand-accent/40 shadow-2xl relative">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span class="text-xs uppercase tracking-widest text-brand-accent font-bold">Innhold i forespørsel</span>
+                            <span class="px-3 py-1 rounded-full bg-brand-accent/20 border border-brand-accent/40 text-brand-goldLight text-[11px] font-semibold">Uforpliktende estimat</span>
+                        </div>
+
+                        <!-- Summary breakdown list -->
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between items-center text-gray-300">
+                                <span>Valgt konsept:</span>
+                                <span class="font-semibold text-white" id="summary-concept-name">Bryllup & Galla</span>
+                            </div>
+                            <div class="flex justify-between items-center text-gray-300">
+                                <span>Gjester:</span>
+                                <span class="font-semibold text-white" id="summary-guests-count">45 personer</span>
+                            </div>
+                            <div class="flex justify-between items-center text-gray-300">
+                                <span>Kuvertpris:</span>
+                                <span class="font-semibold text-brand-goldLight" id="summary-per-guest">1 190 kr / pers</span>
+                            </div>
+                            <div class="flex justify-between items-center text-gray-300">
+                                <span>Mat totalt:</span>
+                                <span class="font-semibold text-white" id="summary-food-total">53 550 kr</span>
+                            </div>
+                            <div class="flex justify-between items-center text-gray-300">
+                                <span>Valgte tillegg:</span>
+                                <span class="font-semibold text-white" id="summary-addons-total">0 kr</span>
+                            </div>
+                        </div>
+
+                        <!-- TOTAL BOX -->
+                        <div class="p-6 rounded-2xl bg-brand-surface border border-brand-accent/30 text-center space-y-1">
+                            <span class="text-xs uppercase tracking-widest text-brand-muted block font-medium">Estimert Totalbeløp (Eks. mva)</span>
+                            <div class="font-serif text-3xl sm:text-4xl font-bold text-white gold-gradient-text" id="summary-total-price">
+                                kr 53 550,-
+                            </div>
+                            <span class="text-[11px] text-gray-400 block pt-1">Inkl. rigg og tilrettelegging i Oslo & Viken</span>
+                        </div>
+
+                        <div class="text-[11px] text-gray-400 space-y-1.5 font-light">
+                            <p class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Endelig tilbud sendes innen 24 timer.</span>
+                            </p>
+                            <p class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Gjestetallet kan justeres inntil 7 dager før arrangementet.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+                    <button onclick="submitCalculatorQuote()" class="w-full mt-8 py-4 rounded-full bg-gradient-to-r from-brand-accent to-brand-accentHover text-brand-dark font-bold text-sm tracking-wider uppercase shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2">
+                        <span>Send Forespørsel Nå</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- VENUES & MOBILE KITCHEN SHOWCASE -->
+    <section id="lokaler" class="py-24 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-accent block">Fleksibel Servering</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white leading-tight">
+                        I historiske selskapslokaler – eller <span class="italic font-normal gold-gradient-text">hjemme i din hage</span>.
+                    </h2>
+                    <p class="text-gray-300 font-light leading-relaxed">
+                        Har du allerede leid et selskapslokale, eller ønsker du gourmetcatering på familiens låve, rooftop penthouse eller fjordseilas? 
+                    </p>
+                    <p class="text-gray-300 font-light leading-relaxed">
+                        Selskap & Smak disponerer et fullt utstyrt mobil cateringkjøkken med thermotransport, porselen, glass og mobilt kokesystem som gjør det mulig å levere Michelin-standard hvor som helst i Østlandet.
+                    </p>
+
+                    <div class="pt-4 grid grid-cols-2 gap-4 text-xs font-semibold text-brand-goldLight">
+                        <div class="flex items-center gap-2 p-3 rounded-xl bg-brand-surface border border-white/5">
+                            <span class="text-brand-accent">✦</span> Holmenkollen & Bygdøy
+                        </div>
+                        <div class="flex items-center gap-2 p-3 rounded-xl bg-brand-surface border border-white/5">
+                            <span class="text-brand-accent">✦</span> Bærums Verk & Asker
+                        </div>
+                        <div class="flex items-center gap-2 p-3 rounded-xl bg-brand-surface border border-white/5">
+                            <span class="text-brand-accent">✦</span> Herregårder & Låver
+                        </div>
+                        <div class="flex items-center gap-2 p-3 rounded-xl bg-brand-surface border border-white/5">
+                            <span class="text-brand-accent">✦</span> Fjordcruise & Yachter
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <div class="img-zoom-container rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-64">
+                            <img src="images/photo-06.jpg" alt="Elegantly set wedding banquet table" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-zoom-container rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-44">
+                            <img src="images/photo-02.jpg" alt="Wine pouring sommelier" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-8">
+                        <div class="img-zoom-container rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-44">
+                            <img src="images/photo-15.jpg" alt="Chef plating gourmet dish" class="w-full h-full object-cover">
+                        </div>
+                        <div class="img-zoom-container rounded-2xl overflow-hidden shadow-2xl border border-white/10 h-64">
+                            <img src="images/photo-04.jpg" alt="Ballroom dining" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS & REVIEWS SECTION -->
+    <section id="referanser" class="py-24 bg-brand-charcoal relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-accent block mb-2">Hva Våre Gjester Sier</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mb-4">
+                    Kjærlighet til maten. <span class="italic font-normal gold-gradient-text">Begeistrede verter</span>.
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base font-light">
+                    Over 1 200 vellykkede arrangementer har lært oss at sann luksus ligger i opplevelsen og omtanken for detaljene.
+                </p>
+            </div>
+
+            <!-- REVIEWS GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Review 1 -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-accent/20 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-brand-accent mb-4">
+                            ★ ★ ★ ★ ★
+                        </div>
+                        <p class="text-gray-300 text-sm font-light italic mb-6 leading-relaxed">
+                            "Maten var kveldens absolutte høydepunkt i bryllupet vårt på Bærums Verk. Kokkene serverte 4 retter til 110 gjester med perfekt temperatur og uovertreffelig estetikk. Våre gjester snakker om reinsdyrsfiléen enda!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+                        <div class="w-12 h-12 rounded-full bg-brand-surface border border-brand-accent flex items-center justify-center font-serif text-brand-accent font-bold">
+                            H&T
+                        </div>
+                        <div>
+                            <span class="block text-sm font-bold text-white">Hanne & Thomas Berg</span>
+                            <span class="text-xs text-brand-muted">Bryllup (110 gjester)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-accent/20 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-brand-accent mb-4">
+                            ★ ★ ★ ★ ★
+                        </div>
+                        <p class="text-gray-300 text-sm font-light italic mb-6 leading-relaxed">
+                            "Vi leide Selskap & Smak til Equinors internasjonale lederkonferanse på Astrup Fearnley Museet. Tapasbufféen var et visuelt kunstverk. Høyeste kvalitet på råvarer og utrolig diskré, profesjonelle servitører."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+                        <div class="w-12 h-12 rounded-full bg-brand-surface border border-brand-accent flex items-center justify-center font-serif text-brand-accent font-bold">
+                            EQ
+                        </div>
+                        <div>
+                            <span class="block text-sm font-bold text-white">Camilla Eidesen</span>
+                            <span class="text-xs text-brand-muted">Event Director, Equinor Commercial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-accent/20 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-brand-accent mb-4">
+                            ★ ★ ★ ★ ★
+                        </div>
+                        <p class="text-gray-300 text-sm font-light italic mb-6 leading-relaxed">
+                            "Det var som å få en 3-stjerners restaurant hjem i villaen på Holmenkollen under min 50-årsfeiring. Kokken ryddet kjøkkenet så skinnende rent at man skulle tro ingen hadde laget mat der!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+                        <div class="w-12 h-12 rounded-full bg-brand-surface border border-brand-accent flex items-center justify-center font-serif text-brand-accent font-bold">
+                            FM
+                        </div>
+                        <div>
+                            <span class="block text-sm font-bold text-white">Fredrik Meltzer</span>
+                            <span class="text-xs text-brand-muted">50-årsjubileum (35 gjester)</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ ACCORDION SECTION -->
+    <section class="py-24 bg-brand-dark border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-accent block mb-2">Spørsmål & Svar</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Ofte stilte spørsmål om catering</h2>
+            </div>
+
+            <div class="space-y-4">
+                
+                <div class="glass-card rounded-2xl border border-white/10 overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex items-center justify-between font-serif text-lg font-bold text-white hover:text-brand-goldLight transition-colors">
+                        <span>Når må vi bekrefte endelig antall gjester og allergier?</span>
+                        <span class="faq-icon text-brand-accent text-xl font-normal">+</span>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-xs text-gray-300 leading-relaxed font-light">
+                        Endelig gjesteantall, valgte menyvarianter og spesifikke matallergier (som cøliaki, laktoseintoleranse, nøtteallergi eller veganske alternativer) bekreftes senest 7 virkedager før arrangementet finner sted.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl border border-white/10 overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex items-center justify-between font-serif text-lg font-bold text-white hover:text-brand-goldLight transition-colors">
+                        <span>Inkluderer cateringprisen kokker, servitører og opprydding?</span>
+                        <span class="faq-icon text-brand-accent text-xl font-normal">+</span>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-xs text-gray-300 leading-relaxed font-light">
+                        Våre kuvertpriser inkluderer komplett tilberedning, profesjonell emballasje og transport i godkjente thermokasser. Kokker på stedet, hovmester, servitører samt leie av porselen, krystallglass og duker velges enkelt som tillegg enten i priskalkulatoren eller under konsulatasjonen.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl border border-white/10 overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex items-center justify-between font-serif text-lg font-bold text-white hover:text-brand-goldLight transition-colors">
+                        <span>Hva gjør dere med spesielle diettbehov eller allergier?</span>
+                        <span class="faq-icon text-brand-accent text-xl font-normal">+</span>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-xs text-gray-300 leading-relaxed font-light">
+                        Vi tar allergier på største alvor. Våre mesterkokker tilpasser egne, likeverdige gourmetretter for alle gjester med diettbehov uten at det går utover estetikk eller smaksopplevelse.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl border border-white/10 overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex items-center justify-between font-serif text-lg font-bold text-white hover:text-brand-goldLight transition-colors">
+                        <span>Kan vi avtale prøvesmaking før vi bestemmer oss?</span>
+                        <span class="faq-icon text-brand-accent text-xl font-normal">+</span>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-xs text-gray-300 leading-relaxed font-light">
+                        Ja! For bryllup og større selskaper over 40 gjester tilbyr vi eksklusiv prøvesmaking i vårt prøvekjøkken på Skøyen. Her smaker dere gjennom menyen sammen med vår kjøkkensjef og sommelier.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & FOOTER SECTION -->
+    <footer id="kontakt" class="bg-brand-charcoal pt-24 pb-12 border-t border-brand-accent/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+                
+                <!-- Brand Info (5 cols) -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full border border-brand-accent/40 flex items-center justify-center bg-brand-surface">
+                            <span class="font-serif italic text-brand-accent text-2xl font-bold">S&S</span>
+                        </div>
+                        <div>
+                            <span class="block font-serif text-2xl font-bold tracking-tight text-white">Selskap & Smak</span>
+                            <span class="block text-[10px] uppercase tracking-[0.25em] text-brand-muted">Catering & Events Oslo</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed max-w-sm">
+                        Selskap & Smak Catering leverer eksklusiv matopplevelse og fullservice arrangementstjenester for private selskaper, bryllup og bedrifter i Oslo, Bærum, Asker, Drammen og hele Viken.
+                    </p>
+                    <div class="space-y-2 text-xs text-gray-300">
+                        <div class="flex items-center gap-3">
+                            <span class="text-brand-accent font-bold">📍</span>
+                            <span>Drammensveien 126, 0277 Oslo (Skøyen)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-brand-accent font-bold">📞</span>
+                            <a href="tel:+4722001122" class="hover:text-brand-goldLight transition-colors">+47 22 00 11 22</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-brand-accent font-bold">✉️</span>
+                            <a href="mailto:post@selskapogsmak.no" class="hover:text-brand-goldLight transition-colors">post@selskapogsmak.no</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Form (7 cols) -->
+                <div class="lg:col-span-7 glass-card p-8 rounded-3xl border border-white/10">
+                    <h3 class="font-serif text-2xl font-bold text-white mb-2">Send en direkte melding</h3>
+                    <p class="text-xs text-brand-muted mb-6">Har du spørsmål om datoer eller ønsker en uforpliktende prat?</p>
+                    
+                    <form onsubmit="handleDirectContact(event)" class="space-y-4 text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <input type="text" required placeholder="Ditt Navn *" class="p-3.5 rounded-xl bg-brand-surface border border-white/10 text-white placeholder-gray-500 focus:border-brand-accent focus:outline-none">
+                            <input type="email" required placeholder="E-postadresse *" class="p-3.5 rounded-xl bg-brand-surface border border-white/10 text-white placeholder-gray-500 focus:border-brand-accent focus:outline-none">
+                        </div>
+                        <input type="text" placeholder="Arrangementstype & Anslått Dato" class="w-full p-3.5 rounded-xl bg-brand-surface border border-white/10 text-white placeholder-gray-500 focus:border-brand-accent focus:outline-none">
+                        <textarea rows="3" required placeholder="Skriv din melding her..." class="w-full p-3.5 rounded-xl bg-brand-surface border border-white/10 text-white placeholder-gray-500 focus:border-brand-accent focus:outline-none"></textarea>
+                        
+                        <button type="submit" class="px-8 py-3.5 rounded-full bg-brand-accent text-brand-dark font-bold uppercase tracking-wider text-xs hover:bg-brand-accentHover transition-colors">
+                            Send Henvendelse
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- COPYRIGHT & FOOTER LINKS -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-muted space-y-4 sm:space-y-0 font-light">
+                <div>
+                    © 2026 Selskap & Smak Catering AS. Alle rettigheter reservert. Org.nr: 987 654 321 MVA.
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Personvern</a>
+                    <a href="#" class="hover:text-white transition-colors">Betingelser</a>
+                    <a href="#" class="hover:text-white transition-colors">Bærekraft & Matsvinn</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- MIN FORESPØRSEL DRAWER (BASKET) -->
+    <div id="basket-drawer" class="fixed inset-y-0 right-0 z-50 w-full sm:w-96 bg-brand-charcoal border-l border-brand-accent/30 shadow-2xl p-6 transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+        <div>
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <h3 class="font-serif text-xl font-bold text-white">Min Menyforespørsel</h3>
+                </div>
+                <button onclick="toggleBasketDrawer()" class="text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div id="basket-items-container" class="space-y-3 overflow-y-auto max-h-[60vh] pr-1">
+                <!-- Items populated dynamically -->
+            </div>
+        </div>
+
+        <div class="border-t border-white/10 pt-4 space-y-4">
+            <div class="flex justify-between items-center text-sm font-semibold">
+                <span class="text-gray-300">Antall retter/menyer:</span>
+                <span id="basket-count-summary" class="text-brand-goldLight">0 valgt</span>
+            </div>
+            <a href="#kalkulator" onclick="toggleBasketDrawer()" class="block text-center w-full py-3.5 rounded-full bg-brand-accent text-brand-dark font-bold text-xs uppercase tracking-wider hover:bg-brand-accentHover transition-colors">
+                Gå til Priskalkulator & Send
+            </a>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT DATA & LOGIC -->
+    <script>
+        // DATA FOR VISUAL CONCEPTS
+        const conceptData = {
+            bryllup: {
+                title: "Gourmet Bryllup & Gallamiddag",
+                subtitle: "En kulinarisk festreise tilpasset deres store dag.",
+                desc: "3 til 5-retters fine dining servering med millimeterpresisjon. Inkluderer personlig prøvesmaking i vårt prøvekjøkken på Skøyen, hovmesterkontroll, vinkelner-tilpasset vinmeny og skreddersydd bordoppsett.",
+                image: "images/photo-05.jpg",
+                highlights: [
+                    "Eksklusiv prøvesmaking for brudepar",
+                    "Dedicated hovmester & profesjonelt servitørkorps",
+                    "Tilpasset vinpakke fra sommelier",
+                    "Nattmat & kakebordkoordinering"
+                ],
+                price: "Fra 1 190 kr / person"
+            },
+            firma: {
+                title: "Firmaevent, Representasjon & Galla",
+                subtitle: "Imponer kunder, partnere og ansatte med førsteklasses gastronomi.",
+                desc: "Fra stående mingling med sofistikerte kanapeer til storslagne bedriftsjubileer og kickoff-fester. Vi håndterer logistikken sømløst slik at du kan fokusere på gjestene.",
+                image: "images/photo-03.jpg",
+                highlights: [
+                    "Full prosjektledelse for opptil 500 gjester",
+                    "Representasjonslunsjer & minglemeter",
+                    "Profilert servering tilpasset firmaets identitet",
+                    "Fleksible fakturaløsninger for bedrifter"
+                ],
+                price: "Fra 790 kr / person"
+            },
+            tapas: {
+                title: "Eksklusiv Tapas & Social Dining",
+                subtitle: "Fargerike, delingsvennlige delikatesser som samler folk.",
+                desc: "Glem kjedelige koldtbord. Vår tapassopplevelse kombinerer spansk temperatur med nordiske råvarer. 12 håndlagde smaksbomer anrettet på rustikke trefat og skifer.",
+                image: "images/photo-07.jpg",
+                highlights: [
+                    "12 varme & kalde delikatesser",
+                    "Langtidstilstekt ibérico, villreker & fenalår fra Valdres",
+                    "Håndverksoster, pisket trøffelsmør & surdeigsbrød",
+                    "Passer perfekt for private selskaper & mingel"
+                ],
+                price: "Fra 690 kr / person"
+            },
+            selskapsmeny: {
+                title: "Nordisk Chef's Table Selskapsmeny",
+                subtitle: "Kortreist sesonggastronomi inspirert av den nordiske naturen.",
+                desc: "Råvarer fra norske fjorder, skoger og fjell. Våre kokker tilbereder retter med dype smaker, fermenterte innslag og nydelige anretninger.",
+                image: "images/photo-09.jpg",
+                highlights: [
+                    "Sesongbasert 3 eller 4-retters meny",
+                    "Reinsdyrfilét fra Røros & villfanga kveite",
+                    "Trøffelsky, brente primører & multekrem",
+                    "Mulighet for privat kokk i eget hjem"
+                ],
+                price: "Fra 890 kr / person"
+            },
+            fingermat: {
+                title: "Fingermat, Kanapeer & Cocktailmingling",
+                subtitle: "Sofistikerte munnfuller for stilfulle mottakelser og lanseringer.",
+                desc: "Lekre måltidsbiter anrettet på elegante brett og i krystallglass. En perfekt løsning for fernisseringer, produktlanseringer og stående feiringer.",
+                image: "images/photo-13.jpg",
+                highlights: [
+                    "8 til 12 unike gourmet-munnfuller",
+                    "Tartare, kamskjell, sprø tarteletter & posjert hummer",
+                    "Rask servering uten behov for sitteplasser",
+                    "Visuelt slående presentasjon"
+                ],
+                price: "Fra 540 kr / person"
+            }
+        };
+
+        // DATA FOR MENUS
+        const menuItems = [
+            {
+                id: 'menu-1',
+                category: 'bryllup',
+                tag: 'Mest Populær Bryllup',
+                title: 'Grand Nordique Bryllupsmeny',
+                desc: '4-retters eksklusiv festmeny med posjert hummer, kveite ceviche, mør reinsdyrfilét og pasjonsfrukt-pavlova.',
+                price: 1190,
+                image: 'images/photo-10.jpg',
+                dietary: ['Glutenfri tilgjengelig', 'Laktosefri tilgjengelig'],
+                courses: [
+                    'Forrett: Posjert hummer med eple- og fennikelsalat, dillemulsjon og rugcrisp.',
+                    'Mellomrett: Lettgravet kveite ceviche med pasjonsfrukt, pisket Røros-rømme og karsiolje.',
+                    'Hovedrett: Helstekt reinsdyrfilét fra Røros med morkelkrem, brent sellerirot og bærsky.',
+                    'Dessert: Sprø pavlova med multekrem, hvit Valrhona-sjokolade og friske skogsbær.'
+                ]
+            },
+            {
+                id: 'menu-2',
+                category: 'tapas',
+                tag: 'Bestseller Social Dining',
+                title: 'Eksklusiv Tapas Selskap',
+                desc: '12 unike delikatesser inkludert chilimarinerte villreker, langtidsstekt ibérico-svin, fenalår fra Valdres og trøffel-aioli.',
+                price: 690,
+                image: 'images/photo-08.jpg',
+                dietary: ['Glutenfri valg', 'Nøttefri'],
+                courses: [
+                    'Chili- og hvitløksmarinerte villreker på spyd',
+                    'Langtidsstekt Ibérico-svinenakke med glaserte fiken',
+                    'Serranoskinke og fenalår fra Valdres med manchego',
+                    'Bakte patatas bravas med røykt paprika-salsa og trøffel-aioli',
+                    'Ovnstekt chorizo med rødvinssirup og timian',
+                    'Håndverksbrød fra Ille Brød med pisket havsalt-smør'
+                ]
+            },
+            {
+                id: 'menu-3',
+                category: 'fingermat',
+                tag: 'Perfekt for Mingel',
+                title: 'Gourmet Fingermat Luxe',
+                desc: '8 sofistikerte munnfuller på spyd, i sprø tarteletter og krystallglass. Ideell for cocktailfester og lanseringer.',
+                price: 540,
+                image: 'images/photo-14.jpg',
+                dietary: ['Vegetarvalg', 'Finger-friendly'],
+                courses: [
+                    'Oksestek-tartare med syltet sennepsfrø i sprø filodeig',
+                    'Bakt kamskjell med blomkålkrem og lakserogn',
+                    'Mini-brioche med skagenrøre og løjrom',
+                    'Speket andebryst med fikenmarmelade',
+                    'Gorgonzola moussline med karamellisert valnøtt',
+                    'Mini pasjonsfrukt tartare med marengs'
+                ]
+            },
+            {
+                id: 'menu-4',
+                category: 'treretters',
+                tag: 'Sesongens Anbefaling',
+                title: 'Nordisk Sesong-Treretters',
+                desc: 'Røkt laks tartare, langtidstilstekt indrefilét av okse med morkelkrem, og mørk Valrhona sjokolademousse.',
+                price: 890,
+                image: 'images/photo-01.jpg',
+                dietary: ['Glutenfri', 'Laktosefri tilgjengelig'],
+                courses: [
+                    'Forrett: Einerdrøkt laks tartare med pepperrotkrem, syltet agurk og dill-olje.',
+                    'Hovedrett: Langtidsstekt indrefilét av norsk okse med morkelkrem, brente primører og mandelpotetpuré.',
+                    'Dessert: Mørk Valrhona sjokolademousse med pasjonsfruktgelé og karamellisert hasselnøtt.'
+                ]
+            },
+            {
+                id: 'menu-5',
+                category: 'treretters',
+                tag: 'Sommer & Hagefest',
+                title: 'Josper Grill & Sommer-Galla',
+                desc: 'Helstekt entrecôte fra grillen, grilte sjøkreps, brente primører, trøffelsmør og chimichurri.',
+                price: 790,
+                image: 'images/photo-12.jpg',
+                dietary: ['Glutenfri'],
+                courses: [
+                    'Grilte sjøkreps med urtesmør og sitron',
+                    'Helstekt tørrmornet entrecôte med chimichurri og trøffelsmør',
+                    'Brente asparges med parmesan-chips og pinekjernedressing',
+                    'Jordbær- og rabarbra compote med vaniljeis'
+                ]
+            },
+            {
+                id: 'menu-6',
+                category: 'vegansk',
+                tag: '100% Plantebasert Gourmet',
+                title: 'Grønn Gastronomi Meny',
+                desc: 'Bakt sellerirot-steak med trøffelsky, fermenterte plommer, kantareller og havre-panna cotta.',
+                price: 620,
+                image: 'images/photo-16.jpg',
+                dietary: ['100% Vegansk', 'Glutenfri', 'Laktosefri'],
+                courses: [
+                    'Forrett: Tartare av bakt gresskar og røykt avokado med pisket cashew-rømme.',
+                    'Hovedrett: Saltbakt sellerirot-steak med trøffelsky, smørstekte kantareller og fermentert plomme.',
+                    'Dessert: Havre-panna cotta med multesaus og sprø havre-crumble.'
+                ]
+            }
+        ];
+
+        // STATE MANAGEMENT
+        let currentCalcType = 'bryllup';
+        let currentCalcBasePrice = 1190;
+        let selectedBasketItems = [];
+
+        // INITIALIZE ON LOAD
+        document.addEventListener('DOMContentLoaded', () => {
+            switchConceptTab('bryllup');
+            renderMenus(menuItems);
+            updateCalc();
+        });
+
+        // CONCEPT TAB SWITCHER
+        function switchConceptTab(key) {
+            const data = conceptData[key];
+            if (!data) return;
+
+            // Update Active Buttons
+            document.querySelectorAll('.concept-tab').forEach(btn => {
+                btn.classList.remove('bg-brand-accent', 'text-brand-dark', 'shadow-lg');
+                btn.classList.add('bg-brand-surface', 'text-gray-400', 'border', 'border-white/5');
+            });
+            const activeBtn = document.getElementById(`tab-${key}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-brand-surface', 'text-gray-400', 'border', 'border-white/5');
+                activeBtn.classList.add('bg-brand-accent', 'text-brand-dark', 'shadow-lg');
+            }
+
+            // Inject Content
+            const container = document.getElementById('concept-display');
+            container.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="inline-block px-3 py-1 rounded-full bg-brand-accent/20 border border-brand-accent/40 text-brand-goldLight text-xs font-semibold uppercase tracking-wider">
+                            ${data.price}
+                        </span>
+                        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
+                            ${data.title}
+                        </h3>
+                        <p class="text-sm font-semibold text-brand-goldLight">${data.subtitle}</p>
+                        <p class="text-xs sm:text-sm text-gray-300 font-light leading-relaxed">${data.desc}</p>
+                        
+                        <div class="space-y-2 pt-2">
+                            ${data.highlights.map(h => `
+                                <div class="flex items-center gap-2 text-xs text-gray-200">
+                                    <span class="text-brand-accent font-bold">✓</span>
+                                    <span>${h}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="pt-4 flex flex-wrap gap-4">
+                            <a href="#kalkulator" onclick="selectTypeFromConcept('${key}')" class="px-6 py-3 rounded-full bg-brand-accent text-brand-dark font-bold text-xs uppercase tracking-wider hover:bg-brand-accentHover transition-colors">
+                                Beregn Pris for Dette
+                            </a>
+                            <button onclick="filterMenus('${key}')" class="px-6 py-3 rounded-full bg-brand-surface border border-white/20 text-white font-semibold text-xs uppercase tracking-wider hover:border-brand-accent transition-colors">
+                                Se Menypakker &rarr;
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6">
+                        <div class="img-zoom-container rounded-2xl overflow-hidden shadow-2xl border border-brand-accent/30 h-80 sm:h-96">
+                            <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // RENDER MENU CARDS
+        function renderMenus(items) {
+            const grid = document.getElementById('menu-grid');
+            grid.innerHTML = items.map(item => `
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/10 hover:border-brand-accent/50 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-56 img-zoom-container">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-dark/80 backdrop-blur-md border border-brand-accent/40 text-brand-goldLight text-[11px] font-semibold">
+                                ${item.tag}
+                            </span>
+                            <span class="absolute bottom-4 right-4 px-3.5 py-1.5 rounded-full bg-brand-accent text-brand-dark font-serif font-bold text-sm shadow-xl">
+                                Fra ${item.price} kr / pers
+                            </span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-serif text-2xl font-bold text-white group-hover:text-brand-goldLight transition-colors">${item.title}</h3>
+                            <p class="text-xs text-gray-300 font-light leading-relaxed">${item.desc}</p>
+                            
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                ${item.dietary.map(d => `<span class="px-2 py-0.5 rounded bg-brand-surface text-[10px] text-brand-muted font-medium border border-white/5">${d}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 flex items-center gap-3">
+                        <button onclick="openDishModal('${item.id}')" class="flex-1 py-2.5 rounded-full bg-brand-surface border border-white/20 text-white font-semibold text-xs text-center hover:border-brand-accent transition-colors">
+                            Se Meny & Råvarer
+                        </button>
+                        <button onclick="addToBasket('${item.id}')" class="p-2.5 rounded-full bg-brand-accent/20 border border-brand-accent/40 text-brand-goldLight hover:bg-brand-accent hover:text-brand-dark transition-all" title="Legg til i forespørsel">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // FILTER MENUS
+        function filterMenus(cat) {
+            document.querySelectorAll('.menu-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-accent', 'text-brand-dark');
+                btn.classList.add('bg-brand-surface', 'text-gray-400');
+            });
+            if (event && event.target && event.target.classList.contains('menu-filter-btn')) {
+                event.target.classList.remove('bg-brand-surface', 'text-gray-400');
+                event.target.classList.add('bg-brand-accent', 'text-brand-dark');
+            }
+
+            if (cat === 'all') {
+                renderMenus(menuItems);
+            } else {
+                const filtered = menuItems.filter(m => m.category === cat);
+                renderMenus(filtered.length ? filtered : menuItems);
+            }
+
+            document.getElementById('menyer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // DISH MODAL FUNCTIONS
+        function openDishModal(id) {
+            const item = menuItems.find(m => m.id === id);
+            if (!item) return;
+
+            const modalContent = document.getElementById('dish-modal-content');
+            modalContent.innerHTML = `
+                <div class="relative h-64 rounded-2xl overflow-hidden mb-4">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent"></div>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs uppercase tracking-widest text-brand-accent font-bold">${item.tag}</span>
+                    <h3 class="font-serif text-3xl font-bold text-white">${item.title}</h3>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed">${item.desc}</p>
+                    
+                    <div class="border-t border-white/10 pt-4">
+                        <h4 class="font-serif text-lg font-bold text-brand-goldLight mb-3">Sammensetning & Retter:</h4>
+                        <ul class="space-y-2 text-xs text-gray-200">
+                            ${item.courses.map(c => `<li class="flex items-start gap-2"><span class="text-brand-accent">•</span><span>${c}</span></li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="border-t border-white/10 pt-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] text-brand-muted block">Kuvertpris:</span>
+                            <span class="font-serif text-2xl font-bold text-white">kr ${item.price},- / pers</span>
+                        </div>
+                        <button onclick="addToBasket('${item.id}'); closeDishModal();" class="px-6 py-3 rounded-full bg-brand-accent text-brand-dark font-bold text-xs uppercase tracking-wider">
+                            Legg til i Min Forespørsel
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('dish-modal').classList.add('active');
+        }
+
+        function closeDishModal() {
+            document.getElementById('dish-modal').classList.remove('active');
+        }
+
+        // QUICK FILTER FROM HERO
+        function quickFilterHero(type) {
+            calcSelectType(type, type === 'bryllup' ? 1190 : type === 'firma' ? 790 : type === 'tapas' ? 690 : 890);
+            document.getElementById('kalkulator').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectTypeFromConcept(type) {
+            const price = type === 'bryllup' ? 1190 : type === 'firma' ? 790 : type === 'tapas' ? 690 : type === 'selskapsmeny' ? 890 : 540;
+            calcSelectType(type, price);
+        }
+
+        // CALCULATOR LOGIC
+        function calcSelectType(type, price) {
+            currentCalcType = type;
+            currentCalcBasePrice = price;
+
+            document.querySelectorAll('.calc-type-btn').forEach(btn => {
+                btn.classList.remove('border-brand-accent', 'bg-brand-accent/20', 'text-white');
+                btn.classList.add('border-white/10', 'bg-brand-surface/60', 'text-gray-300');
+            });
+
+            if (event && event.currentTarget && event.currentTarget.classList.contains('calc-type-btn')) {
+                event.currentTarget.classList.remove('border-white/10', 'bg-brand-surface/60', 'text-gray-300');
+                event.currentTarget.classList.add('border-brand-accent', 'bg-brand-accent/20', 'text-white');
+            }
+
+            updateCalc();
+        }
+
+        function updateCalc() {
+            const guests = parseInt(document.getElementById('calc-guests-slider').value) || 45;
+            document.getElementById('calc-guests-val').innerText = `${guests} gjester`;
+
+            let foodTotal = guests * currentCalcBasePrice;
+            let addonsTotal = 0;
+
+            if (document.getElementById('addon-chef').checked) addonsTotal += 4500;
+            if (document.getElementById('addon-waiter').checked) addonsTotal += 5800;
+            if (document.getElementById('addon-wine').checked) addonsTotal += (guests * 290);
+            if (document.getElementById('addon-table').checked) addonsTotal += (guests * 120);
+            if (document.getElementById('addon-nightfood').checked) addonsTotal += (guests * 180);
+            if (document.getElementById('addon-tasting').checked) addonsTotal += 2500;
+
+            const totalSum = foodTotal + addonsTotal;
+
+            const conceptNames = {
+                bryllup: '💍 Bryllup & Galla',
+                firma: '🏢 Firma & Event',
+                tapas: '🍤 Eksklusiv Tapas',
+                selskap: '🎉 Jubileum / Privat',
+                fingermat: '🥂 Fingermat / Mingle',
+                vegansk: '🌱 Grønn Gastronomi'
+            };
+
+            document.getElementById('summary-concept-name').innerText = conceptNames[currentCalcType] || 'Bryllup & Galla';
+            document.getElementById('summary-guests-count').innerText = `${guests} personer`;
+            document.getElementById('summary-per-guest').innerText = `${currentCalcBasePrice.toLocaleString('no-NO')} kr / pers`;
+            document.getElementById('summary-food-total').innerText = `${foodTotal.toLocaleString('no-NO')} kr`;
+            document.getElementById('summary-addons-total').innerText = `${addonsTotal.toLocaleString('no-NO')} kr`;
+            document.getElementById('summary-total-price').innerText = `kr ${totalSum.toLocaleString('no-NO')},-`;
+        }
+
+        // BASKET DRAWER LOGIC
+        function toggleBasketDrawer() {
+            const drawer = document.getElementById('basket-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        function addToBasket(id) {
+            const item = menuItems.find(m => m.id === id);
+            if (!item) return;
+
+            if (!selectedBasketItems.some(i => i.id === id)) {
+                selectedBasketItems.push(item);
+            }
+            updateBasketUI();
+            toggleBasketDrawer();
+        }
+
+        function removeFromBasket(id) {
+            selectedBasketItems = selectedBasketItems.filter(i => i.id !== id);
+            updateBasketUI();
+        }
+
+        function updateBasketUI() {
+            document.getElementById('basket-badge').innerText = selectedBasketItems.length;
+            document.getElementById('basket-count-summary').innerText = `${selectedBasketItems.length} valgt`;
+
+            const container = document.getElementById('basket-items-container');
+            if (selectedBasketItems.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-xs text-brand-muted">
+                        Ingen menyer valgt ennå.<br>Utforsk menyene og trykk på "+" for å legge til.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = selectedBasketItems.map(item => `
+                <div class="p-3 rounded-xl bg-brand-surface border border-white/10 flex items-center justify-between text-xs">
+                    <div>
+                        <span class="block font-bold text-white">${item.title}</span>
+                        <span class="text-brand-accent font-serif">kr ${item.price},- / pers</span>
+                    </div>
+                    <button onclick="removeFromBasket('${item.id}')" class="text-gray-400 hover:text-red-400 p-1">
+                        ✕
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // SUBMIT QUOTE SIMULATION
+        function submitCalculatorQuote() {
+            const name = document.getElementById('calc-name').value;
+            const email = document.getElementById('calc-email').value;
+
+            if (!name || !email) {
+                alert('Vennligst fyll ut Navn og E-postadresse for å sende forespørselen.');
+                return;
+            }
+
+            const refNum = 'SS-' + Math.floor(100000 + Math.random() * 900000);
+            
+            alert(`Takk for din forespørsel, ${name}!\n\nDin referanse: ${refNum}\nVi har mottatt dine valg og sender et komplett uforpliktende menyforslag og tilbud til ${email} innen 24 timer.`);
+            
+            document.getElementById('calc-name').value = '';
+            document.getElementById('calc-email').value = '';
+            document.getElementById('calc-phone').value = '';
+        }
+
+        function handleDirectContact(e) {
+            e.preventDefault();
+            alert('Takk for din melding! Vi kontakter deg fortløpende innen kort tid.');
+            e.target.reset();
+        }
+
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('.faq-icon');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.innerText = '−';
+            } else {
+                content.classList.add('hidden');
+                icon.innerText = '+';
+            }
+        }
+
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            nav.classList.toggle('hidden');
+        }
+    </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

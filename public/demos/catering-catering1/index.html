@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Selskap &amp; Smak Catering — Catering til bryllup, firma og selskaper i Oslo</title>
+<meta name="description" content="Selskap &amp; Smak Catering lager mat til bryllup, firmaarrangementer, konfirmasjoner, jubileer, møter og private selskaper i Oslo og omegn. Sesongbaserte menyer, full servering og en planlegger som gir deg prisestimat på minuttet.">
+<meta name="theme-color" content="#100E0C">
+<meta property="og:title" content="Selskap &amp; Smak Catering">
+<meta property="og:description" content="Vi lager selskaper folk snakker om lenge etterpå. Catering i Oslo og omegn siden 2011.">
+<meta property="og:type" content="website">
+<link rel="icon" href="images/image-16.svg">
+<style>
+/* ============================================================
+   SELSKAP & SMAK CATERING — komplett enkeltfil-nettsted
+   Palett: espresso / kremhvit / brent leire / messing / salvie
+   ============================================================ */
+:root{
+  --ink:#100E0C;
+  --ink-2:#17130F;
+  --ink-3:#211B16;
+  --ink-4:#2C241D;
+  --cream:#F7F2EA;
+  --bone:#EDE5D8;
+  --sand:#DED3C1;
+  --muted:#9A8C7E;
+  --muted-d:#6E6155;
+  --clay:#BE5628;
+  --clay-l:#DE7A42;
+  --brass:#C2953F;
+  --sage:#6F7C63;
+  --line-d:rgba(247,242,234,.14);
+  --line-l:rgba(16,14,12,.13);
+
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua","URW Palladio L",Georgia,"Times New Roman",serif;
+  --sans:"Inter","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+
+  --pad:clamp(20px,5vw,72px);
+  --maxw:1320px;
+  --r:2px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sec:clamp(84px,11vw,164px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+section[id],main[id]{scroll-margin-top:86px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0; background:var(--ink); color:var(--cream);
+  font-family:var(--sans); font-size:16.5px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden; font-feature-settings:"kern","liga","calt";
+}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+button,input,select,textarea{font:inherit; color:inherit}
+::selection{background:var(--clay); color:#fff}
+
+/* ---------- typografi ---------- */
+h1,h2,h3,h4{font-family:var(--serif); font-weight:400; margin:0; letter-spacing:-.015em; line-height:1.04}
+.d1{font-size:clamp(2.9rem,8.4vw,7.1rem); line-height:.96; letter-spacing:-.03em}
+.d2{font-size:clamp(2.2rem,5.4vw,4.5rem); line-height:1.02; letter-spacing:-.025em}
+.d3{font-size:clamp(1.6rem,2.9vw,2.5rem); line-height:1.1; letter-spacing:-.02em}
+.d4{font-size:clamp(1.22rem,1.7vw,1.5rem); line-height:1.22}
+em.it{font-style:italic; color:var(--clay-l)}
+.lede{font-size:clamp(1.02rem,1.35vw,1.2rem); line-height:1.7; color:rgba(247,242,234,.74); max-width:56ch}
+.on-light .lede,.light .lede{color:rgba(16,14,12,.68)}
+.eyebrow{
+  font-size:.685rem; letter-spacing:.3em; text-transform:uppercase; font-weight:600;
+  color:var(--clay-l); display:flex; align-items:center; gap:.8em; margin:0 0 1.5rem;
+}
+.eyebrow::before{content:""; width:26px; height:1px; background:currentColor; opacity:.65; flex:none}
+.light .eyebrow{color:var(--clay)}
+.num{font-family:var(--serif); font-size:.8rem; letter-spacing:.16em; color:var(--brass)}
+.small{font-size:.8rem; letter-spacing:.02em; color:var(--muted)}
+.light .small{color:var(--muted-d)}
+
+/* ---------- layout ---------- */
+.wrap{width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad)}
+section{position:relative}
+.sec{padding-block:var(--sec)}
+.light{background:var(--cream); color:var(--ink)}
+.light h1,.light h2,.light h3{color:var(--ink)}
+.rule{height:1px; background:var(--line-d); border:0; margin:0}
+.light .rule{background:var(--line-l)}
+
+/* ---------- korn + vignett ---------- */
+.grain{
+  position:fixed; inset:-120px; z-index:9998; pointer-events:none; opacity:.42; mix-blend-mode:overlay;
+  background-image:url("images/image-17.svg");
+  animation:grainmove 7s steps(6) infinite;
+}
+@keyframes grainmove{
+  0%{transform:translate(0,0)}20%{transform:translate(-14px,8px)}40%{transform:translate(9px,-12px)}
+  60%{transform:translate(-8px,-6px)}80%{transform:translate(12px,10px)}100%{transform:translate(0,0)}
+}
+
+/* ---------- knapper ---------- */
+.btn{
+  --bg:var(--clay); --fg:#fff;
+  position:relative; display:inline-flex; align-items:center; gap:.7em; isolation:isolate;
+  padding:1.05em 1.9em; border:0; border-radius:100px; background:var(--bg); color:var(--fg);
+  font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; font-weight:600; cursor:pointer;
+  overflow:hidden; transition:transform .5s var(--ease), color .4s ease, box-shadow .5s var(--ease);
+  box-shadow:0 1px 0 rgba(255,255,255,.14) inset;
+}
+.btn::after{
+  content:""; position:absolute; inset:0; z-index:-1; background:#fff; border-radius:inherit;
+  transform:translateY(101%); transition:transform .55s var(--ease);
+}
+.btn:hover{transform:translateY(-3px); color:var(--ink); box-shadow:0 16px 34px -18px rgba(190,86,40,.85)}
+.btn:hover::after{transform:translateY(0)}
+.btn .ar{transition:transform .45s var(--ease)}
+.btn:hover .ar{transform:translateX(4px)}
+.btn-ghost{--bg:transparent; --fg:var(--cream); border:1px solid var(--line-d); backdrop-filter:blur(4px)}
+.btn-ghost:hover{color:var(--ink); box-shadow:none}
+.light .btn-ghost{--fg:var(--ink); border-color:rgba(16,14,12,.24)}
+.light .btn-ghost::after{background:var(--ink)}
+.light .btn-ghost:hover{color:var(--cream)}
+.btn-sm{padding:.85em 1.4em; font-size:.72rem}
+.link-u{
+  display:inline-flex; align-items:center; gap:.55em; font-size:.78rem; letter-spacing:.16em;
+  text-transform:uppercase; font-weight:600; padding-bottom:.4em; position:relative; color:inherit;
+}
+.link-u::after{content:""; position:absolute; left:0; bottom:0; height:1px; width:100%; background:currentColor; opacity:.35; transform-origin:right; transition:transform .5s var(--ease)}
+.link-u:hover::after{transform:scaleX(0)}
+.link-u .ar{transition:transform .4s var(--ease)}
+.link-u:hover .ar{transform:translateX(5px)}
+
+/* ---------- reveal ---------- */
+[data-reveal]{opacity:0; transform:translateY(26px); transition:opacity 1s var(--ease), transform 1.1s var(--ease)}
+[data-reveal].in{opacity:1; transform:none}
+[data-reveal="clip"]{opacity:1; transform:none; clip-path:inset(0 0 100% 0); transition:clip-path 1.3s var(--ease)}
+[data-reveal="clip"].in{clip-path:inset(0 0 0 0)}
+.split span{display:inline-block; overflow:hidden; vertical-align:top}
+.split span i{display:inline-block; font-style:inherit; transform:translateY(104%); transition:transform 1s var(--ease)}
+.split.in span i{transform:none}
+@media (prefers-reduced-motion:reduce){
+  [data-reveal],[data-reveal="clip"]{opacity:1!important; transform:none!important; clip-path:none!important}
+  .split span i{transform:none!important}
+  .grain{animation:none}
+}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed; inset:0 0 auto; z-index:900; padding:18px 0;
+  transition:background .5s var(--ease), padding .5s var(--ease), transform .55s var(--ease), box-shadow .5s;
+}
+.nav.solid{background:rgba(16,14,12,.9); backdrop-filter:blur(14px) saturate(1.3); padding:11px 0; box-shadow:0 1px 0 var(--line-d)}
+.nav.up{transform:translateY(-104%)}
+.nav .wrap{display:flex; align-items:center; justify-content:space-between; gap:24px}
+.brand{display:flex; align-items:center; gap:13px; flex:none}
+.mark{
+  width:42px;height:42px;border:1px solid rgba(247,242,234,.3); border-radius:50%; display:grid; place-items:center;
+  font-family:var(--serif); font-size:.95rem; letter-spacing:.02em; color:var(--cream); flex:none;
+  transition:background .5s var(--ease), color .5s, border-color .5s, transform .8s var(--ease);
+}
+.brand:hover .mark{background:var(--clay); border-color:var(--clay); transform:rotate(-360deg)}
+.bname{font-family:var(--serif); font-size:1.06rem; letter-spacing:.005em; line-height:1.05; white-space:nowrap}
+.btag{font-size:.55rem; letter-spacing:.34em; text-transform:uppercase; color:var(--muted); margin-top:3px}
+.menu{display:flex; align-items:center; gap:clamp(14px,2vw,32px); list-style:none; margin:0; padding:0}
+.menu a{font-size:.775rem; letter-spacing:.1em; text-transform:uppercase; font-weight:500; color:rgba(247,242,234,.78); position:relative; padding:6px 0; transition:color .3s}
+.menu a::after{content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--clay-l); transform:scaleX(0); transform-origin:left; transition:transform .45s var(--ease)}
+.menu a:hover{color:var(--cream)} .menu a:hover::after{transform:scaleX(1)}
+.nav-r{display:flex; align-items:center; gap:16px; flex:none}
+.nav-tel{font-size:.78rem; letter-spacing:.09em; color:rgba(247,242,234,.7)}
+.nav-tel:hover{color:var(--clay-l)}
+.burger{display:none; width:46px;height:46px; border:1px solid var(--line-d); background:transparent; border-radius:50%; position:relative; cursor:pointer}
+.burger span{position:absolute; left:14px; right:14px; height:1.4px; background:var(--cream); transition:transform .45s var(--ease), opacity .3s}
+.burger span:nth-child(1){top:19px} .burger span:nth-child(2){bottom:19px}
+body.mopen .burger span:nth-child(1){transform:translateY(3.3px) rotate(45deg)}
+body.mopen .burger span:nth-child(2){transform:translateY(-3.3px) rotate(-45deg)}
+@media (max-width:1080px){
+  .menu,.nav-tel{display:none}
+  .burger{display:block}
+}
+/* mobilmeny */
+.mob{
+  position:fixed; inset:0; z-index:890; background:var(--ink-2); padding:100px var(--pad) 40px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  clip-path:circle(0% at calc(100% - 44px) 44px); transition:clip-path .85s var(--ease); pointer-events:none;
+}
+body.mopen .mob{clip-path:circle(150% at calc(100% - 44px) 44px); pointer-events:auto}
+.mob ol{list-style:none; margin:0; padding:0}
+.mob li{overflow:hidden; border-bottom:1px solid var(--line-d)}
+.mob a{display:flex; align-items:baseline; gap:16px; padding:16px 0; font-family:var(--serif); font-size:clamp(1.7rem,7vw,2.4rem); transform:translateY(105%); transition:transform .7s var(--ease), color .3s}
+body.mopen .mob a{transform:none}
+.mob a span{font-family:var(--sans); font-size:.6rem; letter-spacing:.2em; color:var(--brass)}
+.mob-foot{display:flex; flex-direction:column; gap:14px; padding-top:26px}
+
+/* ============ HERO ============ */
+.hero{position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; padding-bottom:clamp(28px,5vh,54px)}
+.hero-media{position:absolute; inset:0; overflow:hidden}
+.hero-media img{width:100%; height:118%; object-fit:cover; object-position:center 58%; will-change:transform; animation:kb 26s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.06) translateY(0)}to{transform:scale(1.16) translateY(-2%)}}
+.hero-media::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(to top,rgba(16,14,12,.96) 2%,rgba(16,14,12,.62) 32%,rgba(16,14,12,.28) 60%,rgba(16,14,12,.72) 100%),
+    radial-gradient(120% 80% at 20% 90%,rgba(190,86,40,.22),transparent 60%);
+}
+.hero-inner{position:relative; z-index:2; width:100%}
+.hero-grid{display:grid; grid-template-columns:1fr auto; gap:40px; align-items:end}
+.hero h1{max-width:15ch; text-shadow:0 12px 60px rgba(0,0,0,.35)}
+.hero .lede{margin:26px 0 34px}
+.hero-cta{display:flex; flex-wrap:wrap; gap:14px; align-items:center}
+.hero-side{display:flex; flex-direction:column; gap:22px; align-items:flex-end; text-align:right; padding-bottom:6px}
+.hero-card{
+  border:1px solid var(--line-d); border-radius:3px; padding:18px 22px; min-width:230px; text-align:left;
+  background:rgba(16,14,12,.42); backdrop-filter:blur(9px);
+}
+.hero-card b{font-family:var(--serif); font-size:1.28rem; font-weight:400; display:block; letter-spacing:-.01em}
+.hero-card .dot{display:inline-block; width:7px;height:7px;border-radius:50%; background:#7BAE6B; margin-right:8px; box-shadow:0 0 0 0 rgba(123,174,107,.6); animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(123,174,107,0)}100%{box-shadow:0 0 0 0 rgba(123,174,107,0)}}
+.scrollcue{display:flex; align-items:center; gap:12px; font-size:.62rem; letter-spacing:.28em; text-transform:uppercase; color:rgba(247,242,234,.55)}
+.scrollcue i{display:block; width:1px; height:44px; background:linear-gradient(var(--clay-l),transparent); position:relative; overflow:hidden}
+.scrollcue i::after{content:""; position:absolute; inset:0; background:var(--cream); animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+.hero-stats{display:flex; gap:clamp(20px,4vw,54px); margin-top:44px; padding-top:26px; border-top:1px solid var(--line-d); flex-wrap:wrap}
+.hero-stats div{min-width:96px}
+.hero-stats b{display:block; font-family:var(--serif); font-size:clamp(1.5rem,2.6vw,2.15rem); font-weight:400; letter-spacing:-.02em}
+.hero-stats span{font-size:.66rem; letter-spacing:.19em; text-transform:uppercase; color:var(--muted)}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-side{align-items:flex-start; text-align:left; flex-direction:row; flex-wrap:wrap; gap:14px}
+  .hero .lede{margin:20px 0 26px}
+  .hero-cta .btn{flex:1 1 auto; justify-content:center}
+  .scrollcue{display:none}
+}
+
+/* ============ MARQUEE ============ */
+.marq{background:var(--bone); color:var(--ink); padding:15px 0; overflow:hidden; white-space:nowrap; border-block:1px solid rgba(16,14,12,.1)}
+.marq-t{display:inline-flex; animation:marq 46s linear infinite; will-change:transform}
+.marq:hover .marq-t{animation-play-state:paused}
+.marq-t span{display:inline-flex; align-items:center; gap:34px; padding-right:34px; font-family:var(--serif); font-size:clamp(.95rem,1.6vw,1.35rem); letter-spacing:.01em}
+.marq-t span::after{content:"◆"; font-size:.44em; color:var(--clay); transform:translateY(-2px)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ============ FILOSOFI ============ */
+.philo{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:clamp(36px,7vw,110px)}
+.vert{writing-mode:vertical-rl; text-orientation:mixed; font-size:.66rem; letter-spacing:.34em; text-transform:uppercase; color:var(--muted-d); position:sticky; top:120px; height:max-content}
+.philo-l{display:flex; gap:clamp(20px,3vw,44px)}
+.philo h2{margin-bottom:30px}
+.pill-list{list-style:none; margin:36px 0 0; padding:0; display:grid; gap:0; border-top:1px solid var(--line-l)}
+.pill-list li{display:grid; grid-template-columns:auto 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-l); align-items:start}
+.pill-list b{font-family:var(--serif); font-size:1.1rem; font-weight:400; display:block; margin-bottom:3px}
+.pill-list p{margin:0; font-size:.92rem; color:var(--muted-d); line-height:1.6}
+.pill-list .num{padding-top:5px}
+.philo-r{position:relative}
+.philo-fig{position:relative}
+.philo-img{position:relative; overflow:hidden; border-radius:3px; aspect-ratio:4/5}
+.philo-img img{width:100%;height:100%;object-fit:cover; transform:scale(1.02); transition:transform 1.6s var(--ease)}
+.philo-img:hover img{transform:scale(1.07)}
+.badge{
+  position:absolute; z-index:3; background:var(--ink); color:var(--cream); border-radius:50%;
+  width:clamp(112px,13vw,152px); aspect-ratio:1; display:grid; place-items:center; text-align:center;
+  right:-14px; bottom:-26px; padding:14px; box-shadow:0 24px 50px -22px rgba(0,0,0,.6);
+}
+.badge b{font-family:var(--serif); font-size:clamp(1.5rem,2.3vw,2rem); font-weight:400; display:block; line-height:1; color:var(--clay-l)}
+.badge span{font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); display:block; margin-top:7px; line-height:1.5}
+.quote-mini{margin-top:38px; padding-left:20px; border-left:2px solid var(--clay); font-family:var(--serif); font-size:1.16rem; line-height:1.5; font-style:italic}
+.quote-mini cite{display:block; font-family:var(--sans); font-style:normal; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted-d); margin-top:12px}
+@media (max-width:900px){
+  .philo{grid-template-columns:1fr; gap:44px}
+  .vert{display:none}
+  .badge{right:8px; bottom:-22px}
+}
+
+/* ============ KONSEPTER ============ */
+.konsept{background:var(--ink-2); overflow:hidden}
+.k-head{display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; margin-bottom:clamp(34px,5vw,62px)}
+.k-grid{display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.25fr); gap:clamp(28px,4vw,64px); align-items:start}
+.k-list{list-style:none; margin:0; padding:0; border-top:1px solid var(--line-d)}
+.k-item{border-bottom:1px solid var(--line-d)}
+.k-btn{
+  width:100%; background:none; border:0; text-align:left; padding:clamp(18px,2.4vw,26px) 0; cursor:pointer;
+  display:grid; grid-template-columns:auto 1fr auto; gap:18px; align-items:center; position:relative; transition:padding .5s var(--ease)
+}
+.k-btn::before{content:""; position:absolute; left:-100vw; right:0; top:0; bottom:0; background:rgba(247,242,234,.04); opacity:0; transition:opacity .5s}
+.k-item.on .k-btn::before,.k-btn:hover::before{opacity:1}
+.k-item.on .k-btn{padding-left:16px}
+.k-btn h3{font-size:clamp(1.35rem,2.5vw,2.05rem); transition:color .4s, transform .6s var(--ease); color:rgba(247,242,234,.66)}
+.k-item.on .k-btn h3,.k-btn:hover h3{color:var(--cream)}
+.k-btn .k-meta{font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); text-align:right; line-height:1.6}
+.k-item.on .k-btn .k-meta{color:var(--clay-l)}
+.k-line{height:1px; background:var(--clay); transform:scaleX(0); transform-origin:left; transition:transform .8s var(--ease)}
+.k-item.on .k-line{transform:scaleX(1)}
+.k-mob-body{display:none}
+.k-stage{position:relative; border-radius:3px; overflow:hidden; aspect-ratio:5/6; background:var(--ink-3)}
+.k-stage figure{position:absolute; inset:0; margin:0; opacity:0; transition:opacity 1s var(--ease); pointer-events:none}
+.k-stage figure.on{opacity:1}
+.k-stage img{width:100%;height:100%;object-fit:cover; transform:scale(1.08); transition:transform 8s linear}
+.k-stage figure.on img{transform:scale(1)}
+.k-stage::after{content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(16,14,12,.94),rgba(16,14,12,.15) 52%,rgba(16,14,12,.35))}
+.k-cap{position:absolute; z-index:3; left:0; right:0; bottom:0; padding:clamp(20px,3vw,36px)}
+.k-cap .pane{opacity:0; transform:translateY(14px); transition:opacity .7s var(--ease), transform .7s var(--ease); position:absolute; inset:auto clamp(20px,3vw,36px) clamp(20px,3vw,36px); pointer-events:none}
+.k-cap .pane.on{opacity:1; transform:none; position:relative; inset:auto; pointer-events:auto}
+.k-cap h4{font-size:clamp(1.15rem,1.9vw,1.55rem); margin-bottom:8px}
+.k-cap p{margin:0 0 16px; color:rgba(247,242,234,.76); font-size:.93rem; max-width:48ch}
+.k-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px}
+.tag{font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; padding:.5em .85em; border:1px solid var(--line-d); border-radius:100px; color:rgba(247,242,234,.8); background:rgba(16,14,12,.35)}
+.k-foot{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; border-top:1px solid var(--line-d); padding-top:16px}
+.k-price{font-family:var(--serif); font-size:1.15rem}
+.k-price span{font-size:.66rem; font-family:var(--sans); letter-spacing:.16em; text-transform:uppercase; color:var(--muted); display:block}
+@media (max-width:900px){
+  .k-grid{grid-template-columns:1fr; gap:0}
+  .k-stage{display:none}
+  .k-btn{grid-template-columns:auto 1fr auto; padding:20px 0}
+  .k-item.on .k-btn{padding-left:0}
+  .k-mob-body{display:block; overflow:hidden; height:0; transition:height .7s var(--ease)}
+  .k-mob-inner{padding-bottom:24px}
+  .k-mob-inner .imgw{border-radius:3px; overflow:hidden; aspect-ratio:4/3; margin-bottom:18px}
+  .k-mob-inner .imgw img{width:100%;height:100%;object-fit:cover}
+  .k-mob-inner p{color:rgba(247,242,234,.75); font-size:.93rem; margin:0 0 14px}
+}
+
+/* ============ MENYKARTET ============ */
+.meny{background:var(--cream); color:var(--ink)}
+.meny-head{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:28px; align-items:end; margin-bottom:clamp(30px,4vw,54px)}
+.switch{display:inline-flex; align-items:center; gap:14px; background:rgba(16,14,12,.05); border:1px solid var(--line-l); border-radius:100px; padding:6px}
+.switch button{
+  border:0; background:transparent; cursor:pointer; padding:.7em 1.25em; border-radius:100px;
+  font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; font-weight:600; color:var(--muted-d); transition:color .35s
+}
+.switch button.on{background:var(--ink); color:var(--cream)}
+.menus{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,2.4vw,32px)}
+.mcard{
+  position:relative; background:#FDFAF5; border:1px solid var(--line-l); border-radius:3px; overflow:hidden;
+  display:flex; flex-direction:column; transition:transform .7s var(--ease), box-shadow .7s var(--ease);
+}
+.mcard:hover{transform:translateY(-7px); box-shadow:0 40px 70px -46px rgba(16,14,12,.6)}
+.mcard-img{position:relative; aspect-ratio:16/10; overflow:hidden}
+.mcard-img img{width:100%;height:100%;object-fit:cover; transition:transform 1.5s var(--ease)}
+.mcard:hover .mcard-img img{transform:scale(1.07)}
+.mcard-img::after{content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(16,14,12,.55),transparent 55%)}
+.mcard-tag{position:absolute; z-index:2; left:14px; top:14px; background:rgba(16,14,12,.78); color:var(--cream); font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; padding:.55em .9em; border-radius:100px; backdrop-filter:blur(6px)}
+.mcard-body{padding:clamp(20px,2.4vw,30px); display:flex; flex-direction:column; flex:1}
+.mcard h3{font-size:clamp(1.35rem,2vw,1.7rem)}
+.mcard .sub{font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--clay); margin:9px 0 20px}
+.courses{list-style:none; margin:0 0 22px; padding:0; flex:1}
+.courses li{padding:13px 0; border-top:1px dashed rgba(16,14,12,.16)}
+.courses li:last-child{border-bottom:1px dashed rgba(16,14,12,.16)}
+.courses .c-lab{font-size:.6rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted-d); display:block; margin-bottom:4px}
+.courses .c-dish{font-family:var(--serif); font-size:1.02rem; line-height:1.35; display:block; transition:opacity .4s var(--ease), transform .4s var(--ease)}
+.courses.swap .c-dish{opacity:0; transform:translateY(6px)}
+.mcard-foot{display:flex; align-items:flex-end; justify-content:space-between; gap:14px}
+.price{font-family:var(--serif); font-size:1.6rem; line-height:1; letter-spacing:-.02em}
+.price small{display:block; font-family:var(--sans); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted-d); margin-top:7px; letter-spacing:.16em}
+.meny-note{margin-top:clamp(26px,3vw,42px); display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:22px; border-top:1px solid var(--line-l); padding-top:26px}
+.meny-note div b{font-family:var(--serif); font-weight:400; font-size:1.05rem; display:block; margin-bottom:5px}
+.meny-note div p{margin:0; font-size:.86rem; color:var(--muted-d); line-height:1.6}
+@media (max-width:980px){.menus{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){
+  .menus{grid-template-columns:1fr}
+  .meny-head{grid-template-columns:1fr}
+  .switch{width:100%; justify-content:center}
+}
+
+/* ============ PAKKER ============ */
+.pakker{background:var(--ink); position:relative}
+.pk-grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--line-d); border:1px solid var(--line-d); border-radius:3px; overflow:hidden}
+.pk{background:var(--ink); padding:clamp(24px,2.6vw,38px); display:flex; flex-direction:column; position:relative; transition:background .6s var(--ease)}
+.pk:hover{background:var(--ink-3)}
+.pk.feat{background:var(--ink-3)}
+.pk.feat::before{content:"Mest valgt"; position:absolute; top:0; right:0; background:var(--clay); color:#fff; font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; padding:.62em 1em}
+.pk .pk-n{font-family:var(--serif); font-size:.78rem; color:var(--brass); letter-spacing:.18em; margin-bottom:auto}
+.pk h3{font-size:clamp(1.3rem,1.8vw,1.6rem); margin:38px 0 10px}
+.pk .pk-d{font-size:.9rem; color:rgba(247,242,234,.6); margin:0 0 22px; min-height:3.2em; line-height:1.55}
+.pk .pk-p{font-family:var(--serif); font-size:2rem; letter-spacing:-.02em; line-height:1}
+.pk .pk-p em{font-style:normal; font-size:.62rem; font-family:var(--sans); letter-spacing:.18em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:8px}
+.pk ul{list-style:none; margin:24px 0 28px; padding:22px 0 0; border-top:1px solid var(--line-d); display:grid; gap:11px; font-size:.87rem; color:rgba(247,242,234,.78)}
+.pk li{display:grid; grid-template-columns:auto 1fr; gap:11px; align-items:start; line-height:1.5}
+.pk li svg{margin-top:5px; flex:none; color:var(--clay-l)}
+.pk .btn{width:100%; justify-content:center; margin-top:auto}
+@media (max-width:1080px){.pk-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.pk-grid{grid-template-columns:1fr} .pk .pk-d{min-height:0}}
+
+/* ============ PROSESS ============ */
+.prosess{background:var(--bone); color:var(--ink)}
+.pr-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.02fr); gap:clamp(30px,5vw,80px); align-items:start}
+.pr-sticky{position:sticky; top:110px}
+.pr-stage{position:relative; aspect-ratio:4/5; border-radius:3px; overflow:hidden; background:var(--sand)}
+.pr-stage img{position:absolute; inset:0; width:100%;height:100%;object-fit:cover; opacity:0; transform:scale(1.06); transition:opacity 1.1s var(--ease), transform 1.6s var(--ease)}
+.pr-stage img.on{opacity:1; transform:scale(1)}
+.pr-progress{margin-top:20px; height:2px; background:rgba(16,14,12,.14); position:relative; overflow:hidden}
+.pr-progress i{position:absolute; inset:0 auto 0 0; width:20%; background:var(--clay); transition:width .8s var(--ease)}
+.pr-steps{list-style:none; margin:0; padding:0}
+.pr-step{padding:clamp(26px,3.4vw,44px) 0; border-top:1px solid rgba(16,14,12,.15); position:relative; opacity:.42; transition:opacity .7s var(--ease)}
+.pr-step:last-child{border-bottom:1px solid rgba(16,14,12,.15)}
+.pr-step.on{opacity:1}
+.pr-step .pr-top{display:flex; align-items:baseline; gap:16px; margin-bottom:12px}
+.pr-step .pr-no{font-family:var(--serif); font-size:.82rem; letter-spacing:.2em; color:var(--clay)}
+.pr-step h3{font-size:clamp(1.45rem,2.6vw,2.15rem)}
+.pr-step p{margin:0; color:var(--muted-d); max-width:50ch; font-size:.97rem}
+.pr-step .pr-when{margin-top:14px; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); background:rgba(16,14,12,.06); display:inline-block; padding:.5em .9em; border-radius:100px}
+@media (max-width:900px){
+  .pr-grid{grid-template-columns:1fr}
+  .pr-sticky{position:relative; top:0}
+  .pr-stage{aspect-ratio:16/10}
+}
+
+/* ============ GALLERI ============ */
+.galleri{background:var(--ink-2); overflow:hidden}
+.g-filters{display:flex; gap:9px; flex-wrap:wrap; margin-bottom:26px}
+.chip{
+  border:1px solid var(--line-d); background:transparent; color:rgba(247,242,234,.72); cursor:pointer;
+  padding:.62em 1.15em; border-radius:100px; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; transition:all .4s var(--ease)
+}
+.chip:hover{border-color:rgba(247,242,234,.4); color:var(--cream)}
+.chip.on{background:var(--cream); color:var(--ink); border-color:var(--cream)}
+.g-grid{display:grid; grid-template-columns:repeat(12,1fr); gap:clamp(8px,1vw,14px); grid-auto-flow:dense}
+.g-it{position:relative; overflow:hidden; border-radius:3px; cursor:pointer; background:var(--ink-3); transition:opacity .6s var(--ease), transform .6s var(--ease), filter .6s}
+.g-it img{width:100%; height:100%; object-fit:cover; transition:transform 1.5s var(--ease), filter .8s}
+.g-it:hover img{transform:scale(1.06)}
+.g-it::after{content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(16,14,12,.8),transparent 55%); opacity:0; transition:opacity .5s}
+.g-it:hover::after{opacity:1}
+.g-it figcaption{position:absolute; z-index:2; left:16px; right:16px; bottom:14px; font-size:.72rem; letter-spacing:.13em; text-transform:uppercase; opacity:0; transform:translateY(9px); transition:all .5s var(--ease); color:#fff}
+.g-it:hover figcaption{opacity:1; transform:none}
+.g-it.hide{opacity:.13; filter:grayscale(1) brightness(.5); pointer-events:none}
+.s6{grid-column:span 6; aspect-ratio:16/10} .s4{grid-column:span 4; aspect-ratio:4/5}
+.s3{grid-column:span 3; aspect-ratio:1/1} .s8{grid-column:span 8; aspect-ratio:16/9}
+.s5{grid-column:span 5; aspect-ratio:5/4} .s7{grid-column:span 7; aspect-ratio:16/10}
+@media (max-width:820px){
+  .s6,.s8,.s7,.s5{grid-column:span 12; aspect-ratio:16/11}
+  .s4,.s3{grid-column:span 6; aspect-ratio:3/4}
+}
+/* lightbox */
+.lb{position:fixed; inset:0; z-index:1000; background:rgba(10,9,8,.96); display:grid; place-items:center; padding:clamp(14px,4vw,60px); opacity:0; pointer-events:none; transition:opacity .5s var(--ease); backdrop-filter:blur(6px)}
+.lb.on{opacity:1; pointer-events:auto}
+.lb img{max-width:100%; max-height:78vh; object-fit:contain; border-radius:3px; transform:scale(.97); transition:transform .6s var(--ease)}
+.lb.on img{transform:scale(1)}
+.lb-cap{text-align:center; margin-top:18px; font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
+.lb-x,.lb-p,.lb-n{position:absolute; background:rgba(247,242,234,.08); border:1px solid var(--line-d); color:var(--cream); width:50px;height:50px;border-radius:50%; cursor:pointer; display:grid; place-items:center; transition:background .35s, transform .35s}
+.lb-x:hover,.lb-p:hover,.lb-n:hover{background:var(--clay); transform:scale(1.07)}
+.lb-x{top:22px; right:22px} .lb-p{left:16px; top:50%; margin-top:-25px} .lb-n{right:16px; top:50%; margin-top:-25px}
+
+/* ============ PLANLEGGER ============ */
+.plan{background:var(--ink); position:relative; overflow:hidden}
+.plan::before{content:""; position:absolute; inset:auto -10% -30% -10%; height:60%; background:radial-gradient(50% 60% at 50% 100%,rgba(190,86,40,.18),transparent 70%); pointer-events:none}
+.plan-shell{display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr); gap:clamp(20px,2.4vw,34px); align-items:start}
+.panel{background:var(--ink-2); border:1px solid var(--line-d); border-radius:4px; position:relative; overflow:hidden}
+.pl-bar{display:flex; gap:2px; padding:0; background:var(--line-d)}
+.pl-bar div{flex:1; height:3px; background:var(--ink-3); position:relative; overflow:hidden}
+.pl-bar div i{position:absolute; inset:0; background:var(--clay); transform:scaleX(0); transform-origin:left; transition:transform .8s var(--ease)}
+.pl-bar div.done i{transform:scaleX(1)}
+.pl-top{display:flex; justify-content:space-between; align-items:center; gap:16px; padding:20px clamp(20px,3vw,38px); border-bottom:1px solid var(--line-d); flex-wrap:wrap}
+.pl-top .st{font-size:.66rem; letter-spacing:.24em; text-transform:uppercase; color:var(--muted)}
+.pl-top .st b{color:var(--clay-l); font-weight:600}
+.pl-body{padding:clamp(24px,3.4vw,44px)}
+.pl-step{display:none; animation:plin .7s var(--ease)}
+.pl-step.on{display:block}
+@keyframes plin{from{opacity:0; transform:translateY(16px)}to{opacity:1; transform:none}}
+.pl-q{font-family:var(--serif); font-size:clamp(1.5rem,2.6vw,2.1rem); letter-spacing:-.02em; margin:0 0 8px; line-height:1.1}
+.pl-h{font-size:.92rem; color:rgba(247,242,234,.6); margin:0 0 28px; max-width:52ch}
+.opts{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+.opts.two{grid-template-columns:repeat(2,1fr)}
+.opt{
+  position:relative; border:1px solid var(--line-d); background:rgba(247,242,234,.025); border-radius:3px; padding:18px 16px;
+  cursor:pointer; text-align:left; transition:all .45s var(--ease); overflow:hidden; display:flex; flex-direction:column; gap:5px; min-height:96px; justify-content:flex-end;
+}
+.opt:hover{border-color:rgba(247,242,234,.34); background:rgba(247,242,234,.055); transform:translateY(-2px)}
+.opt.on{border-color:var(--clay); background:rgba(190,86,40,.13)}
+.opt.on::after{content:""; position:absolute; right:12px; top:12px; width:8px;height:8px; border-radius:50%; background:var(--clay-l); box-shadow:0 0 0 4px rgba(190,86,40,.22)}
+.opt b{font-family:var(--serif); font-weight:400; font-size:1.1rem; letter-spacing:-.01em}
+.opt span{font-size:.74rem; color:var(--muted); line-height:1.45}
+.opt .ic{font-family:var(--serif); color:var(--brass); font-size:.72rem; letter-spacing:.16em; margin-bottom:auto}
+.field{display:grid; gap:9px; margin-bottom:20px}
+.field label{font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted)}
+.inp{
+  width:100%; background:rgba(247,242,234,.04); border:1px solid var(--line-d); border-radius:3px; padding:.95em 1.05em;
+  color:var(--cream); font-size:.96rem; transition:border-color .4s, background .4s; font-family:var(--sans); color-scheme:dark;
+}
+.inp::placeholder{color:rgba(247,242,234,.32)}
+.inp:focus{outline:none; border-color:var(--clay); background:rgba(190,86,40,.07)}
+.inp.err{border-color:#C4483F; background:rgba(196,72,63,.08)}
+textarea.inp{min-height:110px; resize:vertical; line-height:1.6}
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.guests{display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:8px}
+.gnum{font-family:var(--serif); font-size:clamp(2.4rem,5vw,3.6rem); line-height:1; letter-spacing:-.03em; min-width:2.6ch}
+.gnum sup{font-size:.28em; letter-spacing:.16em; text-transform:uppercase; font-family:var(--sans); color:var(--muted); vertical-align:super; margin-left:8px}
+.rng{-webkit-appearance:none; appearance:none; width:100%; height:2px; background:linear-gradient(var(--clay),var(--clay)) 0/var(--p,25%) 100% no-repeat rgba(247,242,234,.16); border-radius:4px; margin:12px 0 6px; cursor:pointer}
+.rng::-webkit-slider-thumb{-webkit-appearance:none; width:26px;height:26px;border-radius:50%; background:var(--cream); border:5px solid var(--clay); cursor:grab; box-shadow:0 6px 16px -6px rgba(0,0,0,.7); transition:transform .25s}
+.rng::-webkit-slider-thumb:active{transform:scale(1.12); cursor:grabbing}
+.rng::-moz-range-thumb{width:18px;height:18px;border-radius:50%; background:var(--cream); border:5px solid var(--clay); cursor:grab}
+.rng-scale{display:flex; justify-content:space-between; font-size:.66rem; color:var(--muted-d); letter-spacing:.1em}
+.quick{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+.quick button{background:transparent; border:1px solid var(--line-d); color:rgba(247,242,234,.7); border-radius:100px; padding:.5em 1em; font-size:.7rem; letter-spacing:.1em; cursor:pointer; transition:all .35s}
+.quick button:hover{border-color:var(--clay); color:var(--cream)}
+.chips{display:flex; flex-wrap:wrap; gap:9px}
+.chk{position:relative; cursor:pointer}
+.chk input{position:absolute; opacity:0; pointer-events:none}
+.chk span{display:inline-flex; align-items:center; gap:.55em; border:1px solid var(--line-d); border-radius:100px; padding:.66em 1.1em; font-size:.78rem; color:rgba(247,242,234,.78); transition:all .4s var(--ease)}
+.chk span::before{content:""; width:6px;height:6px;border-radius:50%; background:rgba(247,242,234,.25); transition:all .35s}
+.chk:hover span{border-color:rgba(247,242,234,.36)}
+.chk input:checked + span{border-color:var(--clay); background:rgba(190,86,40,.14); color:var(--cream)}
+.chk input:checked + span::before{background:var(--clay-l); box-shadow:0 0 0 3px rgba(190,86,40,.25)}
+.chk input:focus-visible + span{outline:2px solid var(--brass); outline-offset:2px}
+.pl-nav{display:flex; justify-content:space-between; align-items:center; gap:14px; padding:20px clamp(20px,3vw,38px); border-top:1px solid var(--line-d); background:rgba(16,14,12,.5)}
+.ghostbtn{background:none; border:0; color:var(--muted); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; cursor:pointer; padding:.8em 0; transition:color .35s}
+.ghostbtn:hover{color:var(--cream)}
+.ghostbtn[disabled]{opacity:.28; cursor:not-allowed}
+.hint{font-size:.76rem; color:var(--brass); margin-top:14px; display:flex; gap:9px; align-items:flex-start; line-height:1.5}
+.hint svg{flex:none; margin-top:3px}
+.errmsg{color:#E58B7F; font-size:.78rem; margin-top:8px; display:none}
+.errmsg.on{display:block}
+
+/* sammendrag */
+.sum{position:sticky; top:100px; background:var(--ink-3); border:1px solid var(--line-d); border-radius:4px; overflow:hidden}
+.sum-h{padding:20px 24px; border-bottom:1px solid var(--line-d); display:flex; justify-content:space-between; align-items:center}
+.sum-h span{font-size:.64rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted)}
+.sum-b{padding:24px}
+.sum-row{display:flex; justify-content:space-between; gap:14px; padding:11px 0; border-bottom:1px dashed rgba(247,242,234,.12); font-size:.87rem}
+.sum-row dt{color:var(--muted); margin:0}
+.sum-row dd{margin:0; text-align:right; font-family:var(--serif); font-size:1rem}
+.sum-est{padding:22px 24px; background:linear-gradient(160deg,rgba(190,86,40,.2),rgba(190,86,40,.02)); border-top:1px solid var(--line-d)}
+.sum-est .lab{font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:8px}
+.sum-est .big{font-family:var(--serif); font-size:clamp(1.7rem,3vw,2.3rem); letter-spacing:-.02em; line-height:1; transition:opacity .3s}
+.sum-est .big.flash{opacity:.35}
+.sum-est .pp{font-size:.8rem; color:rgba(247,242,234,.68); margin-top:9px}
+.sum-note{font-size:.7rem; color:var(--muted-d); padding:0 24px 22px; line-height:1.6}
+.sum-marks{display:grid; gap:9px; padding:0 24px 24px; font-size:.76rem; color:rgba(247,242,234,.6)}
+.sum-marks div{display:flex; gap:9px; align-items:center}
+.sum-marks svg{color:var(--sage); flex:none}
+/* kvittering */
+.done-card{text-align:center; padding:clamp(30px,5vw,60px) clamp(20px,4vw,50px)}
+.done-ring{width:74px;height:74px;border-radius:50%; border:1px solid var(--clay); display:grid; place-items:center; margin:0 auto 24px; position:relative}
+.done-ring::after{content:""; position:absolute; inset:-9px; border-radius:50%; border:1px solid rgba(190,86,40,.3); animation:ring 2.6s var(--ease) infinite}
+@keyframes ring{0%{transform:scale(.9); opacity:.9}100%{transform:scale(1.25); opacity:0}}
+.done-card h3{font-size:clamp(1.6rem,3.2vw,2.4rem); margin-bottom:12px}
+.ref{display:inline-block; margin-top:22px; border:1px dashed var(--line-d); border-radius:3px; padding:.9em 1.4em; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--brass)}
+@media (max-width:1000px){
+  .plan-shell{grid-template-columns:1fr}
+  .sum{position:relative; top:0}
+  .opts{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .opts,.opts.two,.two-col{grid-template-columns:1fr}
+  .pl-nav{flex-direction:row}
+  .pl-nav .btn{flex:1; justify-content:center}
+}
+
+/* ============ OMTALER ============ */
+.omtaler{background:var(--cream); color:var(--ink); overflow:hidden}
+.om-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.35fr); gap:clamp(30px,5vw,80px); align-items:center}
+.om-imgs{position:relative; aspect-ratio:4/5; border-radius:3px; overflow:hidden; background:var(--sand)}
+.om-imgs img{position:absolute; inset:0; width:100%;height:100%;object-fit:cover; opacity:0; transform:scale(1.05); transition:opacity 1s var(--ease), transform 1.4s var(--ease)}
+.om-imgs img.on{opacity:1; transform:scale(1)}
+.om-q{position:relative}
+.om-mark{font-family:var(--serif); font-size:clamp(4rem,9vw,7rem); line-height:.6; color:var(--clay); opacity:.28; display:block; margin-bottom:10px}
+.om-slide{display:none}
+.om-slide.on{display:block; animation:plin .8s var(--ease)}
+.om-slide blockquote{margin:0; font-family:var(--serif); font-size:clamp(1.3rem,2.6vw,2.05rem); line-height:1.32; letter-spacing:-.015em}
+.om-slide .who{margin-top:26px; display:flex; align-items:center; gap:16px}
+.om-slide .who .av{width:44px;height:44px;border-radius:50%; background:var(--ink); color:var(--cream); display:grid; place-items:center; font-family:var(--serif); font-size:.9rem; flex:none}
+.om-slide .who b{display:block; font-weight:600; font-size:.9rem; letter-spacing:.01em}
+.om-slide .who span{font-size:.76rem; color:var(--muted-d)}
+.om-ctrl{display:flex; align-items:center; gap:18px; margin-top:36px}
+.om-dots{display:flex; gap:8px}
+.om-dots button{width:26px;height:3px; background:rgba(16,14,12,.16); border:0; cursor:pointer; padding:0; transition:background .4s}
+.om-dots button.on{background:var(--clay)}
+.arrows{display:flex; gap:8px; margin-left:auto}
+.arrows button{width:44px;height:44px;border-radius:50%; border:1px solid rgba(16,14,12,.2); background:transparent; cursor:pointer; display:grid; place-items:center; transition:all .4s var(--ease); color:var(--ink)}
+.arrows button:hover{background:var(--ink); color:var(--cream); transform:translateY(-2px)}
+.logos{margin-top:clamp(48px,6vw,80px); border-top:1px solid var(--line-l); padding-top:30px; display:flex; align-items:center; gap:clamp(20px,4vw,56px); flex-wrap:wrap; justify-content:space-between}
+.logos span{font-family:var(--serif); font-size:clamp(.85rem,1.5vw,1.12rem); letter-spacing:.14em; text-transform:uppercase; color:rgba(16,14,12,.42); transition:color .4s}
+.logos span:hover{color:var(--ink)}
+@media (max-width:900px){.om-grid{grid-template-columns:1fr} .om-imgs{aspect-ratio:16/11}}
+
+/* ============ OM OSS ============ */
+.om{background:var(--ink-2); overflow:hidden}
+.om2{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:clamp(30px,5vw,90px); align-items:center}
+.om2-img{position:relative; border-radius:3px; overflow:hidden; aspect-ratio:5/4}
+.om2-img img{width:100%;height:100%;object-fit:cover}
+.om2-cap{position:absolute; left:0; bottom:0; right:0; padding:22px; background:linear-gradient(to top,rgba(16,14,12,.9),transparent); font-size:.78rem; color:rgba(247,242,234,.8)}
+.facts{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-d); border:1px solid var(--line-d); margin-top:34px; border-radius:3px; overflow:hidden}
+.facts div{background:var(--ink-2); padding:20px}
+.facts b{display:block; font-family:var(--serif); font-size:1.5rem; letter-spacing:-.02em}
+.facts span{font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+@media (max-width:900px){.om2{grid-template-columns:1fr}}
+
+/* ============ FAQ ============ */
+.faq{background:var(--cream); color:var(--ink)}
+.faq-grid{display:grid; grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); gap:clamp(30px,5vw,80px); align-items:start}
+.acc{border-top:1px solid var(--line-l)}
+.acc-i{border-bottom:1px solid var(--line-l)}
+.acc-b{width:100%; background:none; border:0; text-align:left; cursor:pointer; padding:clamp(20px,2.4vw,28px) 44px clamp(20px,2.4vw,28px) 0; position:relative; font-family:var(--serif); font-size:clamp(1.08rem,1.8vw,1.4rem); letter-spacing:-.01em; color:var(--ink); transition:color .35s}
+.acc-b:hover{color:var(--clay)}
+.acc-b::before,.acc-b::after{content:""; position:absolute; right:6px; top:50%; background:currentColor; transition:transform .5s var(--ease), opacity .4s}
+.acc-b::before{width:15px; height:1.5px; margin-top:-.75px}
+.acc-b::after{width:1.5px; height:15px; right:12.75px; margin-top:-7.5px}
+.acc-i.on .acc-b::after{transform:rotate(90deg); opacity:0}
+.acc-i.on .acc-b{color:var(--clay)}
+.acc-p{height:0; overflow:hidden; transition:height .6s var(--ease)}
+.acc-p div{padding:0 clamp(20px,6vw,90px) clamp(22px,2.4vw,30px) 0; color:var(--muted-d); font-size:.95rem; line-height:1.72}
+@media (max-width:900px){.faq-grid{grid-template-columns:1fr}}
+
+/* ============ KONTAKT / CTA ============ */
+.cta{position:relative; background:var(--ink); overflow:hidden; text-align:center; padding-block:clamp(80px,11vw,150px)}
+.cta-bg{position:absolute; inset:0; opacity:.3}
+.cta-bg img{width:100%;height:100%;object-fit:cover}
+.cta-bg::after{content:""; position:absolute; inset:0; background:radial-gradient(60% 70% at 50% 50%,rgba(16,14,12,.45),rgba(16,14,12,.95))}
+.cta .wrap{position:relative; z-index:2}
+.cta h2{max-width:16ch; margin-inline:auto}
+.cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:36px}
+.cta-tel{margin-top:34px; font-family:var(--serif); font-size:clamp(1.3rem,2.6vw,1.9rem)}
+.cta-tel a{border-bottom:1px solid rgba(247,242,234,.3); padding-bottom:3px; transition:border-color .4s, color .4s}
+.cta-tel a:hover{color:var(--clay-l); border-color:var(--clay)}
+
+footer{background:var(--ink-2); padding-top:clamp(50px,7vw,90px); position:relative}
+.f-top{display:grid; grid-template-columns:1.5fr 1fr 1fr 1.2fr; gap:clamp(24px,3vw,46px); padding-bottom:clamp(40px,5vw,70px)}
+.f-top h4{font-size:.68rem; font-family:var(--sans); letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:18px; font-weight:600}
+.f-top ul{list-style:none; margin:0; padding:0; display:grid; gap:11px; font-size:.9rem}
+.f-top a{color:rgba(247,242,234,.74); transition:color .3s}
+.f-top a:hover{color:var(--clay-l)}
+.f-brand p{font-size:.92rem; color:rgba(247,242,234,.6); max-width:34ch; margin:16px 0 22px; line-height:1.7}
+.f-soc{display:flex; gap:10px}
+.f-soc a{width:42px;height:42px;border:1px solid var(--line-d); border-radius:50%; display:grid; place-items:center; transition:all .4s var(--ease)}
+.f-soc a:hover{background:var(--clay); border-color:var(--clay); color:#fff; transform:translateY(-3px)}
+.f-bot{border-top:1px solid var(--line-d); padding:24px 0 30px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:.76rem; color:var(--muted-d)}
+.f-bot a{color:var(--muted-d)} .f-bot a:hover{color:var(--cream)}
+.f-word{font-family:var(--serif); font-size:clamp(2.6rem,13vw,11rem); line-height:.85; letter-spacing:-.04em; color:rgba(247,242,234,.05); text-align:center; padding-bottom:14px; user-select:none; white-space:nowrap; overflow:hidden}
+@media (max-width:900px){.f-top{grid-template-columns:1fr 1fr} .f-brand{grid-column:1/-1}}
+@media (max-width:760px){footer{padding-bottom:78px}}
+
+/* mobil sticky CTA */
+.mbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:880; display:none; gap:10px; padding:11px 14px calc(11px + env(safe-area-inset-bottom));
+  background:rgba(16,14,12,.94); backdrop-filter:blur(14px); border-top:1px solid var(--line-d); transform:translateY(110%); transition:transform .6s var(--ease)
+}
+.mbar.on{transform:none}
+.mbar .btn{flex:1; justify-content:center; padding:1em}
+@media (max-width:760px){.mbar{display:flex}}
+.totop{position:fixed; right:18px; bottom:22px; z-index:870; width:48px;height:48px;border-radius:50%; border:1px solid var(--line-d); background:rgba(16,14,12,.8); backdrop-filter:blur(8px); color:var(--cream); cursor:pointer; display:grid; place-items:center; opacity:0; transform:translateY(14px); pointer-events:none; transition:all .5s var(--ease)}
+.totop.on{opacity:1; transform:none; pointer-events:auto}
+.totop:hover{background:var(--clay); border-color:var(--clay)}
+@media (max-width:760px){.totop{display:none}}
+/* hover-bilde ved menylenker (desktop) */
+.hovimg{position:fixed; z-index:940; width:230px; aspect-ratio:4/5; border-radius:3px; overflow:hidden; pointer-events:none; opacity:0; transform:translate(-50%,-50%) scale(.9) rotate(-3deg); transition:opacity .45s var(--ease), transform .55s var(--ease)}
+.hovimg.on{opacity:1; transform:translate(-50%,-50%) scale(1) rotate(-2deg)}
+.hovimg img{width:100%;height:100%;object-fit:cover}
+@media (max-width:1080px){.hovimg{display:none}}
+.sr{position:absolute; width:1px;height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+:focus-visible{outline:2px solid var(--brass); outline-offset:3px}
+</style>
+<noscript><style>
+  [data-reveal]{opacity:1!important; transform:none!important; clip-path:none!important}
+  .split span i{transform:none!important}
+  .k-stage figure:first-of-type,.pr-stage img:first-of-type,.om-imgs img:first-of-type{opacity:1}
+</style></noscript>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#topp" class="brand" aria-label="Selskap og Smak Catering — til toppen">
+      <span class="mark">S&amp;S</span>
+      <span>
+        <span class="bname">Selskap &amp; Smak</span>
+        <span class="btag">Catering · Oslo</span>
+      </span>
+    </a>
+    <nav aria-label="Hovedmeny">
+      <ul class="menu">
+        <li><a href="#konsepter">Konsepter</a></li>
+        <li><a href="#menyer">Menyer</a></li>
+        <li><a href="#pakker">Pakker</a></li>
+        <li><a href="#prosess">Slik jobber vi</a></li>
+        <li><a href="#galleri">Galleri</a></li>
+        <li><a href="#omtaler">Omtaler</a></li>
+      </ul>
+    </nav>
+    <div class="nav-r">
+      <a class="nav-tel" href="tel:+4722458810">22 45 88 10</a>
+      <a class="btn btn-sm" href="#planlegger">Få tilbud <span class="ar" aria-hidden="true">→</span></a>
+      <button class="burger" id="burger" aria-label="Åpne meny" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mob" id="mob" aria-hidden="true">
+  <nav aria-label="Mobilmeny">
+    <ol>
+      <li><a href="#konsepter"><span>01</span> Konsepter</a></li>
+      <li><a href="#menyer"><span>02</span> Menyer</a></li>
+      <li><a href="#pakker"><span>03</span> Pakker</a></li>
+      <li><a href="#prosess"><span>04</span> Slik jobber vi</a></li>
+      <li><a href="#galleri"><span>05</span> Galleri</a></li>
+      <li><a href="#planlegger"><span>06</span> Planlegg</a></li>
+    </ol>
+  </nav>
+  <div class="mob-foot">
+    <a class="btn" href="#planlegger" style="justify-content:center">Planlegg arrangement <span class="ar">→</span></a>
+    <p class="small" style="margin:0">Grenseveien 65, 0663 Oslo · <a href="tel:+4722458810" style="color:var(--clay-l)">22 45 88 10</a><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9bebf4e8efdbe8fef7e8f0faebf4fce8f6faf0b5f5f4">[email&#160;protected]</a></p>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<main id="topp">
+<section class="hero">
+  <div class="hero-media" id="heroMedia">
+    <img src="images/image-01.jpg" data-img="hero" alt="Langbord dekket til selskap med levende lys i en stemningsfull låve" fetchpriority="high">
+  </div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow" data-reveal style="--d:.1s">Catering i Oslo &amp; omegn siden 2011</p>
+          <h1 class="d1 split">
+            <span><i>Vi lager selskaper</i></span><br>
+            <span><i>man snakker om</i></span><br>
+            <span><i><em class="it">lenge etterpå.</em></i></span>
+          </h1>
+          <p class="lede" data-reveal style="--d:.35s">
+            Sesongens råvarer, håndverk fra vårt produksjonskjøkken på Helsfyr og en gjennomført
+            servering — fra intime konfirmasjoner til bryllup for 250 gjester.
+          </p>
+          <div class="hero-cta" data-reveal style="--d:.45s">
+            <a class="btn" href="#menyer">Se menyer <span class="ar" aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#planlegger">Planlegg arrangement</a>
+          </div>
+          <div class="hero-stats" data-reveal style="--d:.55s">
+            <div><b><span class="count" data-to="2400">0</span>+</b><span>Selskaper levert</span></div>
+            <div><b><span class="count" data-to="14">0</span></b><span>År på kjøkkenet</span></div>
+            <div><b><span class="count" data-to="49" data-dec="1">0</span>/5</b><span>Snitt fra 380 verter</span></div>
+            <div><b>12–600</b><span>Gjester per selskap</span></div>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-card" data-reveal style="--d:.65s">
+            <span class="small"><span class="dot"></span>Ledig kapasitet</span>
+            <b>Lørdag 26. september</b>
+            <span class="small">Svar på forespørsel innen 24 timer</span>
+          </div>
+          <div class="scrollcue"><i></i> Bla</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marq" aria-hidden="true">
+  <div class="marq-t">
+    <span>Bryllup</span><span>Firmaarrangement</span><span>Konfirmasjon</span><span>Jubileum</span><span>Møtemat</span><span>Private selskaper</span><span>Minnesamvær</span><span>Sommerfest</span>
+    <span>Bryllup</span><span>Firmaarrangement</span><span>Konfirmasjon</span><span>Jubileum</span><span>Møtemat</span><span>Private selskaper</span><span>Minnesamvær</span><span>Sommerfest</span>
+  </div>
+</div>
+
+<!-- ================= FILOSOFI ================= -->
+<section class="sec light" id="filosofi">
+  <div class="wrap philo">
+    <div class="philo-l">
+      <div class="vert">01 — Vår tilnærming</div>
+      <div>
+        <p class="eyebrow" data-reveal>Mat som holder stemningen oppe</p>
+        <h2 class="d2" data-reveal style="--d:.08s">Et selskap er ikke en meny.<br>Det er en <em class="it">kveld</em> som skal<br>henge sammen.</h2>
+        <p class="lede" data-reveal style="--d:.16s">
+          Vi begynner alltid med anledningen, aldri med matlisten. Hvor mange skal holde tale? Når skal folk danse?
+          Skal barna spise først? Deretter bygger vi menyen rundt rytmen i kvelden — slik at maten kommer
+          når den skal, i temperaturen den skal, uten at noen må vente på et kjøkken de ikke ser.
+        </p>
+        <ul class="pill-list" data-reveal style="--d:.24s">
+          <li>
+            <span class="num">01</span>
+            <div><b>Kortreist, men ikke prippent</b>
+            <p>Fast samarbeid med Løiten Lys, Stangeland Gårdsmeieri, Vestfold Grønt og fiskemottaket på Vollen. Menyen skifter seks ganger i året.</p></div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div><b>Ett kontaktpunkt hele veien</b>
+            <p>Du får én arrangementsansvarlig fra første telefon til siste kasse er båret ut. Ingen overlevering, ingen misforståelser.</p></div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div><b>Vi rigger, vi rydder</b>
+            <p>Mobilt feltkjøkken, servise, glass, duker og personale. Lokalet ser ut som før vi kom — bare med bedre minner i veggene.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="philo-r">
+      <div class="philo-fig">
+        <div class="philo-img" data-reveal="clip">
+          <img src="images/image-02.jpg" data-img="kjokken" alt="Kokkehender som anretter små porsjoner på produksjonskjøkkenet">
+        </div>
+        <div class="badge" data-reveal style="--d:.3s">
+          <div><b>24t</b><span>Tilbud<br>i innboksen</span></div>
+        </div>
+      </div>
+      <blockquote class="quote-mini" data-reveal style="--d:.2s">
+        «Vi lager mat til folk som skal feire noe. Da må det smake av innsats — ikke av storkjøkken.»
+        <cite>Ingrid Marstrand · Kjøkkensjef &amp; gründer</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONSEPTER ================= -->
+<section class="sec konsept" id="konsepter">
+  <div class="wrap">
+    <div class="k-head">
+      <div>
+        <p class="eyebrow" data-reveal>02 — Fem konsepter</p>
+        <h2 class="d2" data-reveal style="--d:.08s">Velg uttrykket.<br>Vi former resten.</h2>
+      </div>
+      <p class="lede" data-reveal style="--d:.16s">Hvert konsept har sin egen logikk for tempo, servering og bemanning. Alle kan skreddersys — og kombineres.</p>
+    </div>
+
+    <div class="k-grid">
+      <ul class="k-list" id="kList">
+        <li class="k-item on" data-k="0">
+          <button class="k-btn" aria-expanded="true">
+            <span class="num">01</span>
+            <h3>Bryllup</h3>
+            <span class="k-meta">3–5 retter<br>fra 745,–</span>
+          </button>
+          <div class="k-line"></div>
+          <div class="k-mob-body"><div class="k-mob-inner">
+            <div class="imgw"><img src="images/image-03.jpg" data-img="bryllup" alt="Bryllupsbord med plassert forrett og lys" loading="lazy"></div>
+            <p>Servert flerretters med kjøkkenet på plass i kulissene. Vi tar tidsplanen med toastmaster, timer hovedretten etter talene og holder dessertbordet åpent til langt utpå natten.</p>
+            <div class="k-tags"><span class="tag">Servert ved bordet</span><span class="tag">Toastmaster-timing</span><span class="tag">Nattmat</span></div>
+          </div></div>
+        </li>
+        <li class="k-item" data-k="1">
+          <button class="k-btn" aria-expanded="false">
+            <span class="num">02</span>
+            <h3>Firma</h3>
+            <span class="k-meta">Lunsj &amp; fest<br>fra 245,–</span>
+          </button>
+          <div class="k-line"></div>
+          <div class="k-mob-body"><div class="k-mob-inner">
+            <div class="imgw"><img src="images/image-04.jpg" data-img="firma" alt="Lunsjbuffet i moderne kontoratrium" loading="lazy"></div>
+            <p>Fra ukentlig møtemat til julebord for 300. Faste leveringsvinduer, fakturering per avdeling og et sortiment som takler både allergier og en agenda som sprekker.</p>
+            <div class="k-tags"><span class="tag">Fast leveringsavtale</span><span class="tag">EHF-faktura</span><span class="tag">Rigg inkludert</span></div>
+          </div></div>
+        </li>
+        <li class="k-item" data-k="2">
+          <button class="k-btn" aria-expanded="false">
+            <span class="num">03</span>
+            <h3>Tapas &amp; deling</h3>
+            <span class="k-meta">Sosialt bord<br>fra 445,–</span>
+          </button>
+          <div class="k-line"></div>
+          <div class="k-mob-body"><div class="k-mob-inner">
+            <div class="imgw"><img src="images/image-05.jpg" data-img="tapas" alt="Tapasbord med små retter på mørk stein" loading="lazy"></div>
+            <p>Nordisk-middelhavske småretter som fyller bordet og får folk til å strekke seg etter hverandre. Perfekt når praten er viktigere enn protokollen.</p>
+            <div class="k-tags"><span class="tag">14 småretter</span><span class="tag">Vegetar 1:1</span><span class="tag">Påfyll underveis</span></div>
+          </div></div>
+        </li>
+        <li class="k-item" data-k="3">
+          <button class="k-btn" aria-expanded="false">
+            <span class="num">04</span>
+            <h3>Selskapsmeny</h3>
+            <span class="k-meta">Servert 3 retter<br>fra 695,–</span>
+          </button>
+          <div class="k-line"></div>
+          <div class="k-mob-body"><div class="k-mob-inner">
+            <div class="imgw"><img src="images/image-06.jpg" data-img="selskap" alt="Anrettet hovedrett med lammekjøtt og rotgrønnsaker" loading="lazy"></div>
+            <p>Klassikeren for jubileer, konfirmasjoner og runde dager. Anrettet på tallerken, servert samtidig til hele bordet — også når bordet er 90 personer langt.</p>
+            <div class="k-tags"><span class="tag">Synkron servering</span><span class="tag">Barnemeny</span><span class="tag">Vinpakke</span></div>
+          </div></div>
+        </li>
+        <li class="k-item" data-k="4">
+          <button class="k-btn" aria-expanded="false">
+            <span class="num">05</span>
+            <h3>Fingermat</h3>
+            <span class="k-meta">Mingel<br>fra 295,–</span>
+          </button>
+          <div class="k-line"></div>
+          <div class="k-mob-body"><div class="k-mob-inner">
+            <div class="imgw"><img src="images/image-07.jpg" data-img="fingermat" alt="Canapeer anrettet på mørkt skiferfat" loading="lazy"></div>
+            <p>Ti til atten biter per gjest, båret rundt på fat eller satt opp som stasjoner. Ingenting krever kniv, alt tåler et glass i den andre hånden.</p>
+            <div class="k-tags"><span class="tag">Passeres på fat</span><span class="tag">Ett jafs</span><span class="tag">Sen kveld</span></div>
+          </div></div>
+        </li>
+      </ul>
+
+      <div class="k-stage" id="kStage" data-reveal="clip">
+        <figure class="on"><img src="images/image-18.svg" data-img="bryllup" data-ph="1" alt="Bryllupsdekket bord"></figure>
+        <figure><img src="images/image-18.svg" data-img="firma" data-ph="1" alt="Firmalunsj"></figure>
+        <figure><img src="images/image-18.svg" data-img="tapas" data-ph="1" alt="Tapasbord"></figure>
+        <figure><img src="images/image-18.svg" data-img="selskap" data-ph="1" alt="Selskapsmeny anrettet"></figure>
+        <figure><img src="images/image-18.svg" data-img="fingermat" data-ph="1" alt="Fingermat"></figure>
+        <div class="k-cap">
+          <div class="pane on">
+            <h4>Timet etter talene, ikke etter klokka</h4>
+            <p>Servert flerretters med kjøkkenet i kulissene. Vi legger tidsplan sammen med toastmaster, holder hovedretten varm gjennom talen som drar ut, og setter opp nattmat når dansegulvet begynner å tømmes.</p>
+            <div class="k-tags"><span class="tag">Servert ved bordet</span><span class="tag">Toastmaster-timing</span><span class="tag">Nattmat kl. 23</span></div>
+            <div class="k-foot">
+              <div class="k-price"><span>Fra</span>745,– per gjest</div>
+              <a class="link-u" href="#planlegger">Få tilbud <span class="ar">→</span></a>
+            </div>
+          </div>
+          <div class="pane">
+            <h4>Møtemat som faktisk blir spist opp</h4>
+            <p>Fra ukentlig lunsjlevering til julebord for 300. Faste leveringsvinduer mellom 07 og 11, tydelig allergimerking på hvert fat, og rigg som er ferdig før første deltaker er i rommet.</p>
+            <div class="k-tags"><span class="tag">Fast avtale</span><span class="tag">EHF-faktura</span><span class="tag">Levering 07–11</span></div>
+            <div class="k-foot">
+              <div class="k-price"><span>Fra</span>245,– per gjest</div>
+              <a class="link-u" href="#planlegger">Få tilbud <span class="ar">→</span></a>
+            </div>
+          </div>
+          <div class="pane">
+            <h4>Bordet som får folk til å bli sittende</h4>
+            <p>Fjorten småretter i nordisk-middelhavsk krysning: brent purre med mandelromesco, kamskjell med brunet smør, spekemat fra Tind og nybakt surdeig. Vi fyller på tre ganger i løpet av kvelden.</p>
+            <div class="k-tags"><span class="tag">14 småretter</span><span class="tag">Vegetar 1:1</span><span class="tag">Påfyll x3</span></div>
+            <div class="k-foot">
+              <div class="k-price"><span>Fra</span>445,– per gjest</div>
+              <a class="link-u" href="#planlegger">Få tilbud <span class="ar">→</span></a>
+            </div>
+          </div>
+          <div class="pane">
+            <h4>Alle tallerkener ned samtidig</h4>
+            <p>Klassikeren for jubileer, konfirmasjoner og runde dager. Anrettet på tallerken og satt ned synkront av vårt eget serveringspersonale — også når selskapet teller nitti gjester i tre rom.</p>
+            <div class="k-tags"><span class="tag">Synkron servering</span><span class="tag">Barnemeny 195,–</span><span class="tag">Vinpakke fra 295,–</span></div>
+            <div class="k-foot">
+              <div class="k-price"><span>Fra</span>695,– per gjest</div>
+              <a class="link-u" href="#planlegger">Få tilbud <span class="ar">→</span></a>
+            </div>
+          </div>
+          <div class="pane">
+            <h4>Ett jafs, null bestikk</h4>
+            <p>Ti til atten biter per gjest, båret rundt på skiferfat eller bygget som stasjoner i rommet. Alt spises stående, med et glass i den andre hånden — og vi tar med nok servietter til at ingen leter.</p>
+            <div class="k-tags"><span class="tag">10–18 biter</span><span class="tag">Passeres på fat</span><span class="tag">Stasjoner</span></div>
+            <div class="k-foot">
+              <div class="k-price"><span>Fra</span>295,– per gjest</div>
+              <a class="link-u" href="#planlegger">Få tilbud <span class="ar">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MENYKARTET ================= -->
+<section class="sec meny light" id="menyer">
+  <div class="wrap">
+    <div class="meny-head">
+      <div>
+        <p class="eyebrow" data-reveal>03 — Menykartet, høst 2026</p>
+        <h2 class="d2" data-reveal style="--d:.08s">Tre menyer i dag.<br>Din egen i morgen.</h2>
+      </div>
+      <div data-reveal style="--d:.16s">
+        <div class="switch" role="group" aria-label="Bytt mellom klassisk og vegetarisk meny">
+          <button class="on" data-veg="0" aria-pressed="true">Klassisk</button>
+          <button data-veg="1" aria-pressed="false">Vegetarisk</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menus">
+      <article class="mcard" data-reveal style="--d:.05s">
+        <div class="mcard-img">
+          <span class="mcard-tag">Servert · 3 retter</span>
+          <img src="images/image-18.svg" data-img="selskap" data-ph="1" alt="Lammerygg med rotgrønnsaker og sky" loading="lazy">
+        </div>
+        <div class="mcard-body">
+          <h3>Fjord &amp; Fjell</h3>
+          <p class="sub">Selskapsmeny · Bryllup · Jubileum</p>
+          <ul class="courses">
+            <li><span class="c-lab">Forrett</span><span class="c-dish" data-a="Lettrøkt fjordørret, syltet agurk, rømme og dill" data-b="Bakte beter, geitost fra Haukeli, ristet bygg og dill">Lettrøkt fjordørret, syltet agurk, rømme og dill</span></li>
+            <li><span class="c-lab">Hovedrett</span><span class="c-dish" data-a="Lammerygg fra Sunnmøre, brent purre, rotgrønnsaker, timiansky" data-b="Grillet sellerirot, sorte linser, brent purre, timiansky">Lammerygg fra Sunnmøre, brent purre, rotgrønnsaker, timiansky</span></li>
+            <li><span class="c-lab">Dessert</span><span class="c-dish" data-a="Multekremtartelett, karamellisert hvit sjokolade" data-b="Multesorbet, ristet havre, brent honning fra Nordmarka">Multekremtartelett, karamellisert hvit sjokolade</span></li>
+            <li><span class="c-lab">På bordet</span><span class="c-dish" data-a="Surdeig fra Ille Brød, smør med kulturmelk og havsalt" data-b="Surdeig fra Ille Brød, urtesmør og havsalt">Surdeig fra Ille Brød, smør med kulturmelk og havsalt</span></li>
+          </ul>
+          <div class="mcard-foot">
+            <div class="price">745,–<small>Per gjest</small></div>
+            <a class="link-u" href="#planlegger">Bestill <span class="ar">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="mcard" data-reveal style="--d:.13s">
+        <div class="mcard-img">
+          <span class="mcard-tag">Buffet · Grill</span>
+          <img src="images/image-18.svg" data-img="firma" data-ph="1" alt="Buffet med sesongens retter" loading="lazy">
+        </div>
+        <div class="mcard-body">
+          <h3>Bål &amp; Sesong</h3>
+          <p class="sub">Sommerfest · Konfirmasjon · Firma</p>
+          <ul class="courses">
+            <li><span class="c-lab">Fra grillen</span><span class="c-dish" data-a="Svinenakke i eplemost, sennepsglasert og langtidsstekt" data-b="Helstekt blomkål i brunet smør, kapers og hasselnøtt">Svinenakke i eplemost, sennepsglasert og langtidsstekt</span></li>
+            <li><span class="c-lab">Fra havet</span><span class="c-dish" data-a="Grillet makrell, rabarbra, sennepsfrø og estragon" data-b="Grillet hjertesalat, sitronkrem, sennepsfrø og estragon">Grillet makrell, rabarbra, sennepsfrø og estragon</span></li>
+            <li><span class="c-lab">Til bordet</span><span class="c-dish" data-a="Urtebakt mandelpotet, ertesalat med feta, syltet rødløk" data-b="Urtebakt mandelpotet, ertesalat med feta, syltet rødløk">Urtebakt mandelpotet, ertesalat med feta, syltet rødløk</span></li>
+            <li><span class="c-lab">Dessert</span><span class="c-dish" data-a="Rabarbrapai med vaniljekrem og brent marengs" data-b="Rabarbrapai med vaniljekrem og brent marengs">Rabarbrapai med vaniljekrem og brent marengs</span></li>
+          </ul>
+          <div class="mcard-foot">
+            <div class="price">595,–<small>Per gjest</small></div>
+            <a class="link-u" href="#planlegger">Bestill <span class="ar">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="mcard" data-reveal style="--d:.21s">
+        <div class="mcard-img">
+          <span class="mcard-tag">Deling · 14 retter</span>
+          <img src="images/image-18.svg" data-img="tapas" data-ph="1" alt="Tapasbord med småretter" loading="lazy">
+        </div>
+        <div class="mcard-body">
+          <h3>Nord &amp; Sør</h3>
+          <p class="sub">Tapas · Mingel · Bursdag</p>
+          <ul class="courses">
+            <li><span class="c-lab">Kaldt</span><span class="c-dish" data-a="Tind spekeskinke, marinerte oliven, whipped feta med honning" data-b="Marinerte oliven, whipped feta med honning, syltet fennikel">Tind spekeskinke, marinerte oliven, whipped feta med honning</span></li>
+            <li><span class="c-lab">Varmt</span><span class="c-dish" data-a="Kamskjell i brunet smør, gambas al ajillo, brent purre" data-b="Halloumi med brent honning, gambas-krydret blomkål, brent purre">Kamskjell i brunet smør, gambas al ajillo, brent purre</span></li>
+            <li><span class="c-lab">Grønt</span><span class="c-dish" data-a="Ovnsbakt paprika med mandelromesco og bladpersille" data-b="Ovnsbakt paprika med mandelromesco og bladpersille">Ovnsbakt paprika med mandelromesco og bladpersille</span></li>
+            <li><span class="c-lab">Til slutt</span><span class="c-dish" data-a="Sjokoladetrøffel med flaksalt, appelsin og olivenolje" data-b="Sjokoladetrøffel med flaksalt, appelsin og olivenolje">Sjokoladetrøffel med flaksalt, appelsin og olivenolje</span></li>
+          </ul>
+          <div class="mcard-foot">
+            <div class="price">445,–<small>Per gjest</small></div>
+            <a class="link-u" href="#planlegger">Bestill <span class="ar">→</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="meny-note" data-reveal>
+      <div><b>Fingermat</b><p>12 biter per gjest, 345,–. Passeres på fat eller settes opp som stasjoner.</p></div>
+      <div><b>Vinpakke</b><p>Tre glass valgt til menyen, 295,–. Alkoholfri sesongpakke 145,–.</p></div>
+      <div><b>Barn 4–12 år</b><p>Egen meny til 195,–, servert samtidig som de voksne.</p></div>
+      <div><b>Nattmat</b><p>Sliders, pommes allumettes eller kremet fiskesuppe, fra 135,–.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAKKER ================= -->
+<section class="sec pakker" id="pakker">
+  <div class="wrap">
+    <div class="k-head">
+      <div>
+        <p class="eyebrow" data-reveal>04 — Cateringpakker</p>
+        <h2 class="d2" data-reveal style="--d:.08s">Fire nivåer.<br>Ingen skjulte linjer.</h2>
+      </div>
+      <p class="lede" data-reveal style="--d:.16s">Alle priser er per gjest, eks. mva. Levering innenfor Ring 3 er inkludert; utenfor beregner vi 14,– per km fra Grenseveien 65.</p>
+    </div>
+
+    <div class="pk-grid" data-reveal>
+      <article class="pk">
+        <span class="pk-n">01</span>
+        <h3>Møte &amp; Mingel</h3>
+        <p class="pk-d">Møtemat, frokost og enkle mingelselskaper. Levert ferdig anrettet på fat du bare setter frem.</p>
+        <div class="pk-p"><em>Fra</em>245,–</div>
+        <ul>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Levering i valgt tidsvindu</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Engangsservise i bagasse</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Allergimerking på hvert fat</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Bestilling inntil 48 t før</li>
+        </ul>
+        <a class="btn btn-ghost btn-sm" href="#planlegger">Bestill catering</a>
+      </article>
+
+      <article class="pk feat">
+        <span class="pk-n">02</span>
+        <h3>Signatur</h3>
+        <p class="pk-d">Vårt mest brukte oppsett for selskaper mellom 30 og 120 gjester. Vi rigger, du er vert.</p>
+        <div class="pk-p"><em>Fra</em>595,–</div>
+        <ul>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Buffet eller 3-retters</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Porselen, glass og bestikk</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Rigg av buffetbord og duker</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Henting av utstyr dagen etter</li>
+        </ul>
+        <a class="btn btn-sm" href="#planlegger">Få tilbud <span class="ar">→</span></a>
+      </article>
+
+      <article class="pk">
+        <span class="pk-n">03</span>
+        <h3>Storslått</h3>
+        <p class="pk-d">Full servering med vårt personale på stedet fra rigg til siste kasse er ute av lokalet.</p>
+        <div class="pk-p"><em>Fra</em>895,–</div>
+        <ul>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Kokk og servitører på stedet</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Mobilt feltkjøkken ved behov</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Drikkeservering og bar</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Opprydding og oppvask</li>
+        </ul>
+        <a class="btn btn-ghost btn-sm" href="#planlegger">Planlegg arrangement</a>
+      </article>
+
+      <article class="pk">
+        <span class="pk-n">04</span>
+        <h3>Skreddersøm</h3>
+        <p class="pk-d">Bryllup, lansering eller et konsept ingen har sett før. Vi bygger det fra bunnen sammen med deg.</p>
+        <div class="pk-p"><em>Pris</em>Etter avtale</div>
+        <ul>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Egen arrangementsansvarlig</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Menyutvikling og smaksprøve</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Befaring av lokalet</li>
+          <li><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Leverandørkoordinering</li>
+        </ul>
+        <a class="btn btn-ghost btn-sm" href="#planlegger">Ta en prat</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROSESS ================= -->
+<section class="sec prosess" id="prosess">
+  <div class="wrap">
+    <div class="k-head">
+      <div>
+        <p class="eyebrow" data-reveal>05 — Fra idé til siste tallerken</p>
+        <h2 class="d2" data-reveal style="--d:.08s">Slik blir en dato<br>til et selskap.</h2>
+      </div>
+      <p class="lede" data-reveal style="--d:.16s">Fem faser, én kontaktperson. Du får en delt tidsplan der alt står — også hvem som gjør hva i lokalet.</p>
+    </div>
+
+    <div class="pr-grid">
+      <div class="pr-sticky" data-reveal="clip">
+        <div class="pr-stage" id="prStage">
+          <img class="on" src="images/image-18.svg" data-img="hero" data-ph="1" alt="Dekket langbord til selskap">
+          <img src="images/image-18.svg" data-img="tapas" data-ph="1" alt="Menyforslag anrettet">
+          <img src="images/image-18.svg" data-img="selskap" data-ph="1" alt="Smaksprøve av hovedrett">
+          <img src="images/image-18.svg" data-img="kjokken" data-ph="1" alt="Mise en place på kjøkkenet">
+          <img src="images/image-08.jpg" data-img="servering" alt="Servitør bærer glass gjennom selskapet">
+        </div>
+        <div class="pr-progress"><i id="prBar"></i></div>
+      </div>
+
+      <ol class="pr-steps" id="prSteps">
+        <li class="pr-step on" data-p="0">
+          <div class="pr-top"><span class="pr-no">01</span><h3>Kartlegging</h3></div>
+          <p>Vi ringer deg innen én arbeidsdag. Anledning, lokale, antall gjester, tidsplan og hvor mye plass kjøkkenet har å jobbe på. Ti minutter som sparer deg for tre e-poster.</p>
+          <span class="pr-when">Dag 1</span>
+        </li>
+        <li class="pr-step" data-p="1">
+          <div class="pr-top"><span class="pr-no">02</span><h3>Menyforslag &amp; tilbud</h3></div>
+          <p>Du får to menyforslag med bilder, komplett prisoppsett og bemanningsplan — alt på én side, uten stjerner og små bokstaver. Endre så mye du vil før signering.</p>
+          <span class="pr-when">Innen 24 timer</span>
+        </li>
+        <li class="pr-step" data-p="2">
+          <div class="pr-top"><span class="pr-no">03</span><h3>Smaksprøve</h3></div>
+          <p>Kom til kjøkkenet på Helsfyr og smak hele menyen slik den vil serveres. Gratis for selskaper over 50 gjester, ellers 750,– som trekkes fra sluttfakturaen.</p>
+          <span class="pr-when">4–8 uker før</span>
+        </li>
+        <li class="pr-step" data-p="3">
+          <div class="pr-top"><span class="pr-no">04</span><h3>Rigg &amp; mise en place</h3></div>
+          <p>Vi er på plass tre til fem timer før gjestene. Feltkjøkken, dekking, kjøling av drikke og en siste gjennomgang med toastmaster eller møteleder.</p>
+          <span class="pr-when">Selve dagen</span>
+        </li>
+        <li class="pr-step" data-p="4">
+          <div class="pr-top"><span class="pr-no">05</span><h3>Servering &amp; opprydding</h3></div>
+          <p>Maten kommer når den skal. Etterpå vasker vi ned, pakker og bærer ut. Du får bildene fra fotografen vår i innboksen — og en faktura uten overraskelser.</p>
+          <span class="pr-when">Kveld + dagen etter</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERI ================= -->
+<section class="sec galleri" id="galleri">
+  <div class="wrap">
+    <div class="k-head">
+      <div>
+        <p class="eyebrow" data-reveal>06 — Fra selskaper vi har levert</p>
+        <h2 class="d2" data-reveal style="--d:.08s">Stemning, ikke<br>stockbilder.</h2>
+      </div>
+      <div class="g-filters" data-reveal style="--d:.16s" role="group" aria-label="Filtrer galleri">
+        <button class="chip on" data-f="alle">Alle</button>
+        <button class="chip" data-f="bryllup">Bryllup</button>
+        <button class="chip" data-f="firma">Firma</button>
+        <button class="chip" data-f="mat">Mat</button>
+        <button class="chip" data-f="selskap">Selskap</button>
+        <button class="chip" data-f="detalj">Detaljer</button>
+      </div>
+    </div>
+
+    <div class="g-grid" id="gGrid">
+      <figure class="g-it s6" data-cat="bryllup" data-reveal><img src="images/image-18.svg" data-img="bryllup" data-ph="1" alt="Bryllupsbord med plassert forrett" loading="lazy"><figcaption>Bryllup · Losby Gods · 120 gjester</figcaption></figure>
+      <figure class="g-it s3" data-cat="mat" data-reveal style="--d:.06s"><img src="images/image-09.jpg" data-img="g1" alt="Dessertbord med nordiske kaker" loading="lazy"><figcaption>Dessertbord · Sommerfest</figcaption></figure>
+      <figure class="g-it s3" data-cat="mat" data-reveal style="--d:.12s"><img src="images/image-10.jpg" data-img="c_tapas" alt="Nærbilde av tapasretter" loading="lazy"><figcaption>Nord &amp; Sør · 14 småretter</figcaption></figure>
+      <figure class="g-it s5" data-cat="mat" data-reveal><img src="images/image-11.jpg" data-img="g2" alt="Sjømatfat med skalldyr på is" loading="lazy"><figcaption>Skalldyrfat · Jubileum i Asker</figcaption></figure>
+      <figure class="g-it s7" data-cat="selskap" data-reveal style="--d:.08s"><img src="images/image-18.svg" data-img="servering" data-ph="1" alt="Servitør med glass i selskapslokale" loading="lazy"><figcaption>Servering · Firmajubileum, Aker Brygge</figcaption></figure>
+      <figure class="g-it s4" data-cat="mat" data-reveal><img src="images/image-18.svg" data-img="fingermat" data-ph="1" alt="Fingermat på skiferfat" loading="lazy"><figcaption>Fingermat · 14 biter per gjest</figcaption></figure>
+      <figure class="g-it s4" data-cat="firma" data-reveal style="--d:.06s"><img src="images/image-18.svg" data-img="firma" data-ph="1" alt="Lunsjbuffet på kontor" loading="lazy"><figcaption>Møtemat · Nordvest Arkitekter</figcaption></figure>
+      <figure class="g-it s4" data-cat="detalj" data-reveal style="--d:.12s"><img src="images/image-12.jpg" data-img="c_selskap" alt="Nærbilde av anrettet hovedrett" loading="lazy"><figcaption>Detalj · Lammerygg og timiansky</figcaption></figure>
+      <figure class="g-it s8" data-cat="selskap" data-reveal><img src="images/image-13.jpg" data-img="c_hero" alt="Langbord med levende lys" loading="lazy"><figcaption>Langbord · Konfirmasjon i Bærum</figcaption></figure>
+      <figure class="g-it s4" data-cat="detalj" data-reveal style="--d:.06s"><img src="images/image-14.jpg" data-img="c_kjokken" alt="Kokk anretter små porsjoner" loading="lazy"><figcaption>Kjøkkenet · Helsfyr, kl. 15.40</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANLEGGER ================= -->
+<section class="sec plan" id="planlegger">
+  <div class="wrap">
+    <div class="k-head">
+      <div>
+        <p class="eyebrow" data-reveal>07 — Planleggeren</p>
+        <h2 class="d2" data-reveal style="--d:.08s">Fem spørsmål.<br>Prisestimat med en gang.</h2>
+      </div>
+      <p class="lede" data-reveal style="--d:.16s">Ingen forpliktelser. Du får et uforpliktende tilbud på e-post innen 24 timer — og en telefon fra en som faktisk skal lage maten.</p>
+    </div>
+
+    <div class="plan-shell">
+      <!-- ------- skjema ------- -->
+      <div class="panel" data-reveal>
+        <div class="pl-bar" id="plBar" aria-hidden="true">
+          <div class="done"><i></i></div><div><i></i></div><div><i></i></div><div><i></i></div><div><i></i></div>
+        </div>
+        <div class="pl-top">
+          <span class="st">Steg <b id="plNum">1</b> av 5</span>
+          <span class="st" id="plName">Anledning</span>
+        </div>
+
+        <form id="plForm" novalidate>
+          <div class="pl-body">
+            <!-- STEG 1 -->
+            <div class="pl-step on" data-s="1">
+              <h3 class="pl-q">Hva skal feires?</h3>
+              <p class="pl-h">Anledningen bestemmer tempo, bemanning og hvor mye kjøkkenet må rigge på stedet.</p>
+              <div class="opts" role="radiogroup" aria-label="Anledning">
+                <button type="button" class="opt on" data-g="occ" data-v="Bryllup" data-m="1.15"><span class="ic">01</span><b>Bryllup</b><span>Flerretters, taler, nattmat</span></button>
+                <button type="button" class="opt" data-g="occ" data-v="Firmaarrangement" data-m="1"><span class="ic">02</span><b>Firma</b><span>Fest, kick-off, julebord</span></button>
+                <button type="button" class="opt" data-g="occ" data-v="Konfirmasjon" data-m="1"><span class="ic">03</span><b>Konfirmasjon</b><span>Familie, barn, dagtid</span></button>
+                <button type="button" class="opt" data-g="occ" data-v="Jubileum" data-m="1.05"><span class="ic">04</span><b>Jubileum</b><span>Runde dager og markeringer</span></button>
+                <button type="button" class="opt" data-g="occ" data-v="Møte &amp; kurs" data-m="0.9"><span class="ic">05</span><b>Møte &amp; kurs</b><span>Lunsj, frokost, seminar</span></button>
+                <button type="button" class="opt" data-g="occ" data-v="Privat selskap" data-m="1"><span class="ic">06</span><b>Privat selskap</b><span>Hjemme eller i leid lokale</span></button>
+              </div>
+            </div>
+
+            <!-- STEG 2 -->
+            <div class="pl-step" data-s="2">
+              <h3 class="pl-q">Hvor mange, og når?</h3>
+              <p class="pl-h">Dra i skalaen — vi justerer prisen automatisk. Store selskaper får bedre pris per gjest.</p>
+              <div class="guests">
+                <span class="gnum"><span id="gVal">60</span><sup>gjester</sup></span>
+              </div>
+              <input class="rng" type="range" id="gRange" min="10" max="400" step="5" value="60" aria-label="Antall gjester">
+              <div class="rng-scale"><span>10</span><span>100</span><span>200</span><span>300</span><span>400+</span></div>
+              <div class="quick">
+                <button type="button" data-q="25">25</button>
+                <button type="button" data-q="50">50</button>
+                <button type="button" data-q="80">80</button>
+                <button type="button" data-q="120">120</button>
+                <button type="button" data-q="200">200</button>
+              </div>
+              <div class="two-col" style="margin-top:30px">
+                <div class="field">
+                  <label for="fDato">Dato for arrangementet</label>
+                  <input class="inp" type="date" id="fDato" value="2026-11-14">
+                </div>
+                <div class="field">
+                  <label for="fTid">Servering starter</label>
+                  <select class="inp" id="fTid">
+                    <option>Formiddag (10–12)</option>
+                    <option>Lunsj (12–14)</option>
+                    <option>Ettermiddag (14–17)</option>
+                    <option selected>Kveld (17–20)</option>
+                    <option>Sen kveld (etter 20)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field" style="margin-bottom:0">
+                <label for="fSted">Sted eller lokale</label>
+                <input class="inp" type="text" id="fSted" placeholder="F.eks. Losby Gods, hjemme i Bærum, eller «ikke bestemt»">
+              </div>
+              <p class="hint" id="datoHint" style="display:none">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.2" stroke="currentColor"/><path d="M7 4v3.6M7 9.8v.6" stroke="currentColor" stroke-width="1.2"/></svg>
+                <span>Lørdager i mai–september er vår travleste periode. Vi holder datoen i 5 dager mens du bestemmer deg.</span>
+              </p>
+            </div>
+
+            <!-- STEG 3 -->
+            <div class="pl-step" data-s="3">
+              <h3 class="pl-q">Hvilken matstil ser du for deg?</h3>
+              <p class="pl-h">Usikker? Velg det som ligner mest — vi foreslår alltid et alternativ i tilbudet.</p>
+              <div class="opts" role="radiogroup" aria-label="Matstil">
+                <button type="button" class="opt" data-g="stil" data-v="Fingermat" data-p="295"><span class="ic">A</span><b>Fingermat</b><span>10–18 biter, stående</span></button>
+                <button type="button" class="opt" data-g="stil" data-v="Tapas &amp; deling" data-p="445"><span class="ic">B</span><b>Tapas &amp; deling</b><span>14 småretter på bordet</span></button>
+                <button type="button" class="opt on" data-g="stil" data-v="Buffet" data-p="495"><span class="ic">C</span><b>Buffet</b><span>Varmt og kaldt, påfyll</span></button>
+                <button type="button" class="opt" data-g="stil" data-v="Selskapsmeny, 3 retter" data-p="745"><span class="ic">D</span><b>Selskapsmeny</b><span>Servert ved bordet</span></button>
+                <button type="button" class="opt" data-g="stil" data-v="Grill &amp; bål" data-p="545"><span class="ic">E</span><b>Grill &amp; bål</b><span>Utendørs, langtidsstekt</span></button>
+                <button type="button" class="opt" data-g="stil" data-v="Møtemat" data-p="245"><span class="ic">F</span><b>Møtemat</b><span>Frokost, lunsj, snacks</span></button>
+              </div>
+              <p class="pl-h" style="margin:30px 0 14px">Hvor mye skal vi gjøre på stedet?</p>
+              <div class="opts" role="radiogroup" aria-label="Servicenivå">
+                <button type="button" class="opt on" data-g="serv" data-v="Levering" data-a="0"><b>Levering</b><span>Ferdig anrettet på fat</span></button>
+                <button type="button" class="opt" data-g="serv" data-v="Levering &amp; rigg" data-a="85"><b>Levering &amp; rigg</b><span>Vi dekker og setter opp</span></button>
+                <button type="button" class="opt" data-g="serv" data-v="Full servering" data-a="195"><b>Full servering</b><span>Kokk, servitører, opprydding</span></button>
+              </div>
+            </div>
+
+            <!-- STEG 4 -->
+            <div class="pl-step" data-s="4">
+              <h3 class="pl-q">Allergier og hensyn?</h3>
+              <p class="pl-h">Vi lager alltid fullverdige alternativer — aldri en trist tallerken på siden. Antall oppgir du senere.</p>
+              <div class="chips" id="allChips">
+                <label class="chk"><input type="checkbox" value="Glutenfritt"><span>Glutenfritt</span></label>
+                <label class="chk"><input type="checkbox" value="Laktosefritt"><span>Laktosefritt</span></label>
+                <label class="chk"><input type="checkbox" value="Nøtteallergi"><span>Nøtteallergi</span></label>
+                <label class="chk"><input type="checkbox" value="Skalldyr"><span>Skalldyr</span></label>
+                <label class="chk"><input type="checkbox" value="Vegetar"><span>Vegetar</span></label>
+                <label class="chk"><input type="checkbox" value="Vegansk"><span>Vegansk</span></label>
+                <label class="chk"><input type="checkbox" value="Halal"><span>Halal</span></label>
+                <label class="chk"><input type="checkbox" value="Uten svinekjøtt"><span>Uten svinekjøtt</span></label>
+              </div>
+              <p class="pl-h" style="margin:30px 0 14px">Skal vi ta med drikke?</p>
+              <div class="opts" role="radiogroup" aria-label="Drikke">
+                <button type="button" class="opt on" data-g="drikke" data-v="Nei, vi ordner selv" data-a="0"><b>Vi ordner selv</b><span>Dere tar med drikke</span></button>
+                <button type="button" class="opt" data-g="drikke" data-v="Vinpakke" data-a="295"><b>Vinpakke</b><span>3 glass valgt til menyen</span></button>
+                <button type="button" class="opt" data-g="drikke" data-v="Alkoholfri pakke" data-a="145"><b>Alkoholfritt</b><span>Sesongens most og kombucha</span></button>
+              </div>
+              <div class="field" style="margin:28px 0 0">
+                <label for="fOnsker">Andre ønsker</label>
+                <textarea class="inp" id="fOnsker" placeholder="F.eks. «Bestemor fyller 80 og elsker fiskesuppe», «vi har ikke kjøkken i lokalet», «ønsker nattmat kl. 23»"></textarea>
+              </div>
+            </div>
+
+            <!-- STEG 5 -->
+            <div class="pl-step" data-s="5">
+              <h3 class="pl-q">Hvor sender vi tilbudet?</h3>
+              <p class="pl-h">Du hører fra Ingrid eller Sondre innen 24 timer — på e-post, og på telefon hvis du foretrekker det.</p>
+              <div class="two-col">
+                <div class="field"><label for="fNavn">Navn *</label><input class="inp" type="text" id="fNavn" placeholder="Fornavn Etternavn" autocomplete="name"></div>
+                <div class="field"><label for="fEpost">E-post *</label><input class="inp" type="email" id="fEpost" placeholder="navn@epost.no" autocomplete="email"></div>
+              </div>
+              <div class="two-col">
+                <div class="field"><label for="fTlf">Telefon</label><input class="inp" type="tel" id="fTlf" placeholder="+47 000 00 000" autocomplete="tel"></div>
+                <div class="field"><label for="fFirma">Firma / familie</label><input class="inp" type="text" id="fFirma" placeholder="Valgfritt"></div>
+              </div>
+              <label class="chk" style="display:inline-block; margin-top:6px"><input type="checkbox" id="fRing"><span>Ring meg gjerne for en kort prat</span></label>
+              <p class="errmsg" id="plErr">Fyll inn navn og en gyldig e-postadresse, så sender vi tilbudet.</p>
+              <p class="small" style="margin-top:20px; line-height:1.6">Demoskjema — ingen data sendes eller lagres. Ved en ekte forespørsel behandles opplysningene kun for å lage tilbudet ditt.</p>
+            </div>
+
+            <!-- KVITTERING -->
+            <div class="pl-step" data-s="6">
+              <div class="done-card">
+                <div class="done-ring"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 13.6 10.4 19 21 7.5" stroke="#DE7A42" stroke-width="1.6"/></svg></div>
+                <h3 class="d3">Takk, <span id="dNavn">du</span>!</h3>
+                <p class="lede" style="margin-inline:auto">Forespørselen din ligger hos oss. Du får et komplett menyforslag med priser på <b id="dEpost">e-post</b> innen 24 timer — og vi holder datoen i fem dager.</p>
+                <p class="ref">Referanse <span id="dRef">SS-2026-0000</span></p>
+                <div class="cta-row" style="margin-top:30px">
+                  <a class="btn btn-ghost btn-sm" href="#menyer">Se menyene imens</a>
+                  <button type="button" class="btn btn-sm" id="plReset">Ny forespørsel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pl-nav" id="plNav">
+            <button type="button" class="ghostbtn" id="plPrev" disabled>← Tilbake</button>
+            <button type="button" class="btn btn-sm" id="plNext">Neste steg <span class="ar" aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ------- sammendrag ------- -->
+      <aside class="sum" data-reveal style="--d:.12s" aria-live="polite">
+        <div class="sum-h"><span>Ditt arrangement</span><span class="num" id="sumTag">Utkast</span></div>
+        <div class="sum-b">
+          <dl style="margin:0">
+            <div class="sum-row"><dt>Anledning</dt><dd id="sOcc">Bryllup</dd></div>
+            <div class="sum-row"><dt>Gjester</dt><dd id="sGue">60</dd></div>
+            <div class="sum-row"><dt>Dato</dt><dd id="sDat">14. nov. 2026</dd></div>
+            <div class="sum-row"><dt>Matstil</dt><dd id="sSti">Buffet</dd></div>
+            <div class="sum-row"><dt>Servering</dt><dd id="sSer">Levering</dd></div>
+            <div class="sum-row" style="border:0"><dt>Hensyn</dt><dd id="sAll">Ingen valgt</dd></div>
+          </dl>
+        </div>
+        <div class="sum-est">
+          <span class="lab">Estimert totalpris eks. mva</span>
+          <div class="big" id="sTot">kr 29 700</div>
+          <div class="pp" id="sPp">ca. kr 495 per gjest · buffet, levering</div>
+        </div>
+        <p class="sum-note">Estimatet er veiledende og justeres etter meny, avstand og bemanning. Endelig pris står i tilbudet — uten bindingstid.</p>
+        <div class="sum-marks">
+          <div><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Gratis avbestilling inntil 14 dager før</div>
+          <div><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Endre antall gjester inntil 5 dager før</div>
+          <div><svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M1 6.2 4.4 9.5 11 2.5" stroke="currentColor" stroke-width="1.4"/></svg> Smaksprøve før du signerer</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OMTALER ================= -->
+<section class="sec omtaler light" id="omtaler">
+  <div class="wrap">
+    <div class="om-grid">
+      <div class="om-imgs" id="omImgs" data-reveal="clip">
+        <img class="on" src="images/image-18.svg" data-img="bryllup" data-ph="1" alt="Bryllupsselskap" loading="lazy">
+        <img src="images/image-18.svg" data-img="firma" data-ph="1" alt="Firmaarrangement" loading="lazy">
+        <img src="images/image-18.svg" data-img="g1" data-ph="1" alt="Dessertbord i jubileum" loading="lazy">
+        <img src="images/image-15.jpg" data-img="c_firma" alt="Møtemat levert på kontor" loading="lazy">
+      </div>
+      <div class="om-q">
+        <p class="eyebrow" data-reveal>08 — 4,9 av 5 fra 380 verter</p>
+        <span class="om-mark" aria-hidden="true">”</span>
+        <div id="omSlides">
+          <div class="om-slide on">
+            <blockquote>Vi hadde 120 gjester og en tidsplan som sprakk med 40 minutter. Ingrid flyttet hele serveringen uten at én gjest merket det — og lammet var fortsatt rosa.</blockquote>
+            <div class="who"><span class="av">KH</span><div><b>Kristine &amp; Anders Hovland</b><span>Bryllup · Losby Gods · 120 gjester</span></div></div>
+          </div>
+          <div class="om-slide">
+            <blockquote>Vi har fast lunsjlevering tre dager i uken. På to år har de bommet på leveringsvinduet én gang — og da ringte de før vi rakk å lure.</blockquote>
+            <div class="who"><span class="av">ML</span><div><b>Marte Lindqvist</b><span>Kontorsjef · Nordvest Arkitekter · 60 ansatte</span></div></div>
+          </div>
+          <div class="om-slide">
+            <blockquote>Sekstiårsdagen ble holdt hjemme i stua. De rigget et helt kjøkken i garasjen, serverte tre retter til 45 personer og forsvant uten at det sto en eneste kasse igjen.</blockquote>
+            <div class="who"><span class="av">TW</span><div><b>Terje Wold</b><span>60-årsjubileum · Privat hjem, Nordstrand</span></div></div>
+          </div>
+          <div class="om-slide">
+            <blockquote>Vi hadde fire allergier og to veganere blant 85 gjester. Alle fikk noe som så like fristende ut som resten. Det er første gang jeg har opplevd det.</blockquote>
+            <div class="who"><span class="av">SA</span><div><b>Silje Aune</b><span>HR-sjef · Vestre Media · Julebord for 85</span></div></div>
+          </div>
+        </div>
+        <div class="om-ctrl">
+          <div class="om-dots" id="omDots" role="tablist" aria-label="Velg omtale">
+            <button class="on" aria-label="Omtale 1"></button><button aria-label="Omtale 2"></button><button aria-label="Omtale 3"></button><button aria-label="Omtale 4"></button>
+          </div>
+          <div class="arrows">
+            <button id="omPrev" aria-label="Forrige omtale"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M10 2 4 8l6 6" stroke="currentColor" stroke-width="1.3"/></svg></button>
+            <button id="omNext" aria-label="Neste omtale"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 2l6 6-6 6" stroke="currentColor" stroke-width="1.3"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="logos" data-reveal>
+      <span>Nordvest Arkitekter</span><span>Vestre Media</span><span>Losby Gods</span><span>Klinikk Nordås</span><span>Bygdøy Sjøbad</span><span>Aker Advokatene</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OM OSS ================= -->
+<section class="sec om" id="om">
+  <div class="wrap om2">
+    <div>
+      <p class="eyebrow" data-reveal>09 — Kjøkkenet på Helsfyr</p>
+      <h2 class="d2" data-reveal style="--d:.08s">Fjorten kokker,<br>ett produksjonskjøkken,<br>null halvfabrikat.</h2>
+      <p class="lede" data-reveal style="--d:.16s">
+        Ingrid Marstrand startet Selskap &amp; Smak i 2011 med én varebil og et leid kjøkken på Kampen.
+        I dag holder vi til i 640 kvadratmeter i Grenseveien, med eget bakeri, kjølerom for hele
+        sesongen og tre biler som går ut hver morgen. Fondene koker vi selv. Brødet baker vi selv.
+        Det tar lengre tid — og det er hele poenget.
+      </p>
+      <div class="facts" data-reveal style="--d:.24s">
+        <div><b>2011</b><span>Etablert i Oslo</span></div>
+        <div><b>640 m²</b><span>Produksjonskjøkken</span></div>
+        <div><b>14</b><span>Kokker og bakere</span></div>
+        <div><b>96 %</b><span>Gjenbruk av servise</span></div>
+      </div>
+      <div data-reveal style="--d:.3s;margin-top:34px">
+        <a class="btn" href="#planlegger">Planlegg arrangement <span class="ar" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="om2-img" data-reveal="clip">
+      <img src="images/image-18.svg" data-img="kjokken" data-ph="1" alt="Kokk anretter mat på produksjonskjøkkenet" loading="lazy">
+      <p class="om2-cap">Mise en place, en tirsdag i oktober. 340 porsjoner skal ut før klokken 16.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec faq light" id="faq">
+  <div class="wrap faq-grid">
+    <div>
+      <p class="eyebrow" data-reveal>10 — Ofte stilte spørsmål</p>
+      <h2 class="d3" data-reveal style="--d:.08s">Det folk lurer på før de bestiller.</h2>
+      <p class="lede" data-reveal style="--d:.16s;margin-top:18px">Finner du ikke svaret? Ring <a href="tel:+4722458810" style="border-bottom:1px solid var(--clay); color:var(--ink)">22 45 88 10</a> — vi svarer mellom 08 og 17.</p>
+    </div>
+    <div class="acc" id="acc" data-reveal>
+      <div class="acc-i on">
+        <button class="acc-b" aria-expanded="true">Hvor lang tid i forveien må vi bestille?</button>
+        <div class="acc-p"><div>Bryllup og store selskaper bør sikres 6–12 måneder før, særlig lørdager mellom mai og september. Selskaper under 60 gjester klarer vi ofte med 2–3 ukers varsel, og møtemat leverer vi med 48 timers frist. Har du dårlig tid? Ring oss — vi har som regel en løsning.</div></div>
+      </div>
+      <div class="acc-i">
+        <button class="acc-b" aria-expanded="false">Hvilke områder leverer dere til?</button>
+        <div class="acc-p"><div>Oslo, Bærum, Asker, Lillestrøm, Follo, Nordre og Søndre Nordstrand samt Drammen er innenfor vårt faste område. Levering innenfor Ring 3 er inkludert i prisen, utenfor beregner vi 14,– per km fra Grenseveien 65. Vi har også reist til Hardanger, Kragerø og Åre for bryllup — det ordner vi som eget tilbud.</div></div>
+      </div>
+      <div class="acc-i">
+        <button class="acc-b" aria-expanded="false">Hvordan håndterer dere allergier?</button>
+        <div class="acc-p"><div>Alle allergener registreres i arrangementsskjemaet og følger bestillingen helt ut til fatet. Retter med nøtter, skalldyr og gluten produseres på separate stasjoner, og gjester med hensyn får en fullverdig rett — ikke en redusert versjon av de andres. Ved alvorlig allergi ringer vi deg for en gjennomgang før produksjon.</div></div>
+      </div>
+      <div class="acc-i">
+        <button class="acc-b" aria-expanded="false">Kan vi smake på maten før vi bestemmer oss?</button>
+        <div class="acc-p"><div>Ja. Smaksprøve holdes på kjøkkenet vårt på Helsfyr, som regel en torsdag ettermiddag. Det er gratis for selskaper over 50 gjester. For mindre selskaper koster det 750,– for to personer, og beløpet trekkes fra sluttfakturaen når du bestiller.</div></div>
+      </div>
+      <div class="acc-i">
+        <button class="acc-b" aria-expanded="false">Må lokalet ha kjøkken?</button>
+        <div class="acc-p"><div>Nei. Vi rigger mobilt feltkjøkken med varmeskap, induksjon og kjøling, og trenger i praksis bare strøm og et rom på rundt ti kvadratmeter — garasje, telt eller bakrom fungerer utmerket. Har lokalet kjøkken, bruker vi selvsagt det.</div></div>
+      </div>
+      <div class="acc-i">
+        <button class="acc-b" aria-expanded="false">Hva med servise, glass, duker og personale?</button>
+        <div class="acc-p"><div>Alt kan leies gjennom oss: porselen fra Figgjo, glass, bestikk, lin, buffetbord og stoler. Servitører koster 645,– per time (minimum fire timer), kokk på stedet 795,– per time. Vi anbefaler én servitør per 25 gjester ved servert meny.</div></div>
+      </div>
+      <div class="acc-i">
+        <button class="acc-b" aria-expanded="false">Hvilke avbestillingsregler gjelder?</button>
+        <div class="acc-p"><div>Kostnadsfri avbestilling inntil 14 dager før arrangementet. Mellom 14 og 5 dager faktureres 50 %, og de siste 5 dagene 100 %, ettersom råvarene da er innkjøpt. Antall gjester kan justeres med inntil 10 % helt frem til 5 dager før.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="kontakt">
+  <div class="cta-bg" aria-hidden="true"><img src="images/image-18.svg" data-img="servering" data-ph="1" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center" data-reveal>Neste ledige lørdag: 26. september</p>
+    <h2 class="d2" data-reveal style="--d:.08s">Skal vi lage noe godt sammen?</h2>
+    <div class="cta-row" data-reveal style="--d:.16s">
+      <a class="btn" href="#planlegger">Få tilbud <span class="ar" aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="#menyer">Se menyer</a>
+    </div>
+    <p class="cta-tel" data-reveal style="--d:.24s"><a href="tel:+4722458810">22 45 88 10</a></p>
+    <p class="small" data-reveal style="--d:.3s"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="43332c30370330262f302822332c24302e22286d2d2c">[email&#160;protected]</a> · Man–fre 08–17</p>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-brand">
+        <a href="#topp" class="brand"><span class="mark">S&amp;S</span><span><span class="bname">Selskap &amp; Smak</span><span class="btag">Catering · Oslo</span></span></a>
+        <p>Catering til bryllup, firmaarrangementer, konfirmasjoner, jubileer, møter og private selskaper i Oslo og omegn. Siden 2011.</p>
+        <div class="f-soc">
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><rect x="1.4" y="1.4" width="15.2" height="15.2" rx="4.4" stroke="currentColor" stroke-width="1.1"/><circle cx="9" cy="9" r="3.6" stroke="currentColor" stroke-width="1.1"/><circle cx="13.6" cy="4.4" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M11.4 6.2h2V3.6h-2c-1.9 0-3.4 1.5-3.4 3.4v1.4H6v2.6h2v5.4h2.6V11h2l.5-2.6h-2.5V7c0-.4.3-.8.8-.8Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><rect x="1.4" y="1.4" width="15.2" height="15.2" rx="2.6" stroke="currentColor" stroke-width="1.1"/><path d="M5.2 7.6v5.2M5.2 5.1v.1M8.6 12.8V7.6m0 1.8c0-1 .8-1.8 1.8-1.8s2 .8 2 2.2v3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Tjenester</h4>
+        <ul>
+          <li><a href="#konsepter">Bryllupscatering</a></li>
+          <li><a href="#konsepter">Firmaarrangement</a></li>
+          <li><a href="#konsepter">Konfirmasjon</a></li>
+          <li><a href="#konsepter">Jubileum</a></li>
+          <li><a href="#konsepter">Møtemat</a></li>
+          <li><a href="#konsepter">Private selskaper</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Snarveier</h4>
+        <ul>
+          <li><a href="#menyer">Menykartet</a></li>
+          <li><a href="#pakker">Pakker og priser</a></li>
+          <li><a href="#prosess">Slik jobber vi</a></li>
+          <li><a href="#galleri">Galleri</a></li>
+          <li><a href="#faq">Spørsmål og svar</a></li>
+          <li><a href="#planlegger">Få tilbud</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li>Grenseveien 65, 0663 Oslo</li>
+          <li><a href="tel:+4722458810">22 45 88 10</a></li>
+          <li><a href="sms:+4746821330">SMS 468 21 330</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#a4d4cbd7d0e4d7c1c8d7cfc5d4cbc3d7c9c5cf8acacb"><span class="__cf_email__" data-cfemail="41312e32350132242d322a20312e26322c202a6f2f2e">[email&#160;protected]</span></a></li>
+          <li>Man–fre 08–17 · Lør 10–14</li>
+          <li>Org.nr 918 442 771 MVA</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="f-word" aria-hidden="true">Selskap &amp; Smak</div>
+  <div class="wrap">
+    <div class="f-bot">
+      <span>© 2026 Selskap &amp; Smak Catering AS. Alle rettigheter reservert.</span>
+      <span>Fiktivt firma · Demoside laget for porteføljebruk</span>
+      <span><a href="#">Personvern</a> · <a href="#">Vilkår</a> · <a href="#topp">Til toppen</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- lightbox / mobilbar / totopp -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Bildevisning">
+  <button class="lb-x" id="lbX" aria-label="Lukk"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" stroke-width="1.3"/></svg></button>
+  <button class="lb-p" id="lbP" aria-label="Forrige bilde"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M10 2 4 8l6 6" stroke="currentColor" stroke-width="1.3"/></svg></button>
+  <button class="lb-n" id="lbN" aria-label="Neste bilde"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 2l6 6-6 6" stroke="currentColor" stroke-width="1.3"/></svg></button>
+  <div><img id="lbI" src="" alt=""><p class="lb-cap" id="lbC"></p></div>
+</div>
+
+<div class="mbar" id="mbar">
+  <a class="btn btn-ghost btn-sm" href="#menyer">Se menyer</a>
+  <a class="btn btn-sm" href="#planlegger">Få tilbud</a>
+</div>
+<button class="totop" id="totop" aria-label="Til toppen"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" stroke="currentColor" stroke-width="1.3"/></svg></button>
+<div class="hovimg" id="hovimg" aria-hidden="true"><img src="" alt=""></div>
+
+<script>
+(function(){
+"use strict";
+var RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var $  = function(s,c){return (c||document).querySelector(s)};
+var $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+/* ---------- 0. Gjenbruk av bilder (ett data-URI per motiv) ---------- */
+(function(){
+  var src={};
+  $$('img[data-img]').forEach(function(im){
+    var k=im.getAttribute('data-img');
+    if(!im.getAttribute('data-ph')) src[k]=im.getAttribute('src');
+  });
+  $$('img[data-img][data-ph]').forEach(function(im){
+    var k=im.getAttribute('data-img');
+    if(src[k]) im.setAttribute('src',src[k]);
+  });
+})();
+
+/* ---------- 1. Reveal ---------- */
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      var d = getComputedStyle(e.target).getPropertyValue('--d') || '0s';
+      e.target.style.transitionDelay = d.trim();
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+$$('[data-reveal]').forEach(function(el){io.observe(el)});
+
+/* hero-tekst */
+window.addEventListener('load',function(){
+  setTimeout(function(){ $$('.split').forEach(function(el){el.classList.add('in')}); },120);
+});
+setTimeout(function(){ $$('.split').forEach(function(el){el.classList.add('in')}); },900);
+
+/* ---------- 2. Nav ---------- */
+var nav=$('#nav'), last=0;
+function onScroll(){
+  var y=window.pageYOffset;
+  nav.classList.toggle('solid', y>60);
+  if(y>420 && y>last+4 && !document.body.classList.contains('mopen')) nav.classList.add('up');
+  else if(y<last-4 || y<200) nav.classList.remove('up');
+  last=y;
+  $('#totop').classList.toggle('on', y>900);
+  $('#mbar').classList.toggle('on', y>640);
+}
+window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+$('#totop').addEventListener('click',function(){window.scrollTo({top:0,behavior:RM?'auto':'smooth'})});
+
+var burger=$('#burger');
+burger.addEventListener('click',function(){
+  var open=document.body.classList.toggle('mopen');
+  burger.setAttribute('aria-expanded',open?'true':'false');
+  $('#mob').setAttribute('aria-hidden',open?'false':'true');
+  document.body.style.overflow = open?'hidden':'';
+});
+$$('#mob a').forEach(function(a){a.addEventListener('click',function(){
+  document.body.classList.remove('mopen'); document.body.style.overflow='';
+  burger.setAttribute('aria-expanded','false');
+})});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.body.classList.remove('mopen'); document.body.style.overflow='';
+    closeLb();
+  }
+});
+
+/* ---------- 3. Tellere ---------- */
+var cio=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    var el=e.target, to=parseFloat(el.dataset.to), dec=el.dataset.dec?1:0, t0=null, dur=1500;
+    function step(t){
+      if(!t0) t0=t;
+      var p=Math.min((t-t0)/dur,1), v=to*(1-Math.pow(1-p,3));
+      el.textContent = dec ? (v/10).toFixed(1).replace('.',',') : Math.round(v).toLocaleString('nb-NO');
+      if(p<1) requestAnimationFrame(step);
+    }
+    if(RM){ el.textContent = dec?(to/10).toFixed(1).replace('.',','):to.toLocaleString('nb-NO'); }
+    else requestAnimationFrame(step);
+    cio.unobserve(el);
+  });
+},{threshold:.6});
+$$('.count').forEach(function(el){cio.observe(el)});
+
+/* ---------- 4. Konsepter ---------- */
+var kItems=$$('.k-item'), kFigs=$$('#kStage figure'), kPanes=$$('.k-cap .pane');
+var isMob=function(){return window.matchMedia('(max-width:900px)').matches};
+function setK(i){
+  kItems.forEach(function(li,n){
+    li.classList.toggle('on',n===i);
+    $('.k-btn',li).setAttribute('aria-expanded', n===i?'true':'false');
+    var b=$('.k-mob-body',li);
+    if(isMob()) b.style.height = (n===i? $('.k-mob-inner',b).offsetHeight+'px':'0px');
+    else b.style.height='';
+  });
+  kFigs.forEach(function(f,n){f.classList.toggle('on',n===i)});
+  kPanes.forEach(function(p,n){p.classList.toggle('on',n===i)});
+}
+kItems.forEach(function(li,i){
+  $('.k-btn',li).addEventListener('click',function(){
+    if(isMob() && li.classList.contains('on')){
+      li.classList.remove('on'); $('.k-mob-body',li).style.height='0px'; return;
+    }
+    setK(i);
+  });
+  li.addEventListener('mouseenter',function(){ if(!isMob()) setK(i) });
+});
+window.addEventListener('resize',function(){
+  var on=kItems.findIndex(function(l){return l.classList.contains('on')});
+  setK(on<0?0:on);
+});
+setK(0);
+
+/* ---------- 5. Vegetar-bytte ---------- */
+$$('.switch button').forEach(function(b){
+  b.addEventListener('click',function(){
+    $$('.switch button').forEach(function(x){x.classList.remove('on');x.setAttribute('aria-pressed','false')});
+    b.classList.add('on'); b.setAttribute('aria-pressed','true');
+    var veg=b.dataset.veg==='1';
+    $$('.courses').forEach(function(ul){
+      ul.classList.add('swap');
+      setTimeout(function(){
+        $$('.c-dish',ul).forEach(function(s){ s.textContent = veg ? s.dataset.b : s.dataset.a });
+        ul.classList.remove('swap');
+      },260);
+    });
+  });
+});
+
+/* ---------- 6. Prosess ---------- */
+var prSteps=$$('.pr-step'), prImgs=$$('#prStage img'), prBar=$('#prBar');
+var pio=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    var i=+e.target.dataset.p;
+    prSteps.forEach(function(s,n){s.classList.toggle('on',n===i)});
+    prImgs.forEach(function(im,n){im.classList.toggle('on',n===i)});
+    prBar.style.width=((i+1)/prSteps.length*100)+'%';
+  });
+},{rootMargin:'-45% 0px -45% 0px'});
+prSteps.forEach(function(s){pio.observe(s)});
+
+/* ---------- 7. Galleri + lightbox ---------- */
+var gItems=$$('.g-it');
+$$('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    $$('.chip').forEach(function(x){x.classList.remove('on')}); c.classList.add('on');
+    var f=c.dataset.f;
+    gItems.forEach(function(it){ it.classList.toggle('hide', f!=='alle' && it.dataset.cat!==f) });
+  });
+});
+var lb=$('#lb'), lbI=$('#lbI'), lbC=$('#lbC'), cur=0;
+function visible(){ return gItems.filter(function(i){return !i.classList.contains('hide')}) }
+function openLb(it){
+  var v=visible(); cur=v.indexOf(it); show();
+  lb.classList.add('on'); document.body.style.overflow='hidden';
+}
+function show(){
+  var v=visible(); if(!v.length) return;
+  cur=(cur+v.length)%v.length;
+  var im=$('img',v[cur]);
+  lbI.src=im.src; lbI.alt=im.alt; lbC.textContent=$('figcaption',v[cur]).textContent;
+}
+function closeLb(){ lb.classList.remove('on'); document.body.style.overflow=''; }
+gItems.forEach(function(it){ it.addEventListener('click',function(){openLb(it)}) });
+$('#lbX').addEventListener('click',closeLb);
+$('#lbP').addEventListener('click',function(){cur--;show()});
+$('#lbN').addEventListener('click',function(){cur++;show()});
+lb.addEventListener('click',function(e){ if(e.target===lb) closeLb() });
+document.addEventListener('keydown',function(e){
+  if(!lb.classList.contains('on')) return;
+  if(e.key==='ArrowRight'){cur++;show()}
+  if(e.key==='ArrowLeft'){cur--;show()}
+});
+
+/* ---------- 8. Omtaler ---------- */
+var omS=$$('.om-slide'), omD=$$('#omDots button'), omI=$$('#omImgs img'), oi=0, timer;
+function setOm(i){
+  oi=(i+omS.length)%omS.length;
+  omS.forEach(function(s,n){s.classList.toggle('on',n===oi)});
+  omD.forEach(function(d,n){d.classList.toggle('on',n===oi)});
+  omI.forEach(function(m,n){m.classList.toggle('on',n===oi)});
+}
+function auto(){ clearInterval(timer); if(!RM) timer=setInterval(function(){setOm(oi+1)},7000) }
+omD.forEach(function(d,i){d.addEventListener('click',function(){setOm(i);auto()})});
+$('#omNext').addEventListener('click',function(){setOm(oi+1);auto()});
+$('#omPrev').addEventListener('click',function(){setOm(oi-1);auto()});
+auto();
+
+/* ---------- 9. FAQ ---------- */
+$$('#acc .acc-i').forEach(function(it){
+  var b=$('.acc-b',it), p=$('.acc-p',it);
+  if(it.classList.contains('on')) p.style.height=$('div',p).offsetHeight+'px';
+  b.addEventListener('click',function(){
+    var open=it.classList.contains('on');
+    $$('#acc .acc-i').forEach(function(o){
+      o.classList.remove('on'); $('.acc-p',o).style.height='0px'; $('.acc-b',o).setAttribute('aria-expanded','false');
+    });
+    if(!open){ it.classList.add('on'); p.style.height=$('div',p).offsetHeight+'px'; b.setAttribute('aria-expanded','true'); }
+  });
+});
+window.addEventListener('resize',function(){
+  var o=$('#acc .acc-i.on'); if(o) $('.acc-p',o).style.height=$('.acc-p div',o).offsetHeight+'px';
+});
+
+/* ---------- 10. Hover-bilde på tjenestelenker ---------- */
+var hov=$('#hovimg'), hovImg=$('#hovimg img');
+var srcMap=[0,1,3,3,1,2].map(function(n){ return kFigs[n]?$('img',kFigs[n]).src:'' });
+$$('.f-top ul')[0] && $$('.f-top ul')[0].querySelectorAll('a').forEach(function(a,i){
+  a.addEventListener('mouseenter',function(){ hovImg.src=srcMap[i]||srcMap[0]; hov.classList.add('on') });
+  a.addEventListener('mouseleave',function(){ hov.classList.remove('on') });
+});
+window.addEventListener('mousemove',function(e){
+  if(!hov.classList.contains('on')) return;
+  var x=Math.min(e.clientX+160, window.innerWidth-140);
+  hov.style.left=x+'px'; hov.style.top=Math.max(150,Math.min(e.clientY,window.innerHeight-150))+'px';
+},{passive:true});
+
+/* ---------- 11. Planleggeren ---------- */
+var st = {occ:'Bryllup', mult:1.15, guests:60, stil:'Buffet', base:495, serv:'Levering', servAdd:0,
+          drikke:'Nei, vi ordner selv', drikkeAdd:0, all:[], date:'2026-11-14'};
+var step=1, MAX=5;
+var kr=function(n){ return 'kr ' + Math.round(n).toLocaleString('nb-NO').replace(/\u00A0/g,' ') };
+
+function ppris(){
+  var pp = st.base*st.mult + st.servAdd + st.drikkeAdd;
+  var g=st.guests, f = g>=200?0.90 : g>=100?0.94 : g>=50?0.98 : g<25?1.08 : 1;
+  pp*=f;
+  return Math.round(pp/5)*5;
+}
+function fmtDate(v){
+  if(!v) return '—';
+  var d=new Date(v+'T12:00:00');
+  if(isNaN(d)) return '—';
+  return d.toLocaleDateString('nb-NO',{day:'numeric',month:'short',year:'numeric'});
+}
+function calc(){
+  $('#sOcc').textContent=st.occ;
+  $('#sGue').textContent=st.guests + (st.guests>=400?'+':'');
+  $('#sDat').textContent=fmtDate(st.date);
+  $('#sSti').textContent=st.stil;
+  $('#sSer').textContent=st.serv + (st.drikkeAdd?' + drikke':'');
+  $('#sAll').textContent = st.all.length ? st.all.join(', ') : 'Ingen valgt';
+  var pp=ppris(), tot=Math.max(pp*st.guests, 6000);
+  var big=$('#sTot');
+  big.classList.add('flash');
+  setTimeout(function(){
+    big.textContent=kr(tot);
+    big.classList.remove('flash');
+  },140);
+  $('#sPp').textContent='ca. '+kr(pp)+' per gjest · '+st.stil.toLowerCase()+', '+st.serv.toLowerCase();
+}
+/* valg-knapper */
+$$('.opt').forEach(function(b){
+  b.addEventListener('click',function(){
+    var g=b.dataset.g;
+    $$('.opt[data-g="'+g+'"]').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    var v=b.dataset.v.replace(/&amp;/g,'&');
+    if(g==='occ'){ st.occ=v; st.mult=parseFloat(b.dataset.m); }
+    if(g==='stil'){ st.stil=v; st.base=parseFloat(b.dataset.p); }
+    if(g==='serv'){ st.serv=v; st.servAdd=parseFloat(b.dataset.a); }
+    if(g==='drikke'){ st.drikke=v; st.drikkeAdd=parseFloat(b.dataset.a); }
+    calc();
+  });
+});
+/* gjester */
+var rng=$('#gRange');
+function setG(v){
+  st.guests=+v; rng.value=v; $('#gVal').textContent=v;
+  rng.style.setProperty('--p', ((v-10)/390*100)+'%');
+  calc();
+}
+rng.addEventListener('input',function(){setG(this.value)});
+$$('.quick button').forEach(function(b){ b.addEventListener('click',function(){setG(b.dataset.q)}) });
+setG(60);
+/* dato */
+$('#fDato').addEventListener('change',function(){
+  st.date=this.value;
+  var d=new Date(this.value+'T12:00:00'), m=d.getMonth();
+  $('#datoHint').style.display = (d.getDay()===6 && m>=4 && m<=8) ? 'flex':'none';
+  calc();
+});
+/* allergier */
+$$('#allChips input').forEach(function(c){
+  c.addEventListener('change',function(){
+    st.all = $$('#allChips input').filter(function(x){return x.checked}).map(function(x){return x.value});
+    calc();
+  });
+});
+/* navigasjon */
+var names=['Anledning','Gjester og dato','Matstil','Hensyn','Kontakt','Sendt'];
+function goto(n){
+  step=n;
+  $$('.pl-step').forEach(function(s){ s.classList.toggle('on', +s.dataset.s===n) });
+  $$('#plBar div').forEach(function(d,i){ d.classList.toggle('done', i < n) });
+  $('#plNum').textContent=Math.min(n,5);
+  $('#plName').textContent=names[n-1];
+  $('#plPrev').disabled = n===1;
+  $('#plNext').innerHTML = n===MAX ? 'Send forespørsel <span class="ar">→</span>' : 'Neste steg <span class="ar">→</span>';
+  $('#plNav').style.display = n>MAX ? 'none' : 'flex';
+  $('#sumTag').textContent = n>MAX ? 'Sendt' : 'Utkast';
+  var top=$('#planlegger').getBoundingClientRect().top+window.pageYOffset-90;
+  if(window.innerWidth<1000 || n>MAX) window.scrollTo({top:top,behavior:RM?'auto':'smooth'});
+}
+$('#plPrev').addEventListener('click',function(){ if(step>1) goto(step-1) });
+$('#plNext').addEventListener('click',function(){
+  if(step<MAX){ goto(step+1); return; }
+  var navn=$('#fNavn'), ep=$('#fEpost'), ok=true;
+  navn.classList.remove('err'); ep.classList.remove('err');
+  if(!navn.value.trim()){ navn.classList.add('err'); ok=false }
+  if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(ep.value.trim())){ ep.classList.add('err'); ok=false }
+  $('#plErr').classList.toggle('on',!ok);
+  if(!ok) return;
+  $('#dNavn').textContent = navn.value.trim().split(' ')[0];
+  $('#dEpost').textContent = ep.value.trim();
+  $('#dRef').textContent = 'SS-2026-' + String(Math.floor(Math.random()*8500)+1000);
+  goto(6);
+});
+$('#plReset').addEventListener('click',function(){ goto(1) });
+$('#plForm').addEventListener('submit',function(e){e.preventDefault()});
+$('#plForm').addEventListener('keydown',function(e){
+  if(e.key==='Enter' && e.target.tagName!=='TEXTAREA'){ e.preventDefault(); $('#plNext').click(); }
+});
+calc();
+
+/* ---------- 12. Hero-parallakse ---------- */
+var heroImg=$('#heroMedia'), inner=$('.hero-inner');
+if(!RM){
+  var tick=false;
+  window.addEventListener('scroll',function(){
+    if(tick) return; tick=true;
+    requestAnimationFrame(function(){
+      var y=window.pageYOffset;
+      if(y<window.innerHeight*1.2){
+        heroImg.style.transform='translateY('+(y*.16)+'px)';
+        inner.style.transform='translateY('+(y*-.06)+'px)';
+        inner.style.opacity=Math.max(0,1-y/(window.innerHeight*.85));
+      }
+      tick=false;
+    });
+  },{passive:true});
+}
+
+/* ---------- 13. Myk scroll for ankere ---------- */
+$$('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var id=a.getAttribute('href');
+    if(id.length<2) return;
+    var t=document.querySelector(id);
+    if(!t) return;
+    e.preventDefault();
+    window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-(id==='#topp'?0:76), behavior:RM?'auto':'smooth'});
+  });
+});
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a37a62fd781a0b41',t:'MTc4ODgzMzExMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>
+

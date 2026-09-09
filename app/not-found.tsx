@@ -1,0 +1,1 @@
+import Link from '@/components/site-link';export default function NotFound(){return <main id="main" className="wrap page-heading"><div className="eyebrow">404 / LITT UTENFOR LØYPA</div><h1>Denne siden<br/>fant vi ikke.</h1><p>La oss finne tilbake til en god retning.</p><Link className="button dark" href="/portfolio">Til designbiblioteket ↗</Link></main>}

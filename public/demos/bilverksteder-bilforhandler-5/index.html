@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andersen Auto AS — Moderne bilverksted i Oslo</title>
+<meta name="description" content="Andersen Auto AS er et moderne bilverksted for privatpersoner og bedrifter. EU-kontroll, service, dekkskift, AC-service, feilsøking og reparasjoner. Bestill time enkelt på nett.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c10;
+  --bg-2:#0f1218;
+  --surface:#141821;
+  --surface-2:#1a1f2b;
+  --line:rgba(255,255,255,0.08);
+  --line-strong:rgba(255,255,255,0.14);
+  --text:#eef1f6;
+  --muted:#9aa4b6;
+  --muted-2:#6b7688;
+  --accent:#ff5a1f;
+  --accent-2:#ff8a3d;
+  --accent-soft:rgba(255,90,31,0.12);
+  --green:#3ddc84;
+  --radius:20px;
+  --maxw:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.font-display{font-family:'Sora',sans-serif;letter-spacing:-0.02em;line-height:1.08}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--accent-2);
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--accent)}
+.section{padding:120px 0;position:relative}
+.muted{color:var(--muted)}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:'Sora',sans-serif;font-weight:600;font-size:15px;
+  padding:15px 26px;border-radius:100px;cursor:pointer;border:1px solid transparent;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, background .3s, color .3s;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--accent);color:#0a0c10;box-shadow:0 10px 30px -10px rgba(255,90,31,.6)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(255,90,31,.75);background:var(--accent-2)}
+.btn-ghost{background:rgba(255,255,255,0.04);color:var(--text);border-color:var(--line-strong)}
+.btn-ghost:hover{transform:translateY(-3px);background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.28)}
+.btn-lg{padding:18px 34px;font-size:16px}
+
+/* Header */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .4s, backdrop-filter .4s, border-color .4s, padding .4s;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(10,12,16,0.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;max-width:var(--maxw);margin:0 auto;transition:padding .4s}
+header.scrolled .nav{padding:14px 24px}
+.logo{display:flex;align-items:center;gap:12px;font-family:'Sora',sans-serif;font-weight:700;font-size:19px}
+.logo-mark{
+  width:40px;height:40px;border-radius:11px;
+  background:linear-gradient(135deg,var(--accent),#c23a0d);
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;
+  box-shadow:0 8px 20px -8px rgba(255,90,31,.7);
+}
+.logo small{display:block;font-family:'Inter';font-size:10.5px;font-weight:500;letter-spacing:0.18em;color:var(--muted-2);text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-size:15px;color:var(--muted);font-weight:500;position:relative;transition:color .25s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--accent);transition:width .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.burger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Mobile menu */
+.mobile-menu{
+  position:fixed;inset:0;z-index:99;background:rgba(10,12,16,0.98);backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;justify-content:center;gap:8px;padding:40px;
+  transform:translateX(100%);transition:transform .45s cubic-bezier(.7,0,.2,1);
+}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{font-family:'Sora';font-size:30px;font-weight:600;padding:12px 0;border-bottom:1px solid var(--line);transition:color .25s,padding-left .25s}
+.mobile-menu a:hover{color:var(--accent);padding-left:10px}
+.mobile-menu .btn{margin-top:24px;justify-content:center}
+
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:100px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.42;transform:scale(1.08);animation:kenburns 20s ease-out forwards}
+@keyframes kenburns{to{transform:scale(1)}}
+.hero-bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,var(--bg) 8%,rgba(10,12,16,.75) 45%,rgba(10,12,16,.35) 100%),
+  linear-gradient(0deg,var(--bg) 2%,transparent 40%);
+}
+.glow{position:absolute;border-radius:50%;filter:blur(90px);z-index:0;pointer-events:none}
+.glow-1{width:500px;height:500px;background:rgba(255,90,31,.16);top:-140px;right:-80px}
+.glow-2{width:380px;height:380px;background:rgba(60,110,255,.10);bottom:-120px;left:-100px}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6vw,5rem);font-weight:800;margin:22px 0}
+.hero h1 .accent{color:var(--accent);position:relative}
+.hero p.lead{font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--muted);max-width:560px;margin-bottom:36px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
+.hero-stats .stat h3{font-size:2.1rem;font-weight:800;color:var(--text)}
+.hero-stats .stat span{font-size:13.5px;color:var(--muted-2);letter-spacing:.02em}
+.hero-card{
+  background:linear-gradient(160deg,var(--surface),var(--bg-2));
+  border:1px solid var(--line);border-radius:24px;padding:30px;
+  box-shadow:0 40px 80px -40px rgba(0,0,0,.8);
+  animation:floatCard 6s ease-in-out infinite;
+}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-card h4{font-size:1.15rem;margin-bottom:4px}
+.hero-card .price-row{display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}
+.hero-card .price-row:last-of-type{border-bottom:none}
+.hero-card .price-row .p{font-family:'Sora';font-weight:700;color:var(--accent-2)}
+.hero-card .badge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--green);background:rgba(61,220,132,.1);padding:6px 12px;border-radius:100px;margin-bottom:18px}
+.hero-card .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+/* Marquee logos */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2);padding:26px 0;overflow:hidden}
+.trust-inner{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.marquee{display:flex;gap:60px;white-space:nowrap;animation:scroll 28s linear infinite;width:max-content}
+.marquee span{font-family:'Sora';font-weight:700;font-size:1.35rem;color:var(--muted-2);opacity:.6;letter-spacing:.02em}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marquee-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+
+/* Section heading */
+.sec-head{max-width:640px;margin-bottom:56px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head h2{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;margin:16px 0}
+.sec-head p{color:var(--muted);font-size:1.08rem}
+
+/* Services */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:32px;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s,background .4s;
+}
+.service-card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),var(--accent-soft),transparent 60%);opacity:0;transition:opacity .4s}
+.service-card:hover{transform:translateY(-8px);border-color:var(--line-strong)}
+.service-card:hover::before{opacity:1}
+.service-icon{
+  width:54px;height:54px;border-radius:14px;background:var(--accent-soft);
+  display:grid;place-items:center;margin-bottom:22px;color:var(--accent-2);
+  border:1px solid rgba(255,90,31,.2);transition:transform .4s;
+}
+.service-card:hover .service-icon{transform:scale(1.08) rotate(-4deg)}
+.service-card h3{font-size:1.28rem;margin-bottom:10px;position:relative}
+.service-card p{color:var(--muted);font-size:.98rem;position:relative}
+.service-card .arrow{margin-top:20px;display:inline-flex;align-items:center;gap:8px;font-family:'Sora';font-weight:600;font-size:.92rem;color:var(--accent-2);position:relative;transition:gap .3s}
+.service-card:hover .arrow{gap:14px}
+
+/* Feature split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.split-media{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+.split-media img{width:100%;height:560px;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.split-media:hover img{transform:scale(1.05)}
+.split-media .float-stat{
+  position:absolute;left:24px;bottom:24px;right:24px;
+  background:rgba(14,18,24,0.72);backdrop-filter:blur(14px);border:1px solid var(--line-strong);
+  border-radius:16px;padding:20px 22px;display:flex;gap:24px;
+}
+.float-stat .fs h3{font-size:1.7rem;color:var(--accent-2)}
+.float-stat .fs span{font-size:12.5px;color:var(--muted)}
+.feature-list{list-style:none;margin-top:28px;display:grid;gap:18px}
+.feature-list li{display:flex;gap:16px;align-items:flex-start}
+.feature-list .ic{flex:none;width:34px;height:34px;border-radius:10px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent-2);border:1px solid rgba(255,90,31,.2)}
+.feature-list h4{font-size:1.05rem;margin-bottom:2px}
+.feature-list p{color:var(--muted);font-size:.95rem}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.price-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:34px 30px;position:relative;transition:transform .4s,border-color .4s;
+  display:flex;flex-direction:column;
+}
+.price-card:hover{transform:translateY(-8px);border-color:var(--line-strong)}
+.price-card.featured{
+  background:linear-gradient(170deg,#1c1410,#12100e);
+  border-color:rgba(255,90,31,.4);
+  box-shadow:0 30px 70px -30px rgba(255,90,31,.35);
+}
+.price-card .tag{position:absolute;top:22px;right:22px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0a0c10;background:var(--accent);padding:5px 12px;border-radius:100px}
+.price-card h3{font-size:1.3rem;margin-bottom:6px}
+.price-card .sub{color:var(--muted-2);font-size:.9rem;margin-bottom:22px}
+.price-card .amount{font-family:'Sora';font-weight:800;font-size:2.7rem;margin-bottom:2px}
+.price-card .amount small{font-size:1rem;font-weight:600;color:var(--muted)}
+.price-card .from{font-size:.85rem;color:var(--muted-2);margin-bottom:24px}
+.price-card ul{list-style:none;display:grid;gap:12px;margin-bottom:28px;flex:1}
+.price-card ul li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;color:var(--muted)}
+.price-card ul li svg{flex:none;margin-top:3px;color:var(--green)}
+.price-note{text-align:center;color:var(--muted-2);font-size:.9rem;margin-top:28px}
+
+/* Process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:step}
+.step{position:relative;padding-top:28px}
+.step::before{counter-increment:step;content:"0" counter(step);font-family:'Sora';font-weight:800;font-size:3.4rem;color:transparent;-webkit-text-stroke:1.4px rgba(255,255,255,.14);position:absolute;top:-20px;left:0;line-height:1}
+.step h4{font-size:1.15rem;margin:14px 0 8px;position:relative}
+.step p{color:var(--muted);font-size:.95rem}
+.step .line{position:absolute;top:12px;left:0;width:100%;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
+
+/* Booking */
+.booking{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.booking-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:start}
+.booking-info h2{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;margin:16px 0 20px}
+.booking-info p{color:var(--muted);margin-bottom:28px;max-width:460px}
+.booking-perks{list-style:none;display:grid;gap:16px}
+.booking-perks li{display:flex;gap:14px;align-items:center;font-size:1rem}
+.booking-perks .ic{width:38px;height:38px;flex:none;border-radius:11px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent-2);border:1px solid rgba(255,90,31,.2)}
+.form-card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:34px;box-shadow:0 40px 80px -50px rgba(0,0,0,.9)}
+.form-steps{display:flex;gap:8px;margin-bottom:28px}
+.form-steps .fstep{flex:1;height:5px;border-radius:100px;background:rgba(255,255,255,.08);transition:background .4s}
+.form-steps .fstep.active{background:var(--accent)}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.88rem;font-weight:600;margin-bottom:9px;color:var(--text)}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--bg);border:1px solid var(--line-strong);border-radius:12px;
+  padding:14px 16px;color:var(--text);font-family:'Inter';font-size:.98rem;transition:border-color .25s,box-shadow .25s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted-2)}
+select{appearance:none;background-image:url("images/icon-01.svg");background-repeat:no-repeat;background-position:right 16px center}
+.chip-group{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  padding:11px 16px;border-radius:12px;border:1px solid var(--line-strong);background:var(--bg);
+  font-size:.92rem;cursor:pointer;transition:.25s;font-family:'Inter';color:var(--muted);user-select:none;
+}
+.chip:hover{border-color:rgba(255,255,255,.3);color:var(--text)}
+.chip.selected{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-2);font-weight:600}
+.form-page{display:none;animation:fadeSlide .4s ease}
+.form-page.active{display:block}
+@keyframes fadeSlide{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.form-nav{display:flex;gap:12px;margin-top:26px}
+.form-nav .btn{flex:1}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.summary{background:var(--bg);border:1px dashed var(--line-strong);border-radius:14px;padding:18px 20px;margin-bottom:20px}
+.summary .srow{display:flex;justify-content:space-between;padding:7px 0;font-size:.94rem}
+.summary .srow span:first-child{color:var(--muted)}
+.summary .srow span:last-child{font-weight:600}
+.booking-success{text-align:center;padding:20px 0}
+.booking-success .check{width:72px;height:72px;border-radius:50%;background:rgba(61,220,132,.12);display:grid;place-items:center;margin:0 auto 20px;color:var(--green);border:1px solid rgba(61,220,132,.3)}
+
+/* Testimonials */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.testi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:32px;transition:transform .4s,border-color .4s}
+.testi:hover{transform:translateY(-6px);border-color:var(--line-strong)}
+.stars{display:flex;gap:3px;color:var(--accent);margin-bottom:18px}
+.testi p{font-size:1.02rem;color:var(--text);margin-bottom:24px}
+.testi .who{display:flex;align-items:center;gap:14px}
+.avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#c23a0d);display:grid;place-items:center;font-family:'Sora';font-weight:700;color:#fff;font-size:1rem}
+.who h5{font-size:.98rem;font-weight:600}
+.who span{font-size:.85rem;color:var(--muted-2)}
+
+/* CTA banner */
+.cta-banner{position:relative;border-radius:28px;overflow:hidden;padding:70px 60px;border:1px solid var(--line-strong)}
+.cta-banner .bg{position:absolute;inset:0;z-index:0}
+.cta-banner .bg img{width:100%;height:100%;object-fit:cover;opacity:.28}
+.cta-banner .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,90,31,.22),rgba(10,12,16,.9))}
+.cta-banner .inner{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.cta-banner h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;max-width:640px}
+.cta-banner p{color:var(--muted);margin-top:12px;max-width:520px}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.contact-info .info-item{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.contact-info .info-item .ic{width:46px;height:46px;flex:none;border-radius:12px;background:var(--surface);border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--accent-2)}
+.contact-info .info-item h4{font-size:1.05rem;margin-bottom:3px}
+.contact-info .info-item p{color:var(--muted);font-size:.96rem}
+.contact-info .info-item a{color:var(--muted);transition:color .2s}
+.contact-info .info-item a:hover{color:var(--accent-2)}
+.map-embed{margin-top:26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);height:220px;filter:grayscale(.4) contrast(1.05) brightness(.85)}
+.map-embed iframe{width:100%;height:100%;border:0}
+.hours-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:26px}
+.hours-card .hrow{display:flex;justify-content:space-between;padding:8px 0;font-size:.95rem;border-bottom:1px solid var(--line)}
+.hours-card .hrow:last-child{border-bottom:none}
+.hours-card .hrow.open span:last-child{color:var(--green);font-weight:600}
+.hours-card .hrow span:first-child{color:var(--muted)}
+
+/* Footer */
+footer{background:var(--bg-2);border-top:1px solid var(--line);padding:70px 0 32px}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.footer-grid p{color:var(--muted);font-size:.95rem;margin-top:16px;max-width:320px}
+.footer-col h5{font-family:'Sora';font-size:.95rem;margin-bottom:18px;letter-spacing:.02em}
+.footer-col a{display:block;color:var(--muted);font-size:.94rem;padding:6px 0;transition:color .2s,padding-left .2s}
+.footer-col a:hover{color:var(--accent-2);padding-left:5px}
+.footer-bottom{border-top:1px solid var(--line);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;color:var(--muted-2);font-size:.88rem}
+.socials{display:flex;gap:12px}
+.socials a{width:38px;height:38px;border-radius:10px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);transition:.25s}
+.socials a:hover{color:var(--accent-2);border-color:var(--line-strong);transform:translateY(-3px)}
+
+/* Scroll progress */
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));z-index:200;width:0;transition:width .1s}
+
+/* Responsive */
+@media(max-width:1024px){
+  .hero-grid,.split,.booking-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .services-grid,.pricing-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr);row-gap:40px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .split-media img{height:440px}
+}
+@media(max-width:720px){
+  .section{padding:80px 0}
+  .nav-links{display:none}
+  .nav-cta .btn-ghost{display:none}
+  .burger{display:flex}
+  .services-grid,.pricing-grid,.testi-grid,.steps{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .hero{padding-top:120px}
+  .hero-stats{gap:28px}
+  .hero-stats .stat h3{font-size:1.7rem}
+  .two-col{grid-template-columns:1fr}
+  .cta-banner{padding:44px 26px}
+  .cta-banner .inner{flex-direction:column;align-items:flex-start}
+  .float-stat{flex-wrap:wrap;gap:16px!important}
+  .wrap{padding:0 20px}
+  .form-card{padding:26px 22px}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<div class="progress" id="progress"></div>
+
+<!-- Header -->
+<header id="header">
+  <nav class="nav">
+    <a href="#hjem" class="logo">
+      <span class="logo-mark">A</span>
+      <span>Andersen Auto<small>Bilverksted · Oslo</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#priser">Priser</a>
+      <a href="#prosess">Slik jobber vi</a>
+      <a href="#omtaler">Omtaler</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <div class="nav-cta">
+      <a href="tel:+4722000000" class="btn btn-ghost">22 00 00 00</a>
+      <a href="#booking" class="btn btn-primary">Bestill time</a>
+      <button class="burger" id="burger" aria-label="Meny"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#tjenester">Tjenester</a>
+  <a href="#priser">Priser</a>
+  <a href="#prosess">Slik jobber vi</a>
+  <a href="#omtaler">Omtaler</a>
+  <a href="#kontakt">Kontakt</a>
+  <a href="#booking" class="btn btn-primary btn-lg">Bestill time</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="hjem">
+  <div class="hero-bg">
+    <img src="images/photo-02.jpg" alt="Moderne bilverksted">
+  </div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="hero-inner wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow reveal">Bilverksted du kan stole på</span>
+        <h1 class="reveal d1">Verkstedet som<br><span class="accent">tar bilen din</span> på alvor.</h1>
+        <p class="lead reveal d2">Andersen Auto AS leverer service, EU-kontroll og reparasjoner med moderne diagnoseutstyr, faste priser og full åpenhet — for både privatpersoner og bedrifter.</p>
+        <div class="hero-actions reveal d3">
+          <a href="#booking" class="btn btn-primary btn-lg">Bestill time nå</a>
+          <a href="#priser" class="btn btn-ghost btn-lg">Se priser</a>
+        </div>
+        <div class="hero-stats reveal d4">
+          <div class="stat"><h3 data-count="4200" data-suffix="+">0</h3><span>Fornøyde kunder</span></div>
+          <div class="stat"><h3 data-count="18" data-suffix=" år">0</h3><span>Erfaring i bransjen</span></div>
+          <div class="stat"><h3 data-count="4.9" data-suffix="★" data-dec="1">0</h3><span>Snittvurdering</span></div>
+        </div>
+      </div>
+      <div class="hero-card reveal d3">
+        <div class="badge"><span class="dot"></span> Ledig time allerede i morgen</div>
+        <h4>Populære tjenester</h4>
+        <p class="muted" style="font-size:.9rem;margin-bottom:14px">Faste priser — ingen overraskelser</p>
+        <div class="price-row"><span>EU-kontroll</span><span class="p">690,–</span></div>
+        <div class="price-row"><span>Oljeskift & service</span><span class="p">fra 1 490,–</span></div>
+        <div class="price-row"><span>Dekkskift</span><span class="p">390,–</span></div>
+        <div class="price-row"><span>AC-service</span><span class="p">fra 990,–</span></div>
+        <a href="#booking" class="btn btn-primary" style="width:100%;margin-top:20px">Reserver din time</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust marquee -->
+<div class="trust">
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>VOLKSWAGEN</span><span>TESLA</span><span>BMW</span><span>TOYOTA</span><span>AUDI</span><span>VOLVO</span><span>MERCEDES</span><span>SKODA</span><span>HYUNDAI</span>
+      <span>VOLKSWAGEN</span><span>TESLA</span><span>BMW</span><span>TOYOTA</span><span>AUDI</span><span>VOLVO</span><span>MERCEDES</span><span>SKODA</span><span>HYUNDAI</span>
+    </div>
+  </div>
+</div>
+
+<!-- Services -->
+<section class="section" id="tjenester">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Våre tjenester</span>
+      <h2>Alt bilen din trenger — på ett sted</h2>
+      <p>Fra lovpålagt EU-kontroll til avansert elektronisk feilsøking. Vi jobber på alle bilmerker, både bensin, diesel, hybrid og elbil.</p>
+    </div>
+    <div class="services-grid" id="servicesGrid">
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>EU-kontroll</h3>
+        <p>Godkjent kontrollorgan. Rask og grundig periodisk kjøretøykontroll med full rapport og eventuell etterkontroll.</p>
+        <span class="arrow">Bestill EU-kontroll →</span>
+      </div>
+      <div class="service-card reveal d1">
+        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>Service & vedlikehold</h3>
+        <p>Fullservice etter fabrikkens intervaller. Vi beholder nybilgarantien og bruker deler av original kvalitet.</p>
+        <span class="arrow">Bestill service →</span>
+      </div>
+      <div class="service-card reveal d2">
+        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+        <h3>Dekkskift & dekkhotell</h3>
+        <p>Sesongskift på 20 minutter. Trygg oppbevaring av dekkene dine i klimakontrollert lager — vi henter dem frem til neste sesong.</p>
+        <span class="arrow">Book dekkskift →</span>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Bremser</h3>
+        <p>Kontroll og skift av bremseklosser, skiver og væske. Vi tester bremsevirkning i vår moderne bremsetester.</p>
+        <span class="arrow">Sjekk bremsene →</span>
+      </div>
+      <div class="service-card reveal d1">
+        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Feilsøking & diagnose</h3>
+        <p>Lyser en varsellampe? Vi kobler til avansert diagnoseutstyr og finner den faktiske årsaken — ikke bare symptomet.</p>
+        <span class="arrow">Book diagnose →</span>
+      </div>
+      <div class="service-card reveal d2">
+        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>AC-service & klima</h3>
+        <p>Full rens, påfylling og lekkasjetest av klimaanlegget. Vi håndterer både R134a og nyere R1234yf-gass.</p>
+        <span class="arrow">Book AC-service →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feature split -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-media reveal">
+        <img src="images/photo-03.jpg" alt="Mekaniker inspiserer bil">
+        <div class="float-stat">
+          <div class="fs"><h3>98%</h3><span>Anbefaler oss videre</span></div>
+          <div class="fs"><h3>24t</h3><span>Vanlig leveringstid</span></div>
+          <div class="fs"><h3>2 års</h3><span>Garanti på arbeid</span></div>
+        </div>
+      </div>
+      <div class="split-text reveal d1">
+        <span class="eyebrow">Hvorfor Andersen Auto</span>
+        <h2 style="font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;margin:16px 0">Et verksted bygget på tillit og teknologi</h2>
+        <p class="muted">Vi kombinerer solid håndverk med moderne utstyr, og gir deg alltid en klar pris før vi begynner. Ingen skjulte tillegg, ingen unødvendige reparasjoner.</p>
+        <ul class="feature-list">
+          <li>
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><h4>Fast pris før oppstart</h4><p>Du godkjenner alltid tilbudet før vi løfter en skiftenøkkel.</p></div>
+          </li>
+          <li>
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><h4>Gratis lånebil</h4><p>Trenger du bilen på dagtid? Vi ordner lånebil ved større jobber.</p></div>
+          </li>
+          <li>
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><h4>Digital oppfølging</h4><p>Få bilder, video og statusoppdateringer rett på mobilen underveis.</p></div>
+          </li>
+          <li>
+            <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><h4>Beholder garantien</h4><p>Vår service opprettholder nybilgarantien på din bil.</p></div>
+          </li>
+        </ul>
+        <a href="#booking" class="btn btn-primary btn-lg" style="margin-top:34px">Få pristilbud i dag</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="priser" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Faste priser</span>
+      <h2>Tydelige priser, uten overraskelser</h2>
+      <p>Priseksempler for de vanligste tjenestene. Endelig pris avhenger av bilmodell — du får alltid et konkret tilbud før vi starter.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <h3>EU-kontroll</h3>
+        <div class="sub">Lovpålagt periodisk kontroll</div>
+        <div class="amount">690<small>,–</small></div>
+        <div class="from">Etterkontroll inkludert</div>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Godkjent kontrollorgan</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Full kontrollrapport</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Rask time, ofte samme uke</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Gratis omkontroll innen 14 dager</li>
+        </ul>
+        <a href="#booking" class="btn btn-ghost" data-service="EU-kontroll">Bestill EU-kontroll</a>
+      </div>
+      <div class="price-card featured reveal d1">
+        <span class="tag">Mest populær</span>
+        <h3>Storservice</h3>
+        <div class="sub">Komplett service etter intervall</div>
+        <div class="amount">2 990<small>,–</small></div>
+        <div class="from">fra, inkl. olje og filter</div>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Olje- og filterskift</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Kontroll av 40+ punkter</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Nullstilling av serviceintervall</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Beholder nybilgaranti</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Gratis lånebil</li>
+        </ul>
+        <a href="#booking" class="btn btn-primary" data-service="Storservice">Bestill storservice</a>
+      </div>
+      <div class="price-card reveal d2">
+        <h3>Dekkskift</h3>
+        <div class="sub">Sesongskift av hjul</div>
+        <div class="amount">390<small>,–</small></div>
+        <div class="from">Dekkhotell fra 1 190,– / år</div>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Avbalansering ved behov</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Kontroll av mønsterdybde</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Trykk- og TPMS-sjekk</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Klimakontrollert dekkhotell</li>
+        </ul>
+        <a href="#booking" class="btn btn-ghost" data-service="Dekkskift">Book dekkskift</a>
+      </div>
+    </div>
+    <p class="price-note">Alle priser er inkl. mva. Bedriftskunder får egne avtalepriser — <a href="#kontakt" style="color:var(--accent-2)">ta kontakt for tilbud</a>.</p>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section" id="prosess">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Slik jobber vi</span>
+      <h2>Enkelt fra booking til ferdig bil</h2>
+      <p>Fire steg som gjør verkstedbesøket forutsigbart, raskt og helt uten stress.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="line"></div><h4>Bestill time</h4><p>Velg tjeneste, biltype og ønsket tidspunkt på nett — det tar under to minutter.</p></div>
+      <div class="step reveal d1"><div class="line"></div><h4>Få fast pris</h4><p>Vi vurderer jobben og sender deg en tydelig pris til godkjenning før vi starter.</p></div>
+      <div class="step reveal d2"><div class="line"></div><h4>Vi fikser bilen</h4><p>Erfarne mekanikere utfører jobben, og du følger fremdriften digitalt.</p></div>
+      <div class="step reveal d3"><div class="line"></div><h4>Hent & kjør</h4><p>Bilen er klar til avtalt tid, vasket og med full dokumentasjon på utført arbeid.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Booking -->
+<section class="section booking" id="booking">
+  <div class="wrap">
+    <div class="booking-grid">
+      <div class="booking-info reveal">
+        <span class="eyebrow">Bestill time</span>
+        <h2>Reserver din time på under to minutter</h2>
+        <p>Velg tjenesten du trenger, fortell oss litt om bilen og finn et tidspunkt som passer. Vi bekrefter timen din raskt.</p>
+        <ul class="booking-perks">
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></span> Uforpliktende — du godkjenner pris før oppstart</li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span> Ofte ledig time innen 1–2 virkedager</li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span> Bekreftelse på SMS og e-post</li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg></span> Gratis lånebil kan reserveres ved behov</li>
+        </ul>
+      </div>
+
+      <div class="form-card reveal d1">
+        <div class="form-steps">
+          <div class="fstep active" data-s="1"></div>
+          <div class="fstep" data-s="2"></div>
+          <div class="fstep" data-s="3"></div>
+        </div>
+        <form id="bookingForm" novalidate>
+          <!-- Step 1 -->
+          <div class="form-page active" data-page="1">
+            <div class="field">
+              <label>Hvilken tjeneste trenger du?</label>
+              <div class="chip-group" id="serviceChips">
+                <span class="chip" data-val="EU-kontroll">EU-kontroll</span>
+                <span class="chip" data-val="Service">Service</span>
+                <span class="chip" data-val="Dekkskift">Dekkskift</span>
+                <span class="chip" data-val="Bremser">Bremser</span>
+                <span class="chip" data-val="AC-service">AC-service</span>
+                <span class="chip" data-val="Feilsøking">Feilsøking</span>
+                <span class="chip" data-val="Annet">Annet</span>
+              </div>
+            </div>
+            <div class="field">
+              <label>Biltype</label>
+              <div class="chip-group" id="carChips">
+                <span class="chip" data-val="Bensin/Diesel">Bensin / Diesel</span>
+                <span class="chip" data-val="Hybrid">Hybrid</span>
+                <span class="chip" data-val="Elbil">Elbil</span>
+                <span class="chip" data-val="Varebil">Varebil</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="regnr">Registreringsnummer (valgfritt)</label>
+              <input type="text" id="regnr" placeholder="F.eks. AB 12345" style="text-transform:uppercase">
+            </div>
+            <div class="form-nav">
+              <button type="button" class="btn btn-primary" data-next="2">Neste steg →</button>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="form-page" data-page="2">
+            <div class="two-col">
+              <div class="field">
+                <label for="dato">Ønsket dato</label>
+                <input type="date" id="dato">
+              </div>
+              <div class="field">
+                <label for="tid">Ønsket tidspunkt</label>
+                <select id="tid">
+                  <option value="">Velg tid</option>
+                  <option>08:00</option><option>09:00</option><option>10:00</option>
+                  <option>11:00</option><option>12:00</option><option>13:00</option>
+                  <option>14:00</option><option>15:00</option><option>16:00</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label>Trenger du lånebil?</label>
+              <div class="chip-group" id="loanChips">
+                <span class="chip" data-val="Nei">Nei takk</span>
+                <span class="chip" data-val="Ja">Ja, gjerne</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="melding">Beskriv gjerne problemet (valgfritt)</label>
+              <textarea id="melding" rows="3" placeholder="F.eks. varsellampe lyser, ulyd ved bremsing ..."></textarea>
+            </div>
+            <div class="form-nav">
+              <button type="button" class="btn btn-ghost" data-prev="1">← Tilbake</button>
+              <button type="button" class="btn btn-primary" data-next="3">Neste steg →</button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="form-page" data-page="3">
+            <div class="summary" id="summary"></div>
+            <div class="two-col">
+              <div class="field">
+                <label for="navn">Navn</label>
+                <input type="text" id="navn" placeholder="Ola Nordmann">
+              </div>
+              <div class="field">
+                <label for="tlf">Telefon</label>
+                <input type="tel" id="tlf" placeholder="900 00 000">
+              </div>
+            </div>
+            <div class="field">
+              <label for="epost">E-post</label>
+              <input type="email" id="epost" placeholder="ola@epost.no">
+            </div>
+            <div class="form-nav">
+              <button type="button" class="btn btn-ghost" data-prev="2">← Tilbake</button>
+              <button type="submit" class="btn btn-primary">Bekreft booking</button>
+            </div>
+          </div>
+
+          <!-- Success -->
+          <div class="form-page" data-page="4">
+            <div class="booking-success">
+              <div class="check"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <h3 style="font-size:1.5rem;margin-bottom:10px">Takk, forespørselen er mottatt!</h3>
+              <p class="muted" id="successMsg" style="margin-bottom:24px">Vi har registrert timeforespørselen din og tar kontakt for å bekrefte tidspunktet.</p>
+              <button type="button" class="btn btn-ghost" onclick="resetBooking()">Book en ny time</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section" id="omtaler">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Kundeomtaler</span>
+      <h2>Over 4 200 fornøyde bileiere</h2>
+      <p>Snittvurdering på 4,9 av 5 basert på 830+ omtaler fra ekte kunder.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Endelig et verksted som forklarer hva som faktisk må gjøres. Fikk fast pris på forhånd og bilen ble ferdig før tiden. Anbefales på det sterkeste!"</p>
+        <div class="who"><div class="avatar">MH</div><div><h5>Marte Haugen</h5><span>Privatkunde · VW Golf</span></div></div>
+      </div>
+      <div class="testi reveal d1">
+        <div class="stars">★★★★★</div>
+        <p>"Vi har 12 varebiler på avtale hos Andersen Auto. Alltid rask respons, ryddig fakturering og biler tilbake i drift raskt. Proffe folk."</p>
+        <div class="who"><div class="avatar">JK</div><div><h5>Jonas Kristiansen</h5><span>Bedriftskunde · Bygg & Co</span></div></div>
+      </div>
+      <div class="testi reveal d2">
+        <div class="stars">★★★★★</div>
+        <p>"Booket EU-kontroll på nett kvelden før og fikk time dagen etter. Digital oppdatering underveis med bilder — veldig moderne og tillitsvekkende."</p>
+        <div class="who"><div class="avatar">SL</div><div><h5>Sara Lie</h5><span>Privatkunde · Tesla Model 3</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA banner -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-banner reveal">
+      <div class="bg"><img src="images/photo-01.jpg" alt="Verksted"></div>
+      <div class="inner">
+        <div>
+          <h2>Klar for en bekymringsfri bilhverdag?</h2>
+          <p>Bestill time i dag, eller ring oss for en uforpliktende prat om bilen din.</p>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a href="#booking" class="btn btn-primary btn-lg">Bestill time</a>
+          <a href="tel:+4722000000" class="btn btn-ghost btn-lg">Ring 22 00 00 00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="kontakt" style="background:var(--bg-2);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Kontakt oss</span>
+      <h2>Snakk med oss</h2>
+      <p>Har du spørsmål eller ønsker et pristilbud? Fyll ut skjemaet, så svarer vi vanligvis innen én time i åpningstiden.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="info-item">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><h4>Besøk oss</h4><p>Verkstedveien 14, 0668 Oslo</p></div>
+        </div>
+        <div class="info-item">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div><h4>Ring oss</h4><p><a href="tel:+4722000000">22 00 00 00</a></p></div>
+        </div>
+        <div class="info-item">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
+          <div><h4>Send e-post</h4><p><a href="mailto:post@andersenauto.no">post@andersenauto.no</a></p></div>
+        </div>
+        <div class="hours-card">
+          <div class="hrow open"><span>Mandag – fredag</span><span>07:30 – 17:00</span></div>
+          <div class="hrow"><span>Lørdag</span><span>09:00 – 14:00</span></div>
+          <div class="hrow"><span>Søndag</span><span>Stengt</span></div>
+        </div>
+        <div class="map-embed">
+          <iframe title="Kart" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=10.72%2C59.90%2C10.80%2C59.94&layer=mapnik&marker=59.92%2C10.76"></iframe>
+        </div>
+      </div>
+
+      <div class="form-card reveal d1">
+        <form id="contactForm" novalidate>
+          <div class="two-col">
+            <div class="field"><label for="cnavn">Navn</label><input type="text" id="cnavn" placeholder="Ditt navn"></div>
+            <div class="field"><label for="ctlf">Telefon</label><input type="tel" id="ctlf" placeholder="Telefonnummer"></div>
+          </div>
+          <div class="field"><label for="cepost">E-post</label><input type="email" id="cepost" placeholder="din@epost.no"></div>
+          <div class="field">
+            <label for="cemne">Hva gjelder henvendelsen?</label>
+            <select id="cemne">
+              <option value="">Velg emne</option>
+              <option>Pristilbud</option>
+              <option>Bestille time</option>
+              <option>Bedriftsavtale</option>
+              <option>Generelt spørsmål</option>
+            </select>
+          </div>
+          <div class="field"><label for="cmelding">Melding</label><textarea id="cmelding" rows="4" placeholder="Skriv din melding her ..."></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Send melding</button>
+          <p id="contactMsg" style="display:none;margin-top:16px;text-align:center;color:var(--green);font-weight:600">Takk! Meldingen din er sendt. Vi svarer så raskt vi kan.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="#hjem" class="logo"><span class="logo-mark">A</span><span>Andersen Auto<small>Bilverksted · Oslo</small></span></a>
+        <p>Moderne bilverksted for privatpersoner og bedrifter. Vi setter tillit, kvalitet og åpenhet i høysetet.</p>
+        <div class="socials" style="margin-top:22px">
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Tjenester</h5>
+        <a href="#booking">EU-kontroll</a>
+        <a href="#booking">Service</a>
+        <a href="#booking">Dekkskift & hotell</a>
+        <a href="#booking">Bremser</a>
+        <a href="#booking">AC-service</a>
+        <a href="#booking">Feilsøking</a>
+      </div>
+      <div class="footer-col">
+        <h5>Selskap</h5>
+        <a href="#prosess">Slik jobber vi</a>
+        <a href="#omtaler">Kundeomtaler</a>
+        <a href="#priser">Priser</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#booking">Bedriftsavtale</a>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <a href="tel:+4722000000">22 00 00 00</a>
+        <a href="mailto:post@andersenauto.no">post@andersenauto.no</a>
+        <a href="#kontakt">Verkstedveien 14, 0668 Oslo</a>
+        <a href="#">Org.nr: 999 888 777</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Andersen Auto AS. Alle rettigheter forbeholdt.</span>
+      <span>Personvern · Vilkår · Utviklet som porteføljedemo</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Header scroll + progress
+const header=document.getElementById('header');
+const progress=document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  header.classList.toggle('scrolled',window.scrollY>30);
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  progress.style.width=(window.scrollY/h*100)+'%';
+});
+
+// Mobile menu
+const burger=document.getElementById('burger');
+const mm=document.getElementById('mobileMenu');
+burger.addEventListener('click',()=>{
+  burger.classList.toggle('open');
+  mm.classList.toggle('open');
+  document.body.style.overflow=mm.classList.contains('open')?'hidden':'';
+});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  burger.classList.remove('open');mm.classList.remove('open');document.body.style.overflow='';
+}));
+
+// Reveal on scroll
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Counter animation
+const counters=document.querySelectorAll('[data-count]');
+const cio=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target,target=parseFloat(el.dataset.count),dec=parseInt(el.dataset.dec||0),suf=el.dataset.suffix||'';
+      let cur=0,steps=60,inc=target/steps,i=0;
+      const t=setInterval(()=>{
+        i++;cur+=inc;
+        if(i>=steps){cur=target;clearInterval(t)}
+        el.textContent=(dec?cur.toFixed(dec):Math.floor(cur).toLocaleString('no-NO'))+suf;
+      },20);
+      cio.unobserve(el);
+    }
+  });
+},{threshold:0.5});
+counters.forEach(c=>cio.observe(c));
+
+// Service card mouse glow
+document.querySelectorAll('.service-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    card.style.setProperty('--my',(e.clientY-r.top)+'px');
+  });
+});
+
+// Chip selection (single select per group)
+function initChips(id){
+  const g=document.getElementById(id);
+  g.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      g.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
+      chip.classList.add('selected');
+    });
+  });
+}
+initChips('serviceChips');initChips('carChips');initChips('loanChips');
+
+// Preselect service from pricing buttons
+document.querySelectorAll('[data-service]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const val=btn.dataset.service;
+    document.querySelectorAll('#serviceChips .chip').forEach(c=>{
+      c.classList.toggle('selected',c.dataset.val===val||(val==='Storservice'&&c.dataset.val==='Service'));
+    });
+  });
+});
+
+// Booking multi-step
+let curPage=1;
+function goPage(n){
+  document.querySelectorAll('.form-page').forEach(p=>p.classList.remove('active'));
+  document.querySelector('.form-page[data-page="'+n+'"]').classList.add('active');
+  document.querySelectorAll('.fstep').forEach(s=>{
+    s.classList.toggle('active',parseInt(s.dataset.s)<=Math.min(n,3));
+  });
+  curPage=n;
+  document.getElementById('booking').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function getSel(id){const s=document.querySelector('#'+id+' .chip.selected');return s?s.dataset.val:''}
+
+document.querySelectorAll('[data-next]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    if(curPage===1&&!getSel('serviceChips')){alert('Velg en tjeneste for å fortsette.');return}
+    if(curPage===2){buildSummary()}
+    goPage(parseInt(b.dataset.next));
+  });
+});
+document.querySelectorAll('[data-prev]').forEach(b=>{
+  b.addEventListener('click',()=>goPage(parseInt(b.dataset.prev)));
+});
+
+function buildSummary(){
+  const s=document.getElementById('summary');
+  const dato=document.getElementById('dato').value||'Ikke valgt';
+  const tid=document.getElementById('tid').value||'Ikke valgt';
+  s.innerHTML=`
+    <div class="srow"><span>Tjeneste</span><span>${getSel('serviceChips')||'-'}</span></div>
+    <div class="srow"><span>Biltype</span><span>${getSel('carChips')||'Ikke valgt'}</span></div>
+    <div class="srow"><span>Dato</span><span>${dato}</span></div>
+    <div class="srow"><span>Tidspunkt</span><span>${tid}</span></div>
+    <div class="srow"><span>Lånebil</span><span>${getSel('loanChips')||'Nei'}</span></div>`;
+}
+
+document.getElementById('bookingForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const navn=document.getElementById('navn').value.trim();
+  const tlf=document.getElementById('tlf').value.trim();
+  if(!navn||!tlf){alert('Fyll inn navn og telefonnummer.');return}
+  document.getElementById('successMsg').textContent=
+    `Takk ${navn.split(' ')[0]}! Vi har mottatt din forespørsel om ${getSel('serviceChips')||'time'} og kontakter deg på ${tlf} for å bekrefte tidspunktet.`;
+  goPage(4);
+});
+
+function resetBooking(){
+  document.getElementById('bookingForm').reset();
+  document.querySelectorAll('.chip.selected').forEach(c=>c.classList.remove('selected'));
+  goPage(1);
+}
+
+// Contact form
+document.getElementById('contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=document.getElementById('cnavn').value.trim();
+  const em=document.getElementById('cepost').value.trim();
+  if(!n||!em){alert('Fyll inn navn og e-post.');return}
+  document.getElementById('contactMsg').style.display='block';
+  e.target.reset();
+  setTimeout(()=>{document.getElementById('contactMsg').style.display='none'},6000);
+});
+
+// Min date = today
+const d=document.getElementById('dato');
+if(d){d.min=new Date().toISOString().split('T')[0];}
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

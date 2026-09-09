@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Form Arkitekter — Arkitektur med ro, presisjon og varighet.</title>
+<meta name="description" content="Form Arkitekter er et Oslobasert arkitektkontor som tegner boliger, hytter, tilbygg og næringsbygg som varer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F3EE;
+  --paper-2:#ECE8E0;
+  --ink:#0E0E0E;
+  --ink-2:#2A2A2A;
+  --muted:#7A7874;
+  --line:rgba(14,14,14,.12);
+  --line-strong:rgba(14,14,14,.18);
+  --accent:#C07A3A;
+  --accent-2:#1A2E28;
+  --accent-3:#E9DDCB;
+  --radius:18px;
+  --radius-lg:28px;
+  --ease: cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+p{line-height:1.7}
+::selection{background:var(--ink);color:var(--paper)}
+
+/* NAV */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  background:rgba(246,243,238,.78);backdrop-filter:blur(14px) saturate(1.1);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1440px;margin:0 auto;padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px
+}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{
+  width:42px;height:42px;border:1.2px solid var(--ink);display:grid;place-items:center;
+  font-family:'Instrument Serif',serif;font-size:18px;letter-spacing:.12em;line-height:1
+}
+.brand-text{line-height:1}
+.brand-text b{display:block;font-family:'Instrument Serif',serif;font-weight:400;font-size:22px;letter-spacing:.06em}
+.brand-text span{display:block;font:500 9px/1 'Inter',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font:500 12px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.btn-pill{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:13px 20px;border-radius:999px;border:1px solid var(--ink);
+  font:600 12px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);transition:all .3s var(--ease);white-space:nowrap
+}
+.btn-pill:hover{background:transparent;color:var(--ink)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 16px;border-radius:999px;border:1px solid var(--line-strong);
+  font:600 12px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;
+  background:transparent;transition:all .3s var(--ease)
+}
+.btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.burger{display:none;width:44px;height:44px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;place-items:center}
+.burger span,.burger span::before,.burger span::after{content:"";display:block;width:18px;height:1.5px;background:var(--ink);transition:.3s var(--ease)}
+.burger span::before{transform:translateY(-6px)}
+.burger span::after{transform:translateY(4.5px)}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:rotate(-45deg) translate(1px,-1px)}
+.mobile-drawer{
+  position:fixed;inset:60px 0 0 0;z-index:49;background:var(--paper);
+  transform:translateY(-105%);transition:transform .6s var(--ease);padding:24px 20px 32px;
+  display:flex;flex-direction:column;gap:24px;border-top:1px solid var(--line)
+}
+.mobile-drawer.open{transform:translateY(0)}
+.mobile-drawer a{font-family:'Instrument Serif',serif;font-size:38px;line-height:.95}
+.mobile-drawer small{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* HERO */
+.hero{
+  max-width:1440px;margin:0 auto;padding:96px 28px 0;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:0;
+  min-height:92vh;align-items:stretch;
+}
+.hero-left{
+  padding:42px 42px 34px 0;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:center
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)
+}
+.eyebrow i{width:28px;height:1px;background:var(--line-strong);display:inline-block}
+.hero h1{
+  margin:18px 0 18px;
+  font-family:'Instrument Serif',serif;font-weight:400;
+  font-size:clamp(44px,6vw,84px);line-height:.88;letter-spacing:-.03em
+}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--accent)}
+.hero-desc{max-width:520px;color:var(--muted);font-size:16px;line-height:1.75;margin:0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-meta{
+  margin-top:36px;padding-top:22px;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+}
+.meta-k{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.meta-v{font-family:'Instrument Serif',serif;font-size:28px;line-height:1;margin-top:8px}
+.meta-v small{font:400 12px/1.5 'Inter',sans-serif;color:var(--muted);display:block;margin-top:4px}
+.hero-right{position:relative;padding-left:42px;display:flex;flex-direction:column;justify-content:center}
+.hero-media{
+  position:relative;height:min(72vh,680px);border-radius:24px;overflow:hidden;
+  background:var(--paper-2);border:1px solid var(--line)
+}
+.hero-media img{width:100%;height:100%;object-fit:cover}
+.hero-float{
+  position:absolute;left:-22px;bottom:22px;
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:14px 16px;min-width:280px;box-shadow:0 20px 50px rgba(0,0,0,.08);
+  display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:center
+}
+.hero-float img{width:84px;height:84px;object-fit:cover;border-radius:12px}
+.hero-float b{font:600 12px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.hero-float p{margin:6px 0 0;font:400 13px/1.4 'Inter',sans-serif;color:var(--muted)}
+.hero-float a{margin-top:8px;display:inline-flex;font:600 11px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:3px}
+.hero-note{
+  margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)
+}
+.hero-note span{display:inline-flex;align-items:center;gap:8px}
+.hero-note i{width:6px;height:6px;border-radius:999px;background:#2E7D32;display:inline-block;box-shadow:0 0 0 6px rgba(46,125,50,.12)}
+
+/* MARQUEE */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--ink);color:var(--paper)}
+.marquee-track{display:flex;align-items:center;gap:28px;white-space:nowrap;animation:marq 28s linear infinite;padding:14px 0}
+.marquee-track span{font:400 13px/1 'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase;opacity:.92}
+.marquee-track b{font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:.04em;font-weight:400}
+.marquee-track i{width:4px;height:4px;border-radius:999px;background:var(--accent);display:inline-block}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.section{max-width:1440px;margin:0 auto;padding:72px 28px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.kicker{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--line-strong);display:inline-block}
+.h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,56px);line-height:.9;letter-spacing:-.03em;margin:10px 0 0}
+.h2 em{font-style:italic;color:var(--accent)}
+.lead{max-width:560px;color:var(--muted);font-size:15px;line-height:1.75;margin:0}
+.rule{height:1px;background:var(--line);margin:18px 0 0}
+
+/* MANIFEST */
+.manifest{display:grid;grid-template-columns:.9fr 1.1fr;gap:42px;align-items:start}
+.manifest-sticky{position:sticky;top:88px}
+.big-quote{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.2vw,42px);line-height:1.05;letter-spacing:-.02em;
+  border-left:2px solid var(--ink);padding-left:22px;margin:18px 0 0
+}
+.big-quote em{font-style:italic;color:var(--accent)}
+.manifest p{color:var(--ink-2);font-size:15.5px}
+.manifest .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.mini{border-top:1px solid var(--line);padding-top:14px}
+.mini b{font:600 11px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase}
+.mini p{margin:8px 0 0;color:var(--muted);font-size:13.5px;line-height:1.65}
+
+/* FILTERS */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 22px}
+.filter-btn{
+  padding:10px 14px;border-radius:999px;border:1px solid var(--line-strong);
+  background:transparent;font:600 11px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;
+  transition:all .25s var(--ease)
+}
+.filter-btn.active,.filter-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-left:auto;align-self:center}
+
+/* PROJECTS GRID */
+.grid{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:18px
+}
+.card{
+  position:relative;overflow:hidden;border-radius:22px;background:var(--paper-2);border:1px solid var(--line);
+  display:flex;flex-direction:column;min-height:420px;cursor:pointer;
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease)
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.card-media{position:relative;flex:1;overflow:hidden;min-height:280px}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease), filter .6s var(--ease)}
+.card:hover .card-media img{transform:scale(1.06)}
+.card-top{
+  position:absolute;inset:14px 14px auto 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:2
+}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 10px;border-radius:999px;background:rgba(246,243,238,.92);border:1px solid rgba(14,14,14,.08);
+  backdrop-filter:blur(8px);font:600 10px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase
+}
+.pill i{width:6px;height:6px;border-radius:999px;background:var(--accent);display:inline-block}
+.year{padding:8px 10px;border-radius:999px;background:var(--ink);color:var(--paper);font:600 10px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.card-body{padding:16px 16px 14px;background:var(--paper);border-top:1px solid var(--line)}
+.card-body h3{margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:24px;line-height:1;letter-spacing:-.02em}
+.card-body h3 em{font-style:italic;color:var(--muted);font-size:18px}
+.meta-row{display:flex;align-items:center;gap:10px;margin-top:8px;color:var(--muted);font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+.card-body p{margin:10px 0 0;color:var(--muted);font-size:13.5px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.card-foot span{font:700 11px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+.card-foot i{width:28px;height:28px;border-radius:999px;border:1px solid var(--line-strong);display:grid;place-items:center;transition:all .3s var(--ease)}
+.card:hover .card-foot i{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+/* Span variants */
+.span-7{grid-column:span 7}
+.span-5{grid-column:span 5}
+.span-6{grid-column:span 6}
+.span-4{grid-column:span 4}
+.span-8{grid-column:span 8}
+.span-12{grid-column:span 12}
+
+/* HORIZONTAL SPOTLIGHT */
+.spotlight{
+  margin-top:18px;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--paper);
+}
+.spot-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.spot-head h3{margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:26px;letter-spacing:-.02em}
+.spot-controls{display:flex;align-items:center;gap:8px}
+.icon-btn{width:40px;height:40px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;display:grid;place-items:center;transition:all .25s var(--ease)}
+.icon-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hscroll{
+  display:flex;gap:16px;overflow:auto;scroll-snap-type:x mandatory;padding:16px;
+  scrollbar-width:none;cursor:grab;scroll-behavior:smooth
+}
+.hscroll::-webkit-scrollbar{display:none}
+.hscroll:active{cursor:grabbing}
+.h-card{
+  flex:0 0 min(78vw,560px);scroll-snap-align:start;
+  border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--paper-2);
+  display:grid;grid-template-rows:360px auto;min-height:520px
+}
+.h-card img{width:100%;height:100%;object-fit:cover}
+.h-card-body{padding:16px;background:var(--paper)}
+.h-card-body h4{margin:0;font-family:'Instrument Serif',serif;font-size:22px;font-weight:400;line-height:1}
+.h-card-body p{margin:8px 0 0;color:var(--muted);font-size:13.5px;line-height:1.6}
+.drag-hint{display:flex;align-items:center;gap:10px;padding:0 18px 16px;color:var(--muted);font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+.drag-hint i{flex:1;height:1px;background:var(--line)}
+
+/* BEFORE AFTER */
+.before-after{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch;
+  border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--paper);margin-top:28px
+}
+.ba-media{position:relative;height:560px;overflow:hidden;background:var(--paper-2);user-select:none;touch-action:none}
+.ba-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba-after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba-divider{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;background:var(--paper);transform:translateX(-1px);box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.ba-handle{
+  position:absolute;left:var(--pos,50%);top:50%;transform:translate(-50%,-50%);
+  width:54px;height:54px;border-radius:999px;background:var(--paper);border:1px solid var(--line-strong);
+  display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.14)
+}
+.ba-range{position:absolute;inset:0;opacity:0;cursor:ew-resize}
+.ba-labels{position:absolute;left:14px;right:14px;top:14px;display:flex;justify-content:space-between;gap:10px;pointer-events:none}
+.ba-labels span{padding:8px 10px;border-radius:999px;background:rgba(14,14,14,.78);color:var(--paper);font:600 10px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(6px)}
+.ba-copy{padding:22px;display:flex;flex-direction:column;justify-content:center}
+.ba-copy h3{margin:0;font-family:'Instrument Serif',serif;font-size:34px;line-height:.95;font-weight:400;letter-spacing:-.02em}
+.ba-copy h3 em{font-style:italic;color:var(--accent)}
+.ba-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.ba-stats b{font-family:'Instrument Serif',serif;font-size:22px;line-height:1;display:block}
+.ba-stats span{font:500 10px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block}
+
+/* PROCESS */
+.process-wrap{
+  border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--ink);color:var(--paper);
+  display:grid;grid-template-columns:.95fr 1.05fr;min-height:640px
+}
+.process-left{padding:28px;border-right:1px solid rgba(246,243,238,.12);display:flex;flex-direction:column}
+.process-steps{margin-top:18px;display:grid;gap:10px}
+.step{
+  display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center;
+  padding:14px 14px;border-radius:16px;border:1px solid rgba(246,243,238,.12);
+  background:rgba(246,243,238,.04);cursor:pointer;transition:all .3s var(--ease);text-align:left
+}
+.step.active{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.step-num{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;border:1px solid currentColor;opacity:.9}
+.step h4{margin:0;font-family:'Instrument Serif',serif;font-size:20px;line-height:1;font-weight:400}
+.step p{margin:4px 0 0;color:inherit;opacity:.7;font-size:13px;line-height:1.5}
+.step i{width:30px;height:30px;border-radius:999px;border:1px solid currentColor;display:grid;place-items:center;opacity:.7}
+.process-right{position:relative;overflow:hidden;background:#0B0B0B;display:grid;place-items:center;padding:18px}
+.process-media{
+  position:relative;width:100%;height:100%;min-height:560px;border-radius:20px;overflow:hidden;
+  background:var(--paper-2);border:1px solid rgba(246,243,238,.14)
+}
+.process-media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease), opacity .5s var(--ease)}
+.process-overlay{
+  position:absolute;inset:auto 14px 14px 14px;background:rgba(246,243,238,.92);backdrop-filter:blur(10px);
+  border:1px solid rgba(14,14,14,.08);border-radius:16px;padding:14px 16px;color:var(--ink)
+}
+.process-overlay b{font:700 11px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.process-overlay p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
+
+/* ATELIER */
+.atelier{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start;
+  border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--paper)
+}
+.atelier-left{padding:22px}
+.atelier-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.person{
+  border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--paper-2);
+  display:grid;grid-template-rows:260px auto
+}
+.person img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.05)}
+.person-body{padding:14px;background:var(--paper)}
+.person-body b{font-family:'Instrument Serif',serif;font-size:18px;line-height:1;font-weight:400;display:block}
+.person-body span{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block}
+.person-body p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.55}
+.atelier-right{padding:22px;background:var(--paper-2);border-left:1px solid var(--line);display:flex;flex-direction:column;gap:18px}
+.quote-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px
+}
+.quote-card p{margin:0;font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.25;letter-spacing:-.01em}
+.quote-card p em{font-style:italic;color:var(--accent)}
+.quote-who{display:flex;align-items:center;gap:10px;margin-top:14px}
+.quote-who img{width:36px;height:36px;border-radius:999px;object-fit:cover}
+.quote-who b{font:600 12px/1 'Inter',sans-serif}
+.quote-who span{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fact{border-radius:16px;border:1px solid var(--line);background:var(--paper);padding:16px}
+.fact b{font-family:'Instrument Serif',serif;font-size:28px;line-height:1;display:block}
+.fact span{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block}
+.fact p{margin:8px 0 0;color:var(--muted);font-size:12.5px;line-height:1.6}
+
+/* JOURNAL */
+.journal{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.j-card{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.j-card img{height:220px;object-fit:cover}
+.j-card-body{padding:16px}
+.j-card-body small{font:600 10px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.j-card-body h4{margin:8px 0 0;font-family:'Instrument Serif',serif;font-size:20px;line-height:1.05;font-weight:400}
+.j-card-body p{margin:8px 0 0;color:var(--muted);font-size:13.5px;line-height:1.6}
+.j-card-body a{margin-top:12px;display:inline-flex;font:700 11px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:3px}
+
+/* CONTACT */
+.contact{
+  display:grid;grid-template-columns:.95fr 1.05fr;gap:22px;align-items:start;
+  border:1px solid var(--line);border-radius:24px;overflow:hidden;background:var(--paper)
+}
+.contact-left{padding:28px}
+.contact-left h3{margin:10px 0 0;font-family:'Instrument Serif',serif;font-size:42px;line-height:.9;font-weight:400;letter-spacing:-.03em}
+.contact-left h3 em{font-style:italic;color:var(--accent)}
+.contact-list{margin-top:22px;display:grid;gap:14px}
+.contact-item{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:16px;border:1px solid var(--line);background:var(--paper-2)}
+.contact-item i{width:42px;height:42px;border-radius:999px;background:var(--ink);color:var(--paper);display:grid;place-items:center;flex:0 0 auto}
+.contact-item b{font:700 11px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;display:block}
+.contact-item a,.contact-item p{margin:6px 0 0;color:var(--muted);font-size:13.5px;line-height:1.6;display:block}
+.form-wrap{padding:22px;background:var(--paper-2);border-left:1px solid var(--line)}
+.form{
+  background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:18px;
+  display:grid;gap:14px
+}
+.form h4{margin:0;font-family:'Instrument Serif',serif;font-size:26px;line-height:1;font-weight:400}
+.form small{color:var(--muted);font-size:12.5px;line-height:1.6;margin-top:-6px;display:block}
+.field{display:grid;gap:6px}
+.field label{font:600 11px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.input, .select, .textarea{
+  width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line-strong);
+  background:var(--paper);outline:none;font:400 14px/1.3 'Inter',sans-serif;transition:all .2s var(--ease)
+}
+.input:focus,.select:focus,.textarea:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(14,14,14,.06)}
+.textarea{min-height:110px;resize:vertical}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  padding:9px 12px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;
+  font:600 11px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s var(--ease)
+}
+.chip.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.form-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:4px}
+.form-foot span{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.success{
+  display:none;padding:12px 14px;border-radius:12px;background:#EAF4EA;border:1px solid #C9E2C9;color:#1A2E1A;
+  font:500 13px/1.5 'Inter',sans-serif
+}
+.success.show{display:block}
+
+/* FOOTER */
+footer{max-width:1440px;margin:0 auto;padding:18px 28px 32px}
+.footer-inner{border-top:1px solid var(--line);padding-top:18px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-inner p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.7;max-width:640px}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font:600 11px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.footer-links a:hover{color:var(--ink)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.delay-1{transition-delay:.08s}
+.delay-2{transition-delay:.16s}
+.delay-3{transition-delay:.24s}
+
+/* MODAL */
+.modal{
+  position:fixed;inset:0;z-index:60;display:none
+}
+.modal.open{display:block}
+.modal-backdrop{position:absolute;inset:0;background:rgba(14,14,14,.52);backdrop-filter:blur(8px)}
+.modal-panel{
+  position:absolute;inset:18px;max-width:1120px;margin:auto;background:var(--paper);border-radius:24px;overflow:hidden;
+  border:1px solid var(--line);display:grid;grid-template-columns:1.15fr .85fr;max-height:calc(100vh - 36px)
+}
+.modal-media{position:relative;overflow:hidden;background:var(--paper-2);display:grid;place-items:center}
+.modal-media img{width:100%;height:100%;object-fit:cover;max-height:calc(100vh - 36px)}
+.modal-copy{padding:22px;overflow:auto}
+.modal-copy h3{margin:0;font-family:'Instrument Serif',serif;font-size:34px;line-height:.95;font-weight:400;letter-spacing:-.02em}
+.modal-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.modal-meta span{padding:8px 10px;border-radius:999px;border:1px solid var(--line-strong);font:600 11px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;background:var(--paper-2)}
+.modal-copy p{color:var(--muted);font-size:14px;line-height:1.75;margin:14px 0 0}
+.modal-specs{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.spec{padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--paper-2)}
+.spec b{font:700 11px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;display:block}
+.spec span{font-size:13px;line-height:1.5;color:var(--muted);margin-top:6px;display:block}
+.modal-close{
+  position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:999px;border:1px solid rgba(246,243,238,.18);
+  background:rgba(14,14,14,.78);color:var(--paper);display:grid;place-items:center;backdrop-filter:blur(8px)
+}
+.modal-gallery{display:flex;gap:8px;margin-top:14px;overflow:auto;padding-bottom:4px;scrollbar-width:none}
+.modal-gallery img{width:120px;height:84px;object-fit:cover;border-radius:12px;border:1px solid var(--line);flex:0 0 auto;opacity:.9;transition:opacity .2s}
+.modal-gallery img.active{opacity:1;outline:2px solid var(--ink);outline-offset:2px}
+
+/* RESPONSIVE */
+@media (max-width: 1020px){
+  .nav-links,.nav-cta .btn-ghost{display:none}
+  .burger{display:grid}
+  .hero{grid-template-columns:1fr;padding-top:72px}
+  .hero-left{border-right:none;padding-right:0;padding-bottom:18px}
+  .hero-right{padding-left:0}
+  .hero-media{height:62vh}
+  .manifest{grid-template-columns:1fr}
+  .manifest-sticky{position:relative;top:auto}
+  .grid{grid-template-columns:repeat(6,1fr)}
+  .span-7,.span-5,.span-6,.span-4,.span-8{grid-column:span 6}
+  .before-after{grid-template-columns:1fr}
+  .ba-media{height:520px}
+  .process-wrap{grid-template-columns:1fr}
+  .process-left{border-right:none;border-bottom:1px solid rgba(246,243,238,.12)}
+  .process-media{min-height:520px}
+  .atelier{grid-template-columns:1fr}
+  .atelier-right{border-left:none;border-top:1px solid var(--line)}
+  .journal{grid-template-columns:1fr 1fr}
+  .contact{grid-template-columns:1fr}
+  .form-wrap{border-left:none;border-top:1px solid var(--line)}
+  .modal-panel{grid-template-columns:1fr;overflow:auto}
+  .modal-media img{max-height:52vh}
+}
+@media (max-width: 640px){
+  .nav-inner{padding:12px 16px}
+  .section{padding:48px 16px}
+  .hero{padding-left:16px;padding-right:16px}
+  .hero-left{padding-top:18px}
+  .hero h1{font-size:48px}
+  .hero-meta{grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .meta-v{font-size:22px}
+  .hero-float{min-width:0;left:12px;right:12px;bottom:12px}
+  .section-head{gap:14px}
+  .h2{font-size:36px}
+  .grid{grid-template-columns:1fr;gap:14px}
+  .span-7,.span-5,.span-6,.span-4,.span-8,.span-12{grid-column:span 1}
+  .card{min-height:460px}
+  .h-card{flex-basis:86vw;grid-template-rows:280px auto;min-height:460px}
+  .ba-stats{grid-template-columns:1fr 1fr 1fr}
+  .atelier-grid{grid-template-columns:1fr}
+  .person{grid-template-rows:300px auto}
+  .journal{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+  .modal-panel{inset:12px;max-height:calc(100vh - 24px);border-radius:18px}
+  .footer-inner{flex-direction:column}
+}
+
+/* Utilities */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<nav class="nav" aria-label="Hovedmeny">
+  <div class="nav-inner">
+    <a href="#" class="brand" aria-label="Form Arkitekter - til forsiden">
+      <div class="brand-mark">FORM</div>
+      <div class="brand-text">
+        <b>FORM</b>
+        <span>Arkitekter — Oslo</span>
+      </div>
+    </a>
+    <div class="nav-links" role="navigation">
+      <a href="#prosjekter">Prosjekter</a>
+      <a href="#prosess">Prosess</a>
+      <a href="#atelieret">Atelieret</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#kontakt" class="btn-ghost">Kontakt oss</a>
+      <a href="#kontakt" class="btn-pill">Start et prosjekt <span aria-hidden="true">→</span></a>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Meny"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-drawer" id="drawer" aria-hidden="true">
+  <small>Meny — Form Arkitekter</small>
+  <a href="#prosjekter" data-close>Prosjekter</a>
+  <a href="#prosess" data-close>Prosess</a>
+  <a href="#atelieret" data-close>Atelieret</a>
+  <a href="#kontakt" data-close>Kontakt</a>
+  <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+    <a href="#prosjekter" class="btn-pill" style="flex:1;justify-content:center" data-close>Se prosjekter →</a>
+    <a href="#kontakt" class="btn-ghost" style="flex:1;justify-content:center" data-close>Start et prosjekt</a>
+  </div>
+  <p style="margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.6">Kirkegata 17, 0153 Oslo · post@form.no · 22 33 44 55<br>Åpent atelier hver torsdag 15–18</p>
+</div>
+
+<header class="hero">
+  <div class="hero-left reveal">
+    <div class="eyebrow"><i></i> Etablert i Oslo — 2011 <span style="opacity:.5">·</span> <span style="color:var(--ink)">Tilgjengelig for oppdrag i 2026</span></div>
+    <h1>Arkitektur med <em>ro,</em> presisjon og varighet.</h1>
+    <p class="hero-desc">Vi tegner hus som tåler tid, vær og hverdagsliv. Fra varsom rehabilitering på løkka til nye fritidsboliger i fjellet — alltid med sans for sted, materialer og lys.</p>
+    <div class="hero-actions">
+      <a href="#prosjekter" class="btn-pill">Se prosjekter <span>→</span></a>
+      <a href="#prosess" class="btn-ghost">Slik jobber vi</a>
+    </div>
+    <div class="hero-meta">
+      <div>
+        <div class="meta-k">Erfaring</div>
+        <div class="meta-v">14 år <small>140+ fullførte prosjekter</small></div>
+      </div>
+      <div>
+        <div class="meta-k">Team</div>
+        <div class="meta-v">9 arkitekter <small>Sivilarkitekter MNAL</small></div>
+      </div>
+      <div>
+        <div class="meta-k">Fokus</div>
+        <div class="meta-v">1:1 <small>Fra skisse til ferdig hus</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right reveal delay-1">
+    <div class="hero-media" id="heroMedia">
+      <img src="images/photo-35.jpg" alt="Moderne villa med tre og glass mot hage" loading="eager">
+      <div class="hero-float">
+        <img src="images/photo-44.jpg" alt="Interiør med eik og lin">
+        <div>
+          <b>Villa Ask — Asker, 2024</b>
+          <p>Ny enebolig i skrånende terreng. Eik, tegl og store skyvedører mot hagen.</p>
+          <a href="#prosjekter" data-project="villa-ask">Se case →</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-note">
+      <span><i></i> Ledig kapasitet for 2–3 prosjekter med oppstart vinter 2026</span>
+      <span style="gap:6px">Scroll <span aria-hidden="true">↓</span></span>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Boliger</span><i></i><span>Rehabilitering</span><i></i><span>Tilbygg</span><i></i><span>Fritidsboliger</span><i></i><span>Næringsbygg</span><i></i><span>Interiør</span><i></i><b>Form Arkitekter</b><i></i>
+    <span>Boliger</span><i></i><span>Rehabilitering</span><i></i><span>Tilbygg</span><i></i><span>Fritidsboliger</span><i></i><span>Næringsbygg</span><i></i><span>Interiør</span><i></i><b>Form Arkitekter</b><i></i>
+    <span>Boliger</span><i></i><span>Rehabilitering</span><i></i><span>Tilbygg</span><i></i><span>Fritidsboliger</span><i></i><span>Næringsbygg</span><i></i><span>Interiør</span><i></i><b>Form Arkitekter</b><i></i>
+  </div>
+</div>
+
+<section class="section reveal">
+  <div class="manifest">
+    <div class="manifest-sticky">
+      <div class="kicker">Vår holdning</div>
+      <div class="big-quote">Vi tror på <em>enkle grep</em> utført med stor presisjon — hus som er gode å leve i, ikke bare å se på.</div>
+      <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+        <span class="pill"><i></i> Stedsforståelse</span>
+        <span class="pill"><i></i> Materialærlighet</span>
+        <span class="pill"><i></i> Dagslys</span>
+      </div>
+    </div>
+    <div>
+      <p>Form Arkitekter holder til i et bakgårdsatelier på Grünerløkka. Vi er ni arkitekter som jobber tett på byggherre, håndverkere og landskap — fra første skisse til siste listverk. Det betyr færre overraskelser, bedre detaljer og hus som eldes pent.</p>
+      <p style="color:var(--muted)">Vi sier oftere nei til unødvendige kvadratmeter og ja til gode romforløp, lune materialer og smarte grep som senker energibruk og vedlikehold. Mange av prosjektene våre er rehabiliteringer og tilbygg, der eksisterende kvaliteter løftes frem heller enn å rives.</p>
+      <div class="cols">
+        <div class="mini">
+          <b>01 — Sted først</b>
+          <p>Hvert prosjekt starter med tomten: sol, vind, siktlinjer og nabolag. Vi tegner hus som hører hjemme der de står.</p>
+        </div>
+        <div class="mini">
+          <b>02 — Bygget for nordisk klima</b>
+          <p>Tette, pustende konstruksjoner, treverk som gråner vakkert og detaljer som tåler regn, snø og tid.</p>
+        </div>
+        <div class="mini">
+          <b>03 — Tett oppfølging</b>
+          <p>Vi er med på byggeplass, ikke bare på papir. Ukenlig dialog med entreprenør sikrer kvalitet i hver overgang.</p>
+        </div>
+        <div class="mini">
+          <b>04 — Ærlige budsjetter</b>
+          <p>Tidlig kostnadsstyring og åpne alternativer. Du skal vite hva valgene betyr — før spaden går i jorda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="prosjekter" style="padding-top:12px">
+  <div class="section-head reveal">
+    <div>
+      <div class="kicker">Portefølje — 2018–2026</div>
+      <h2 class="h2">Prosjekter som <em>bærer</em> hverdagen.</h2>
+    </div>
+    <p class="lead">Et utvalg hus og rom vi har tegnet. Filtrer etter type, eller sveip horisontalt for en redaksjonell titt gjennom atelieret.</p>
+  </div>
+  <div class="rule reveal"></div>
+  <div class="filters reveal" role="tablist" aria-label="Filtrer prosjekter">
+    <button class="filter-btn active" data-filter="alle" role="tab" aria-selected="true">Alle</button>
+    <button class="filter-btn" data-filter="bolig" role="tab">Boliger</button>
+    <button class="filter-btn" data-filter="rehabilitering" role="tab">Rehabilitering</button>
+    <button class="filter-btn" data-filter="tilbygg" role="tab">Tilbygg</button>
+    <button class="filter-btn" data-filter="fritidsbolig" role="tab">Fritidsboliger</button>
+    <button class="filter-btn" data-filter="naring" role="tab">Næringsbygg</button>
+    <button class="filter-btn" data-filter="interior" role="tab">Interiør</button>
+    <span class="count" id="projCount">8 prosjekter</span>
+  </div>
+
+  <div class="grid" id="grid">
+    <!-- Cards injected by JS for filter + modal data -->
+  </div>
+
+  <div class="spotlight reveal">
+    <div class="spot-head">
+      <h3>Utvalgte verk — sveip for å utforske</h3>
+      <div class="spot-controls">
+        <button class="icon-btn" id="hPrev" aria-label="Forrige">←</button>
+        <button class="icon-btn" id="hNext" aria-label="Neste">→</button>
+      </div>
+    </div>
+    <div class="hscroll" id="hscroll" tabindex="0" aria-label="Horisontal prosjektkarusell">
+      <!-- h-cards injected -->
+    </div>
+    <div class="drag-hint"><span>Dra eller sveip</span><i></i><span>Hold inne for å bla</span></div>
+  </div>
+
+  <div class="before-after reveal" id="for-etter">
+    <div class="ba-media" id="ba" style="--pos:52%">
+      <img src="images/photo-18.jpg" alt="Før: mørk teglgård fra 1898" id="baBefore">
+      <img src="images/photo-37.jpg" alt="Etter: rehabilitert gård med nye vinduer og gårdsrom" class="ba-after" id="baAfter">
+      <div class="ba-labels"><span>Før — 1898</span><span>Etter — 2023</span></div>
+      <div class="ba-divider" aria-hidden="true"></div>
+      <div class="ba-handle" aria-hidden="true">↔</div>
+      <input type="range" min="0" max="100" value="52" class="ba-range" id="baRange" aria-label="Dra for å sammenligne før og etter">
+    </div>
+    <div class="ba-copy">
+      <div class="kicker">Rehabilitering — før / etter</div>
+      <h3>Løkka Loftet — <em>fra mørk leiegård til lys familiebolig.</em></h3>
+      <p style="color:var(--muted);margin:12px 0 0;font-size:14.5px;line-height:1.7">Grünerløkka, 187 kvm. Vi åpnet mot gårdsrommet, senket vindusbrystninger og la inn en ny ståltrapp som binder tre etasjer sammen. Original tegl og bjelkelag er bevart og eksponert — alt nytt er i eik og kalkmaling.</p>
+      <div class="ba-stats">
+        <div><b>+38%</b><span>Dagslys</span></div>
+        <div><b>-42%</b><span>Energibruk</span></div>
+        <div><b>11 mnd</b><span>Byggetid</span></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+        <a href="#kontakt" class="btn-pill">Start lignende prosjekt →</a>
+        <button class="btn-ghost" data-project="lokka">Se hele caset</button>
+      </div>
+      <p style="margin-top:14px;color:var(--muted);font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase">Foto: Einar Aslaksen — Tekst: Bevaringsverdige grep uten museal preg.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="prosess" style="padding-top:18px">
+  <div class="section-head reveal">
+    <div>
+      <div class="kicker">Arbeidsprosess</div>
+      <h2 class="h2">Fra første <em>skisse</em> til nøkkel i døra.</h2>
+    </div>
+    <p class="lead">En tydelig prosess gir ro. Du vet alltid hva som skjer nå, hva vi trenger fra deg, og hva neste steg koster.</p>
+  </div>
+
+  <div class="process-wrap reveal">
+    <div class="process-left">
+      <div class="kicker" style="color:rgba(246,243,238,.7)">05 steg — med deg hele veien</div>
+      <div class="process-steps" role="tablist" aria-label="Prosess">
+        <button class="step active" data-step="0" role="tab" aria-selected="true">
+          <span class="step-num">01</span>
+          <span><h4>Samtale & sted</h4><p>Befaring, behov og budsjettramme. Vi måler, fotograferer og lytter.</p></span>
+          <i>↗</i>
+        </button>
+        <button class="step" data-step="1" role="tab">
+          <span class="step-num">02</span>
+          <span><h4>Skisse & konsept</h4><p>Volum, plan og snitt. 2–3 alternative grep å velge mellom.</p></span>
+          <i>↗</i>
+        </button>
+        <button class="step" data-step="2" role="tab">
+          <span class="step-num">03</span>
+          <span><h4>Søknad & detaljering</h4><p>Ansvarlig søker, rammesøknad og detaljprosjekt med materialer.</p></span>
+          <i>↗</i>
+        </button>
+        <button class="step" data-step="3" role="tab">
+          <span class="step-num">04</span>
+          <span><h4>Bygging & oppfølging</h4><p>Anbud, byggeledelse og ukentlig kontroll på plass.</p></span>
+          <i>↗</i>
+        </button>
+        <button class="step" data-step="4" role="tab">
+          <span class="step-num">05</span>
+          <span><h4>Overlevering & tid</h4><p>Innflytting, FDV og ettårsbefaring. Huset følges over tid.</p></span>
+          <i>↗</i>
+        </button>
+      </div>
+      <div style="margin-top:auto;padding-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <a href="#kontakt" class="btn-pill" style="background:var(--paper);color:var(--ink);border-color:var(--paper)">Start et prosjekt →</a>
+        <span style="font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,243,238,.7);align-self:center">Svar innen 24 timer · uforpliktende prat</span>
+      </div>
+    </div>
+    <div class="process-right">
+      <div class="process-media" id="processMedia">
+        <img id="processImg" src="images/photo-21.jpg" alt="Arkitekt skisserer plan på bord">
+        <div class="process-overlay" id="processOverlay">
+          <b>01 — Samtale & sted</b>
+          <p>Vi starter alltid på tomten. Lys, vind, innsyn og hverdagsrutiner kartlegges. Deretter skisser vi for hånd — raskt og ærlig.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="atelieret" style="padding-top:18px">
+  <div class="section-head reveal">
+    <div>
+      <div class="kicker">Atelieret</div>
+      <h2 class="h2">Mennesker, <em>ikke bare</em> fasader.</h2>
+    </div>
+    <p class="lead">Ni sivilarkitekter, én modellverkstedduft og en kaffemaskin som går varm. Vi tegner best når vi tegner sammen — og med byggherre i rommet.</p>
+  </div>
+
+  <div class="atelier reveal">
+    <div class="atelier-left">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <h3 style="margin:0;font-family:'Instrument Serif',serif;font-size:24px;font-weight:400;letter-spacing:-.02em">Kjerneteamet</h3>
+        <span style="font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">MNAL · Oslo + Lier</span>
+      </div>
+      <div class="atelier-grid">
+        <article class="person">
+          <img src="images/photo-11.jpg" alt="Ingrid Form - daglig leder">
+          <div class="person-body">
+            <b>Ingrid Form</b>
+            <span>Daglig leder · Sivilarkitekt MNAL</span>
+            <p>Bolig og rehabilitering. Opptatt av gode proporsjoner og at kjøkkenet faktisk funker i hverdagen.</p>
+          </div>
+        </article>
+        <article class="person">
+          <img src="images/photo-17.jpg" alt="Jonas Moe">
+          <div class="person-body">
+            <b>Jonas Moe</b>
+            <span>Partner · Ansvarlig søker</span>
+            <p>Tilbygg og transformasjon. Får gamle hus til å puste igjen — uten å miste sjel.</p>
+          </div>
+        </article>
+        <article class="person">
+          <img src="images/photo-01.jpg" alt="Sara Lund">
+          <div class="person-body">
+            <b>Sara Lund</b>
+            <span>Interiørarkitekt</span>
+            <p>Lys, tekstil og fast inventar. Tegner kjøkken og bad som tåler ti år med leven.</p>
+          </div>
+        </article>
+        <article class="person">
+          <img src="images/photo-16.jpg" alt="Mikael Berg">
+          <div class="person-body">
+            <b>Mikael Berg</b>
+            <span>Partner · Fritidsboliger</span>
+            <p>Fjell og kyst. Konstruksjon i tre og stein som blir vakrere av vær og vind.</p>
+          </div>
+        </article>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="pill">+ 5 arkitekter og interiørarkitekter</span>
+        <span class="pill">Modellverksted</span>
+        <span class="pill">Ansvarlig søker</span>
+        <span class="pill">Miljø & ombruk</span>
+      </div>
+    </div>
+    <div class="atelier-right">
+      <div class="quote-card">
+        <p>“Et godt hus merkes ikke først på fasaden, men på <em>hvordan lyset treffer gulvet klokken fire en tirsdag i februar.</em>”</p>
+        <div class="quote-who">
+          <img src="images/photo-10.jpg" alt="">
+          <div><b>Ingrid Form</b><br><span>Daglig leder — siden 2011</span></div>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact">
+          <b>92%</b>
+          <span>Anbefalinger</span>
+          <p>De fleste kundene kommer via tidligere byggherrer og håndverkere.</p>
+        </div>
+        <div class="fact">
+          <b>1:20</b>
+          <span>Modellskala</span>
+          <p>Vi bygger alltid fysisk modell før søknad. Da ser alle hva huset faktisk er.</p>
+        </div>
+        <div class="fact">
+          <b>4 uker</b>
+          <span>Fra befaring til skisse</span>
+          <p>Tydelig fremdrift uten å stresse viktige valg.</p>
+        </div>
+        <div class="fact">
+          <b>2024</b>
+          <span>Heißer & NTNU pris</span>
+          <p>Hedret for varsom transformasjon av verneverdig trehus.</p>
+        </div>
+      </div>
+      <div style="border:1px dashed var(--line-strong);border-radius:16px;padding:14px;background:var(--paper);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <span style="font:600 11px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase">Bli med på åpent atelier?</span>
+        <a href="#kontakt" class="btn-ghost" style="padding:10px 14px">Meld deg på →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="journal reveal">
+    <article class="j-card">
+      <img src="images/photo-28.jpg" alt="Tegl og tre detalj">
+      <div class="j-card-body">
+        <small>Journal — 12. Feb 2025 · 4 min</small>
+        <h4>Tegl som tåler norsk vinter — tre valg vi alltid gjør.</h4>
+        <p>Hvorfor vi legger tegl med gjennomfarget fuge, skjult beslag og litt større takutstikk enn normen.</p>
+        <a href="#">Les notat →</a>
+      </div>
+    </article>
+    <article class="j-card">
+      <img src="images/photo-41.jpg" alt="Kjøkken i eik">
+      <div class="j-card-body">
+        <small>Journal — 03. Des 2024 · 5 min</small>
+        <h4>Kjøkkenet som rom, ikke utstilling.</h4>
+        <p>Slik planlegger vi kjøkken der to kan lage middag, lekser og samtaler — samtidig.</p>
+        <a href="#">Les notat →</a>
+      </div>
+    </article>
+    <article class="j-card">
+      <img src="images/photo-08.jpg" alt="Hytte i tåke">
+      <div class="j-card-body">
+        <small>Journal — 18. Okt 2024 · 3 min</small>
+        <h4>Hytte uten helikopter — materialer du får opp på henger.</h4>
+        <p>Små, smarte valg for fritidsboliger som skal bygges rasjonelt og vare lenge.</p>
+        <a href="#">Les notat →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="kontakt" style="padding-top:18px">
+  <div class="section-head reveal">
+    <div>
+      <div class="kicker">Kontakt</div>
+      <h2 class="h2">Har du et <em>sted</em> vi bør se?</h2>
+    </div>
+    <p class="lead">Fortell kort om prosjektet. Vi svarer innen ett døgn — og sier ærlig ifra om vi er rett kontor for jobben.</p>
+  </div>
+
+  <div class="contact reveal">
+    <div class="contact-left">
+      <div class="pill"><i></i> Svar innen 24 timer · Uforpliktende</div>
+      <h3>La oss ta en <em>prat</em> om huset ditt.</h3>
+      <p style="color:var(--muted);margin:12px 0 0;font-size:14.5px;line-height:1.7">Vi tar imot 2–3 nye prosjekter med oppstart vinter/vår 2026. Best er å starte tidlig — da rekker vi å påvirke plassering, kostnader og søknad i god tid før byggesesongen.</p>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <i>◐</i>
+          <div>
+            <b>Besøk atelieret</b>
+            <p>Kirkegata 17, 0153 Oslo — Bakgården, 2. etg.<br>Åpent hver torsdag 15–18, eller etter avtale.</p>
+            <a href="https://maps.google.com/?q=Kirkegata+17+Oslo" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">Åpne i kart →</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i>✉</i>
+          <div>
+            <b>Skriv / ring</b>
+            <p><a href="mailto:hei@formarkitekter.no">hei@formarkitekter.no</a> — svar samme dag<br><a href="tel:+4722334455">22 33 44 55</a> — man–fre 08–16</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i>◎</i>
+          <div>
+            <b>Dette skjer nå</b>
+            <p>Vinteren 2026: Foredrag om “Små hus, store liv” på DogA 12. mars. Gratis — <a href="#" style="text-decoration:underline">meld deg på</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <span class="pill">Organisasjonsnr. 998 123 456</span>
+        <span class="pill">Ansvarlig søker godkjent</span>
+      </div>
+    </div>
+
+    <div class="form-wrap">
+      <form class="form" id="contactForm" novalidate>
+        <h4>Prosjektforespørsel</h4>
+        <small>Tar 60 sekunder. Jo mer presist du er på sted og stadium, jo bedre svar får du.</small>
+
+        <div class="grid-2">
+          <div class="field"><label for="navn">Navn</label><input id="navn" class="input" placeholder="Ola Nordmann" required></div>
+          <div class="field"><label for="epost">E-post</label><input id="epost" class="input" type="email" placeholder="ola@epost.no" required></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field"><label for="sted">Sted / kommune</label><input id="sted" class="input" placeholder="F.eks. Asker, Frogner, Hemsedal"></div>
+          <div class="field"><label for="tel">Telefon (valgfritt)</label><input id="tel" class="input" placeholder="+47 ——— —— ——"></div>
+        </div>
+
+        <div class="field">
+          <label>Prosjekttype</label>
+          <div class="chips" id="typeChips" role="group" aria-label="Prosjekttype">
+            <button type="button" class="chip active" data-value="Bolig">Bolig</button>
+            <button type="button" class="chip" data-value="Rehabilitering">Rehabilitering</button>
+            <button type="button" class="chip" data-value="Tilbygg">Tilbygg</button>
+            <button type="button" class="chip" data-value="Fritidsbolig">Fritidsbolig</button>
+            <button type="button" class="chip" data-value="Næringsbygg">Næringsbygg</button>
+            <button type="button" class="chip" data-value="Interiør">Interiør</button>
+          </div>
+          <input type="hidden" id="prosjekttype" value="Bolig">
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="stadium">Stadium</label>
+            <select id="stadium" class="select">
+              <option>Idé — vi utforsker muligheter</option>
+              <option>Skisse — vi har tomt og ønsker konsept</option>
+              <option>Klar til søknad — tegninger og prosjektering</option>
+              <option>Byggeklar — trenger anbud og oppfølging</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="budsjett">Omtrentlig budsjett</label>
+            <select id="budsjett" class="select">
+              <option>Under 2 mill.</option>
+              <option>2–5 mill.</option>
+              <option selected>5–10 mill.</option>
+              <option>10–20 mill.</option>
+              <option>Over 20 mill.</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="melding">Fortell kort om prosjektet</label>
+          <textarea id="melding" class="textarea" placeholder="Hva ønsker du å få til? Tomt/sted, størrelse, stil, tidspunkt — og hva som er viktigst for deg å lykkes med."></textarea>
+        </div>
+
+        <div class="form-foot">
+          <span>Ved å sende samtykker du til at vi lagrer henvendelsen.</span>
+          <button type="submit" class="btn-pill" style="padding:14px 22px">Send forespørsel →</button>
+        </div>
+        <div class="success" id="success">Takk! Vi har mottatt forespørselen. Du får svar fra Ingrid eller Jonas innen ett døgn (hverdager). Sjekk gjerne e-posten din — vi sender også en kopi.</div>
+        <p style="margin:0;color:var(--muted);font:500 11px/1.5 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase">Eller send direkte til <a href="mailto:hei@formarkitekter.no" style="text-decoration:underline">hei@formarkitekter.no</a> — legg gjerne ved bilder av tomt/hus.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <p><strong style="font-family:'Instrument Serif',serif;font-weight:400;font-size:18px;letter-spacing:.06em;color:var(--ink)">FORM ARKITEKTER AS</strong> · Kirkegata 17, 0153 Oslo · hei@formarkitekter.no · 22 33 44 55<br>© 2026 Form Arkitekter. Alle rettigheter. Foto: Einar Aslaksen, Marte Guldbrandsen, Sindre Lund. Nettside som demo for webbyrå — innhold er fiksjon, men husene kunne vært ekte.</p>
+    <div class="footer-links">
+      <a href="#">Personvern</a>
+      <a href="#">Vilkår</a>
+      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Prosjektdetaljer">
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal-panel" role="document">
+    <button class="modal-close" id="modalClose" aria-label="Lukk">✕</button>
+    <div class="modal-media">
+      <img id="modalImg" src="" alt="">
+    </div>
+    <div class="modal-copy">
+      <div class="kicker" id="modalKicker">Bolig — Asker</div>
+      <h3 id="modalTitle">Villa Ask</h3>
+      <div class="modal-meta" id="modalMeta"></div>
+      <p id="modalDesc"></p>
+      <div class="modal-specs" id="modalSpecs"></div>
+      <div class="modal-gallery" id="modalGallery"></div>
+      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+        <a href="#kontakt" class="btn-pill" id="modalCta" onclick="document.getElementById('modal').classList.remove('open')">Start lignende prosjekt →</a>
+        <button class="btn-ghost" data-close-modal>Lukk</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const projects = [
+  {
+    id:'villa-ask',
+    title:'Villa Ask',
+    sub:'Asker',
+    type:'bolig',
+    typeLabel:'Bolig — nybygg',
+    year:'2024',
+    area:'210 m²',
+    place:'Asker — skrånende hagetomt',
+    thumb:'images/photo-36.jpg',
+    images:[
+      'images/photo-35.jpg',
+      'images/photo-33.jpg',
+      'images/photo-45.jpg'
+    ],
+    excerpt:'Ny enebolig med lav silhuett mot hagen. Tegl, eik og store skyvedører som visker ut grensen inne/ute.',
+    desc:'Villa Ask ligger i en bratt, vestvendt hage. Vi la huset i to forskjøvne volumer som følger terrenget — lavest mot hagen, høyest mot veien for å skjerme. Bærende tegl, tak i falset sink og gulv i børstet eik. Stue og kjøkken åpner seg helt mot sør, mens soverom ligger roligere mot nord og hagen.',
+    specs:{Oppdrag:'Ny enebolig', Areal:'210 m² BRA', Status:'Ferdig 2024', Samarbeid:'Byggmester Lund & Co', Energi:'Passivhus-nivå, bergvarme'}
+  },
+  {
+    id:'lokka',
+    title:'Løkka Loftet',
+    sub:'Grünerløkka, Oslo',
+    type:'rehabilitering',
+    typeLabel:'Rehabilitering',
+    year:'2023',
+    area:'187 m²',
+    place:'Oslo — leiegård 1898',
+    thumb:'images/photo-39.jpg',
+    images:[
+      'images/photo-38.jpg',
+      'images/photo-20.jpg',
+      'images/photo-31.jpg'
+    ],
+    excerpt:'Transformasjon av mørk leiegård til lys familiebolig over tre plan. Stål, eik og bevart tegl.',
+    desc:'Tre etasjer ble bundet sammen av en ny ståltrapp i gårdsrommet. Vi senket brystninger, åpnet mot gårdsrommet og la inn takvinduer som trekker lys dypt inn. Eksisterende bjelkelag og tegl er bevart og eksponert — nye overflater i eik og kalkmaling gir ro.',
+    specs:{Oppdrag:'Rehabilitering + takløft', Areal:'187 m²', Status:'Ferdig 2023', Vern:'Bevaringsverdig — byantikvaren', Energi:'-42% etter tiltak'}
+  },
+  {
+    id:'skarvann',
+    title:'Skarvann Fjellhytte',
+    sub:'Hemsedal',
+    type:'fritidsbolig',
+    typeLabel:'Fritidsbolig',
+    year:'2024',
+    area:'98 m²',
+    place:'Hemsedal — 960 moh',
+    thumb:'images/photo-23.jpg',
+    images:[
+      'images/photo-22.jpg',
+      'images/photo-02.jpg',
+      'images/photo-24.jpg'
+    ],
+    excerpt:'Liten hytte i værutsatt terreng. Trekledd kjerne, betongsokkel og panoramavindu mot vannet.',
+    desc:'Hytta er tegnet for å tåle mye vær med lite vedlikehold: kjerne i massivtre, utvendig i malmfuru og sokkel i plasstøpt betong. Planen er enkel — ett allrom, to små soverom og en skjermet uteplass mot vest. Store glass mot Skarvannet, små åpninger mot vinden.',
+    specs:{Oppdrag:'Ny fritidsbolig', Areal:'98 m² + 24 m² ute', Status:'Ferdig 2024', Konstruksjon:'Massivtre + malmfuru', Energi:'Selvventilert, ved + sol'}
+  },
+  {
+    id:'bryggek',
+    title:'Bryggekontoret',
+    sub:'Fornebu',
+    type:'naring',
+    typeLabel:'Næringsbygg',
+    year:'2022',
+    area:'1 240 m²',
+    place:'Fornebu — kontor',
+    thumb:'images/photo-13.jpg',
+    images:[
+      'images/photo-12.jpg',
+      'images/photo-14.jpg',
+      'images/photo-27.jpg'
+    ],
+    excerpt:'Kontorhus med lavt klimaavtrykk. Ombruk av stålkonstruksjon og ny trekledning mot fjorden.',
+    desc:'Et eksisterende stålskjelett ble bevart og kledd med ny, isolert trekonstruksjon. Fleksible kontorlandskap, stillerom i eik og et felles verksted mot fjorden. Mye dagslys, akustikk i treull og utsikt som faktisk brukes — ikke bare sees.',
+    specs:{Oppdrag:'Rehabilitering + påbygg', Areal:'1 240 m²', Status:'Ferdig 2022', Miljø:'BREEAM Very Good', Leietaker:'Teknologiselskap'}
+  },
+  {
+    id:'hagepav',
+    title:'Hagepaviljongen',
+    sub:'Bærum',
+    type:'tilbygg',
+    typeLabel:'Tilbygg',
+    year:'2023',
+    area:'38 m²',
+    place:'Bærum — hage',
+    thumb:'images/photo-33.jpg',
+    images:[
+      'images/photo-32.jpg',
+      'images/photo-40.jpg',
+      'images/photo-30.jpg'
+    ],
+    excerpt:'Lite tilbygg med stor virkning. Spisestue i glass og tre som åpner en trang enebolig mot hagen.',
+    desc:'Huset fra 1972 var mørkt midt på dagen. Et nytt tilbygg på 38 m² i glass og limtre løste hele planen: ny spisestue som binder kjøkken og hage sammen, med skyvedører som kan åpnes helt om sommeren.',
+    specs:{Oppdrag:'Tilbygg — enebolig', Areal:'38 m²', Status:'Ferdig 2023', Søknad:'Ansvarlig søker Form', Byggetid:'5 måneder'}
+  },
+  {
+    id:'markveien',
+    title:'Interiør Markveien',
+    sub:'Grünerløkka, Oslo',
+    type:'interior',
+    typeLabel:'Interiør',
+    year:'2024',
+    area:'84 m²',
+    place:'Oslo — leilighet 1932',
+    thumb:'images/photo-45.jpg',
+    images:[
+      'images/photo-43.jpg',
+      'images/photo-42.jpg',
+      'images/photo-29.jpg'
+    ],
+    excerpt:'Helhetlig interiør i funksjonalismeleilighet. Fast inventar i eik, lin og kalkmaling.',
+    desc:'Alt er tegnet — kjøkken, garderober, bad og bokhyller — for å gi ro i en liten leilighet. Eik, linoleum og kalkmaling i dempede toner. Skjulte skuffer, gode grep og lys som kan dimmes helt ned til kveldsstemning.',
+    specs:{Oppdrag:'Total interiør', Areal:'84 m²', Status:'Ferdig 2024', Snekker:'Treverkstedet Oslo', Foto:'Marte Guldbrandsen'}
+  },
+  {
+    id:'treetopp',
+    title:'Treetopphuset',
+    sub:'Nordmarka',
+    type:'bolig',
+    typeLabel:'Bolig / fritidsbolig',
+    year:'2021',
+    area:'112 m²',
+    place:'Nordmarka — skogshus',
+    thumb:'images/photo-20.jpg',
+    images:[
+      'images/photo-19.jpg',
+      'images/photo-03.jpg',
+      'images/photo-04.jpg'
+    ],
+    excerpt:'Skogshus på søyler. Lett berøring av terreng, trekledning som gråner og ildsted som samler rommene.',
+    desc:'Huset står på stålsøyler for å bevare terreng og røtter. Kompakt plan med hems og store skyvedører mot sør. Kledning i ubehandlet gran som gråner pent, interiør i furu og linolje.',
+    specs:{Oppdrag:'Ny bolig i marka', Areal:'112 m²', Status:'Ferdig 2021', Konstruksjon:'Søyler + massivtre', Pris:'Nom. til Statens Byggeskikk'}
+  },
+  {
+    id:'verftet',
+    title:'Verftet',
+    sub:'Lier',
+    type:'rehabilitering',
+    typeLabel:'Rehabilitering — næring',
+    year:'2023',
+    area:'860 m²',
+    place:'Lier — industri 1954',
+    thumb:'images/photo-07.jpg',
+    images:[
+      'images/photo-06.jpg',
+      'images/photo-09.jpg',
+      'images/photo-25.jpg'
+    ],
+    excerpt:'Gammelt snekkerverksted blir atelier og verksted for nye leietakere. Rå betong møter varm eik.',
+    desc:'Bærende betong og stål ble renset og eksponert. Nye innvendige bokser i eik gir kontor, møterom og garderober — resten er åpent verksted. Store industriporter er bevart og supplert med nye, smale vindusbånd som gir dagslys uten innsyn.',
+    specs:{Oppdrag:'Transformasjon', Areal:'860 m²', Status:'Ferdig 2023', Leietakere:'Kreative næringer', Ombruk:'72% bevart konstruksjon'}
+  }
+];
+
+// Grid rendering
+const grid = document.getElementById('grid');
+const hscroll = document.getElementById('hscroll');
+const countEl = document.getElementById('projCount');
+
+const spanMap = ['span-7','span-5','span-6','span-6','span-4','span-8','span-5','span-7'];
+function render(filter='alle'){
+  grid.innerHTML='';
+  hscroll.innerHTML='';
+  let filtered = filter==='alle' ? projects : projects.filter(p=>p.type===filter);
+  countEl.textContent = filtered.length + (filtered.length===1 ? ' prosjekt' : ' prosjekter');
+
+  filtered.forEach((p,i)=>{
+    const span = spanMap[i % spanMap.length];
+    const card = document.createElement('article');
+    card.className = `card ${span} reveal`;
+    card.dataset.type = p.type;
+    card.dataset.id = p.id;
+    card.innerHTML = `
+      <div class="card-media">
+        <img src="${p.thumb}" alt="${p.title} — ${p.place}" loading="lazy">
+        <div class="card-top">
+          <span class="pill"><i></i> ${p.typeLabel}</span>
+          <span class="year">${p.year} · ${p.area}</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3>${p.title} <em>— ${p.sub}</em></h3>
+        <div class="meta-row"><span>${p.place}</span><span>·</span><span>${p.year}</span></div>
+        <p>${p.excerpt}</p>
+        <div class="card-foot"><span>Se case <span>→</span></span><i>↗</i></div>
+      </div>
+    `;
+    card.addEventListener('click',()=>openModal(p.id));
+    grid.appendChild(card);
+
+    // h-card
+    const hc = document.createElement('article');
+    hc.className='h-card';
+    hc.dataset.id=p.id;
+    hc.innerHTML=`
+      <img src="${p.images[0]}" alt="${p.title}" loading="lazy">
+      <div class="h-card-body">
+        <div class="meta-row" style="margin:0 0 6px"><span>${p.typeLabel}</span><span>·</span><span>${p.place}</span><span>·</span><span>${p.year}</span></div>
+        <h4>${p.title} — <em style="font-style:italic;color:var(--muted);font-family:'Cormorant Garamond',serif">${p.sub}</em></h4>
+        <p>${p.desc.slice(0,140)}…</p>
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <span style="font:700 11px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase">Åpne prosjekt →</span>
+          <span class="pill" style="margin-left:auto">${p.area}</span>
+        </div>
+      </div>
+    `;
+    hc.addEventListener('click',()=>openModal(p.id));
+    hscroll.appendChild(hc);
+  });
+
+  // stagger reveal
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  });
+}
+render();
+
+// Filters
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false')});
+    btn.classList.add('active');btn.setAttribute('aria-selected','true');
+    render(btn.dataset.filter);
+    document.getElementById('prosjekter').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+// Horizontal controls + drag
+const hPrev=document.getElementById('hPrev'), hNext=document.getElementById('hNext');
+hPrev.addEventListener('click',()=>hscroll.scrollBy({left:-580,behavior:'smooth'}));
+hNext.addEventListener('click',()=>hscroll.scrollBy({left:580,behavior:'smooth'}));
+let isDown=false,startX,scrollLeft;
+hscroll.addEventListener('pointerdown',e=>{isDown=true;hscroll.setPointerCapture(e.pointerId);startX=e.clientX;scrollLeft=hscroll.scrollLeft;hscroll.style.scrollBehavior='auto'});
+hscroll.addEventListener('pointermove',e=>{
+  if(!isDown) return;
+  e.preventDefault();
+  const x=e.clientX-startX;
+  hscroll.scrollLeft = scrollLeft - x;
+});
+const stop=()=>{isDown=false;hscroll.style.scrollBehavior='smooth'};
+hscroll.addEventListener('pointerup',stop);hscroll.addEventListener('pointerleave',stop);hscroll.addEventListener('pointercancel',stop);
+
+// Before/After
+const ba=document.getElementById('ba'), baRange=document.getElementById('baRange');
+function setPos(v){ ba.style.setProperty('--pos', v+'%'); }
+baRange.addEventListener('input',e=>setPos(e.target.value));
+// drag on divider
+let baDragging=false;
+function updateBA(e){
+  const rect=ba.getBoundingClientRect();
+  const x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
+  const pct=Math.max(0,Math.min(100,(x/rect.width)*100));
+  baRange.value=pct; setPos(pct);
+}
+ba.addEventListener('pointerdown',e=>{baDragging=true;ba.setPointerCapture(e.pointerId);updateBA(e)});
+ba.addEventListener('pointermove',e=>{if(baDragging) updateBA(e)});
+ba.addEventListener('pointerup',()=>baDragging=false);
+ba.addEventListener('touchmove',e=>{if(baDragging) updateBA(e)},{passive:false});
+
+// Process
+const steps = document.querySelectorAll('.step');
+const processImg = document.getElementById('processImg');
+const processOverlay = document.getElementById('processOverlay');
+const processData = [
+  {img:'images/photo-21.jpg', title:'01 — Samtale & sted', text:'Vi starter alltid på tomten. Lys, vind, innsyn og hverdagsrutiner kartlegges. Deretter skisser vi for hånd — raskt og ærlig.'},
+  {img:'images/photo-26.jpg', title:'02 — Skisse & konsept', text:'To–tre alternative volum og planer. Vi bygger enkel pappmodell i 1:100 og diskuterer fordeler, kostnader og følelse.'},
+  {img:'images/photo-15.jpg', title:'03 — Søknad & detaljering', text:'Ansvarlig søker, nabovarsel og detaljprosjekt. Materialer, vinduer og beslag velges — med vareprøver, ikke bare PDF.'},
+  {img:'images/photo-05.jpg', title:'04 — Bygging & oppfølging', text:'Anbud med håndplukkede entreprenører. Ukentlig byggeplass, avvik håndteres tidlig. Du har én arkitekt å forholde deg til.'},
+  {img:'images/photo-34.jpg', title:'05 — Overlevering & tid', text:'FDV, innregulering og ettårsbefaring. Vi kommer tilbake — huset skal bli bedre det første året, ikke verre.'},
+];
+steps.forEach(s=>s.addEventListener('click',()=>{
+  steps.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+  s.classList.add('active');s.setAttribute('aria-selected','true');
+  const idx=parseInt(s.dataset.step,10);
+  const d=processData[idx];
+  processImg.style.opacity='0';
+  setTimeout(()=>{processImg.src=d.img;processImg.alt=d.title;processImg.style.opacity='1'},180);
+  processOverlay.innerHTML=`<b>${d.title}</b><p>${d.text}</p>`;
+}));
+
+// Chips
+const chips=document.querySelectorAll('.chip');
+const hiddenType=document.getElementById('prosjekttype');
+chips.forEach(c=>c.addEventListener('click',()=>{
+  chips.forEach(x=>x.classList.remove('active'));
+  c.classList.add('active');
+  hiddenType.value=c.dataset.value;
+}));
+
+// Burger
+const burger=document.getElementById('burger'), drawer=document.getElementById('drawer');
+burger.addEventListener('click',()=>{
+  const open=burger.getAttribute('aria-expanded')==='true';
+  burger.setAttribute('aria-expanded', String(!open));
+  drawer.classList.toggle('open', !open);
+  drawer.setAttribute('aria-hidden', String(open));
+  document.body.style.overflow = !open ? 'hidden' : '';
+});
+drawer.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>{
+  burger.setAttribute('aria-expanded','false'); drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+}));
+
+// Reveal observer
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Modal
+const modal=document.getElementById('modal'), modalImg=document.getElementById('modalImg'), modalTitle=document.getElementById('modalTitle'), modalKicker=document.getElementById('modalKicker'), modalDesc=document.getElementById('modalDesc'), modalMeta=document.getElementById('modalMeta'), modalSpecs=document.getElementById('modalSpecs'), modalGallery=document.getElementById('modalGallery');
+function openModal(id){
+  const p=projects.find(x=>x.id===id);
+  if(!p) return;
+  modalKicker.textContent = p.typeLabel + ' · ' + p.place;
+  modalTitle.textContent = p.title + ' — ' + p.sub;
+  modalDesc.textContent = p.desc;
+  modalImg.src = p.images[0];
+  modalImg.alt = p.title;
+  modalMeta.innerHTML = `<span>${p.year}</span><span>${p.area}</span><span>${p.place}</span>`;
+  modalSpecs.innerHTML = Object.entries(p.specs).map(([k,v])=>`<div class="spec"><b>${k}</b><span>${v}</span></div>`).join('');
+  modalGallery.innerHTML = p.images.map((src,i)=>`<img src="${src}" alt="" class="${i===0?'active':''}" data-src="${src}">`).join('');
+  modalGallery.querySelectorAll('img').forEach(img=>img.addEventListener('click',()=>{modalGallery.querySelectorAll('img').forEach(x=>x.classList.remove('active')); img.classList.add('active'); modalImg.src=img.dataset.src;}));
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  history.pushState(null,'','#'+p.id);
+}
+function closeModal(){
+  modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+  if(location.hash) history.pushState(null,'',location.pathname+location.search);
+}
+document.getElementById('modalClose').addEventListener('click',closeModal);
+modal.querySelectorAll('[data-close-modal]').forEach(el=>el.addEventListener('click',closeModal));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+// open via hash or hero
+if(location.hash){ const id=location.hash.replace('#',''); if(projects.some(p=>p.id===id)) openModal(id); }
+document.querySelectorAll('[data-project]').forEach(el=>el.addEventListener('click',e=>{ e.preventDefault(); openModal(el.dataset.project); }));
+
+// Form
+const form=document.getElementById('contactForm'), success=document.getElementById('success');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const required=[...form.querySelectorAll('[required]')];
+  let valid=true;
+  required.forEach(inp=>{ if(!inp.value.trim()){ inp.style.borderColor='#C0392B'; valid=false; } else inp.style.borderColor=''; });
+  if(!valid){ form.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:320}); return; }
+  const btn=form.querySelector('button[type="submit"]');
+  const orig=btn.textContent; btn.textContent='Sender…'; btn.disabled=true;
+  setTimeout(()=>{
+    btn.textContent=orig; btn.disabled=false; success.classList.add('show'); form.reset();
+    chips.forEach((c,i)=>{c.classList.toggle('active',i===0)}); hiddenType.value='Bolig';
+    success.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>success.classList.remove('show'),7000);
+  },900);
+});
+
+// Parallax hero subtle
+let ticking=false;
+window.addEventListener('scroll',()=>{
+  if(ticking) return;
+  ticking=true;
+  requestAnimationFrame(()=>{
+    const y=window.scrollY;
+    const img=document.querySelector('.hero-media img');
+    if(img && window.innerWidth>900) img.style.transform=`translateY(${y*0.06}px) scale(${1 + y*0.00004})`;
+    ticking=false;
+  });
+},{passive:true});
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

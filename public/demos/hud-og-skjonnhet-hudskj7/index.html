@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nordic Skin Clinic — Klinisk hudpleie i Oslo</title>
+<meta name="description" content="Nordic Skin Clinic er en medisinsk forankret klinikk for hudanalyse, laser, peeling, microneedling og avansert hudpleie i Oslo. Skreddersydde behandlinger for din hud." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bone:#F4EFE6;
+  --cream:#FBF8F2;
+  --ivory:#EEE7D7;
+  --sand:#E4DAC4;
+  --ink:#252A20;
+  --ink-2:#3C4234;
+  --muted:#6E7161;
+  --faint:#95988A;
+  --olive:#2E3A2B;
+  --olive-2:#252E22;
+  --moss:#48573F;
+  --sage:#8A9473;
+  --brass:#A98A55;
+  --brass-2:#C1A26B;
+  --clay:#C5A587;
+  --line:rgba(46,58,43,.14);
+  --line-2:rgba(46,58,43,.09);
+  --shadow:0 24px 60px -30px rgba(37,42,32,.42);
+  --shadow-sm:0 12px 30px -18px rgba(37,42,32,.35);
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --ease:cubic-bezier(.22,.61,.24,1);
+  --r-lg:22px; --r-md:16px; --r-sm:11px;
+  --maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--bone);
+  color:var(--ink);
+  line-height:1.65;
+  font-size:1.02rem;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--olive);color:var(--cream)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+ul{list-style:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+.serif{font-family:var(--serif)}
+/* ===== Typography helpers ===== */
+.eyebrow{
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--brass);font-weight:600;display:inline-flex;align-items:center;gap:.7em;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--brass)}
+.eyebrow.center::after{content:"";width:26px;height:1px;background:var(--brass)}
+.h-display{
+  font-family:var(--serif);font-weight:400;line-height:1.03;
+  letter-spacing:-.015em;text-wrap:balance;
+  font-size:clamp(2.5rem,6.4vw,4.85rem);
+}
+.h-sec{font-family:var(--serif);font-weight:450;line-height:1.08;letter-spacing:-.012em;font-size:clamp(1.9rem,3.7vw,3.05rem);text-wrap:balance}
+.lead{color:var(--muted);font-size:clamp(1rem,1.4vw,1.12rem);max-width:54ch}
+.lead.light{color:#c8cdbd}
+.section{padding:clamp(4.5rem,9vw,8rem) 0}
+.section-head{display:grid;gap:1.1rem;max-width:820px;margin-bottom:clamp(2.2rem,4.5vw,3.6rem)}
+.section-head.split{max-width:none;align-items:end;grid-template-columns:1fr auto}
+.section-head.split .lead{max-width:40ch}
+@media(max-width:720px){.section-head.split{grid-template-columns:1fr}}
+/* ===== Buttons ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:.7em;font-weight:600;font-size:.95rem;
+  padding:.95rem 1.6rem;border-radius:100px;transition:.4s var(--ease);
+  position:relative;white-space:nowrap;letter-spacing:.01em;
+}
+.btn .arw{transition:transform .4s var(--ease)}
+.btn:hover .arw{transform:translateX(4px)}
+.btn-solid{background:var(--olive);color:var(--cream);box-shadow:var(--shadow-sm)}
+.btn-solid:hover{background:var(--olive-2);transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-line{border:1px solid var(--line);color:var(--ink)}
+.btn-line:hover{border-color:var(--olive);background:#fff;}
+.btn-brass{background:var(--brass);color:#fff}
+.btn-brass:hover{background:var(--brass-2);transform:translateY(-2px)}
+.btn-ghost{color:var(--ink)}
+.btn-ghost .arw{color:var(--brass)}
+.link-arrow{display:inline-flex;align-items:center;gap:.55em;font-weight:600;color:var(--olive);font-size:.95rem}
+.link-arrow .arw{transition:transform .4s var(--ease);color:var(--brass)}
+.link-arrow:hover .arw{transform:translateX(5px)}
+/* ===== Header ===== */
+.topbar{
+  background:var(--olive);color:#d6d9cb;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;text-align:center;padding:.55rem 1rem;font-weight:500;
+}
+.topbar b{color:var(--brass-2);font-weight:600}
+header.site{
+  position:sticky;top:0;z-index:100;
+  background:rgba(244,239,230,.7);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;transition:.4s var(--ease);
+}
+header.site.scrolled{background:rgba(244,239,230,.92);border-bottom-color:var(--line-2);box-shadow:0 10px 30px -24px rgba(37,42,32,.5)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:1.5rem}
+.logo{display:flex;flex-direction:column;line-height:1;gap:3px}
+.logo .l1{font-family:var(--serif);font-size:1.28rem;font-weight:500;letter-spacing:-.01em}
+.logo .l2{font-size:.58rem;letter-spacing:.34em;text-transform:uppercase;color:var(--brass);font-weight:600}
+.menu{display:flex;gap:.2rem;align-items:center}
+.menu a{font-size:.9rem;font-weight:500;color:var(--ink-2);padding:.6rem .8rem;position:relative}
+.menu a::after{content:"";position:absolute;left:.8rem;right:.8rem;bottom:.42rem;height:1.5px;background:var(--brass);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.menu a:hover::after,.menu a.active::after{transform:scaleX(1)}
+.menu a.active{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:1rem}
+.nav-cta .btn{padding:.7rem 1.3rem;font-size:.88rem}
+.burger{display:none;width:44px;height:44px;border-radius:50%;position:relative;border:1px solid var(--line);background:var(--cream)}
+.burger span{position:absolute;left:13px;right:13px;height:1.6px;background:var(--ink);transition:.35s var(--ease)}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:26px}
+.burger.open span:nth-child(1){top:21px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:21px;transform:rotate(-45deg)}
+@media(max-width:980px){.menu{display:none}.nav-cta .navhide{display:none}.nav-cta .btn{display:none}.burger{display:block}}
+/* mobile menu overlay */
+.mobile-menu{
+  position:fixed;inset:0;z-index:99;background:var(--olive);color:var(--cream);
+  padding:6rem 1.6rem 2rem;display:flex;flex-direction:column;justify-content:center;
+  opacity:0;pointer-events:none;transform:translateY(-12px);transition:.5s var(--ease);
+}
+.mobile-menu.open{opacity:1;pointer-events:auto;transform:none}
+.mobile-menu a.big{
+  font-family:var(--serif);font-size:clamp(1.9rem,8vw,2.8rem);font-weight:400;
+  padding:.55rem 0;border-bottom:1px solid rgba(214,217,203,.14);display:flex;justify-content:space-between;align-items:center;
+  transition:.3s;color:#e9ecdf;
+}
+.mobile-menu a.big span.arw{font-size:1.2rem;color:var(--brass-2)}
+.mobile-menu a.big:hover{color:#fff;padding-left:.6rem}
+.mobile-foot{margin-top:2.2rem;display:flex;flex-direction:column;gap:.4rem;color:#b9bfad;font-size:.9rem}
+.mobile-foot a{color:var(--brass-2)}
+body.locked{overflow:hidden}
+/* ===== Hero ===== */
+.hero{position:relative;padding:clamp(2.5rem,5vw,4rem) 0 clamp(3rem,6vw,5rem);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(1100px 560px at 82% -8%, rgba(165,138,85,.14), transparent 60%),
+  radial-gradient(800px 480px at -6% 30%, rgba(72,87,63,.10), transparent 60%);
+  pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;position:relative}
+.hero-copy{display:flex;flex-direction:column;gap:1.6rem;align-items:flex-start}
+.hero-copy h1{margin-top:.4rem}
+.h-display em{font-style:italic;color:var(--olive);position:relative}
+.h-display em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.14em;background:var(--brass-2);opacity:.5;border-radius:2px}
+.hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.4rem}
+.hero-stats{display:flex;gap:clamp(1.4rem,3vw,2.6rem);flex-wrap:wrap;margin-top:.6rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.stat b{font-family:var(--serif);font-size:clamp(1.5rem,2.4vw,1.9rem);font-weight:500;display:block;line-height:1.1}
+.stat span{font-size:.82rem;color:var(--muted);letter-spacing:.02em;display:block;margin-top:.2rem}
+.stat .star{color:var(--brass)}
+/* hero visual */
+.hero-visual{position:relative;height:clamp(440px,62vh,660px)}
+.hero-visual .frame{
+  position:absolute;inset:0;border-radius:180px 180px var(--r-lg) var(--r-lg);overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.hero-visual .frame img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
+.hero-visual:hover .frame img{transform:scale(1.04)}
+.hero-visual .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(37,42,32,.28));}
+.badge{
+  position:absolute;background:var(--cream);border-radius:var(--r-md);
+  padding:.9rem 1.1rem;box-shadow:var(--shadow-sm);display:flex;gap:.8rem;align-items:center;border:1px solid var(--line-2)
+}
+.badge .ic{width:34px;height:34px;border-radius:11px;background:var(--olive);color:var(--cream);display:grid;place-items:center;flex:0 0 auto}
+.badge b{display:block;font-size:.92rem;line-height:1.2}
+.badge span{font-size:.74rem;color:var(--muted)}
+.badge.tl{top:26px;left:-22px;animation:float 6s ease-in-out infinite}
+.badge.br{bottom:30px;right:-24px;animation:float 7s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.scrollcue{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:.6rem;color:var(--muted);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-visual{height:420px;margin:0 clamp(.4rem,3vw,2rem)}.badge.tl{left:-8px}.badge.br{right:-8px}}
+/* ===== Marquee ===== */
+.marquee{background:var(--olive);color:#dfe3d4;overflow:hidden;padding:1.15rem 0;border-top:1px solid var(--olive-2)}
+.marquee .track{display:flex;gap:3rem;width:max-content;animation:scroll 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.marquee span{font-family:var(--serif);font-size:1.15rem;font-style:italic;display:inline-flex;gap:3rem;align-items:center;white-space:nowrap;opacity:.92}
+.marquee span::after{content:"✦";font-style:normal;color:var(--brass-2);font-size:.8rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* ===== Concern finder ===== */
+.concern-wrap{grid-column:1/-1}
+.pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+.pill{
+  border:1px solid var(--line);border-radius:100px;padding:.7rem 1.25rem;font-size:.92rem;
+  color:var(--ink-2);font-weight:500;transition:.35s var(--ease);background:var(--cream);
+}
+.pill:hover{border-color:var(--moss);transform:translateY(-2px)}
+.pill.on{background:var(--olive);color:var(--cream);border-color:var(--olive)}
+.finder-body{position:relative}
+.tab-pane{display:none;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.1rem}
+.tab-pane.on{display:grid;animation:fade .55s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.tcard{
+  background:var(--cream);border:1px solid var(--line-2);border-radius:var(--r-lg);
+  padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:.45s var(--ease);position:relative;overflow:hidden;
+}
+.tcard::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(165,138,85,.06));opacity:0;transition:.45s}
+.tcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-sm)}
+.tcard:hover::before{opacity:1}
+.tcard .tag{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);font-weight:600}
+.tcard h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;line-height:1.15}
+.tcard p{font-size:.93rem;color:var(--muted)}
+.tcard .meta{display:flex;flex-direction:column;gap:.45rem;margin-top:auto}
+.tcard .meta div{display:flex;justify-content:space-between;font-size:.84rem;border-top:1px dashed var(--line);padding-top:.45rem}
+.tcard .meta span{color:var(--faint)}
+.tcard .meta b{color:var(--ink);font-weight:600}
+.find-cta{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:2rem;padding-top:1.8rem;border-top:1px solid var(--line)}
+@media(max-width:640px){.find-cta{flex-direction:column;align-items:flex-start}}
+/* ===== Treatments editorial index ===== */
+.treatment-index{border-top:1px solid var(--line)}
+.t-item{border-bottom:1px solid var(--line);transition:.4s}
+.t-row{display:grid;grid-template-columns:70px 1.1fr 1fr auto;gap:1.5rem;align-items:center;padding:1.9rem .4rem;cursor:pointer}
+.t-row .num{font-family:var(--serif);font-style:italic;color:var(--brass);font-size:1.15rem}
+.t-row .t-name{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2.1rem);font-weight:450;line-height:1.05}
+.t-row .t-cat{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.t-row .t-toggle{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.45s var(--ease);flex:0 0 auto}
+.t-item.open .t-toggle{background:var(--olive);color:var(--cream);transform:rotate(45deg)}
+.t-body{max-height:0;overflow:hidden;transition:max-height .6s var(--ease)}
+.t-item.open .t-body{max-height:520px}
+.t-inner{padding:0 .4rem 2.1rem 70px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1.8rem}
+.t-inner h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);margin-bottom:.5rem;font-weight:600}
+.t-inner p{font-size:.94rem;color:var(--muted)}
+.t-inner .facs{display:flex;flex-direction:column;gap:.7rem}
+.t-inner .facs li{display:flex;gap:.6rem;font-size:.92rem;align-items:flex-start}
+.t-inner .facs .tick{width:20px;height:20px;border-radius:50%;background:rgba(72,87,63,.14);color:var(--moss);display:grid;place-items:center;flex:0 0 auto;font-size:.7rem;margin-top:.1rem}
+.t-inner .price-row{display:flex;flex-direction:column;gap:.4rem}
+.t-inner .price{font-family:var(--serif);font-size:1.6rem;font-weight:500;color:var(--olive)}
+.t-inner .pr-note{font-size:.8rem;color:var(--faint)}
+@media(max-width:860px){
+  .t-row{grid-template-columns:44px 1fr auto;padding:1.4rem .2rem}
+  .t-row .t-cat{display:none}
+  .t-inner{grid-template-columns:1fr;gap:1.4rem;padding-left:.2rem;padding-bottom:1.8rem}
+}
+/* ===== Process / journey ===== */
+.journey{background:var(--olive);color:var(--cream)}
+.journey .eyebrow{color:var(--brass-2)}
+.journey .eyebrow::before,.journey .eyebrow::after{background:var(--brass-2)}
+.journey .lead{color:#c2c7b6}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border-radius:var(--r-lg);overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.step{background:var(--olive);padding:2.2rem 1.7rem;display:flex;flex-direction:column;gap:1rem;transition:.45s var(--ease);position:relative;min-height:250px}
+.step:hover{background:var(--olive-2)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:2.4rem;line-height:1;color:transparent;-webkit-text-stroke:1px var(--brass-2)}
+.step h3{font-family:var(--serif);font-weight:450;font-size:1.4rem;line-height:1.1}
+.step p{font-size:.9rem;color:#bcc2b1}
+.step .dur{margin-top:auto;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-2);display:inline-flex;align-items:center;gap:.5em}
+@media(max-width:960px){.steps{grid-template-columns:1fr 1fr}.step{min-height:0}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+/* ===== Split media section (about/interior) ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.8rem,4vw,4rem);align-items:center}
+.about-media{position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+.about-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/4.6}
+.about-media .cap{position:absolute;left:1.2rem;bottom:1.2rem;background:var(--cream);border-radius:var(--r-sm);padding:.7rem 1rem;font-size:.8rem;color:var(--muted);box-shadow:var(--shadow-sm)}
+.about-copy{display:flex;flex-direction:column;gap:1.4rem}
+.about-copy .lead{color:var(--muted)}
+.checklist{display:grid;gap:.9rem;margin-top:.4rem}
+.checklist li{display:flex;gap:.8rem;align-items:flex-start}
+.checklist .tick{width:24px;height:24px;border-radius:50%;background:var(--olive);color:var(--cream);display:grid;place-items:center;flex:0 0 auto;font-size:.75rem;margin-top:.1rem}
+.checklist b{font-weight:600}
+.checklist span{display:block;font-size:.9rem;color:var(--muted)}
+@media(max-width:840px){.about-grid{grid-template-columns:1fr}.about-media{order:2}.about-media img{aspect-ratio:4/3.4}}
+/* ===== Team ===== */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.member{border-radius:var(--r-lg);overflow:hidden;position:relative;background:var(--cream);border:1px solid var(--line-2);transition:.5s var(--ease)}
+.member img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;filter:saturate(.96);transition:1s var(--ease)}
+.member:hover img{transform:scale(1.04)}
+.member .body{padding:1.4rem;display:flex;flex-direction:column;gap:.4rem}
+.member h3{font-family:var(--serif);font-weight:500;font-size:1.4rem}
+.member .role{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);font-weight:600}
+.member .bio{font-size:.9rem;color:var(--muted);margin-top:.5rem}
+.member .creds{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}
+.member .creds span{font-size:.72rem;background:rgba(72,87,63,.1);color:var(--moss);padding:.3rem .65rem;border-radius:100px;font-weight:500}
+.member .auth{margin-top:1rem;display:inline-flex;align-items:center;gap:.5em;font-size:.78rem;color:var(--olive);font-weight:600}
+.member .auth .dot{width:8px;height:8px;border-radius:50%;background:var(--brass)}
+@media(max-width:900px){.team-grid{grid-template-columns:1fr}.member{display:grid;grid-template-columns:150px 1fr}.member img{aspect-ratio:auto;height:100%}.member .body{padding:1rem 1.2rem}}
+@media(max-width:600px){.member{grid-template-columns:1fr}.member img{aspect-ratio:4/5}}
+/* ===== Before / after ===== */
+.ba-frame{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/10;box-shadow:var(--shadow);user-select:none;cursor:col-resize}
+.ba-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-frame .aftering{filter:none}
+.ba-frame .beforeing{filter:contrast(.86) saturate(.55) brightness(.92) sepia(.22);-webkit-clip-path:inset(0 50% 0 0);clip-path:inset(0 50% 0 0)}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.1);transform:translateX(-50%)}
+.ba-handle .knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:var(--cream);display:grid;place-items:center;box-shadow:var(--shadow-sm);border:1px solid var(--line);gap:6px}
+.ba-handle .knob svg{width:22px;height:16px}
+.ba-tags{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;pointer-events:none}
+.ba-tags span{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;background:rgba(37,42,32,.72);color:#eee7d6;padding:.4rem .8rem;border-radius:100px;font-weight:600;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.ba-caption{margin-top:1.2rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.ba-dots{display:flex;align-items:center;gap:1.2rem}
+.ba-dots .lab{font-size:.85rem;color:var(--muted)}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:col-resize}
+.ba-info{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem;align-items:center;margin-top:1.6rem}
+@media(max-width:760px){.ba-frame{aspect-ratio:4/4.4}.ba-info{grid-template-columns:1fr}.ba-caption{justify-content:flex-start}}
+/* ===== Reviews ===== */
+.review{background:#0000;position:relative}
+.review-inner{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.review-quote{position:relative}
+.review-quote .mark{font-family:var(--serif);font-size:7rem;line-height:.6;color:var(--brass-2);opacity:.5}
+.review-track{position:relative;min-height:260px}
+.rev{position:absolute;inset:0;opacity:0;transform:translateY(14px);transition:.6s var(--ease);pointer-events:none}
+.rev.on{opacity:1;transform:none;pointer-events:auto}
+.rev blockquote{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:400;line-height:1.4;color:var(--ink)}
+.rev .who{margin-top:1.5rem;display:flex;align-items:center;gap:.9rem}
+.rev .avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--olive);color:var(--cream);font-family:var(--serif);font-size:1.1rem;font-weight:500}
+.rev .who b{display:block;font-weight:600}
+.rev .who span{font-size:.82rem;color:var(--muted)}
+.rev .stars{color:var(--brass);letter-spacing:2px;font-size:.9rem;margin-bottom:.7rem}
+.rev-ctrl{display:flex;align-items:center;gap:1rem;margin-top:2rem}
+.rev-btn{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.35s var(--ease);background:var(--cream)}
+.rev-btn:hover{background:var(--olive);color:var(--cream);border-color:var(--olive)}
+.rev-dots{display:flex;gap:.5rem;margin-left:.4rem}
+.rev-dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.3s;cursor:pointer}
+.rev-dots i.on{background:var(--brass);width:22px;border-radius:4px}
+.review-stat{background:var(--ic);background:var(--olive);color:var(--cream);border-radius:var(--r-lg);padding:2rem;display:flex;flex-direction:column;gap:1rem;box-shadow:var(--shadow)}
+.review-stat .big{font-family:var(--serif);font-size:3.4rem;line-height:1;font-weight:450}
+.review-stat .stars{color:var(--brass-2);letter-spacing:3px;font-size:1rem}
+.review-stat p{font-size:.9rem;color:#c2c7b6}
+.review-stat .grp{display:grid;gap:.6rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(255,255,255,.12)}
+.review-stat .grp div{display:flex;justify-content:space-between;font-size:.86rem}
+.review-stat .grp div span{color:#c2c7b6}
+.review-stat .grp div b{color:#fff}
+@media(max-width:840px){.review-inner{grid-template-columns:1fr}.review-track{min-height:340px}}
+/* ===== Price + FAQ ===== */
+.price-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,3.5rem)}
+.price-tree{display:flex;flex-direction:column}
+.price-line{display:flex;align-items:baseline;gap:1rem;padding:1.35rem 0;border-bottom:1px solid var(--line-2)}
+.price-line:last-child{border-bottom:none}
+.price-line .cat{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);font-weight:600;flex:0 0 130px}
+.price-line .nm{font-family:var(--serif);font-size:1.15rem;font-weight:450}
+.price-line .sub{display:block;font-family:var(--sans);font-size:.82rem;color:var(--muted);font-weight:400;margin-top:.15rem}
+.price-line .dots{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px);min-width:20px}
+.price-line .pr{font-family:var(--serif);font-size:1.15rem;font-weight:500;white-space:nowrap;color:var(--olive)}
+.price-note{margin-top:1.5rem;font-size:.85rem;color:var(--muted);display:flex;gap:.6rem;align-items:flex-start}
+.price-note svg{flex:0 0 auto;margin-top:.15rem;color:var(--brass)}
+@media(max-width:860px){.price-wrap{grid-template-columns:1fr}}
+/* FAQ */
+.faq{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem 0;text-align:left;font-weight:600;font-size:1.05rem;cursor:pointer}
+.faq-q .fi{width:30px;height:30px;flex:0 0 auto;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.4s var(--ease)}
+.faq-item.open .faq-q .fi{background:var(--olive);color:var(--cream);border-color:var(--olive);transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.faq-a p{padding:0 0 1.5rem;color:var(--muted);max-width:60ch}
+.faq-item.open .faq-a{max-height:300px}
+@media(min-width:1000px){
+  .faq-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:3rem}
+  .faq-grid .faq-item:nth-child(n+1):nth-child(-n+3){border-top:1px solid var(--line)}
+}
+/* ===== Booking ===== */
+.booking{background:var(--olive);color:var(--cream)}
+.booking .eyebrow{color:var(--brass-2)}.booking .eyebrow::before,.booking .eyebrow::after{background:var(--brass-2)}
+.booking-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,4.5rem)}
+.booking-info{display:flex;flex-direction:column;gap:1.6rem}
+.booking-info .lead{color:#c2c7b6}
+.binfo{display:grid;gap:1.4rem}
+.binfo li{display:flex;gap:1rem;align-items:flex-start}
+.binfo .ic{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.08);display:grid;place-items:center;flex:0 0 auto;color:var(--brass-2);border:1px solid rgba(255,255,255,.1)}
+.binfo b{display:block;font-weight:600}
+.binfo span{font-size:.9rem;color:#bcc2b1}
+.binfo a{color:var(--brass-2)}
+.hours{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:1.4rem}
+.hours h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-2);margin-bottom:.9rem}
+.hours ul{display:grid;gap:.35rem;font-size:.9rem;color:#c2c7b6}
+.hours ul li{display:flex;justify-content:space-between}
+.hours ul li b{color:#fff;font-weight:500}
+.hours .closed{color:var(--faint)}
+/* form */
+.form-card{background:var(--cream);color:var(--ink);border-radius:var(--r-lg);padding:clamp(1.6rem,3vw,2.5rem);box-shadow:var(--shadow)}
+.form-card .fhead{margin-bottom:1.6rem}
+.form-card h3{font-family:var(--serif);font-weight:450;font-size:1.7rem}
+.form-card p{font-size:.9rem;color:var(--muted);margin-top:.3rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.field{display:flex;flex-direction:column;gap:.45rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ink-2)}
+.field label em{color:var(--brass);font-style:normal}
+.field input,.field select,.field textarea{
+  font-family:inherit;font-size:.95rem;padding:.85rem 1rem;border:1px solid var(--line);
+  border-radius:var(--r-sm);background:#fff;color:var(--ink);transition:.3s;width:100%;
+}
+.field textarea{resize:vertical;min-height:88px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--moss);box-shadow:0 0 0 3px rgba(72,87,63,.14)}
+.field .err{font-size:.75rem;color:#b04a3a;display:none}
+.field.invalid .err{display:block}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#c97; }
+/* time slots */
+.slots{display:flex;gap:.5rem;flex-wrap:wrap}
+.slot{padding:.6rem .95rem;border:1px solid var(--line);border-radius:100px;font-size:.85rem;font-weight:500;transition:.3s;background:#fff}
+.slot:hover{border-color:var(--moss)}
+.slot.on{background:var(--olive);color:var(--cream);border-color:var(--olive)}
+.form-foot{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.4rem;flex-wrap:wrap}
+.form-foot .note{font-size:.78rem;color:var(--muted);max-width:30ch}
+@media(max-width:760px){.form-grid{grid-template-columns:1fr}.booking-grid{grid-template-columns:1fr}}
+/* success */
+.success{display:none;text-align:center;padding:2.4rem 1rem;flex-direction:column;align-items:center;gap:1rem}
+.success.show{display:flex;animation:fade .6s var(--ease)}
+.success .ok{width:70px;height:70px;border-radius:50%;background:var(--olive);color:var(--cream);display:grid;place-items:center;margin:0 auto}
+.success h3{font-family:var(--serif);font-size:1.9rem;font-weight:450}
+.success p{color:var(--muted);max-width:42ch}
+.success .sum{background:var(--ivory);border-radius:var(--r-sm);padding:1rem 1.4rem;font-size:.9rem;color:var(--ink-2);width:100%;max-width:420px;text-align:left}
+.success .sum div{display:flex;justify-content:space-between;padding:.3rem 0;border-bottom:1px dashed var(--line)}
+.success .sum div:last-child{border:none}
+/* ===== Footer ===== */
+footer.site{background:var(--olive-2);color:#c9cdbd;padding:clamp(3.5rem,6vw,5.5rem) 0 2rem;position:relative;overflow:hidden}
+footer.site::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 400px at 90% 0%,rgba(165,138,85,.12),transparent 60%)}
+.foot-grid{position:relative;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-brand{display:flex;flex-direction:column;gap:1rem}
+.foot-brand .l1{font-family:var(--serif);font-size:2rem;color:#fff;font-weight:450;line-height:1}
+.foot-brand .l2{font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--brass-2);font-weight:600}
+.foot-brand p{font-size:.9rem;color:#aab09e;max-width:30ch}
+.foot-social{display:flex;gap:.7rem;margin-top:.5rem}
+.foot-social a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;transition:.3s;color:#e2e5d7}
+.foot-social a:hover{background:var(--brass);border-color:var(--brass);color:#fff;transform:translateY(-3px)}
+.foot-col h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-2);margin-bottom:1.1rem}
+.foot-col a{display:block;padding:.32rem 0;font-size:.92rem;color:#c9cdbd;transition:.25s}
+.foot-col a:hover{color:#fff;padding-left:.3rem}
+.foot-col span{display:block;padding:.32rem 0;font-size:.92rem;color:#aab09e}
+.foot-bottom{position:relative;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:1.4rem;font-size:.78rem;color:#929886;flex-wrap:wrap}
+.foot-bottom .demo{display:inline-flex;align-items:center;gap:.5em}
+.foot-bottom .demo i{width:7px;height:7px;border-radius:50%;background:var(--brass)}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+.reveal.scale{transform:translateY(16px) scale(.985)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* toast */
+.toast{position:fixed;left:50%;bottom:1.4rem;transform:translate(-50%,120%);background:var(--olive);color:var(--cream);padding:.9rem 1.4rem;border-radius:100px;box-shadow:var(--shadow);font-size:.9rem;z-index:200;display:flex;gap:.7rem;align-items:center;transition:transform .5s var(--ease);max-width:90vw}
+.toast.show{transform:translate(-50%,0)}
+.toast svg{color:var(--brass-2)}
+/* section anchor offset */
+section[id]{scroll-margin-top:90px}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar"><b>Nytt:</b> Behandlinger nå bookbare også på kvelds- og helgetid &nbsp;·&nbsp; Les mer om vår nye laserprogram vinter 2026 &nbsp;→</div>
+
+<!-- HEADER -->
+<header class="site" id="siteheader">
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#top" class="logo" aria-label="Nordic Skin Clinic">
+        <span class="l1">Nordic Skin Clinic</span>
+        <span class="l2">Oslo · Medisinsk hudpleie</span>
+      </a>
+      <div class="menu" id="menu">
+        <a href="#behandlinger">Behandlinger</a>
+        <a href="#finn">Finn behandling</a>
+        <a href="#slik">Slik jobber vi</a>
+        <a href="#team">Behandlere</a>
+        <a href="#omtaler">Omtaler</a>
+        <a href="#priser">Priser</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#booking" class="btn btn-solid">Bestill konsultasjon <span class="arw">→</span></a>
+        <button class="burger" id="burger" aria-label="Meny" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mmenu">
+  <nav>
+    <a class="big" href="#behandlinger">Behandlinger <span class="arw">→</span></a>
+    <a class="big" href="#finn">Finn behandling <span class="arw">→</span></a>
+    <a class="big" href="#slik">Slik jobber vi <span class="arw">→</span></a>
+    <a class="big" href="#team">Behandlere <span class="arw">→</span></a>
+    <a class="big" href="#omtaler">Omtaler <span class="arw">→</span></a>
+    <a class="big" href="#priser">Priser <span class="arw">→</span></a>
+    <a class="big" href="#booking">Bestill time <span class="arw">→</span></a>
+  </nav>
+  <div class="mobile-foot">
+    <span>Karl Johans gate 18, 0154 Oslo</span>
+    <a href="tel:+4722334455">+47 22 33 44 55</a>
+    <span>Man–fre 09–19 · Lør 10–15</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal in">Klinisk hudpleie · Oslo · Est. 2016</span>
+        <h1 class="h-display reveal in d1">Huden din, i sitt <em>aller beste</em> lys.</h1>
+        <p class="lead reveal in d2">Nordic Skin Clinic er en medisinsk forankret klinikk for hudanalyse, laser, peeling og avansert hudpleie. Ingen standardløsninger — bare behandlinger som er skreddersydd til din hud, dine mål og din hverdag.</p>
+        <div class="hero-ctas reveal in d3">
+          <a href="#booking" class="btn btn-solid">Bestill konsultasjon <span class="arw">→</span></a>
+          <a href="#finn" class="btn btn-line">Finn riktig behandling</a>
+        </div>
+        <div class="hero-stats reveal in d4">
+          <div class="stat"><b>14&nbsp;000+</b><span>behandlede kunder</span></div>
+          <div class="stat"><b>9&nbsp;år</b><span>i klinisk drift</span></div>
+          <div class="stat"><b>4,9<span class="star">★</span></b><span>380+ verifiserte omtaler</span></div>
+          <div class="stat"><b>100%</b><span>medisinsk forankret</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal d2">
+        <div class="frame"><img src="images/image-01.webp" alt="Kvinne i ro og velvære hos Nordic Skin Clinic" loading="eager" /></div>
+        <div class="badge tl">
+          <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></div>
+          <div><b>Skreddersydd plan</b><span>for din hudtype</span></div>
+        </div>
+        <div class="badge br">
+          <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div><b>Trygt &amp; dokumentert</b><span>autoriserte behandlere</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Hudanalyse</span><span>Kjemisk peeling</span><span>Microneedling</span><span>Laserbehandling</span><span>Avansert hudpleie</span><span>Kosmetiske behandlinger</span><span>Radiofrekvens</span>
+    <span>Hudanalyse</span><span>Kjemisk peeling</span><span>Microneedling</span><span>Laserbehandling</span><span>Avansert hudpleie</span><span>Kosmetiske behandlinger</span><span>Radiofrekvens</span>
+  </div>
+</div>
+
+<!-- FINDER / INTERACTIVE -->
+<section class="section" id="finn">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Finn riktig behandling</span>
+      <h2 class="h-sec">Hva ønsker du hjelp med?</h2>
+      <p class="lead">Velg det som beskriver huden din, så viser vi et utvalg behandlinger som faktisk retter seg mot problemet. Ingen to huder er like — derfor starter alltid alt med en konsultasjon.</p>
+    </div>
+    <div class="pills reveal" id="pills" role="tablist" aria-label="Hudbekymringer">
+      <button class="pill on" data-c="pigment" role="tab" aria-selected="true">Pigmentering</button>
+      <button class="pill" data-c="akne" role="tab" aria-selected="false">Akne &amp; urenheter</button>
+      <button class="pill" data-c="torr" role="tab" aria-selected="false">Tørr hud &amp; barriere</button>
+      <button class="pill" data-c="linjer" role="tab" aria-selected="false">Linjer &amp; fasthet</button>
+      <button class="pill" data-c="rodme" role="tab" aria-selected="false">Rødme &amp; følsomhet</button>
+      <button class="pill" data-c="glow" role="tab" aria-selected="false">Generell hudforbedring</button>
+    </div>
+    <div class="finder-body reveal" id="finder"></div>
+    <div class="find-cta reveal">
+      <p class="lead" style="max-width:none">Usikker på hva huden din trenger? Vi kartlegger alt fra hudbarriere og pH til solskader i løpet av 30 minutter.</p>
+      <a href="#booking" class="btn btn-solid">Bestill hudanalyse <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENTS EDITORIAL INDEX -->
+<section class="section" id="behandlinger" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Våre behandlinger</span>
+      <h2 class="h-sec">Én klinikk. Hele hudens behov.</h2>
+      <p class="lead">Fra forebyggende hudpleie til medisinsk laser — alt under samme tak. Trykk på en behandling for å se hva den passer for og hvilket resultat du kan forvente.</p>
+    </div>
+    <div class="treatment-index reveal" id="tindex"></div>
+    <div class="reveal" style="margin-top:2rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+      <p style="font-size:.9rem;color:var(--muted)">Alle behandlinger utføres av autoriserte behandlere og forankres medisinsk. Lurer du på noe?</p>
+      <a href="#booking" class="link-arrow">Book en uforpliktende prat <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="section journey" id="slik">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Slik jobber vi</span>
+      <h2 class="h-sec" style="color:#fff">Fra første samtale til synlig resultat.</h2>
+      <p class="lead">Vi tror ikke på quick-fix. God hud er et samarbeid mellom usynligheten din og dyktige hender — og det starter med en grundig kartlegging.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <span class="n">01</span>
+        <h3>Konsultasjon &amp; hudanalyse</h3>
+        <p>Vi kartlegger hudtype, barriere, solskader og livsstil. Du får en ærlig vurdering av hva som er realistisk å oppnå.</p>
+        <span class="dur">45 min · 950 kr · refunderes ved behandling</span>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <h3>Skreddersydd plan</h3>
+        <p>Du får en tydelig behandlingsplan med faser, varighet, antall og forventet resultat — uten uklarheter eller press.</p>
+        <span class="dur">Inkludert i konsultasjonen</span>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <h3>Behandling i rolige omgivelser</h3>
+        <p>Vi behandler i skjermede rom, med dokumenterte metoder og produkter i medisinsk kvalitet. Du følges tett hele veien.</p>
+        <span class="dur">30–90 min, avhengig av behandling</span>
+      </div>
+      <div class="step">
+        <span class="n">04</span>
+        <h3>Oppfølging &amp; hjemmerutine</h3>
+        <p>Etterkontroll, justeringer og en skreddersydd hjemmerutine som forsterker resultatet og beskytter huden din fremover.</p>
+        <span class="dur">Fri etterkontroll &lt; 6 uker</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / INTERIOR -->
+<section class="section">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow">Klinikken</span>
+        <h2 class="h-sec">Et sted som tar huden din på alvor — og samtalen din først.</h2>
+        <p class="lead">Midt i Oslo finner du et rolig behandlingsmiljø der medisinsk presisjon møter nordisk formsans. Vi har bygget klinikken rundt tre ting: faglig tyngde, ærlig veiledning og rene, dokumenterte resultater.</p>
+        <ul class="checklist">
+          <li><span class="tick">✓</span><div><b>Autoriserte behandlere</b><span>Syke- og vernepleiere, hudlege og sertifiserte kosmetologer.</span></div></li>
+          <li><span class="tick">✓</span><div><b>Dokumenterte metoder</b><span>Utstyr og produkter i medisinsk kvalitet, oppdatert løpende.</span></div></li>
+          <li><span class="tick">✓</span><div><b>Ærlige forventninger</b><span>Vi sier alltid ifra når en behandling ikke er riktig for deg.</span></div></li>
+        </ul>
+        <div style="margin-top:.6rem"><a href="#team" class="btn btn-line">Møt behandlerne <span class="arw">→</span></a></div>
+      </div>
+      <div class="about-media reveal d2">
+        <img src="images/image-02.webp" alt="Behandlingsrommet hos Nordic Skin Clinic" loading="lazy" />
+        <div class="cap">Behandlingsrom 03 · Beskyttet og rolig</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow">Behandlerne</span>
+        <h2 class="h-sec">Menneskene bak resultatene.</h2>
+      </div>
+      <p class="lead">Kompetanse du kan stole på. Hver behandler har lang klinisk erfaring og møter alltid med et ærlig, tålmodig blikk på huden din.</p>
+    </div>
+    <div class="team-grid">
+      <div class="member reveal">
+        <img src="images/image-03.webp" alt="Ingrid Holm — klinikkleder og aesthetic nurse" loading="lazy" />
+        <div class="body">
+          <span class="role">Klinikkleder · Aesthetic Nurse</span>
+          <h3>Ingrid Holm</h3>
+          <p class="bio">Sykepleier med 14 års erfaring innen injeksjoner og laser. Ingrid leder behandlingskvaliteten vår og er kjent for et rolig og trygt håndlag.</p>
+          <div class="creds"><span>Laser</span><span>Injeksjoner</span><span>Ekspert: hudfornyelse</span></div>
+          <span class="auth"><i class="dot"></i>Autorisert tilbyder · Helsedirektoratet</span>
+        </div>
+      </div>
+      <div class="member reveal d1">
+        <img src="images/image-04.webp" alt="Dr. Henrik Olsen — hudlege" loading="lazy" />
+        <div class="body">
+          <span class="role">Hudlege · Leger</span>
+          <h3>Dr. Henrik Olsen</h3>
+          <p class="bio">Spesialist i hud- og kjønnssykdommer. Henrik ivaretar alt medisinsk — fra hudforandringer til behandlingsplanlegging og kosmetisk medisin.</p>
+          <div class="creds"><span>Medisinsk hudanalyse</span><span>Hudforandringer</span><span>Kosmetisk medisin</span></div>
+          <span class="auth"><i class="dot"></i>Spesialistgodkjent · Legeforeningen</span>
+        </div>
+      </div>
+      <div class="member reveal d2">
+        <img src="images/image-05.webp" alt="Anna Lindström — kosmetolog og laserspesialist" loading="lazy" />
+        <div class="body">
+          <span class="role">Kosmetolog · Laserspesialist</span>
+          <h3>Anna Lindström</h3>
+          <p class="bio">Sertifisert kosmetolog med bakgrunn fra toppklinikker i Stockholm og København. Anna er spesialist på peeling, microneedling og avansert hudpleie.</p>
+          <div class="creds"><span>Kjemisk peeling</span><span>Microneedling</span><span>IPL &amp; laser</span></div>
+          <span class="auth"><i class="dot"></i>Sertifisert kosmetolog</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="section" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Før &amp; etter</span>
+      <h2 class="h-sec">Resultater som holder — og ser naturlige ut.</h2>
+      <p class="lead">Dra i glidebryteren for å se utviklingen. Eksempelet viser 3 behandlinger kjemisk peeling kombinert med medisinsk hudpleie over 10 uker.</p>
+    </div>
+    <div class="reveal">
+      <div class="ba-frame" id="baFrame">
+        <img class="beforeing" src="images/image-06.webp" alt="Før behandling" />
+        <img class="aftering" src="images/image-06.webp" alt="Etter behandling" />
+        <div class="ba-tags"><span>Før</span><span>Etter · 10 uker</span></div>
+        <div class="ba-handle" id="baHandle">
+          <div class="knob">
+            <svg viewBox="0 0 32 20" fill="none" stroke="#2E3A2B" stroke-width="1.8" stroke-linecap="round"><path d="M9 3L2 10l7 7M23 3l7 7-7 7"/></svg>
+          </div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range" id="baRange" aria-label="Sammenlign før og etter" />
+      </div>
+      <div class="ba-caption">
+        <div class="ba-dots">
+          <span class="lab"><b style="color:var(--ink)">Pigmentering</b> · betydelig redusert</span>
+          <span class="lab" style="color:var(--faint)">|</span>
+          <span class="lab"><b style="color:var(--ink)">Ujevn tekstur</b> · jevnet ut</span>
+          <span class="lab" style="color:var(--faint)">|</span>
+          <span class="lab"><b style="color:var(--ink)">Glød</b> · synlig lysere</span>
+        </div>
+      </div>
+      <div class="ba-info reveal">
+        <div>
+          <h4 class="eyebrow" style="margin-bottom:.7rem">Hva skjedde?</h4>
+          <p class="lead" style="max-width:none">Kunden var plaget med solskader og en matt, ujevn hudtone. Etter hudanalyse satte vi opp et løp med tre skånsomme peelinger og en tilpasset hjemmerutine med vitamin C og SPF.</p>
+        </div>
+        <div>
+          <h4 class="eyebrow" style="margin-bottom:.7rem">Behandlingsforløp</h4>
+          <p class="lead" style="max-width:none">Uke 0 · Analyse → Uke 4 · Peeling 1+2 → Uke 8 · Peeling 3 → Uke 10 · Vurdering. Huden var rødlig i 2–3 dager etter hver behandling, og resultatet bygde seg gradvis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section review" id="omtaler">
+  <div class="wrap">
+    <div class="review-inner">
+      <div class="review-quote reveal">
+        <span class="eyebrow">Kundeomtaler</span>
+        <h2 class="h-sec" style="margin-top:1rem">Det kundene våre sier.</h2>
+        <p class="lead" style="margin-top:1rem">Vi tar alltid imot tilbakemeldinger med respekt — både ros og kritikk. Her er noen av de siste.</p>
+        <div class="review-stat" style="--ic:var(--brass)">
+          <div class="big">4,9<span style="font-size:1.4rem;color:var(--brass-2)">/5</span></div>
+          <div class="stars">★★★★★</div>
+          <p>Basert på 380+ verifiserte omtaler fra Google og Treatwell.</p>
+          <div class="grp">
+            <div><span>Anbefaler klinikken</span><b>96%</b></div>
+            <div><span>Kommer tilbake</span><b>89%</b></div>
+            <div><span>Følte seg trygg underveis</span><b>97%</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="review-track" id="revtrack">
+          <div class="rev on">
+            <div class="stars">★★★★★</div>
+            <blockquote>“Endelig en klinikk som ikke bare vil selge. De sa ærlig hva jeg ikke trengte, og satte opp en plan som faktisk funket. Huden min har aldri vært bedre.”</blockquote>
+            <div class="who"><div class="avatar">ML</div><div><b>Maren L.</b><span>Kjemi-peeling &amp; hudanalyse · Oslo</span></div></div>
+          </div>
+          <div class="rev">
+            <div class="stars">★★★★★</div>
+            <blockquote>“Jeg var nervøs for laser, men Anna forklarte alt så rolig og grundig. Resultatet overgikk forventningene mine. Utrolig profesjonelt hele veien.”</blockquote>
+            <div class="who"><div class="avatar">JS</div><div><b>Johanne S.</b><span>Fraksjonert laser · Lørenskog</span></div></div>
+          </div>
+          <div class="rev">
+            <div class="stars">★★★★★</div>
+            <blockquote>“Microneedling for arret mitt har virkelig gjort en forskjell. Følte meg ivaretatt og tatt på alvor fra første konsultasjon til etterkontroll.”</blockquote>
+            <div class="who"><div class="avatar">KO</div><div><b>Kjetil O.</b><span>Microneedling · Drammen</span></div></div>
+          </div>
+          <div class="rev">
+            <div class="stars">★★★★☆</div>
+            <blockquote>“Faglig sterke og veldig ordentlige omgivelser. Kunne ønsket litt mer parkering i nærheten, men selve behandlingen var suveren.”</blockquote>
+            <div class="who"><div class="avatar">SN</div><div><b>Solveig N.</b><span>Avansert hudpleie · Bærum</span></div></div>
+          </div>
+        </div>
+        <div class="rev-ctrl">
+          <button class="rev-btn" id="revPrev" aria-label="Forrige omtale">‹</button>
+          <button class="rev-btn" id="revNext" aria-label="Neste omtale">›</button>
+          <div class="rev-dots" id="revDots"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE + FAQ -->
+<section class="section" id="priser" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Priser &amp; FAQ</span>
+      <h2 class="h-sec">Tydelige priser. Ingen overraskelser.</h2>
+    </div>
+    <div class="price-wrap">
+      <div class="reveal">
+        <div class="price-tree">
+          <div class="price-line"><span class="cat">Kartlegging</span><div><span class="nm">Konsultasjon &amp; hudanalyse</span><span class="sub">30–45 min · refunderes ved behandling</span></div><span class="dots"></span><span class="pr">950 kr</span></div>
+          <div class="price-line"><span class="cat">Hudpleie</span><div><span class="nm">Avansert ansiktsbehandling</span><span class="sub">75–90 min · med valg av aktiv serum</span></div><span class="dots"></span><span class="pr">1 400 kr</span></div>
+          <div class="price-line"><span class="cat">Hudpleie</span><div><span class="nm">Skreddersydd kur · 4 behandlinger</span><span class="sub">Forbedret plan med hjemmerutine</span></div><span class="dots"></span><span class="pr">4 900 kr</span></div>
+          <div class="price-line"><span class="cat">Kjemisk</span><div><span class="nm">Kjemisk peeling</span><span class="sub">45–60 min · AHA/BHA/TCA</span></div><span class="dots"></span><span class="pr">1 850 kr</span></div>
+          <div class="price-line"><span class="cat">Microneedling</span><div><span class="nm">Microneedling</span><span class="sub">60 min · med aktivt serum</span></div><span class="dots"></span><span class="pr">2 300 kr</span></div>
+          <div class="price-line"><span class="cat">Laser</span><div><span class="nm">Fraksjonert laser</span><span class="sub">30–60 min · hver ansiktsdel</span></div><span class="dots"></span><span class="pr">fra 1 900 kr</span></div>
+          <div class="price-line"><span class="cat">Laser</span><div><span class="nm">IPL / pigment- &amp; karfjerning</span><span class="sub">30 min · ansikt, hals eller hender</span></div><span class="dots"></span><span class="pr">1 950 kr</span></div>
+          <div class="price-line"><span class="cat">Kosmetisk</span><div><span class="nm">Botulinum (per område)</span><span class="sub">medisinsk utført · injeksjon</span></div><span class="dots"></span><span class="pr">fra 4 900 kr</span></div>
+          <div class="price-line"><span class="cat">Kosmetisk</span><div><span class="nm">Filler (per 1 ml)</span><span class="sub">medisinsk utført · hyaluronsyre</span></div><span class="dots"></span><span class="pr">fra 6 500 kr</span></div>
+        </div>
+        <div class="price-note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          <span>Prisene er veiledende. En konsultasjon inngår alltid før kosmetiske og laserbaserte behandlinger, og endelig pris avklares alltid i forkant.</span>
+        </div>
+      </div>
+      <div class="faq-grid reveal d1">
+        <div class="faq-item"><button class="faq-q">Hvor langt i forveien bør jeg bestille? <span class="fi">+</span></button><div class="faq-a"><p>Vi anbefaler 1–4 uker for konsultasjoner, men beholder alltid noen ledige tider for akutte behov. Kveld- og helgetider bookes ofte ut tidlig.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Er behandlingene smertefulle? <span class="fi">+</span></button><div class="faq-a"><p>De fleste opplever mildt ubehag, ikke smerte. Vi bruker bedøvende krem der det trengs og tilpasser intensiteten til hudens toleranse.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Kan hvem som helst få behandling? <span class="fi">+</span></button><div class="faq-a"><p>Ikke uten vurdering. Gravide, ammende og enkelte medisinske tilstander må alltid godkjennes av lege først. Vi er ærlige på hva som ikke passer for deg.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Hvor lenge holder et resultat? <span class="fi">+</span></button><div class="faq-a"><p>Det avhenger av behandling og hud. Hudpleie og peeling gir ofte 1–3 måneder, laser og microneedling ofte 6–18 måneder med riktig hjemmerutine.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Har dere betalingsordninger? <span class="fi">+</span></button><div class="faq-a"><p>Ja. Mange velger å dele opp større kurer. Vi tilbyr faktura og avtalegiro uten renter for behandlingsplaner over 3 000 kr.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Hva om jeg angrer etter konsultasjonen? <span class="fi">+</span></button><div class="faq-a"><p>Ingen press — periodevis. Bestemmer du deg for ikke å behandle, tilbakefører vi konsultasjonsgebyret innen 14 dager.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="section booking" id="booking">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Bestill time</span>
+      <h2 class="h-sec" style="color:#fff">Klar til å ta huden din på alvor?</h2>
+      <p class="lead">Reserver din konsultasjon på under et minutt. Vi svarer innen 24 timer på hverdager.</p>
+    </div>
+    <div class="booking-grid">
+      <div class="booking-info reveal">
+        <ul class="binfo">
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><b>Adresse</b><span>Karl Johans gate 18, 0154 Oslo</span></div></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 01-2.2 2A19 19 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2L8 9.6a16 16 0 006 6l1.2-1.1a2 2 0 012-.5c.9.3 1.8.5 2.7.6a2 2 0 011.9 2.3z"/></svg></span><div><b>Telefon</b><span><a href="tel:+4722334455">+47 22 33 44 55</a> · <a href="tel:+4748123456">+47 48 12 34 56</a></span></div></li>
+          <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></span><div><b>E-post</b><span><a href="/cdn-cgi/l/email-protection#61030e0e0a210f0e13050802120a080f020d080f08024f0f0e"><span class="__cf_email__" data-cfemail="40222f2f2b002e2f32242923332b292e232c292e29236e2e2f">[email&#160;protected]</span></a></span></div></li>
+        </ul>
+        <div class="hours">
+          <h4>Åpningstider</h4>
+          <ul>
+            <li><span>Mandag – fredag</span><b>09.00 – 19.00</b></li>
+            <li><span>Lørdag</span><b>10.00 – 15.00</b></li>
+            <li><span>Søndag</span><b class="closed">Stengt</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-card reveal d1">
+        <div class="fhead">
+          <h3>Book konsultasjon</h3>
+          <p>Fyll ut skjemaet, så bekrefter vi tiden din på e-post.</p>
+        </div>
+        <form class="form-grid" id="bookForm" novalidate>
+          <div class="field full">
+            <label>Behandling <em>*</em></label>
+            <select id="fBeh" required>
+              <option value="">Velg behandling...</option>
+              <option>Konsultasjon &amp; hudanalyse</option>
+              <option>Avansert ansiktsbehandling</option>
+              <option>Kjemisk peeling</option>
+              <option>Microneedling</option>
+              <option>Fraksjonert laser</option>
+              <option>IPL / pigment- &amp; karfjerning</option>
+              <option>Kosmetisk behandling (botulinum/filler)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Dato <em>*</em></label>
+            <select id="fDate" required></select>
+          </div>
+          <div class="field">
+            <label>Tidspunkt <em>*</em></label>
+            <div class="slots" id="fSlots"></div>
+          </div>
+          <div class="field">
+            <label>Fornavn <em>*</em></label>
+            <input type="text" id="fFirst" placeholder="Kari" required />
+            <span class="err">Fyll inn fornavn</span>
+          </div>
+          <div class="field">
+            <label>Etternavn <em>*</em></label>
+            <input type="text" id="fLast" placeholder="Nordmann" required />
+            <span class="err">Fyll inn etternavn</span>
+          </div>
+          <div class="field">
+            <label>Telefon <em>*</em></label>
+            <input type="tel" id="fPhone" placeholder="+47 ..." required />
+            <span class="err">Oppgi gyldig telefonnummer</span>
+          </div>
+          <div class="field">
+            <label>E-post <em>*</em></label>
+            <input type="email" id="fEmail" placeholder="deg@epost.no" required />
+            <span class="err">Oppgi gyldig e-post</span>
+          </div>
+          <div class="field full">
+            <label>Hva ønsker du å jobbe med? <span style="text-transform:none;color:var(--faint);letter-spacing:0">(valgfritt)</span></label>
+            <textarea id="fMsg" placeholder="Fortell kort om huden din og målet ditt, så kan behandleren forberede seg godt."></textarea>
+          </div>
+          <div class="form-foot">
+            <button type="submit" class="btn btn-brass">Bekreft bestilling <span class="arw">→</span></button>
+            <p class="note">Ingen betaling nå. Du betaler først etter konsultasjonen.</p>
+          </div>
+        </form>
+
+        <!-- SUCCESS -->
+        <div class="success" id="successBox">
+          <div class="ok"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3>Takk for din bestilling!</h3>
+          <p>Vi har mottatt forespørselen din og sender en bekreftelse på e-post. Velkommen til Nordic Skin Clinic.</p>
+          <div class="sum" id="successSum"></div>
+          <button class="btn btn-line" id="againBtn">Ny bestilling</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div><div class="l1">Nordic Skin Clinic</div><div class="l2">Oslo · Medisinsk hudpleie</div></div>
+        <p>Medisinsk forankret hudpleie, laser og hudanalyse — med et rolig, ærlig og skreddersydd blikk på huden din.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3h2a1 1 0 011 1v3h-2a1 1 0 00-1 1v2h3l-.5 3H15v8h-3v-8H9v-3h3V7a4 4 0 014-4z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.5v9h-3v-9h3zM5 3.5A1.75 1.75 0 115 7a1.75 1.75 0 010-3.5zM20.5 12.7v4.8h-3v-4.6c0-1.1-.4-1.8-1.4-1.8-.8 0-1.2.5-1.4 1-.1.2-.1.5-.1.8v4.6h-3v-9h3v1.2c.4-.6 1.1-1.4 2.7-1.4 2 0 3.2 1.3 3.2 4.4z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2 1.6 3.4 4 3.6v3c-1.5 0-2.9-.4-4-1.2V14a6 6 0 11-6-6c.3 0 .7 0 1 .1v3.2a3 3 0 102 2.7V3h3z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Behandlinger</h4>
+        <a href="#behandlinger">Hudanalyse</a>
+        <a href="#behandlinger">Kjemisk peeling</a>
+        <a href="#behandlinger">Microneedling</a>
+        <a href="#behandlinger">Laserbehandling</a>
+        <a href="#behandlinger">Avansert hudpleie</a>
+        <a href="#behandlinger">Kosmetiske behandlinger</a>
+      </div>
+      <div class="foot-col">
+        <h4>Klinikken</h4>
+        <a href="#slik">Slik jobber vi</a>
+        <a href="#team">Behandlerne</a>
+        <a href="#omtaler">Kundeomtaler</a>
+        <a href="#priser">Priser</a>
+        <a href="#booking">Bestill time</a>
+        <a href="#">Personvern &amp; vilkår</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <span>Karl Johans gate 18, 0154 Oslo</span>
+        <span>Man–fre 09–19 · Lør 10–15</span>
+        <a href="tel:+4722334455">+47 22 33 44 55</a>
+        <a href="/cdn-cgi/l/email-protection#05676a6a6e456b6a77616c66766e6c6b66696c6b6c662b6b6a"><span class="__cf_email__" data-cfemail="0c6e6363674c62637e68656f7f6765626f606562656f226263">[email&#160;protected]</span></a>
+        <a href="#">Oslo sentrum · 2 min fra Jernbanetorget</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Nordic Skin Clinic. Alle rettigheter reservert.</span>
+      <span class="demo"><i></i>Demoside utarbeidet for portefølje — all informasjon er fiktiv.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg><span id="toastTxt"></span></div>
+
+<script>
+/* ============ DATA ============ */
+const TREATMENTS = {
+  analyse:{tag:"Kartlegging",name:"Hudanalyse &amp; kartlegging",desc:"Digital hudanalyse der vi måler barriere, fuktighet, pH og solskader. Utgangspunktet for alt vi gjør.",
+    fit:"Førstegangsbesøk, ved hudproblemer, før behandlingsstart",res:"Etablert plan og realistiske forventninger",dur:"30–45 min",price:"fra 950 kr",t:"Vurdering",r:"<p>Ingen risiki. Du får en grundig oversikt og en tydelig plan for veien videre — uansett om du velger å behandle her eller ikke.</p>"},
+  peeling:{tag:"Kjemisk peeling",name:"Kjemisk peeling",desc:"Skånsom, kontrollert fornyelse av hudoverflaten med AHA/BHA/TCA-syrer.",
+    fit:"Pigmentering, matt hud, ujevn tekstur, fine linjer",res:"Friskere, jevnere og lysere hudtone",dur:"45–60 min",price:"fra 1 850 kr",t:"Fornyelse",r:"<p>Retter seg mot solskader og pigment ved å stimulere ny kollagen og cellefornyelse. Flere behandlinger gir gradvis, naturlig resultat.</p>"},
+  microneedling:{tag:"Microneedling",name:"Microneedling",desc:"Bruk av fine nåler som mikrostimulerer huden og øker opptaket av aktive serum.",
+    fit:"Akne- og operasjonsarr, porer, tekstur, fasthet",res:"Glattere tekstur og reduserte arr",dur:"60 min",price:"fra 2 300 kr",t:"Reparasjon",r:"<p>Sterkt for arr og tekstur. Kombineres ofte med aktivt serum eller PRP for maksimalt resultat, og kan brukes på ansikt, hals og hender.</p>"},
+  laser:{tag:"Laserbehandling",name:"Fraksjonert laser &amp; IPL",desc:"Presis behandling av pigment, rødme og fasthet med moderne laserteknologi.",
+    fit:"Solskader, pigment, kar, fasthet, stor hudtoneetterbehandling",res:"Jevnere tone og bedret struktur",dur:"30–60 min",price:"fra 1 900 kr",t:"Lys &amp; struktur",r:"<p>Stimulerer kollagen på dypet og bryter ned uønsket pigment. Behandlingen er presis og utføres av sertifiserte fagfolk med testkjøringer først.</p>"},
+  hudpleie:{tag:"Avansert hudpleie",name:"Signatur-ansiktsbehandling",desc:"Luksuriøs, medisinsk ansiktsbehandling med analysestyrt serum og massasje.",
+    fit:"Tørr hud, fuktbalanse, glow, forberedelse før stråle",res:"Øyeblikkelig fukt og strålende glow",dur:"75–90 min",price:"fra 1 400 kr",t:"Velvære &amp; fukt",r:"<p>Bygger barriere og gir umiddelbar glød med varighet over flere uker. Det perfekte første steget eller kuren før en stor anledning.</p>"},
+  kosmetisk:{tag:"Kosmetisk behandling",name:"Botulinum &amp; filler",desc:"Medisinsk utførte injeksjoner for naturlig avslapning og volum.",
+    fit:"Dype linjer, tap av volum, asymmetri",res:"Mykere, naturlig uttrykk",dur:"30 min",price:"fra 4 900 kr",t:"Skånsom modellering",r:"<p>Utføres alltid av lege eller sykepleier etter grundig kartlegging. Vi fokuserer på et naturlig, avslappet uttrykk — aldri et stivt eller overfylt.</p>"}
+};
+
+/* concern -> treatment keys */
+const CONCERNS = {
+  pigment:["analyse","peeling","laser","hudpleie"],
+  akne:["analyse","peeling","microneedling","hudpleie"],
+  torr:["analyse","hudpleie"],
+  linjer:["analyse","microneedling","laser","kosmetisk","hudpleie"],
+  rodme:["analyse","laser","hudpleie"],
+  glow:["analyse","hudpleie","peeling","microneedling"]
+};
+
+const finder = document.getElementById('finder');
+const pills = document.getElementById('pills');
+
+function renderFinder(key){
+  const keys = CONCERNS[key];
+  finder.innerHTML = '<div class="tab-pane on">' + keys.map(function(k,ix){
+    const t = TREATMENTS[k];
+    return '<article class="tcard" style="animation-delay:'+(ix*60)+'ms">'
+      +'<span class="tag">'+t.tag+'</span>'
+      +'<h3>'+t.name+'</h3>'
+      +'<p>'+t.desc+'</p>'
+      +'<div class="meta">'
+      +'<div><span>Passer for</span><b>'+t.fit+'</b></div>'
+      +'<div><span>Forventet resultat</span><b>'+t.res+'</b></div>'
+      +'<div><span>Varighet</span><b>'+t.dur+'</b></div>'
+      +'<div><span>Fra-pris</span><b>'+t.price+'</b></div>'
+      +'</div></article>';
+  }).join('') + '</div>';
+}
+renderFinder('pigment');
+
+pills.addEventListener('click', function(e){
+  const b = e.target.closest('.pill'); if(!b) return;
+  pills.querySelectorAll('.pill').forEach(p=>{p.classList.remove('on');p.setAttribute('aria-selected','false')});
+  b.classList.add('on'); b.setAttribute('aria-selected','true');
+  renderFinder(b.dataset.c);
+});
+
+/* ============ TREATMENT INDEX (accordion) ============ */
+const order = ["analyse","hudpleie","peeling","microneedling","laser","kosmetisk"];
+const tindex = document.getElementById('tindex');
+tindex.innerHTML = order.map(function(k,ix){
+  const t = TREATMENTS[k];
+  return '<div class="t-item" data-k="'+k+'">'
+    +'<button class="t-row" aria-expanded="false">'
+    +'<span class="num">'+String(ix+1).padStart(2,'0')+'</span>'
+    +'<span class="t-name">'+t.name+'</span>'
+    +'<span class="t-cat">'+t.tag+'</span>'
+    +'<span class="t-toggle">+</span>'
+    +'</button>'
+    +'<div class="t-body"><div class="t-inner">'
+    +'<div><h4>Resultat '+(ix+1)+'</h4>'+t.r+'</div>'
+    +'<div><h4>Hva det passer for</h4><ul class="facs">'+t.fit.split(',').map(x=>'<li><span class="tick">✓</span>'+x.trim()+'</li>').join('')+'</ul></div>'
+    +'<div class="price-row"><h4>Pris &amp; varighet</h4><div class="price">'+t.price+'</div><div class="pr-note">Varighet: '+t.dur+' · Konsultasjon anbefales først</div>'
+    +'<a href="#booking" class="link-arrow" style="margin-top:.6rem">Book denne</a></div>'
+    +'</div></div></div>';
+}).join('');
+
+tindex.addEventListener('click', function(e){
+  const row = e.target.closest('.t-row'); if(!row) return;
+  const item = row.closest('.t-item');
+  const wasOpen = item.classList.contains('open');
+  tindex.querySelectorAll('.t-item.open').forEach(function(i){ if(i!==item){i.classList.remove('open'); i.querySelector('.t-row').setAttribute('aria-expanded','false');} });
+  item.classList.toggle('open', !wasOpen);
+  row.setAttribute('aria-expanded', String(!wasOpen));
+});
+
+/* ============ FAQ ============ */
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click', function(){
+    const item = q.closest('.faq-item');
+    const open = item.classList.toggle('open');
+    q.setAttribute('aria-expanded', String(open));
+  });
+});
+
+/* ============ BEFORE / AFTER ============ */
+const baFrame = document.getElementById('baFrame');
+const baHandle = document.getElementById('baHandle');
+const baRange = document.getElementById('baRange');
+const beforeImg = baFrame.querySelector('.beforeing');
+function setBA(v){
+  v = Math.max(0, Math.min(100, v));
+  beforeImg.style.clipPath = 'inset(0 '+ (100-v) +'% 0 0)';
+  baHandle.style.left = v + '%';
+  baRange.value = v;
+}
+baRange.addEventListener('input', function(){ setBA(parseFloat(this.value)); });
+
+/* drag support */
+let dragging=false;
+function move(e){
+  const r = baFrame.getBoundingClientRect();
+  const v = ((e.clientX || e.touches[0].clientX) - r.left)/r.width*100;
+  setBA(v);
+}
+baFrame.addEventListener('mousedown', function(e){dragging=true;move(e);});
+document.addEventListener('mousemove', function(e){ if(dragging) move(e); });
+document.addEventListener('mouseup', function(){dragging=false;});
+baFrame.addEventListener('touchstart', function(e){move(e);},{passive:true});
+baFrame.addEventListener('touchmove', function(e){move(e);},{passive:true});
+
+/* ============ REVIEWS ============ */
+const revs = document.querySelectorAll('#revtrack .rev');
+const revDots = document.getElementById('revDots');
+let curRev = 0;
+revs.forEach(function(_,i){
+  const d = document.createElement('i'); if(i===0)d.classList.add('on');
+  d.addEventListener('click',function(){showRev(i);});
+  revDots.appendChild(d);
+});
+function showRev(i){
+  curRev = (i+revs.length)%revs.length;
+  revs.forEach(function(r,j){ r.classList.toggle('on', j===curRev); });
+  revDots.querySelectorAll('i').forEach(function(d,j){ d.classList.toggle('on', j===curRev); });
+}
+document.getElementById('revNext').addEventListener('click',function(){showRev(curRev+1);});
+document.getElementById('revPrev').addEventListener('click',function(){showRev(curRev-1);});
+let revTimer = setInterval(function(){showRev(curRev+1);},7000);
+document.getElementById('omtaler').addEventListener('click',function(){clearInterval(revTimer);});
+
+/* ============ HEADER SCROLL + SCROLLSPY ============ */
+const header = document.getElementById('siteheader');
+window.addEventListener('scroll', function(){
+  header.classList.toggle('scrolled', window.scrollY>20);
+},{passive:true});
+
+const spyLinks = document.querySelectorAll('#menu a');
+const sections = [];
+spyLinks.forEach(a=>{ const s=document.querySelector(a.getAttribute('href')); if(s) sections.push([s,a]); });
+const spy = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){
+      spyLinks.forEach(a=>a.classList.remove('active'));
+      const found = sections.find(function(s){return s[0]===en.target;});
+      if(found) found[1].classList.add('active');
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+sections.forEach(function(s){ spy.observe(s[0]); });
+
+/* ============ MOBILE MENU ============ */
+const burger = document.getElementById('burger');
+const mmenu = document.getElementById('mmenu');
+function toggleMenu(force){
+  const open = force!==undefined?force:!mmenu.classList.contains('open');
+  mmenu.classList.toggle('open',open);
+  burger.classList.toggle('open',open);
+  burger.setAttribute('aria-expanded',String(open));
+  document.body.classList.toggle('locked',open);
+}
+burger.addEventListener('click',function(){toggleMenu();});
+mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',function(){toggleMenu(false);}));
+
+/* ============ REVEAL ============ */
+const revObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){ en.target.classList.add('in'); revObs.unobserve(en.target); }
+  });
+},{threshold:.14,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){ revObs.observe(el); });
+
+/* ============ BOOKING ============ */
+const dateSel = document.getElementById('fDate');
+const slotsWrap = document.getElementById('fSlots');
+const DAYS=['søndag','mandag','tirsdag','onsdag','torsdag','fredag','lørdag'];
+const MONTHS=['jan','feb','mar','apr','mai','jun','jul','aug','sep','okt','nov','des'];
+function nextDays(n){
+  const arr=[]; const d=new Date();
+  while(arr.length<n){
+    d.setDate(d.getDate()+1);
+    if(d.getDay()!==0) arr.push(new Date(d));
+  }
+  return arr;
+}
+const dayList = nextDays(10);
+dayList.forEach(function(d){
+  const opt=document.createElement('option');
+  opt.value=d.toISOString().split('T')[0];
+  opt.textContent = DAYS[d.getDay()].charAt(0).toUpperCase()+DAYS[d.getDay()].slice(1)+' '+d.getDate()+'. '+MONTHS[d.getMonth()];
+  dateSel.appendChild(opt);
+});
+const SLOT_TIMES = ['09:00','09:45','10:30','11:15','12:00','13:00','13:45','14:30','15:15','16:00','16:45','17:30'];
+SLOT_TIMES.forEach(function(t){
+  const s=document.createElement('button'); s.type='button'; s.className='slot'; s.textContent=t;
+  s.addEventListener('click',function(){
+    slotsWrap.querySelectorAll('.slot').forEach(x=>x.classList.remove('on'));
+    s.classList.add('on');
+  });
+  slotsWrap.appendChild(s);
+});
+let chosenSlot = null;
+slotsWrap.addEventListener('click',function(e){ if(e.target.classList.contains('slot')) chosenSlot=e.target.textContent; });
+
+/* toast */
+const toast=document.getElementById('toast'), toastTxt=document.getElementById('toastTxt');
+let toastTimer;
+function showToast(msg){
+  toastTxt.textContent=msg; toast.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(function(){toast.classList.remove('show');},3200);
+}
+slotsWrap.addEventListener('click',function(){
+  if(chosenSlot) showToast('Valgt tid: '+chosenSlot+' — fullfør skjemaet for å bekrefte.');
+});
+
+const form = document.getElementById('bookForm');
+function mark(el,ok){ el.closest('.field').classList.toggle('invalid',!ok); return ok; }
+function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  const beh=document.getElementById('fBeh');
+  const first=document.getElementById('fFirst');
+  const last=document.getElementById('fLast');
+  const phone=document.getElementById('fPhone');
+  const email=document.getElementById('fEmail');
+  const date=document.getElementById('fDate');
+  let ok=true;
+  ok = mark(beh, beh.value!=="") && ok;
+  ok = mark(first, first.value.trim().length>1) && ok;
+  ok = mark(last, last.value.trim().length>1) && ok;
+  ok = mark(phone, /^[+\d][\d\s\-().]{6,}$/.test(phone.value.trim())) && ok;
+  ok = mark(email, validEmail(email.value.trim())) && ok;
+  if(!chosenSlot){ showToast('Velg et tidspunkt før du bekrefter.'); ok=false; }
+  if(!ok){ showToast('Noen felt mangler — sjekk skjemaet.'); return; }
+  // build success summary
+  const dStr = dateSel.options[dateSel.selectedIndex].textContent.replace(/^./,function(c){return c.toLowerCase();});
+  const sum = document.getElementById('successSum');
+  sum.innerHTML = '<div><span>Behandling</span><b>'+beh.value+'</b></div>'
+    +'<div><span>Tidspunkt</span><b>'+dStr+' kl. '+chosenSlot+'</b></div>'
+    +'<div><span>Kunde</span><b>'+first.value.trim()+' '+last.value.trim()+'</b></div>'
+    +'<div><span>E-post</span><b>'+email.value.trim()+'</b></div>';
+  form.style.display='none';
+  document.getElementById('successBox').classList.add('show');
+  showToast('Bestilling mottatt — velkommen!');
+});
+document.getElementById('againBtn').addEventListener('click',function(){
+  document.getElementById('successBox').classList.remove('show');
+  form.style.display=''; form.reset();
+  slotsWrap.querySelectorAll('.slot.on').forEach(x=>x.classList.remove('on'));
+  chosenSlot=null;
+});
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3727be68896b4f1',t:'MTc4ODc1MDI0NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

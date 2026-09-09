@@ -1,0 +1,2354 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlyttSmart AS — Flyttebyrå i Oslo | Fast pris på 60 sekunder</title>
+<meta name="description" content="FlyttSmart flytter privatpersoner og bedrifter i Oslo og på Østlandet. Få fast pris på 60 sekunder – uten befaring. Privatflytting, bedriftsflytting, pakkehjelp, bærehjelp, mellomlagring og flyttevask.">
+<meta name="theme-color" content="#F5F1E8">
+<meta property="og:title" content="FlyttSmart AS — Flytting uten stress, fast pris på 60 sekunder">
+<meta property="og:description" content="Flyttebyrå i Oslo med digital prisberegner, fast pris og full forsikring. Se prisen din på under et minutt.">
+<meta property="og:type" content="website">
+<link rel="icon" href="images/image-01.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FlyttSmart AS — design system
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#F5F1E8; --paper-2:#ECE7DA; --cream:#FCFAF3; --card:#FFFEF9;
+  --ink:#152119; --ink-2:#3E4A43; --ink-3:#68746C;
+  --line:rgba(21,33,25,.15); --line-2:rgba(21,33,25,.08);
+  --accent:#F04E1F; --accent-deep:#C93B10; --accent-soft:#FFE3D5; --accent-2:#FF6D3D; --accent-ink:#2A0E05;
+  --pine:#10251C; --pine-2:#0B1B14; --pine-3:#1B3A2C; --cream-d:#F2EEE1; --line-d:rgba(242,238,225,.15);
+  --ok:#1F7A4D; --ok-soft:#E1F0E6;
+  --shadow-1:0 1px 2px rgba(21,33,25,.05),0 10px 28px -14px rgba(21,33,25,.22);
+  --shadow-2:0 2px 4px rgba(21,33,25,.05),0 30px 60px -20px rgba(21,33,25,.32);
+  --r-lg:24px; --r-md:16px; --r-sm:12px;
+  --font-d:'Space Grotesk','Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+  --font-b:'Inter','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --font-m:ui-monospace,'SF Mono','Cascadia Mono','Roboto Mono',Menlo,Consolas,monospace;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-b);font-size:16.5px;line-height:1.6;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block}
+button{font-family:inherit;color:inherit}
+input,select,textarea{font-family:inherit;color:inherit}
+::selection{background:var(--accent);color:#FFF7EC}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px;border-radius:4px}
+section{scroll-margin-top:88px}
+
+/* Grain-tekstur */
+body::after{content:"";position:fixed;inset:0;z-index:2000;pointer-events:none;opacity:.5;
+  background-image:url("images/image-02.svg")}
+
+.skip-link{position:fixed;top:-60px;left:16px;z-index:3000;background:var(--ink);color:var(--cream-d);padding:10px 18px;border-radius:12px;font-weight:600;text-decoration:none;transition:top .2s}
+.skip-link:focus{top:14px}
+
+.container{width:min(1180px,100% - clamp(40px,7vw,88px));margin-inline:auto}
+.section{padding-block:clamp(76px,10vw,130px)}
+.sprite{display:none}
+
+/* ---------- Felles ---------- */
+.kicker{display:inline-flex;align-items:center;gap:11px;font:600 12.5px var(--font-m);letter-spacing:.17em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px}
+.kicker::before{content:"";width:22px;height:2.5px;background:var(--accent);border-radius:2px}
+.sec-head{max-width:740px;margin-bottom:clamp(40px,5vw,60px)}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-title{font:700 clamp(1.85rem,1.05rem + 2.9vw,3.05rem)/1.08 var(--font-d);letter-spacing:-.026em;margin-bottom:16px}
+.sec-lede{font-size:17.5px;line-height:1.65;color:var(--ink-2);max-width:62ch}
+.sec-head.center .sec-lede{margin-inline:auto}
+.sec--dark{background:var(--pine);color:var(--cream-d)}
+.sec--dark .kicker{color:var(--accent-2)}
+.sec--dark .kicker::before{background:var(--accent-2)}
+.sec--dark .sec-title{color:var(--cream-d)}
+.sec--dark .sec-lede{color:rgba(242,238,225,.72)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:999px;font:600 16px/1 var(--font-b);border:2px solid transparent;cursor:pointer;text-decoration:none;white-space:nowrap;user-select:none;transition:transform .18s ease,box-shadow .18s ease,background .18s,color .18s,border-color .18s}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn--primary{background:var(--accent);color:#FFF7EC;box-shadow:0 12px 26px -12px rgba(240,78,31,.6)}
+.btn--primary:hover{background:var(--accent-deep);transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(240,78,31,.62)}
+.btn--ghost{background:transparent;border-color:rgba(21,33,25,.3);color:var(--ink)}
+.btn--ghost:hover{border-color:var(--ink);background:rgba(21,33,25,.05);transform:translateY(-2px)}
+.btn--light{background:var(--cream-d);color:var(--ink);box-shadow:0 12px 26px -14px rgba(0,0,0,.5)}
+.btn--light:hover{background:#fff;transform:translateY(-2px)}
+.btn--ghost-light{background:transparent;border-color:rgba(242,238,225,.38);color:var(--cream-d)}
+.btn--ghost-light:hover{background:rgba(242,238,225,.1);transform:translateY(-2px)}
+.btn--dark{background:var(--ink);color:var(--cream-d);box-shadow:0 12px 26px -12px rgba(21,33,25,.5)}
+.btn--dark:hover{background:#0C1710;transform:translateY(-2px)}
+.btn--sm{padding:11px 19px;font-size:14.5px}
+.btn--lg{padding:18px 32px;font-size:17.5px}
+.btn--block{width:100%}
+.btn .ic{transition:transform .2s}
+.btn:hover .ic-arrow{transform:translateX(4px)}
+
+.ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic--fill{fill:currentColor;stroke:none}
+.ic-14{width:14px;height:14px}.ic-16{width:16px;height:16px}.ic-18{width:18px;height:18px}.ic-24{width:24px;height:24px}
+.ic-accent{color:var(--accent)}
+
+/* ---------- Header ---------- */
+.site-head{position:fixed;top:0;left:0;right:0;z-index:80;border-bottom:1.5px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s,backdrop-filter .3s}
+.site-head.is-scrolled{background:rgba(245,241,232,.88);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);border-bottom-color:var(--line-2);box-shadow:0 10px 34px -22px rgba(21,33,25,.3)}
+.head-in{display:flex;align-items:center;gap:26px;height:80px;transition:height .3s}
+.site-head.is-scrolled .head-in{height:66px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
+.brand-mark{width:37px;height:37px;border-radius:11px;background:var(--accent);display:grid;place-items:center;color:#FFF7EC;box-shadow:inset 0 -2px 0 rgba(0,0,0,.14),0 6px 14px -6px rgba(240,78,31,.55);transition:transform .3s}
+.brand:hover .brand-mark{transform:rotate(-8deg) scale(1.05)}
+.brand-mark .ic{width:19px;height:19px;stroke-width:2.4}
+.brand-name{font:700 19.5px var(--font-d);letter-spacing:-.02em;white-space:nowrap}
+.brand-name em{font-style:normal;color:var(--accent-deep)}
+.main-nav{display:flex;gap:4px;margin-inline:auto}
+.nav-link{position:relative;font:600 15px var(--font-b);color:var(--ink-2);text-decoration:none;padding:8px 12px;border-radius:10px;transition:color .2s,background .2s}
+.nav-link::after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;background:var(--accent);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav-link:hover{color:var(--ink);background:rgba(21,33,25,.05)}
+.nav-link:hover::after,.nav-link.is-active::after{transform:scaleX(1)}
+.nav-link.is-active{color:var(--ink)}
+.head-actions{display:flex;align-items:center;gap:14px}
+.head-tel{display:flex;align-items:center;gap:9px;font:700 15px var(--font-b);color:var(--ink);text-decoration:none}
+.head-tel .tel-ic{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--accent-deep);transition:background .2s,border-color .2s}
+.head-tel:hover .tel-ic{border-color:var(--accent);background:var(--accent-soft)}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--cream);cursor:pointer;place-items:center}
+.burger .ic{width:22px;height:22px}
+
+/* Mobilmeny */
+.mnav{position:fixed;inset:0;z-index:90;background:var(--pine-2);color:var(--cream-d);display:flex;flex-direction:column;padding:22px clamp(20px,5vw,40px) 30px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .32s,transform .32s,visibility .32s}
+.mnav.open{opacity:1;visibility:visible;transform:none}
+.mnav-head{display:flex;align-items:center;justify-content:space-between;height:58px}
+.mnav-close{width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line-d);background:transparent;color:var(--cream-d);cursor:pointer;display:grid;place-items:center}
+.mnav-links{margin:auto 0;display:flex;flex-direction:column}
+.mnav-link{display:flex;align-items:baseline;gap:16px;font:700 clamp(1.7rem,7vw,2.5rem) var(--font-d);letter-spacing:-.02em;color:var(--cream-d);text-decoration:none;padding:16px 4px;border-bottom:1px solid var(--line-d)}
+.mnav-link small{font:600 13px var(--font-m);color:var(--accent-2)}
+.mnav-link:active{color:var(--accent-2)}
+.mnav-foot{display:flex;flex-direction:column;gap:12px}
+.mnav-foot .mnav-tel{display:flex;align-items:center;gap:10px;font:600 15px;color:rgba(242,238,225,.8);text-decoration:none;margin-bottom:4px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:clamp(140px,17vh,180px) 0 clamp(56px,7vw,90px);overflow:hidden}
+.hero::before{content:"";position:absolute;top:-220px;right:-180px;width:640px;height:640px;border-radius:50%;background:radial-gradient(closest-side,rgba(240,78,31,.09),transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;bottom:-260px;left:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(closest-side,rgba(27,58,44,.1),transparent 70%);pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(36px,5vw,72px);align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:var(--cream);border:1.5px solid var(--line);border-radius:999px;padding:9px 16px 9px 12px;font:600 13.5px var(--font-b);color:var(--ink-2);text-decoration:none;box-shadow:var(--shadow-1);transition:transform .2s,border-color .2s}
+.hero-badge:hover{transform:translateY(-2px);border-color:var(--accent)}
+.hero-badge .ic{color:var(--accent);width:15px;height:15px}
+.pulse{position:relative;width:9px;height:9px;border-radius:50%;background:var(--ok);flex:none}
+.pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--ok);animation:pulse 1.8s ease-out infinite}
+.hero-h{font:700 clamp(2.45rem,1.3rem + 4.6vw,4.35rem)/1.04 var(--font-d);letter-spacing:-.035em;margin:26px 0 22px;max-width:13ch}
+.hl{position:relative;display:inline-block;white-space:nowrap}
+.hl svg{position:absolute;left:-1.5%;bottom:-.14em;width:103%;height:.32em;overflow:visible}
+.hl path{fill:none;stroke:var(--accent);stroke-width:7.5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s .75s cubic-bezier(.65,0,.3,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-lede{font-size:clamp(16.5px,1vw + 13px,18.5px);line-height:1.68;color:var(--ink-2);max-width:54ch;margin-bottom:34px}
+
+/* Rask start-skjema */
+.qf{background:var(--card);border:1.5px solid var(--line);border-radius:22px;padding:10px;box-shadow:var(--shadow-1);display:flex;gap:8px;align-items:center;max-width:640px}
+.qf-field{flex:1;display:flex;align-items:center;gap:10px;background:var(--paper);border-radius:14px;padding:0 6px 0 14px;border:1.5px solid transparent;transition:border-color .2s}
+.qf-field:focus-within{border-color:var(--ink)}
+.qf-field .ic{color:var(--ink-3);width:17px;height:17px}
+.qf-field input{flex:1;min-width:0;border:0;background:none;padding:15px 10px 15px 0;font:500 15.5px var(--font-b);color:var(--ink)}
+.qf-field input::placeholder{color:var(--ink-3)}
+.qf-field input:focus{outline:none}
+.qf-swap{width:42px;height:42px;flex:none;border-radius:50%;border:1.5px solid var(--line);background:var(--cream);cursor:pointer;display:grid;place-items:center;color:var(--ink-2);transition:border-color .2s,color .2s,transform .4s}
+.qf-swap:hover{border-color:var(--accent);color:var(--accent-deep)}
+.qf-swap .ic{width:17px;height:17px;transform:rotate(90deg)}
+.qf-note{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:14px;font:500 13.5px var(--font-b);color:var(--ink-3)}
+.qf-note span{display:flex;align-items:center;gap:6px}
+.qf-note .ic{width:14px;height:14px;color:var(--ok)}
+.trust-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;margin-top:26px}
+.trust-item{display:flex;align-items:center;gap:9px;font:600 14px var(--font-b);color:var(--ink-2)}
+.stars{display:flex;gap:2px;color:var(--accent)}
+.stars .ic{width:16px;height:16px}
+.trust-sep{width:4px;height:4px;border-radius:50%;background:var(--ink-3);opacity:.5}
+
+/* Hero-kart */
+.hero-visual{position:relative}
+.map-card{position:relative;background:var(--pine);border-radius:26px;border:1px solid rgba(242,238,225,.16);box-shadow:var(--shadow-2);overflow:hidden;aspect-ratio:1/1.02;max-width:560px;margin-left:auto}
+.map-svg{position:absolute;inset:0;width:100%;height:100%}
+.route-march{stroke-dasharray:11 13;animation:march 1.1s linear infinite}
+@keyframes march{to{stroke-dashoffset:-24}}
+.map-deco{position:absolute;border-radius:50%;pointer-events:none}
+.map-deco-1{width:132px;height:132px;border:3px solid var(--accent);top:-26px;right:-26px;opacity:.85}
+.map-deco-2{width:76px;height:76px;border:2.5px solid var(--pine-3);bottom:-16px;left:-18px}
+.float-card{position:absolute;z-index:3;background:var(--cream);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-2);padding:13px 16px;animation:bob 7s ease-in-out infinite}
+.fc-price{top:24px;left:-24px;animation-delay:.3s;min-width:186px}
+.fc-price .fc-l{font:600 10.5px var(--font-m);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep)}
+.fc-price .fc-v{font:700 25px var(--font-d);letter-spacing:-.02em;margin:2px 0 6px}
+.fc-price .fc-r{display:flex;align-items:center;gap:7px;font:500 12.5px var(--font-b);color:var(--ink-2);margin-top:4px}
+.fc-price .fc-r .ic{width:13px;height:13px;color:var(--ok)}
+.fc-crew{right:-18px;bottom:92px;animation-delay:1.4s}
+.fc-crew .fc-avas{display:flex}
+.fc-crew .fc-ava{width:32px;height:32px;border-radius:50%;border:2.5px solid var(--cream);display:grid;place-items:center;font:700 12px var(--font-d);color:#FFF7EC}
+.fc-crew .fc-ava.a1{background:var(--accent)}
+.fc-crew .fc-ava.a2{background:var(--pine-3);margin-left:-10px}
+.fc-crew .fc-n{font:700 13.5px var(--font-b);margin-top:7px}
+.fc-crew .fc-s{display:flex;align-items:center;gap:6px;font:500 12px var(--font-b);color:var(--ink-2);margin-top:1px}
+.fc-crew .dot{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.fc-rating{left:18px;bottom:18px;background:var(--pine);border-color:rgba(242,238,225,.22);color:var(--cream-d);display:flex;align-items:center;gap:9px;animation-delay:.8s}
+.fc-rating .ic{color:var(--accent-2)}
+.fc-rating b{font:700 15px var(--font-d)}
+.fc-rating span{font:500 12.5px var(--font-b);color:rgba(242,238,225,.75)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ---------- Tall-bånd ---------- */
+.stats{border-block:1.5px solid var(--line);background:var(--cream)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);padding-block:34px}
+.stat{text-align:center;padding-inline:12px}
+.stat + .stat{border-left:1.5px solid var(--line)}
+.stat-n{font:700 clamp(1.9rem,3vw,2.9rem)/1.05 var(--font-d);letter-spacing:-.025em;font-variant-numeric:tabular-nums}
+.stat-n small{font-size:.55em;color:var(--accent-deep);font-weight:700;margin-left:2px}
+.stat-l{font:500 14px var(--font-b);color:var(--ink-2);margin-top:7px}
+
+/* Område-marquee */
+.areas{border-bottom:1.5px solid var(--line);padding:13px 0;overflow:hidden;background:var(--paper)}
+.areas-track{display:flex;width:max-content;animation:mq 36s linear infinite}
+.areas-track span{display:flex;align-items:center;gap:14px;padding-right:14px;font:600 12.5px var(--font-m);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.areas-track span::after{content:"✳";color:var(--accent);font-size:11px}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+
+/* ---------- Tjenester ---------- */
+.svc-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.svc-list{border-top:1.5px solid var(--line)}
+.svc-item{border-bottom:1.5px solid var(--line)}
+.svc-row{display:grid;grid-template-columns:58px 1fr auto 40px;grid-template-areas:"num name price chev";align-items:center;gap:20px;width:100%;padding:25px 6px;background:none;border:0;cursor:pointer;text-align:left;transition:background .2s,padding .25s}
+.svc-row:hover{background:rgba(252,250,243,.9);padding-left:14px}
+.svc-num{grid-area:num;font:600 14.5px var(--font-m);color:var(--ink-3);transition:color .2s}
+.svc-item:hover .svc-num,.svc-item.open .svc-num{color:var(--accent-deep)}
+.svc-namebox{grid-area:name;min-width:0}
+.svc-name{font:700 clamp(1.15rem,2vw,1.5rem) var(--font-d);letter-spacing:-.015em;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.svc-tag{display:block;font:400 15px var(--font-b);color:var(--ink-2);margin-top:3px}
+.badge-pop{display:inline-flex;align-items:center;gap:6px;font:600 11px var(--font-m);letter-spacing:.1em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent-deep);border-radius:99px;padding:4px 11px}
+.svc-price{grid-area:price;text-align:right;white-space:nowrap}
+.svc-price small{display:block;font:500 12.5px var(--font-b);color:var(--ink-3)}
+.svc-price b{font:700 17px var(--font-d);letter-spacing:-.01em}
+.svc-chev{grid-area:chev;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--ink-2);transition:transform .35s cubic-bezier(.16,1,.3,1),background .25s,color .25s,border-color .25s}
+.svc-item.open .svc-chev{transform:rotate(180deg);background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.svc-panel{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1)}
+.svc-panel-in{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;padding:6px 6px 34px 78px}
+.svc-desc{font-size:16px;line-height:1.68;color:var(--ink-2);max-width:56ch}
+.svc-incl{background:var(--cream);border:1.5px solid var(--line);border-radius:18px;padding:20px 22px}
+.svc-incl h5{font:600 11.5px var(--font-m);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.svc-incl li{display:flex;gap:10px;align-items:flex-start;font:500 14.5px var(--font-b);color:var(--ink-2);padding:4.5px 0}
+.svc-incl li .ic{width:15px;height:15px;color:var(--ok);margin-top:4px}
+.svc-cta{margin-top:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+
+/* ---------- Kalkulator ---------- */
+.calc{position:relative;overflow:hidden}
+.calc-bg{position:absolute;inset:0;background-image:radial-gradient(rgba(242,238,225,.07) 1.5px,transparent 1.5px);background-size:26px 26px;pointer-events:none}
+.calc .container{position:relative}
+.wiz{position:relative;background:var(--card);border-radius:28px;box-shadow:var(--shadow-2);max-width:1060px;margin:clamp(28px,4vw,48px) auto 0;border:1px solid rgba(242,238,225,.2);overflow:hidden}
+.wiz.pulse-ring{animation:wizPulse 1.1s ease-out 2}
+@keyframes wizPulse{0%{box-shadow:0 0 0 0 rgba(240,78,31,.55),var(--shadow-2)}100%{box-shadow:0 0 0 26px rgba(240,78,31,0),var(--shadow-2)}}
+.wiz-top{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;padding:20px 28px;border-bottom:1.5px solid var(--line);background:#FBF8F0}
+.wp-steps{display:grid;grid-template-columns:repeat(5,1fr);flex:1;min-width:0;position:relative;padding:0 4px}
+.wp-track{position:absolute;top:18px;left:10%;right:10%;height:2.5px;background:var(--line-2);border-radius:3px}
+.wp-fill{height:100%;width:0;background:var(--accent);border-radius:3px;transition:width .5s cubic-bezier(.6,0,.3,1)}
+.wp-step{position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;background:none;border:0;cursor:pointer;min-width:0;padding:0 2px}
+.wp-step[disabled]{cursor:default}
+.wp-dot{width:36px;height:36px;border-radius:50%;border:2px solid var(--line);background:var(--card);display:grid;place-items:center;font:600 13px var(--font-m);color:var(--ink-3);transition:all .25s;position:relative;z-index:1}
+.wp-step.is-active .wp-dot{border-color:var(--accent);color:var(--accent-deep);box-shadow:0 0 0 4px var(--accent-soft);transform:scale(1.06)}
+.wp-step.is-done .wp-dot{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.wp-step.is-done:hover .wp-dot{background:var(--accent-deep);border-color:var(--accent-deep)}
+.wp-l{font:600 12px var(--font-b);color:var(--ink-3);white-space:nowrap;transition:color .2s}
+.wp-step.is-active .wp-l{color:var(--ink);font-weight:700}
+.wiz-est{display:flex;flex-direction:column;align-items:flex-end;gap:3px;padding-left:24px;border-left:1.5px dashed var(--line)}
+.wiz-est-l{font:600 10.5px var(--font-m);letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.wiz-est-v{font:700 23px var(--font-d);letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap;transition:transform .2s}
+.wiz-est-v.tick{animation:tickPop .45s ease}
+@keyframes tickPop{35%{transform:scale(1.08)}}
+.wiz-main{display:grid;grid-template-columns:1fr 296px}
+.wiz-body{padding:clamp(24px,3.4vw,36px) clamp(20px,3.4vw,38px) 30px;min-width:0}
+.ws{display:none}
+.ws.is-active{display:block;animation:stepIn .42s cubic-bezier(.16,1,.3,1)}
+@keyframes stepIn{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+.ws-title{font:700 clamp(1.3rem,2.3vw,1.62rem) var(--font-d);letter-spacing:-.018em;margin-bottom:6px}
+.ws-sub{color:var(--ink-2);font-size:15.5px;margin-bottom:24px}
+.ws-h{font:600 11.5px var(--font-m);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:26px 0 12px}
+.ws-h:first-child{margin-top:0}
+
+/* Adresser steg 1 */
+.rf{display:grid;grid-template-columns:1fr 52px 1fr;gap:10px;align-items:end}
+.rf-swap{width:46px;height:46px;margin-bottom:3px;border-radius:50%;border:1.5px solid var(--line);background:var(--cream);cursor:pointer;display:grid;place-items:center;color:var(--ink-2);transition:border-color .2s,color .2s}
+.rf-swap:hover{border-color:var(--accent);color:var(--accent-deep)}
+.rf-swap .ic{width:18px;height:18px;transform:rotate(90deg);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.route-meta{margin-top:16px}
+.rm-chip{display:inline-flex;align-items:center;gap:9px;background:var(--ok-soft);border:1.5px solid rgba(31,122,77,.25);color:var(--ink);border-radius:99px;padding:9px 16px;font:600 14px var(--font-b)}
+.rm-chip .ic{width:15px;height:15px;color:var(--ok)}
+.rm-chip b{color:var(--ok)}
+
+/* Felter */
+.field{position:relative;min-width:0}
+.field>label{display:block;font:600 13.5px var(--font-b);color:var(--ink-2);margin-bottom:8px}
+.field .ic-field{position:absolute;left:15px;bottom:15px;color:var(--ink-3);width:17px;height:17px;pointer-events:none}
+.inp{width:100%;padding:15px 16px 15px 45px;border:1.5px solid var(--line);border-radius:14px;background:var(--card);font:500 16px var(--font-b);color:var(--ink);transition:border-color .2s,box-shadow .2s,background .2s}
+.inp::placeholder{color:#9AA49D}
+.inp:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3.5px rgba(21,33,25,.08)}
+.inp.is-err{border-color:#C43D2A;box-shadow:0 0 0 3.5px rgba(196,61,42,.12);animation:shake .35s}
+.inp--plain{padding-left:16px}
+.inp--date{padding-left:16px}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.ac{position:relative}
+.ac-list{position:absolute;top:calc(100% + 7px);left:0;right:0;background:var(--cream);border:1.5px solid var(--line);border-radius:15px;box-shadow:var(--shadow-2);z-index:35;display:none;max-height:262px;overflow-y:auto}
+.ac.open .ac-list{display:block}
+.ac-item{display:flex;align-items:center;gap:11px;width:100%;padding:11.5px 15px;background:none;border:0;cursor:pointer;text-align:left;font:500 14.5px var(--font-b);color:var(--ink-2)}
+.ac-item .ic{width:15px;height:15px;color:var(--ink-3)}
+.ac-item b{font-weight:600;color:var(--ink)}
+.ac-item:hover,.ac-item.is-sel{background:var(--paper-2)}
+.ac-item:hover .ic,.ac-item.is-sel .ic{color:var(--accent-deep)}
+.ac-hint{display:flex;align-items:center;gap:8px;padding:9px 15px;font:500 12.5px var(--font-b);color:var(--ink-3);border-top:1px dashed var(--line)}
+.ac-hint .ic{width:13px;height:13px}
+
+/* Valgkort */
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:11px}
+.opt{position:relative;display:flex;flex-direction:column;gap:7px;padding:16px 15px;border:1.5px solid var(--line);border-radius:16px;background:var(--card);cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s}
+.opt:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:var(--shadow-1)}
+.opt .opt-ic{color:var(--ink-2);transition:color .2s}
+.opt .opt-ic .ic{width:23px;height:23px}
+.opt-t{font:700 15.5px var(--font-d);letter-spacing:-.01em}
+.opt-s{font:400 13px/1.45 var(--font-b);color:var(--ink-3)}
+.opt .badge-pop{align-self:flex-start;margin-top:2px}
+.opt-grid.opt-2{grid-template-columns:repeat(2,1fr)}
+.opt::after{content:"";position:absolute;top:12px;right:12px;width:21px;height:21px;border-radius:50%;background:var(--accent) url("images/image-03.svg") center/12px no-repeat;transform:scale(.4);opacity:0;transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s}
+.opt.is-on{border-color:var(--accent);background:#FFF6F1;box-shadow:0 0 0 1.5px var(--accent)}
+.opt.is-on .opt-ic{color:var(--accent-deep)}
+.opt.is-on::after{transform:scale(1);opacity:1}
+.opt--wide{flex-direction:row;align-items:center;gap:14px}
+.opt--wide .opt-ic .ic{width:26px;height:26px}
+.opt--wide .opt-txt{display:flex;flex-direction:column;gap:2px}
+
+/* Segmenter */
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg-btn{border:1.5px solid var(--line);border-radius:12px;padding:10px 16px;font:600 14px var(--font-b);background:var(--card);color:var(--ink-2);cursor:pointer;transition:all .18s}
+.seg-btn:hover{border-color:var(--ink);color:var(--ink)}
+.seg-btn.is-on{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.seg-note{font:400 13px var(--font-b);color:var(--ink-3);margin-top:10px}
+
+/* Etasjer */
+.floor-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.floor-card{border:1.5px solid var(--line);border-radius:18px;padding:18px;background:var(--card)}
+.floor-card h5{font:600 11.5px var(--font-m);letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.floor-card h5 .ic{width:14px;height:14px;color:var(--accent-deep)}
+.floor-card .seg-btn{padding:9px 13px;font-size:13.5px}
+.switch-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);cursor:pointer}
+.switch-row .sw-txt{display:flex;flex-direction:column;gap:1px}
+.switch-row .sw-txt b{font:600 14.5px var(--font-b)}
+.switch-row .sw-txt span{font:400 12.5px var(--font-b);color:var(--ink-3)}
+.switch{position:relative;width:46px;height:27px;flex:none}
+.switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.switch .knob{position:absolute;inset:0;border-radius:99px;background:var(--line);transition:background .22s}
+.switch .knob::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(21,33,25,.3);transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
+.switch input:checked + .knob{background:var(--ok)}
+.switch input:checked + .knob::after{transform:translateX(19px)}
+.switch input:focus-visible + .knob{outline:2.5px solid var(--accent);outline-offset:2px}
+
+/* Avkrysningskort */
+.check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:11px}
+.check-card{position:relative;display:flex;gap:13px;align-items:flex-start;padding:16px;border:1.5px solid var(--line);border-radius:16px;background:var(--card);cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+.check-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+.check-card input{position:absolute;opacity:0;pointer-events:none}
+.cbx{flex:none;width:22px;height:22px;border-radius:7px;border:1.8px solid var(--line);background:var(--card);display:grid;place-items:center;transition:all .2s;margin-top:1px}
+.cbx .ic{width:13px;height:13px;color:#FFF7EC;opacity:0;transform:scale(.5);transition:all .18s}
+.check-card.is-on{border-color:var(--accent);background:#FFF6F1;box-shadow:0 0 0 1.5px var(--accent)}
+.check-card.is-on .cbx{background:var(--accent);border-color:var(--accent)}
+.check-card.is-on .cbx .ic{opacity:1;transform:scale(1)}
+.check-card .cc-t{font:700 15px var(--font-d);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.check-card .cc-s{font:400 13px/1.5 var(--font-b);color:var(--ink-3);margin-top:2px}
+.check-card .cc-p{margin-left:auto;font:700 13.5px var(--font-b);color:var(--accent-deep);white-space:nowrap}
+.check-card:has(input:focus-visible){outline:2.5px solid var(--accent);outline-offset:2px}
+
+/* Dato + kontakt */
+.date-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.quick-dates{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.qdate{border:1.5px dashed var(--line);background:var(--paper);border-radius:99px;padding:7px 13px;font:600 13px var(--font-b);color:var(--ink-2);cursor:pointer;transition:all .18s}
+.qdate:hover{border-color:var(--accent);color:var(--accent-deep);border-style:solid;background:var(--accent-soft)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:4px}
+.ws-consent{font:400 13px/1.55 var(--font-b);color:var(--ink-3);margin-top:16px;display:flex;gap:8px}
+.ws-consent .ic{width:15px;height:15px;flex:none;margin-top:2px;color:var(--ok)}
+
+/* Sidepanel */
+.wiz-aside{border-left:1.5px dashed var(--line);background:#FAF6EB;padding:24px 22px}
+.wa-h{font:600 11px var(--font-m);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.wa-row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.wa-row:last-of-type{border-bottom:0}
+.wa-k{color:var(--ink-3);flex:none}
+.wa-v{font-weight:600;text-align:right;min-width:0}
+.inc-card{margin-top:16px;background:var(--pine);color:var(--cream-d);border-radius:16px;padding:16px 17px}
+.inc-card h5{font:600 10.5px var(--font-m);letter-spacing:.15em;text-transform:uppercase;color:var(--accent-2);margin-bottom:10px}
+.inc-card li{display:flex;gap:9px;align-items:flex-start;font:500 13px/1.5 var(--font-b);color:rgba(242,238,225,.85);padding:3.5px 0}
+.inc-card li .ic{width:13px;height:13px;color:var(--accent-2);margin-top:3px;flex:none}
+
+/* Wizard-footer */
+.wiz-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 28px;border-top:1.5px solid var(--line);background:#FBF8F0}
+.wiz-back{display:flex;align-items:center;gap:8px;background:none;border:0;font:600 15px var(--font-b);color:var(--ink-2);cursor:pointer;padding:10px 8px;border-radius:10px;transition:color .2s}
+.wiz-back:hover:not(:disabled){color:var(--ink)}
+.wiz-back:disabled{opacity:.35;cursor:default}
+.wiz-hint{display:flex;align-items:center;gap:8px;font:500 13px var(--font-b);color:var(--ink-3)}
+.wiz-hint kbd{font:600 11.5px var(--font-m);border:1.5px solid var(--line);border-bottom-width:2.5px;border-radius:6px;padding:2px 7px;background:var(--cream)}
+.wiz.no-foot .wiz-foot{display:none}
+.calc-fine{text-align:center;font-size:13px;color:rgba(242,238,225,.55);max-width:640px;margin:22px auto 0;line-height:1.6}
+.calc-fine button{background:none;border:0;color:rgba(242,238,225,.8);font:600 13px var(--font-b);text-decoration:underline;cursor:pointer;padding:0}
+
+/* Resultat */
+.result-price{display:flex;flex-direction:column;gap:4px;margin-bottom:20px}
+.rp-label{font:600 12px var(--font-m);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.rp-num{font:800 clamp(2.7rem,6vw,3.8rem)/1 var(--font-d);letter-spacing:-.035em;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:10px}
+.rp-num .kr{font-size:.42em;font-weight:700;color:var(--ink-2);letter-spacing:0}
+.rp-sub{display:flex;flex-wrap:wrap;align-items:center;gap:9px;font:500 13.5px var(--font-b);color:var(--ink-3)}
+.rp-sub .chip-ok{display:inline-flex;align-items:center;gap:6px;background:var(--ok-soft);color:var(--ok);font-weight:700;border-radius:99px;padding:4px 11px;font-size:12.5px}
+.rp-sub .chip-ok .ic{width:13px;height:13px}
+.result-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.r-chip{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:1.5px solid var(--line);border-radius:99px;padding:7px 13px;font:600 13px var(--font-b);color:var(--ink-2)}
+.r-chip .ic{width:14px;height:14px;color:var(--accent-deep)}
+.breakdown{border:1.5px solid var(--line);border-radius:18px;padding:6px 20px;background:var(--card)}
+.b-row{display:flex;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1.5px dashed var(--line);font-size:14.5px}
+.b-row:last-child{border-bottom:0}
+.b-k{color:var(--ink-2)}
+.b-dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:20px}
+.b-v{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.b-v.zero{color:var(--ink-3);font-weight:600}
+.b-total{padding:15px 0 12px}
+.b-total .b-k{font:700 16px var(--font-d)}
+.b-total .b-v{font:800 22px var(--font-d);letter-spacing:-.02em}
+.b-mva{padding:0 0 12px;font-size:12.5px;color:var(--ink-3)}
+.result-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.result-alt{margin-top:14px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.link-btn{display:inline-flex;align-items:center;gap:7px;background:none;border:0;font:600 14.5px var(--font-b);color:var(--ink-2);cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:4px 0}
+.link-btn:hover{color:var(--ink)}
+
+/* ---------- Prosess ---------- */
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;position:relative}
+.proc-grid::before{content:"";position:absolute;top:27px;left:11%;right:11%;border-top:2.5px dashed var(--line)}
+.runner{position:absolute;top:22.5px;left:10%;width:10px;height:10px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 5px var(--accent-soft);animation:run 9s linear infinite;z-index:1}
+@keyframes run{0%{left:10%;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:90%;opacity:0}}
+.pstep{position:relative}
+.p-ic{width:56px;height:56px;border-radius:17px;background:var(--cream);border:1.5px solid var(--line);display:grid;place-items:center;margin-bottom:16px;position:relative;z-index:1;color:var(--ink);box-shadow:0 0 0 6px var(--paper);transition:transform .3s,border-color .3s,color .3s}
+.pstep:hover .p-ic{transform:translateY(-4px) rotate(-4deg);border-color:var(--accent);color:var(--accent-deep)}
+.p-num{position:absolute;top:-14px;right:2px;font:800 56px/1 var(--font-d);color:rgba(21,33,25,.07);letter-spacing:-.04em;pointer-events:none}
+.p-t{font:700 1.16rem var(--font-d);letter-spacing:-.015em;margin-bottom:7px}
+.p-d{font-size:15px;color:var(--ink-2);line-height:1.62;margin-bottom:14px;max-width:30ch}
+.p-chip{display:inline-flex;align-items:center;gap:7px;font:600 11.5px var(--font-m);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);background:var(--accent-soft);padding:6px 12px;border-radius:99px}
+.p-chip .ic{width:13px;height:13px}
+
+/* ---------- Sammenligning ---------- */
+.cmp-card{border:1.5px solid var(--line);border-radius:24px;overflow:hidden;background:var(--cream);box-shadow:var(--shadow-1)}
+.cmp-row{display:grid;grid-template-columns:.62fr 1.19fr 1.19fr}
+.cmp-row + .cmp-row{border-top:1px solid var(--line-2)}
+.cmp-cell{padding:16px 20px;font:400 14.5px/1.5 var(--font-b);display:flex;gap:11px;align-items:center}
+.cmp-label{font:700 15px var(--font-d);letter-spacing:-.01em;align-items:center;color:var(--ink)}
+.cmp-us{background:#F0F6EC;font-weight:600;color:var(--ink)}
+.cmp-them{color:var(--ink-3);background:var(--cream)}
+.cmp-yes{flex:none;width:22px;height:22px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center}
+.cmp-yes .ic{width:12px;height:12px;stroke-width:3}
+.cmp-no{flex:none;width:22px;height:22px;border-radius:50%;background:#EBD8D0;color:#A2402C;display:grid;place-items:center}
+.cmp-no .ic{width:11px;height:11px;stroke-width:3}
+.cmp-head .cmp-us{background:var(--pine);color:var(--cream-d);font:700 16.5px var(--font-d);align-items:center;gap:12px}
+.cmp-head .cmp-us .brand-mark{width:30px;height:30px;border-radius:9px}
+.cmp-head .cmp-us .brand-mark .ic{width:15px;height:15px}
+.cmp-head .cmp-them{background:var(--paper-2);color:var(--ink-3);font:700 16.5px var(--font-d)}
+.cmp-head .cmp-cell{padding:19px 20px}
+.cmp-note{font:400 13px var(--font-b);color:var(--ink-3);margin-top:14px}
+
+/* ---------- Priser ---------- */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pcard{position:relative;display:flex;flex-direction:column;gap:5px;border:1.5px solid var(--line);border-radius:20px;padding:22px 22px 20px;background:var(--cream);transition:transform .22s,box-shadow .22s,border-color .22s}
+.pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow-1);border-color:var(--ink)}
+.pcard .badge-pop{position:absolute;top:-12px;left:20px}
+.pc-t{font:700 17.5px var(--font-d);letter-spacing:-.015em}
+.pc-s{font:400 13.5px/1.55 var(--font-b);color:var(--ink-3);flex:1;margin-top:2px}
+.pc-price{display:flex;align-items:baseline;gap:7px;margin-top:14px}
+.pc-price small{font:500 13px var(--font-b);color:var(--ink-3)}
+.pc-price b{font:800 26px var(--font-d);letter-spacing:-.025em}
+.pc-link{margin-top:13px;display:inline-flex;align-items:center;gap:7px;background:none;border:0;font:600 14px var(--font-b);color:var(--accent-deep);cursor:pointer;padding:0;align-self:flex-start}
+.pc-link .ic{width:15px;height:15px;transition:transform .2s}
+.pc-link:hover .ic{transform:translateX(4px)}
+.routes{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.routes-h{width:100%;font:600 11.5px var(--font-m);letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:2px}
+.route-pill{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--line);border-radius:99px;padding:10px 17px;background:var(--cream);font:600 14.5px var(--font-b);cursor:pointer;transition:all .18s}
+.route-pill .ic{width:14px;height:14px;color:var(--ink-3)}
+.route-pill span{color:var(--ink-3);font-weight:500}
+.route-pill:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-2px)}
+.route-pill:hover .ic{color:var(--accent-deep)}
+.formula{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin-top:38px;padding:22px 24px;border:1.5px dashed var(--line);border-radius:20px;background:rgba(252,250,243,.6)}
+.f-chip{background:var(--pine);color:var(--cream-d);font:600 13.5px var(--font-b);padding:9px 16px;border-radius:99px;white-space:nowrap}
+.f-chip.f-res{background:var(--accent);color:#FFF7EC;box-shadow:0 8px 18px -8px rgba(240,78,31,.55)}
+.f-op{font:800 19px var(--font-d);color:var(--ink-3)}
+.f-note{width:100%;font:400 13px var(--font-b);color:var(--ink-3);margin-top:4px}
+
+/* ---------- Omtaler ---------- */
+.t-head{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;justify-content:center;margin-bottom:14px}
+.t-score{display:flex;align-items:center;gap:12px}
+.t-score .big{font:800 42px/1 var(--font-d);letter-spacing:-.03em;color:var(--cream-d)}
+.t-score .stars .ic{width:19px;height:19px;color:var(--accent-2)}
+.t-score .sub{font:500 13.5px var(--font-b);color:rgba(242,238,225,.6)}
+.t-wrap{max-width:840px;margin:0 auto;text-align:center;position:relative}
+.t-slide{display:none}
+.t-slide.is-active{display:block;animation:fadeUp .55s cubic-bezier(.16,1,.3,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.t-stars{display:flex;gap:4px;justify-content:center;margin-bottom:26px;color:var(--accent-2)}
+.t-stars .ic{width:17px;height:17px}
+.t-quote{font:600 clamp(1.22rem,1.5vw + .8rem,1.78rem)/1.45 var(--font-d);letter-spacing:-.012em;color:var(--cream-d)}
+.t-quote::before{content:"“"}
+.t-quote::after{content:"”"}
+.t-author{margin-top:28px;display:flex;gap:14px;align-items:center;justify-content:center}
+.t-ava{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font:700 16px var(--font-d);color:#FFF7EC;flex:none}
+.t-ava.v1{background:var(--accent)}
+.t-ava.v2{background:var(--pine-3)}
+.t-ava.v3{background:#5B7A66}
+.t-name{font:700 16px var(--font-b);text-align:left}
+.t-meta{font:500 13.5px var(--font-b);color:rgba(242,238,225,.62);text-align:left;margin-top:1px}
+.t-ctrl{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:34px}
+.t-btn{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(242,238,225,.28);background:transparent;color:var(--cream-d);display:grid;place-items:center;cursor:pointer;transition:all .2s}
+.t-btn:hover{background:var(--cream-d);color:var(--pine);border-color:var(--cream-d)}
+.t-dots{display:flex;gap:8px;margin:0 10px}
+.t-dot{width:8px;height:8px;border-radius:99px;background:rgba(242,238,225,.25);border:0;cursor:pointer;padding:0;transition:width .3s,background .3s}
+.t-dot.is-on{width:28px;background:var(--accent-2)}
+
+/* ---------- FAQ ---------- */
+.faq-list{max-width:780px;margin:0 auto;border-top:1.5px solid var(--line)}
+.faq-item{border-bottom:1.5px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:21px 4px;background:none;border:0;cursor:pointer;text-align:left;font:700 16.5px var(--font-d);letter-spacing:-.012em;color:var(--ink)}
+.faq-q .ic{color:var(--ink-3);transition:transform .32s cubic-bezier(.16,1,.3,1),color .2s;flex:none}
+.faq-item.open .faq-q .ic{transform:rotate(45deg);color:var(--accent-deep)}
+.faq-item.open .faq-q{color:var(--accent-deep)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1)}
+.faq-a p{padding:0 40px 22px 4px;color:var(--ink-2);font-size:15.5px;line-height:1.68;max-width:66ch}
+
+/* ---------- CTA-bånd ---------- */
+.cta-band{background:var(--accent);color:var(--accent-ink);position:relative;overflow:hidden}
+.cta-mq{border-block:2px solid rgba(42,14,5,.16);padding:11px 0;overflow:hidden}
+.cta-mq .mq-track{display:flex;width:max-content;animation:mq 26s linear infinite}
+.cta-mq span{display:flex;align-items:center;gap:18px;padding-right:18px;font:700 14px var(--font-m);letter-spacing:.24em;white-space:nowrap;color:transparent;-webkit-text-stroke:1.2px rgba(42,14,5,.55)}
+.cta-mq span::after{content:"✳";-webkit-text-stroke:0;color:rgba(42,14,5,.55)}
+.cta-in{padding:clamp(64px,8vw,100px) 0;text-align:center}
+.cta-in h2{font:800 clamp(2.1rem,1.2rem + 3.6vw,3.5rem)/1.06 var(--font-d);letter-spacing:-.03em;max-width:20ch;margin-inline:auto}
+.cta-in p{margin:20px auto 34px;max-width:52ch;font-size:clamp(16.5px,.6vw + 14px,19px);color:rgba(42,14,5,.82);font-weight:500;line-height:1.6}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-ghost{display:inline-flex;align-items:center;gap:10px;font:700 16px var(--font-b);color:var(--accent-ink);text-decoration:none;padding:15px 24px;border:2.5px solid rgba(42,14,5,.85);border-radius:999px;transition:all .2s}
+.cta-ghost:hover{background:rgba(42,14,5,.1);transform:translateY(-2px)}
+
+/* ---------- Footer ---------- */
+.site-foot{background:var(--pine-2);color:var(--cream-d)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.15fr;gap:44px;padding:clamp(56px,7vw,80px) 0 48px}
+.foot-brand .brand-name{color:var(--cream-d)}
+.foot-brand .brand-name em{color:var(--accent-2)}
+.foot-tag{margin:16px 0 22px;font-size:15px;color:rgba(242,238,225,.66);max-width:34ch;line-height:1.6}
+.foot-contact{display:flex;flex-direction:column;gap:11px}
+.foot-contact a{display:flex;align-items:center;gap:11px;color:var(--cream-d);text-decoration:none;font:600 15px var(--font-b);transition:color .2s}
+.foot-contact a:hover{color:var(--accent-2)}
+.foot-contact a .ic{width:16px;height:16px;color:var(--accent-2)}
+.foot-contact .fc-static{display:flex;align-items:center;gap:11px;font:500 15px var(--font-b);color:rgba(242,238,225,.66)}
+.foot-contact .fc-static .ic{width:16px;height:16px;color:rgba(242,238,225,.4)}
+.open-chip{display:inline-flex;align-items:center;gap:9px;margin-top:18px;font:600 13px var(--font-b);border:1.5px solid var(--line-d);padding:8px 14px;border-radius:99px;color:rgba(242,238,225,.85);align-self:flex-start}
+.open-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(94,180,132,.22)}
+.open-chip .dot.closed{background:#D9A441;box-shadow:0 0 0 3px rgba(217,164,65,.22)}
+.foot-col h4{font:600 11.5px var(--font-m);letter-spacing:.16em;text-transform:uppercase;color:rgba(242,238,225,.5);margin-bottom:15px}
+.foot-col a{display:block;padding:6px 0;color:rgba(242,238,225,.82);font-size:15px;text-decoration:none;transition:color .2s}
+.foot-col a:hover{color:var(--accent-2)}
+.foot-col p{font-size:14px;color:rgba(242,238,225,.55);line-height:1.6;margin-top:6px}
+.foot-bottom{border-top:1.5px solid var(--line-d);padding:24px 0 30px;display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;font-size:13.5px;color:rgba(242,238,225,.55)}
+.foot-bottom .legal{display:flex;gap:20px;flex-wrap:wrap}
+.foot-bottom a{color:rgba(242,238,225,.65);text-decoration:none}
+.foot-bottom a:hover{color:var(--cream-d)}
+
+/* ---------- Sticky mobil-CTA ---------- */
+.stickybar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;gap:10px;align-items:center;padding:11px 14px calc(11px + env(safe-area-inset-bottom));background:rgba(11,27,20,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line-d);transform:translateY(110%);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.stickybar.show{transform:none}
+.stickybar .btn{flex:1;padding:14px 20px}
+.sticky-tel{width:49px;height:49px;flex:none;border-radius:50%;background:var(--cream-d);color:var(--ink);display:grid;place-items:center;text-decoration:none;transition:transform .2s}
+.sticky-tel:active{transform:scale(.95)}
+
+/* ---------- Modal ---------- */
+.modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;visibility:hidden;opacity:0;transition:opacity .3s,visibility .3s}
+.modal.open{visibility:visible;opacity:1}
+.modal-back{position:absolute;inset:0;background:rgba(11,27,20,.66);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.modal-card{position:relative;width:min(540px,100%);max-height:calc(100vh - 40px);overflow-y:auto;background:var(--cream);border-radius:26px;padding:30px 30px 28px;box-shadow:var(--shadow-2);transform:translateY(18px) scale(.97);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.modal.open .modal-card{transform:none}
+.m-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:6px}
+.m-kick{font:600 11px var(--font-m);letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep)}
+.m-title{font:700 24px var(--font-d);letter-spacing:-.02em;margin-top:5px}
+.m-close{width:40px;height:40px;flex:none;border-radius:50%;border:1.5px solid var(--line);background:var(--card);cursor:pointer;display:grid;place-items:center;color:var(--ink-2);transition:all .2s}
+.m-close:hover{border-color:var(--ink);color:var(--ink);transform:rotate(90deg)}
+.m-rows{margin:20px 0 4px;border:1.5px solid var(--line);border-radius:16px;padding:4px 18px;background:var(--card)}
+.m-row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1.5px dashed var(--line);font-size:14px}
+.m-row:last-child{border-bottom:0}
+.m-row .k{color:var(--ink-3)}
+.m-row .v{font-weight:600;text-align:right}
+.m-row .v.price{font:800 19px var(--font-d);color:var(--accent-deep)}
+.m-comment{margin:16px 0 4px}
+.m-comment label{display:block;font:600 13.5px var(--font-b);color:var(--ink-2);margin-bottom:8px}
+.m-comment textarea{width:100%;min-height:76px;resize:vertical;border:1.5px solid var(--line);border-radius:14px;background:var(--card);padding:13px 15px;font:500 15px var(--font-b);transition:border-color .2s,box-shadow .2s}
+.m-comment textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3.5px rgba(21,33,25,.08)}
+.m-actions{display:flex;flex-direction:column;gap:11px;margin-top:20px}
+.m-fine{font-size:12.5px;color:var(--ink-3);text-align:center;margin-top:13px;line-height:1.55}
+.m-success{display:none;text-align:center;padding:14px 4px 6px}
+.m-success.show{display:block}
+.check-anim{width:92px;height:92px;margin:6px auto 20px}
+.check-anim circle{fill:none;stroke:var(--ok);stroke-width:4;stroke-dasharray:264;stroke-dashoffset:264;animation:circleDraw .7s .1s ease-out forwards}
+.check-anim path{fill:none;stroke:var(--ok);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:checkDraw .45s .65s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes circleDraw{to{stroke-dashoffset:0}}
+@keyframes checkDraw{to{stroke-dashoffset:0}}
+.m-success h3{font:800 27px var(--font-d);letter-spacing:-.025em}
+.m-ref{display:inline-flex;gap:8px;align-items:center;font:600 13px var(--font-m);letter-spacing:.08em;background:var(--paper-2);border-radius:99px;padding:7px 15px;margin:13px 0 17px}
+.m-success p{font-size:15px;color:var(--ink-2);max-width:40ch;margin:0 auto;line-height:1.65}
+.m-upsell{margin:22px 0 6px;display:flex;flex-direction:column;gap:10px;align-items:center}
+
+/* ---------- Toasts ---------- */
+.toasts{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:10px;width:min(430px,calc(100vw - 32px));pointer-events:none}
+.toast{display:flex;gap:12px;align-items:center;background:var(--pine);color:var(--cream-d);padding:15px 19px;border-radius:16px;box-shadow:var(--shadow-2);font:500 14.5px/1.45 var(--font-b);animation:toastIn .4s cubic-bezier(.16,1,.3,1);border:1px solid rgba(242,238,225,.14)}
+.toast .ic{width:19px;height:19px;color:var(--accent-2);flex:none}
+.toast.out{animation:toastOut .3s ease forwards}
+@keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(10px) scale(.97)}}
+
+/* ---------- Scroll-reveal ---------- */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+[data-reveal="left"]{transform:translateX(-30px)}
+[data-reveal="right"]{transform:translateX(30px)}
+[data-reveal].in{opacity:1;transform:none}
+
+/* ---------- Responsivt ---------- */
+@media (max-width:1080px){
+  .main-nav{display:none}
+  .burger{display:grid}
+  .head-tel span{display:none}
+  .head-tel .tel-ic{width:42px;height:42px}
+}
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:52px}
+  .hero-h{max-width:16ch}
+  .hero-visual{max-width:540px;margin-inline:auto;width:100%}
+  .wiz-main{grid-template-columns:1fr}
+  .wiz-aside{display:none}
+  .proc-grid{grid-template-columns:1fr;gap:4px;padding-left:8px}
+  .proc-grid::before{top:34px;bottom:34px;left:34px;right:auto;border-top:0;border-left:2.5px dashed var(--line)}
+  .runner{display:none}
+  .pstep{display:grid;grid-template-columns:56px 1fr;gap:4px 20px;padding:18px 0}
+  .p-ic{grid-row:1/4;margin:0;align-self:start}
+  .p-num{top:-6px;right:6px;font-size:44px}
+  .p-d{margin-bottom:8px;max-width:52ch}
+  .price-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:38px}
+  .cmp-row{grid-template-columns:.55fr 1fr 1fr}
+  .svc-panel-in{grid-template-columns:1fr;gap:22px;padding-left:78px}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .qf{flex-direction:column;align-items:stretch;gap:9px;padding:12px}
+  .qf-swap{align-self:center}
+  .qf-swap .ic{transform:rotate(0)}
+  .qf-field input{padding:13px 8px 13px 0}
+  .qf .btn{width:100%}
+  .hero{padding-top:124px}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:26px 8px;padding-block:26px}
+  .stat + .stat{border-left:0}
+  .stat:nth-child(even){border-left:1.5px solid var(--line)}
+  .stat:nth-child(n+3){border-top:1.5px solid var(--line);padding-top:22px}
+  .svc-row{grid-template-columns:30px 1fr 40px;grid-template-areas:"num name chev" "num price chev";gap:8px 14px;padding:20px 2px}
+  .svc-row:hover{padding-left:6px}
+  .svc-num{font-size:13px}
+  .svc-price{text-align:left}
+  .svc-price small{display:inline;margin-right:5px}
+  .svc-price b{font-size:16px}
+  .svc-panel-in{padding:4px 2px 30px 46px;grid-template-columns:1fr}
+  .wiz-top{flex-direction:column;align-items:stretch;gap:14px;padding:18px 20px;border-radius:24px 24px 0 0}
+  .wp-l{display:none}
+  .wp-step.is-active .wp-l{display:block;font-size:11px}
+  .wiz-est{flex-direction:row;justify-content:space-between;align-items:center;border-left:0;border-top:1.5px dashed var(--line);padding:13px 2px 0;width:100%}
+  .wiz-est-v{font-size:20px}
+  .wiz{border-radius:24px}
+  .wiz-foot{padding:14px 18px}
+  .wiz-hint{display:none}
+  .wiz-back{padding:12px 10px 12px 4px}
+  .wiz-foot .btn{flex:1;justify-content:center}
+  .rf{grid-template-columns:1fr}
+  .rf-swap{justify-self:center;margin:2px 0}
+  .rf-swap .ic{transform:rotate(0)}
+  .floor-grid{grid-template-columns:1fr}
+  .date-row{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .opt-grid{grid-template-columns:repeat(2,1fr)}
+  .check-grid{grid-template-columns:1fr}
+  .result-cta{flex-direction:column;align-items:stretch}
+  .result-cta .btn{width:100%}
+  .price-grid{grid-template-columns:1fr}
+  .cmp-row{grid-template-columns:1fr 1fr}
+  .cmp-label{grid-column:1/-1;padding-bottom:2px}
+  .cmp-cell{padding:13px 14px;font-size:13px}
+  .cmp-head .cmp-cell{font-size:14.5px}
+  .foot-grid{grid-template-columns:1fr;gap:30px;padding-top:48px}
+  .cta-btns{flex-direction:column;align-items:stretch}
+  .cta-btns .btn,.cta-ghost{text-align:center;justify-content:center}
+  .stickybar{display:flex}
+  body{padding-bottom:74px}
+  .fc-price{left:10px;min-width:0}
+  .fc-crew{right:8px}
+  .toasts{bottom:88px}
+  .t-author{flex-direction:column;gap:10px;text-align:center}
+  .t-name,.t-meta{text-align:center}
+}
+@media (max-width:480px){.head-tel{display:none}}
+@media (max-width:400px){
+  .fc-rating{display:none}
+  .map-card{aspect-ratio:1/1.12}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  [data-reveal]{opacity:1;transform:none}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"MovingCompany",
+  "name":"FlyttSmart AS",
+  "description":"Flyttebyrå i Oslo med digital prisberegner og fast pris på 60 sekunder. Privatflytting, bedriftsflytting, pakkehjelp, bærehjelp, mellomlagring og flyttevask.",
+  "url":"https://flyttsmart.no",
+  "telephone":"+4721089040",
+  "email":"hei@flyttsmart.no",
+  "priceRange":"$$",
+  "address":{"@type":"PostalAddress","streetAddress":"Storgata 12 A","postalCode":"0155","addressLocality":"Oslo","addressCountry":"NO"},
+  "openingHours":"Mo-Sa 07:00-21:00",
+  "areaServed":["Oslo","Bærum","Asker","Lillestrøm","Drammen","Moss","Østlandet"],
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"1240"}
+}
+</script>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<a class="skip-link" href="#main">Hopp til innholdet</a>
+
+<!-- Ikonbibliotek -->
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M20 12H5"/><path d="M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.8l-5.6 3.2 1.3-6.3-4.8-4.3 6.4-.7z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5.2 3.8h3.4l1.6 4.2-2.1 1.9a12.6 12.6 0 005.9 5.9l1.9-2.1 4.2 1.6v3.4a1.9 1.9 0 01-2.1 1.9A16.6 16.6 0 013.3 5.9a1.9 1.9 0 011.9-2.1z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4.5 7.5l7.5 5.8 7.5-5.8"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5S5.5 16 5.5 10.5a6.5 6.5 0 0113 0C18.5 16 12 21.5 12 21.5z"/><circle cx="12" cy="10.3" r="2.4"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11.2L12 4l8 7.2"/><path d="M6.3 9.8V20h11.4V9.8"/><path d="M10 20v-5.5h4V20"/></symbol>
+  <symbol id="i-build" viewBox="0 0 24 24"><path d="M5 21V4.5A1.5 1.5 0 016.5 3h7A1.5 1.5 0 0115 4.5V21"/><path d="M15 10.5h3.5A1.5 1.5 0 0120 12v9"/><path d="M3.5 21h17"/><path d="M8.5 7h3M8.5 11h3M8.5 15h3"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11.5V16H2.5z"/><path d="M14 10h3.3l3.2 3.2V16H14z"/><circle cx="6.7" cy="17.6" r="1.9"/><circle cx="16.6" cy="17.6" r="1.9"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3.5 8L12 3.5 20.5 8v8L12 20.5 3.5 16z"/><path d="M3.5 8L12 12.5 20.5 8M12 12.5v8"/></symbol>
+  <symbol id="i-sofa" viewBox="0 0 24 24"><path d="M6 12V8.5A2.5 2.5 0 018.5 6h7A2.5 2.5 0 0118 8.5V12"/><path d="M4.5 12A1.8 1.8 0 016.3 13.8V16h11.4v-2.2a1.8 1.8 0 013.6 0V18H2.7v-4.2A1.8 1.8 0 014.5 12z"/><path d="M12 6v6"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M11 3.5l1.6 4.4 4.4 1.6-4.4 1.6L11 15.5 9.4 11.1 5 9.5l4.4-1.6z"/><path d="M18 14.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9.5V20h16V9.5"/><path d="M3 9.5L5.4 4h13.2L21 9.5"/><path d="M3 9.5h18"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-lift" viewBox="0 0 24 24"><rect x="4.5" y="3.5" width="15" height="17" rx="2.2"/><path d="M9 13V7.5M7 9.5l2-2 2 2"/><path d="M15 11v5.5M13 14.5l2 2 2-2"/></symbol>
+  <symbol id="i-stairs" viewBox="0 0 24 24"><path d="M4 20h4v-4h4v-4h4V8h4"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 2.8V7M16 2.8V7"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.2 2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 2.8v5.6c0 4.6-3 7.7-7 9.3-4-1.6-7-4.7-7-9.3V5.8z"/><path d="M8.8 12l2.2 2.2 4.2-4.6"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7.5 3.5v17M4 17l3.5 3.5L11 17"/><path d="M16.5 20.5v-17M13 7l3.5-3.5L20 7"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0115 0"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18.5h.01M12 18.5h.01M15.5 18.5h.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 7.6h.01"/></symbol>
+  <symbol id="i-broom" viewBox="0 0 24 24"><path d="M14.5 3.5l6 6"/><path d="M13.5 6.5l4 4-7.5 7.5a2.4 2.4 0 01-3.4 0l-.6-.6a2.4 2.4 0 010-3.4z"/><path d="M4 20.5l2.5-2.5"/></symbol>
+</svg>
+
+<!-- Header -->
+<header class="site-head" id="siteHead">
+  <div class="container head-in">
+    <a class="brand" href="#top" aria-label="FlyttSmart AS – til forsiden">
+      <span class="brand-mark"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      <span class="brand-name">Flytt<em>Smart</em></span>
+    </a>
+    <nav class="main-nav" aria-label="Hovedmeny">
+      <a class="nav-link" href="#tjenester">Tjenester</a>
+      <a class="nav-link" href="#slik-funker-det">Slik funker det</a>
+      <a class="nav-link" href="#pris">Pris</a>
+      <a class="nav-link" href="#omtaler">Omtaler</a>
+      <a class="nav-link" href="#faq">FAQ</a>
+    </nav>
+    <div class="head-actions">
+      <a class="head-tel" href="tel:+4721089040">
+        <span class="tel-ic"><svg class="ic ic-16" aria-hidden="true"><use href="#i-phone"/></svg></span>
+        <span>21 08 90 40</span>
+      </a>
+      <a class="btn btn--primary btn--sm" href="#pris">Få pris<svg class="ic ic-16 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <button class="burger" id="burger" aria-label="Åpne meny" aria-expanded="false" aria-controls="mnav"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobilmeny -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <div class="mnav-head">
+    <a class="brand" href="#top">
+      <span class="brand-mark"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      <span class="brand-name" style="color:var(--cream-d)">Flytt<em style="color:var(--accent-2)">Smart</em></span>
+    </a>
+    <button class="mnav-close" id="mnavClose" aria-label="Lukk meny"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <nav class="mnav-links" aria-label="Mobilmeny">
+    <a class="mnav-link" href="#tjenester"><small>01</small>Tjenester</a>
+    <a class="mnav-link" href="#slik-funker-det"><small>02</small>Slik funker det</a>
+    <a class="mnav-link" href="#pris"><small>03</small>Pris</a>
+    <a class="mnav-link" href="#omtaler"><small>04</small>Omtaler</a>
+    <a class="mnav-link" href="#faq"><small>05</small>FAQ</a>
+  </nav>
+  <div class="mnav-foot">
+    <a class="mnav-tel" href="tel:+4721089040"><svg class="ic ic-18" aria-hidden="true"><use href="#i-phone"/></svg>21 08 90 40 – alle dager 07–21</a>
+    <a class="btn btn--primary btn--lg btn--block" href="#pris">Bestill flyttehjelp<svg class="ic ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</div>
+
+<main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <a class="hero-badge" href="#pris" data-reveal>
+        <span class="pulse" aria-hidden="true"></span>
+        Fast pris på 60 sekunder – helt uten befaring
+        <svg class="ic ic-14" aria-hidden="true"><use href="#i-arrow"/></svg>
+      </a>
+      <h1 class="hero-h" data-reveal style="--d:.06s">Flytting uten stress – <span class="hl">fast pris<svg viewBox="0 0 210 22" preserveAspectRatio="none" aria-hidden="true"><path d="M4 16 C 52 6, 122 22, 206 8" pathLength="1"/></svg></span> på 60&nbsp;sekunder.</h1>
+      <p class="hero-lede" data-reveal style="--d:.12s">FlyttSmart flytter privatpersoner og bedrifter i Oslo og på Østlandet. Svar på fem korte spørsmål, og få fast pris med en gang – med bil, flyttefolk og full forsikring inkludert. Ingen befaring. Ingen overraskelser.</p>
+
+      <form class="qf" id="quickForm" data-reveal style="--d:.18s" novalidate>
+        <div class="qf-field">
+          <svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>
+          <label class="sr-only" for="qfFrom" style="position:absolute;left:-9999px">Flytter fra</label>
+          <input id="qfFrom" type="text" placeholder="Fra-adresse, f.eks. Storgata 12" autocomplete="off">
+        </div>
+        <button type="button" class="qf-swap" id="qfSwap" aria-label="Bytt om fra- og til-adresse"><svg class="ic" aria-hidden="true"><use href="#i-swap"/></svg></button>
+        <div class="qf-field">
+          <svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>
+          <label for="qfTo" style="position:absolute;left:-9999px">Flytter til</label>
+          <input id="qfTo" type="text" placeholder="Til-adresse, f.eks. i Bærum" autocomplete="off">
+        </div>
+        <button class="btn btn--primary" type="submit">Beregn pris<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </form>
+      <div class="qf-note" data-reveal style="--d:.24s">
+        <span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Gratis og uforpliktende</span>
+        <span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Ingen registrering</span>
+        <span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Svar med én gang</span>
+      </div>
+
+      <div class="trust-row" data-reveal style="--d:.3s">
+        <div class="trust-item">
+          <span class="stars" aria-label="4,9 av 5 stjerner">
+            <svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg>
+          </span>
+          4,9/5 på Google
+        </div>
+        <span class="trust-sep" aria-hidden="true"></span>
+        <div class="trust-item">3&nbsp;800+ flyttinger</div>
+        <span class="trust-sep" aria-hidden="true"></span>
+        <div class="trust-item"><svg class="ic ic-16 ic-accent" aria-hidden="true"><use href="#i-shield"/></svg>Fullt forsikret</div>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-reveal="right" style="--d:.15s">
+      <span class="map-deco map-deco-1" aria-hidden="true"></span>
+      <span class="map-deco map-deco-2" aria-hidden="true"></span>
+      <div class="map-card" role="img" aria-label="Illustrasjon av en flytterute fra gammel til ny bolig">
+        <svg class="map-svg" viewBox="0 0 560 570" aria-hidden="true">
+          <defs>
+            <pattern id="gdots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="1.6" cy="1.6" r="1.6" fill="#F2EEE1" opacity=".09"/></pattern>
+          </defs>
+          <rect width="560" height="570" fill="url(#gdots)"/>
+          <g stroke="#F2EEE1" stroke-opacity=".07" fill="none" stroke-width="11" stroke-linecap="round">
+            <path d="M0 130H560"/><path d="M0 265H560"/><path d="M0 415H560"/>
+            <path d="M125 0V570"/><path d="M300 0V570"/><path d="M452 0V570"/>
+          </g>
+          <g stroke="#F2EEE1" stroke-opacity=".045" fill="none" stroke-width="4">
+            <path d="M0 60H560"/><path d="M0 345H560"/><path d="M0 500H560"/>
+            <path d="M60 0V570"/><path d="M210 0V570"/><path d="M380 0V570"/><path d="M515 0V570"/>
+          </g>
+          <path d="M-30 505 C 110 460, 150 350, 265 330 C 380 310, 400 190, 590 165" stroke="#2A4E3E" stroke-width="36" fill="none" opacity=".9" stroke-linecap="round"/>
+          <g fill="#183428">
+            <rect x="152" y="152" width="92" height="62" rx="13"/>
+            <rect x="335" y="42" width="82" height="72" rx="13"/>
+            <rect x="472" y="188" width="58" height="92" rx="13"/>
+            <rect x="42" y="282" width="78" height="80" rx="13"/>
+            <rect x="365" y="345" width="112" height="62" rx="13"/>
+            <rect x="152" y="452" width="72" height="72" rx="13"/>
+            <rect x="485" y="445" width="60" height="80" rx="13"/>
+          </g>
+          <g fill="#20402F">
+            <rect x="48" y="152" width="72" height="62" rx="13"/>
+            <rect x="268" y="452" width="70" height="70" rx="13"/>
+            <rect x="335" y="152" width="66" height="70" rx="13"/>
+          </g>
+          <g>
+            <ellipse cx="282" cy="330" rx="74" ry="50" fill="#28513D"/>
+            <g fill="#3B6E51">
+              <circle cx="255" cy="322" r="8"/><circle cx="282" cy="338" r="9"/><circle cx="308" cy="320" r="7"/><circle cx="270" cy="352" r="6"/>
+            </g>
+          </g>
+          <g id="routeFrom" transform="translate(88,492)">
+            <circle r="23" fill="#F04E1F"/>
+            <path d="M-8.5 1.5L0 -6l8.5 7.5M-5.5 0v8h11V0" stroke="#FFF7EC" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(0,-1)"/>
+            <text y="-32" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="2" fill="#F2EEE1" opacity=".85">NÅ</text>
+          </g>
+          <path id="routeP" d="M88 470 C 42 412, 55 342, 128 328 C 200 314, 205 248, 278 228 C 352 208, 368 176, 466 148" fill="none" stroke="#F2EEE1" stroke-opacity=".28" stroke-width="3.2" stroke-dasharray="1 11" stroke-linecap="round"/>
+          <path class="route-march" d="M88 470 C 42 412, 55 342, 128 328 C 200 314, 205 248, 278 228 C 352 208, 368 176, 466 148" fill="none" stroke="#FF6D3D" stroke-width="4.4" stroke-linecap="round"/>
+          <g transform="translate(226,368)">
+            <rect x="-37" y="-15" width="74" height="30" rx="15" fill="#0B1B14" stroke="rgba(242,238,225,.25)"/>
+            <text y="4.5" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#F2EEE1">17 km</text>
+          </g>
+          <g class="truck">
+            <circle r="17" fill="#FCFAF3"/>
+            <circle r="17" fill="none" stroke="#F04E1F" stroke-width="2"/>
+            <g transform="translate(-8,-7.5) scale(.68)" stroke="#152119" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2.5 6.5h11.5V16H2.5z"/><path d="M14 10h3.3l3.2 3.2V16H14z"/><circle cx="6.7" cy="17.6" r="1.9"/><circle cx="16.6" cy="17.6" r="1.9"/>
+            </g>
+            <animateMotion dur="10s" repeatCount="indefinite" path="M88 470 C 42 412, 55 342, 128 328 C 200 314, 205 248, 278 228 C 352 208, 368 176, 466 148"/>
+          </g>
+          <g class="pin-b" transform="translate(466,148)">
+            <path d="M0 0c-16-16-24-26-24-36a24 24 0 1148 0c0 10-8 20-24 36z" fill="#FCFAF3" stroke="#F04E1F" stroke-width="3" transform="translate(0,-2)"/>
+            <circle cy="-38" r="8" fill="#F04E1F"/>
+            <text y="-62" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="2" fill="#F2EEE1" opacity=".85">NY</text>
+          </g>
+        </svg>
+        <div class="float-card fc-price">
+          <div class="fc-l">Fast pris</div>
+          <div class="fc-v">kr 8 940</div>
+          <div class="fc-r"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Lastebil og 2 flyttefolk</div>
+          <div class="fc-r"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>15 km og forsikring inkludert</div>
+        </div>
+        <div class="float-card fc-crew">
+          <div class="fc-avas"><span class="fc-ava a1">M</span><span class="fc-ava a2">J</span></div>
+          <div class="fc-n">Marte &amp; Jonas</div>
+          <div class="fc-s"><span class="dot" aria-hidden="true"></span>Ankommer 08:00</div>
+        </div>
+        <div class="float-card fc-rating">
+          <svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg>
+          <b>4,9</b><span>1 240 omtaler</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TALL + OMRÅDE ================= -->
+<section class="stats" aria-label="FlyttSmart i tall">
+  <div class="container stats-grid">
+    <div class="stat" data-reveal><div class="stat-n"><span data-count="3847">0</span></div><div class="stat-l">flyttinger gjennomført</div></div>
+    <div class="stat" data-reveal style="--d:.08s"><div class="stat-n"><span data-count="4.9" data-dec="1" data-comma>0</span><small>/ 5</small></div><div class="stat-l">snitt på 1 240 Google-omtaler</div></div>
+    <div class="stat" data-reveal style="--d:.16s"><div class="stat-n"><span data-count="98">0</span><small>%</small></div><div class="stat-l">anbefaler oss videre</div></div>
+    <div class="stat" data-reveal style="--d:.24s"><div class="stat-n"><span data-count="60">0</span><small>sek</small></div><div class="stat-l">fra spørsmål til fast pris</div></div>
+  </div>
+</section>
+<div class="areas" aria-hidden="true">
+  <div class="areas-track" id="areasTrack">
+    <span>Oslo</span><span>Bærum</span><span>Asker</span><span>Lillestrøm</span><span>Drammen</span><span>Moss</span><span>Fredrikstad</span><span>Sarpsborg</span><span>Tønsberg</span><span>Kongsberg</span><span>Hønefoss</span><span>Hamar</span><span>Gjøvik</span><span>Lillehammer</span><span>Oppegård</span><span>Strømmen</span><span>Jessheim</span><span>Drøbak</span>
+  </div>
+</div>
+
+<!-- ================= TJENESTER ================= -->
+<section class="section" id="tjenester">
+  <div class="container">
+    <div class="svc-head-row">
+      <div class="sec-head" style="margin-bottom:0" data-reveal>
+        <p class="kicker">Tjenester</p>
+        <h2 class="sec-title">Alt du trenger for å flytte.<br>I én bestilling.</h2>
+      </div>
+      <a class="btn btn--ghost" href="#pris" data-reveal style="--d:.1s">Beregn pris<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="svc-list" style="margin-top:44px">
+      <div class="svc-item" data-reveal>
+        <button class="svc-row" aria-expanded="false">
+          <span class="svc-num">01</span>
+          <span class="svc-namebox">
+            <span class="svc-name">Privatflytting <span class="badge-pop">Mest booket</span></span>
+            <span class="svc-tag">Hele hjemmet ditt, trygt fra A til Å</span>
+          </span>
+          <span class="svc-price"><small>fra</small><b>3 690 kr</b></span>
+          <span class="svc-chev"><svg class="ic ic-18" aria-hidden="true"><use href="#i-chev"/></svg></span>
+        </button>
+        <div class="svc-panel">
+          <div class="svc-panel-in">
+            <div>
+              <p class="svc-desc">Vi flytter alt fra hybler til eneboliger – innpakket i flytteteppe, sikret i lastebil og satt på plass i det nye hjemmet. Du får fast pris på forhånd, én fast kontaktperson og full forsikring hele veien.</p>
+              <div class="svc-cta">
+                <a class="btn btn--primary" href="#pris" data-service="privat">Få pris på flyttingen<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="link-btn" href="#priser">Se priseksempler</a>
+              </div>
+            </div>
+            <div class="svc-incl">
+              <h5>Inkludert alltid</h5>
+              <ul style="list-style:none">
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Lastebil og 2–4 flyttefolk</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Flytteteppe, bobleplast og beskyttelse</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Enkel demontering og montering</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Full forsikring opptil 1 mill. kr</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Fast pris – låses ved bestilling</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-item" data-reveal>
+        <button class="svc-row" aria-expanded="false">
+          <span class="svc-num">02</span>
+          <span class="svc-namebox">
+            <span class="svc-name">Bedriftsflytting</span>
+            <span class="svc-tag">Etter arbeidstid – uten nedetid</span>
+          </span>
+          <span class="svc-price"><small>fra</small><b>9 990 kr</b></span>
+          <span class="svc-chev"><svg class="ic ic-18" aria-hidden="true"><use href="#i-chev"/></svg></span>
+        </button>
+        <div class="svc-panel">
+          <div class="svc-panel-in">
+            <div>
+              <p class="svc-desc">Kontor, butikk eller verksted? Vi flytter bedriften din på kveldstid eller i helgen, merker alle arbeidsplasser og har alt klart til mandag morgen. En prosjektleder følger deg gjennom hele flyttingen.</p>
+              <div class="svc-cta">
+                <a class="btn btn--primary" href="#pris" data-service="bedrift">Få tilbud på bedriftsflytting<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+            <div class="svc-incl">
+              <h5>Inkludert alltid</h5>
+              <ul style="list-style:none">
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Dedikert prosjektleder fra dag én</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Flytting utenfor arbeidstid uten tillegg</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Merking per arbeidsplass og avdeling</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Sikker håndtering av IT-utstyr</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Mellomlagring av arkiv og lager</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-item" data-reveal>
+        <button class="svc-row" aria-expanded="false">
+          <span class="svc-num">03</span>
+          <span class="svc-namebox">
+            <span class="svc-name">Pakkehjelp</span>
+            <span class="svc-tag">Vi pakker ned. Og ut. Og rydder.</span>
+          </span>
+          <span class="svc-price"><small>fra</small><b>1 890 kr</b></span>
+          <span class="svc-chev"><svg class="ic ic-18" aria-hidden="true"><use href="#i-chev"/></svg></span>
+        </button>
+        <div class="svc-panel">
+          <div class="svc-panel-in">
+            <div>
+              <p class="svc-desc">Erfarne pakkere pakker kjøkken, stuer og loft – alt merkes per rom og kasse. Når du flytter inn, pakker vi ut og tar med oss all emballasje. Du kommer hjem til et hjem som fungerer fra dag én.</p>
+              <div class="svc-cta">
+                <a class="btn btn--primary" href="#pris" data-service="pakking">Legg til pakkehjelp<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+            <div class="svc-incl">
+              <h5>Inkludert alltid</h5>
+              <ul style="list-style:none">
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Alt av emballasje og kasser inkludert</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Merking per rom og innhold</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Utpakking og avhenting av emballasje</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Forsikret gjennom hele pakkingen</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-item" data-reveal>
+        <button class="svc-row" aria-expanded="false">
+          <span class="svc-num">04</span>
+          <span class="svc-namebox">
+            <span class="svc-name">Bærehjelp</span>
+            <span class="svc-tag">Du har transporten. Vi har krafta.</span>
+          </span>
+          <span class="svc-price"><small>fra</small><b>1 590 kr</b></span>
+          <span class="svc-chev"><svg class="ic ic-18" aria-hidden="true"><use href="#i-chev"/></svg></span>
+        </button>
+        <div class="svc-panel">
+          <div class="svc-panel-in">
+            <div>
+              <p class="svc-desc">Skal du hente en sofa på Finn, eller har du leid bil selv? Våre bærere møter opp der du trenger dem – med glidere, tepper og god teknikk. Du bestemmer tempoet, vi tar vekta.</p>
+              <div class="svc-cta">
+                <a class="btn btn--primary" href="#pris" data-service="baring">Bestill bærehjelp<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+            <div class="svc-incl">
+              <h5>Inkludert alltid</h5>
+              <ul style="list-style:none">
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>2 erfarne bærere</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Alt utstyr for trygg bæring</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Hjelp med montering på stedet</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Bestill fra 2 timer</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-item" data-reveal>
+        <button class="svc-row" aria-expanded="false">
+          <span class="svc-num">05</span>
+          <span class="svc-namebox">
+            <span class="svc-name">Mellomlagring</span>
+            <span class="svc-tag">Trygg lagring mellom flyttedatoer</span>
+          </span>
+          <span class="svc-price"><small>fra</small><b>690 kr/mnd</b></span>
+          <span class="svc-chev"><svg class="ic ic-18" aria-hidden="true"><use href="#i-chev"/></svg></span>
+        </button>
+        <div class="svc-panel">
+          <div class="svc-panel-in">
+            <div>
+              <p class="svc-desc">Noen ganger er det dager – eller måneder – mellom utflytting og innflytting. Da lagrer vi sakene dine klimastyrt og forsikret på vårt lager på Økern, og leverer når det passer deg.</p>
+              <div class="svc-cta">
+                <a class="btn btn--primary" href="#pris" data-service="lagring">Få pris på lagring<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+            <div class="svc-incl">
+              <h5>Inkludert alltid</h5>
+              <ul style="list-style:none">
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Klimastyrt og sikret lager i Oslo</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Lagerforsikring inkludert</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Henting og levering når du vil</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Betal per påbegynt måned</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-item" data-reveal>
+        <button class="svc-row" aria-expanded="false">
+          <span class="svc-num">06</span>
+          <span class="svc-namebox">
+            <span class="svc-name">Flyttevask</span>
+            <span class="svc-tag">Levert rent – med garanti</span>
+          </span>
+          <span class="svc-price"><small>fra</small><b>2 190 kr</b></span>
+          <span class="svc-chev"><svg class="ic ic-18" aria-hidden="true"><use href="#i-chev"/></svg></span>
+        </button>
+        <div class="svc-panel">
+          <div class="svc-panel-in">
+            <div>
+              <p class="svc-desc">Vår flyttevask gjør boligen klar for visning og overlevering. Vi vasker lister, bak ovner og bak doen – og skulle megler eller kjøper finne noe, kommer vi tilbake og gjør det om igjen. Det er garantien vår.</p>
+              <div class="svc-cta">
+                <a class="btn btn--primary" href="#pris" data-service="vask">Legg til flyttevask<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+            </div>
+            <div class="svc-incl">
+              <h5>Inkludert alltid</h5>
+              <ul style="list-style:none">
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Godkjent vask ved boligoverlevering</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Vinduer, ovner, lister og innvendig skap</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Vaskegaranti – vi kommer tilbake gratis</li>
+                <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Miljøvennlige rengjøringsmidler</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRISKALKULATOR ================= -->
+<section class="section sec--dark calc" id="pris">
+  <div class="calc-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="sec-head center" data-reveal>
+      <p class="kicker">Priskalkulator</p>
+      <h2 class="sec-title">Få fast pris på 60 sekunder</h2>
+      <p class="sec-lede">Svar på fem korte steg – og se prisen bygge seg opp mens du svarer. Ingen registrering, ingen forpliktelser, bare et ærlig estimat.</p>
+    </div>
+
+    <div class="wiz" id="wizard" data-reveal style="--d:.1s">
+      <div class="wiz-top">
+        <div class="wp-steps" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" id="wpSteps" aria-label="Fremdrift i prisberegningen">
+          <div class="wp-track" aria-hidden="true"><div class="wp-fill" id="wpFill"></div></div>
+          <button class="wp-step is-active" data-jump="1"><span class="wp-dot">1</span><span class="wp-l">Fra → til</span></button>
+          <button class="wp-step" data-jump="2" disabled><span class="wp-dot">2</span><span class="wp-l">Bolig</span></button>
+          <button class="wp-step" data-jump="3" disabled><span class="wp-dot">3</span><span class="wp-l">Etasjer</span></button>
+          <button class="wp-step" data-jump="4" disabled><span class="wp-dot">4</span><span class="wp-l">Tjenester</span></button>
+          <button class="wp-step" data-jump="5" disabled><span class="wp-dot">5</span><span class="wp-l">Dato</span></button>
+        </div>
+        <div class="wiz-est" aria-live="polite">
+          <span class="wiz-est-l">Løpende estimat</span>
+          <span class="wiz-est-v" id="estValue">ca. 5 890 kr</span>
+        </div>
+      </div>
+
+      <div class="wiz-main">
+        <div class="wiz-body" id="wizBody">
+
+          <!-- Steg 1: adresser -->
+          <div class="ws is-active" data-step="1">
+            <h3 class="ws-title">Hvor flytter du fra – og til?</h3>
+            <p class="ws-sub">Begynn å skrive, så foreslår vi adresser. Eller skriv fritt – vi regner ut avstanden.</p>
+            <div class="rf">
+              <div class="field ac" data-ac>
+                <label for="wFrom">Flytter fra</label>
+                <svg class="ic ic-field" aria-hidden="true"><use href="#i-pin"/></svg>
+                <input class="inp" id="wFrom" type="text" placeholder="Gatenavn, postnummer eller sted" autocomplete="off">
+              </div>
+              <button type="button" class="rf-swap" id="wSwap" aria-label="Bytt om fra- og til-adresse"><svg class="ic" aria-hidden="true"><use href="#i-swap"/></svg></button>
+              <div class="field ac" data-ac>
+                <label for="wTo">Flytter til</label>
+                <svg class="ic ic-field" aria-hidden="true"><use href="#i-pin"/></svg>
+                <input class="inp" id="wTo" type="text" placeholder="Gatenavn, postnummer eller sted" autocomplete="off">
+              </div>
+            </div>
+            <div class="route-meta" id="routeMeta" hidden>
+              <span class="rm-chip"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg><span id="routeMetaTxt"></span></span>
+            </div>
+          </div>
+
+          <!-- Steg 2: bolig -->
+          <div class="ws" data-step="2">
+            <h3 class="ws-title">Hva skal flyttes?</h3>
+            <p class="ws-sub">Velg boligtype og størrelse – det bestemmer bil og antall flyttefolk.</p>
+            <h4 class="ws-h">Boligtype</h4>
+            <div class="opt-grid" data-name="type" role="radiogroup" aria-label="Boligtype">
+              <button class="opt" data-val="hybel" role="radio" aria-checked="false"><span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-sofa"/></svg></span><span class="opt-t">Hybel</span><span class="opt-s">Étt rom, få ting</span></button>
+              <button class="opt is-on" data-val="leilighet" role="radio" aria-checked="true"><span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-build"/></svg></span><span class="opt-t">Leilighet</span><span class="opt-s">I blokk eller gård</span></button>
+              <button class="opt" data-val="rekkehus" role="radio" aria-checked="false"><span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg></span><span class="opt-t">Rekkehus</span><span class="opt-s">Over to etasjer</span></button>
+              <button class="opt" data-val="enebolig" role="radio" aria-checked="false"><span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg></span><span class="opt-t">Enebolig</span><span class="opt-s">Med hage og bod</span></button>
+              <button class="opt" data-val="kontor" role="radio" aria-checked="false"><span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-build"/></svg></span><span class="opt-t">Kontor</span><span class="opt-s">Bedrift og lokale</span></button>
+            </div>
+            <h4 class="ws-h">Størrelse</h4>
+            <div class="seg" data-name="size" role="radiogroup" aria-label="Boligstørrelse">
+              <button class="seg-btn" data-val="xsmall" role="radio" aria-checked="false">Inntil 25 m²</button>
+              <button class="seg-btn" data-val="small" role="radio" aria-checked="false">25–40 m²</button>
+              <button class="seg-btn is-on" data-val="medium" role="radio" aria-checked="true">40–60 m²</button>
+              <button class="seg-btn" data-val="large" role="radio" aria-checked="false">60–85 m²</button>
+              <button class="seg-btn" data-val="xlarge" role="radio" aria-checked="false">85–110 m²</button>
+              <button class="seg-btn" data-val="house" role="radio" aria-checked="false">110–160 m²</button>
+              <button class="seg-btn" data-val="xhouse" role="radio" aria-checked="false">160+ m²</button>
+            </div>
+            <p class="seg-note">Usikker? Velg det nærmeste – vi justerer underveis, og prisen låses først når du bestiller.</p>
+          </div>
+
+          <!-- Steg 3: etasjer -->
+          <div class="ws" data-step="3">
+            <h3 class="ws-title">Etasjer og heis</h3>
+            <p class="ws-sub">Trapp i stedet for heis? Hos oss vet du hva det koster – før du bestiller. Det er aldri overraskelser.</p>
+            <div class="floor-grid">
+              <div class="floor-card">
+                <h5><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>Fra-adressen</h5>
+                <div class="seg" data-name="floorFrom" aria-label="Etasje i fra-adressen">
+                  <button class="seg-btn is-on" data-val="0">1. etg</button>
+                  <button class="seg-btn" data-val="1">2. etg</button>
+                  <button class="seg-btn" data-val="2">3. etg</button>
+                  <button class="seg-btn" data-val="3">4. etg</button>
+                  <button class="seg-btn" data-val="4">5. etg</button>
+                  <button class="seg-btn" data-val="5">6+</button>
+                </div>
+                <label class="switch-row">
+                  <span class="sw-txt"><b>Heis i bygget</b><span>Spar bæreryggen – og 150 kr per etasje</span></span>
+                  <span class="switch"><input type="checkbox" id="liftFrom" aria-label="Heis i fra-adressen"><span class="knob"></span></span>
+                </label>
+              </div>
+              <div class="floor-card">
+                <h5><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>Til-adressen</h5>
+                <div class="seg" data-name="floorTo" aria-label="Etasje i til-adressen">
+                  <button class="seg-btn is-on" data-val="0">1. etg</button>
+                  <button class="seg-btn" data-val="1">2. etg</button>
+                  <button class="seg-btn" data-val="2">3. etg</button>
+                  <button class="seg-btn" data-val="3">4. etg</button>
+                  <button class="seg-btn" data-val="4">5. etg</button>
+                  <button class="seg-btn" data-val="5">6+</button>
+                </div>
+                <label class="switch-row">
+                  <span class="sw-txt"><b>Heis i bygget</b><span>Spar bæreryggen – og 150 kr per etasje</span></span>
+                  <span class="switch"><input type="checkbox" id="liftTo" aria-label="Heis i til-adressen"><span class="knob"></span></span>
+                </label>
+              </div>
+            </div>
+            <label class="check-card" id="longCarryCard" style="margin-top:14px">
+              <input type="checkbox" id="longCarry">
+              <span class="cbx"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>
+              <span>
+                <span class="cc-t">Lengre bærevei</span>
+                <span class="cc-s" style="display:block">Mer enn 50 meter fra bil til dør, f.eks. bakgård eller garasjeanlegg (+390 kr)</span>
+              </span>
+              <span class="cc-p">+390 kr</span>
+            </label>
+          </div>
+
+          <!-- Steg 4: tjenester -->
+          <div class="ws" data-step="4">
+            <h3 class="ws-title">Hva trenger du hjelp til?</h3>
+            <p class="ws-sub">Velg hovedtjeneste – og kryss av for det ekstra du vil ha ordnet.</p>
+            <h4 class="ws-h">Hovedtjeneste</h4>
+            <div class="opt-grid opt-2" data-name="mode" role="radiogroup" aria-label="Hovedtjeneste">
+              <button class="opt opt--wide is-on" data-val="full" role="radio" aria-checked="true">
+                <span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span>
+                <span class="opt-txt"><span class="opt-t">Full flytting <span class="badge-pop">Anbefalt</span></span><span class="opt-s">Lastebil, flyttefolk, tepper og utstyr – vi tar alt</span></span>
+              </button>
+              <button class="opt opt--wide" data-val="carry" role="radio" aria-checked="false">
+                <span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-sofa"/></svg></span>
+                <span class="opt-txt"><span class="opt-t">Bare bærehjelp</span><span class="opt-s">Du ordner transport – vi bærer, løfter og rydder</span></span>
+              </button>
+            </div>
+            <h4 class="ws-h">Pakking</h4>
+            <div class="opt-grid opt-2" data-name="pack" role="radiogroup" aria-label="Pakking">
+              <button class="opt opt--wide is-on" data-val="self" role="radio" aria-checked="true">
+                <span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg></span>
+                <span class="opt-txt"><span class="opt-t">Jeg pakker selv</span><span class="opt-s">Inkludert – gjenbrukbare kasser kan leies til 49 kr/st</span></span>
+              </button>
+              <button class="opt opt--wide" data-val="full" role="radio" aria-checked="false">
+                <span class="opt-ic"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg></span>
+                <span class="opt-txt"><span class="opt-t">Full pakketjeneste</span><span class="opt-s">Vi pakker ned, merker per rom – og pakker ut igjen</span></span>
+              </button>
+            </div>
+            <h4 class="ws-h">Legg til tjenester</h4>
+            <div class="check-grid">
+              <label class="check-card" id="adVaskCard">
+                <input type="checkbox" id="adVask">
+                <span class="cbx"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>
+                <span>
+                  <span class="cc-t">Flyttevask <span class="badge-pop">Garanti</span></span>
+                  <span class="cc-s" style="display:block">Boligen levert rent til overlevering</span>
+                </span>
+                <span class="cc-p">fra 2 190 kr</span>
+              </label>
+              <label class="check-card" id="adStoreCard">
+                <input type="checkbox" id="adStore">
+                <span class="cbx"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>
+                <span>
+                  <span class="cc-t">Mellomlagring</span>
+                  <span class="cc-s" style="display:block">Klimastyrt lager på Økern, forsikret</span>
+                </span>
+                <span class="cc-p">690 kr/mnd</span>
+              </label>
+              <label class="check-card" id="adAwayCard">
+                <input type="checkbox" id="adAway">
+                <span class="cbx"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>
+                <span>
+                  <span class="cc-t">Bortkjøring</span>
+                  <span class="cc-s" style="display:block">Møbler og ting som skal på gjenbruk/fylling</span>
+                </span>
+                <span class="cc-p">990 kr</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Steg 5: dato + kontakt -->
+          <div class="ws" data-step="5">
+            <h3 class="ws-title">Når skal det skje – og hvem kontakter vi?</h3>
+            <p class="ws-sub">Siste steg. Så regner vi ut din pris.</p>
+            <div class="date-row">
+              <div class="field">
+                <label for="wizDate">Ønsket flyttedato</label>
+                <input class="inp inp--date" id="wizDate" type="date">
+                <div class="quick-dates">
+                  <button type="button" class="qdate" data-qdate="1">I morgen</button>
+                  <button type="button" class="qdate" data-qdate="sat">Nærmeste lørdag</button>
+                  <button type="button" class="qdate" data-qdate="14">Om to uker</button>
+                </div>
+              </div>
+              <div class="field">
+                <label>Tidspunkt på dagen</label>
+                <div class="seg" data-name="slot" aria-label="Tidspunkt">
+                  <button class="seg-btn" data-val="08-11">08–11</button>
+                  <button class="seg-btn is-on" data-val="11-14">11–14</button>
+                  <button class="seg-btn" data-val="14-17">14–17</button>
+                  <button class="seg-btn" data-val="flex">Fleksibel</button>
+                </div>
+                <p class="seg-note">Lørdag koster det samme som tirsdag hos oss.</p>
+              </div>
+            </div>
+            <h4 class="ws-h">Kontaktinformasjon</h4>
+            <div class="contact-grid">
+              <div class="field">
+                <label for="wName">Navn</label>
+                <svg class="ic ic-field" aria-hidden="true"><use href="#i-user"/></svg>
+                <input class="inp" id="wName" type="text" placeholder="Ola Nordmann" autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="wEmail">E-post</label>
+                <svg class="ic ic-field" aria-hidden="true"><use href="#i-mail"/></svg>
+                <input class="inp" id="wEmail" type="email" placeholder="ola@epost.no" autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="wPhone">Telefon</label>
+                <svg class="ic ic-field" aria-hidden="true"><use href="#i-phone"/></svg>
+                <input class="inp" id="wPhone" type="tel" placeholder="400 00 000" autocomplete="tel">
+              </div>
+            </div>
+            <p class="ws-consent"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg>Vi bruker kun kontaktinformasjonen din til å sende prisen og bekrefte flyttingen. Ingen spam, ingen deling med tredjeparter.</p>
+          </div>
+
+          <!-- Steg 6: resultat -->
+          <div class="ws" data-step="6">
+            <div class="result">
+              <div class="result-price">
+                <span class="rp-label">Ditt estimat</span>
+                <div class="rp-num"><span id="resPrice">0</span><span class="kr">kr</span></div>
+                <div class="rp-sub">
+                  <span class="chip-ok"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Fast pris låses ved bestilling</span>
+                  <span id="resInterval"></span>
+                </div>
+              </div>
+              <div class="result-chips" id="resChips"></div>
+              <div class="breakdown" id="resBreak"></div>
+              <div class="result-cta">
+                <button class="btn btn--primary btn--lg" id="btnOrder">Bestill flyttehjelp<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                <button class="btn btn--ghost btn--lg" id="btnMail">Få prisoversikten på e-post</button>
+              </div>
+              <div class="result-alt">
+                <button class="link-btn" id="btnEdit"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-l"/></svg>Endre svarene mine</button>
+              </div>
+              <p class="fine" id="resFine"></p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="wiz-aside" aria-label="Oppsummering av din flytting">
+          <h4 class="wa-h">Din flytting</h4>
+          <div class="wa-row"><span class="wa-k">Rute</span><span class="wa-v" id="waRoute">Ikke satt</span></div>
+          <div class="wa-row"><span class="wa-k">Bolig</span><span class="wa-v" id="waHome">Leilighet · 40–60 m²</span></div>
+          <div class="wa-row"><span class="wa-k">Etasjer</span><span class="wa-v" id="waFloors">1. etg → 1. etg</span></div>
+          <div class="wa-row"><span class="wa-k">Tjenester</span><span class="wa-v" id="waServices">Full flytting</span></div>
+          <div class="wa-row"><span class="wa-k">Dato</span><span class="wa-v" id="waDate">Ikke valgt</span></div>
+          <div class="inc-card">
+            <h5>Alltid inkludert</h5>
+            <ul style="list-style:none">
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Flyttefolk, bil og utstyr</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Flytteteppe og embalasje</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Full forsikring hele veien</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Ingen helgetillegg – aldri</li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Gratis avbestilling 72 t før</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <div class="wiz-foot" id="wizFoot">
+        <button class="wiz-back" id="wizBack" disabled><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-l"/></svg>Tilbake</button>
+        <span class="wiz-hint"><kbd>Enter ↵</kbd> neste steg</span>
+        <button class="btn btn--primary" id="wizNext">Neste steg<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+
+    <p class="calc-fine">Estimatet ligger normalt innenfor ±10 %. Ved bestilling låser vi prisen basert på svarene dine – den blir aldri høyere uten at du har godkjent det. <button type="button" id="wizReset">Start på nytt</button></p>
+  </div>
+</section>
+
+<!-- ================= PROSESS ================= -->
+<section class="section" id="slik-funker-det">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <p class="kicker">Slik funker det</p>
+      <h2 class="sec-title">Fra forespørsel til ferdig flytting<br>– uten én eneste telefonroulette</h2>
+      <p class="sec-lede">Du skal alltid vite hva som skjer, når det skjer, og hva det koster. Derfor er hele flyttingen lagt opp som fire forutsigbare steg.</p>
+    </div>
+    <div class="proc-grid">
+      <span class="runner" aria-hidden="true"></span>
+      <div class="pstep" data-reveal>
+        <span class="p-num" aria-hidden="true">01</span>
+        <div class="p-ic"><svg class="ic ic-24" aria-hidden="true"><use href="#i-calc"/></svg></div>
+        <h3 class="p-t">Få prisen din</h3>
+        <p class="p-d">Svar på fem korte spørsmål i kalkulatoren. Prisen du ser, er prisen du betaler – befaring trengs ikke.</p>
+        <span class="p-chip"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>60 sekunder</span>
+      </div>
+      <div class="pstep" data-reveal style="--d:.1s">
+        <span class="p-num" aria-hidden="true">02</span>
+        <div class="p-ic"><svg class="ic ic-24" aria-hidden="true"><use href="#i-cal"/></svg></div>
+        <h3 class="p-t">Book og planlegg</h3>
+        <p class="p-d">Velg dato og tidspunkt. Du får én fast kontaktperson, SMS-bekreftelse og en enkel sjekkliste før flyttedagen.</p>
+        <span class="p-chip"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Bekreftelse samme dag</span>
+      </div>
+      <div class="pstep" data-reveal style="--d:.2s">
+        <span class="p-num" aria-hidden="true">03</span>
+        <div class="p-ic"><svg class="ic ic-24" aria-hidden="true"><use href="#i-truck"/></svg></div>
+        <h3 class="p-t">Flyttedagen</h3>
+        <p class="p-d">Vi kommer til avtalt tid med bil, tepper og kasser. Alt merkes og sikres – du trenger ikke løfte en finger.</p>
+        <span class="p-chip"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>Fra kl. 08:00</span>
+      </div>
+      <div class="pstep" data-reveal style="--d:.3s">
+        <span class="p-num" aria-hidden="true">04</span>
+        <div class="p-ic"><svg class="ic ic-24" aria-hidden="true"><use href="#i-home"/></svg></div>
+        <h3 class="p-t">Nøklene overleveres</h3>
+        <p class="p-d">Møblene settes på plass i det nye hjemmet, vi tar med oss alt av papir og plast – og flyttevasken er ordnet om du vil.</p>
+        <span class="p-chip"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Ferdig samme dag</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SAMMENLIGNING ================= -->
+<section class="section" id="hvorfor" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <p class="kicker">Hvorfor FlyttSmart</p>
+      <h2 class="sec-title">Ikke et gammeldags flyttebyrå.</h2>
+      <p class="sec-lede">Vi bygde FlyttSmart fordi flytting i Norge har fungert likt siden 1987. Her er forskjellen på oss og det tradisjonelle.</p>
+    </div>
+    <div class="cmp-card" data-reveal>
+      <div class="cmp-row cmp-head">
+        <div class="cmp-cell cmp-label" aria-hidden="true"></div>
+        <div class="cmp-cell cmp-us"><span class="brand-mark"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>FlyttSmart</div>
+        <div class="cmp-cell cmp-them">Det tradisjonelle</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell cmp-label">Pris</div>
+        <div class="cmp-cell cmp-us"><span class="cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Fast pris før du bestiller</div>
+        <div class="cmp-cell cmp-them"><span class="cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span>Endelig pris kommer ofte etter flyttingen</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell cmp-label">Befaring</div>
+        <div class="cmp-cell cmp-us"><span class="cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Digital pris på 60 sekunder</div>
+        <div class="cmp-cell cmp-them"><span class="cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span>Befaring må bookes dager i forveien</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell cmp-label">Helg</div>
+        <div class="cmp-cell cmp-us"><span class="cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Lørdag koster som tirsdag</div>
+        <div class="cmp-cell cmp-them"><span class="cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span>Helgetillegg på opptil 30 %</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell cmp-label">Flyttekasser</div>
+        <div class="cmp-cell cmp-us"><span class="cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Gjenbrukbare kasser med klips – enkelt og gratis å leie</div>
+        <div class="cmp-cell cmp-them"><span class="cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span>Du kjøper engangskasser og teip</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell cmp-label">Oppfølging</div>
+        <div class="cmp-cell cmp-us"><span class="cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Én kontaktperson fra start til slutt</div>
+        <div class="cmp-cell cmp-them"><span class="cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span>Ny person i telefonen hver gang</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell cmp-label">Flyttevask</div>
+        <div class="cmp-cell cmp-us"><span class="cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span>Bestilles i samme flytting – med vaskegaranti</div>
+        <div class="cmp-cell cmp-them"><span class="cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></span>Leie inn ekstra leverandør selv</div>
+      </div>
+    </div>
+    <p class="cmp-note" data-reveal>Basert på det over 3 800 kunder har fortalt oss om tidligere flyttinger.</p>
+  </div>
+</section>
+
+<!-- ================= PRISER ================= -->
+<section class="section" id="priser" style="background:var(--paper-2)">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <p class="kicker">Priser</p>
+      <h2 class="sec-title">Hva koster det å flytte?</h2>
+      <p class="sec-lede">Fra-priser for de vanligste flyttingene i Oslo-området. I kalkulatoren får du nøyaktig pris for akkurat din flytting – på under et minutt.</p>
+    </div>
+    <div class="price-grid">
+      <div class="pcard" data-reveal>
+        <span class="pc-t">Hybel / inntil 25 m²</span>
+        <span class="pc-s">Alt i én liten lastebil. Perfekt for studentby og første leilighet.</span>
+        <span class="pc-price"><small>fra</small><b>3 690 kr</b></span>
+        <button class="pc-link" data-size="xsmall">Bruk i kalkulatoren<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="pcard" data-reveal style="--d:.06s">
+        <span class="pc-t">1-roms · 25–40 m²</span>
+        <span class="pc-s">Bil og 2 flyttefolk. Inkludert 15 km, tepper og forsikring.</span>
+        <span class="pc-price"><small>fra</small><b>4 490 kr</b></span>
+        <button class="pc-link" data-size="small">Bruk i kalkulatoren<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="pcard" data-reveal style="--d:.12s">
+        <span class="badge-pop">Mest booket</span>
+        <span class="pc-t">2-roms · 40–60 m²</span>
+        <span class="pc-s">Norges vanligste flytting. Som regel ferdig på 3–4 timer.</span>
+        <span class="pc-price"><small>fra</small><b>5 890 kr</b></span>
+        <button class="pc-link" data-size="medium">Bruk i kalkulatoren<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="pcard" data-reveal style="--d:.18s">
+        <span class="pc-t">3-roms · 60–85 m²</span>
+        <span class="pc-s">For familien som har samlet litt mer enn man tror.</span>
+        <span class="pc-price"><small>fra</small><b>7 490 kr</b></span>
+        <button class="pc-link" data-size="large">Bruk i kalkulatoren<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="pcard" data-reveal style="--d:.24s">
+        <span class="pc-t">4-roms · 85–110 m²</span>
+        <span class="pc-s">Større biler, flere folk – og plass til sykkelen på loftet.</span>
+        <span class="pc-price"><small>fra</small><b>9 290 kr</b></span>
+        <button class="pc-link" data-size="xlarge">Bruk i kalkulatoren<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="pcard" data-reveal style="--d:.3s">
+        <span class="pc-t">Enebolig · 110–160 m²</span>
+        <span class="pc-s">Husflytting med hagemøbler, bod og alt på loftet.</span>
+        <span class="pc-price"><small>fra</small><b>11 900 kr</b></span>
+        <button class="pc-link" data-size="house">Bruk i kalkulatoren<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+
+    <div class="routes" data-reveal>
+      <span class="routes-h">Populære ruter – trykk for å se din pris</span>
+      <button class="route-pill" data-route="oslo-baerum"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>Oslo → Bærum <span>fra 3 720 kr</span></button>
+      <button class="route-pill" data-route="oslo-lillestrom"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>Oslo → Lillestrøm <span>fra 4 030 kr</span></button>
+      <button class="route-pill" data-route="oslo-drammen"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>Oslo → Drammen <span>fra 4 740 kr</span></button>
+      <button class="route-pill" data-route="oslo-moss"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>Oslo → Moss <span>fra 5 490 kr</span></button>
+      <button class="route-pill" data-route="oslo-tonsberg"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>Oslo → Tønsberg <span>fra 6 410 kr</span></button>
+    </div>
+
+    <div class="formula" data-reveal>
+      <span class="f-chip">Basispris</span><span class="f-op">+</span>
+      <span class="f-chip">km utover 15</span><span class="f-op">+</span>
+      <span class="f-chip">etasjer uten heis</span><span class="f-op">+</span>
+      <span class="f-chip">valgfrie tjenester</span><span class="f-op">=</span>
+      <span class="f-chip f-res">Fast pris</span>
+      <span class="f-note">Ingen skjulte tillegg. Ingen startpris. Ingen «det viste seg at»-kostnader. Noensinne.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OMTALER ================= -->
+<section class="section sec--dark" id="omtaler">
+  <div class="container">
+    <div class="sec-head center" data-reveal>
+      <p class="kicker">Omtaler</p>
+      <h2 class="sec-title">3 800 flyttinger. 1 240 omtaler.</h2>
+    </div>
+    <div class="t-head" data-reveal>
+      <div class="t-score">
+        <span class="big">4,9</span>
+        <span>
+          <span class="stars">
+            <svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg>
+          </span>
+          <span class="sub">på Google</span>
+        </span>
+      </div>
+    </div>
+    <div class="t-wrap" data-reveal style="--d:.08s">
+      <div id="tSlider" aria-roledescription="karusell" aria-label="Kundeomtaler">
+        <div class="t-slide is-active" role="group" aria-label="Omtale 1 av 5">
+          <div class="t-stars"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg></div>
+          <blockquote class="t-quote">Prisen jeg fikk i kalkulatoren, var prisen jeg betalte. Til kronen. Det har aldri skjedd meg i en flytting før.</blockquote>
+          <div class="t-author">
+            <span class="t-ava v1">IS</span>
+            <span><span class="t-name">Ingrid Sørensen</span><span class="t-meta" style="display:block">2-roms · Grünerløkka → Majorstuen · Privatflytting</span></span>
+          </div>
+        </div>
+        <div class="t-slide" role="group" aria-label="Omtale 2 av 5">
+          <div class="t-stars"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg></div>
+          <blockquote class="t-quote">To flinke folk kom åtte på morgenen, og klokken tre var alt ferdig – inkludert montering av seng og oppvask av stuer. Jeg bare fulgte med.</blockquote>
+          <div class="t-author">
+            <span class="t-ava v2">TB</span>
+            <span><span class="t-name">Thomas Berg</span><span class="t-meta" style="display:block">3-roms · Oslo → Drammen · Med pakketjeneste</span></span>
+          </div>
+        </div>
+        <div class="t-slide" role="group" aria-label="Omtale 3 av 5">
+          <div class="t-stars"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg></div>
+          <blockquote class="t-quote">Vi skulle flytte med to små barn og en hund. FlyttSmart strukturerte alt, så vi faktisk fikk kose oss på flyttedagen.</blockquote>
+          <div class="t-author">
+            <span class="t-ava v3">C&amp;J</span>
+            <span><span class="t-name">Camilla og Jonas</span><span class="t-meta" style="display:block">Enebolig · Asker · Full flytting med vask</span></span>
+          </div>
+        </div>
+        <div class="t-slide" role="group" aria-label="Omtale 4 av 5">
+          <div class="t-stars"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg></div>
+          <blockquote class="t-quote">Kontoret var flyttet og operativt på en søndag. Mandag morgen satt alle på plass – uten én minutt nedetid.</blockquote>
+          <div class="t-author">
+            <span class="t-ava v1">HL</span>
+            <span><span class="t-name">Håvard Lien</span><span class="t-meta" style="display:block">Daglig leder · 24 arbeidsplasser · Bedriftsflytting</span></span>
+          </div>
+        </div>
+        <div class="t-slide" role="group" aria-label="Omtale 5 av 5">
+          <div class="t-stars"><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="ic ic--fill" aria-hidden="true"><use href="#i-star"/></svg></div>
+          <blockquote class="t-quote">Sønnen min booket bærehjelp til meg. De var omtenksomme, rolige og tok seg god tid. Jeg har allerede anbefalt dem til tre naboer.</blockquote>
+          <div class="t-author">
+            <span class="t-ava v2">BH</span>
+            <span><span class="t-name">Bente Haug (67)</span><span class="t-meta" style="display:block">Pakkehjelp og bærehjelp · Slemdal</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="t-ctrl">
+        <button class="t-btn" id="tPrev" aria-label="Forrige omtale"><svg class="ic ic-18" aria-hidden="true"><use href="#i-arrow-l"/></svg></button>
+        <div class="t-dots" id="tDots"></div>
+        <button class="t-btn" id="tNext" aria-label="Neste omtale"><svg class="ic ic-18" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="sec-head center" data-reveal>
+      <p class="kicker">FAQ</p>
+      <h2 class="sec-title">Det folk spør oss om</h2>
+    </div>
+    <div class="faq-list" data-reveal>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Er prisen fra kalkulatoren bindende?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><p>Estimatet ligger normalt innenfor ±10 %. Når du bestiller, låser vi prisen basert på svarene dine. Skulle noe vesentlig endre seg underveis – for eksempel at boligen er dobbelt så stor som oppgitt – kontakter vi deg først. Prisen blir aldri høyere uten at du har godkjent det.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hvor raskt kan dere flytte meg?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><p>De fleste flyttinger i Oslo-området gjennomfører vi med 2–3 dagers varsel, i travle perioder (mai–august) bør du booke 1–2 uker i forveien. Akutte flyttinger klarer vi ofte samme eller neste dag – ring 21 08 90 40, så finner vi en løsning.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hva skjer om noe går i stykker?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><p>Alle flyttinger er dekket av flytteskadeforsikringen vår opptil 1 million kroner. Skader er sjeldne – under 0,4 % av gjenstandene vi flytter blir skadet – men skjer det noe, ordner vi erstatning uten papirkrig. Normal behandlingstid er under 14 dager.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Må jeg pakke selv?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><p>Nei. Velger du full pakketjeneste, pakker vi ned alt, merker per rom og pakker ut i det nye hjemmet. Mange velger å pakke personlige ting selv – som bilder og dokumenter – og lar oss ta resten. Du bestemmer selv hvor linja går.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hvordan fungerer mellomlagring?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><p>Hvis det går dager eller uker mellom inn- og utflytting, lagrer vi sakene dine klimastyrt og forsikret på vårt lager på Økern. Du betaler per påbegynt måned (fra 690 kr), og vi henter og leverer når det passer deg.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Kan jeg flytte i helgen?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><p>Ja – vi flytter seks dager i uken, og lørdag koster nøyaktig det samme som tirsdag. Søndager og helligdager løser vi etter avtale, ta kontakt så ordner vi det.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Hva om jeg må avbestille?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        <div class="faq-a"><p>Gratis avbestilling inntil 72 timer før flyttingen. Inntil 24 timer før trekker vi 25 %, og kortere enn det 50 %. Endrer du bare dato, flytter vi bestillingen gratis – så lenge det er ledig kapasitet.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA-BÅND ================= -->
+<section class="cta-band">
+  <div class="cta-mq" aria-hidden="true">
+    <div class="mq-track">
+      <span>FAST PRIS</span><span>INGEN BEFARING</span><span>FULL FORSIKRING</span><span>LØRDAG SOM TIRSDAG</span><span>FLYTT SMART</span><span>FAST PRIS</span><span>INGEN BEFARING</span><span>FULL FORSIKRING</span><span>LØRDAG SOM TIRSDAG</span><span>FLYTT SMART</span>
+    </div>
+  </div>
+  <div class="cta-in">
+    <div class="container">
+      <h2 data-reveal>Klar til å flytte smart?</h2>
+      <p data-reveal style="--d:.08s">Få fast pris på 60 sekunder – eller snakk med et ekte menneske på under 30.</p>
+      <div class="cta-btns" data-reveal style="--d:.16s">
+        <a class="btn btn--dark btn--lg" href="#pris">Beregn pris på 60 sekunder<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="cta-ghost" href="tel:+4721089040"><svg class="ic ic-18" aria-hidden="true"><use href="#i-phone"/></svg>Ring 21 08 90 40</a>
+      </div>
+    </div>
+  </div>
+  <div class="cta-mq" aria-hidden="true">
+    <div class="mq-track">
+      <span>PRIVATFLYTTING</span><span>BEDRIFTSFLYTTING</span><span>PAKKEHJELP</span><span>BÆREHJELP</span><span>MELLOMLAGRING</span><span>FLYTTEVASK</span><span>PRIVATFLYTTING</span><span>BEDRIFTSFLYTTING</span><span>PAKKEHJELP</span><span>BÆREHJELP</span><span>MELLOMLAGRING</span><span>FLYTTEVASK</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" aria-label="FlyttSmart AS">
+          <span class="brand-mark"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          <span class="brand-name">Flytt<em>Smart</em></span>
+        </a>
+        <p class="foot-tag">Flyttebyrået som regner ut prisen før vi løfter en eneste flyttekasse. Etablert i Oslo, 2016.</p>
+        <div class="foot-contact">
+          <a href="tel:+4721089040"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>21 08 90 40</a>
+          <a href="/cdn-cgi/l/email-protection#98f0fdf1d8fef4e1ececebf5f9eaecb6f6f7"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span class="__cf_email__" data-cfemail="97fff2fed7f1fbeee3e3e4faf6e5e3b9f9f8">[email&#160;protected]</span></a>
+          <span class="fc-static"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>Storgata 12 A, 0155 Oslo</span>
+          <span class="fc-static"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>Kundeservice alle dager 07–21</span>
+        </div>
+        <span class="open-chip" id="openState"><span class="dot" aria-hidden="true"></span><span id="openStateTxt">Åpent nå – kort svartid</span></span>
+      </div>
+      <div class="foot-col">
+        <h4>Tjenester</h4>
+        <a href="#tjenester">Privatflytting</a>
+        <a href="#tjenester">Bedriftsflytting</a>
+        <a href="#tjenester">Pakkehjelp</a>
+        <a href="#tjenester">Bærehjelp</a>
+        <a href="#tjenester">Mellomlagring</a>
+        <a href="#tjenester">Flyttevask</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kunder</h4>
+        <a href="#pris">Priskalkulator</a>
+        <a href="#priser">Priseksempler</a>
+        <a href="#slik-funker-det">Slik funker det</a>
+        <a href="#omtaler">Omtaler</a>
+        <a href="#faq">Ofte stilte spørsmål</a>
+      </div>
+      <div class="foot-col">
+        <h4>Flytter vi hos deg?</h4>
+        <p>Vi flytter i hele Oslo, Bærum, Asker, Follo, Romerike, Drammen, Moss og resten av Østlandet – langtransport på forespørsel.</p>
+        <a class="btn btn--light btn--sm" style="margin-top:14px" href="#pris">Bestill flyttehjelp<svg class="ic ic-16 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> FlyttSmart AS · Org.nr 923 456 789 MVA</span>
+      <span class="legal">
+        <a href="#faq">Personvern</a>
+        <a href="#faq">Vilkår</a>
+        <a href="#top">Til toppen ↑</a>
+      </span>
+    </div>
+  </div>
+</footer>
+</main>
+
+<!-- Sticky CTA (mobil) -->
+<div class="stickybar" id="stickybar">
+  <a class="btn btn--primary" href="#pris">Beregn pris<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  <a class="sticky-tel" href="tel:+4721089040" aria-label="Ring FlyttSmart"><svg class="ic ic-24" aria-hidden="true"><use href="#i-phone"/></svg></a>
+</div>
+
+<!-- Bestillingsmodal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal-back" id="modalBack"></div>
+  <div class="modal-card">
+    <div id="mBook">
+      <div class="m-head">
+        <div>
+          <p class="m-kick">Siste steg</p>
+          <h3 class="m-title" id="mTitle">Bekreft bestillingen</h3>
+        </div>
+        <button class="m-close" id="mClose" aria-label="Lukk"><svg class="ic ic-18" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+      <div class="m-rows" id="mRows"></div>
+      <div class="m-comment">
+        <label for="mComment">Noe vi bør vite? (valgfritt)</label>
+        <textarea id="mComment" placeholder="F.eks. «Sovesofa skal ned i kjelleren» eller «Hunden er nervøs»"></textarea>
+      </div>
+      <div class="m-actions">
+        <button class="btn btn--primary btn--lg btn--block" id="mConfirm">Bekreft bestilling<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="btn btn--ghost btn--block" id="mCancel">Endre svarene mine</button>
+      </div>
+      <p class="m-fine">Du forplikter deg ikke før vi har snakket sammen. Gratis avbestilling inntil 72 timer før flyttingen.</p>
+    </div>
+    <div class="m-success" id="mSuccess">
+      <svg class="check-anim" viewBox="0 0 92 92" aria-hidden="true">
+        <circle cx="46" cy="46" r="42"/>
+        <path d="M29 47l12 12 22-26"/>
+      </svg>
+      <h3 id="mSuccessTitle">Takk!</h3>
+      <div class="m-ref">Bestilling <span id="mRef">FS-0000</span></div>
+      <p id="mSuccessTxt"></p>
+      <div class="m-upsell" id="mUpsell"></div>
+      <div class="m-actions" style="align-items:stretch">
+        <button class="btn btn--dark btn--block" id="mDone">Ferdig</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+/* ============ Hjelpefunksjoner ============ */
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+var fmt=function(n){return Math.round(n).toLocaleString('nb-NO')};
+var safeStore=(function(){try{var t='__fs';localStorage.setItem(t,'1');localStorage.removeItem(t);return localStorage}catch(e){var m={};return{getItem:function(k){return k in m?m[k]:null},setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]}}}})();
+function scrollEl(el,off){var r=el.getBoundingClientRect();window.scrollTo({top:r.top+window.pageYOffset-(off||96),behavior:'smooth'})}
+
+/* ============ Toasts ============ */
+var toastsEl=$('#toasts');
+function toast(msg,icon){
+  var t=document.createElement('div');t.className='toast';
+  t.innerHTML='<svg class="ic" aria-hidden="true"><use href="#'+(icon||'i-check')+'"/></svg><span></span>';
+  t.lastChild.textContent=msg;
+  toastsEl.appendChild(t);
+  if(toastsEl.children.length>3)toastsEl.removeChild(toastsEl.firstChild);
+  setTimeout(function(){t.classList.add('out');setTimeout(function(){t.remove()},320)},4200);
+}
+
+/* ============ Header, meny, scrollspy ============ */
+var head=$('#siteHead'),mnav=$('#mnav'),burger=$('#burger');
+function onScroll(){head.classList.toggle('is-scrolled',window.pageYOffset>24)}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+function openMenu(o){
+  mnav.classList.toggle('open',o);
+  mnav.setAttribute('aria-hidden',String(!o));
+  burger.setAttribute('aria-expanded',String(o));
+  document.body.style.overflow=o?'hidden':'';
+}
+burger.addEventListener('click',function(){openMenu(true)});
+$('#mnavClose').addEventListener('click',function(){openMenu(false)});
+$$('.mnav a').forEach(function(a){a.addEventListener('click',function(){openMenu(false)})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){openMenu(false);closeModal()}});
+/* scrollspy */
+var spyLinks=$$('.main-nav .nav-link');
+var spyMap={};spyLinks.forEach(function(a){spyMap[a.getAttribute('href').slice(1)]=a});
+if('IntersectionObserver' in window){
+  var spy=new IntersectionObserver(function(es){es.forEach(function(en){
+    var l=spyMap[en.target.id];if(!l)return;
+    if(en.isIntersecting){spyLinks.forEach(function(x){x.classList.remove('is-active')});l.classList.add('is-active')}
+  })},{rootMargin:'-40% 0px -55% 0px'});
+  Object.keys(spyMap).forEach(function(id){var s=document.getElementById(id);if(s)spy.observe(s)});
+}
+
+/* ============ Reveal + tellere ============ */
+var revEls=$$('[data-reveal]');
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+  revEls.forEach(function(el){io.observe(el)});
+  var cio=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){runCounter(en.target);cio.unobserve(en.target)}})},{threshold:.4});
+  $$('[data-count]').forEach(function(el){cio.observe(el)});
+}else{revEls.forEach(function(el){el.classList.add('in')});$$('[data-count]').forEach(runCounter)}
+function runCounter(el){
+  var target=parseFloat(el.getAttribute('data-count')),dec=parseInt(el.getAttribute('data-dec')||'0',10),t0=null,dur=1500;
+  function step(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/dur),e=1-Math.pow(1-p,3),v=target*e;
+    el.textContent=dec?v.toFixed(dec).replace('.',','):fmt(v);
+    if(p<1)requestAnimationFrame(step)}
+  requestAnimationFrame(step);
+  setTimeout(function(){el.textContent=dec?target.toFixed(dec).replace('.',','):fmt(target)},dur+120);
+}
+
+/* ============ Marquee (dupliser for sømløs løkke) ============ */
+$$('#areasTrack,.cta-mq .mq-track').forEach(function(tr){tr.innerHTML+=tr.innerHTML});
+
+/* ============ Tjenester + FAQ (akkordeon) ============ */
+$$('.svc-item').forEach(function(item){
+  var btn=$('.svc-row',item),panel=$('.svc-panel',item);
+  btn.addEventListener('click',function(){
+    var open=item.classList.contains('open');
+    $$('.svc-item.open').forEach(function(o){if(o!==item){o.classList.remove('open');$('.svc-panel',o).style.maxHeight='0px';$('.svc-row',o).setAttribute('aria-expanded','false')}});
+    item.classList.toggle('open',!open);
+    btn.setAttribute('aria-expanded',String(!open));
+    panel.style.maxHeight=open?'0px':panel.scrollHeight+'px';
+  });
+});
+$$('.faq-item').forEach(function(item){
+  var btn=$('.faq-q',item),panel=$('.faq-a',item);
+  btn.addEventListener('click',function(){
+    var open=item.classList.contains('open');
+    $$('.faq-item.open').forEach(function(o){if(o!==item){o.classList.remove('open');$('.faq-a',o).style.maxHeight='0px';$('.faq-q',o).setAttribute('aria-expanded','false')}});
+    item.classList.toggle('open',!open);
+    btn.setAttribute('aria-expanded',String(!open));
+    panel.style.maxHeight=open?'0px':panel.scrollHeight+'px';
+  });
+});
+
+/* ============ Omtale-karusell ============ */
+(function(){
+  var slides=$$('.t-slide'),dotsEl=$('#tDots'),idx=0,timer=null;
+  slides.forEach(function(_,i){var d=document.createElement('button');d.className='t-dot'+(i===0?' is-on':'');d.setAttribute('aria-label','Gå til omtale '+(i+1));d.addEventListener('click',function(){go(i);restart()});dotsEl.appendChild(d)});
+  var dots=$$('.t-dot',dotsEl);
+  function go(i){idx=(i+slides.length)%slides.length;
+    slides.forEach(function(s,n){s.classList.toggle('is-active',n===idx)});
+    dots.forEach(function(d,n){d.classList.toggle('is-on',n===idx)});
+  }
+  function auto(){timer=setInterval(function(){go(idx+1)},6500)}
+  function restart(){clearInterval(timer);auto()}
+  $('#tPrev').addEventListener('click',function(){go(idx-1);restart()});
+  $('#tNext').addEventListener('click',function(){go(idx+1);restart()});
+  var wrap=$('#tSlider'),sx=null;
+  wrap.addEventListener('pointerdown',function(e){sx=e.clientX});
+  wrap.addEventListener('pointerup',function(e){if(sx===null)return;var dx=e.clientX-sx;if(Math.abs(dx)>44){go(idx+(dx<0?1:-1));restart()}sx=null});
+  wrap.addEventListener('mouseenter',function(){clearInterval(timer)});
+  wrap.addEventListener('mouseleave',auto);
+  auto();
+})();
+
+/* ============ Adresse-data ============ */
+var ADDRESSES=[
+  {a:'Storgata 12',z:'0155',c:'Oslo'},{a:'Skippergata 22',z:'0154',c:'Oslo'},
+  {a:'Bogstadveien 43',z:'0387',c:'Oslo'},{a:'Majorstuveien 20',z:'0366',c:'Oslo'},
+  {a:'Bygdøy allé 33',z:'0266',c:'Oslo'},{a:'Frognerveien 24',z:'0255',c:'Oslo'},
+  {a:'Markveien 12',z:'0554',c:'Oslo'},{a:'Thorvald Meyers gate 33',z:'0555',c:'Oslo'},
+  {a:'Tøyengata 8',z:'0578',c:'Oslo'},{a:'Schweigaards gate 22',z:'0191',c:'Oslo'},
+  {a:'Trondheimsveien 132',z:'0570',c:'Oslo'},{a:'Sandakerveien 24',z:'0484',c:'Oslo'},
+  {a:'Kjelsåsveien 41',z:'0488',c:'Oslo'},{a:'Maridalsveien 300',z:'0870',c:'Oslo'},
+  {a:'Økernveien 145',z:'0950',c:'Oslo'},{a:'Rødtvetveien 10',z:'0987',c:'Oslo'},
+  {a:'Storgata 60',z:'2000',c:'Lillestrøm'},{a:'Storgata 8',z:'2050',c:'Jessheim'},
+  {a:'Bærumsveien 20',z:'1330',c:'Sandvika'},{a:'Vollsveien 8',z:'1366',c:'Lysaker'},
+  {a:'Kirkeveien 14',z:'1380',c:'Asker'},{a:'Nordbyveien 10',z:'1400',c:'Ski'},
+  {a:'Dronningens gate 5',z:'1523',c:'Moss'},{a:'Storgata 23',z:'1606',c:'Fredrikstad'},
+  {a:'St. Olavs gate 20',z:'1710',c:'Sarpsborg'},{a:'Strømsø torg 3',z:'3005',c:'Drammen'},
+  {a:'Storgaten 18',z:'3110',c:'Tønsberg'},{a:'Strandgata 25',z:'2317',c:'Hamar'},
+  {a:'Numedalsgata 8',z:'3611',c:'Kongsberg'},{a:'Storgata 14',z:'3507',c:'Hønefoss'},
+  {a:'Strandgata 5',z:'2815',c:'Gjøvik'},{a:'Storgata 40',z:'2604',c:'Lillehammer'}
+];
+var ZONES={
+  '00':['Oslo sentrum',59.9127,10.7461],'01':['Oslo',59.9169,10.7519],'02':['Oslo vest',59.9265,10.7015],
+  '03':['Oslo vest',59.9285,10.7155],'04':['Oslo nord',59.944,10.782],'05':['Oslo',59.925,10.76],
+  '06':['Oslo øst',59.918,10.798],'07':['Oslo vest',59.921,10.733],'08':['Oslo nordvest',59.933,10.759],
+  '09':['Groruddalen',59.928,10.801],'10':['Oslo vest',59.905,10.702],'11':['Oslo øst',59.918,10.81],
+  '12':['Groruddalen',59.94,10.838],'13':['Bærum',59.897,10.522],'14':['Follo',59.715,10.825],
+  '15':['Moss',59.436,10.662],'16':['Fredrikstad',59.221,10.934],'17':['Sarpsborg',59.286,11.112],
+  '18':['Indre Østfold',59.6,10.95],'19':['Rælingen',59.95,11.15],'20':['Lillestrøm',59.956,11.081],
+  '21':['Romerike',59.98,10.98],'22':['Øvre Romerike',60.05,11.15],'23':['Hamar',60.799,11.069],
+  '24':['Elverum',60.88,11.57],'25':['Hedmark',60.6,11.3],'26':['Lillehammer',60.793,10.461],
+  '27':['Innlandet',61.1,10.4],'28':['Gjøvik',60.795,10.691],'29':['Innlandet',61,10.6],
+  '30':['Drammen',59.744,10.204],'31':['Tønsberg',59.268,10.416],'32':['Sandefjord',59.056,10.604],
+  '33':['Larvik',59.047,10.028],'34':['Lier',59.78,10.27],'35':['Hønefoss',59.97,10.216],
+  '36':['Kongsberg',59.666,9.65],'37':['Notodden',59.38,9.26]
+};
+function zoneOf(text){
+  if(!text)return null;
+  var m=String(text).match(/(\d{4})/);
+  if(!m)return null;
+  var z=ZONES[m[1].slice(0,2)];
+  return z?{name:z[0],lat:z[1],lon:z[2],zip:m[1]}:null;
+}
+function distKm(a,b){
+  if(!a||!b)return null;
+  var R=6371,dLa=(b.lat-a.lat)*Math.PI/180,dLo=(b.lon-a.lon)*Math.PI/180;
+  var h=Math.sin(dLa/2)*Math.sin(dLa/2)+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLo/2)*Math.sin(dLo/2);
+  return Math.round(1.28*2*R*Math.asin(Math.sqrt(h)));
+}
+
+/* ============ Prisberegning ============ */
+var SIZES={
+  xsmall:{short:'Inntil 25 m²',base:3690,pack:1890,wash:2190,hours:2},
+  small:{short:'25–40 m²',base:4490,pack:2390,wash:2590,hours:2.5},
+  medium:{short:'40–60 m²',base:5890,pack:3190,wash:3190,hours:3},
+  large:{short:'60–85 m²',base:7490,pack:3990,wash:3890,hours:4},
+  xlarge:{short:'85–110 m²',base:9290,pack:4890,wash:4490,hours:5},
+  house:{short:'110–160 m²',base:11900,pack:6490,wash:5890,hours:6},
+  xhouse:{short:'160+ m²',base:14900,pack:7990,wash:6890,hours:7}
+};
+var TYPES={hybel:{l:'Hybel',m:.92},leilighet:{l:'Leilighet',m:1},rekkehus:{l:'Rekkehus',m:1.06},enebolig:{l:'Enebolig',m:1.12},kontor:{l:'Kontor/lokale',m:1.18}};
+var S={step:1,from:'',to:'',type:'leilighet',size:'medium',floorFrom:0,floorTo:0,liftFrom:false,liftTo:false,longCarry:false,mode:'full',pack:'self',vask:false,store:false,away:false,date:'',slot:'11-14',name:'',email:'',phone:''};
+var maxStep=1;
+function calc(){
+  var size=SIZES[S.size],type=TYPES[S.type],lines=[],total=0;
+  if(S.mode==='carry'){
+    var h=size.hours,base=Math.round(h*2*790);
+    lines.push({k:'Bærehjelp · 2 flyttefolk × '+String(h).replace('.',',')+' timer',v:base});total+=base;
+  }else{
+    var b=Math.round(size.base*type.m);
+    lines.push({k:'Basispris · '+type.l+', '+size.short,v:b});total+=b;
+    var za=zoneOf(S.from),zb=zoneOf(S.to),km=(za&&zb)?distKm(za,zb):null;
+    if(km!==null){
+      if(km<=15){lines.push({k:'Avstand · ca. '+km+' km (inkludert)',v:0,zero:true})}
+      else{var df=Math.round((km-15)*34);lines.push({k:'Avstand · ca. '+km+' km (34 kr/km utover 15)',v:df});total+=df}
+    }else if(S.from&&S.to){lines.push({k:'Avstand · Oslo-sonen (inkludert)',v:0,zero:true})}
+  }
+  var ff=S.floorFrom,ft=S.floorTo,fFee=ff*(S.liftFrom?90:240)+ft*(S.liftTo?90:240);
+  var fl=function(v,l){return (v===0?'1. etg':(v===5?'6+. etg':(v+1)+'. etg'))+(l?' m/heis':'')};
+  if(fFee>0){lines.push({k:'Etasjer · '+fl(ff,S.liftFrom)+' → '+fl(ft,S.liftTo),v:fFee});total+=fFee}
+  else{lines.push({k:'Etasjer · '+fl(ff,S.liftFrom)+' → '+fl(ft,S.liftTo),v:0,zero:true})}
+  if(S.longCarry){lines.push({k:'Lengre bærevei (over 50 m)',v:390});total+=390}
+  if(S.pack==='full'){lines.push({k:'Full pakketjeneste · pakker ned, merker og pakker ut',v:size.pack});total+=size.pack}
+  if(S.vask){lines.push({k:'Flyttevask med garanti',v:size.wash});total+=size.wash}
+  if(S.store){lines.push({k:'Mellomlagring · første måned (deretter 690 kr/mnd)',v:690});total+=690}
+  if(S.away){lines.push({k:'Bortkjøring av møbler og ting',v:990});total+=990}
+  total=Math.round(total/10)*10;
+  return {total:total,lines:lines,km:(S.mode==='full'&&zoneOf(S.from)&&zoneOf(S.to))?distKm(zoneOf(S.from),zoneOf(S.to)):null};
+}
+
+/* ============ Wizard ============ */
+var wiz=$('#wizard'),wBody=$('#wizBody'),steps=$$('.ws',wBody),wpSteps=$$('.wp-step'),wpFill=$('#wpFill'),wpBar=$('#wpSteps');
+var estEl=$('#estValue'),backBtn=$('#wizBack'),nextBtn=$('#wizNext'),foot=$('#wizFoot');
+function setStep(n,scroll){
+  n=Math.max(1,Math.min(6,n));S.step=n;if(n>maxStep)maxStep=n;
+  steps.forEach(function(s){s.classList.toggle('is-active',+s.getAttribute('data-step')===n)});
+  wpSteps.forEach(function(p,i){
+    var k=i+1;
+    p.classList.toggle('is-active',k===Math.min(n,5));
+    p.classList.toggle('is-done',k<n&&n<=6||k<Math.min(n,5));
+    p.disabled=k>maxStep;
+  });
+  wpFill.style.width=((Math.min(n,5)-1)/4*100)+'%';
+  wpBar.setAttribute('aria-valuenow',Math.min(n,5));
+  backBtn.disabled=(n===1);
+  nextBtn.innerHTML=(n===5?'Se prisen':'Neste steg')+'<svg class="ic ic-18 ic-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>';
+  wiz.classList.toggle('no-foot',n===6);
+  if(n===6)renderResult();
+  if(scroll!==false)scrollEl(wiz,90);
+  persist();
+}
+function prettyDate(v){
+  if(!v)return '';
+  var d=new Date(v+'T12:00:00');
+  return d.toLocaleDateString('nb-NO',{weekday:'long',day:'numeric',month:'long'});
+}
+function servicesLabel(){
+  var arr=[];
+  arr.push(S.mode==='carry'?('Bærehjelp · 2 × '+String(SIZES[S.size].hours).replace('.',',')+' t'):'Full flytting');
+  if(S.pack==='full')arr.push('Pakketjeneste');
+  if(S.vask)arr.push('Flyttevask');
+  if(S.store)arr.push('Lagring');
+  if(S.away)arr.push('Bortkjøring');
+  return arr.join(' · ');
+}
+function updateAll(persistIt){
+  var c=calc();
+  if(estEl.textContent!=='ca. '+fmt(c.total)+' kr'){
+    estEl.textContent='ca. '+fmt(c.total)+' kr';
+    estEl.classList.remove('tick');void estEl.offsetWidth;estEl.classList.add('tick');
+  }
+  var za=zoneOf(S.from),zb=zoneOf(S.to),rm=$('#routeMeta');
+  if(S.from&&S.to){
+    rm.hidden=false;
+    var km=(za&&zb)?distKm(za,zb):null;
+    $('#routeMetaTxt').innerHTML=km!==null?('ca. <b>'+km+' km</b> · '+za.name+' → '+zb.name):('Rute lagret – avstand <b>beregnes</b> fra postnummer');
+  }else{rm.hidden=true}
+  var fl=function(v,l){return (v===0?'1. etg':(v===5?'6+. etg':(v+1)+'. etg'))+(l?' (heis)':'')};
+  $('#waRoute').textContent=(S.from||'Ikke satt')+' → '+(S.to||'Ikke satt');
+  $('#waHome').textContent=TYPES[S.type].l+' · '+SIZES[S.size].short;
+  $('#waFloors').textContent=fl(S.floorFrom,S.liftFrom)+' → '+fl(S.floorTo,S.liftTo);
+  $('#waServices').textContent=servicesLabel();
+  $('#waDate').textContent=S.date?prettyDate(S.date)+' · kl. '+S.slot:'Ikke valgt';
+  if(persistIt!==false)persist();
+}
+function persist(){try{safeStore.setItem('fs_wiz_v1',JSON.stringify(S))}catch(e){}}
+function restore(){try{var raw=safeStore.getItem('fs_wiz_v1');if(!raw)return;var o=JSON.parse(raw);
+  ['step','from','to','type','size','floorFrom','floorTo','liftFrom','liftTo','longCarry','mode','pack','vask','store','away','date','slot','name','email','phone'].forEach(function(k){if(k in o)S[k]=o[k]});
+  if(!(S.size in SIZES))S.size='medium';
+  if(!(S.type in TYPES))S.type='leilighet';
+  S.step=Math.max(1,Math.min(6,S.step));maxStep=S.step;
+}catch(e){}}
+
+/* Sync UI fra state */
+function syncUI(){
+  $('#wFrom').value=S.from;$('#wTo').value=S.to;
+  ['type','mode','pack'].forEach(function(name){
+    var g=$('[data-name="'+name+'"]');if(!g)return;
+    $$('.opt',g).forEach(function(o){var on=o.getAttribute('data-val')===S[name];o.classList.toggle('is-on',on);o.setAttribute('aria-checked',String(on))});
+  });
+  ['size','floorFrom','floorTo','slot'].forEach(function(name){
+    var g=$('[data-name="'+name+'"]');if(!g)return;
+    $$('.seg-btn',g).forEach(function(o){o.classList.toggle('is-on',o.getAttribute('data-val')===String(S[name]))});
+  });
+  $('#liftFrom').checked=S.liftFrom;$('#liftTo').checked=S.liftTo;
+  $('#longCarry').checked=S.longCarry;$('#longCarryCard').classList.toggle('is-on',S.longCarry);
+  $('#adVask').checked=S.vask;$('#adVaskCard').classList.toggle('is-on',S.vask);
+  $('#adStore').checked=S.store;$('#adStoreCard').classList.toggle('is-on',S.store);
+  $('#adAway').checked=S.away;$('#adAwayCard').classList.toggle('is-on',S.away);
+  $('#wizDate').value=S.date;$('#wName').value=S.name;$('#wEmail').value=S.email;$('#wPhone').value=S.phone;
+}
+/* Klikk-håndtering for valggrupper */
+[['type','opt'],['mode','opt'],['pack','opt'],['size','seg-btn'],['floorFrom','seg-btn'],['floorTo','seg-btn'],['slot','seg-btn']].forEach(function(pair){
+  document.addEventListener('click',function(e){
+    var g=e.target.closest('[data-name="'+pair[0]+'"]');if(!g)return;
+    var b=e.target.closest('.'+pair[1]);if(!b||!g.contains(b))return;
+    var v=b.getAttribute('data-val');
+    if(pair[0]==='floorFrom'||pair[0]==='floorTo')S[pair[0]]=parseInt(v,10);else S[pair[0]]=v;
+    if(pair[1]==='opt')$$('.opt',g).forEach(function(o){var on=o===b;o.classList.toggle('is-on',on);o.setAttribute('aria-checked',String(on))});
+    else $$('.seg-btn',g).forEach(function(o){o.classList.toggle('is-on',o===b)});
+    updateAll();
+    if(S.step===6)renderResult();
+  });
+});
+[['liftFrom','liftFrom'],['liftTo','liftTo'],['longCarry','longCarryCard'],['adVask','adVaskCard'],['adStore','adStoreCard'],['adAway','adAwayCard']].forEach(function(p){
+  var el=$('#'+p[0]);el.addEventListener('change',function(){S[p[0]]=el.checked;$('#'+p[1]).classList.toggle('is-on',el.checked);updateAll();if(S.step===6)renderResult()});
+});
+/* Tekstfelter */
+[['wFrom','from'],['wTo','to'],['wName','name'],['wEmail','email'],['wPhone','phone'],['wizDate','date']].forEach(function(p){
+  var el=$('#'+p[0]);
+  el.addEventListener('input',function(){S[p[1]]=el.value.trim();el.classList.remove('is-err');updateAll()});
+});
+initAC($('#wFrom'),'from');initAC($('#wTo'),'to');
+/* Bytt fra/til */
+function bindSwap(btn,inA,inB){
+  btn.addEventListener('click',function(){
+    var a=$(inA).value;$(inA).value=$(inB).value;$(inB).value=a;
+    var t=S.from;S.from=S.to;S.to=t;
+    var cur=(parseInt(btn.getAttribute('data-r')||'0',10)+180)%360;
+    btn.setAttribute('data-r',String(cur));
+    btn.style.transform='rotate('+cur+'deg)';
+    setTimeout(function(){btn.style.transform=''},450);
+    updateAll();
+  });
+}
+bindSwap($('#wSwap'),'#wFrom','#wTo');bindSwap($('#qfSwap'),'#qfFrom','#qfTo');
+/* Hurtigdatoer */
+$$('.qdate').forEach(function(b){b.addEventListener('click',function(){
+  var d=new Date(),v=b.getAttribute('data-qdate');
+  if(v==='sat'){d.setDate(d.getDate()+((6-d.getDay()+7)%7||7))}
+  else if(v==='14'){d.setDate(d.getDate()+14)}
+  else{d.setDate(d.getDate()+1)}
+  var iso=d.toISOString().slice(0,10);
+  $('#wizDate').value=iso;S.date=iso;updateAll();
+})});
+var todayISO=new Date().toISOString().slice(0,10);
+$('#wizDate').min=todayISO;
+
+/* Validering + navigasjon */
+function validate(n){
+  if(n===1){
+    var ok=true;
+    [['#wFrom','from'],['#wTo','to']].forEach(function(p){
+      var bad=!S[p[1]]||S[p[1]].length<2;$('#'+p[0].slice(1)).classList.toggle('is-err',bad);if(bad)ok=false;
+    });
+    if(!ok){toast('Fyll inn både fra- og til-adresse – så regner vi ut prisen','i-info');return false}
+  }
+  if(n===5){
+    var ok2=true;
+    if(!S.date){$('#wizDate').classList.add('is-err');ok2=false}
+    if(!S.name||S.name.length<2){$('#wName').classList.add('is-err');ok2=false}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(S.email||'')){$('#wEmail').classList.add('is-err');ok2=false}
+    if((S.phone||'').replace(/\D/g,'').replace(/^47/,'').length<8){$('#wPhone').classList.add('is-err');ok2=false}
+    if(!ok2){toast('Sjekk dato, navn, e-post og telefon – så er vi i gang','i-info');return false}
+  }
+  return true;
+}
+nextBtn.addEventListener('click',function(){if(validate(S.step))setStep(S.step+1)});
+backBtn.addEventListener('click',function(){setStep(S.step-1)});
+wpSteps.forEach(function(p){p.addEventListener('click',function(){
+  var k=+p.getAttribute('data-jump');if(k<=maxStep)setStep(k);
+})});
+wBody.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'||e.target.tagName==='TEXTAREA'||e.target.tagName==='BUTTON')return;
+  if(e.target.closest('.ac')&&e.target.closest('.ac').classList.contains('open'))return;
+  e.preventDefault();
+  if(S.step<6&&validate(S.step))setStep(S.step+1);
+});
+
+/* ============ Adresse-autocomplete ============ */
+function initAC(input,key){
+  var wrap=input.closest('.ac'),list=document.createElement('div');
+  list.className='ac-list';wrap.appendChild(list);
+  var sel=-1,items=[];
+  function render(q){
+    q=q.trim().toLowerCase();
+    if(q.length<2){wrap.classList.remove('open');return}
+    items=ADDRESSES.filter(function(ad){
+      return (ad.a+' '+ad.z+' '+ad.c).toLowerCase().indexOf(q)>-1;
+    }).slice(0,6);
+    if(!items.length){wrap.classList.remove('open');return}
+    list.innerHTML=items.map(function(ad,i){
+      return '<button type="button" class="ac-item'+(i===sel?' is-sel':'')+'" data-i="'+i+'"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><b>'+ad.a+'</b>, '+ad.z+' '+ad.c+'</button>';
+    }).join('')+'<div class="ac-hint"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>Foreslåtte adresser – trykk for å velge</div>';
+    wrap.classList.add('open');
+    $$('.ac-item',list).forEach(function(b){
+      b.addEventListener('mousedown',function(ev){ev.preventDefault();pick(+b.getAttribute('data-i'))});
+    });
+  }
+  function pick(i){
+    var ad=items[i];if(!ad)return;
+    input.value=ad.a+', '+ad.z+' '+ad.c;
+    S[key]=input.value;sel=-1;wrap.classList.remove('open');
+    input.classList.remove('is-err');updateAll();
+    if(S.step===6)renderResult();
+  }
+  input.addEventListener('input',function(){sel=-1;render(input.value)});
+  input.addEventListener('focus',function(){if(input.value)render(input.value)});
+  input.addEventListener('blur',function(){setTimeout(function(){wrap.classList.remove('open')},150)});
+  input.addEventListener('keydown',function(e){
+    if(!wrap.classList.contains('open'))return;
+    var n=$$('.ac-item',list).length;if(!n)return;
+    if(e.key==='ArrowDown'){e.preventDefault();sel=(sel+1)%n;render(input.value)}
+    else if(e.key==='ArrowUp'){e.preventDefault();sel=(sel-1+n)%n;render(input.value)}
+    else if(e.key==='Enter'){e.preventDefault();if(sel>=0)pick(sel);else{wrap.classList.remove('open')}}
+    else if(e.key==='Escape'){wrap.classList.remove('open')}
+  });
+}
+
+/* ============ Resultat ============ */
+function renderResult(){
+  var c=calc(),size=SIZES[S.size];
+  /* telling */
+  var el=$('#resPrice'),t0=null,dur=1100;
+  function tick(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/dur),e=1-Math.pow(1-p,3);
+    el.textContent=fmt(c.total*e);if(p<1)requestAnimationFrame(tick)}
+  requestAnimationFrame(tick);
+  setTimeout(function(){el.textContent=fmt(c.total)},dur+120);
+  $('#resInterval').textContent='realistisk intervall '+fmt(c.total*0.9)+'–'+fmt(c.total*1.1)+' kr';
+  var chips=[];
+  if(S.date)chips.push(['i-cal',prettyDate(S.date)+' · kl. '+S.slot]);
+  if(c.km!==null)chips.push(['i-truck','ca. '+c.km+' km']);
+  chips.push(['i-user','Fast kontaktperson']);
+  chips.push(['i-shield','Full forsikring']);
+  chips.push(['i-check','Ingen binding']);
+  $('#resChips').innerHTML=chips.map(function(ch){return '<span class="r-chip"><svg class="ic" aria-hidden="true"><use href="#'+ch[0]+'"/></svg>'+ch[1]+'</span>'}).join('');
+  var rows=c.lines.map(function(l){return '<div class="b-row"><span class="b-k">'+l.k+'</span><span class="b-dots"></span><span class="b-v'+(l.zero?' zero':'')+'">'+(l.zero?'Inkludert':fmt(l.v)+' kr')+'</span></div>'}).join('');
+  rows+='<div class="b-row b-total"><span class="b-k">Estimert fastpris</span><span class="b-dots"></span><span class="b-v">'+fmt(c.total)+' kr</span></div><div class="b-mva">Alle priser inkl. 25 % mva</div>';
+  $('#resBreak').innerHTML=rows;
+  $('#resFine').textContent='Basert på svarene dine ('+TYPES[S.type].l+', '+size.short+'). Ved bestilling låser vi prisen – den blir aldri høyere uten at du godkjenner det først.';
+}
+$('#btnEdit').addEventListener('click',function(){setStep(1)});
+$('#btnMail').addEventListener('click',function(){
+  toast('Prisoversikt sendt til '+S.email+'! Sjekk innboksen din.');
+  $('#btnMail').textContent='Sendt til '+S.email;
+  setTimeout(function(){$('#btnMail').textContent='Få prisoversikten på e-post'},6000);
+});
+
+/* ============ Bestillingsmodal ============ */
+var modal=$('#modal'),lastFocus=null;
+function openModal(){
+  var c=calc();
+  var rows=[
+    ['Fra',S.from||'—'],['Til',S.to||'—'],
+    ['Dato',S.date?prettyDate(S.date)+' · kl. '+S.slot:'—'],
+    ['Bolig',TYPES[S.type].l+' · '+SIZES[S.size].short],
+    ['Tjenester',servicesLabel()],
+    ['Pris (estimert)',fmt(c.total)+' kr','price']
+  ];
+  $('#mRows').innerHTML=rows.map(function(r){return '<div class="m-row"><span class="k">'+r[0]+'</span><span class="v'+(r[2]?' '+r[2]:'')+'">'+r[1]+'</span></div>'}).join('');
+  $('#mBook').style.display='block';$('#mSuccess').classList.remove('show');$('#mSuccess').style.display='none';
+  modal.classList.add('open');document.body.style.overflow='hidden';
+  lastFocus=document.activeElement;setTimeout(function(){$('#mClose').focus()},60);
+}
+function closeModal(){modal.classList.remove('open');document.body.style.overflow='';if(lastFocus)lastFocus.focus()}
+$('#btnOrder').addEventListener('click',openModal);
+$('#mClose').addEventListener('click',closeModal);
+$('#modalBack').addEventListener('click',closeModal);
+$('#mCancel').addEventListener('click',function(){closeModal();setStep(1)});
+$('#mDone').addEventListener('click',function(){closeModal();toast('Bestillingen er registrert – vi tar kontakt!')});
+$('#mConfirm').addEventListener('click',function(){
+  var ref='FS-'+(1000+Math.floor(Math.random()*9000));
+  $('#mRef').textContent=ref;
+  var first=(S.name||'').split(' ')[0]||'hei';
+  $('#mSuccessTitle').textContent='Takk, '+first+'!';
+  $('#mSuccessTxt').textContent='Vi har sendt en bekreftelse til '+S.email+'. En kontaktperson ringer deg innen én time (07–21) for å gjennomgå flyttingen '+prettyDate(S.date)+'.';
+  var up=$('#mUpsell');up.innerHTML='';
+  if(!S.vask){
+    var b=document.createElement('button');b.className='btn btn--ghost btn--block';
+    b.innerHTML='Legg til flyttevask (+'+fmt(SIZES[S.size].wash)+' kr)<svg class="ic ic-18" aria-hidden="true"><use href="#i-sparkle"/></svg>';
+    b.addEventListener('click',function(){
+      S.vask=true;$('#adVask').checked=true;$('#adVaskCard').classList.add('is-on');
+      updateAll();renderResult();closeModal();
+      toast('Flyttevask lagt til! Nytt estimat: ca. '+fmt(calc().total)+' kr');
+    });
+    up.appendChild(b);
+  }
+  $('#mBook').style.display='none';$('#mSuccess').style.display='block';$('#mSuccess').classList.add('show');
+});
+
+/* ============ Rask start (hero) + forhåndsvalg ============ */
+$('#quickForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  S.from=$('#qfFrom').value.trim();S.to=$('#qfTo').value.trim();
+  $('#wFrom').value=S.from;$('#wTo').value=S.to;
+  var ready=S.from.length>=2&&S.to.length>=2;
+  if(ready){setStep(2);toast('Fint! Nå vet vi ruten – fortell om boligen.')}
+  else{setStep(1);toast('Skriv inn fra- og til-adresse – ellers hopp rett inn i kalkulatoren','i-info')}
+  pulseWiz();
+});
+function pulseWiz(){wiz.classList.remove('pulse-ring');void wiz.offsetWidth;wiz.classList.add('pulse-ring');setTimeout(function(){wiz.classList.remove('pulse-ring')},2400)}
+var SERVICE_LABEL={privat:'Privatflytting',bedrift:'Bedriftsflytting',pakking:'Pakkehjelp',baring:'Bærehjelp',lagring:'Mellomlagring',vask:'Flyttevask'};
+$$('[data-service]').forEach(function(a){a.addEventListener('click',function(e){
+  var k=a.getAttribute('data-service');
+  if(k==='bedrift')S.type='kontor';
+  if(k==='pakking')S.pack='full';
+  if(k==='baring')S.mode='carry';
+  if(k==='lagring')S.store=true;
+  if(k==='vask')S.vask=true;
+  syncUI();updateAll();setStep(1,false);
+  toast(SERVICE_LABEL[k]+' lagt til i kalkulatoren – fyll inn adressene så regner vi ut prisen');
+  setTimeout(pulseWiz,350);
+})});
+var ROUTES={
+  'oslo-baerum':['Storgata 12, 0155 Oslo','Bærumsveien 20, 1330 Sandvika'],
+  'oslo-lillestrom':['Storgata 12, 0155 Oslo','Storgata 60, 2000 Lillestrøm'],
+  'oslo-drammen':['Storgata 12, 0155 Oslo','Strømsø torg 3, 3005 Drammen'],
+  'oslo-moss':['Storgata 12, 0155 Oslo','Dronningens gate 5, 1523 Moss'],
+  'oslo-tonsberg':['Storgata 12, 0155 Oslo','Storgaten 18, 3110 Tønsberg']
+};
+$$('[data-route]').forEach(function(b){b.addEventListener('click',function(){
+  var r=ROUTES[b.getAttribute('data-route')];
+  S.from=r[0];S.to=r[1];$('#wFrom').value=S.from;$('#wTo').value=S.to;
+  syncUI();updateAll();setStep(2,false);pulseWiz();
+})});
+var SIZE_LABEL={xsmall:'Hybel',small:'1-roms',medium:'2-roms',large:'3-roms',xlarge:'4-roms',house:'Enebolig',xhouse:'Større bolig'};
+$$('[data-size]').forEach(function(b){b.addEventListener('click',function(){
+  S.size=b.getAttribute('data-size');
+  syncUI();updateAll();setStep(1,false);
+  toast(SIZE_LABEL[S.size]+' valgt – fyll inn adressene for nøyaktig pris');
+  setTimeout(pulseWiz,350);
+})});
+
+/* ============ Sticky CTA + footer-detaljer ============ */
+var sticky=$('#stickybar'),wizInView=false;
+window.addEventListener('scroll',function(){sticky.classList.toggle('show',window.pageYOffset>620&&!wizInView)},{passive:true});
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){es.forEach(function(en){wizInView=en.isIntersecting;sticky.classList.toggle('show',window.pageYOffset>620&&!wizInView)})},{threshold:.08}).observe(wiz);
+}
+$('#year').textContent=new Date().getFullYear();
+(function(){
+  var h=new Date().getHours(),open=h>=7&&h<21;
+  $('#openStateTxt').textContent=open?'Åpent nå – kort svartid':'Åpner kl. 07:00';
+  if(!open)$('#openState .dot').classList.add('closed');
+})();
+
+/* ============ Init ============ */
+restore();syncUI();updateAll(false);setStep(S.step,false);
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a378d5311f9f568f',t:'MTc4ODgxNjgxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

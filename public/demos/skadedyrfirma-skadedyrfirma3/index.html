@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TryggSkade AS — Kontroll. Diskresjon. Fagfolk.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF8F3;
+  --paper2:#F1EBE1;
+  --paper3:#E9E0D2;
+  --ink:#0D1A14;
+  --ink2:#2F3D36;
+  --ink3:#5A6E66;
+  --line:#E8DDCD;
+  --line2:#D8CCB9;
+  --moss:#14261E;
+  --moss2:#1E3A2D;
+  --lime:#E2FF54;
+  --lime2:#EEFF8C;
+  --white:#FFFFFF;
+  --radius:20px;
+  --radius-lg:28px;
+  --radius-xl:36px;
+  --shadow:0 20px 60px rgba(13,26,20,.08), 0 4px 16px rgba(13,26,20,.06);
+  --shadow-lg:0 32px 80px rgba(13,26,20,.14);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+img,svg{display:block;max-width:100%}
+::selection{background:var(--lime);color:var(--ink)}
+
+.serif{font-family:"Instrument Serif",Georgia,serif}
+.italic{font-style:italic;font-weight:400}
+
+/* Layout */
+.container{width:min(1280px,calc(100% - 40px));margin-inline:auto}
+@media(max-width:640px){.container{width:min(1280px,calc(100% - 32px))}}
+
+/* Header */
+.header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:saturate(1.2) blur(16px);
+  background:color-mix(in srgb,var(--paper) 84%, transparent);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .3s, background .3s;
+}
+.header.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.06);background:rgba(251,248,243,.92)}
+.header-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{
+  width:36px;height:36px;border-radius:11px;
+  background:var(--ink);color:var(--lime);
+  display:grid;place-items:center;
+  font-family:"Instrument Serif",serif;font-size:19px;letter-spacing:-.02em;
+  position:relative;overflow:hidden;
+}
+.logo-mark:after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(80% 80% at 30% 20%, rgba(226,255,84,.35), transparent 60%);
+}
+.logo-type{line-height:1}
+.logo-type b{display:block;font-weight:700;letter-spacing:-.02em;font-size:15px}
+.logo-type span{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-top:1px;font-weight:600}
+.nav{display:flex;align-items:center;gap:28px}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{font-size:13.5px;font-weight:600;letter-spacing:.01em;color:var(--ink2);position:relative;padding:6px 0}
+.nav-links a:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:.35s}
+.nav-links a:hover:after{transform:scaleX(1)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.phone-pill{
+  display:flex;align-items:center;gap:8px;
+  height:38px;padding:0 14px 0 10px;
+  border:1px solid var(--line);border-radius:999px;
+  background:var(--white);font-size:13px;font-weight:600;
+}
+.phone-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 4px rgba(34,197,94,.18);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.35)}70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:40px;padding:0 18px;border-radius:999px;border:1px solid transparent;
+  font-weight:700;font-size:13.5px;letter-spacing:.01em;
+  cursor:pointer;transition:.25s;white-space:nowrap;
+}
+.btn-lime{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.btn-lime:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(226,255,84,.45);background:#E8FF6E}
+.btn-dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn-dark:hover{background:var(--moss2);transform:translateY(-1px)}
+.btn-ghost{background:var(--white);border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn .arrow{transition:.25s}
+.btn:hover .arrow{transform:translateX(3px)}
+.hamburger{display:none;width:40px;height:40px;border-radius:999px;border:1px solid var(--line);background:var(--white);place-items:center}
+
+/* Emergency strip */
+.strip{
+  background:var(--moss);color:#D9E5DF;
+  font-size:12.5px;letter-spacing:.02em;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.strip-inner{height:36px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.strip-left{display:flex;gap:18px;align-items:center}
+.strip b{color:var(--lime);font-weight:700}
+.strip-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.3)}
+
+/* Hero */
+.hero{
+  position:relative;
+  padding:28px 0 40px;
+  overflow:clip;
+  background:
+    radial-gradient(120% 80% at 85% -10%, rgba(226,255,84,.28), transparent 55%),
+    radial-gradient(90% 70% at -10% 30%, rgba(20,38,30,.06), transparent 60%),
+    var(--paper);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:36px;
+  align-items:start;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ink2);
+  border:1px solid var(--line);background:var(--white);padding:7px 12px;border-radius:999px;
+}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--ink);display:inline-block}
+.hero-title{
+  margin:22px 0 0;
+  font-family:"Instrument Serif",serif;
+  font-size:clamp(44px,6.2vw,92px);
+  line-height:.88;
+  letter-spacing:-.04em;
+  font-weight:400;
+}
+.hero-title .line{display:block}
+.hero-title .accent{color:var(--ink2);font-style:italic}
+.hero-copy{
+  margin:20px 0 0;
+  font-size:18px;line-height:1.6;color:var(--ink2);
+  max-width:52ch;
+}
+.hero-meta{
+  margin-top:28px;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:12px;max-width:560px;
+}
+.meta-card{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;
+  padding:14px 14px 12px;
+}
+.meta-card strong{display:block;font-size:22px;line-height:1;letter-spacing:-.03em}
+.meta-card span{display:block;margin-top:6px;font-size:11.5px;line-height:1.4;color:var(--ink3);font-weight:600;letter-spacing:.02em}
+.hero-actions{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+.trust-row{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.trust-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink2);background:var(--paper2);border:1px solid var(--line);
+  padding:6px 10px;border-radius:999px;
+}
+
+/* Wizard */
+.wizard{
+  position:sticky;top:96px;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.wiz-head{
+  padding:20px 22px 14px;
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.wiz-title{font-weight:700;letter-spacing:-.02em;font-size:14px}
+.wiz-progress{flex:1;max-width:120px;height:4px;background:var(--paper2);border-radius:999px;overflow:hidden;margin-left:auto}
+.wiz-progress span{display:block;height:100%;background:var(--ink);border-radius:999px;transition:.5s cubic-bezier(.22,1,.36,1)}
+.wiz-stepper{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase}
+.wiz-body{padding:18px 18px 18px}
+.wiz-q{font-family:"Instrument Serif",serif;font-size:24px;line-height:1.15;letter-spacing:-.02em;margin:4px 2px 14px}
+.wiz-options{display:grid;gap:8px}
+.wiz-opt{
+  display:flex;align-items:center;gap:12px;
+  width:100%;text-align:left;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  cursor:pointer;
+  transition:.2s;
+}
+.wiz-opt:hover{border-color:var(--ink2);transform:translateY(-1px);background:var(--white)}
+.wiz-opt.active{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.wiz-opt .ico{
+  width:36px;height:36px;border-radius:10px;
+  display:grid;place-items:center;
+  background:var(--white);border:1px solid var(--line);
+  flex:0 0 36px;
+  color:var(--ink);
+}
+.wiz-opt.active .ico{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:var(--lime)}
+.wiz-opt b{font-size:13.5px;line-height:1.2;display:block}
+.wiz-opt small{font-size:11.5px;color:var(--ink3);display:block;margin-top:2px}
+.wiz-opt.active small{color:#A8B5AF}
+.wiz-footer{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.wiz-note{
+  margin-top:14px;
+  background:var(--paper);border:1px dashed var(--line2);
+  border-radius:12px;padding:10px 12px;
+  font-size:11.5px;color:var(--ink3);line-height:1.5;
+}
+.wiz-result{
+  background:var(--moss);color:#E6EFEA;
+  border-radius:18px;padding:18px;
+}
+.wiz-result h4{margin:0;font-family:"Instrument Serif",serif;font-size:22px;line-height:1.1;font-weight:400;color:var(--white)}
+.wiz-result p{margin:8px 0 0;font-size:13px;line-height:1.6;color:#B9C9C2}
+.result-meta{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.result-meta div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 11px}
+.result-meta b{display:block;font-size:12px;color:var(--white)}
+.result-meta span{font-size:11px;color:#A9BDB5}
+.wiz-actions{display:flex;gap:8px;margin-top:14px}
+.wiz-actions .btn{flex:1}
+
+/* Identification */
+.section{padding:84px 0;position:relative}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.section-head h2{
+  margin:0;
+  font-family:"Instrument Serif",serif;
+  font-size:clamp(32px,4.2vw,56px);
+  line-height:.95;letter-spacing:-.03em;font-weight:400;
+}
+.section-head p{margin:0;max-width:42ch;color:var(--ink2);font-size:16px;line-height:1.6}
+.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--ink3);margin-bottom:12px;display:flex;gap:8px;align-items:center}
+.kicker:before{content:"";width:18px;height:1px;background:var(--ink3);display:inline-block}
+
+.pest-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.pest-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:16px;
+  display:flex;flex-direction:column;
+  transition:.35s cubic-bezier(.22,1,.36,1);
+  position:relative;overflow:hidden;
+}
+.pest-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--line2)}
+.pest-card.active{border-color:var(--ink);box-shadow:var(--shadow)}
+.pest-top{display:flex;justify-content:space-between;align-items:start;gap:8px;margin-bottom:14px}
+.pest-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--paper);border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--ink2);
+}
+.pest-season{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);background:var(--paper);border:1px solid var(--line);padding:5px 8px;border-radius:999px;white-space:nowrap}
+.pest-card h3{margin:0;font-size:18px;letter-spacing:-.02em;line-height:1.1}
+.pest-card h3 span{font-weight:400;color:var(--ink3);font-size:13px;margin-left:6px;font-family:"Instrument Serif",serif;font-style:italic}
+.signs{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:5px}
+.signs li{font-size:12.5px;line-height:1.4;color:var(--ink2);display:flex;gap:7px}
+.signs li:before{content:"—";color:var(--line2);font-weight:700}
+.pest-foot{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:5px 8px;border-radius:999px;background:var(--paper);border:1px solid var(--line);color:var(--ink2)}
+.pest-card .go{
+  margin-top:auto;padding-top:14px;
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;letter-spacing:.02em;
+}
+.pest-card .go i{width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--white);display:grid;place-items:center;transition:.25s}
+.pest-card:hover .go i{transform:translateX(3px);background:var(--moss)}
+
+/* Process */
+.process{
+  background:var(--moss);
+  color:#DDE8E2;
+  border-radius:40px;
+  margin:0 12px;
+  overflow:hidden;
+  position:relative;
+}
+.process:before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(60% 80% at 20% 0%, rgba(226,255,84,.18), transparent 60%),
+    radial-gradient(50% 60% at 90% 20%, rgba(255,255,255,.06), transparent 60%);
+  pointer-events:none;
+}
+.process-inner{position:relative;padding:70px 0}
+.process-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px}
+.process-sticky{position:sticky;top:100px;align-self:start}
+.process-sticky h2{
+  font-family:"Instrument Serif",serif;
+  font-size:clamp(32px,4vw,54px);
+  line-height:.92;letter-spacing:-.03em;font-weight:400;color:var(--white);
+  margin:12px 0 0;
+}
+.process-sticky p{color:#A8BDB5;font-size:15px;line-height:1.6;max-width:36ch;margin:16px 0 0}
+.process-list{display:grid;gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:24px;overflow:hidden}
+.step{
+  background:rgba(20,38,30,.92);
+  padding:28px 26px;
+  display:grid;grid-template-columns:56px 1fr;
+  gap:18px;position:relative;
+}
+.step-num{
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  display:grid;place-items:center;
+  font-family:"Instrument Serif",serif;font-size:20px;color:var(--white);
+}
+.step h3{margin:0;font-size:18px;letter-spacing:-.01em;color:var(--white)}
+.step p{margin:6px 0 0;font-size:13.5px;line-height:1.6;color:#A8BDB5;max-width:48ch}
+.step ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.step ul li{font-size:11px;font-weight:600;letter-spacing:.04em;padding:5px 9px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#C9D9D2}
+.step .time{position:absolute;top:28px;right:22px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);background:rgba(226,255,84,.12);border:1px solid rgba(226,255,84,.2);padding:5px 9px;border-radius:999px}
+
+/* For whom */
+.whom{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.whom-card{
+  border-radius:24px;border:1px solid var(--line);background:var(--white);
+  padding:22px 20px 18px;position:relative;overflow:hidden;
+  transition:.3s;
+}
+.whom-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.whom-card.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.whom-card h3{margin:14px 0 0;font-size:20px;letter-spacing:-.02em;line-height:1.1}
+.whom-card p{margin:8px 0 0;font-size:13.5px;line-height:1.6;color:var(--ink2)}
+.whom-card.dark p{color:#A8B5AF}
+.whom-card ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.whom-card ul li{display:flex;gap:9px;font-size:13px;line-height:1.4;color:var(--ink2)}
+.whom-card.dark ul li{color:#C9D9D2}
+.whom-card ul li:before{content:"";width:16px;height:16px;border-radius:50%;flex:0 0 16px;background:var(--paper2);border:1px solid var(--line);margin-top:1px;display:grid;place-items:center;background-image:url("images/image-01.svg");background-repeat:no-repeat;background-position:center}
+.whom-card.dark ul li:before{background-color:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);background-image:url("images/image-02.svg")}
+.whom-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line);color:var(--ink2)}
+.whom-card.dark .whom-icon{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:var(--lime)}
+
+/* Knowledge */
+.knowledge-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}
+.article{
+  border-radius:24px;border:1px solid var(--line);background:var(--white);
+  padding:20px;display:flex;flex-direction:column;gap:14px;
+  transition:.3s;
+}
+.article:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.article-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.article-cat{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line);background:var(--paper);padding:5px 9px;border-radius:999px}
+.article-time{font-size:11px;color:var(--ink3);font-weight:600}
+.article h3{margin:0;font-size:20px;line-height:1.2;letter-spacing:-.02em;max-width:20ch}
+.article p{margin:0;font-size:13.5px;line-height:1.6;color:var(--ink2);max-width:46ch}
+.article-list{display:grid;gap:10px}
+.mini-article{
+  display:grid;grid-template-columns:1fr auto;
+  gap:12px;align-items:center;
+  border:1px solid var(--line);background:var(--white);border-radius:18px;padding:14px 14px;
+  transition:.25s;
+}
+.mini-article:hover{border-color:var(--ink2);transform:translateY(-1px)}
+.mini-article h4{margin:0;font-size:14px;line-height:1.3;letter-spacing:-.01em}
+.mini-article span{display:block;margin-top:4px;font-size:12px;color:var(--ink3);line-height:1.4}
+.mini-article .arrow{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.25s}
+.mini-article:hover .arrow{background:var(--ink);color:var(--white);border-color:var(--ink)}
+
+/* Reviews */
+.reviews{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+}
+.review{
+  background:var(--white);border:1px solid var(--line);border-radius:20px;
+  padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;
+}
+.review-head{display:flex;gap:10px;align-items:center}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--paper2);border:1px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--ink2)}
+.review-name b{display:block;font-size:13px;line-height:1.1}
+.review-name span{display:block;font-size:11px;color:var(--ink3);margin-top:2px}
+.stars{color:var(--ink);letter-spacing:1px;font-size:12px}
+.review p{margin:0;font-size:13px;line-height:1.6;color:var(--ink2)}
+.review-foot{margin-top:auto;display:flex;gap:6px;flex-wrap:wrap}
+.review-foot span{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--paper);border:1px solid var(--line);padding:4px 8px;border-radius:999px;color:var(--ink3)}
+
+/* CTA Final */
+.cta-final{
+  margin:0 12px;
+  background:var(--ink);
+  border-radius:36px;
+  color:var(--paper);
+  position:relative;overflow:hidden;
+}
+.cta-final:before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(70% 90% at 15% 10%, rgba(226,255,84,.22), transparent 60%),
+    radial-gradient(50% 60% at 90% 90%, rgba(255,255,255,.06), transparent 60%);
+  pointer-events:none;
+}
+.cta-inner{position:relative;padding:64px 0;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+.cta-final h2{
+  margin:0;
+  font-family:"Instrument Serif",serif;
+  font-size:clamp(34px,4.6vw,62px);
+  line-height:.9;letter-spacing:-.03em;font-weight:400;
+}
+.cta-final h2 em{font-style:italic;color:var(--lime);font-weight:400}
+.cta-final p{margin:14px 0 0;color:#A8B5AF;font-size:15px;line-height:1.6;max-width:44ch}
+.cta-box{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:24px;padding:20px;
+  backdrop-filter:blur(8px);
+}
+.cta-box h4{margin:0;color:var(--white);font-size:16px;letter-spacing:-.01em}
+.cta-box p{margin:6px 0 0;font-size:13px}
+.field{display:grid;gap:6px;margin-top:14px}
+.field label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A8BDB5}
+.input{
+  height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.25);color:var(--white);
+  padding:0 14px;font-size:14px;outline:none;transition:.2s;width:100%;
+}
+.input:focus{border-color:rgba(226,255,84,.5);background:rgba(0,0,0,.35)}
+.input::placeholder{color:#6B7A72}
+.textarea{height:92px;padding:12px 14px;resize:none}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-foot{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.form-foot small{font-size:11px;color:#7A8E86;line-height:1.4;max-width:22ch}
+
+/* Footer */
+.footer{padding:48px 0 32px;border-top:1px solid var(--line);background:var(--paper2);margin-top:12px}
+.footer-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr .8fr;gap:28px}
+.footer h5{margin:0 0 12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--ink3)}
+.footer a, .footer p{font-size:13.5px;line-height:1.6;color:var(--ink2)}
+.footer a:hover{color:var(--ink)}
+.footer-bottom{margin-top:32px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--ink3)}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.badge{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);background:var(--white);padding:6px 10px;border-radius:999px;color:var(--ink2)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:.7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.delay1{transition-delay:.08s}
+.reveal.delay2{transition-delay:.16s}
+.reveal.delay3{transition-delay:.24s}
+
+/* Mobile */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:24px}
+  .wizard{position:relative;top:0}
+  .pest-grid{grid-template-columns:repeat(2,1fr)}
+  .process{margin:0 8px;border-radius:28px}
+  .process-grid{grid-template-columns:1fr;gap:24px}
+  .process-sticky{position:relative;top:0}
+  .whom{grid-template-columns:1fr}
+  .knowledge-grid{grid-template-columns:1fr}
+  .reviews{grid-template-columns:1fr 1fr}
+  .cta-inner{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .header-inner{height:64px}
+  .nav-links{display:none}
+  .hamburger{display:grid}
+  .strip-inner{height:auto;padding:10px 0;flex-direction:column;align-items:start}
+  .strip-left{flex-wrap:wrap}
+  .hero{padding:16px 0 28px}
+  .hero-meta{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .meta-card{padding:12px 10px}
+  .meta-card strong{font-size:18px}
+  .pest-grid{grid-template-columns:1fr}
+  .reviews{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .section{padding:56px 0}
+  .cta-final{margin:0 8px;border-radius:28px}
+}
+
+/* Mobile menu */
+.mobile-menu{
+  position:fixed;inset:0;z-index:60;
+  background:var(--paper);
+  padding:20px;
+  transform:translateY(-100%);transition:.45s cubic-bezier(.22,1,.36,1);
+  display:flex;flex-direction:column;
+}
+.mobile-menu.open{transform:none}
+.mobile-menu-top{display:flex;justify-content:space-between;align-items:center}
+.mobile-links{margin-top:36px;display:grid;gap:6px}
+.mobile-links a{font-family:"Instrument Serif",serif;font-size:38px;line-height:.95;letter-spacing:-.03em;padding:8px 0;border-bottom:1px solid var(--line)}
+.mobile-foot{margin-top:auto;display:grid;gap:12px}
+
+/* Sticky mobile call */
+.mobile-call{
+  position:fixed;left:12px;right:12px;bottom:12px;z-index:45;
+  background:var(--ink);color:var(--white);
+  border-radius:999px;padding:10px 12px 10px 12px;
+  display:none;align-items:center;justify-content:space-between;gap:12px;
+  box-shadow:var(--shadow-lg);
+}
+.mobile-call b{font-size:13px}
+.mobile-call span{font-size:11px;color:#A8B5AF;display:block}
+.mobile-call .btn{height:36px}
+@media(max-width:640px){.mobile-call{display:flex}}
+
+/* Modal */
+.modal{
+  position:fixed;inset:0;z-index:70;
+  background:rgba(13,26,20,.48);backdrop-filter:blur(10px);
+  display:none;place-items:center;padding:16px;
+}
+.modal.open{display:grid}
+.modal-card{
+  width:min(520px,100%);background:var(--white);border-radius:28px;
+  border:1px solid var(--line);box-shadow:var(--shadow-lg);
+  overflow:hidden;max-height:90vh;overflow:auto;
+}
+.modal-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.modal-body{padding:20px 22px}
+
+/* Toast */
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:var(--white);padding:12px 16px;border-radius:999px;
+  font-size:13px;font-weight:600;box-shadow:var(--shadow-lg);
+  opacity:0;pointer-events:none;transition:.4s;z-index:80;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<div class="strip">
+  <div class="container strip-inner">
+    <div class="strip-left">
+      <span><b>Akuttvakt:</b> 22 88 14 00 — svar innen 2 timer</span>
+      <span class="strip-dot"></span>
+      <span>Man–Fre 07–20 • Lør 09–16 • Søn akutt</span>
+    </div>
+    <div class="strip-left">
+      <span>Umerkede biler • Diskret oppmøte</span>
+      <span class="strip-dot"></span>
+      <span>Oslo • Bærum • Lillestrøm • Drammen</span>
+    </div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a class="logo" href="#">
+      <div class="logo-mark">T</div>
+      <div class="logo-type"><b>TryggSkade AS</b><span>Skadedyrkontroll</span></div>
+    </a>
+    <nav class="nav">
+      <div class="nav-links">
+        <a href="#skadedyr">Skadedyr</a>
+        <a href="#prosess">Slik jobber vi</a>
+        <a href="#rad">Råd</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div class="nav-actions">
+        <div class="phone-pill"><span class="phone-dot"></span> 22 88 14 00</div>
+        <a href="#kontakt" class="btn btn-lime">Få hjelp nå <span class="arrow">→</span></a>
+        <button class="hamburger" id="burger" aria-label="Meny">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-top">
+    <div class="logo"><div class="logo-mark">T</div><div class="logo-type"><b>TryggSkade AS</b><span>Skadedyrkontroll</span></div></div>
+    <button class="hamburger" id="closeMenu" style="display:grid">✕</button>
+  </div>
+  <div class="mobile-links">
+    <a href="#skadedyr" class="m-link">Skadedyr</a>
+    <a href="#prosess" class="m-link">Slik jobber vi</a>
+    <a href="#rad" class="m-link">Råd & tegn</a>
+    <a href="#kontakt" class="m-link">Kontakt</a>
+  </div>
+  <div class="mobile-foot">
+    <div class="phone-pill" style="justify-content:center"> <span class="phone-dot"></span> Akuttvakt 22 88 14 00 </div>
+    <a href="#kontakt" class="btn btn-lime" style="height:48px">Bestill inspeksjon →</a>
+    <p style="font-size:12px;color:var(--ink3);line-height:1.5">Sertifisert av Folkehelseinstituttet. Medlem av Norsk Skadedyrforening. Miljøfyrtårn.</p>
+  </div>
+</div>
+
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow reveal"><i></i> Sertifisert skadedyrkontroll • Etablert 2011</div>
+      <h1 class="hero-title reveal delay1">
+        <span class="line">Vi tar hånd om</span>
+        <span class="line accent italic">det du helst</span>
+        <span class="line">vil slippe å tenke på.</span>
+      </h1>
+      <p class="hero-copy reveal delay2">TryggSkade rykker ut med faglærte teknikere, dokumenterte metoder og full diskresjon. Ingen skremsel. Ingen overbehandling. Bare rolig, rask og trygg kontroll — for hjem, borettslag og næring.</p>
+      <div class="hero-actions reveal delay2">
+        <a href="#kontakt" class="btn btn-dark" style="height:46px;padding:0 22px">Bestill inspeksjon <span class="arrow">→</span></a>
+        <a href="#skadedyr" class="btn btn-ghost" style="height:46px;padding:0 20px">Identifiser problemet</a>
+      </div>
+      <div class="hero-meta reveal delay3">
+        <div class="meta-card"><strong>1,9t</strong><span>Gj.snitt responstid i Oslo</span></div>
+        <div class="meta-card"><strong>4.9/5</strong><span>412 verifiserte omtaler</span></div>
+        <div class="meta-card"><strong>100%</strong><span>Diskret oppmøte & biler</span></div>
+      </div>
+      <div class="trust-row reveal delay3">
+        <span class="trust-chip">✓ FHI-godkjent</span>
+        <span class="trust-chip">✓ Forsikringsrapport</span>
+        <span class="trust-chip">✓ Giftfri der mulig</span>
+        <span class="trust-chip">✓ Garanti på behandling</span>
+      </div>
+    </div>
+
+    <div class="wizard reveal delay2" id="wizard">
+      <div class="wiz-head">
+        <div class="wiz-title">Skadeveiviser</div>
+        <div class="wiz-progress"><span id="wizProgress" style="width:33%"></span></div>
+        <div class="wiz-stepper" id="wizStepper">1 / 3</div>
+      </div>
+      <div class="wiz-body">
+        <div class="wiz-step active" data-step="1">
+          <div class="wiz-q">Hva har du sett eller hørt?</div>
+          <div class="wiz-options" id="optPest"></div>
+          <div class="wiz-note">Velg det som ligner mest. Du kan endre senere. Vi bruker ikke sterke bilder — bare tegn å se etter.</div>
+        </div>
+        <div class="wiz-step" data-step="2">
+          <div class="wiz-q">Hvor er problemet?</div>
+          <div class="wiz-options" id="optPlace"></div>
+          <div class="wiz-footer">
+            <button class="btn btn-ghost" data-back>← Tilbake</button>
+            <span style="font-size:11px;color:var(--ink3);align-self:center">Steg 2 av 3</span>
+          </div>
+        </div>
+        <div class="wiz-step" data-step="3">
+          <div class="wiz-q">Hvor omfattende virker det?</div>
+          <div class="wiz-options" id="optExtent"></div>
+          <div class="wiz-footer">
+            <button class="btn btn-ghost" data-back>← Tilbake</button>
+            <span style="font-size:11px;color:var(--ink3);align-self:center">Siste steg</span>
+          </div>
+        </div>
+        <div class="wiz-step" data-step="result">
+          <div class="wiz-result" id="wizResult"></div>
+          <div class="wiz-footer" style="margin-top:12px">
+            <button class="btn btn-ghost" id="wizRestart">Start på nytt</button>
+            <button class="btn btn-ghost" data-back>← Endre svar</button>
+          </div>
+          <div class="wiz-note">Dette er en veiledende vurdering, ikke en diagnose. Vi bekrefter alltid på befaring.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skadedyr">
+  <div class="container">
+    <div class="kicker reveal">Diagnostikk</div>
+    <div class="section-head">
+      <h2 class="reveal">Hva har du funnet? <br><span class="serif italic" style="color:var(--ink3)">Vi hjelper deg å tolke tegnene.</span></h2>
+      <p class="reveal delay1">Trykk på et skadedyr for å forhåndsfylle veiviseren. Vi fokuserer på spor, adferd og tiltak — ikke skremselsbilder.</p>
+    </div>
+
+    <div class="pest-grid" id="pestGrid">
+      <!-- cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<section class="process" id="prosess">
+  <div class="container process-inner">
+    <div class="process-grid">
+      <div class="process-sticky">
+        <div class="kicker" style="color:#A8BDB5">Metode</div>
+        <h2 class="reveal">Rolig prosess.<br><span class="serif italic" style="color:var(--lime)">Dokumentert effekt.</span></h2>
+        <p class="reveal delay1">Slik jobber vi fra første telefon til forebygging. Du får logg, bilder og rapport som kan brukes mot borettslag eller forsikring.</p>
+        <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap" class="reveal delay2">
+          <span class="badge" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#C9D9D2">Ingen binding</span>
+          <span class="badge" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#C9D9D2">Fast pris etter befaring</span>
+          <span class="badge" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#C9D9D2">Miljøhensyn</span>
+        </div>
+      </div>
+      <div class="process-list reveal delay1">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div><h3>Inspeksjon på dine premisser</h3><p>Vi kommer når det passer, i nøytrale klær og umerket bil om du ønsker. Tekniker sjekker spor, fukt, innganger og risikopunkter — og tar bilder.</p><ul><li>30–60 min</li><li>Foto + fuktmåling</li><li>Diskré oppmøte</li></ul></div>
+          <div class="time">I dag / i morgen</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div><h3>Identifisering & vurdering</h3><p>Du får klar tale: hva det er, hvorfor det har kommet, og hva som faktisk må gjøres. Vi skiller mellom enkelthendelse og etablert aktivitet.</p><ul><li>Artsbestemmelse</li><li>Årsaksanalyse</li><li>Risikokart</li></ul></div>
+          <div class="time">På stedet</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div><h3>Behandling — minst mulig, mest mulig presist</h3><p>Giftfri og mekanisk der det går. Godkjente midler kun der nødvendig, alltid utilgjengelig for barn og dyr. Vi tetter, feller og følger opp.</p><ul><li>IPM-metodikk</li><li>Skånsom for bolig</li><li>Dokumentert</li></ul></div>
+          <div class="time">Dag 1–7</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div><h3>Forebygging & garanti</h3><p>Rapport med bilder, tiltak du bør gjøre selv, og hva vi garanterer. Ved behov setter vi opp kontrollbesøk og varsler borettslag/forsikring.</p><ul><li>Rapport på e-post</li><li>Garanti 3–12 mnd</li><li>Telefonstøtte</li></ul></div>
+          <div class="time">Etterpå</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="kicker reveal">Hvem vi hjelper</div>
+    <div class="section-head" style="margin-bottom:18px">
+      <h2 class="reveal">Samme fag, <span class="serif italic" style="color:var(--ink3)">ulike behov.</span></h2>
+      <p class="reveal delay1">Privat, borettslag eller næring — vi tilpasser dokumentasjon, tidspunkt og kommunikasjon.</p>
+    </div>
+    <div class="whom">
+      <div class="whom-card reveal">
+        <div class="whom-icon">⌂</div>
+        <h3>Privatbolig</h3>
+        <p>For deg som vil ha rask avklaring uten styr. Vi forklarer hva du kan gjøre selv, og hva vi bør ta.</p>
+        <ul>
+          <li>Rask befaring, kveld mulig</li>
+          <li>Pris på stedet, ingen overraskelser</li>
+          <li>Veiledning for å unngå gjentakelse</li>
+        </ul>
+        <div style="margin-top:18px"><a class="btn btn-ghost" href="#kontakt">Kontakt skadedyrtekniker →</a></div>
+      </div>
+      <div class="whom-card dark reveal delay1">
+        <div class="whom-icon">◫</div>
+        <h3>Borettslag & sameier</h3>
+        <p>Koordinert håndtering av skjeggkre, mus og veggedyr med beboerinfo, oppgangslister og felles rapport.</p>
+        <ul>
+          <li>Beboerbrev og informasjonsmøte</li>
+          <li>Samtidig behandling i flere enheter</li>
+          <li>FDV-dokumentasjon og garanti</li>
+        </ul>
+        <div style="margin-top:18px"><a class="btn btn-lime" href="#kontakt">Be om tilbud til styret →</a></div>
+      </div>
+      <div class="whom-card reveal delay2">
+        <div class="whom-icon">◎</div>
+        <h3>Bedrift & servering</h3>
+        <p>Avtaler for kafé, restaurant, lager og kontor. Diskret, Mattilsynet-kompatibelt og med loggbok.</p>
+        <ul>
+          <li>HACCP- og IK-Mat-rutiner</li>
+          <li>Månedlig kontroll og åte-stasjoner</li>
+          <li>Avviksrapport på 24 timer</li>
+        </ul>
+        <div style="margin-top:18px"><a class="btn btn-ghost" href="#kontakt">Bestill risikovurdering →</a></div>
+      </div>
+    </div>
+
+    <div class="reviews" style="margin-top:18px">
+      <div class="review reveal">
+        <div class="review-head"><div class="avatar">EL</div><div class="review-name"><b>Emilie L.</b><span>Leilighet, Grünerløkka • Mus</span></div><div class="stars" style="margin-left:auto">★★★★★</div></div>
+        <p>“Kom samme dag, fant inngang bak kjøkkenet vi aldri ville sett. Tettet og fulgte opp på SMS. Veldig trygg opplevelse.”</p>
+        <div class="review-foot"><span>Befaring 45 min</span><span>Garanti 6 mnd</span></div>
+      </div>
+      <div class="review reveal delay1">
+        <div class="review-head"><div class="avatar">AS</div><div class="review-name"><b>Anders S.</b><span>Styreleder, borettslag • Skjeggkre</span></div><div class="stars" style="margin-left:auto">★★★★★</div></div>
+        <p>“Ryddig kommunikasjon til 48 enheter, felles behandling og god rapport til forsikring. Merkbart mindre aktivitet etter 3 uker.”</p>
+        <div class="review-foot"><span>48 enheter</span><span>Rapport til forsikring</span></div>
+      </div>
+      <div class="review reveal delay2">
+        <div class="review-head"><div class="avatar">MK</div><div class="review-name"><b>Maya K.</b><span>Kafé, Majorstua • Maur & møll</span></div><div class="stars" style="margin-left:auto">★★★★★</div></div>
+        <p>“Diskret, faglig og Mattilsynet-vennlig. Fikk loggbok og månedlig kontroll. Ingen stans i driften.”</p>
+        <div class="review-foot"><span>HACCP-logg</span><span>Uten stans</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="rad" style="background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="container">
+    <div class="kicker reveal">Kunnskap</div>
+    <div class="section-head">
+      <h2 class="reveal">Tegn å se etter, <br><span class="serif italic" style="color:var(--ink3)">og hva du gjør nå.</span></h2>
+      <p class="reveal delay1">Korte, faglige råd uten skremsel. Laget av teknikerne våre, ikke av KI.</p>
+    </div>
+    <div class="knowledge-grid">
+      <div class="article reveal">
+        <div class="article-top"><span class="article-cat">Veggedyr • Soverom</span><span class="article-time">3 min lesetid</span></div>
+        <h3>Du våkner med stikk på rekke — er det veggedyr?</h3>
+        <p>Sjekk madrassens sømmer etter små rustfargede prikker og skall. Ikke flytt senga til annet rom — det sprer problemet. Vask sengetøy på 60°, støvsug rammen og ring for befaring samme dag.</p>
+        <div style="display:flex;gap:8px;margin-top:4px"><span class="tag">Ikke bruk spray selv</span><span class="tag">Foto av funn hjelper</span></div>
+        <div style="margin-top:auto;display:flex;gap:8px"><a class="btn btn-dark" href="#kontakt">Få hjelp nå →</a><a class="btn btn-ghost" href="#" onclick="toast('Artikkel kommer');return false">Les mer</a></div>
+      </div>
+      <div class="article-list">
+        <div class="mini-article reveal delay1"><div><h4>Mus om høsten: 4 innganger vi alltid sjekker</h4><span>Kjøkken, rørgjennomføringer, ventil og dørlist — slik tetter du midlertidig før vi kommer.</span></div><div class="arrow">→</div></div>
+        <div class="mini-article reveal delay1"><div><h4>Skjeggkre i nybygg: normalt, men plagsomt</h4><span>Hvorfor limfeller fungerer bedre enn gift, og når du bør kreve felles tiltak i borettslaget.</span></div><div class="arrow">→</div></div>
+        <div class="mini-article reveal delay2"><div><h4>Maur på kjøkkenbenken i april?</h4><span>Slik skiller du stokkmaur fra sukkermaur — og hva du aldri bør gjøre med åte.</span></div><div class="arrow">→</div></div>
+        <div class="mini-article reveal delay2"><div><h4>Veps i veggen: når du ikke bør tette selv</h4><span>Lyd om natten, summing i stikkontakt? Da er bolet inne. Vi fjerner trygt uten å presse vepsen inn.</span></div><div class="arrow">→</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="kontakt">
+  <div class="container cta-inner">
+    <div>
+      <div class="kicker" style="color:#A8BDB5">Kontakt</div>
+      <h2 class="reveal">Trenger du <em>avklaring nå?</em><br>Vi svarer, ikke en bot.</h2>
+      <p class="reveal delay1">Ring vakthavende tekniker, eller bestill inspeksjon. Du får tidspunkt i dag eller i morgen, fast pris etter befaring, og rapport som kan brukes videre.</p>
+      <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap" class="reveal delay1">
+        <a href="tel:+4722881400" class="btn btn-lime" style="height:48px;padding:0 22px">Ring 22 88 14 00 <span class="arrow">→</span></a>
+        <div style="display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:8px 12px"><span class="phone-dot"></span><span style="font-size:12px;color:#C9D9D2">3 teknikere ledig i Oslo i dag • Neste: kl 14:30</span></div>
+      </div>
+      <div style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:420px" class="reveal delay2">
+        <div><h5 style="margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7A8E86">Adresse</h5><p style="margin:6px 0 0;font-size:13px;color:#C9D9D2;line-height:1.5">TryggSkade AS<br>Schweigaards gate 34C<br>0191 Oslo — verksted og lager</p></div>
+        <div><h5 style="margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7A8E86">Åpning</h5><p style="margin:6px 0 0;font-size:13px;color:#C9D9D2;line-height:1.5">Man–Fre 07–20<br>Lør 09–16<br>Søn: kun akutt</p></div>
+      </div>
+    </div>
+
+    <div class="cta-box reveal delay1">
+      <h4>Bestill inspeksjon</h4>
+      <p>Svar innen 2 timer i åpningstiden. Ingen forskuddsbetaling.</p>
+      <form id="contactForm" onsubmit="return false">
+        <div class="form-grid">
+          <div class="field"><label>Navn</label><input class="input" placeholder="Ola Nordmann" required></div>
+          <div class="field"><label>Telefon</label><input class="input" placeholder="9X XX XX XX" required></div>
+        </div>
+        <div class="field"><label>Adresse / borettslag</label><input class="input" placeholder="Gate, nr, sted"></div>
+        <div class="form-grid">
+          <div class="field"><label>Hva gjelder det?</label><select class="input" id="formPest"><option>Velg</option><option>Mus</option><option>Rotter</option><option>Maur</option><option>Veggedyr</option><option>Skjeggkre</option><option>Veps</option><option>Møll</option><option>Annet / usikker</option></select></div>
+          <div class="field"><label>Ønsket tid</label><select class="input"><option>I dag</option><option>I morgen</option><option>Denne uken</option><option>Kan tilpasses</option></select></div>
+        </div>
+        <div class="field"><label>Beskriv kort</label><textarea class="input textarea" placeholder="Hvor så du det? Når startet det? Barn/dyr i bolig?"></textarea></div>
+        <div class="form-foot">
+          <button class="btn btn-lime" style="height:44px" onclick="submitForm()">Send forespørsel →</button>
+          <small>Ved å sende godtar du at vi kontakter deg om oppdraget. Vi deler aldri data.</small>
+        </div>
+      </form>
+      <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#A8BDB5">FHI-godkjent</span><span class="badge" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#A8BDB5">Forsikringsrapport inkludert</span><span class="badge" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);color:#A8BDB5">Miljøfyrtårn</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:12px"><div class="logo-mark">T</div><div class="logo-type"><b>TryggSkade AS</b><span>Skadedyrkontroll</span></div></div>
+        <p>Rolig, dokumentert og diskret skadedyrkontroll i Oslo og omegn. Vi er fagfolk som forklarer — ikke skremmer.</p>
+        <div class="badge-row"><span class="badge">Org 923 456 789</span><span class="badge">MVA</span><span class="badge">Ansvarsforsikret</span></div>
+      </div>
+      <div><h5>Tjenester</h5><p><a href="#">Mus & rotter</a><br><a href="#">Maur & stokkmaur</a><br><a href="#">Veggedyr</a><br><a href="#">Skjeggkre</a><br><a href="#">Veps & bol</a><br><a href="#">Møll & kakerlakker</a></p></div>
+      <div><h5>Informasjon</h5><p><a href="#">Priser & garanti</a><br><a href="#">Slik forbereder du deg</a><br><a href="#">For borettslag</a><br><a href="#">For bedrift</a><br><a href="#">Personvern</a><br><a href="#">Ledige stillinger</a></p></div>
+      <div><h5>Kontakt</h5><p><b>22 88 14 00</b> — akuttvakt<br>post@tryggskade.no<br><br>Schweigaards gate 34C, 0191 Oslo<br>Vi rykker ut i Oslo, Bærum, Asker, Lillestrøm, Lørenskog, Ski, Drammen.</p></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 TryggSkade AS — Kontroll. Diskresjon. Fagfolk.</span><span>Designet for ro, ikke frykt. Ingen ekle nærbilder — bare løsninger.</span></div>
+  </div>
+</footer>
+
+<div class="mobile-call" id="mobileCall">
+  <div><b>Akutt? Ring vakthavende</b><span>Svar innen 2 timer • Diskret oppmøte</span></div>
+  <a href="tel:+4722881400" class="btn btn-lime">Ring 22 88 14 00</a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const pests = [
+  {id:'mus', name:'Mus', latin:'Husmus', season:'Hele året • Topp okt–mar', signs:['2–3mm mørke ekskrementer ved lister','Gnagemerker på matemballasje','Krafselyd i vegg natt'], tags:['Lukt av urin','Hule i isolasjon'], icon:'M'},
+  {id:'rotter', name:'Rotter', latin:'Brunrotte', season:'Hele året • Topp sep–feb', signs:['8–12mm ekskrementer, kloakk-lukt','Hull >2cm ved grunnmur','Tung tramping på loft'], tags:['Kloakkfeil','Avfall'], icon:'R'},
+  {id:'maur', name:'Maur', latin:'Svart jordmaur', season:'Apr–sep • Sverm mai–jun', signs:['Tydelig sti langs list/benk','Små jordhauger ved grunnmur','Sagmugg ved stokkmaur'], tags:['Søtt på benk','Fukt i treverk'], icon:'A'},
+  {id:'veggedyr', name:'Veggedyr', latin:'Cimex lectularius', season:'Hele året • Reise-topp', signs:['Stikk på rekke, kløe natt','Rustprikker i madrassøm','Søtlig lukt ved kraftig angrep'], tags:['Reise / bruktmøbel','Sømmer i seng'], icon:'V'},
+  {id:'skjeggkre', name:'Skjeggkre', latin:'Ctenolepisma', season:'Hele året • Verst i nybygg', signs:['1–2cm sølvgrå, lange antenner','Skall og små gnag på papir','Aktiv i mørket, rask'], tags:['Nybygg','Limfeller'], icon:'S'},
+  {id:'veps', name:'Veps', latin:'Stikkeveps', season:'Mai–sep • Bol jul–aug', signs:['Intens summing i vegg/tak','Veps som går inn i sprekk','Papirbol ved takskjegg'], tags:['Bol i vegg','Allergi-risiko'], icon:'Ve'},
+  {id:'moll', name:'Møll', latin:'Kles-/melmøll', season:'Hele året', signs:['Små hull i ull/klær','Larvehylser i skap','Spinn i mel/poser'], tags:['Ull & tekstil','Tørrvarer'], icon:'Mø'},
+  {id:'kakerlakk', name:'Kakerlakk', latin:'Blattella', season:'Hele året • Varme bygg', signs:['Rask, flat, 1–3cm, nattaktiv','Kapsler og lukt','Nær varme rør/kjøkken'], tags:['Næring','Fukt & varme'], icon:'K'},
+];
+
+const places = [
+  {id:'kjokken', name:'Kjøkken / mat', desc:'Benkeplate, skap, bak hvitevarer'},
+  {id:'soverom', name:'Soverom / seng', desc:'Madrass, nattbord, lister'},
+  {id:'badkjeller', name:'Bad / kjeller / bod', desc:'Sluk, rør, fuktige hjørner'},
+  {id:'loft', name:'Loft / vegg / isolasjon', desc:'Krafselyder, isolasjon, innganger'},
+  {id:'ute', name:'Ute / fasade / tak', desc:'Grunnmur, takskjegg, søppel'},
+  {id:'hele', name:'Hele boligen', desc:'Flere rom, gjentatte funn'},
+];
+const extents = [
+  {id:'enkelt', name:'Enkeltfunn', desc:'Sett 1–2 ganger siste uke'},
+  {id:'gjentatt', name:'Gjentatte funn', desc:'Flere ganger, samme sted'},
+  {id:'aktiv', name:'Tydelig aktivitet', desc:'Lukt, lyd, ekskrementer, bol'},
+];
+
+const pestGrid = document.getElementById('pestGrid');
+const optPest = document.getElementById('optPest');
+const optPlace = document.getElementById('optPlace');
+const optExtent = document.getElementById('optExtent');
+const wizProgress = document.getElementById('wizProgress');
+const wizStepper = document.getElementById('wizStepper');
+const wizResult = document.getElementById('wizResult');
+
+function pestIconSvg(letter){
+  return `<div style="width:100%;height:100%;display:grid;place-items:center;font-family:'Instrument Serif',serif;font-size:18px;font-weight:400;letter-spacing:-.02em">${letter}</div>`;
+}
+
+function renderPestGrid(){
+  pestGrid.innerHTML = pests.map(p=>`
+    <div class="pest-card reveal" data-pest="${p.id}" tabindex="0" role="button" aria-label="${p.name}">
+      <div class="pest-top">
+        <div class="pest-icon">${pestIconSvg(p.icon)}</div>
+        <div class="pest-season">${p.season}</div>
+      </div>
+      <h3>${p.name}<span>${p.latin}</span></h3>
+      <ul class="signs">${p.signs.map(s=>`<li>${s}</li>`).join('')}</ul>
+      <div class="pest-foot">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="go"><i>→</i> Velg i veiviser</div>
+    </div>
+  `).join('');
+  // reveal observer later will handle
+  pestGrid.querySelectorAll('.pest-card').forEach(card=>{
+    card.addEventListener('click',()=>{
+      const id = card.dataset.pest;
+      state.pest = id;
+      goStep(2);
+      renderOptions();
+      document.getElementById('wizard').scrollIntoView({behavior:'smooth', block:'start'});
+      highlightPest(id);
+    });
+    card.addEventListener('keydown',e=>{ if(e.key==='Enter') card.click(); });
+  });
+}
+function highlightPest(id){
+  document.querySelectorAll('.pest-card').forEach(c=>c.classList.toggle('active', c.dataset.pest===id));
+}
+
+function renderOptions(){
+  optPest.innerHTML = pests.map(p=>`
+    <button class="wiz-opt ${state.pest===p.id?'active':''}" data-pest="${p.id}">
+      <div class="ico">${pestIconSvg(p.icon)}</div>
+      <div><b>${p.name}</b><small>${p.latin} • ${p.season.split('•')[0]}</small></div>
+      <div style="margin-left:auto;font-size:12px">›</div>
+    </button>
+  `).join('');
+  optPest.querySelectorAll('[data-pest]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      state.pest=b.dataset.pest;
+      highlightPest(state.pest);
+      renderOptions();
+      setTimeout(()=>goStep(2),180);
+    });
+  });
+
+  optPlace.innerHTML = places.map(pl=>`
+    <button class="wiz-opt ${state.place===pl.id?'active':''}" data-place="${pl.id}">
+      <div class="ico">◐</div>
+      <div><b>${pl.name}</b><small>${pl.desc}</small></div>
+      <div style="margin-left:auto;font-size:12px">›</div>
+    </button>
+  `).join('');
+  optPlace.querySelectorAll('[data-place]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      state.place=b.dataset.place;
+      renderOptions();
+      setTimeout(()=>goStep(3),180);
+    });
+  });
+
+  optExtent.innerHTML = extents.map(ex=>`
+    <button class="wiz-opt ${state.extent===ex.id?'active':''}" data-extent="${ex.id}">
+      <div class="ico">${ex.id==='enkelt'?'·':ex.id==='gjentatt'?'··':'···'}</div>
+      <div><b>${ex.name}</b><small>${ex.desc}</small></div>
+      <div style="margin-left:auto;font-size:12px">›</div>
+    </button>
+  `).join('');
+  optExtent.querySelectorAll('[data-extent]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      state.extent=b.dataset.extent;
+      renderOptions();
+      setTimeout(()=>goStep('result'),180);
+    });
+  });
+
+  if(state.pest && state.place && state.extent){
+    renderResult();
+  }
+}
+
+let state = {pest:null, place:null, extent:null, step:1};
+
+function goStep(step){
+  state.step = step;
+  document.querySelectorAll('.wiz-step').forEach(el=>{
+    el.classList.toggle('active', (el.dataset.step==step));
+  });
+  // progress
+  let pct = 33;
+  if(step==2) pct=66;
+  if(step==3) pct=88;
+  if(step=='result') pct=100;
+  wizProgress.style.width = pct+'%';
+  wizStepper.textContent = step==='result' ? 'Vurdering' : step+' / 3';
+  if(step==='result') renderResult();
+}
+
+function renderResult(){
+  const p = pests.find(x=>x.id===state.pest) || pests[0];
+  const pl = places.find(x=>x.id===state.place);
+  const ex = extents.find(x=>x.id===state.extent);
+  const isUrgent = (p.id==='veggedyr' && ex?.id!=='enkelt') || (p.id==='veps' && pl?.id==='loft') || (p.id==='rotter');
+  const price = p.id==='skjeggkre' ? 'Fra 2 900 kr + felles tiltak' : p.id==='veggedyr' ? 'Fastpris etter befaring' : 'Fra 1 900 kr inkl. tetting';
+  const time = isUrgent ? 'I dag — akuttvakt' : 'I dag / i morgen';
+
+  wizResult.innerHTML = `
+    <h4>${p.name}: ${ex ? ex.name.toLowerCase() : ''} ${pl ? '— '+pl.name.toLowerCase() : ''}</h4>
+    <p>${getAdvice(p.id, ex?.id, pl?.id)}</p>
+    <div class="result-meta">
+      <div><b>${time}</b><span>Anbefalt oppmøte</span></div>
+      <div><b>${price}</b><span>Prisindikasjon</span></div>
+      <div><b>${p.id==='veps'?'Fjerning uten å presse inn':p.id==='mus'?'Tetting + feller':'Kartlegging + behandling'}</b><span>Tiltak</span></div>
+      <div><b>Rapport & bilder</b><span>Til forsikring / styre</span></div>
+    </div>
+    <div class="wiz-actions">
+      <a href="#kontakt" class="btn btn-lime" onclick="prefillForm('${p.name}')">Bestill inspeksjon →</a>
+      <a href="tel:+4722881400" class="btn" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:white">Ring 22 88 14 00</a>
+    </div>
+  `;
+}
+
+function getAdvice(id, extent, place){
+  const base = {
+    mus:'Mus kommer inn for varme og mat. Sjekk rørgjennomføringer under kjøkkenbenk og bak komfyr. Ikke legg gift selv — vi tetter innganger og setter sikre feller utilgjengelig for barn/dyr.',
+    rotter:'Rotter indikerer ofte åpen kloakk eller avfall. Ikke tett hull før vi har sjekket — vi må finne hovedinngang og sikre at dyr ikke stenges inne. Vi varsler kommunen ved kloakkfeil.',
+    maur:'Sti på benk tyder på sukkermaur på leting. Tørk bort med såpevann, ikke spray — spray ødelegger åtevirkning. Stokkmaur krever fuktsjekk i treverk.',
+    veggedyr:'Ikke flytt soveplass — da sprer de seg. La sengetøy og klær ligge, vask på 60° og legg i tett pose. Vi kommer med varme/kjemisk kombinasjon og plan for naboer.',
+    skjeggkre:'Vanlig i nyere bygg. Limfeller gir oversikt, men løser ikke årsak. Vi legger giftfri strategi med åte og tetting, og koordinerer i borettslag.',
+    veps:'Ser du veps gå inn i sprekk eller hører summing i vegg, er bolet inne. Ikke tett åpningen selv. Vi fjerner bolet skånsomt og sikrer mot retur.',
+    moll:'Klesmøll: sjekk ull i skap. Melmøll: kast åpne poser. Støvsug grundig og vask på 60°. Vi setter feromonfeller og går gjennom lagring.',
+    kakerlakk:'Krever rask, systematisk behandling og tett samarbeid i bygg. Ikke bruk spray — det sprer dem. Vi legger gelåte og følger opp med kontroller.'
+  };
+  let txt = base[id] || base.mus;
+  if(extent==='aktiv') txt += ' Omfanget du beskriver tilsier etablert aktivitet — anbefaler befaring innen 24 timer.';
+  if(extent==='enkelt') txt += ' Enkeltfunn kan ofte løses med tetting og råd, men vi bekrefter på befaring.';
+  if(place==='soverom' && id!=='veggedyr') txt += ' Når det gjelder soverom, prioriterer vi giftfri og luktfri metode.';
+  return txt;
+}
+
+function prefillForm(pestName){
+  const sel = document.getElementById('formPest');
+  if(sel){
+    [...sel.options].forEach((o,i)=>{ if(o.text.toLowerCase().includes(pestName.toLowerCase())) sel.selectedIndex=i; });
+  }
+}
+
+// Reveal observer
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:.12});
+function observeReveals(){
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+// Header scroll
+const header = document.getElementById('header');
+window.addEventListener('scroll',()=>{
+  header.classList.toggle('scrolled', window.scrollY>10);
+});
+
+// Mobile menu
+const burger = document.getElementById('burger');
+const closeMenu = document.getElementById('closeMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+function openMenu(){ mobileMenu.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMenuFn(){ mobileMenu.classList.remove('open'); document.body.style.overflow=''; }
+burger.addEventListener('click', openMenu);
+closeMenu.addEventListener('click', closeMenuFn);
+document.querySelectorAll('.m-link').forEach(a=>a.addEventListener('click', closeMenuFn));
+
+// Back buttons
+document.querySelectorAll('[data-back]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    if(state.step==='result') goStep(3);
+    else if(state.step===3) goStep(2);
+    else if(state.step===2) goStep(1);
+  });
+});
+document.getElementById('wizRestart').addEventListener('click',()=>{
+  state={pest:null, place:null, extent:null, step:1};
+  highlightPest(null);
+  renderOptions();
+  goStep(1);
+});
+
+// Toast
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+function submitForm(){
+  toast('Takk! Vi ringer innen 2 timer i åpningstiden.');
+  document.getElementById('contactForm').reset();
+}
+
+// Init
+renderPestGrid();
+renderOptions();
+goStep(1);
+observeReveals();
+
+// Keyboard: esc closes menu
+window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenuFn(); });
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

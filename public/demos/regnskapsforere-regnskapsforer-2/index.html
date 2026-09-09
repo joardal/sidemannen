@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Andersen Regnskap AS hjelper norske vekstbedrifter med regnskap, lønn og økonomisk innsikt.">
+  <title>Andersen Regnskap AS | Tall som gir fremdrift</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      --ink: #08263a;
+      --ink-soft: #395365;
+      --blue: #0c63d9;
+      --blue-bright: #1975ee;
+      --line: rgba(8, 38, 58, .15);
+      --paper: #f7f6f2;
+      --sand: #eceae2;
+      --lime: #dfff8c;
+      --white: #ffffff;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "Manrope", Arial, sans-serif;
+      --mono: "DM Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--lime); color: var(--ink); }
+
+    .shell { width: min(1220px, calc(100% - 64px)); margin: 0 auto; }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue);
+      font: 500 11px/1 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 27px; height: 1px; background: currentColor; }
+    .section-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 62px; }
+    .section-title { max-width: 720px; margin: 14px 0 0; font-size: clamp(34px, 4.5vw, 62px); line-height: 1.05; letter-spacing: -.055em; font-weight: 700; }
+    .section-copy { max-width: 350px; margin: 0 0 6px; color: var(--ink-soft); font-size: 15px; line-height: 1.7; }
+    .text-link { display: inline-flex; align-items: center; gap: 9px; border-bottom: 1px solid currentColor; padding-bottom: 4px; font-weight: 700; font-size: 14px; transition: gap .25s ease, color .25s ease; }
+    .text-link:hover { gap: 15px; color: var(--blue); }
+    .icon-arrow { width: 18px; height: 18px; flex: 0 0 auto; }
+
+    /* Navigation */
+    .hero { position: relative; min-height: min(800px, 100svh); color: var(--white); overflow: hidden; isolation: isolate; }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: url("images/photo-06.jpg") center/cover no-repeat;
+      transform: scale(1.055);
+      animation: slowZoom 15s ease-out both;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(3, 24, 39, .90) 0%, rgba(4, 29, 46, .68) 44%, rgba(4, 26, 42, .28) 100%), linear-gradient(0deg, rgba(2, 22, 35, .46), transparent 48%);
+    }
+    .nav { height: 92px; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 5; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.045em; font-size: 18px; }
+    .brand-mark { width: 31px; height: 31px; }
+    .brand-legal { opacity: .65; font-weight: 500; }
+    .nav-links { display: flex; align-items: center; gap: 28px; margin-left: auto; margin-right: 36px; font-size: 13px; font-weight: 600; }
+    .nav-links a { position: relative; opacity: .85; transition: opacity .2s ease; }
+    .nav-links a::after { content: ""; position: absolute; bottom: -7px; left: 0; width: 0; height: 1px; background: var(--lime); transition: width .25s ease; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta, .button-primary, .button-light, .button-ghost {
+      min-height: 46px;
+      padding: 0 19px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 2px;
+      border: 1px solid transparent;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -.01em;
+      transition: transform .25s ease, background .25s ease, border .25s ease, color .25s ease;
+    }
+    .nav-cta { background: var(--lime); color: var(--ink); }
+    .nav-cta:hover, .button-primary:hover { transform: translateY(-2px); background: #edffb5; }
+    .menu-toggle { display: none; padding: 0; border: 0; background: transparent; color: white; width: 42px; height: 42px; }
+    .menu-toggle span { display: block; width: 22px; height: 1px; margin: 5px auto; background: currentColor; transition: transform .2s ease; }
+
+    .hero-content { min-height: calc(min(800px, 100svh) - 92px); padding: clamp(80px, 13vh, 130px) 0 58px; display: flex; flex-direction: column; justify-content: space-between; }
+    .hero-wordmark { margin: 0; max-width: 1000px; font-size: clamp(52px, 8.3vw, 123px); line-height: .88; letter-spacing: -.083em; font-weight: 800; animation: heroRise .9s cubic-bezier(.16,1,.3,1) .1s both; }
+    .hero-wordmark small { display: block; margin: 8px 0 0 5px; color: var(--lime); font: 500 clamp(13px, 1.5vw, 17px)/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; animation: heroRise .9s cubic-bezier(.16,1,.3,1) .28s both; }
+    .hero-intro { max-width: 480px; margin: 0; font-size: clamp(17px, 1.55vw, 20px); line-height: 1.55; letter-spacing: -.028em; color: rgba(255,255,255,.9); }
+    .hero-actions { display: flex; align-items: center; gap: 13px; margin-top: 28px; }
+    .button-primary { background: var(--lime); color: var(--ink); min-height: 53px; padding: 0 22px; }
+    .button-light { background: transparent; border-color: rgba(255,255,255,.48); color: var(--white); min-height: 53px; padding: 0 20px; }
+    .button-light:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); border-color: white; }
+    .hero-scroll { display: flex; align-items: center; gap: 13px; padding-bottom: 4px; color: rgba(255,255,255,.75); font: 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .scroll-line { display: block; width: 52px; height: 1px; overflow: hidden; background: rgba(255,255,255,.35); }
+    .scroll-line::after { content: ""; display: block; width: 48%; height: 100%; background: var(--lime); animation: scrollSlide 1.8s ease-in-out infinite; }
+
+    /* Trust line */
+    .trust { background: var(--ink); color: var(--white); overflow: hidden; }
+    .trust-inner { min-height: 90px; display: flex; align-items: center; gap: 40px; }
+    .trust-intro { flex: 0 0 240px; margin: 0; color: rgba(255,255,255,.67); font-size: 12px; line-height: 1.45; }
+    .company-loop { display: flex; align-items: center; justify-content: space-between; gap: clamp(25px, 5vw, 68px); flex: 1; color: rgba(255,255,255,.74); }
+    .company-loop span { white-space: nowrap; font-family: var(--serif); font-size: 20px; font-weight: 500; font-style: italic; }
+
+    /* Intro */
+    .intro { padding: 142px 0 130px; }
+    .intro-grid { display: grid; grid-template-columns: .83fr 1.17fr; gap: clamp(50px, 10vw, 160px); }
+    .intro-label { padding-top: 10px; }
+    .intro-statement { margin: 0; max-width: 790px; font-size: clamp(35px, 4.2vw, 61px); line-height: 1.11; letter-spacing: -.06em; font-weight: 600; }
+    .intro-statement em { font-family: var(--serif); font-weight: 500; color: var(--blue); }
+    .intro-detail { max-width: 475px; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; margin: 41px 0 0; color: var(--ink-soft); font-size: 16px; line-height: 1.75; }
+
+    /* Services */
+    .services { padding: 130px 0 139px; border-top: 1px solid var(--line); background: #eef1ee; }
+    .services-list { border-top: 1px solid var(--line); }
+    .service-row { position: relative; display: grid; grid-template-columns: 92px minmax(220px, .8fr) minmax(230px, 1fr) 44px; gap: 20px; align-items: center; min-height: 123px; padding: 22px 0; border-bottom: 1px solid var(--line); cursor: default; transition: padding .35s ease; }
+    .service-row::before { content: ""; position: absolute; inset: 0 -22px; z-index: 0; background: var(--white); transform: scaleY(0); transform-origin: bottom; transition: transform .35s cubic-bezier(.16,1,.3,1); }
+    .service-row > * { position: relative; z-index: 1; }
+    .service-row:hover { padding-left: 22px; padding-right: 22px; }
+    .service-row:hover::before { transform: scaleY(1); }
+    .service-number { color: var(--blue); font: 500 12px/1 var(--mono); }
+    .service-name { margin: 0; font-size: clamp(20px, 2.15vw, 29px); line-height: 1.12; letter-spacing: -.05em; }
+    .service-desc { max-width: 390px; margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+    .service-arrow { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; transition: background .25s ease, color .25s ease, transform .25s ease; }
+    .service-row:hover .service-arrow { color: white; background: var(--blue); border-color: var(--blue); transform: rotate(-45deg); }
+
+    /* Difference */
+    .difference { padding: 147px 0; background: var(--blue); color: var(--white); overflow: hidden; }
+    .difference .eyebrow { color: var(--lime); }
+    .difference-grid { display: grid; grid-template-columns: 1fr .95fr; gap: clamp(45px, 9vw, 150px); align-items: start; }
+    .difference-title { max-width: 590px; margin: 20px 0 0; font-size: clamp(42px, 5.4vw, 76px); line-height: .99; letter-spacing: -.065em; }
+    .difference-title em { color: var(--lime); font-family: var(--serif); font-weight: 500; }
+    .difference-note { max-width: 382px; margin: 38px 0 0; color: rgba(255,255,255,.76); font-size: 16px; line-height: 1.7; }
+    .difference-list { border-top: 1px solid rgba(255,255,255,.3); }
+    .difference-item { display: grid; grid-template-columns: 42px 1fr; gap: 18px; padding: 26px 0 24px; border-bottom: 1px solid rgba(255,255,255,.3); }
+    .difference-item b { color: var(--lime); font: 500 12px/1 var(--mono); }
+    .difference-item h3 { margin: -4px 0 8px; letter-spacing: -.035em; font-size: 18px; }
+    .difference-item p { margin: 0; max-width: 390px; color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.6; }
+
+    /* Dashboard */
+    .insight { padding: 139px 0 145px; }
+    .insight-head { display: grid; grid-template-columns: .9fr 1.1fr; gap: 6vw; align-items: end; margin-bottom: 59px; }
+    .insight-title { max-width: 540px; margin: 16px 0 0; font-size: clamp(38px, 4.5vw, 65px); line-height: 1.04; letter-spacing: -.065em; }
+    .insight-title em { color: var(--blue); font-family: var(--serif); font-weight: 500; }
+    .insight-intro { max-width: 425px; margin: 0 0 4px; color: var(--ink-soft); font-size: 16px; line-height: 1.72; }
+    .dashboard { display: grid; grid-template-columns: 1.3fr .7fr; border: 1px solid var(--line); background: var(--white); box-shadow: 0 22px 40px rgba(8,38,58,.05); }
+    .dashboard-left { padding: 33px 35px 28px; border-right: 1px solid var(--line); }
+    .dashboard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+    .dashboard-kicker { margin: 0 0 8px; color: var(--ink-soft); font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .dashboard-money { margin: 0; letter-spacing: -.06em; font-size: clamp(30px, 3.25vw, 48px); line-height: 1; }
+    .change { color: #168657; font: 500 11px/1 var(--mono); white-space: nowrap; }
+    .chart-wrap { position: relative; height: 245px; margin-top: 37px; }
+    .chart-grid { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; }
+    .chart-grid span { display: block; width: 100%; border-top: 1px dashed rgba(8,38,58,.14); }
+    .chart { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .chart path.area { fill: url(#areaGradient); opacity: .22; }
+    .chart path.line { fill: none; stroke: var(--blue); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 620; stroke-dashoffset: 620; }
+    .chart.active path.line { animation: drawLine 1.4s cubic-bezier(.3,.75,.35,1) .15s forwards; }
+    .chart-dot { fill: var(--lime); stroke: var(--blue); stroke-width: 3; }
+    .month-row { display: flex; justify-content: space-between; margin-top: 7px; color: var(--ink-soft); font: 10px/1 var(--mono); }
+    .dashboard-right { padding: 30px 29px; background: #f7fbff; }
+    .dash-label { margin: 0; color: var(--ink-soft); font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .status { display: inline-flex; align-items: center; gap: 7px; margin-top: 16px; color: #168657; font-size: 12px; font-weight: 700; }
+    .status i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px rgba(22,134,87,.11); }
+    .metric { padding: 23px 0; border-bottom: 1px solid var(--line); }
+    .metric:last-child { border-bottom: 0; }
+    .metric-value { display: block; margin-top: 8px; letter-spacing: -.04em; font-size: 22px; font-weight: 700; }
+    .metric-text { display: flex; justify-content: space-between; gap: 8px; margin-top: 7px; color: var(--ink-soft); font-size: 11px; }
+    .metric-text strong { color: #168657; font-weight: 800; }
+    .dashboard-foot { display: flex; gap: 11px; align-items: center; margin: 27px 0 0; color: var(--ink-soft); font-size: 11px; }
+    .dashboard-foot svg { color: var(--blue); }
+
+    /* Switch */
+    .switch-section { padding: 0 0 141px; }
+    .switch-wrap { position: relative; padding: 68px clamp(28px, 7vw, 95px); color: white; background: var(--ink); overflow: hidden; }
+    .switch-wrap::after { content: ""; position: absolute; width: 630px; height: 630px; right: -155px; bottom: -430px; border: 1px solid rgba(223,255,140,.42); border-radius: 50%; box-shadow: 0 0 0 70px rgba(223,255,140,.05), 0 0 0 140px rgba(223,255,140,.035); }
+    .switch-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: 80px; }
+    .switch-title { max-width: 650px; margin: 16px 0 0; font-size: clamp(37px, 4.7vw, 65px); line-height: 1.03; letter-spacing: -.068em; }
+    .switch-title em { font-family: var(--serif); font-weight: 500; color: var(--lime); }
+    .switch-copy { max-width: 390px; margin: 24px 0 0; color: rgba(255,255,255,.71); font-size: 15px; line-height: 1.7; }
+    .switch-list { margin: 4px 0 0; padding: 0; list-style: none; }
+    .switch-list li { display: flex; gap: 14px; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,.24); font-size: 14px; line-height: 1.45; }
+    .switch-list svg { flex: 0 0 auto; color: var(--lime); }
+    .switch-action { margin-top: 31px; }
+
+    /* Prices */
+    .prices { padding: 135px 0 143px; border-top: 1px solid var(--line); }
+    .price-intro { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 53px; }
+    .price-title { max-width: 680px; margin: 15px 0 0; font-size: clamp(37px, 4.35vw, 61px); line-height: 1.06; letter-spacing: -.064em; }
+    .vat-note { margin: 0 0 7px; color: var(--ink-soft); font: 11px/1.5 var(--mono); }
+    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .price-plan { display: flex; flex-direction: column; min-height: 442px; padding: 33px 31px 29px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: transparent; transition: background .3s ease, transform .3s ease; }
+    .price-plan:hover { position: relative; z-index: 1; background: var(--white); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(8,38,58,.08); }
+    .price-plan.featured { background: var(--ink); color: var(--white); }
+    .plan-name { margin: 0; font-size: 22px; letter-spacing: -.05em; }
+    .plan-for { min-height: 42px; margin: 8px 0 26px; color: var(--ink-soft); font-size: 12px; line-height: 1.55; }
+    .featured .plan-for { color: rgba(255,255,255,.64); }
+    .price { margin: 0; font-size: 34px; line-height: 1; letter-spacing: -.07em; font-weight: 800; }
+    .price small { color: var(--ink-soft); font: 11px/1 var(--sans); letter-spacing: 0; }
+    .featured .price small { color: rgba(255,255,255,.62); }
+    .plan-list { margin: 30px 0; padding: 0; list-style: none; }
+    .plan-list li { display: flex; align-items: baseline; gap: 9px; margin-bottom: 11px; font-size: 12px; line-height: 1.45; }
+    .plan-list li::before { content: "+"; color: var(--blue); font-weight: 800; }
+    .featured .plan-list li::before { color: var(--lime); }
+    .price-plan .button-ghost { margin-top: auto; border-color: var(--line); }
+    .button-ghost:hover { background: var(--ink); color: var(--white); border-color: var(--ink); transform: translateY(-2px); }
+    .featured .button-ghost { color: var(--ink); border-color: var(--lime); background: var(--lime); }
+    .featured .button-ghost:hover { background: #edffb5; border-color: #edffb5; }
+
+    /* Stories */
+    .stories { padding: 139px 0; background: #e3ebe7; }
+    .story-feature { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(45px, 8.5vw, 132px); align-items: center; }
+    .story-mark { display: flex; flex-direction: column; justify-content: flex-end; position: relative; min-height: 445px; padding: 38px; color: white; overflow: hidden; background: #052a3d; }
+    .story-mark::before { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, transparent 40%, rgba(29,117,238,.65)), url("images/photo-02.jpg") center/cover; opacity: .86; mix-blend-mode: screen; }
+    .story-mark > * { position: relative; z-index: 1; }
+    .story-company { margin: 0; font: 500 39px/1 var(--serif); letter-spacing: -.045em; }
+    .story-industry { margin: 12px 0 0; font: 11px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--lime); }
+    .story-content blockquote { margin: 18px 0 34px; font-size: clamp(28px, 3.15vw, 45px); line-height: 1.18; letter-spacing: -.055em; font-weight: 600; }
+    .story-content cite { display: block; color: var(--ink-soft); font-size: 13px; font-style: normal; line-height: 1.6; }
+    .story-content cite strong { color: var(--ink); display: block; }
+    .story-next { display: inline-flex; align-items: center; gap: 14px; margin-top: 42px; padding: 0; border: 0; color: var(--blue); background: transparent; font-size: 12px; font-weight: 800; }
+    .story-next span { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; transition: transform .25s ease, background .25s ease, color .25s ease; }
+    .story-next:hover span { color: white; background: var(--blue); transform: translateX(5px); }
+
+    /* Team */
+    .team { padding: 136px 0; }
+    .team-title { max-width: 650px; margin: 14px 0 0; font-size: clamp(38px, 4.45vw, 63px); line-height: 1.05; letter-spacing: -.065em; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 61px; }
+    .member { border-top: 1px solid var(--ink); padding-top: 17px; }
+    .member-pic { position: relative; aspect-ratio: .87; margin-top: 17px; overflow: hidden; background: var(--sand); }
+    .member-pic img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.03); transition: transform .5s cubic-bezier(.16,1,.3,1), filter .35s ease; }
+    .member:hover img { transform: scale(1.05); filter: grayscale(.3) contrast(1.04); }
+    .member-info { display: flex; justify-content: space-between; gap: 10px; padding-top: 15px; }
+    .member-info h3 { margin: 0; font-size: 15px; letter-spacing: -.035em; }
+    .member-info p { margin: 5px 0 0; color: var(--ink-soft); font-size: 11px; line-height: 1.45; }
+    .member-link { width: 28px; height: 28px; display: grid; flex: 0 0 auto; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--blue); opacity: 0; transform: translateY(4px); transition: opacity .25s ease, transform .25s ease, color .25s ease, background .25s ease; }
+    .member:hover .member-link { opacity: 1; transform: translateY(0); }
+    .member-link:hover { color: white; background: var(--blue); }
+
+    /* Calculator */
+    .calculator { padding: 0 0 142px; }
+    .calc-wrap { display: grid; grid-template-columns: 1fr 1fr; background: var(--blue); color: white; }
+    .calc-intro { padding: clamp(38px, 6vw, 78px); }
+    .calc-intro .eyebrow { color: var(--lime); }
+    .calc-title { max-width: 485px; margin: 17px 0 0; font-size: clamp(34px, 4vw, 56px); line-height: 1.04; letter-spacing: -.07em; }
+    .calc-copy { max-width: 400px; margin: 24px 0 0; color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.7; }
+    .calc-form { padding: clamp(34px, 5.2vw, 66px); background: #f5fbff; color: var(--ink); }
+    .field-label { display: flex; justify-content: space-between; gap: 20px; margin: 0 0 11px; font-size: 12px; font-weight: 800; }
+    .field-label output { color: var(--blue); font-family: var(--mono); font-weight: 500; }
+    .range { width: 100%; appearance: none; height: 3px; margin: 10px 0 30px; border-radius: 2px; background: linear-gradient(to right, var(--blue) 0%, var(--blue) 25%, #d6e2eb 25%, #d6e2eb 100%); outline: none; }
+    .range::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border: 3px solid var(--blue); border-radius: 50%; background: white; box-shadow: 0 2px 5px rgba(8,38,58,.15); }
+    .range::-moz-range-thumb { width: 12px; height: 12px; border: 3px solid var(--blue); border-radius: 50%; background: white; box-shadow: 0 2px 5px rgba(8,38,58,.15); }
+    .calc-select { width: 100%; padding: 13px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; outline: none; color: var(--ink); background: transparent; font-size: 14px; }
+    .result { margin-top: 31px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .result-label { display: block; color: var(--ink-soft); font-size: 11px; }
+    .result-price { display: flex; align-items: baseline; gap: 7px; margin-top: 7px; font-size: 34px; line-height: 1; font-weight: 800; letter-spacing: -.065em; }
+    .result-price small { color: var(--ink-soft); font-size: 11px; font-weight: 500; letter-spacing: 0; }
+    .result-note { margin: 11px 0 0; color: var(--ink-soft); font-size: 11px; line-height: 1.5; }
+
+    /* Contact */
+    .contact { padding: 139px 0 0; background: var(--ink); color: white; }
+    .contact .eyebrow { color: var(--lime); }
+    .contact-grid { display: grid; grid-template-columns: .88fr 1.12fr; gap: clamp(45px, 8vw, 122px); padding-bottom: 114px; }
+    .contact-title { max-width: 510px; margin: 16px 0 0; font-size: clamp(41px, 5.3vw, 73px); line-height: .99; letter-spacing: -.075em; }
+    .contact-title em { color: var(--lime); font-family: var(--serif); font-weight: 500; }
+    .contact-copy { max-width: 400px; margin: 26px 0 0; color: rgba(255,255,255,.67); font-size: 15px; line-height: 1.7; }
+    .contact-lines { margin-top: 49px; }
+    .contact-lines a, .contact-lines p { display: block; margin: 0; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.2); font-size: 13px; line-height: 1.5; transition: color .2s ease; }
+    .contact-lines a:hover { color: var(--lime); }
+    .contact-form { padding-top: 7px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+    .form-field { position: relative; margin-bottom: 28px; }
+    .form-field label { display: block; margin-bottom: 10px; color: rgba(255,255,255,.7); font-size: 11px; font-weight: 700; }
+    .form-field input, .form-field select, .form-field textarea { width: 100%; padding: 12px 0; border: 0; border-bottom: 1px solid rgba(255,255,255,.35); border-radius: 0; outline: 0; color: white; background: transparent; font-size: 14px; transition: border .25s ease; }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--lime); }
+    .form-field select { color: rgba(255,255,255,.92); appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--lime) 50%), linear-gradient(135deg, var(--lime) 50%, transparent 50%); background-position: calc(100% - 13px) 52%, calc(100% - 8px) 52%; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+    .form-field select option { color: var(--ink); background: white; }
+    .form-field textarea { min-height: 87px; resize: vertical; }
+    .form-submit { display: flex; align-items: center; gap: 17px; margin-top: 8px; }
+    .form-status { margin: 0; color: rgba(255,255,255,.67); font-size: 11px; line-height: 1.45; }
+    .form-status.success { color: var(--lime); }
+    .footer { border-top: 1px solid rgba(255,255,255,.19); }
+    .footer-inner { min-height: 104px; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+    .footer .brand { font-size: 15px; }
+    .footer .brand-mark { width: 26px; height: 26px; }
+    .footer-meta { display: flex; gap: 24px; color: rgba(255,255,255,.55); font-size: 11px; }
+    .footer-meta a:hover { color: var(--lime); }
+
+    /* Transitions */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .75s ease, transform .75s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    @keyframes heroRise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slowZoom { from { transform: scale(1.055); } to { transform: scale(1); } }
+    @keyframes scrollSlide { 0% { transform: translateX(-110%); } 55%, 100% { transform: translateX(220%); } }
+    @keyframes drawLine { to { stroke-dashoffset: 0; } }
+
+    @media (max-width: 900px) {
+      .shell { width: min(100% - 42px, 690px); }
+      .nav { height: 76px; }
+      .nav-links, .nav-cta { display: none; }
+      .menu-toggle { display: block; }
+      .mobile-nav { position: fixed; z-index: 20; inset: 0; display: flex; flex-direction: column; padding: 22px 22px 36px; color: white; background: var(--ink); opacity: 0; pointer-events: none; transform: translateY(-10px); transition: opacity .25s ease, transform .25s ease; }
+      .mobile-nav.open { opacity: 1; pointer-events: auto; transform: none; }
+      .mobile-nav-top { display: flex; align-items: center; justify-content: space-between; }
+      .mobile-nav-close { width: 42px; height: 42px; padding: 0; border: 1px solid rgba(255,255,255,.3); color: white; background: transparent; font-size: 23px; line-height: 1; }
+      .mobile-nav-links { display: flex; flex-direction: column; gap: 9px; margin: auto 0; }
+      .mobile-nav-links a { font-size: clamp(36px, 10vw, 56px); line-height: 1.05; letter-spacing: -.06em; font-weight: 700; }
+      .mobile-nav .nav-cta { display: inline-flex; align-self: flex-start; }
+      .hero, .hero-content { min-height: min(760px, 100svh); }
+      .hero-content { min-height: calc(min(760px, 100svh) - 76px); padding: 66px 0 37px; }
+      .hero-wordmark { font-size: clamp(51px, 13.2vw, 94px); }
+      .hero-bottom { display: block; }
+      .hero-intro { max-width: 450px; }
+      .hero-scroll { display: none; }
+      .trust-inner { min-height: 78px; }
+      .trust-intro { flex: 0 0 145px; font-size: 10px; }
+      .company-loop { gap: 32px; overflow: hidden; }
+      .company-loop span { font-size: 17px; }
+      .company-loop span:nth-child(n+4) { display: none; }
+      .intro, .services, .difference, .insight, .prices, .stories, .team, .contact { padding-top: 100px; padding-bottom: 100px; }
+      .intro-grid, .difference-grid, .insight-head, .story-feature, .switch-content, .contact-grid { grid-template-columns: 1fr; gap: 34px; }
+      .intro-label { padding-top: 0; }
+      .section-top { display: block; margin-bottom: 43px; }
+      .section-copy { margin: 20px 0 0; }
+      .service-row { grid-template-columns: 55px 1fr 38px; min-height: 102px; }
+      .service-desc { display: none; }
+      .service-row::before { inset: 0 -12px; }
+      .service-row:hover { padding-left: 12px; padding-right: 12px; }
+      .difference-note { margin-top: 26px; }
+      .dashboard { grid-template-columns: 1fr; }
+      .dashboard-left { border-right: 0; border-bottom: 1px solid var(--line); }
+      .dashboard-right { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .dashboard-right > .dash-label, .dashboard-right > .status { grid-column: 1 / -1; }
+      .metric { padding: 8px 0; border-bottom: 0; border-right: 1px solid var(--line); padding-right: 12px; }
+      .metric:last-child { border-right: 0; }
+      .switch-section, .calculator { padding-bottom: 100px; }
+      .switch-wrap { padding: 58px 43px; }
+      .price-grid { grid-template-columns: 1fr; }
+      .price-plan { min-height: auto; }
+      .price-plan:hover { transform: none; box-shadow: none; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); gap: 30px 18px; }
+      .member-link { opacity: 1; transform: none; }
+      .calc-wrap { grid-template-columns: 1fr; }
+    }
+
+    @media (min-width: 901px) { .mobile-nav { display: none; } }
+    @media (max-width: 560px) {
+      .shell { width: calc(100% - 36px); }
+      .brand { font-size: 16px; }
+      .brand-legal { display: none; }
+      .hero::before { background-position: 60% center; }
+      .hero::after { background: linear-gradient(90deg, rgba(3, 24, 39, .88), rgba(3, 24, 39, .49)), linear-gradient(0deg, rgba(2, 22, 35, .6), transparent 55%); }
+      .hero-actions { flex-wrap: wrap; margin-top: 24px; }
+      .button-primary, .button-light { min-height: 49px; padding: 0 16px; }
+      .trust { display: none; }
+      .intro, .services, .difference, .insight, .prices, .stories, .team, .contact { padding-top: 78px; padding-bottom: 78px; }
+      .intro-statement { font-size: 36px; }
+      .section-title { font-size: 36px; }
+      .service-row { grid-template-columns: 36px 1fr 34px; gap: 10px; }
+      .service-name { font-size: 20px; }
+      .service-arrow { width: 32px; height: 32px; }
+      .difference-title, .contact-title { font-size: 42px; }
+      .dashboard-left { padding: 25px 20px 21px; }
+      .chart-wrap { height: 185px; margin-top: 31px; }
+      .dashboard-right { grid-template-columns: 1fr; padding: 25px 20px; gap: 0; }
+      .dashboard-right > .dash-label, .dashboard-right > .status { grid-column: auto; }
+      .metric { padding: 17px 0; border-bottom: 1px solid var(--line); border-right: 0; }
+      .switch-wrap { padding: 43px 24px; }
+      .story-mark { min-height: 330px; padding: 26px; }
+      .story-content blockquote { font-size: 30px; }
+      .team-grid { gap: 26px 13px; }
+      .member-info { display: block; }
+      .member-link { display: none; }
+      .calc-intro, .calc-form { padding: 42px 24px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-grid { padding-bottom: 76px; }
+      .footer-inner { min-height: 135px; align-items: flex-start; justify-content: center; flex-direction: column; padding: 22px 0; }
+      .footer-meta { flex-wrap: wrap; gap: 8px 17px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+  <header class="hero" id="hjem">
+    <div class="shell nav">
+      <a class="brand" href="#hjem" aria-label="Andersen Regnskap AS, til forsiden">
+        <svg class="brand-mark" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+          <path d="M4 28.5 14.1 5.6h5.2L30 28.5h-5.9l-2.2-5.5h-10L9.7 28.5H4Zm9.6-10.2h6.8L17 9.6l-3.4 8.7Z" fill="currentColor"/>
+        </svg>
+        <span>Andersen Regnskap <span class="brand-legal">AS</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Hovedmeny">
+        <a href="#tjenester">Tjenester</a>
+        <a href="#priser">Priser</a>
+        <a href="#om-oss">Om oss</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="nav-cta" href="#kontakt">Bestill møte <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <button class="menu-toggle" type="button" aria-label="Åpne meny" aria-expanded="false" data-menu-open><span></span><span></span></button>
+    </div>
+
+    <div class="shell hero-content">
+      <h1 class="hero-wordmark">Andersen<br>Regnskap<small>Tall som gir fremdrift</small></h1>
+      <div class="hero-bottom">
+        <div>
+          <p class="hero-intro">Regnskapspartneren for deg som vil bruke mindre tid på bilag, og mer tid på det som faktisk bygger virksomheten din.</p>
+          <div class="hero-actions">
+            <a class="button-primary" href="#kontakt">Få et uforpliktende tilbud <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="button-light" href="#bytte">Bytt regnskapsfører</a>
+          </div>
+        </div>
+        <div class="hero-scroll"><span class="scroll-line"></span>Se hvordan vi jobber</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" data-mobile-nav>
+    <div class="mobile-nav-top">
+      <a class="brand" href="#hjem">
+        <svg class="brand-mark" viewBox="0 0 34 34" fill="none" aria-hidden="true"><path d="M4 28.5 14.1 5.6h5.2L30 28.5h-5.9l-2.2-5.5h-10L9.7 28.5H4Zm9.6-10.2h6.8L17 9.6l-3.4 8.7Z" fill="currentColor"/></svg>
+        <span>Andersen Regnskap</span>
+      </a>
+      <button class="mobile-nav-close" type="button" aria-label="Lukk meny" data-menu-close>&times;</button>
+    </div>
+    <nav class="mobile-nav-links" aria-label="Mobilmeny">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#priser">Priser</a>
+      <a href="#om-oss">Om oss</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="nav-cta" href="#kontakt">Bestill møte</a>
+  </div>
+
+  <section class="trust" aria-label="Utvalgte kunder">
+    <div class="shell trust-inner">
+      <p class="trust-intro">Vi er en nær rådgiver for over 240 norske virksomheter.</p>
+      <div class="company-loop" aria-label="Noen av kundene våre">
+        <span>Nordhavn</span>
+        <span>Fjellform</span>
+        <span>Gnist Studio</span>
+        <span>Varde Eiendom</span>
+        <span>Olav &amp; Co.</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="intro">
+      <div class="shell intro-grid">
+        <div class="intro-label reveal"><span class="eyebrow">Derfor Andersen</span></div>
+        <div class="reveal">
+          <p class="intro-statement">Regnskap trenger ikke føles som en <em>tidstyv.</em> Vi gjør tallene enkle å forstå og gode å handle på.</p>
+          <div class="intro-detail">
+            <span>Andersen Regnskap er et autorisert regnskapsførerselskap for små og mellomstore bedrifter. Vi kombinerer flinke fagfolk med smarte systemer og tydelig kommunikasjon.</span>
+            <a class="text-link" href="#om-oss">Møt menneskene bak <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="tjenester">
+      <div class="shell">
+        <div class="section-top reveal">
+          <div>
+            <span class="eyebrow">Kompetanse</span>
+            <h2 class="section-title">Alt økonomien din trenger. <br>Ingenting den ikke trenger.</h2>
+          </div>
+          <p class="section-copy">Du får en fast rådgiver som kjenner virksomheten din, støttet av et helt fagmiljø.</p>
+        </div>
+        <div class="services-list reveal">
+          <article class="service-row">
+            <span class="service-number">01</span><h3 class="service-name">Regnskap &amp; bokføring</h3><p class="service-desc">Løpende, ryddig og alltid ajour - så du har kontroll når det gjelder.</p><span class="service-arrow"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+          <article class="service-row">
+            <span class="service-number">02</span><h3 class="service-name">Lønn &amp; HR</h3><p class="service-desc">Trygg lønnskjøring, reiseregninger og god flyt for både ansatte og ledere.</p><span class="service-arrow"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+          <article class="service-row">
+            <span class="service-number">03</span><h3 class="service-name">Årsoppgjør &amp; MVA</h3><p class="service-desc">Frister og formaliteter håndtert av folk som har kontroll på detaljene.</p><span class="service-arrow"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+          <article class="service-row">
+            <span class="service-number">04</span><h3 class="service-name">Rådgivning &amp; vekst</h3><p class="service-desc">Prognoser, likviditet og sparring som gir tryggere beslutninger i hverdagen.</p><span class="service-arrow"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+          <article class="service-row">
+            <span class="service-number">05</span><h3 class="service-name">Starte selskap</h3><p class="service-desc">Fra selskapsstiftelse til første faktura. Vi er med fra begynnelsen.</p><span class="service-arrow"><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="difference">
+      <div class="shell difference-grid">
+        <div class="reveal">
+          <span class="eyebrow">Enklere hverdag</span>
+          <h2 class="difference-title">Ikke bare en regnskapsfører. <em>En medspiller.</em></h2>
+          <p class="difference-note">Vi tror de beste samarbeidsforholdene er nære, forutsigbare og helt uten overraskelser på fakturaen.</p>
+        </div>
+        <div class="difference-list reveal">
+          <div class="difference-item"><b>01</b><div><h3>Én person å ringe</h3><p>Fast kontaktperson som kan både deg og tallene dine. Ingen sakskø eller nytt ansikt hver gang.</p></div></div>
+          <div class="difference-item"><b>02</b><div><h3>Proaktiv, ikke reaktiv</h3><p>Vi tar kontakt før spørsmålene blir problemer og ser etter muligheter i tallene dine.</p></div></div>
+          <div class="difference-item"><b>03</b><div><h3>Moderne teknologi</h3><p>Vi jobber sømløst i Tripletex, PowerOffice Go og Fiken. Du velger systemet som passer best.</p></div></div>
+          <div class="difference-item"><b>04</b><div><h3>Klare avtaler</h3><p>Fastpris der det gir mening, transparens der omfanget varierer. Alltid enkelt forklart.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="insight">
+      <div class="shell">
+        <div class="insight-head reveal">
+          <div>
+            <span class="eyebrow">Innsikt i sanntid</span>
+            <h2 class="insight-title">Tall du faktisk har <em>lyst</em> til å åpne.</h2>
+          </div>
+          <p class="insight-intro">Du får ikke bare et regnskap. Du får et enkelt månedsbilde med svarene som betyr noe: lønnsomhet, likviditet og hva du bør se på nå.</p>
+        </div>
+        <div class="dashboard reveal" aria-label="Eksempel på økonomisk oversikt">
+          <div class="dashboard-left">
+            <div class="dashboard-top"><div><p class="dashboard-kicker">Omsetning hittil i år</p><p class="dashboard-money">3 842 100 kr</p></div><span class="change">+18,4 %</span></div>
+            <div class="chart-wrap">
+              <div class="chart-grid"><span></span><span></span><span></span><span></span><span></span></div>
+              <svg class="chart" viewBox="0 0 700 250" preserveAspectRatio="none" aria-hidden="true">
+                <defs><linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1975ee"/><stop offset="1" stop-color="#1975ee" stop-opacity="0"/></linearGradient></defs>
+                <path class="area" d="M0 195 C42 180 57 185 92 165 S143 130 174 147 S216 128 246 133 S289 109 321 123 S366 103 397 114 S435 78 470 95 S520 88 548 62 S590 70 620 49 S663 35 700 15 V250 H0Z"/>
+                <path class="line" d="M0 195 C42 180 57 185 92 165 S143 130 174 147 S216 128 246 133 S289 109 321 123 S366 103 397 114 S435 78 470 95 S520 88 548 62 S590 70 620 49 S663 35 700 15"/>
+                <circle class="chart-dot" cx="700" cy="15" r="6"/>
+              </svg>
+            </div>
+            <div class="month-row"><span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAI</span><span>JUN</span><span>JUL</span><span>AUG</span><span>SEP</span><span>OKT</span><span>NOV</span><span>DES</span></div>
+          </div>
+          <aside class="dashboard-right">
+            <p class="dash-label">Økonomipuls · juni</p><span class="status"><i></i> På rett kurs</span>
+            <div class="metric"><span class="metric-value">24,8 %</span><span class="metric-text">Driftsmargin <strong>+2,1 %</strong></span></div>
+            <div class="metric"><span class="metric-value">42 d</span><span class="metric-text">Likviditetsreserve <strong>Trygg</strong></span></div>
+            <div class="metric"><span class="metric-value">486 400</span><span class="metric-text">Neste MVA-estimat <strong>12. aug</strong></span></div>
+            <p class="dashboard-foot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/></svg> Oppdatert i dag 09:24</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="switch-section" id="bytte">
+      <div class="shell switch-wrap reveal">
+        <div class="switch-content">
+          <div>
+            <span class="eyebrow">Bytte regnskapsfører</span>
+            <h2 class="switch-title">Å bytte skal være <em>enkelt.</em></h2>
+            <p class="switch-copy">Kanskje har du vokst fra dagens løsning. Kanskje savner du bare mer initiativ. Uansett sørger vi for en ryddig overgang - uten at du trenger å bruke helgene dine på det.</p>
+          </div>
+          <div>
+            <ul class="switch-list">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vi kartlegger oppsett og behov sammen med deg.</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vi håndterer dialogen og overføringen med tidligere byrå.</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Du får en fast rådgiver og en tydelig plan fra dag én.</li>
+            </ul>
+            <div class="switch-action"><a class="button-primary" href="#kontakt">La oss ta over <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="prices" id="priser">
+      <div class="shell">
+        <div class="price-intro reveal">
+          <div><span class="eyebrow">Forutsigbart</span><h2 class="price-title">Riktig nivå nå. Rom for å vokse senere.</h2></div>
+          <p class="vat-note">Veiledende priser eks. mva.<br>Tilpasses alltid ditt behov.</p>
+        </div>
+        <div class="price-grid reveal">
+          <article class="price-plan">
+            <h3 class="plan-name">Start</h3><p class="plan-for">For gründere og små AS med enkel drift.</p><p class="price">fra 2 490 <small>kr / mnd</small></p>
+            <ul class="plan-list"><li>Løpende bokføring</li><li>MVA-oppgaver</li><li>Årsoppgjør</li><li>Digital kvitteringsflyt</li></ul>
+            <a class="button-ghost" href="#kontakt">Få tilbud</a>
+          </article>
+          <article class="price-plan featured">
+            <h3 class="plan-name">Vekst</h3><p class="plan-for">For bedrifter med ansatte og høyere tempo.</p><p class="price">fra 5 990 <small>kr / mnd</small></p>
+            <ul class="plan-list"><li>Alt i Start</li><li>Lønn og reiseregning</li><li>Månedlig økonomipuls</li><li>Fast rådgivningstime</li></ul>
+            <a class="button-ghost" href="#kontakt">Få tilbud</a>
+          </article>
+          <article class="price-plan">
+            <h3 class="plan-name">Fremdrift</h3><p class="plan-for">For selskaper som vil bruke økonomi aktivt.</p><p class="price">På forespørsel</p>
+            <ul class="plan-list"><li>Alt i Vekst</li><li>Likviditetsprognose</li><li>Styremøter og rapportering</li><li>Dedikert økonomiteam</li></ul>
+            <a class="button-ghost" href="#kontakt">Snakk med oss</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="stories">
+      <div class="shell story-feature reveal">
+        <div class="story-mark"><p class="story-company">Fjellform</p><p class="story-industry">Interiørarkitektur · Oslo</p></div>
+        <div class="story-content">
+          <span class="eyebrow">Kundehistorie</span>
+          <blockquote>"Andersen oversetter økonomi til noe vi faktisk forstår. Nå kan vi ta beslutninger mye raskere - og sove bedre om natten."</blockquote>
+          <cite><strong>Ida H. Nystad</strong>Daglig leder, Fjellform AS</cite>
+          <button class="story-next" type="button" data-testimonial-next>Les neste historie <span><svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="team" id="om-oss">
+      <div class="shell">
+        <div class="reveal"><span class="eyebrow">Fagfolk som bryr seg</span><h2 class="team-title">Skikkelig flinke med tall. <br>Genuint opptatt av folk.</h2></div>
+        <div class="team-grid reveal">
+          <article class="member"><span class="eyebrow">Partner</span><div class="member-pic"><img src="images/photo-04.jpg" alt="Portrett av Elise Andersen"></div><div class="member-info"><div><h3>Elise Andersen</h3><p>Statsautorisert regnskapsfører</p></div><a class="member-link" href="mailto:elise@andersenregnskap.no" aria-label="Send e-post til Elise Andersen"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></article>
+          <article class="member"><span class="eyebrow">Rådgiver</span><div class="member-pic"><img src="images/photo-01.jpg" alt="Portrett av Martin Løvik"></div><div class="member-info"><div><h3>Martin Løvik</h3><p>Økonomisk rådgiver</p></div><a class="member-link" href="mailto:martin@andersenregnskap.no" aria-label="Send e-post til Martin Løvik"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></article>
+          <article class="member"><span class="eyebrow">Lønn</span><div class="member-pic"><img src="images/photo-05.jpg" alt="Portrett av Signe Dahl"></div><div class="member-info"><div><h3>Signe Dahl</h3><p>Lønnsansvarlig</p></div><a class="member-link" href="mailto:signe@andersenregnskap.no" aria-label="Send e-post til Signe Dahl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></article>
+          <article class="member"><span class="eyebrow">Senior</span><div class="member-pic"><img src="images/photo-03.jpg" alt="Portrett av Henrik Vang"></div><div class="member-info"><div><h3>Henrik Vang</h3><p>Regnskapsrådgiver</p></div><a class="member-link" href="mailto:henrik@andersenregnskap.no" aria-label="Send e-post til Henrik Vang"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="calculator" aria-labelledby="calc-heading">
+      <div class="shell calc-wrap reveal">
+        <div class="calc-intro"><span class="eyebrow">Prisindikator</span><h2 class="calc-title" id="calc-heading">Hva kan et bedre samarbeid koste?</h2><p class="calc-copy">Dra i spakene for en rask indikasjon. Den endelige prisen avklarer vi alltid etter en hyggelig prat om behovene dine.</p></div>
+        <div class="calc-form">
+          <label class="field-label" for="bilag">Bilag per måned <output id="bilag-output">100 bilag</output></label>
+          <input class="range" id="bilag" type="range" min="25" max="600" step="25" value="100">
+          <label class="field-label" for="ansatte">Antall ansatte <output id="ansatte-output">2 ansatte</output></label>
+          <input class="range" id="ansatte" type="range" min="0" max="30" step="1" value="2">
+          <label class="field-label" for="selskap">Selskapsform</label>
+          <select class="calc-select" id="selskap"><option value="1">AS</option><option value=".75">ENK</option><option value="1.18">Holding / konsern</option></select>
+          <div class="result"><span class="result-label">Estimert månedspris</span><div class="result-price"><output id="price-output">3 490 kr</output><small>eks. mva</small></div><p class="result-note">Basert på oppgitt omfang. Inkluderer løpende dialog og skybasert system.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="contact" id="kontakt">
+    <div class="shell contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Ta kontakt</span>
+        <h2 class="contact-title">Klar for litt mer <em>ro</em> i økonomien?</h2>
+        <p class="contact-copy">Fortell oss kort hvor dere står, så tar en av rådgiverne våre kontakt innen neste arbeidsdag. Helt uforpliktende, selvfølgelig.</p>
+        <div class="contact-lines"><a href="tel:+4722418800">+47 22 41 88 00</a><a href="mailto:hei@andersenregnskap.no">hei@andersenregnskap.no</a><p>Thorvald Meyers gate 11<br>0555 Oslo, Norge</p></div>
+      </div>
+      <form class="contact-form reveal" id="contact-form" novalidate>
+        <div class="form-row"><div class="form-field"><label for="name">Navn</label><input id="name" name="name" type="text" autocomplete="name" placeholder="Ditt navn" required></div><div class="form-field"><label for="company">Bedrift</label><input id="company" name="company" type="text" autocomplete="organization" placeholder="Bedriftsnavn" required></div></div>
+        <div class="form-row"><div class="form-field"><label for="email">E-post</label><input id="email" name="email" type="email" autocomplete="email" placeholder="navn@bedrift.no" required></div><div class="form-field"><label for="phone">Telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Valgfritt"></div></div>
+        <div class="form-row"><div class="form-field"><label for="business-type">Selskapsform</label><select id="business-type" name="business-type" required><option value="">Velg selskapsform</option><option>AS</option><option>ENK</option><option>Holding / konsern</option><option>Annet</option></select></div><div class="form-field"><label for="need">Hva trenger dere hjelp til?</label><select id="need" name="need" required><option value="">Velg tema</option><option>Bytte regnskapsfører</option><option>Løpende regnskap</option><option>Lønn og HR</option><option>Rådgivning</option><option>Starte selskap</option></select></div></div>
+        <div class="form-field"><label for="message">Fortell gjerne litt mer</label><textarea id="message" name="message" placeholder="For eksempel antall ansatte eller hva dere ønsker å få bedre oversikt over."></textarea></div>
+        <div class="form-submit"><button class="button-primary" type="submit">Send forespørsel <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><p class="form-status" id="form-status" aria-live="polite">Vi bruker opplysningene kun for å svare på henvendelsen din.</p></div>
+      </form>
+    </div>
+    <footer class="footer"><div class="shell footer-inner"><a class="brand" href="#hjem"><svg class="brand-mark" viewBox="0 0 34 34" fill="none" aria-hidden="true"><path d="M4 28.5 14.1 5.6h5.2L30 28.5h-5.9l-2.2-5.5h-10L9.7 28.5H4Zm9.6-10.2h6.8L17 9.6l-3.4 8.7Z" fill="currentColor"/></svg><span>Andersen Regnskap AS</span></a><div class="footer-meta"><span>© 2026 Andersen Regnskap AS</span><span>Org.nr. 928 451 730</span><a href="#kontakt">Personvern</a></div></div></footer>
+  </section>
+
+  <script>
+    // Mobile navigation maintains a clear focus path and closes on any in-page selection.
+    const menu = document.querySelector('[data-mobile-nav]');
+    const menuOpen = document.querySelector('[data-menu-open]');
+    const closeMenu = () => { menu.classList.remove('open'); menuOpen.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; };
+    menuOpen.addEventListener('click', () => { menu.classList.add('open'); menuOpen.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; });
+    document.querySelector('[data-menu-close]').addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+    // Reveal content only when it enters the viewport, keeping initial loading calm.
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+
+    // Start the illustrative chart animation when the dashboard scrolls into view.
+    const chart = document.querySelector('.chart');
+    const chartObserver = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) { chart.classList.add('active'); chartObserver.disconnect(); } }, { threshold: .35 });
+    chartObserver.observe(chart);
+
+    // Small calculator with a visible range fill and price indication.
+    const vouchers = document.getElementById('bilag');
+    const employees = document.getElementById('ansatte');
+    const companyForm = document.getElementById('selskap');
+    const voucherOutput = document.getElementById('bilag-output');
+    const employeeOutput = document.getElementById('ansatte-output');
+    const priceOutput = document.getElementById('price-output');
+    const format = new Intl.NumberFormat('nb-NO');
+    const fillRange = (input) => {
+      const percent = ((input.value - input.min) / (input.max - input.min)) * 100;
+      input.style.background = `linear-gradient(to right, var(--blue) 0%, var(--blue) ${percent}%, #d6e2eb ${percent}%, #d6e2eb 100%)`;
+    };
+    const updateEstimate = () => {
+      const voucherValue = Number(vouchers.value);
+      const employeeValue = Number(employees.value);
+      const multiplier = Number(companyForm.value);
+      const estimated = Math.round(((1890 + voucherValue * 8.5 + employeeValue * 265) * multiplier) / 10) * 10;
+      voucherOutput.value = `${voucherValue} bilag`;
+      employeeOutput.value = `${employeeValue} ${employeeValue === 1 ? 'ansatt' : 'ansatte'}`;
+      priceOutput.value = `${format.format(estimated)} kr`;
+      fillRange(vouchers); fillRange(employees);
+    };
+    [vouchers, employees, companyForm].forEach(input => input.addEventListener('input', updateEstimate));
+    updateEstimate();
+
+    // Rotate through realistic demo testimonials without introducing a visual carousel.
+    const testimonials = [
+      { company: 'Fjellform', industry: 'Interiørarkitektur · Oslo', quote: '"Andersen oversetter økonomi til noe vi faktisk forstår. Nå kan vi ta beslutninger mye raskere - og sove bedre om natten."', name: 'Ida H. Nystad', role: 'Daglig leder, Fjellform AS' },
+      { company: 'Nordhavn', industry: 'Sjømat · Tromsø', quote: '"Det føles som å ha fått en økonomisjef i lomma. Vi vet hvor vi står før vi rekker å bli bekymret."', name: 'Kristian B. Bjerke', role: 'Gründer, Nordhavn AS' },
+      { company: 'Gnist Studio', industry: 'Design & teknologi · Bergen', quote: '"De er presise, nysgjerrige og uvanlig gode til å ta initiativ. Et samarbeid som faktisk gir oss fart."', name: 'Marte Solberg', role: 'Partner, Gnist Studio AS' }
+    ];
+    let testimonialIndex = 0;
+    document.querySelector('[data-testimonial-next]').addEventListener('click', () => {
+      testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+      const current = testimonials[testimonialIndex];
+      const story = document.querySelector('.story-content');
+      story.animate([{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 430, easing: 'ease-out' });
+      document.querySelector('.story-company').textContent = current.company;
+      document.querySelector('.story-industry').textContent = current.industry;
+      document.querySelector('.story-content blockquote').textContent = current.quote;
+      document.querySelector('.story-content cite').innerHTML = `<strong>${current.name}</strong>${current.role}`;
+    });
+
+    // Demo-only contact confirmation. Native validity makes required fields useful before feedback appears.
+    document.getElementById('contact-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const status = document.getElementById('form-status');
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      status.textContent = 'Takk! Vi tar kontakt innen neste arbeidsdag.';
+      status.classList.add('success');
+      form.reset();
+    });
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

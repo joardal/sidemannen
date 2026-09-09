@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andersen Auto AS — Bilverksted i Oslo | EU-kontroll, service & reparasjon</title>
+<meta name="description" content="Andersen Auto AS har holdt Oslos biler på veien siden 1987. EU-kontroll, service, reparasjoner, feilsøking, bremser, dekkskift og dekkhotell — med garanti på alt vi gjør.">
+<meta property="og:title" content="Andersen Auto AS — Bilverksted i Oslo">
+<meta property="og:description" content="EU-kontroll, service og reparasjoner. Fastpris før arbeid, garanti på alt vi gjør.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style type="text/tailwindcss">
+@theme {
+  --color-ink: #0B0C0F;
+  --color-ink2: #14161B;
+  --color-ink3: #1D2027;
+  --color-paper: #F4F2ED;
+  --color-card: #FBFAF7;
+  --color-accent: #FF4D00;
+  --color-accent2: #FF7A3D;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-serifaccent: "Instrument Serif", Georgia, serif;
+}
+</style>
+
+<style>
+  html { scroll-padding-top: 92px; }
+  body { font-family: var(--font-body); background: #0B0C0F; }
+
+  ::selection { background: #FF4D00; color: #0B0C0F; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #0B0C0F; }
+  ::-webkit-scrollbar-thumb { background: #26292F; border-radius: 8px; border: 2px solid #0B0C0F; }
+  ::-webkit-scrollbar-thumb:hover { background: #3A3E46; }
+
+  :focus-visible { outline: 2px solid #FF4D00; outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- Preloader ---------- */
+  #preloader { position: fixed; inset: 0; z-index: 100; background: #0B0C0F; display: flex; align-items: center; justify-content: center; transition: opacity .6s ease, visibility .6s ease; }
+  #preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+  /* ---------- Typography helpers ---------- */
+  .text-outline { color: transparent; -webkit-text-stroke: 1.5px rgba(244,242,237,.55); }
+  .text-outline-dark { color: transparent; -webkit-text-stroke: 1.5px rgba(11,12,15,.30); }
+  .serif-i { font-family: var(--font-serifaccent); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+
+  /* ---------- Backgrounds ---------- */
+  .grid-lines-dark {
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .grid-lines-light {
+    background-image:
+      linear-gradient(rgba(11,12,15,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11,12,15,.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .noise::before {
+    content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .05;
+    background-image: url("images/icon-01.svg");
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee { overflow: hidden; }
+  .marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ---------- Pulse dot ---------- */
+  .pulse-dot { position: relative; display: inline-block; width: 8px; height: 8px; border-radius: 999px; background: #FF4D00; }
+  .pulse-dot::after { content:""; position:absolute; inset:-4px; border-radius:999px; border:1px solid #FF4D00; animation: pulse 1.8s cubic-bezier(.4,0,.2,1) infinite; }
+  .pulse-dot.green { background: #34D399; }
+  .pulse-dot.green::after { border-color: #34D399; }
+  @keyframes pulse { 0% { transform: scale(.5); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
+
+  /* ---------- Rotating badge ---------- */
+  .spin-slow { animation: spin 18s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- Reveal on scroll ---------- */
+  [data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); transition-delay: var(--d, 0ms); will-change: opacity, transform; }
+  [data-reveal="left"] { transform: translateX(-36px); }
+  [data-reveal="right"] { transform: translateX(36px); }
+  [data-reveal="zoom"] { transform: scale(.94); }
+  [data-reveal].in { opacity: 1; transform: none; }
+
+  /* ---------- Buttons ---------- */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .65rem; font-weight: 600; border-radius: 999px; transition: all .35s cubic-bezier(.16,1,.3,1); cursor: pointer; white-space: nowrap; }
+  .btn-primary { background: #FF4D00; color: #0B0C0F; }
+  .btn-primary:hover { background: #FF7A3D; transform: translateY(-2px); box-shadow: 0 14px 34px -12px rgba(255,77,0,.55); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-ghost { border: 1px solid rgba(244,242,237,.25); color: #F4F2ED; background: transparent; }
+  .btn-ghost:hover { border-color: rgba(244,242,237,.6); background: rgba(244,242,237,.06); transform: translateY(-2px); }
+  .btn-dark { background: #0B0C0F; color: #F4F2ED; }
+  .btn-dark:hover { background: #1D2027; transform: translateY(-2px); box-shadow: 0 14px 30px -14px rgba(11,12,15,.5); }
+  .btn .arr { transition: transform .35s cubic-bezier(.16,1,.3,1); }
+  .btn:hover .arr { transform: translateX(4px); }
+
+  /* ---------- Nav ---------- */
+  .nav-link { position: relative; }
+  .nav-link::after { content:""; position:absolute; left:0; bottom:-6px; height:1.5px; width:100%; background:#FF4D00; transform: scaleX(0); transform-origin: right; transition: transform .4s cubic-bezier(.16,1,.3,1); }
+  .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); transform-origin: left; }
+
+  /* ---------- Service cards ---------- */
+  .svc-card { transition: transform .5s cubic-bezier(.16,1,.3,1), border-color .4s, box-shadow .5s; }
+  .svc-card:hover { transform: translateY(-6px); border-color: rgba(255,77,0,.55); box-shadow: 0 24px 48px -24px rgba(11,12,15,.22); }
+  .svc-card .svc-ico { transition: all .45s cubic-bezier(.16,1,.3,1); }
+  .svc-card:hover .svc-ico { background: #FF4D00; color: #0B0C0F; transform: rotate(-8deg) scale(1.05); }
+  .svc-card .svc-go { transition: all .4s cubic-bezier(.16,1,.3,1); opacity: .25; }
+  .svc-card:hover .svc-go { opacity: 1; transform: translateX(6px); color: #FF4D00; }
+
+  /* ---------- FAQ ---------- */
+  .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s cubic-bezier(.16,1,.3,1); }
+  .faq-item.open .faq-a { grid-template-rows: 1fr; }
+  .faq-a > div { overflow: hidden; }
+  .faq-item .faq-plus { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+  .faq-item.open .faq-plus { transform: rotate(45deg); }
+
+  /* ---------- Booking ---------- */
+  .bk-screen { display: none; }
+  .bk-screen.active { display: block; animation: fadeUp .5s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .svc-opt { transition: all .3s cubic-bezier(.16,1,.3,1); }
+  .svc-opt:hover { border-color: #0B0C0F; background: #fff; }
+  .svc-opt.svc-active { border-color: #FF4D00; background: #fff7f3; box-shadow: 0 0 0 1px #FF4D00 inset; }
+  .svc-opt .opt-check { opacity: 0; transform: scale(.5); transition: all .3s cubic-bezier(.16,1,.3,1); }
+  .svc-opt.svc-active .opt-check { opacity: 1; transform: scale(1); }
+  .day-chip, .slot-chip { transition: all .25s ease; }
+  .day-chip:hover:not(:disabled), .slot-chip:hover:not(:disabled) { border-color: #0B0C0F; }
+  .day-chip.sel, .slot-chip.sel { background: #0B0C0F !important; color: #F4F2ED !important; border-color: #0B0C0F !important; }
+  .slot-chip:disabled { opacity: .38; text-decoration: line-through; cursor: not-allowed; }
+  .slot-hidden { display: none !important; }
+
+  .field { width: 100%; background: #fff; border: 1px solid rgba(11,12,15,.16); border-radius: 14px; padding: .8rem 1rem; font-size: .925rem; color: #0B0C0F; transition: border-color .25s, box-shadow .25s; }
+  .field::placeholder { color: rgba(11,12,15,.38); }
+  .field:focus { outline: none; border-color: #FF4D00; box-shadow: 0 0 0 4px rgba(255,77,0,.14); }
+  .field.err { border-color: #DC2626; box-shadow: 0 0 0 4px rgba(220,38,38,.12); }
+  select.field { appearance: none; background-image: url("images/icon-02.svg"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.6rem; }
+  input[type="checkbox"] { accent-color: #FF4D00; }
+
+  /* ---------- Checkmark draw ---------- */
+  .draw-circle { stroke-dasharray: 166; stroke-dashoffset: 166; animation: draw .9s cubic-bezier(.65,0,.45,1) .15s forwards; }
+  .draw-check { stroke-dasharray: 48; stroke-dashoffset: 48; animation: draw .5s cubic-bezier(.65,0,.45,1) .75s forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  /* ---------- Testimonials ---------- */
+  .t-track { transition: transform .75s cubic-bezier(.16,1,.3,1); }
+  .t-dot { transition: all .35s ease; }
+
+  /* ---------- Misc ---------- */
+  .map-pin { animation: pinBounce 2.4s ease-in-out infinite; transform-origin: bottom center; }
+  @keyframes pinBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  .badge-float { animation: floatY 5s ease-in-out infinite; }
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .link-under { position: relative; }
+  .link-under::after { content:""; position:absolute; left:0; bottom:-3px; height:1px; width:100%; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .4s cubic-bezier(.16,1,.3,1); }
+  .link-under:hover::after { transform: scaleX(1); transform-origin: left; }
+  .img-zoom { overflow: hidden; }
+  .img-zoom img { transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
+  .img-zoom:hover img { transform: scale(1.06); }
+  @media (min-width: 1024px) { .parallax-band { background-attachment: fixed; } }
+  .marquee-item { display: inline-flex; align-items: center; gap: 2.5rem; padding-right: 2.5rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    [data-reveal] { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+
+<body class="bg-ink text-[#F4F2ED] antialiased noise">
+
+<!-- ══════════ SKIP LINK ══════════ -->
+<a href="#hovedinnhold" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[110] focus:bg-[#FF4D00] focus:text-[#0B0C0F] focus:px-5 focus:py-3 focus:rounded-full focus:font-semibold">Hopp til innhold</a>
+
+<!-- ══════════ PRELOADER ══════════ -->
+<div id="preloader" class="flex-col gap-6" aria-hidden="true">
+  <div class="flex items-center gap-3">
+    <svg width="44" height="44" viewBox="0 0 40 40" fill="none">
+      <rect width="40" height="40" rx="11" fill="#FF4D00"/>
+      <path d="M12 28.5 L20 12 L28 28.5" stroke="#0B0C0F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15.9 22.7 H24.1" stroke="#0B0C0F" stroke-width="3.4" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <p class="font-display font-bold text-lg tracking-tight leading-none">ANDERSEN AUTO</p>
+      <p class="font-mono text-[10px] tracking-[.3em] text-white/40 mt-1">OSLO — EST. 1987</p>
+    </div>
+  </div>
+  <div class="h-px w-44 bg-white/10 overflow-hidden rounded-full">
+    <div id="plBar" class="h-full bg-[#FF4D00] transition-none" style="width:0%"></div>
+  </div>
+  <p class="font-mono text-[11px] text-white/35 tracking-widest" id="plPct">0 %</p>
+</div>
+
+<!-- ══════════ PROGRESS BAR ══════════ -->
+<div class="fixed top-0 left-0 right-0 z-[95] h-[2px] bg-transparent pointer-events-none">
+  <div id="scrollBar" class="h-full bg-[#FF4D00] w-0"></div>
+</div>
+
+<!-- ══════════ HEADER ══════════ -->
+<header id="siteHeader" class="fixed top-0 inset-x-0 z-[80] transition-all duration-500">
+  <div class="max-w-[80rem] mx-auto flex items-center justify-between gap-6 px-5 sm:px-8 lg:px-12 h-20">
+    <a href="#top" class="flex items-center gap-3 group shrink-0" aria-label="Andersen Auto — til toppen">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" class="transition-transform duration-500 group-hover:rotate-[8deg]">
+        <rect width="40" height="40" rx="11" fill="#FF4D00"/>
+        <path d="M12 28.5 L20 12 L28 28.5" stroke="#0B0C0F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15.9 22.7 H24.1" stroke="#0B0C0F" stroke-width="3.4" stroke-linecap="round"/>
+      </svg>
+      <span class="leading-none">
+        <span class="block font-display font-bold tracking-tight text-[17px]">Andersen Auto</span>
+        <span class="block font-mono text-[9px] tracking-[.35em] text-white/45 mt-1 uppercase">Bilverksted · Oslo</span>
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8 text-[13.5px] font-medium text-white/75" aria-label="Hovedmeny">
+      <a href="#tjenester" class="nav-link hover:text-white transition-colors">Tjenester</a>
+      <a href="#prosess" class="nav-link hover:text-white transition-colors">Slik jobber vi</a>
+      <a href="#priser" class="nav-link hover:text-white transition-colors">Priser</a>
+      <a href="#omtaler" class="nav-link hover:text-white transition-colors">Omtaler</a>
+      <a href="#kontakt" class="nav-link hover:text-white transition-colors">Kontakt</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="tel:+4722001240" class="hidden xl:flex items-center gap-2 font-mono text-[12px] text-white/60 hover:text-[#FF7A3D] transition-colors">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        22 00 12 40
+      </a>
+      <a href="#booking" class="btn btn-primary text-[13.5px] px-5 py-2.5 magnetic">
+        Bestill time
+        <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button id="menuBtn" class="lg:hidden w-11 h-11 rounded-full border border-white/15 flex items-center justify-center hover:bg-white/5 transition-colors" aria-label="Åpne meny" aria-expanded="false" aria-controls="mobileMenu">
+        <svg id="menuIco" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500" id="headerLine"></div>
+</header>
+
+<!-- ══════════ MOBILE MENU ══════════ -->
+<div id="mobileMenu" class="fixed inset-0 z-[85] bg-ink/97 backdrop-blur-xl flex-col justify-between px-6 pt-24 pb-10 hidden opacity-0 transition-opacity duration-400" aria-hidden="true">
+  <nav class="flex flex-col gap-1" aria-label="Mobilmeny">
+    <a href="#tjenester" class="mob-link font-display text-4xl font-semibold tracking-tight py-3 border-b border-white/8 flex items-center justify-between group"><span>Tjenester</span><span class="font-mono text-xs text-white/30">01</span></a>
+    <a href="#prosess" class="mob-link font-display text-4xl font-semibold tracking-tight py-3 border-b border-white/8 flex items-center justify-between"><span>Slik jobber vi</span><span class="font-mono text-xs text-white/30">02</span></a>
+    <a href="#priser" class="mob-link font-display text-4xl font-semibold tracking-tight py-3 border-b border-white/8 flex items-center justify-between"><span>Priser</span><span class="font-mono text-xs text-white/30">03</span></a>
+    <a href="#omtaler" class="mob-link font-display text-4xl font-semibold tracking-tight py-3 border-b border-white/8 flex items-center justify-between"><span>Omtaler</span><span class="font-mono text-xs text-white/30">04</span></a>
+    <a href="#kontakt" class="mob-link font-display text-4xl font-semibold tracking-tight py-3 border-b border-white/8 flex items-center justify-between"><span>Kontakt</span><span class="font-mono text-xs text-white/30">05</span></a>
+  </nav>
+  <div class="space-y-5">
+    <a href="#booking" class="mob-link btn btn-primary w-full text-base py-4">Bestill time <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="flex items-center justify-between font-mono text-[11px] text-white/40 tracking-wider">
+      <span>MAN–FRE 07–17 · LØR 09–14</span>
+      <a href="tel:+4722001240" class="text-[#FF7A3D]">22 00 12 40</a>
+    </div>
+  </div>
+</div>
+
+<main id="hovedinnhold">
+
+<!-- ══════════ HERO ══════════ -->
+<section id="top" class="relative min-h-[100svh] grid-lines-dark overflow-hidden">
+  <div class="absolute -top-40 -right-40 w-[42rem] h-[42rem] rounded-full bg-[#FF4D00]/14 blur-[130px] pointer-events-none"></div>
+  <div class="absolute -bottom-56 -left-40 w-[34rem] h-[34rem] rounded-full bg-[#FF4D00]/8 blur-[120px] pointer-events-none"></div>
+
+  <div class="relative max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 pt-32 lg:pt-40 pb-14 lg:pb-20 grid lg:grid-cols-12 gap-10 lg:gap-8 items-center min-h-[100svh]">
+    <!-- Text -->
+    <div class="lg:col-span-7 relative z-10">
+      <div data-reveal class="inline-flex items-center gap-3 font-mono text-[11px] tracking-[.3em] uppercase text-white/60 border border-white/12 rounded-full px-4 py-2 mb-8 bg-white/[.03]">
+        <span class="pulse-dot"></span> Bilverksted — Oslo · Siden 1987
+      </div>
+
+      <h1 data-reveal style="--d:90ms" class="font-display font-semibold tracking-[-.03em] leading-[.98] text-[clamp(2.9rem,8.2vw,6.8rem)]">
+        Bilen din fortjener<br>
+        <span class="serif-i text-[#FF7A3D] font-normal">skikkelig</span> <span class="text-outline">håndverk.</span>
+      </h1>
+
+      <p data-reveal style="--d:180ms" class="mt-7 max-w-xl text-white/60 text-base sm:text-lg leading-relaxed font-light">
+        EU-kontroll, service og reparasjoner for personbiler og varebiler.
+        Sertifiserte teknikere, fastpris <em class="text-white/90 not-italic font-medium">før</em> vi setter i gang —
+        og garanti på alt vi gjør.
+      </p>
+
+      <div data-reveal style="--d:270ms" class="mt-10 flex flex-col sm:flex-row gap-4">
+        <a href="#booking" class="btn btn-primary text-[15px] px-8 py-4 magnetic">
+          Bestill time
+          <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#priser" class="btn btn-ghost text-[15px] px-8 py-4">
+          Se priser
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </a>
+      </div>
+
+      <!-- Specs -->
+      <div data-reveal style="--d:360ms" class="mt-14 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[11px] tracking-[.22em] text-white/35 uppercase">
+        <span>EU-kontroll</span><span class="text-[#FF4D00]">✦</span>
+        <span>Service</span><span class="text-[#FF4D00]">✦</span>
+        <span>Diagnose</span><span class="text-[#FF4D00]">✦</span>
+        <span>Dekkhotell</span><span class="text-[#FF4D00]">✦</span>
+        <span>Elbil & hybrid</span>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="lg:col-span-5 relative" data-reveal="right" style="--d:200ms">
+      <div class="relative rotate-1 lg:rotate-2 transition-transform duration-700 hover:rotate-0">
+        <div class="img-zoom rounded-[1.6rem] overflow-hidden border border-white/10 shadow-[0_50px_100px_-30px_rgba(0,0,0,.8)]">
+          <img id="heroImg" src="images/photo-02.jpg" alt="Mekaniker i arbeid i Andersens mørke, moderne verksted" class="w-full h-[420px] sm:h-[520px] lg:h-[580px] object-cover scale-[1.12]" fetchpriority="high" width="1100" height="1300">
+        </div>
+        <div class="absolute inset-0 rounded-[1.6rem] ring-1 ring-inset ring-white/10 pointer-events-none"></div>
+
+        <!-- Floating rating card -->
+        <div class="badge-float absolute -left-3 sm:-left-8 top-8 bg-[#0B0C0F]/90 backdrop-blur rounded-2xl border border-white/12 px-5 py-4 shadow-2xl">
+          <div class="flex items-baseline gap-2">
+            <span class="font-display font-bold text-2xl tracking-tight">4,9</span>
+            <span class="text-[#FF7A3D] text-sm tracking-tighter">★★★★★</span>
+          </div>
+          <p class="font-mono text-[10px] text-white/45 tracking-wider mt-1">612 VURDERINGER · GOOGLE</p>
+        </div>
+
+        <!-- Floating next slot -->
+        <div class="absolute -right-2 sm:-right-6 bottom-8 bg-[#0B0C0F]/90 backdrop-blur rounded-2xl border border-white/12 px-5 py-4 shadow-2xl">
+          <div class="flex items-center gap-2.5">
+            <span class="pulse-dot green"></span>
+            <span class="font-display text-sm font-semibold">Neste ledige time</span>
+          </div>
+          <p class="font-mono text-[11px] text-white/55 tracking-wider mt-1.5">I DAG KL. 14:00 · 45 MIN</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 pb-6" aria-hidden="true">
+    <span class="font-mono text-[10px] tracking-[.35em] text-white/30 uppercase [writing-mode:vertical-rl]">Rull</span>
+    <div class="w-px h-14 bg-gradient-to-b from-white/30 to-transparent relative overflow-hidden">
+      <div class="absolute w-px h-4 bg-[#FF4D00] animate-[rull_1.8s_ease-in-out_infinite]"></div>
+    </div>
+  </div>
+  <style>@keyframes rull { 0% { top: -20%; } 60%,100% { top: 110%; } }</style>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="bg-[#FF4D00] text-[#0B0C0F] py-4 overflow-hidden relative z-10 border-y border-black/10" aria-hidden="true">
+  <div class="marquee">
+    <div class="marquee-track font-display font-semibold text-sm sm:text-base tracking-wide uppercase">
+      <div class="flex shrink-0">
+        <span class="marquee-item">EU-kontroll<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Service<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Feilsøking og diagnose<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Bremser<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Dekkskift<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Dekkhotell<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">AC-service<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Elbil og hybrid<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Garanti på alt<span class="text-[#0B0C0F]/50">◆</span></span>
+      </div>
+      <div class="flex shrink-0">
+        <span class="marquee-item">EU-kontroll<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Service<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Feilsøking og diagnose<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Bremser<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Dekkskift<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Dekkhotell<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">AC-service<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Elbil og hybrid<span class="text-[#0B0C0F]/50">◆</span></span>
+        <span class="marquee-item">Garanti på alt<span class="text-[#0B0C0F]/50">◆</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ STATS ══════════ -->
+<section class="bg-paper text-ink">
+  <div class="max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 py-16 lg:py-20 grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+    <div data-reveal>
+      <p class="font-display font-bold tracking-tight text-[clamp(2.6rem,5.5vw,4.2rem)] leading-none"><span class="count" data-target="39">0</span><span class="text-[#FF4D00]">+</span></p>
+      <p class="mt-3 font-mono text-[11px] tracking-[.25em] uppercase text-ink/45">År på banen · Siden 1987</p>
+    </div>
+    <div data-reveal style="--d:90ms">
+      <p class="font-display font-bold tracking-tight text-[clamp(2.6rem,5.5vw,4.2rem)] leading-none"><span class="count" data-target="48000">0</span><span class="text-[#FF4D00]">+</span></p>
+      <p class="mt-3 font-mono text-[11px] tracking-[.25em] uppercase text-ink/45">Biler gjennom hendene våre</p>
+    </div>
+    <div data-reveal style="--d:180ms">
+      <p class="font-display font-bold tracking-tight text-[clamp(2.6rem,5.5vw,4.2rem)] leading-none"><span class="count" data-target="4.9" data-decimals="1">0</span><span class="text-[#FF4D00]">/5</span></p>
+      <p class="mt-3 font-mono text-[11px] tracking-[.25em] uppercase text-ink/45">Snittvurdering på Google</p>
+    </div>
+    <div data-reveal style="--d:270ms">
+      <p class="font-display font-bold tracking-tight text-[clamp(2.6rem,5.5vw,4.2rem)] leading-none"><span class="count" data-target="98">0</span><span class="text-[#FF4D00]">%</span></p>
+      <p class="mt-3 font-mono text-[11px] tracking-[.25em] uppercase text-ink/45">Godkjent EU-kontroll første gang</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TJENESTER ══════════ -->
+<section id="tjenester" class="bg-paper text-ink relative">
+  <div class="max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 pb-24 lg:pb-32">
+    <div class="flex flex-wrap items-end justify-between gap-8 mb-14 lg:mb-20">
+      <div>
+        <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF4D00] flex items-center gap-3 mb-5"><span class="w-8 h-px bg-[#FF4D00]"></span>01 — Tjenester</p>
+        <h2 data-reveal style="--d:80ms" class="font-display font-semibold tracking-[-.03em] leading-[1.02] text-[clamp(2.2rem,5vw,4rem)]">Alt bilen din trenger.<br><span class="text-outline-dark">Under samme tak.</span></h2>
+      </div>
+      <p data-reveal style="--d:160ms" class="max-w-sm text-ink/55 leading-relaxed text-[15px]">Fra EU-kontroll til feilsøking på moderne elbiler — vi har utstyret, kompetansen og delene på lager. Alltid fastpris før arbeid.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4" id="svcGrid">
+      <!-- EU-kontroll -->
+      <article data-reveal class="svc-card bg-card border border-ink/10 rounded-[1.4rem] p-7 relative group">
+        <div class="flex items-start justify-between mb-14">
+          <div class="svc-ico w-12 h-12 rounded-xl bg-ink text-[#F4F2ED] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <span class="font-mono text-[11px] text-ink/30 tracking-widest">T-01</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl tracking-tight">EU-kontroll</h3>
+        <p class="mt-2 text-sm text-ink/55 leading-relaxed">Kontroll utført av sertifiserte kontrollører. Vi retter feilene før kontrollen — så du slipper å komme tilbake.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-ink/8 pt-5">
+          <span class="font-mono text-xs tracking-wider text-ink/50">45 MIN · FRA <b class="text-ink">1 290 KR</b></span>
+          <a href="#booking" aria-label="Bestill EU-kontroll" class="svc-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Service -->
+      <article data-reveal style="--d:70ms" class="svc-card bg-card border border-ink/10 rounded-[1.4rem] p-7 relative group">
+        <div class="flex items-start justify-between mb-14">
+          <div class="svc-ico w-12 h-12 rounded-xl bg-ink text-[#F4F2ED] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <span class="font-mono text-[11px] text-ink/30 tracking-widest">T-02</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl tracking-tight">Service</h3>
+        <p class="mt-2 text-sm text-ink/55 leading-relaxed">Oljeskift, filter og 40-punkts kontroll etter fabrikkens intervall. Dokumentert i serviceheftet, alltid.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-ink/8 pt-5">
+          <span class="font-mono text-xs tracking-wider text-ink/50">1,5 TIME · FRA <b class="text-ink">2 490 KR</b></span>
+          <a href="#booking" aria-label="Bestill service" class="svc-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Reparasjon -->
+      <article data-reveal style="--d:140ms" class="svc-card bg-card border border-ink/10 rounded-[1.4rem] p-7 relative group">
+        <div class="flex items-start justify-between mb-14">
+          <div class="svc-ico w-12 h-12 rounded-xl bg-ink text-[#F4F2ED] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <span class="font-mono text-[11px] text-ink/30 tracking-widest">T-03</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl tracking-tight">Reparasjoner</h3>
+        <p class="mt-2 text-sm text-ink/55 leading-relaxed">Motor, girkasse, elektronikk og understell. Originale eller likeverdige deler — 24 måneders garanti.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-ink/8 pt-5">
+          <span class="font-mono text-xs tracking-wider text-ink/50">FASTPRIS FØR START</span>
+          <a href="#booking" aria-label="Bestill reparasjon" class="svc-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Diagnose -->
+      <article data-reveal class="svc-card bg-card border border-ink/10 rounded-[1.4rem] p-7 relative group">
+        <div class="flex items-start justify-between mb-14">
+          <div class="svc-ico w-12 h-12 rounded-xl bg-ink text-[#F4F2ED] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+          </div>
+          <span class="font-mono text-[11px] text-ink/30 tracking-widest">T-04</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl tracking-tight">Feilsøking & diagnose</h3>
+        <p class="mt-2 text-sm text-ink/55 leading-relaxed">Lyser det et varsellys? Vi kobler på diagnosesystemet, finner feilen og gir deg fastpris før vi skrur.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-ink/8 pt-5">
+          <span class="font-mono text-xs tracking-wider text-ink/50">1–2 TIMER · FRA <b class="text-ink">990 KR</b></span>
+          <a href="#booking" aria-label="Bestill diagnose" class="svc-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Bremser -->
+      <article data-reveal style="--d:70ms" class="svc-card bg-card border border-ink/10 rounded-[1.4rem] p-7 relative group">
+        <div class="flex items-start justify-between mb-14">
+          <div class="svc-ico w-12 h-12 rounded-xl bg-ink text-[#F4F2ED] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></svg>
+          </div>
+          <span class="font-mono text-[11px] text-ink/30 tracking-widest">T-05</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl tracking-tight">Bremser</h3>
+        <p class="mt-2 text-sm text-ink/55 leading-relaxed">Kladder eller vibrasjoner i pedal? Nye skiver, klosser og bremseservice — sjekket og trykktestet.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-ink/8 pt-5">
+          <span class="font-mono text-xs tracking-wider text-ink/50">1–3 TIMER · FRA <b class="text-ink">1 790 KR</b></span>
+          <a href="#booking" aria-label="Bestill bremser" class="svc-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Dekk -->
+      <article data-reveal style="--d:140ms" class="svc-card bg-card border border-ink/10 rounded-[1.4rem] p-7 relative group">
+        <div class="flex items-start justify-between mb-14">
+          <div class="svc-ico w-12 h-12 rounded-xl bg-ink text-[#F4F2ED] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3 12 9M16.5 7.5 13.5 10.5M21 12H15M16.5 16.5 13.5 13.5M12 21V15M7.5 16.5 10.5 13.5M3 12h6M7.5 7.5 10.5 10.5"/></svg>
+          </div>
+          <span class="font-mono text-[11px] text-ink/30 tracking-widest">T-06</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl tracking-tight">Dekkskift</h3>
+        <p class="mt-2 text-sm text-ink/55 leading-relaxed">Av/på, balansering og lufttrykk — og vi oppbevarer dekkene dine trygt i mellomtiden. Time på 30 minutter.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-ink/8 pt-5">
+          <span class="font-mono text-xs tracking-wider text-ink/50">30 MIN · FRA <b class="text-ink">790 KR</b></span>
+          <a href="#booking" aria-label="Bestill dekkskift" class="svc-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Dekkhotell -->
+      <article data-reveal class="svc-card bg-card border border-ink/10 rounded-[1.4rem] p-7 relative group">
+        <div class="flex items-start justify-between mb-14">
+          <div class="svc-ico w-12 h-12 rounded-xl bg-ink text-[#F4F2ED] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20V8.5a1 1 0 0 1 .4-.8l8-6a1 1 0 0 1 1.2 0l8 6a1 1 0 0 1 .4.8V20"/><path d="M2 20h20M10 20v-5.5a2 2 0 0 1 4 0V20"/></svg>
+          </div>
+          <span class="font-mono text-[11px] text-ink/30 tracking-widest">T-07</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl tracking-tight">Dekkhotell</h3>
+        <p class="mt-2 text-sm text-ink/55 leading-relaxed">Temperaturkontrollert lager, skift når du trenger det og påminnelse på SMS. Én sesong — null stress.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-ink/8 pt-5">
+          <span class="font-mono text-xs tracking-wider text-ink/50">SESONG · <b class="text-ink">590 KR</b></span>
+          <a href="#dekkhotell" aria-label="Les om dekkhotell" class="svc-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- AC -->
+      <article data-reveal style="--d:70ms" class="svc-card bg-card border border-ink/10 rounded-[1.4rem] p-7 relative group">
+        <div class="flex items-start justify-between mb-14">
+          <div class="svc-ico w-12 h-12 rounded-xl bg-ink text-[#F4F2ED] flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1"/><path d="M8 8h8M8 12h8M8 16h8" opacity=".45"/></svg>
+          </div>
+          <span class="font-mono text-[11px] text-ink/30 tracking-widest">T-08</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl tracking-tight">AC-service</h3>
+        <p class="mt-2 text-sm text-ink/55 leading-relaxed">Sjekk av kjølemiddel, påfylling og desinfisering av anlegget. Frisk luft i bilen, året rundt.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-ink/8 pt-5">
+          <span class="font-mono text-xs tracking-wider text-ink/50">45 MIN · FRA <b class="text-ink">1 290 KR</b></span>
+          <a href="#booking" aria-label="Bestill AC-service" class="svc-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <!-- Custom CTA card -->
+      <article data-reveal style="--d:140ms" class="bg-ink text-[#F4F2ED] rounded-[1.4rem] p-7 relative overflow-hidden group grid-lines-dark">
+        <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#FF4D00]/25 blur-3xl transition-all duration-700 group-hover:bg-[#FF4D00]/40"></div>
+        <p class="font-mono text-[11px] tracking-[.3em] text-[#FF7A3D] uppercase mb-3 relative">Lurer du på noe?</p>
+        <h3 class="font-display font-semibold text-2xl tracking-tight leading-snug relative">Vi hjelper deg å finne<br>ut <span class="serif-i text-[#FF7A3D] font-normal">hva</span> bilen trenger.</h3>
+        <p class="mt-3 text-sm text-white/50 leading-relaxed relative">Ring, skriv eller stikk innom. Ingen kjøpepress — bare fagkunnskap.</p>
+        <div class="mt-8 flex flex-wrap gap-3 relative">
+          <a href="tel:+4722001240" class="btn btn-primary text-[13px] px-5 py-3">Ring oss</a>
+          <a href="#kontakt" class="btn btn-ghost text-[13px] px-5 py-3">Send melding</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ QUOTE BAND (parallax) ══════════ -->
+<section class="parallax-band relative py-28 lg:py-44 bg-cover bg-center" style="background-image:url('images/photo-04.jpg')">
+  <div class="absolute inset-0 bg-[#0B0C0F]/78"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-[#0B0C0F]/90 via-transparent to-[#0B0C0F]/60"></div>
+  <div class="relative max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12">
+    <div class="max-w-3xl">
+      <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF7A3D] mb-6">— Vår filosofi</p>
+      <blockquote data-reveal style="--d:100ms" class="font-display font-medium tracking-[-.02em] leading-[1.15] text-[clamp(1.9rem,4.6vw,3.6rem)]">
+        «Vi behandler hver bil som om den var<br class="hidden sm:block"> vår egen. <span class="serif-i text-[#FF7A3D] font-normal">Derfor</span> kommer kundene tilbake.»
+      </blockquote>
+      <div data-reveal style="--d:200ms" class="mt-8 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-[#FF4D00] text-ink flex items-center justify-center font-display font-bold text-lg">EA</div>
+        <div>
+          <p class="font-semibold text-sm">Erik Andersen</p>
+          <p class="font-mono text-[11px] text-white/45 tracking-wider mt-0.5">GRUNNLEGGER & VERKSTEDSSJEF</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROSESS ══════════ -->
+<section id="prosess" class="bg-ink relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-[30rem] h-[30rem] rounded-full bg-[#FF4D00]/8 blur-[110px] pointer-events-none"></div>
+  <div class="relative max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 py-24 lg:py-32 grid lg:grid-cols-12 gap-14">
+    <div class="lg:col-span-4">
+      <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF7A3D] flex items-center gap-3 mb-5"><span class="w-8 h-px bg-[#FF7A3D]"></span>02 — Slik jobber vi</p>
+      <h2 data-reveal style="--d:80ms" class="font-display font-semibold tracking-[-.03em] leading-[1.04] text-[clamp(2.2rem,5vw,3.8rem)]">Først forstår vi.<br>Deretter fikser vi.</h2>
+      <p data-reveal style="--d:160ms" class="mt-6 text-white/55 leading-relaxed text-[15px] max-w-sm">Fire enkle steg, null overraskelser. Du får alltid beskjed før vi gjør noe du ikke har godkjent.</p>
+
+      <div class="img-zoom mt-10 rounded-2xl overflow-hidden border border-white/10 hidden lg:block">
+        <img src="images/photo-05.jpg" alt="Mekaniker inspiserer bil på løft" loading="lazy" width="900" height="640" class="w-full h-64 object-cover">
+      </div>
+      <div class="mt-6 flex items-center gap-3 font-mono text-[11px] text-white/35 tracking-wider hidden lg:flex">
+        <span class="pulse-dot green"></span> SERTIFISERT AV NAF & VPF · 14 TEKNIKERE
+      </div>
+    </div>
+
+    <div class="lg:col-span-8 relative">
+      <div class="hidden lg:block absolute left-[27px] top-8 bottom-8 w-px bg-white/10"></div>
+      <div class="space-y-4 lg:space-y-0">
+        <div data-reveal class="relative lg:grid lg:grid-cols-2 gap-8 lg:mb-4">
+          <div class="flex gap-6 lg:gap-8 items-start relative z-10">
+            <div class="w-14 h-14 shrink-0 rounded-2xl bg-[#FF4D00] text-ink font-display font-bold text-lg flex items-center justify-center shadow-[0_12px_30px_-10px_rgba(255,77,0,.6)]">01</div>
+            <div>
+              <h3 class="font-display font-semibold text-xl tracking-tight">Bestill på 30 sekunder</h3>
+              <p class="mt-2 text-sm text-white/50 leading-relaxed">Velg tjeneste, bil og ønsket tidspunkt på nett — eller ring oss. Du får bekreftelse på SMS med en gang.</p>
+            </div>
+          </div>
+          <div class="hidden lg:flex items-start pt-3">
+            <div class="w-full h-px border-t border-dashed border-white/15 mt-7"></div>
+          </div>
+        </div>
+        <div data-reveal style="--d:100ms" class="relative lg:grid lg:grid-cols-2 gap-8 lg:mb-4">
+          <div class="flex gap-6 lg:gap-8 items-start relative z-10">
+            <div class="w-14 h-14 shrink-0 rounded-2xl bg-[#FF4D00] text-ink font-display font-bold text-lg flex items-center justify-center shadow-[0_12px_30px_-10px_rgba(255,77,0,.6)]">02</div>
+            <div>
+              <h3 class="font-display font-semibold text-xl tracking-tight">Diagnose & fastpris</h3>
+              <p class="mt-2 text-sm text-white/50 leading-relaxed">Vi sjekker bilen grundig, og du får en fastpris på papir før vi løfter en skiftenøkkel. Godkjenner du ikke — betaler du ingenting.</p>
+            </div>
+          </div>
+          <div class="hidden lg:flex items-start pt-3">
+            <div class="w-full h-px border-t border-dashed border-white/15 mt-7"></div>
+          </div>
+        </div>
+        <div data-reveal style="--d:200ms" class="relative lg:grid lg:grid-cols-2 gap-8 lg:mb-4">
+          <div class="flex gap-6 lg:gap-8 items-start relative z-10">
+            <div class="w-14 h-14 shrink-0 rounded-2xl bg-[#FF4D00] text-ink font-display font-bold text-lg flex items-center justify-center shadow-[0_12px_30px_-10px_rgba(255,77,0,.6)]">03</div>
+            <div>
+              <h3 class="font-display font-semibold text-xl tracking-tight">Reparasjon med garanti</h3>
+              <p class="mt-2 text-sm text-white/50 leading-relaxed">Sertifiserte teknikere, originale deler og 24 måneders garanti på arbeid og deler. Oppdateringer underveis på SMS.</p>
+            </div>
+          </div>
+          <div class="hidden lg:flex items-start pt-3">
+            <div class="w-full h-px border-t border-dashed border-white/15 mt-7"></div>
+          </div>
+        </div>
+        <div data-reveal style="--d:300ms" class="relative lg:grid lg:grid-cols-2 gap-8">
+          <div class="flex gap-6 lg:gap-8 items-start relative z-10">
+            <div class="w-14 h-14 shrink-0 rounded-2xl bg-[#FF4D00] text-ink font-display font-bold text-lg flex items-center justify-center shadow-[0_12px_30px_-10px_rgba(255,77,0,.6)]">04</div>
+            <div>
+              <h3 class="font-display font-semibold text-xl tracking-tight">Klar til henting</h3>
+              <p class="mt-2 text-sm text-white/50 leading-relaxed">Du får SMS når bilen er klar, betaler enkelt med kort eller faktura — og kjører ut med god samvittighet.</p>
+            </div>
+          </div>
+          <div class="hidden lg:flex flex-col items-start justify-center mt-6">
+            <a href="#booking" class="btn btn-primary text-sm px-6 py-3.5 magnetic">Kom i gang — bestill nå <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ BOOKING ══════════ -->
+<section id="booking" class="bg-paper text-ink relative grid-lines-light">
+  <div class="max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 py-24 lg:py-32">
+    <div class="max-w-2xl mb-14 lg:mb-20">
+      <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF4D00] flex items-center gap-3 mb-5"><span class="w-8 h-px bg-[#FF4D00]"></span>03 — Bestilling</p>
+      <h2 data-reveal style="--d:80ms" class="font-display font-semibold tracking-[-.03em] leading-[1.02] text-[clamp(2.2rem,5vw,4rem)]">Bestill time <span class="serif-i text-[#FF4D00] font-normal">på 30 sekunder</span></h2>
+      <p data-reveal style="--d:160ms" class="mt-5 text-ink/55 text-[15px] leading-relaxed">Fyll inn det du vet — resten tar vi på verkstedet. Du får bekreftelse på SMS, og kan alltid ringe oss hvis noe er uklart.</p>
+    </div>
+
+    <div data-reveal style="--d:120ms" class="grid lg:grid-cols-12 rounded-[2rem] overflow-hidden border border-ink/10 shadow-[0_60px_120px_-50px_rgba(11,12,15,.4)] bg-card">
+      <!-- Left info panel -->
+      <aside class="lg:col-span-4 bg-ink text-[#F4F2ED] p-8 lg:p-10 flex flex-col relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-[#FF4D00]/15 blur-3xl pointer-events-none"></div>
+        <div class="img-zoom rounded-xl overflow-hidden border border-white/10 mb-8 relative">
+          <img src="images/photo-01.jpg" alt="Diagnoseverktøy tilkoblet bil" loading="lazy" width="800" height="520" class="w-full h-40 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></div>
+          <p class="absolute bottom-3 left-4 font-mono text-[10px] tracking-[.25em] text-white/70 uppercase">Diagnose · Alle merker</p>
+        </div>
+        <h3 class="font-display font-semibold text-2xl tracking-tight">Hva skjer når du bestiller?</h3>
+        <ul class="mt-6 space-y-4 text-sm text-white/60">
+          <li class="flex gap-3"><span class="text-[#FF7A3D] font-mono mt-0.5">01</span> Du velger tjeneste, bil og tidspunkt.</li>
+          <li class="flex gap-3"><span class="text-[#FF7A3D] font-mono mt-0.5">02</span> Vi bekrefter på SMS innen 30 minutter i åpningstiden.</li>
+          <li class="flex gap-3"><span class="text-[#FF7A3D] font-mono mt-0.5">03</span> Du leverer bilen, og vi svarer med fastpris før vi starter.</li>
+          <li class="flex gap-3"><span class="text-[#FF7A3D] font-mono mt-0.5">04</span> Ferdig jobb — betal, kjør, smil.</li>
+        </ul>
+        <div class="mt-auto pt-8 border-t border-white/10 mt-10">
+          <p class="font-mono text-[10px] tracking-[.3em] text-white/35 uppercase mb-3">Foretrekker du telefonen?</p>
+          <a href="tel:+4722001240" class="flex items-center gap-3 group">
+            <span class="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center group-hover:border-[#FF4D00] group-hover:bg-[#FF4D00] group-hover:text-ink transition-all duration-300">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span>
+              <span class="block font-display font-semibold text-lg leading-none">22 00 12 40</span>
+              <span class="block font-mono text-[10px] text-white/40 tracking-wider mt-1">MAN–FRE 07–17 · LØR 09–14</span>
+            </span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Right stepper -->
+      <div class="lg:col-span-8 p-6 sm:p-10 relative" id="bkStepper">
+        <!-- Progress -->
+        <div class="mb-10">
+          <div class="flex items-center justify-between mb-4" id="bkStepLabels">
+            <span data-pl="0" class="flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase"><span class="bk-num w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300">1</span><span class="hidden sm:inline">Tjeneste</span></span>
+            <span data-pl="1" class="flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase"><span class="bk-num w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300">2</span><span class="hidden sm:inline">Bilen din</span></span>
+            <span data-pl="2" class="flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase"><span class="bk-num w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300">3</span><span class="hidden sm:inline">Tidspunkt</span></span>
+            <span data-pl="3" class="flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase"><span class="bk-num w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300">4</span><span class="hidden sm:inline">Detaljer</span></span>
+          </div>
+          <div class="h-1 rounded-full bg-ink/8 overflow-hidden">
+            <div id="bkProgress" class="h-full bg-[#FF4D00] rounded-full transition-all duration-700 ease-out" style="width:25%"></div>
+          </div>
+        </div>
+
+        <!-- SCREEN 1: Service -->
+        <div class="bk-screen active" data-screen="service">
+          <h3 class="font-display font-semibold text-xl tracking-tight mb-1">Hva trenger bilen din?</h3>
+          <p class="text-sm text-ink/50 mb-6">Velg én tjeneste — du kan legge til mer senere når vi snakkes.</p>
+          <div class="grid sm:grid-cols-2 gap-2.5" id="svcOptions">
+            <button type="button" data-svc="eu" class="svc-opt text-left border border-ink/12 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 bg-white">
+              <span class="w-9 h-9 rounded-lg bg-ink/5 flex items-center justify-center shrink-0"><svg class="text-ink" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+              <span class="flex-1 min-w-0"><span class="block font-medium text-[13.5px]">EU-kontroll</span><span class="block font-mono text-[10.5px] text-ink/45 tracking-wide mt-0.5">45 MIN · FRA 1 290 KR</span></span>
+              <span class="opt-check w-5 h-5 rounded-full bg-[#FF4D00] text-ink flex items-center justify-center shrink-0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" data-svc="service" class="svc-opt text-left border border-ink/12 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 bg-white">
+              <span class="w-9 h-9 rounded-lg bg-ink/5 flex items-center justify-center shrink-0"><svg class="text-ink" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+              <span class="flex-1 min-w-0"><span class="block font-medium text-[13.5px]">Service</span><span class="block font-mono text-[10.5px] text-ink/45 tracking-wide mt-0.5">1,5 TIME · FRA 2 490 KR</span></span>
+              <span class="opt-check w-5 h-5 rounded-full bg-[#FF4D00] text-ink flex items-center justify-center shrink-0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" data-svc="reparasjon" class="svc-opt text-left border border-ink/12 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 bg-white">
+              <span class="w-9 h-9 rounded-lg bg-ink/5 flex items-center justify-center shrink-0"><svg class="text-ink" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
+              <span class="flex-1 min-w-0"><span class="block font-medium text-[13.5px]">Reparasjon</span><span class="block font-mono text-[10.5px] text-ink/45 tracking-wide mt-0.5">FASTPRIS FØR START</span></span>
+              <span class="opt-check w-5 h-5 rounded-full bg-[#FF4D00] text-ink flex items-center justify-center shrink-0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" data-svc="diagnose" class="svc-opt text-left border border-ink/12 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 bg-white">
+              <span class="w-9 h-9 rounded-lg bg-ink/5 flex items-center justify-center shrink-0"><svg class="text-ink" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg></span>
+              <span class="flex-1 min-w-0"><span class="block font-medium text-[13.5px]">Feilsøking & diagnose</span><span class="block font-mono text-[10.5px] text-ink/45 tracking-wide mt-0.5">1–2 TIMER · FRA 990 KR</span></span>
+              <span class="opt-check w-5 h-5 rounded-full bg-[#FF4D00] text-ink flex items-center justify-center shrink-0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" data-svc="bremser" class="svc-opt text-left border border-ink/12 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 bg-white">
+              <span class="w-9 h-9 rounded-lg bg-ink/5 flex items-center justify-center shrink-0"><svg class="text-ink" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5"/></svg></span>
+              <span class="flex-1 min-w-0"><span class="block font-medium text-[13.5px]">Bremser</span><span class="block font-mono text-[10.5px] text-ink/45 tracking-wide mt-0.5">1–3 TIMER · FRA 1 790 KR</span></span>
+              <span class="opt-check w-5 h-5 rounded-full bg-[#FF4D00] text-ink flex items-center justify-center shrink-0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" data-svc="dekk" class="svc-opt text-left border border-ink/12 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 bg-white">
+              <span class="w-9 h-9 rounded-lg bg-ink/5 flex items-center justify-center shrink-0"><svg class="text-ink" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></span>
+              <span class="flex-1 min-w-0"><span class="block font-medium text-[13.5px]">Dekkskift</span><span class="block font-mono text-[10.5px] text-ink/45 tracking-wide mt-0.5">30 MIN · FRA 790 KR</span></span>
+              <span class="opt-check w-5 h-5 rounded-full bg-[#FF4D00] text-ink flex items-center justify-center shrink-0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" data-svc="dekkhotell" class="svc-opt text-left border border-ink/12 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 bg-white">
+              <span class="w-9 h-9 rounded-lg bg-ink/5 flex items-center justify-center shrink-0"><svg class="text-ink" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20V8.5a1 1 0 0 1 .4-.8l8-6a1 1 0 0 1 1.2 0l8 6a1 1 0 0 1 .4.8V20"/><path d="M2 20h20M10 20v-5.5a2 2 0 0 1 4 0V20"/></svg></span>
+              <span class="flex-1 min-w-0"><span class="block font-medium text-[13.5px]">Dekkhotell</span><span class="block font-mono text-[10.5px] text-ink/45 tracking-wide mt-0.5">SESONG · 590 KR</span></span>
+              <span class="opt-check w-5 h-5 rounded-full bg-[#FF4D00] text-ink flex items-center justify-center shrink-0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" data-svc="ac" class="svc-opt text-left border border-ink/12 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 bg-white">
+              <span class="w-9 h-9 rounded-lg bg-ink/5 flex items-center justify-center shrink-0"><svg class="text-ink" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1"/></svg></span>
+              <span class="flex-1 min-w-0"><span class="block font-medium text-[13.5px]">AC-service</span><span class="block font-mono text-[10.5px] text-ink/45 tracking-wide mt-0.5">45 MIN · FRA 1 290 KR</span></span>
+              <span class="opt-check w-5 h-5 rounded-full bg-[#FF4D00] text-ink flex items-center justify-center shrink-0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            </button>
+          </div>
+          <p class="mt-5 text-[13px] text-ink/50 flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#FF4D00] shrink-0"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Usikker på hva bilen trenger? <a href="tel:+4722001240" class="font-semibold text-ink underline underline-offset-4 decoration-[#FF4D00] decoration-2">Ring 22 00 12 40</a> — så hjelper vi deg.</p>
+        </div>
+
+        <!-- SCREEN 2: Car -->
+        <div class="bk-screen" data-screen="car">
+          <h3 class="font-display font-semibold text-xl tracking-tight mb-1">Fortell oss om bilen</h3>
+          <p class="text-sm text-ink/50 mb-6">Så har vi riktig kompetanse og deler klart når du kommer.</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="carType" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Kjøretøytype</label>
+              <select id="carType" class="field">
+                <option value="">Velg type…</option>
+                <option>Personbil</option>
+                <option>Varebil / LCV</option>
+                <option>Lastebil under 3,5 t</option>
+              </select>
+            </div>
+            <div>
+              <label for="carMerke" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Merke</label>
+              <select id="carMerke" class="field">
+                <option value="">Velg merke…</option>
+                <option>Audi</option><option>BMW</option><option>Ford</option><option>Hyundai</option>
+                <option>Mercedes-Benz</option><option>Nissan</option><option>Skoda</option><option>Tesla</option>
+                <option>Toyota</option><option>Volkswagen</option><option>Volvo</option><option>Annet</option>
+              </select>
+            </div>
+            <div>
+              <label for="carModell" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Modell</label>
+              <input id="carModell" type="text" class="field" placeholder="f.eks. Golf, XC60, Model 3" autocomplete="off">
+            </div>
+            <div>
+              <label for="carAar" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Årsmodell</label>
+              <select id="carAar" class="field">
+                <option value="">Velg år…</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="carDriv" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Drivstoff / drivlinje</label>
+            <select id="carDriv" class="field">
+              <option value="">Velg drivlinje…</option>
+              <option>Bensin</option><option>Diesel</option><option>Hybrid</option><option>Plugin-hybrid</option><option>El</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SCREEN 3: Time -->
+        <div class="bk-screen" data-screen="time">
+          <h3 class="font-display font-semibold text-xl tracking-tight mb-1">Når passer det?</h3>
+          <p class="text-sm text-ink/50 mb-6">Velg dag, så viser vi ledige tider. Slots merket «Opptatt» er allerede booket.</p>
+          <p class="font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-3">Velg dag</p>
+          <div id="dayChips" class="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>
+          <p class="font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-3 mt-6">Velg tidspunkt</p>
+          <div class="flex gap-2 mb-4 flex-wrap">
+            <button type="button" data-filter="all" class="slot-filter font-mono text-[11px] tracking-wider uppercase px-3.5 py-1.5 rounded-full border border-ink/15 hover:border-ink transition-colors">Alle</button>
+            <button type="button" data-filter="am" class="slot-filter font-mono text-[11px] tracking-wider uppercase px-3.5 py-1.5 rounded-full border border-ink/15 hover:border-ink transition-colors">Formiddag</button>
+            <button type="button" data-filter="pm" class="slot-filter font-mono text-[11px] tracking-wider uppercase px-3.5 py-1.5 rounded-full border border-ink/15 hover:border-ink transition-colors">Ettermiddag</button>
+          </div>
+          <div id="slotChips" class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-2"></div>
+          <p class="mt-5 text-[13px] text-ink/50">Trenger du en annen tid? <a href="tel:+4722001240" class="font-semibold text-ink underline underline-offset-4 decoration-[#FF4D00] decoration-2">Ring oss</a>, så finner vi en løsning.</p>
+        </div>
+
+        <!-- SCREEN 4: Contact -->
+        <div class="bk-screen" data-screen="contact">
+          <h3 class="font-display font-semibold text-xl tracking-tight mb-1">Hvem skal vi kontakte?</h3>
+          <p class="text-sm text-ink/50 mb-6">Bekreftelsen sendes på SMS — så vi trenger et nummer vi kan nå deg på.</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="bkNavn" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Navn *</label>
+              <input id="bkNavn" type="text" class="field" placeholder="For- og etternavn" autocomplete="name">
+            </div>
+            <div>
+              <label for="bkTlf" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Telefon *</label>
+              <input id="bkTlf" type="tel" class="field" placeholder="9xx xx xxx" autocomplete="tel">
+            </div>
+            <div class="sm:col-span-2">
+              <label for="bkEpost" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">E-post <span class="normal-case tracking-normal text-ink/35">(valgfritt)</span></label>
+              <input id="bkEpost" type="email" class="field" placeholder="navn@epost.no" autocomplete="email">
+            </div>
+            <div class="sm:col-span-2">
+              <label for="bkMerknad" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Merknad <span class="normal-case tracking-normal text-ink/35">(valgfritt)</span></label>
+              <textarea id="bkMerknad" rows="3" class="field resize-none" placeholder="F.eks. «Det piper når jeg bremser», «lyset i dashbordet lyser» …"></textarea>
+            </div>
+          </div>
+          <label class="flex items-start gap-3 mt-5 text-[12.5px] text-ink/55 cursor-pointer">
+            <input type="checkbox" id="bkSamtykke" checked class="mt-0.5 w-4 h-4">
+            <span>Jeg samtykker til at Andersen Auto lagrer opplysningene for å gjennomføre bestillingen. Les mer i <a href="#" class="underline underline-offset-2 decoration-ink/30 hover:decoration-[#FF4D00]">personvernerklæringen</a>.</span>
+          </label>
+        </div>
+
+        <!-- SCREEN 5: Summary -->
+        <div class="bk-screen" data-screen="summary">
+          <h3 class="font-display font-semibold text-xl tracking-tight mb-1">Sjekk bestillingen din</h3>
+          <p class="text-sm text-ink/50 mb-6">Ser det riktig ut? Trykk «Bekreft» så reserverer vi tiden din.</p>
+          <div class="rounded-2xl border border-ink/10 bg-white divide-y divide-ink/8 overflow-hidden">
+            <div class="flex items-center justify-between px-5 py-4">
+              <span class="font-mono text-[11px] tracking-[.2em] uppercase text-ink/40">Tjeneste</span>
+              <span class="flex items-center gap-3 text-right"><span class="font-medium text-sm" id="sumSvc">—</span><button type="button" data-goto="0" class="font-mono text-[11px] text-[#FF4D00] hover:underline">Endre</button></span>
+            </div>
+            <div class="flex items-center justify-between px-5 py-4">
+              <span class="font-mono text-[11px] tracking-[.2em] uppercase text-ink/40">Bil</span>
+              <span class="flex items-center gap-3 text-right"><span class="font-medium text-sm" id="sumBil">—</span><button type="button" data-goto="1" class="font-mono text-[11px] text-[#FF4D00] hover:underline">Endre</button></span>
+            </div>
+            <div class="flex items-center justify-between px-5 py-4">
+              <span class="font-mono text-[11px] tracking-[.2em] uppercase text-ink/40">Tidspunkt</span>
+              <span class="flex items-center gap-3 text-right"><span class="font-medium text-sm" id="sumTid">—</span><button type="button" data-goto="2" class="font-mono text-[11px] text-[#FF4D00] hover:underline">Endre</button></span>
+            </div>
+            <div class="flex items-center justify-between px-5 py-4">
+              <span class="font-mono text-[11px] tracking-[.2em] uppercase text-ink/40">Kontakt</span>
+              <span class="flex items-center gap-3 text-right"><span class="font-medium text-sm" id="sumKontakt">—</span><button type="button" data-goto="3" class="font-mono text-[11px] text-[#FF4D00] hover:underline">Endre</button></span>
+            </div>
+          </div>
+          <div class="mt-5 flex items-center justify-between bg-[#0B0C0F] text-[#F4F2ED] rounded-2xl px-5 py-4">
+            <span class="font-mono text-[11px] tracking-[.2em] uppercase text-white/40">Estimert pris</span>
+            <span class="font-display font-bold text-lg" id="sumPris">—</span>
+          </div>
+        </div>
+
+        <!-- Error + nav buttons -->
+        <p id="bkError" class="mt-5 text-[12.5px] text-red-600 font-medium hidden" role="alert"></p>
+        <div class="mt-7 flex items-center gap-3">
+          <button type="button" id="bkBack" class="btn btn-ghost !text-ink border-ink/20 hover:!border-ink/50 hover:!bg-ink/5 text-[13.5px] px-6 py-3 hidden">← Tilbake</button>
+          <button type="button" id="bkNext" class="btn btn-dark text-[13.5px] px-7 py-3 flex-1 sm:flex-none magnetic">
+            Neste
+            <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <button type="button" id="bkConfirm" class="btn btn-primary text-[13.5px] px-7 py-3 flex-1 sm:flex-none hidden magnetic">
+            Bekreft bestilling
+            <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Success state -->
+      <div id="bkSuccess" class="lg:col-span-8 p-8 sm:p-14 hidden flex-col items-center justify-center text-center relative">
+        <svg width="78" height="78" viewBox="0 0 52 52" class="mb-7">
+          <circle class="draw-circle" cx="26" cy="26" r="24" fill="none" stroke="#FF4D00" stroke-width="2.4"/>
+          <path class="draw-check" fill="none" stroke="#FF4D00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="M14 27l8 8 16-17"/>
+        </svg>
+        <p class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF4D00] mb-3">Bestilling mottatt</p>
+        <h3 class="font-display font-semibold tracking-tight text-[clamp(1.7rem,3.6vw,2.6rem)]">Takk, <span id="okNavn">—</span>!</h3>
+        <p class="mt-3 text-sm text-ink/55 max-w-md leading-relaxed">Tiden din er reservert. Vi sender en bekreftelse på SMS til <b id="okTlf" class="text-ink">—</b> innen 30 minutter i åpningstiden.</p>
+        <div class="mt-8 w-full max-w-md rounded-2xl border border-ink/10 bg-white divide-y divide-ink/8 text-left overflow-hidden">
+          <div class="flex justify-between px-5 py-3.5 text-sm"><span class="text-ink/50">Referanse</span><span class="font-mono font-semibold" id="okRef">—</span></div>
+          <div class="flex justify-between px-5 py-3.5 text-sm"><span class="text-ink/50">Tjeneste</span><span class="font-medium" id="okSvc">—</span></div>
+          <div class="flex justify-between px-5 py-3.5 text-sm"><span class="text-ink/50">Bil</span><span class="font-medium" id="okBil">—</span></div>
+          <div class="flex justify-between px-5 py-3.5 text-sm"><span class="text-ink/50">Tid</span><span class="font-medium" id="okTid">—</span></div>
+        </div>
+        <button type="button" id="bkReset" class="btn btn-ghost !text-ink border-ink/20 hover:!border-ink/50 hover:!bg-ink/5 text-[13.5px] px-6 py-3 mt-8">Bestille en ny time →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRISER ══════════ -->
+<section id="priser" class="bg-paper text-ink">
+  <div class="max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 pb-24 lg:pb-32">
+    <div class="max-w-2xl mb-14 lg:mb-16">
+      <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF4D00] flex items-center gap-3 mb-5"><span class="w-8 h-px bg-[#FF4D00]"></span>04 — Priser</p>
+      <h2 data-reveal style="--d:80ms" class="font-display font-semibold tracking-[-.03em] leading-[1.02] text-[clamp(2.2rem,5vw,4rem)]">Forutsigbare priser.<br><span class="text-outline-dark">Ingen overraskelser.</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-4 items-stretch">
+      <!-- EU-kontroll featured -->
+      <article data-reveal class="relative bg-ink text-[#F4F2ED] rounded-[1.6rem] p-8 overflow-hidden grid-lines-dark flex flex-col hover:-translate-y-1.5 transition-transform duration-500">
+        <div class="absolute -top-14 -right-14 w-44 h-44 rounded-full bg-[#FF4D00]/25 blur-3xl"></div>
+        <div class="flex items-center justify-between mb-8 relative">
+          <span class="font-mono text-[10px] tracking-[.3em] text-[#FF7A3D] uppercase">Mest populær</span>
+          <span class="bg-[#FF4D00] text-ink font-mono text-[10px] font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full">Spar 290 kr</span>
+        </div>
+        <h3 class="font-display font-semibold text-2xl tracking-tight relative">EU-kontroll</h3>
+        <p class="mt-2 text-sm text-white/50 leading-relaxed relative">Komplett EU-kontroll med forhåndssjekk. Vi retter småfeil før kontrollen, så du ikke må komme tilbake.</p>
+        <div class="mt-7 mb-7 relative">
+          <span class="font-mono text-[11px] text-white/40">fra</span>
+          <p class="font-display font-bold text-[3.4rem] leading-none tracking-tight">1 290<span class="text-2xl text-white/50 font-medium"> kr</span></p>
+        </div>
+        <ul class="space-y-2.5 text-[13.5px] text-white/65 mb-8 relative">
+          <li class="flex gap-2.5"><span class="text-[#FF7A3D] mt-0.5">✓</span> 40-punkts forhåndssjekk</li>
+          <li class="flex gap-2.5"><span class="text-[#FF7A3D] mt-0.5">✓</span> Lys, bremser, hjul & styr</li>
+          <li class="flex gap-2.5"><span class="text-[#FF7A3D] mt-0.5">✓</span> Avgass og sikkerhetsutstyr</li>
+          <li class="flex gap-2.5"><span class="text-[#FF7A3D] mt-0.5">✓</span> Ny kontroll innen 6 mnd. hvis feil</li>
+        </ul>
+        <a href="#booking" class="btn btn-primary w-full py-3.5 text-sm mt-auto relative">Bestill EU-kontroll <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <!-- Service -->
+      <article data-reveal style="--d:80ms" class="bg-card border border-ink/10 rounded-[1.6rem] p-8 flex flex-col hover:-translate-y-1.5 hover:border-ink/25 transition-all duration-500 group">
+        <span class="font-mono text-[10px] tracking-[.3em] text-ink/40 uppercase mb-8">Periodisk service</span>
+        <h3 class="font-display font-semibold text-2xl tracking-tight">Service</h3>
+        <p class="mt-2 text-sm text-ink/50 leading-relaxed">Fabrikkspesifisert service med oljeskift, nye filter og full kontroll etter intervallboken.</p>
+        <div class="mt-7 mb-7">
+          <span class="font-mono text-[11px] text-ink/40">fra</span>
+          <p class="font-display font-bold text-[3.4rem] leading-none tracking-tight">2 490<span class="text-2xl text-ink/45 font-medium"> kr</span></p>
+        </div>
+        <ul class="space-y-2.5 text-[13.5px] text-ink/60 mb-8">
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Olje & filter etter fabrikkspec</li>
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> 40-punkts kontroll med rapport</li>
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Programvareoppdatering</li>
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Stempling i serviceheftet</li>
+        </ul>
+        <a href="#booking" class="btn btn-dark w-full py-3.5 text-sm mt-auto group-hover:bg-[#FF4D00] group-hover:text-ink transition-colors">Bestill service <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <!-- Dekkskift -->
+      <article data-reveal style="--d:160ms" class="bg-card border border-ink/10 rounded-[1.6rem] p-8 flex flex-col hover:-translate-y-1.5 hover:border-ink/25 transition-all duration-500 group">
+        <span class="font-mono text-[10px] tracking-[.3em] text-ink/40 uppercase mb-8">På 30 minutter</span>
+        <h3 class="font-display font-semibold text-2xl tracking-tight">Dekkskift</h3>
+        <p class="mt-2 text-sm text-ink/50 leading-relaxed">Skift, balansering og trykksjekk — mens du venter med kaffen. Kombiner gjerne med dekkhotell.</p>
+        <div class="mt-7 mb-7">
+          <span class="font-mono text-[11px] text-ink/40">fra</span>
+          <p class="font-display font-bold text-[3.4rem] leading-none tracking-tight">790<span class="text-2xl text-ink/45 font-medium"> kr</span></p>
+        </div>
+        <ul class="space-y-2.5 text-[13.5px] text-ink/60 mb-8">
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Av/på + balansering</li>
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Kontroll av mønsterdybde</li>
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Hjulbolter kontrollert</li>
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Varsel ved behov for nye dekk</li>
+        </ul>
+        <a href="#booking" class="btn btn-dark w-full py-3.5 text-sm mt-auto group-hover:bg-[#FF4D00] group-hover:text-ink transition-colors">Bestill dekkskift <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+
+      <!-- AC -->
+      <article data-reveal style="--d:240ms" class="bg-card border border-ink/10 rounded-[1.6rem] p-8 flex flex-col hover:-translate-y-1.5 hover:border-ink/25 transition-all duration-500 group">
+        <span class="font-mono text-[10px] tracking-[.3em] text-ink/40 uppercase mb-8">Frisk luft</span>
+        <h3 class="font-display font-semibold text-2xl tracking-tight">AC-service</h3>
+        <p class="mt-2 text-sm text-ink/50 leading-relaxed">Sjekk av kjølemiddel, lekkasjetest, påfylling og desinfisering av kupefilter og kanaler.</p>
+        <div class="mt-7 mb-7">
+          <span class="font-mono text-[11px] text-ink/40">fra</span>
+          <p class="font-display font-bold text-[3.4rem] leading-none tracking-tight">1 290<span class="text-2xl text-ink/45 font-medium"> kr</span></p>
+        </div>
+        <ul class="space-y-2.5 text-[13.5px] text-ink/60 mb-8">
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Lekkasjetest med UV</li>
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Påfylling av kjølemiddel</li>
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Desinfisering av anlegget</li>
+          <li class="flex gap-2.5"><span class="text-[#FF4D00] mt-0.5">✓</span> Nytt kupefilter på tilbud</li>
+        </ul>
+        <a href="#booking" class="btn btn-dark w-full py-3.5 text-sm mt-auto group-hover:bg-[#FF4D00] group-hover:text-ink transition-colors">Bestill AC-service <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+
+    <p data-reveal class="mt-8 font-mono text-[11.5px] tracking-wider text-ink/40 flex flex-wrap items-center gap-x-6 gap-y-2">
+      <span>Alle priser inkl. mva.</span><span class="text-[#FF4D00]">◆</span>
+      <span>Fastprisavtale for bedrifter — se <a href="#fleet" class="underline underline-offset-4 decoration-[#FF4D00] decoration-2 font-semibold text-ink">Andersen Fleet</a></span><span class="text-[#FF4D00]">◆</span>
+      <span>Gratis lånebil ved service over 3 timer</span>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ DEKKHOTELL ══════════ -->
+<section id="dekkhotell" class="bg-paper text-ink">
+  <div class="max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 pb-24 lg:pb-32 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <div class="img-zoom rounded-[1.8rem] overflow-hidden relative group order-2 lg:order-1" data-reveal="left">
+      <img src="images/photo-03.jpg" alt="Dekk lagret på hyller i Andersens dekkhotell" loading="lazy" width="1200" height="1000" class="w-full h-[340px] sm:h-[460px] lg:h-[560px] object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent"></div>
+      <div class="absolute bottom-5 left-5 bg-[#0B0C0F]/85 backdrop-blur rounded-2xl border border-white/10 px-5 py-4">
+        <p class="font-display font-bold text-xl tracking-tight">480 m² lager</p>
+        <p class="font-mono text-[10px] text-white/50 tracking-wider mt-1">TEMPERATURKONTROLLERT · SIKKERHETSKAMERA</p>
+      </div>
+    </div>
+
+    <div class="order-1 lg:order-2">
+      <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF4D00] flex items-center gap-3 mb-5"><span class="w-8 h-px bg-[#FF4D00]"></span>05 — Dekkhotell</p>
+      <h2 data-reveal style="--d:80ms" class="font-display font-semibold tracking-[-.03em] leading-[1.04] text-[clamp(2.2rem,5vw,3.8rem)]">La oss passe på dekkene<br>dine <span class="serif-i text-[#FF4D00] font-normal">hele året</span></h2>
+      <p data-reveal style="--d:160ms" class="mt-6 text-ink/55 leading-relaxed text-[15px] max-w-lg">Ikke plass i garasjen? Vi lagrer dekkene på temperaturkontrollert lager, og skifter dem på bilen din når sesongen krever det. Du får SMS-påminnelse før skift — og kan hente bilen når det passer deg.</p>
+
+      <ul data-reveal style="--d:240ms" class="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-4 text-[14.5px]">
+        <li class="flex gap-3 items-start"><span class="w-6 h-6 rounded-full bg-[#FF4D00]/12 text-[#FF4D00] flex items-center justify-center shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Skift når du vil — 30 min</li>
+        <li class="flex gap-3 items-start"><span class="w-6 h-6 rounded-full bg-[#FF4D00]/12 text-[#FF4D00] flex items-center justify-center shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Merking & lagring per bil</li>
+        <li class="flex gap-3 items-start"><span class="w-6 h-6 rounded-full bg-[#FF4D00]/12 text-[#FF4D00] flex items-center justify-center shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> Vask & gjødning av dekk</li>
+        <li class="flex gap-3 items-start"><span class="w-6 h-6 rounded-full bg-[#FF4D00]/12 text-[#FF4D00] flex items-center justify-center shrink-0 mt-0.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span> SMS-påminnelse før sesongskift</li>
+      </ul>
+
+      <div data-reveal style="--d:320ms" class="mt-9 flex flex-col sm:flex-row sm:items-center gap-5">
+        <a href="#booking" class="btn btn-dark text-[14.5px] px-7 py-3.5">Bestill dekkhotell <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="flex items-center gap-3">
+          <span class="font-display font-bold text-3xl tracking-tight">590<span class="text-base text-ink/45 font-medium"> kr</span></span>
+          <span class="font-mono text-[11px] tracking-wider text-ink/45 uppercase leading-tight">per sesong<br>inkl. skift</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ANDERSEN FLEET (B2B) ══════════ -->
+<section id="fleet" class="bg-ink relative overflow-hidden">
+  <div class="absolute top-0 left-1/4 w-[36rem] h-[36rem] rounded-full bg-[#FF4D00]/7 blur-[130px] pointer-events-none"></div>
+  <div class="relative max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 py-24 lg:py-32 grid lg:grid-cols-2 gap-14 items-center">
+    <div>
+      <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF7A3D] flex items-center gap-3 mb-5"><span class="w-8 h-px bg-[#FF7A3D]"></span>06 — Andersen Fleet</p>
+      <h2 data-reveal style="--d:80ms" class="font-display font-semibold tracking-[-.03em] leading-[1.04] text-[clamp(2rem,4.6vw,3.6rem)]">For bedrifter som vil at <span class="serif-i text-[#FF7A3D] font-normal">alt</span> bare funker</h2>
+      <p data-reveal style="--d:160ms" class="mt-6 text-white/55 leading-relaxed text-[15px] max-w-lg">Over 120 norske bedrifter lar Andersen Auto ta vare på firmabilparken sin. Én kontaktperson, én fastprisavtale og full oversikt — hver eneste måned.</p>
+
+      <div data-reveal style="--d:240ms" class="mt-10 grid grid-cols-3 gap-6 max-w-md">
+        <div>
+          <p class="font-display font-bold text-3xl tracking-tight"><span class="count" data-target="120">0</span><span class="text-[#FF7A3D]">+</span></p>
+          <p class="font-mono text-[10px] tracking-[.2em] text-white/40 uppercase mt-2">Bedriftskunder</p>
+        </div>
+        <div>
+          <p class="font-display font-bold text-3xl tracking-tight"><span class="count" data-target="900">0</span><span class="text-[#FF7A3D]">+</span></p>
+          <p class="font-mono text-[10px] tracking-[.2em] text-white/40 uppercase mt-2">Kjøretøy i avtale</p>
+        </div>
+        <div>
+          <p class="font-display font-bold text-3xl tracking-tight"><span class="count" data-target="99">0</span><span class="text-[#FF7A3D]">%</span></p>
+          <p class="font-mono text-[10px] tracking-[.2em] text-white/40 uppercase mt-2">Gjennomført til avtalt tid</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div data-reveal="right" class="bg-ink2 border border-white/10 rounded-[1.8rem] p-8 lg:p-10 relative">
+        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-7">
+          <div>
+            <span class="w-10 h-10 rounded-xl bg-[#FF4D00]/15 text-[#FF7A3D] flex items-center justify-center mb-4"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+            <h3 class="font-display font-semibold tracking-tight">Fastpris per bil</h3>
+            <p class="mt-2 text-sm text-white/45 leading-relaxed">Én avtale, forutsigbare timesatser og rabatt på deler. Ingen skjulte kostnader.</p>
+          </div>
+          <div>
+            <span class="w-10 h-10 rounded-xl bg-[#FF4D00]/15 text-[#FF7A3D] flex items-center justify-center mb-4"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span>
+            <h3 class="font-display font-semibold tracking-tight">Digital rapportering</h3>
+            <p class="mt-2 text-sm text-white/45 leading-relaxed">Månedsrapport med servicehistorikk, kostnader og planlagte behov per bil.</p>
+          </div>
+          <div>
+            <span class="w-10 h-10 rounded-xl bg-[#FF4D00]/15 text-[#FF7A3D] flex items-center justify-center mb-4"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <h3 class="font-display font-semibold tracking-tight">Prioriterte tider</h3>
+            <p class="mt-2 text-sm text-white/45 leading-relaxed">Avtalepartnere får egne tidsvinduer og lånebil — bilene er aldri borte lenge.</p>
+          </div>
+          <div>
+            <span class="w-10 h-10 rounded-xl bg-[#FF4D00]/15 text-[#FF7A3D] flex items-center justify-center mb-4"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></span>
+            <h3 class="font-display font-semibold tracking-tight">Faktura & avtalegiro</h3>
+            <p class="mt-2 text-sm text-white/45 leading-relaxed">Samlet faktura med full spesifikasjon. Betal per bil eller per måned — dere velger.</p>
+          </div>
+        </div>
+        <div class="mt-9 pt-8 border-t border-white/10 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+          <a href="#kontakt" class="btn btn-primary text-sm px-6 py-3.5 magnetic">Få pristilbud for din flåte <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="mailto:fleet@andersenauto.no" class="font-mono text-[12px] text-white/40 hover:text-[#FF7A3D] transition-colors">fleet@andersenauto.no</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ OMTALER ══════════ -->
+<section id="omtaler" class="bg-paper text-ink relative overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#FF4D00]/8 blur-[100px] pointer-events-none"></div>
+  <div class="relative max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 py-24 lg:py-32">
+    <div class="flex flex-wrap items-end justify-between gap-8 mb-12 lg:mb-16">
+      <div>
+        <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF4D00] flex items-center gap-3 mb-5"><span class="w-8 h-px bg-[#FF4D00]"></span>07 — Omtaler</p>
+        <h2 data-reveal style="--d:80ms" class="font-display font-semibold tracking-[-.03em] leading-[1.02] text-[clamp(2.2rem,5vw,4rem)]">Kundene våre sier det <span class="serif-i text-[#FF4D00] font-normal">best</span></h2>
+      </div>
+      <div data-reveal style="--d:160ms" class="flex items-center gap-4 bg-card border border-ink/10 rounded-2xl px-5 py-4">
+        <span class="font-display font-bold text-3xl tracking-tight">4,9</span>
+        <div>
+          <span class="block text-[#FF4D00] tracking-tight text-sm">★★★★★</span>
+          <span class="block font-mono text-[10px] text-ink/45 tracking-wider mt-1">612 VURDERINGER · GOOGLE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative" data-reveal style="--d:200ms">
+      <div class="overflow-hidden rounded-[1.8rem]">
+        <div id="tTrack" class="t-track flex">
+          <figure class="w-full shrink-0 px-1">
+            <div class="bg-card border border-ink/10 rounded-[1.8rem] p-8 sm:p-12 h-full">
+              <span class="text-[#FF4D00] tracking-tight text-lg">★★★★★</span>
+              <blockquote class="font-display font-medium tracking-[-.01em] text-[clamp(1.2rem,2.6vw,1.8rem)] leading-snug mt-5">«Fantastisk service! Bestilte EU-kontroll på nett mandag kveld — tirsdag formiddag var bilen ferdig. Rask, ryddig og ærlig kommunikasjon hele veien.»</blockquote>
+              <figcaption class="mt-8 flex items-center gap-4">
+                <span class="w-12 h-12 rounded-full bg-ink text-[#F4F2ED] font-display font-bold flex items-center justify-center">MH</span>
+                <span><span class="block font-semibold text-sm">Marte Hagen</span><span class="block font-mono text-[11px] text-ink/45 tracking-wider mt-0.5">TESLA MODEL 3 · EU-KONTROLL</span></span>
+              </figcaption>
+            </div>
+          </figure>
+          <figure class="w-full shrink-0 px-1">
+            <div class="bg-card border border-ink/10 rounded-[1.8rem] p-8 sm:p-12 h-full">
+              <span class="text-[#FF4D00] tracking-tight text-lg">★★★★★</span>
+              <blockquote class="font-display font-medium tracking-[-.01em] text-[clamp(1.2rem,2.6vw,1.8rem)] leading-snug mt-5">«Endelig et verksted som forklarer ting på en måte man forstår. Fikk fastpris før de startet — og regningen ble nøyaktig det de sa. Det er sjeldent.»</blockquote>
+              <figcaption class="mt-8 flex items-center gap-4">
+                <span class="w-12 h-12 rounded-full bg-ink text-[#F4F2ED] font-display font-bold flex items-center justify-center">JB</span>
+                <span><span class="block font-semibold text-sm">Jonas Berg</span><span class="block font-mono text-[11px] text-ink/45 tracking-wider mt-0.5">VW GOLF · SERVICE & BREMSER</span></span>
+              </figcaption>
+            </div>
+          </figure>
+          <figure class="w-full shrink-0 px-1">
+            <div class="bg-card border border-ink/10 rounded-[1.8rem] p-8 sm:p-12 h-full">
+              <span class="text-[#FF4D00] tracking-tight text-lg">★★★★★</span>
+              <blockquote class="font-display font-medium tracking-[-.01em] text-[clamp(1.2rem,2.6vw,1.8rem)] leading-snug mt-5">«Vi bruker Andersen Auto på hele firmabilparken vår. Forutsigbart, effektivt og alltid god dokumentasjon. Beste leverandøren vi har.»</blockquote>
+              <figcaption class="mt-8 flex items-center gap-4">
+                <span class="w-12 h-12 rounded-full bg-ink text-[#F4F2ED] font-display font-bold flex items-center justify-center">KØ</span>
+                <span><span class="block font-semibold text-sm">Kristine Ødegård</span><span class="block font-mono text-[11px] text-ink/45 tracking-wider mt-0.5">DRIFTSSJEF · LOSEN LOGISTIKK</span></span>
+              </figcaption>
+            </div>
+          </figure>
+          <figure class="w-full shrink-0 px-1">
+            <div class="bg-card border border-ink/10 rounded-[1.8rem] p-8 sm:p-12 h-full">
+              <span class="text-[#FF4D00] tracking-tight text-lg">★★★★★</span>
+              <blockquote class="font-display font-medium tracking-[-.01em] text-[clamp(1.2rem,2.6vw,1.8rem)] leading-snug mt-5">«Dekkhotellet er genialt. Ingen stress med å henge på dekk — bare å kjøre inn og hente bilen når det passer. Fikk SMS-påminnelse før skift.»</blockquote>
+              <figcaption class="mt-8 flex items-center gap-4">
+                <span class="w-12 h-12 rounded-full bg-ink text-[#F4F2ED] font-display font-bold flex items-center justify-center">FA</span>
+                <span><span class="block font-semibold text-sm">Farid Ali</span><span class="block font-mono text-[11px] text-ink/45 tracking-wider mt-0.5">VOLVO XC60 · DEKKHOTELL</span></span>
+              </figcaption>
+            </div>
+          </figure>
+          <figure class="w-full shrink-0 px-1">
+            <div class="bg-card border border-ink/10 rounded-[1.8rem] p-8 sm:p-12 h-full">
+              <span class="text-[#FF4D00] tracking-tight text-lg">★★★★★</span>
+              <blockquote class="font-display font-medium tracking-[-.01em] text-[clamp(1.2rem,2.6vw,1.8rem)] leading-snug mt-5">«Ble møtt av en mekaniker som tok seg tid til å vise meg nøyaktig hva som var galt. Ingen press, ingen finurligheter — bare fagkunnskap og ærlighet.»</blockquote>
+              <figcaption class="mt-8 flex items-center gap-4">
+                <span class="w-12 h-12 rounded-full bg-ink text-[#F4F2ED] font-display font-bold flex items-center justify-center">IS</span>
+                <span><span class="block font-semibold text-sm">Ingrid Solberg</span><span class="block font-mono text-[11px] text-ink/45 tracking-wider mt-0.5">TOYOTA YARIS · REPARASJON</span></span>
+              </figcaption>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <div class="mt-7 flex items-center justify-between">
+        <div class="flex gap-2" id="tDots" role="tablist" aria-label="Omtaler"></div>
+        <div class="flex gap-2.5">
+          <button type="button" id="tPrev" aria-label="Forrige omtale" class="w-12 h-12 rounded-full border border-ink/15 hover:bg-ink hover:text-[#F4F2ED] hover:border-ink transition-all duration-300 flex items-center justify-center">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" id="tNext" aria-label="Neste omtale" class="w-12 h-12 rounded-full border border-ink/15 hover:bg-ink hover:text-[#F4F2ED] hover:border-ink transition-all duration-300 flex items-center justify-center">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section id="faq" class="bg-paper text-ink">
+  <div class="max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 pb-24 lg:pb-32 grid lg:grid-cols-12 gap-14">
+    <div class="lg:col-span-4">
+      <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF4D00] flex items-center gap-3 mb-5"><span class="w-8 h-px bg-[#FF4D00]"></span>08 — Spørsmål</p>
+      <h2 data-reveal style="--d:80ms" class="font-display font-semibold tracking-[-.03em] leading-[1.04] text-[clamp(2rem,4.4vw,3.4rem)]">Ofte stilte<br><span class="serif-i text-[#FF4D00] font-normal">spørsmål</span></h2>
+      <p data-reveal style="--d:160ms" class="mt-5 text-ink/55 text-[15px] leading-relaxed max-w-sm">Fant du ikke svaret? Ring oss på <a href="tel:+4722001240" class="font-semibold text-ink underline underline-offset-4 decoration-[#FF4D00] decoration-2">22 00 12 40</a> — vi svarer i åpningstiden.</p>
+      <div data-reveal style="--d:240ms" class="mt-8 bg-ink text-[#F4F2ED] rounded-2xl p-6 hidden lg:block">
+        <p class="font-mono text-[10px] tracking-[.3em] text-white/40 uppercase mb-3">Raskt svar</p>
+        <p class="text-sm text-white/65 leading-relaxed">Vi svarer på henvendelser innen én arbeidsdag. <a href="#kontakt" class="text-[#FF7A3D] font-medium hover:underline">Skriv til oss →</a></p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-8 space-y-3" id="faqList">
+      <div data-reveal class="faq-item bg-card border border-ink/10 rounded-2xl overflow-hidden">
+        <button type="button" class="faq-q w-full flex items-center justify-between gap-6 text-left px-6 sm:px-8 py-5" aria-expanded="false">
+          <span class="font-display font-semibold tracking-tight text-[15.5px] sm:text-lg">Hvor lang tid tar en EU-kontroll?</span>
+          <span class="faq-plus w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div><p class="px-6 sm:px-8 pb-6 text-sm text-ink/55 leading-relaxed">Selve kontrollen tar 30–45 minutter. Bestiller du «EU-kontroll med forhåndssjekk», kontrollerer vi bilen først og retter småfeil før kontrolløren kommer — da blir du som regel godkjent første gang.</p></div></div>
+      </div>
+      <div data-reveal style="--d:60ms" class="faq-item bg-card border border-ink/10 rounded-2xl overflow-hidden">
+        <button type="button" class="faq-q w-full flex items-center justify-between gap-6 text-left px-6 sm:px-8 py-5" aria-expanded="false">
+          <span class="font-display font-semibold tracking-tight text-[15.5px] sm:text-lg">Må jeg bestille time, eller kan jeg bare komme?</span>
+          <span class="faq-plus w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div><p class="px-6 sm:px-8 pb-6 text-sm text-ink/55 leading-relaxed">Drop-in er alltid velkommen til mindre oppgaver som lyspærer, vask eller en kjapp sjekk. Til EU-kontroll, service og større reparasjoner anbefaler vi time — så er du garantert behandling samme dag.</p></div></div>
+      </div>
+      <div data-reveal style="--d:120ms" class="faq-item bg-card border border-ink/10 rounded-2xl overflow-hidden">
+        <button type="button" class="faq-q w-full flex items-center justify-between gap-6 text-left px-6 sm:px-8 py-5" aria-expanded="false">
+          <span class="font-display font-semibold tracking-tight text-[15.5px] sm:text-lg">Tar dere elbiler og hybrider?</span>
+          <span class="faq-plus w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div><p class="px-6 sm:px-8 pb-6 text-sm text-ink/55 leading-relaxed">Ja — alle våre teknikere er sertifisert på høyspenningssystemer, og vi har eget serviceutstyr for elbiler fra de fleste merker. Vi utfører alt fra bremser og hjul til batteridiagnose og programvareoppdateringer.</p></div></div>
+      </div>
+      <div data-reveal style="--d:180ms" class="faq-item bg-card border border-ink/10 rounded-2xl overflow-hidden">
+        <button type="button" class="faq-q w-full flex items-center justify-between gap-6 text-left px-6 sm:px-8 py-5" aria-expanded="false">
+          <span class="font-display font-semibold tracking-tight text-[15.5px] sm:text-lg">Hva skjer hvis bilen ikke blir godkjent på EU-kontroll?</span>
+          <span class="faq-plus w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div><p class="px-6 sm:px-8 pb-6 text-sm text-ink/55 leading-relaxed">Ingen krise. Vi går gjennom påpekningene med deg, og du får fastpris på å rette dem. Feil som påpekes ved kontrollen har frist på 4 uker — og du kan komme tilbake til gratis ny kontroll hos oss innen 6 måneder.</p></div></div>
+      </div>
+      <div data-reveal style="--d:240ms" class="faq-item bg-card border border-ink/10 rounded-2xl overflow-hidden">
+        <button type="button" class="faq-q w-full flex items-center justify-between gap-6 text-left px-6 sm:px-8 py-5" aria-expanded="false">
+          <span class="font-display font-semibold tracking-tight text-[15.5px] sm:text-lg">Kan jeg levere bilen før eller etter arbeidstid?</span>
+          <span class="faq-plus w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div><p class="px-6 sm:px-8 pb-6 text-sm text-ink/55 leading-relaxed">Ja! Vi har nøkkelboks ved inngangen — legg nøkkelen i en merket konvolutt, så starter vi bilen når vi åpner. Mange av våre kunder leverer kl. 06:30 og henter etter stengetid.</p></div></div>
+      </div>
+      <div data-reveal style="--d:300ms" class="faq-item bg-card border border-ink/10 rounded-2xl overflow-hidden">
+        <button type="button" class="faq-q w-full flex items-center justify-between gap-6 text-left px-6 sm:px-8 py-5" aria-expanded="false">
+          <span class="font-display font-semibold tracking-tight text-[15.5px] sm:text-lg">Hvorfor skal jeg velge Andersen Auto?</span>
+          <span class="faq-plus w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div><p class="px-6 sm:px-8 pb-6 text-sm text-ink/55 leading-relaxed">Fordi vi har gjort dette i 39 år, vi sier alltid fastpris før vi skrur, vi bruker originale eller likeverdige deler, og alt arbeid har 24 måneders garanti. 98 % av våre biler godkjennes på første EU-kontroll.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ KONTAKT ══════════ -->
+<section id="kontakt" class="bg-ink relative overflow-hidden">
+  <div class="absolute -bottom-40 -left-40 w-[34rem] h-[34rem] rounded-full bg-[#FF4D00]/10 blur-[130px] pointer-events-none"></div>
+  <div class="relative max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 py-24 lg:py-32 grid lg:grid-cols-2 gap-14">
+    <div>
+      <p data-reveal class="font-mono text-[11px] tracking-[.35em] uppercase text-[#FF7A3D] flex items-center gap-3 mb-5"><span class="w-8 h-px bg-[#FF7A3D]"></span>09 — Kontakt</p>
+      <h2 data-reveal style="--d:80ms" class="font-display font-semibold tracking-[-.03em] leading-[1.04] text-[clamp(2rem,4.8vw,3.8rem)]">Snakk med <span class="serif-i text-[#FF7A3D] font-normal">oss</span> — vi svarer fort</h2>
+      <p data-reveal style="--d:160ms" class="mt-6 text-white/55 leading-relaxed text-[15px] max-w-md">Send en melding, ring eller stikk innom. Kaffen er alltid varm, og vi hjelper deg gjerne før du har bestemt deg for noe.</p>
+
+      <div data-reveal style="--d:240ms" class="mt-10 space-y-6">
+        <a href="tel:+4722001240" class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-xl border border-white/12 flex items-center justify-center group-hover:bg-[#FF4D00] group-hover:border-[#FF4D00] group-hover:text-ink transition-all duration-300 shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span><span class="block font-display font-semibold text-lg leading-none">22 00 12 40</span><span class="block font-mono text-[10.5px] text-white/40 tracking-wider mt-1.5">TELEFON · SÅR FRA 07:00</span></span>
+        </a>
+        <a href="mailto:post@andersenauto.no" class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-xl border border-white/12 flex items-center justify-center group-hover:bg-[#FF4D00] group-hover:border-[#FF4D00] group-hover:text-ink transition-all duration-300 shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+          <span><span class="block font-display font-semibold text-lg leading-none">post@andersenauto.no</span><span class="block font-mono text-[10.5px] text-white/40 tracking-wider mt-1.5">SVAR INNEN ÉN ARBEIDSDAG</span></span>
+        </a>
+        <div class="flex items-center gap-4">
+          <span class="w-11 h-11 rounded-xl border border-white/12 flex items-center justify-center shrink-0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span><span class="block font-display font-semibold text-lg leading-none">Bilveien 12</span><span class="block font-mono text-[10.5px] text-white/40 tracking-wider mt-1.5">0586 OSLO · GRÜNERLØKKA</span></span>
+        </div>
+      </div>
+
+      <!-- Stylized map -->
+      <div data-reveal style="--d:320ms" class="mt-10 rounded-2xl border border-white/10 overflow-hidden relative h-48 bg-[#14161B]">
+        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <pattern id="mg" width="28" height="28" patternUnits="userSpaceOnUse">
+              <path d="M28 0H0v28" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="600" height="200" fill="url(#mg)"/>
+          <path d="M0 150 C 120 130, 200 170, 320 148 S 520 120, 600 140" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="10"/>
+          <path d="M0 60 C 140 80, 260 40, 420 66 S 560 90, 600 70" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="6"/>
+          <path d="M150 0 V200 M420 0 V200" stroke="rgba(255,255,255,.06)" stroke-width="4"/>
+          <circle cx="420" cy="86" r="26" fill="rgba(255,77,0,.12)"/>
+          <circle cx="420" cy="86" r="7" fill="#FF4D00"/>
+          <g class="map-pin"><path d="M420 60c-8 0-14 6-14 14 0 10 14 22 14 22s14-12 14-22c0-8-6-14-14-14z" fill="#FF4D00"/><circle cx="420" cy="74" r="5" fill="#0B0C0F"/></g>
+        </svg>
+        <div class="absolute top-3 left-3 bg-[#0B0C0F]/90 backdrop-blur border border-white/10 rounded-full px-4 py-2 font-mono text-[10px] tracking-[.2em] text-white/70 uppercase">Andersen Auto · Bilveien 12</div>
+        <div class="absolute bottom-3 right-3 bg-[#0B0C0F]/90 backdrop-blur border border-white/10 rounded-full px-4 py-2 font-mono text-[10px] tracking-[.2em] text-white/70 uppercase">P-3 · Gratis parkering</div>
+      </div>
+
+      <div data-reveal style="--d:400ms" class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-px bg-white/8 rounded-2xl overflow-hidden border border-white/10">
+        <div class="bg-ink2 p-5"><p class="font-mono text-[10px] tracking-[.25em] text-white/40 uppercase mb-2">Man–Fre</p><p class="font-display font-semibold">07:00–17:00</p></div>
+        <div class="bg-ink2 p-5"><p class="font-mono text-[10px] tracking-[.25em] text-white/40 uppercase mb-2">Lørdag</p><p class="font-display font-semibold">09:00–14:00</p></div>
+        <div class="bg-ink2 p-5"><p class="font-mono text-[10px] tracking-[.25em] text-white/40 uppercase mb-2">Søndag</p><p class="font-display font-semibold">Stengt</p></div>
+      </div>
+    </div>
+
+    <!-- Contact form -->
+    <div data-reveal="right" style="--d:200ms">
+      <form id="cForm" class="bg-card text-ink rounded-[1.8rem] p-8 sm:p-10 shadow-[0_50px_100px_-40px_rgba(0,0,0,.7)]" novalidate>
+        <p class="font-mono text-[11px] tracking-[.3em] uppercase text-ink/40 mb-2">Skjema</p>
+        <h3 class="font-display font-semibold text-2xl tracking-tight mb-7">Få svar fra et menneske</h3>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="cNavn" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Navn *</label>
+            <input id="cNavn" type="text" class="field" placeholder="For- og etternavn" autocomplete="name">
+          </div>
+          <div>
+            <label for="cTlf" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Telefon</label>
+            <input id="cTlf" type="tel" class="field" placeholder="9xx xx xxx" autocomplete="tel">
+          </div>
+          <div class="sm:col-span-2">
+            <label for="cEpost" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">E-post *</label>
+            <input id="cEpost" type="email" class="field" placeholder="navn@epost.no" autocomplete="email">
+          </div>
+          <div class="sm:col-span-2">
+            <label for="cTjeneste" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Gjelder</label>
+            <select id="cTjeneste" class="field">
+              <option value="">Velg tjeneste (valgfritt)…</option>
+              <option>EU-kontroll</option><option>Service</option><option>Reparasjon</option><option>Feilsøking / diagnose</option>
+              <option>Bremser</option><option>Dekkskift / dekkhotell</option><option>AC-service</option><option>Bedriftsavtale (Fleet)</option><option>Annet</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label for="cMelding" class="block font-mono text-[11px] tracking-[.2em] uppercase text-ink/45 mb-2">Melding *</label>
+            <textarea id="cMelding" rows="5" class="field resize-none" placeholder="Fortell oss hva bilen din trenger — jo mer vi vet, jo bedre kan vi hjelpe deg før du kommer."></textarea>
+          </div>
+        </div>
+        <p id="cError" class="mt-4 text-[12.5px] text-red-600 font-medium hidden" role="alert"></p>
+        <button type="submit" id="cSubmit" class="btn btn-dark w-full py-4 text-[14.5px] mt-6">
+          Send melding
+          <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+        <p class="mt-4 font-mono text-[10.5px] text-ink/35 tracking-wide leading-relaxed">Ved å sende inn godtar du vår personvernerklæring. Vi deler aldri opplysningene dine med andre.</p>
+      </form>
+
+      <div id="cSuccess" class="hidden bg-card text-ink rounded-[1.8rem] p-10 sm:p-12 text-center shadow-[0_50px_100px_-40px_rgba(0,0,0,.7)]">
+        <svg width="66" height="66" viewBox="0 0 52 52" class="mx-auto mb-6">
+          <circle class="draw-circle" cx="26" cy="26" r="24" fill="none" stroke="#FF4D00" stroke-width="2.4"/>
+          <path class="draw-check" fill="none" stroke="#FF4D00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="M14 27l8 8 16-17"/>
+        </svg>
+        <h3 class="font-display font-semibold text-2xl tracking-tight">Meldingen er sendt!</h3>
+        <p class="mt-3 text-sm text-ink/55 leading-relaxed max-w-sm mx-auto">Takk for at du tok kontakt, <b id="cOkNavn" class="text-ink">—</b>. Vi svarer deg innen én arbeidsdag — ofte mye raskere.</p>
+        <button type="button" id="cReset" class="btn btn-ghost !text-ink border-ink/20 hover:!border-ink/50 hover:!bg-ink/5 text-[13.5px] px-6 py-3 mt-8">Send en ny melding</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="bg-[#07080A] text-[#F4F2ED] relative overflow-hidden border-t border-white/8">
+  <div class="max-w-[80rem] mx-auto px-5 sm:px-8 lg:px-12 pt-20 pb-10">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8">
+      <div class="lg:col-span-5">
+        <a href="#top" class="flex items-center gap-3">
+          <svg width="42" height="42" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="11" fill="#FF4D00"/>
+            <path d="M12 28.5 L20 12 L28 28.5" stroke="#0B0C0F" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.9 22.7 H24.1" stroke="#0B0C0F" stroke-width="3.4" stroke-linecap="round"/>
+          </svg>
+          <span class="leading-none">
+            <span class="block font-display font-bold tracking-tight text-lg">Andersen Auto</span>
+            <span class="block font-mono text-[9px] tracking-[.35em] text-white/45 mt-1 uppercase">Bilverksted · Oslo</span>
+          </span>
+        </a>
+        <p class="mt-6 text-sm text-white/45 leading-relaxed max-w-xs">Familieeid bilverksted i Oslo siden 1987. EU-kontroll, service og reparasjoner for personbiler og bedrifter — med garanti på alt vi gjør.</p>
+        <div class="mt-7 flex items-center gap-2.5">
+          <span class="font-mono text-[11px] text-white/35 tracking-wider">FØLG OSS</span>
+          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full border border-white/12 flex items-center justify-center hover:bg-[#FF4D00] hover:border-[#FF4D00] hover:text-ink transition-all duration-300"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+          <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full border border-white/12 flex items-center justify-center hover:bg-[#FF4D00] hover:border-[#FF4D00] hover:text-ink transition-all duration-300"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full border border-white/12 flex items-center justify-center hover:bg-[#FF4D00] hover:border-[#FF4D00] hover:text-ink transition-all duration-300"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v2a6 6 0 0 1 2-2z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="font-mono text-[11px] tracking-[.3em] text-white/35 uppercase mb-5">Tjenester</p>
+        <ul class="space-y-3 text-sm text-white/55">
+          <li><a href="#booking" class="link-under hover:text-white transition-colors">EU-kontroll</a></li>
+          <li><a href="#booking" class="link-under hover:text-white transition-colors">Service</a></li>
+          <li><a href="#booking" class="link-under hover:text-white transition-colors">Reparasjon</a></li>
+          <li><a href="#tjenester" class="link-under hover:text-white transition-colors">Feilsøking & diagnose</a></li>
+          <li><a href="#dekkhotell" class="link-under hover:text-white transition-colors">Dekkskift & dekkhotell</a></li>
+          <li><a href="#tjenester" class="link-under hover:text-white transition-colors">AC-service</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="font-mono text-[11px] tracking-[.3em] text-white/35 uppercase mb-5">Selskap</p>
+        <ul class="space-y-3 text-sm text-white/55">
+          <li><a href="#prosess" class="link-under hover:text-white transition-colors">Slik jobber vi</a></li>
+          <li><a href="#fleet" class="link-under hover:text-white transition-colors">Andersen Fleet</a></li>
+          <li><a href="#omtaler" class="link-under hover:text-white transition-colors">Kundeomtaler</a></li>
+          <li><a href="#faq" class="link-under hover:text-white transition-colors">Ofte stilte spørsmål</a></li>
+          <li><a href="#kontakt" class="link-under hover:text-white transition-colors">Kontakt & åpningstider</a></li>
+          <li><a href="#" class="link-under hover:text-white transition-colors">Ledige stillinger</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <p class="font-mono text-[11px] tracking-[.3em] text-white/35 uppercase mb-5">Kontakt</p>
+        <ul class="space-y-3 text-sm text-white/55">
+          <li>Bilveien 12, 0586 Oslo</li>
+          <li><a href="tel:+4722001240" class="link-under hover:text-white transition-colors">22 00 12 40</a></li>
+          <li><a href="mailto:post@andersenauto.no" class="link-under hover:text-white transition-colors">post@andersenauto.no</a></li>
+          <li class="pt-2 font-mono text-[11px] tracking-wider text-white/35">MAN–FRE 07–17 · LØR 09–14</li>
+          <li class="font-mono text-[11px] tracking-wider text-white/35">ORG.NR. 927 481 553 MVA</li>
+        </ul>
+        <a href="#booking" class="btn btn-primary text-[13px] px-5 py-3 mt-6">Bestill time nå <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Giant wordmark -->
+    <div class="mt-20 select-none pointer-events-none" aria-hidden="true">
+      <p class="font-display font-bold tracking-tighter leading-[.85] text-[clamp(3.4rem,13.5vw,12.5rem)] whitespace-nowrap text-center">
+        <span class="text-[#F4F2ED]">ANDERSEN</span> <span class="text-outline">AUTO</span>
+      </p>
+    </div>
+
+    <div class="mt-14 pt-7 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="font-mono text-[11px] text-white/30 tracking-wider">© <span id="year">2026</span> ANDERSEN AUTO AS — MED RESERVASJON FOR TRYKKFEIL</p>
+      <p class="font-mono text-[11px] text-white/30 tracking-wider">DESIGN-DEMO · LAGET AV <span class="text-[#FF7A3D]">NORDLYS DIGITAL</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ MOBILE STICKY CTA ══════════ -->
+<a href="#booking" id="mobCta" class="fixed bottom-5 inset-x-5 z-[70] md:hidden btn btn-primary py-4 text-[15px] shadow-[0_20px_50px_-12px_rgba(255,77,0,.65)] opacity-0 translate-y-24 pointer-events-none transition-all duration-500">
+  Bestill time — neste ledige i dag
+  <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+</a>
+
+<script>
+/* ════════════════════════════════════════
+   ANDERSEN AUTO — interaksjoner
+   ════════════════════════════════════════ */
+(function () {
+  "use strict";
+
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  /* ---------- 1. Preloader ---------- */
+  const pre = $("#preloader"), plBar = $("#plBar"), plPct = $("#plPct");
+  let pct = 0;
+  const plTick = setInterval(() => {
+    pct = Math.min(100, pct + Math.ceil(Math.random() * 14));
+    plBar.style.width = pct + "%";
+    plPct.textContent = pct + " %";
+    if (pct >= 100) {
+      clearInterval(plTick);
+      setTimeout(() => pre.classList.add("done"), 250);
+      setTimeout(() => pre.remove(), 1100);
+    }
+  }, 90);
+  setTimeout(() => { pre.classList.add("done"); setTimeout(() => pre.remove(), 1100); }, 3500); // fallback
+
+  /* ---------- 2. Header + scroll progress + mobile CTA ---------- */
+  const header = $("#siteHeader"), headerLine = $("#headerLine"), scrollBar = $("#scrollBar"), mobCta = $("#mobCta");
+  let ticking = false;
+  function onScroll() {
+    const y = window.scrollY;
+    header.classList.toggle("scrolled", y > 24);
+    if (y > 24) {
+      header.style.background = "rgba(11,12,15,.86)";
+      header.style.backdropFilter = "blur(14px)";
+      header.style.webkitBackdropFilter = "blur(14px)";
+      header.style.boxShadow = "0 10px 40px -20px rgba(0,0,0,.7)";
+      headerLine.style.opacity = "1";
+    } else {
+      header.style.background = "transparent";
+      header.style.backdropFilter = "none";
+      header.style.webkitBackdropFilter = "none";
+      header.style.boxShadow = "none";
+      headerLine.style.opacity = "0";
+    }
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    scrollBar.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
+    // Mobile CTA
+    const heroH = window.innerHeight * 0.9;
+    if (y > heroH) {
+      mobCta.style.opacity = "1";
+      mobCta.style.transform = "translateY(0)";
+      mobCta.style.pointerEvents = "auto";
+    } else {
+      mobCta.style.opacity = "0";
+      mobCta.style.transform = "translateY(6rem)";
+      mobCta.style.pointerEvents = "none";
+    }
+    ticking = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  onScroll();
+
+  /* ---------- 3. Mobile menu ---------- */
+  const menuBtn = $("#menuBtn"), mobileMenu = $("#mobileMenu"), menuIco = $("#menuIco");
+  let menuOpen = false;
+  function setMenu(open) {
+    menuOpen = open;
+    mobileMenu.setAttribute("aria-hidden", String(!open));
+    menuBtn.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+    menuIco.innerHTML = open
+      ? '<path d="M6 6l12 12M18 6 6 18"/>'
+      : '<path d="M4 7h16M4 12h16M4 17h10"/>';
+    if (open) {
+      mobileMenu.classList.remove("hidden");
+      mobileMenu.classList.add("flex");
+      setTimeout(() => mobileMenu.style.opacity = "1", 20);
+    } else {
+      mobileMenu.style.opacity = "0";
+      setTimeout(() => {
+        mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
+      }, 350);
+    }
+  }
+  menuBtn.addEventListener("click", () => setMenu(!menuOpen));
+  $$(".mob-link").forEach(a => a.addEventListener("click", () => setMenu(false)));
+
+  /* ---------- 4. Reveal on scroll ---------- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.14, rootMargin: "0px 0px -6% 0px" });
+  $$("[data-reveal]").forEach(el => io.observe(el));
+
+  /* ---------- 5. Counters ---------- */
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = parseFloat(el.dataset.target), dec = parseInt(el.dataset.decimals || "0");
+      cio.unobserve(el);
+      if (reduced) { el.textContent = target.toLocaleString("nb-NO", { minimumFractionDigits: dec, maximumFractionDigits: dec }); return; }
+      const t0 = performance.now(), dur = 1600;
+      (function tick(now) {
+        const p = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 4);
+        const val = target * eased;
+        el.textContent = val.toLocaleString("nb-NO", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+        if (p < 1) requestAnimationFrame(tick);
+      })(t0);
+    });
+  }, { threshold: 0.6 });
+  $$(".count").forEach(el => cio.observe(el));
+
+  /* ---------- 6. Magnetic buttons (desktop) ---------- */
+  if (finePointer && !reduced) {
+    $$(".magnetic").forEach(btn => {
+      btn.addEventListener("mousemove", (ev) => {
+        const r = btn.getBoundingClientRect();
+        const dx = ev.clientX - (r.left + r.width / 2);
+        const dy = ev.clientY - (r.top + r.height / 2);
+        btn.style.transform = `translate(${dx * 0.12}px, ${dy * 0.18}px)`;
+      });
+      btn.addEventListener("mouseleave", () => {
+        btn.style.transition = "transform .5s cubic-bezier(.16,1,.3,1)";
+        btn.style.transform = "";
+        setTimeout(() => btn.style.transition = "", 500);
+      });
+    });
+  }
+
+  /* ---------- 7. Hero parallax ---------- */
+  const heroImg = $("#heroImg");
+  if (heroImg && finePointer && !reduced) {
+    let ph = false;
+    window.addEventListener("scroll", () => {
+      if (!ph) {
+        ph = true;
+        requestAnimationFrame(() => {
+          heroImg.style.transform = `scale(1.12) translateY(${Math.min(window.scrollY * 0.06, 120)}px)`;
+          ph = false;
+        });
+      }
+    }, { passive: true });
+  }
+
+  /* ---------- 8. FAQ accordion ---------- */
+  $$(".faq-q").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".faq-item");
+      const isOpen = item.classList.contains("open");
+      $$(".faq-item.open").forEach(o => { o.classList.remove("open"); $(".faq-q", o).setAttribute("aria-expanded", "false"); });
+      if (!isOpen) { item.classList.add("open"); btn.setAttribute("aria-expanded", "true"); }
+    });
+  });
+
+  /* ---------- 9. Testimonial slider ---------- */
+  const tTrack = $("#tTrack"), tPrev = $("#tPrev"), tNext = $("#tNext"), tDots = $("#tDots");
+  const slides = $$("#tTrack > figure");
+  let tIndex = 0, tTimer;
+  slides.forEach((_, i) => {
+    const d = document.createElement("button");
+    d.type = "button";
+    d.setAttribute("aria-label", "Gå til omtale " + (i + 1));
+    d.className = "t-dot w-2.5 h-2.5 rounded-full bg-ink/15 hover:bg-ink/40";
+    d.addEventListener("click", () => { tGo(i); restartAuto(); });
+    tDots.appendChild(d);
+  });
+  const dots = $$(".t-dot", tDots);
+  function tGo(i) {
+    tIndex = (i + slides.length) % slides.length;
+    tTrack.style.transform = `translateX(-${tIndex * 100}%)`;
+    dots.forEach((d, k) => {
+      d.style.width = k === tIndex ? "1.6rem" : "0.625rem";
+      d.style.background = k === tIndex ? "#FF4D00" : "";
+      d.style.borderRadius = "999px";
+    });
+  }
+  function restartAuto() {
+    clearInterval(tTimer);
+    if (!reduced) tTimer = setInterval(() => tGo(tIndex + 1), 6500);
+  }
+  tPrev.addEventListener("click", () => { tGo(tIndex - 1); restartAuto(); });
+  tNext.addEventListener("click", () => { tGo(tIndex + 1); restartAuto(); });
+  const tWrap = tTrack.parentElement;
+  tWrap.addEventListener("mouseenter", () => clearInterval(tTimer));
+  tWrap.addEventListener("mouseleave", restartAuto);
+  // Swipe
+  let sx = null;
+  tWrap.addEventListener("touchstart", e => { sx = e.touches[0].clientX; }, { passive: true });
+  tWrap.addEventListener("touchend", e => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 45) { tGo(tIndex + (dx < 0 ? 1 : -1)); restartAuto(); }
+    sx = null;
+  }, { passive: true });
+  tGo(0); restartAuto();
+
+  /* ---------- 10. Booking widget ---------- */
+  const SERVICES = {
+    eu:         { navn: "EU-kontroll",          tid: "45 min",      pris: "fra 1 290 kr" },
+    service:    { navn: "Service",               tid: "1,5 time",    pris: "fra 2 490 kr" },
+    reparasjon: { navn: "Reparasjon",            tid: "Etter behov", pris: "fastpris før start" },
+    diagnose:   { navn: "Feilsøking & diagnose", tid: "1–2 timer",   pris: "fra 990 kr" },
+    bremser:    { navn: "Bremser",               tid: "1–3 timer",   pris: "fra 1 790 kr" },
+    dekk:       { navn: "Dekkskift",             tid: "30 min",      pris: "fra 790 kr" },
+    dekkhotell: { navn: "Dekkhotell",            tid: "Sesong",      pris: "590 kr / sesong" },
+    ac:         { navn: "AC-service",            tid: "45 min",      pris: "fra 1 290 kr" }
+  };
+
+  const bk = {
+    svc: null, type: "", merke: "", modell: "", aar: "", driv: "",
+    day: null, dayLabel: "", time: null, navn: "", tlf: "", epost: "", merknad: ""
+  };
+
+  const DAGER = ["søn", "man", "tir", "ons", "tor", "fre", "lør"];
+  const MANEDER = ["jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug", "sep", "okt", "nov", "des"];
+  const SLOTS = ["08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00"];
+
+  /* Årsmodell select */
+  const aarSel = $("#carAar");
+  for (let y = 2026; y >= 1998; y--) {
+    const o = document.createElement("option");
+    o.value = y; o.textContent = y;
+    aarSel.appendChild(o);
+  }
+
+  /* Dag-chips: neste 7 dager */
+  const dayChips = $("#dayChips");
+  const days = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date();
+    d.setDate(d.getDate() + i);
+    days.push(d);
+    const b = document.createElement("button");
+    b.type = "button";
+    b.dataset.day = i;
+    b.className = "day-chip shrink-0 text-center border border-ink/15 rounded-2xl px-4 py-3 min-w-[4.6rem] bg-white";
+    b.innerHTML = `<span class="block font-mono text-[10px] uppercase tracking-widest text-ink/45">${DAGER[d.getDay()]}</span>
+      <span class="block font-display font-bold text-xl leading-tight mt-0.5">${d.getDate()}</span>
+      <span class="block font-mono text-[10px] uppercase tracking-widest text-ink/45">${MANEDER[d.getMonth()]}</span>`;
+    b.addEventListener("click", () => {
+      bk.day = i; bk.dayLabel = `${DAGER[d.getDay()]}. ${d.getDate()}. ${MANEDER[d.getMonth()]}.`;
+      $$(".day-chip", dayChips).forEach(c => c.classList.remove("sel"));
+      b.classList.add("sel");
+      renderSlots();
+      hideError();
+    });
+    dayChips.appendChild(b);
+  }
+
+  /* Tidsslots */
+  const slotChips = $("#slotChips");
+  let slotFilter = "all";
+  function renderSlots() {
+    slotChips.innerHTML = "";
+    const isToday = bk.day === 0;
+    const now = new Date();
+    days.forEach((d, di) => {
+      if (di !== bk.day) return;
+      const isSun = d.getDay() === 0;
+      const isSat = d.getDay() === 6;
+      SLOTS.forEach((s, si) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.dataset.slot = s;
+        btn.className = "slot-chip border border-ink/15 rounded-xl py-3 font-mono text-[13px] bg-white";
+        const [hh] = s.split(":").map(Number);
+        let disabled = (di * 7 + si * 3) % 5 === 2 || isSun || (isSat && hh > 13);
+        if (isToday && !disabled && hh <= now.getHours() + 1) disabled = true;
+        btn.textContent = isSun ? "Stengt" : s + (disabled ? " · opptatt" : "");
+        if ((slotFilter === "am" && hh >= 12) || (slotFilter === "pm" && hh < 12)) btn.classList.add("slot-hidden");
+        btn.disabled = disabled;
+        if (!disabled) {
+          btn.addEventListener("click", () => {
+            bk.time = s;
+            $$(".slot-chip", slotChips).forEach(c => c.classList.remove("sel"));
+            btn.classList.add("sel");
+            hideError();
+          });
+        }
+        slotChips.appendChild(btn);
+      });
+    });
+    if (bk.time) {
+      const sel = $(`.slot-chip[data-slot="${bk.time}"]`, slotChips);
+      if (sel && !sel.disabled) sel.classList.add("sel");
+      else bk.time = null;
+    }
+  }
+  $$(".slot-filter").forEach(f => f.addEventListener("click", () => {
+    slotFilter = f.dataset.filter;
+    $$(".slot-filter").forEach(x => { x.style.background = ""; x.style.color = ""; });
+    f.style.background = "#0B0C0F"; f.style.color = "#F4F2ED";
+    renderSlots();
+  }));
+  $$(".slot-filter")[0].style.background = "#0B0C0F";
+  $$(".slot-filter")[0].style.color = "#F4F2ED";
+  renderSlots();
+
+  /* Tjeneste-valg */
+  const svcOptions = $$("#svcOptions .svc-opt");
+  svcOptions.forEach(b => b.addEventListener("click", () => {
+    svcOptions.forEach(x => x.classList.remove("svc-active"));
+    b.classList.add("svc-active");
+    bk.svc = b.dataset.svc;
+    hideError();
+  }));
+
+  /* Stepper */
+  const screens = $$(".bk-screen");
+  const labels = $$("#bkStepLabels [data-pl]");
+  const bkProgress = $("#bkProgress");
+  const bkNext = $("#bkNext"), bkBack = $("#bkBack"), bkConfirm = $("#bkConfirm"), bkError = $("#bkError");
+  let step = 0;
+
+  function showError(msg) {
+    bkError.textContent = msg;
+    bkError.classList.remove("hidden");
+  }
+  function hideError() { bkError.classList.add("hidden"); }
+
+  function paintProgress() {
+    const pctW = step >= 3 ? 100 : ((step + 1) / 4) * 100;
+    bkProgress.style.width = pctW + "%";
+    labels.forEach((l, i) => {
+      const num = $(".bk-num", l);
+      num.style.background = i < step ? "#FF4D00" : "transparent";
+      num.style.color = i < step ? "#0B0C0F" : "";
+      num.style.borderColor = i === step ? "#FF4D00" : "";
+      num.style.border = i < step ? "none" : "";
+      l.style.color = i <= step ? "#0B0C0F" : "rgba(11,12,15,.35)";
+    });
+    bkBack.classList.toggle("hidden", step === 0);
+    bkNext.classList.toggle("hidden", step === 4);
+    bkConfirm.classList.toggle("hidden", step !== 4);
+    if (step === 4) {
+      bkConfirm.textContent = "";
+      const sp = document.createElement("span"); sp.textContent = "Bekreft bestilling";
+      const ar = document.createElementNS("http://www.w3.org/2000/svg", "svg"); ar.setAttribute("class", "arr");
+      ar.setAttribute("width", "15"); ar.setAttribute("height", "15"); ar.setAttribute("viewBox", "0 0 24 24");
+      ar.setAttribute("fill", "none"); ar.setAttribute("stroke", "currentColor");
+      ar.setAttribute("stroke-width", "2.4"); ar.setAttribute("stroke-linecap", "round"); ar.setAttribute("stroke-linejoin", "round");
+      ar.innerHTML = '<path d="M5 12h14M13 6l6 6-6 6"/>';
+      bkConfirm.appendChild(sp); bkConfirm.appendChild(ar);
+    }
+    screens.forEach(s => s.classList.toggle("active", s.dataset.screen === ["service","car","time","contact","summary"][step]));
+  }
+
+  function validateStep() {
+    if (step === 0 && !bk.svc) { showError("Velg en tjeneste for å gå videre."); return false; }
+    if (step === 1) {
+      bk.type = $("#carType").value; bk.merke = $("#carMerke").value; bk.modell = $("#carModell").value.trim();
+      bk.aar = $("#carAar").value; bk.driv = $("#carDriv").value;
+      if (!bk.merke) { showError("Velg merket på bilen din."); $("#carMerke").classList.add("err"); return false; }
+      if (bk.modell.length < 2) { showError("Skriv inn modellen — f.eks. «Golf»."); $("#carModell").classList.add("err"); return false; }
+    }
+    if (step === 2 && !bk.time) { showError("Velg et tidspunkt som passer deg."); return false; }
+    if (step === 3) {
+      bk.navn = $("#bkNavn").value.trim(); bk.tlf = $("#bkTlf").value.trim(); bk.epost = $("#bkEpost").value.trim(); bk.merknad = $("#bkMerknad").value.trim();
+      if (bk.navn.length < 2) { showError("Skriv inn navnet ditt."); $("#bkNavn").classList.add("err"); return false; }
+      if (!/^[+0-9\s]{8,}$/.test(bk.tlf)) { showError("Skriv inn et gyldig telefonnummer."); $("#bkTlf").classList.add("err"); return false; }
+      if (bk.epost && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(bk.epost)) { showError("E-postadressen ser ikke riktig ut."); $("#bkEpost").classList.add("err"); return false; }
+      buildSummary();
+    }
+    return true;
+  }
+  $$(".field").forEach(f => f.addEventListener("input", () => f.classList.remove("err")));
+
+  function buildSummary() {
+    const s = SERVICES[bk.svc];
+    $("#sumSvc").textContent = `${s.navn} · ${s.tid}`;
+    $("#sumBil").textContent = `${bk.merke} ${bk.modell}${bk.aar ? " · " + bk.aar : ""}`;
+    $("#sumTid").textContent = `${bk.dayLabel} kl. ${bk.time}`;
+    $("#sumKontakt").textContent = `${bk.navn}${bk.tlf ? " · " + bk.tlf : ""}`;
+    $("#sumPris").textContent = s.pris;
+  }
+
+  bkNext.addEventListener("click", () => {
+    hideError();
+    if (validateStep() && step < 4) { step++; paintProgress(); }
+  });
+  bkBack.addEventListener("click", () => { hideError(); if (step > 0) { step--; paintProgress(); } });
+  $$("[data-goto]").forEach(b => b.addEventListener("click", () => { step = parseInt(b.dataset.goto); paintProgress(); }));
+  paintProgress();
+
+  /* Bekreft → success */
+  const bkStepper = $("#bkStepper"), bkSuccess = $("#bkSuccess");
+  bkConfirm.addEventListener("click", () => {
+    hideError();
+    buildSummary();
+    const s = SERVICES[bk.svc];
+    const ref = "AA-" + new Date().getFullYear() + "-" + (1000 + Math.floor(Math.random() * 9000));
+    $("#okNavn").textContent = bk.navn.split(" ")[0];
+    $("#okTlf").textContent = bk.tlf;
+    $("#okRef").textContent = ref;
+    $("#okSvc").textContent = `${s.navn} · ${s.tid}`;
+    $("#okBil").textContent = `${bk.merke} ${bk.modell} · ${bk.aar}`;
+    $("#okTid").textContent = `${bk.dayLabel} kl. ${bk.time}`;
+    bkConfirm.disabled = true;
+    bkConfirm.innerHTML = '<span class="inline-block w-4 h-4 border-2 border-ink/30 border-t-ink rounded-full animate-spin"></span> Reserverer…';
+    setTimeout(() => {
+      bkStepper.classList.add("hidden");
+      bkSuccess.classList.remove("hidden");
+      bkSuccess.classList.add("flex");
+      bkSuccess.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "center" });
+    }, 1100);
+  });
+  $("#bkReset").addEventListener("click", () => {
+    bk.svc = null; bk.time = null; bk.navn = ""; bk.tlf = ""; bk.epost = ""; bk.merknad = ""; bk.day = null; bk.dayLabel = ""; bk.type = ""; bk.merke = ""; bk.modell = ""; bk.aar = ""; bk.driv = "";
+    svcOptions.forEach(x => x.classList.remove("svc-active"));
+    $$(".day-chip", dayChips).forEach(c => c.classList.remove("sel"));
+    $$(".slot-chip", slotChips).forEach(c => c.classList.remove("sel"));
+    ["#carType","#carMerke","#carModell","#carAar","#carDriv"].forEach(s => { $(s).value = ""; });
+    ["#bkNavn","#bkTlf","#bkEpost","#bkMerknad"].forEach(s => { $(s).value = ""; });
+    bkSuccess.classList.add("hidden"); bkSuccess.classList.remove("flex");
+    bkStepper.classList.remove("hidden");
+    bkConfirm.disabled = false;
+    step = 0; paintProgress();
+  });
+
+  /* ---------- 11. Contact form ---------- */
+  const cForm = $("#cForm"), cSubmit = $("#cSubmit"), cError = $("#cError"), cSuccess = $("#cSuccess");
+  cForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const navn = $("#cNavn").value.trim(), epost = $("#cEpost").value.trim(), melding = $("#cMelding").value.trim();
+    cError.classList.add("hidden");
+    ["#cNavn","#cEpost","#cMelding"].forEach(s => $(s).classList.remove("err"));
+    if (navn.length < 2) { cError.textContent = "Skriv inn navnet ditt."; cError.classList.remove("hidden"); $("#cNavn").classList.add("err"); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(epost)) { cError.textContent = "Skriv inn en gyldig e-postadresse."; cError.classList.remove("hidden"); $("#cEpost").classList.add("err"); return; }
+    if (melding.length < 5) { cError.textContent = "Fortell oss litt om hva du trenger hjelp til."; cError.classList.remove("hidden"); $("#cMelding").classList.add("err"); return; }
+    cSubmit.disabled = true;
+    cSubmit.innerHTML = '<span class="inline-block w-4 h-4 border-2 border-white/25 border-t-white rounded-full animate-spin"></span> Sender…';
+    setTimeout(() => {
+      cForm.classList.add("hidden");
+      cSuccess.classList.remove("hidden");
+      $("#cOkNavn").textContent = navn.split(" ")[0];
+      cSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 1100);
+  });
+  $("#cReset").addEventListener("click", () => {
+    cSuccess.classList.add("hidden");
+    cForm.classList.remove("hidden");
+    cSubmit.disabled = false;
+    cSubmit.innerHTML = 'Send melding <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
+    cForm.reset();
+  });
+
+  /* ---------- 12. Year ---------- */
+  $("#year").textContent = new Date().getFullYear();
+
+  /* ---------- 13. Active nav link ---------- */
+  const navAnchors = $$(".nav-link");
+  const secIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navAnchors.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
+      }
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+  ["tjenester", "prosess", "priser", "omtaler", "kontakt"].forEach(id => {
+    const s = document.getElementById(id);
+    if (s) secIO.observe(s);
+  });
+})();
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

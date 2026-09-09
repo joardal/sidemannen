@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="nb" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feen Tannklinikk — Tannhelse i verdensklasse</title>
+<meta name="description" content="Feen Tannklinikk tilbyr moderne, smertefri tannbehandling i rolige omgivelser. Bestill time i dag.">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b1f1c;
+    --sea:#0f4c45;
+    --mint:#dff3ee;
+    --sand:#f6f3ee;
+    --gold:#c9a45c;
+  }
+  html{background:var(--sand)}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--sand);-webkit-font-smoothing:antialiased}
+  .serif{font-family:'Fraunces',Georgia,serif;font-variation-settings:'opsz' 144}
+  .bg-sea{background:var(--sea)} .text-sea{color:var(--sea)} .bg-mint{background:var(--mint)}
+  .bg-ink{background:var(--ink)} .text-gold{color:var(--gold)} .bg-sand{background:var(--sand)}
+  .border-sea{border-color:var(--sea)}
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+  /* Hero word animation */
+  .word{display:inline-block;overflow:hidden;vertical-align:bottom}
+  .word span{display:inline-block;transform:translateY(110%);animation:rise 1.1s cubic-bezier(.2,.7,.1,1) forwards}
+  @keyframes rise{to{transform:none}}
+
+  /* Marquee */
+  .marquee{display:flex;width:max-content;animation:scroll 38s linear infinite}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* Grain */
+  .grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:overlay;background-image:url("images/icon-01.svg")}
+
+  /* Nav */
+  #nav{transition:background .4s,backdrop-filter .4s,box-shadow .4s,padding .4s}
+  #nav.scrolled{background:rgba(246,243,238,.82);backdrop-filter:blur(18px);box-shadow:0 1px 0 rgba(11,31,28,.06)}
+  .navlink{position:relative}
+  .navlink::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:currentColor;transition:width .35s}
+  .navlink:hover::after{width:100%}
+
+  /* Buttons */
+  .btn{position:relative;overflow:hidden;isolation:isolate}
+  .btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateY(101%);transition:transform .45s cubic-bezier(.7,0,.2,1);z-index:-1}
+  .btn:hover::before{transform:none}
+  .btn:hover{color:var(--ink)}
+
+  /* Service cards */
+  .svc{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,background .5s}
+  .svc:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(11,31,28,.35);background:#fff}
+  .svc .arrow{transition:transform .4s}
+  .svc:hover .arrow{transform:translate(4px,-4px)}
+
+  /* Image hover */
+  .img-zoom img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .img-zoom:hover img{transform:scale(1.05)}
+
+  /* Accordion */
+  .acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)}
+  .acc.open .acc-body{grid-template-rows:1fr}
+  .acc-body>div{overflow:hidden}
+  .acc .plus{transition:transform .4s}
+  .acc.open .plus{transform:rotate(45deg)}
+
+  /* Counter */
+  .stat{font-variant-numeric:tabular-nums}
+
+  /* Custom cursor glow on hero */
+  #glow{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(201,164,92,.28),transparent 60%);pointer-events:none;transform:translate(-50%,-50%);filter:blur(20px);transition:opacity .4s}
+
+  input,textarea,select{outline:none}
+  input:focus,textarea:focus,select:focus{border-color:var(--sea)}
+
+  .toast{transform:translateY(120%);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .toast.show{transform:none}
+
+  ::selection{background:var(--gold);color:var(--ink)}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body class="overflow-x-hidden">
+
+<!-- NAV -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 py-5">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3 group">
+      <span class="w-9 h-9 rounded-full bg-sea grid place-items-center text-white transition-transform group-hover:rotate-12">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c-2.5 0-3.5 1.5-5 1.5S4 3 4 6c0 4 2 6 2.5 9.5S8 21 9.5 21c1.5 0 1.5-4 2.5-4s1 4 2.5 4 2.5-2 3-5.5S20 10 20 6c0-3-1.5-1.5-3-1.5S14.5 3 12 3z"/></svg>
+      </span>
+      <span class="serif text-xl tracking-tight">Feen <span class="font-light italic">Tannklinikk</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-9 text-sm font-medium">
+      <a href="#tjenester" class="navlink">Behandlinger</a>
+      <a href="#om" class="navlink">Om oss</a>
+      <a href="#team" class="navlink">Teamet</a>
+      <a href="#priser" class="navlink">Priser</a>
+      <a href="#kontakt" class="navlink">Kontakt</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="tel:+4733123456" class="hidden lg:flex items-center gap-2 text-sm font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 33 12 34 56
+      </a>
+      <a href="#bestill" class="btn bg-sea text-white text-sm font-medium px-5 py-3 rounded-full">Bestill time</a>
+      <button id="burger" class="md:hidden w-11 h-11 grid place-items-center rounded-full border border-black/10" aria-label="Meny">
+        <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" fill="none"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile" class="md:hidden hidden bg-sand/95 backdrop-blur-xl border-t border-black/5 mt-5">
+    <nav class="flex flex-col px-6 py-6 gap-5 serif text-2xl">
+      <a href="#tjenester">Behandlinger</a>
+      <a href="#om">Om oss</a>
+      <a href="#team">Teamet</a>
+      <a href="#priser">Priser</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative min-h-screen flex flex-col justify-end bg-sea text-white overflow-hidden grain">
+  <div id="glow"></div>
+  <div class="absolute inset-0">
+    <img src="images/photo-05.jpg" alt="" class="w-full h-full object-cover opacity-30 scale-105" id="heroImg">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0b1f1c] via-[#0f4c45]/60 to-[#0f4c45]/20"></div>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10 w-full pt-40 pb-14">
+    <p class="text-xs uppercase tracking-[.3em] text-white/70 mb-8 flex items-center gap-3">
+      <span class="w-8 h-px bg-[var(--gold)]"></span> Tannklinikk · Sandefjord sentrum
+    </p>
+    <h1 class="serif font-light leading-[.95] text-[13vw] md:text-[8.5vw] lg:text-[7vw] tracking-[-.02em] max-w-5xl">
+      <span class="word"><span>Smil</span></span>
+      <span class="word"><span style="animation-delay:.08s">som</span></span>
+      <span class="word"><span style="animation-delay:.16s" class="italic text-gold">føles</span></span><br>
+      <span class="word"><span style="animation-delay:.24s">like</span></span>
+      <span class="word"><span style="animation-delay:.32s">godt</span></span>
+      <span class="word"><span style="animation-delay:.40s">som</span></span>
+      <span class="word"><span style="animation-delay:.48s">de</span></span>
+      <span class="word"><span style="animation-delay:.56s">ser</span></span>
+      <span class="word"><span style="animation-delay:.64s">ut.</span></span>
+    </h1>
+    <div class="mt-12 grid md:grid-cols-12 gap-10 items-end">
+      <p class="md:col-span-5 text-white/80 text-lg font-light leading-relaxed reveal in">
+        Hos Feen møter du et team som tar seg tid. Moderne teknologi, rolige rom og behandling helt uten stress — for både deg og tennene dine.
+      </p>
+      <div class="md:col-span-7 flex flex-wrap items-center gap-4 md:justify-end">
+        <a href="#bestill" class="btn bg-white text-[var(--ink)] font-medium px-7 py-4 rounded-full flex items-center gap-3">
+          Bestill time
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#tjenester" class="px-7 py-4 rounded-full border border-white/30 hover:bg-white/10 transition font-medium">Se behandlinger</a>
+      </div>
+    </div>
+    <div class="mt-16 pt-8 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div><p class="serif text-4xl stat" data-count="4.9">0</p><p class="text-xs uppercase tracking-widest text-white/60 mt-1">Snitt på Google · 612 anmeldelser</p></div>
+      <div><p class="serif text-4xl stat" data-count="18">0</p><p class="text-xs uppercase tracking-widest text-white/60 mt-1">År i Sandefjord</p></div>
+      <div><p class="serif text-4xl stat" data-count="12000" data-suffix="+">0</p><p class="text-xs uppercase tracking-widest text-white/60 mt-1">Fornøyde pasienter</p></div>
+      <div><p class="serif text-4xl stat" data-count="24" data-suffix="t">0</p><p class="text-xs uppercase tracking-widest text-white/60 mt-1">Akutthjelp – samme dag</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="bg-ink text-white/80 py-4 overflow-hidden border-y border-white/5">
+  <div class="marquee text-sm tracking-[.25em] uppercase">
+    <span class="flex gap-12 pr-12">
+      <span>Smertefri behandling</span><span class="text-gold">✦</span><span>Digital 3D-skanning</span><span class="text-gold">✦</span><span>Invisalign-sertifisert</span><span class="text-gold">✦</span><span>Helfo-refusjon</span><span class="text-gold">✦</span><span>Åpent til 20 på hverdager</span><span class="text-gold">✦</span><span>Gratis parkering</span><span class="text-gold">✦</span>
+    </span>
+    <span class="flex gap-12 pr-12" aria-hidden="true">
+      <span>Smertefri behandling</span><span class="text-gold">✦</span><span>Digital 3D-skanning</span><span class="text-gold">✦</span><span>Invisalign-sertifisert</span><span class="text-gold">✦</span><span>Helfo-refusjon</span><span class="text-gold">✦</span><span>Åpent til 20 på hverdager</span><span class="text-gold">✦</span><span>Gratis parkering</span><span class="text-gold">✦</span>
+    </span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section id="om" class="py-28 lg:py-40">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-14 items-center">
+    <div class="lg:col-span-5 reveal">
+      <div class="relative img-zoom rounded-[2rem] overflow-hidden aspect-[4/5]">
+        <img src="images/photo-04.jpg" alt="Tannlege ved Feen Tannklinikk" class="w-full h-full object-cover">
+        <div class="absolute bottom-5 left-5 right-5 bg-white/90 backdrop-blur rounded-2xl p-5 flex items-center gap-4">
+          <span class="w-12 h-12 rounded-full bg-mint grid place-items-center text-sea">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6L9 17l-5-5"/></svg>
+          </span>
+          <div><p class="font-medium text-sm">Ingen ventetid på akutt</p><p class="text-xs text-black/60">Ring før 14 – time samme dag</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="lg:col-span-6 lg:col-start-7">
+      <p class="text-xs uppercase tracking-[.3em] text-sea mb-6 reveal">Om Feen</p>
+      <h2 class="serif font-light text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight reveal d1">
+        En klinikk bygget rundt <em class="italic text-sea">deg</em> — ikke rundt tannlegestolen.
+      </h2>
+      <p class="mt-8 text-lg text-black/70 font-light leading-relaxed reveal d2">
+        Vi vet at mange gruer seg. Derfor har vi designet hele opplevelsen på nytt: dempet lys, egne rom med utsikt, hodetelefoner med musikken din, og et team som forklarer alt før noe skjer. Ingen overraskelser — verken i munnen eller på fakturaen.
+      </p>
+      <div class="mt-10 grid sm:grid-cols-2 gap-6 reveal d3">
+        <div class="border-l border-black/10 pl-5">
+          <p class="serif text-2xl">Fastpris før start</p>
+          <p class="text-sm text-black/60 mt-1">Du får alltid et skriftlig kostnadsoverslag før behandling.</p>
+        </div>
+        <div class="border-l border-black/10 pl-5">
+          <p class="serif text-2xl">Angstvennlig</p>
+          <p class="text-sm text-black/60 mt-1">Lystgass, egen «pauseknapp» og egne timer for engstelige pasienter.</p>
+        </div>
+      </div>
+      <a href="#team" class="inline-flex items-center gap-3 mt-10 font-medium group reveal d4">
+        Møt menneskene bak
+        <span class="w-10 h-10 rounded-full border border-black/15 grid place-items-center transition group-hover:bg-sea group-hover:text-white group-hover:border-sea">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="tjenester" class="py-28 bg-white rounded-t-[3rem]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div>
+        <p class="text-xs uppercase tracking-[.3em] text-sea mb-6 reveal">Behandlinger</p>
+        <h2 class="serif font-light text-4xl md:text-6xl tracking-tight leading-[1.05] reveal d1">Alt du trenger,<br>under ett tak.</h2>
+      </div>
+      <p class="max-w-sm text-black/60 font-light reveal d2">Fra den årlige sjekken til komplette smilforvandlinger. Vi henviser sjelden videre — spesialistene er allerede her.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- card -->
+      <a href="#bestill" class="svc reveal group bg-sand rounded-3xl p-8 flex flex-col min-h-[300px]">
+        <div class="flex justify-between items-start">
+          <span class="w-12 h-12 rounded-2xl bg-white grid place-items-center text-sea"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <svg class="arrow text-black/30" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </div>
+        <h3 class="serif text-2xl mt-auto pt-10">Undersøkelse & rens</h3>
+        <p class="text-sm text-black/60 mt-2 leading-relaxed">Grundig sjekk, digitale røntgenbilder og profesjonell rens. Ferdig på 45 minutter.</p>
+        <p class="text-xs uppercase tracking-widest mt-5 text-sea">Fra 990 kr</p>
+      </a>
+      <a href="#bestill" class="svc reveal d1 group bg-sand rounded-3xl p-8 flex flex-col min-h-[300px]">
+        <div class="flex justify-between items-start">
+          <span class="w-12 h-12 rounded-2xl bg-white grid place-items-center text-sea"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 6.6L21 9l-5 4.4L17.5 21 12 17.5 6.5 21 8 13.4 3 9l6.6-.4z"/></svg></span>
+          <svg class="arrow text-black/30" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </div>
+        <h3 class="serif text-2xl mt-auto pt-10">Tannbleking</h3>
+        <p class="text-sm text-black/60 mt-2 leading-relaxed">Skånsom bleking på klinikk eller hjemme med skreddersydde skinner. Synlig resultat etter én uke.</p>
+        <p class="text-xs uppercase tracking-widest mt-5 text-sea">Fra 3 900 kr</p>
+      </a>
+      <a href="#bestill" class="svc reveal d2 group bg-sea text-white rounded-3xl p-8 flex flex-col min-h-[300px] hover:!bg-[#0b1f1c]">
+        <div class="flex justify-between items-start">
+          <span class="w-12 h-12 rounded-2xl bg-white/10 grid place-items-center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12c0-4 3-7 8-7s8 3 8 7-3 7-8 7-8-3-8-7z"/><path d="M8 12h8"/></svg></span>
+          <svg class="arrow text-white/50" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </div>
+        <h3 class="serif text-2xl mt-auto pt-10">Invisalign® usynlig regulering</h3>
+        <p class="text-sm text-white/70 mt-2 leading-relaxed">Rette tenner uten metall. Gratis 3D-simulering av ditt nye smil på første konsultasjon.</p>
+        <p class="text-xs uppercase tracking-widest mt-5 text-gold">Fra 39 000 kr · delbetaling</p>
+      </a>
+      <a href="#bestill" class="svc reveal group bg-sand rounded-3xl p-8 flex flex-col min-h-[300px]">
+        <div class="flex justify-between items-start">
+          <span class="w-12 h-12 rounded-2xl bg-white grid place-items-center text-sea"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 10h14M7 21h10"/></svg></span>
+          <svg class="arrow text-black/30" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </div>
+        <h3 class="serif text-2xl mt-auto pt-10">Implantater</h3>
+        <p class="text-sm text-black/60 mt-2 leading-relaxed">Permanent erstatning av tapte tenner, planlagt digitalt for millimeterpresisjon. Livstidsgaranti på skruen.</p>
+        <p class="text-xs uppercase tracking-widest mt-5 text-sea">Fra 24 500 kr</p>
+      </a>
+      <a href="#bestill" class="svc reveal d1 group bg-sand rounded-3xl p-8 flex flex-col min-h-[300px]">
+        <div class="flex justify-between items-start">
+          <span class="w-12 h-12 rounded-2xl bg-white grid place-items-center text-sea"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l7-7M14 4l6 6-9 9H5v-6z"/></svg></span>
+          <svg class="arrow text-black/30" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </div>
+        <h3 class="serif text-2xl mt-auto pt-10">Fasetter & kroner</h3>
+        <p class="text-sm text-black/60 mt-2 leading-relaxed">Keramikk fremstilt i eget laboratorium – ofte ferdig samme dag med CEREC-teknologi.</p>
+        <p class="text-xs uppercase tracking-widest mt-5 text-sea">Fra 7 900 kr</p>
+      </a>
+      <a href="#bestill" class="svc reveal d2 group bg-sand rounded-3xl p-8 flex flex-col min-h-[300px]">
+        <div class="flex justify-between items-start">
+          <span class="w-12 h-12 rounded-2xl bg-white grid place-items-center text-sea"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.6-7-10a7 7 0 0114 0c0 5.4-7 10-7 10z"/><path d="M12 8v6M9 11h6"/></svg></span>
+          <svg class="arrow text-black/30" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </div>
+        <h3 class="serif text-2xl mt-auto pt-10">Akutt tannlegevakt</h3>
+        <p class="text-sm text-black/60 mt-2 leading-relaxed">Tannverk, knekt tann eller hevelse? Vi holder av akuttimer hver eneste dag – også lørdager.</p>
+        <p class="text-xs uppercase tracking-widest mt-5 text-sea">Ring 33 12 34 56</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE / STORY -->
+<section class="bg-white pb-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="relative rounded-[2.5rem] overflow-hidden bg-ink text-white grain min-h-[70vh] flex items-end">
+      <img src="images/photo-06.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-40">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0b1f1c] via-[#0b1f1c]/50 to-transparent"></div>
+      <div class="relative p-8 md:p-16 lg:p-20 max-w-3xl">
+        <p class="text-xs uppercase tracking-[.3em] text-gold mb-6 reveal">Opplevelsen</p>
+        <h2 class="serif font-light text-4xl md:text-6xl leading-[1.05] tracking-tight reveal d1">Vi har fjernet alt som gjorde tannlegen ubehagelig. <em class="italic text-white/60">Alt.</em></h2>
+        <ul class="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-5 text-white/80 font-light reveal d2">
+          <li class="flex gap-3"><span class="text-gold">01</span> Bedøvelse med The Wand – du kjenner ikke stikket</li>
+          <li class="flex gap-3"><span class="text-gold">02</span> Egne behandlingsrom med dagslys og skjerm i taket</li>
+          <li class="flex gap-3"><span class="text-gold">03</span> Spotify-lister eller stillhet – du velger</li>
+          <li class="flex gap-3"><span class="text-gold">04</span> Digital skanning – ingen klissete avtrykk</li>
+          <li class="flex gap-3"><span class="text-gold">05</span> Kaffe fra Jacobsen & Svart i venterommet</li>
+          <li class="flex gap-3"><span class="text-gold">06</span> SMS-påminnelse og journal rett på mobilen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="py-28 lg:py-36">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="max-w-2xl mb-16">
+      <p class="text-xs uppercase tracking-[.3em] text-sea mb-6 reveal">Teamet</p>
+      <h2 class="serif font-light text-4xl md:text-6xl tracking-tight leading-[1.05] reveal d1">Fagfolk som husker navnet ditt.</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal">
+        <div class="img-zoom rounded-3xl overflow-hidden aspect-[3/4] bg-mint">
+          <img src="images/photo-03.jpg" alt="Dr. Ingrid Feen" class="w-full h-full object-cover">
+        </div>
+        <div class="flex justify-between items-baseline mt-5">
+          <h3 class="serif text-2xl">Dr. Ingrid Feen</h3>
+          <span class="text-xs uppercase tracking-widest text-black/50">Grunnlegger</span>
+        </div>
+        <p class="text-sm text-black/60 mt-1">Tannlege, spesialist i protetikk. UiO 2006, videreutdannet i Zürich.</p>
+      </div>
+      <div class="reveal d1">
+        <div class="img-zoom rounded-3xl overflow-hidden aspect-[3/4] bg-mint">
+          <img src="images/photo-02.jpg" alt="Dr. Jonas Berge" class="w-full h-full object-cover">
+        </div>
+        <div class="flex justify-between items-baseline mt-5">
+          <h3 class="serif text-2xl">Dr. Jonas Berge</h3>
+          <span class="text-xs uppercase tracking-widest text-black/50">Tannlege</span>
+        </div>
+        <p class="text-sm text-black/60 mt-1">Implantater og kirurgi. Kjent for rolige hender og dårlige vitser.</p>
+      </div>
+      <div class="reveal d2">
+        <div class="img-zoom rounded-3xl overflow-hidden aspect-[3/4] bg-mint">
+          <img src="images/photo-01.jpg" alt="Sara Lind" class="w-full h-full object-cover">
+        </div>
+        <div class="flex justify-between items-baseline mt-5">
+          <h3 class="serif text-2xl">Sara Lind</h3>
+          <span class="text-xs uppercase tracking-widest text-black/50">Tannpleier</span>
+        </div>
+        <p class="text-sm text-black/60 mt-1">Forebygging, rens og bleking. Den pasientene ber om å få igjen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-28 bg-mint rounded-[3rem]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-4 lg:sticky lg:top-32">
+        <p class="text-xs uppercase tracking-[.3em] text-sea mb-6 reveal">Pasientene sier</p>
+        <h2 class="serif font-light text-4xl md:text-5xl tracking-tight leading-[1.05] reveal d1">4,9 av 5 — fra folk som egentlig hater tannlegen.</h2>
+        <div class="flex items-center gap-2 mt-8 reveal d2">
+          <div class="flex text-gold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 22 12 18l-6.3 4 1.6-7.8L2 9.6 9 9z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 22 12 18l-6.3 4 1.6-7.8L2 9.6 9 9z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 22 12 18l-6.3 4 1.6-7.8L2 9.6 9 9z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 22 12 18l-6.3 4 1.6-7.8L2 9.6 9 9z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 22 12 18l-6.3 4 1.6-7.8L2 9.6 9 9z"/></svg>
+          </div>
+          <span class="text-sm text-black/60">612 Google-anmeldelser</span>
+        </div>
+      </div>
+      <div class="lg:col-span-8 grid md:grid-cols-2 gap-5">
+        <blockquote class="bg-white rounded-3xl p-8 reveal">
+          <p class="serif text-xl leading-snug">«Jeg har unngått tannlegen i ni år. Ingrid brukte 20 minutter bare på å snakke med meg først. Gråt litt på vei hjem – av lettelse.»</p>
+          <footer class="mt-6 text-sm text-black/60">Marte, 34 · Sandefjord</footer>
+        </blockquote>
+        <blockquote class="bg-white rounded-3xl p-8 reveal d1 md:mt-10">
+          <p class="serif text-xl leading-snug">«Knakk en fortann fredag kveld. Fikk time lørdag kl. 09, ny krone ferdig kl. 11. Helt vilt.»</p>
+          <footer class="mt-6 text-sm text-black/60">Henrik, 41 · Larvik</footer>
+        </blockquote>
+        <blockquote class="bg-white rounded-3xl p-8 reveal d2">
+          <p class="serif text-xl leading-snug">«Invisalign hos Feen var den beste investeringen jeg har gjort. Prisen var akkurat som avtalt, ikke en krone mer.»</p>
+          <footer class="mt-6 text-sm text-black/60">Amina, 27 · Tønsberg</footer>
+        </blockquote>
+        <blockquote class="bg-sea text-white rounded-3xl p-8 reveal d3 md:mt-10">
+          <p class="serif text-xl leading-snug">«Barna mine gleder seg til tannlegen. Jeg vet ikke hva de gjør der inne, men det funker.»</p>
+          <footer class="mt-6 text-sm text-white/60">Kristoffer, 38 · Sandefjord</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICES -->
+<section id="priser" class="py-28 lg:py-36">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-5">
+      <p class="text-xs uppercase tracking-[.3em] text-sea mb-6 reveal">Priser</p>
+      <h2 class="serif font-light text-4xl md:text-5xl tracking-tight leading-[1.05] reveal d1">Åpne priser. Ingen stjerner i liten skrift.</h2>
+      <p class="mt-6 text-black/60 font-light leading-relaxed reveal d2">Alle priser inkluderer bedøvelse og materialer. Vi sender Helfo-refusjon automatisk der du har rett på det, og tilbyr rentefri delbetaling over inntil 24 måneder.</p>
+      <a href="#bestill" class="btn inline-flex bg-sea text-white font-medium px-7 py-4 rounded-full mt-8 reveal d3">Få et kostnadsoverslag</a>
+    </div>
+    <div class="lg:col-span-7 reveal d1">
+      <div class="divide-y divide-black/10 border-y border-black/10">
+        <div class="flex items-center justify-between py-5 group"><span class="serif text-xl">Undersøkelse m/ 2 røntgen</span><span class="stat font-medium">990 kr</span></div>
+        <div class="flex items-center justify-between py-5"><span class="serif text-xl">Tannrens hos tannpleier</span><span class="stat font-medium">1 190 kr</span></div>
+        <div class="flex items-center justify-between py-5"><span class="serif text-xl">Fylling, 1 flate</span><span class="stat font-medium">1 450 kr</span></div>
+        <div class="flex items-center justify-between py-5"><span class="serif text-xl">Rotfylling, fortann</span><span class="stat font-medium">4 900 kr</span></div>
+        <div class="flex items-center justify-between py-5"><span class="serif text-xl">Keramisk krone (CEREC)</span><span class="stat font-medium">7 900 kr</span></div>
+        <div class="flex items-center justify-between py-5"><span class="serif text-xl">Tannbleking, hjemme</span><span class="stat font-medium">3 900 kr</span></div>
+        <div class="flex items-center justify-between py-5"><span class="serif text-xl">Implantat inkl. krone</span><span class="stat font-medium">24 500 kr</span></div>
+        <div class="flex items-center justify-between py-5"><span class="serif text-xl">Akuttkonsultasjon</span><span class="stat font-medium">1 290 kr</span></div>
+      </div>
+      <p class="text-xs text-black/50 mt-4">Studenter og pensjonister: 15 % rabatt på undersøkelse og rens.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="pb-28">
+  <div class="max-w-3xl mx-auto px-6">
+    <h2 class="serif font-light text-4xl md:text-5xl tracking-tight text-center mb-14 reveal">Ofte stilte spørsmål</h2>
+    <div class="divide-y divide-black/10 border-y border-black/10">
+      <div class="acc py-1">
+        <button class="acc-btn w-full flex items-center justify-between py-5 text-left"><span class="serif text-xl">Har dere ledige timer denne uken?</span><span class="plus text-2xl font-light">+</span></button>
+        <div class="acc-body"><div><p class="pb-6 text-black/60 font-light">Som regel, ja. Vi holder av kapasitet hver dag til nye pasienter og akutte behov. Bruk skjemaet under så svarer vi innen én time i åpningstiden.</p></div></div>
+      </div>
+      <div class="acc py-1">
+        <button class="acc-btn w-full flex items-center justify-between py-5 text-left"><span class="serif text-xl">Jeg er skikkelig redd for tannlegen. Hva gjør dere annerledes?</span><span class="plus text-2xl font-light">+</span></button>
+        <div class="acc-body"><div><p class="pb-6 text-black/60 font-light">Du får en egen samtaletime først – uten stol, uten instrumenter. Deretter lager vi en plan i ditt tempo. Vi tilbyr lystgass, beroligende premedikasjon og en avtalt «stoppsignal». Mange av våre mest fornøyde pasienter kom første gang med hjertebank.</p></div></div>
+      </div>
+      <div class="acc py-1">
+        <button class="acc-btn w-full flex items-center justify-between py-5 text-left"><span class="serif text-xl">Får jeg dekket noe fra Helfo?</span><span class="plus text-2xl font-light">+</span></button>
+        <div class="acc-body"><div><p class="pb-6 text-black/60 font-light">Mange tilstander gir rett til refusjon – for eksempel tannkjøttsykdom, tannskader ved ulykke, og enkelte medisinske diagnoser. Vi sjekker dette for deg og sender oppgjøret direkte, så du betaler kun egenandelen.</p></div></div>
+      </div>
+      <div class="acc py-1">
+        <button class="acc-btn w-full flex items-center justify-between py-5 text-left"><span class="serif text-xl">Kan jeg dele opp betalingen?</span><span class="plus text-2xl font-light">+</span></button>
+        <div class="acc-body"><div><p class="pb-6 text-black/60 font-light">Ja. Vi tilbyr rentefri delbetaling i inntil 24 måneder på behandlinger over 5 000 kr. Du søker på et minutt i resepsjonen.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="bestill" class="py-28 bg-sea text-white rounded-t-[3rem] relative overflow-hidden grain">
+  <div class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-[var(--gold)]/10 blur-3xl"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-14 relative">
+    <div class="lg:col-span-5">
+      <p class="text-xs uppercase tracking-[.3em] text-gold mb-6 reveal">Bestill time</p>
+      <h2 class="serif font-light text-4xl md:text-6xl tracking-tight leading-[1.02] reveal d1">Første steg tar under ett minutt.</h2>
+      <p class="mt-6 text-white/70 font-light leading-relaxed reveal d2">Fyll ut skjemaet, så ringer eller sender vi deg en SMS med forslag til time – som regel innen en time. Foretrekker du telefon? <a href="tel:+4733123456" class="underline underline-offset-4 decoration-[var(--gold)]">33 12 34 56</a>.</p>
+      <div class="mt-10 space-y-4 text-sm reveal d3">
+        <div class="flex gap-4"><span class="text-gold">→</span><div><p class="font-medium">Feen Tannklinikk</p><p class="text-white/60">Storgata 14, 3210 Sandefjord</p></div></div>
+        <div class="flex gap-4"><span class="text-gold">→</span><div><p class="font-medium">Åpningstider</p><p class="text-white/60">Man–tor 08–20 · Fre 08–16 · Lør 09–14</p></div></div>
+        <div class="flex gap-4"><span class="text-gold">→</span><div><p class="font-medium">E-post</p><p class="text-white/60">hei@feentannklinikk.no</p></div></div>
+      </div>
+    </div>
+    <form id="bookingForm" class="lg:col-span-7 bg-white text-[var(--ink)] rounded-[2rem] p-8 md:p-10 reveal d2" novalidate>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <label class="block"><span class="text-xs uppercase tracking-widest text-black/50">Navn</span><input required name="navn" type="text" placeholder="Ola Nordmann" class="mt-2 w-full border-b border-black/15 py-3 bg-transparent placeholder:text-black/30"></label>
+        <label class="block"><span class="text-xs uppercase tracking-widest text-black/50">Telefon</span><input required name="telefon" type="tel" placeholder="900 00 000" class="mt-2 w-full border-b border-black/15 py-3 bg-transparent placeholder:text-black/30"></label>
+        <label class="block"><span class="text-xs uppercase tracking-widest text-black/50">E-post</span><input name="epost" type="email" placeholder="ola@epost.no" class="mt-2 w-full border-b border-black/15 py-3 bg-transparent placeholder:text-black/30"></label>
+        <label class="block"><span class="text-xs uppercase tracking-widest text-black/50">Behandling</span>
+          <select name="behandling" class="mt-2 w-full border-b border-black/15 py-3 bg-transparent">
+            <option>Undersøkelse & rens</option><option>Akutt / tannverk</option><option>Tannbleking</option><option>Invisalign-konsultasjon</option><option>Implantat</option><option>Annet</option>
+          </select>
+        </label>
+        <div class="sm:col-span-2">
+          <span class="text-xs uppercase tracking-widest text-black/50">Når passer det?</span>
+          <div class="flex flex-wrap gap-2 mt-3" id="timeChips">
+            <button type="button" class="chip px-4 py-2 rounded-full border border-black/15 text-sm transition" data-v="Formiddag">Formiddag</button>
+            <button type="button" class="chip px-4 py-2 rounded-full border border-black/15 text-sm transition" data-v="Ettermiddag">Ettermiddag</button>
+            <button type="button" class="chip px-4 py-2 rounded-full border border-black/15 text-sm transition" data-v="Kveld">Kveld</button>
+            <button type="button" class="chip px-4 py-2 rounded-full border border-black/15 text-sm transition" data-v="Lørdag">Lørdag</button>
+            <button type="button" class="chip px-4 py-2 rounded-full border border-black/15 text-sm transition" data-v="Så snart som mulig">Så snart som mulig</button>
+          </div>
+        </div>
+        <label class="block sm:col-span-2"><span class="text-xs uppercase tracking-widest text-black/50">Melding (valgfritt)</span><textarea name="melding" rows="3" placeholder="Fortell oss gjerne om du er engstelig, har smerter, eller andre ønsker." class="mt-2 w-full border-b border-black/15 py-3 bg-transparent placeholder:text-black/30 resize-none"></textarea></label>
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mt-8">
+        <p class="text-xs text-black/50 max-w-xs">Ved å sende godtar du at vi kontakter deg om timebestilling. Vi deler aldri opplysningene dine.</p>
+        <button type="submit" class="btn bg-sea text-white font-medium px-8 py-4 rounded-full flex items-center justify-center gap-3">
+          Send forespørsel
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="kontakt" class="bg-ink text-white pt-20 pb-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid md:grid-cols-12 gap-10 pb-16 border-b border-white/10">
+      <div class="md:col-span-5">
+        <p class="serif text-3xl">Feen <span class="italic font-light">Tannklinikk</span></p>
+        <p class="text-white/50 mt-4 max-w-sm font-light">Personlig tannhelse i hjertet av Sandefjord siden 2008. Godkjent av Helsedirektoratet · Medlem av Den norske tannlegeforening.</p>
+      </div>
+      <div class="md:col-span-2">
+        <p class="text-xs uppercase tracking-widest text-white/40 mb-4">Meny</p>
+        <ul class="space-y-2 text-sm text-white/80"><li><a href="#tjenester" class="hover:text-white">Behandlinger</a></li><li><a href="#om" class="hover:text-white">Om oss</a></li><li><a href="#team" class="hover:text-white">Teamet</a></li><li><a href="#priser" class="hover:text-white">Priser</a></li></ul>
+      </div>
+      <div class="md:col-span-2">
+        <p class="text-xs uppercase tracking-widest text-white/40 mb-4">Besøk oss</p>
+        <p class="text-sm text-white/80">Storgata 14<br>3210 Sandefjord</p>
+        <p class="text-sm text-white/80 mt-3">33 12 34 56<br>hei@feentannklinikk.no</p>
+      </div>
+      <div class="md:col-span-3">
+        <p class="text-xs uppercase tracking-widest text-white/40 mb-4">Åpningstider</p>
+        <ul class="text-sm text-white/80 space-y-1">
+          <li class="flex justify-between"><span>Man–tor</span><span>08–20</span></li>
+          <li class="flex justify-between"><span>Fredag</span><span>08–16</span></li>
+          <li class="flex justify-between"><span>Lørdag</span><span>09–14</span></li>
+          <li class="flex justify-between text-white/40"><span>Søndag</span><span>Stengt</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 text-xs text-white/40">
+      <p>© 2025 Feen Tannklinikk AS · Org.nr 912 345 678</p>
+      <div class="flex gap-6"><a href="#" class="hover:text-white">Personvern</a><a href="#" class="hover:text-white">Pasientrettigheter</a><a href="#" class="hover:text-white">Instagram</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="toast fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] bg-ink text-white px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 text-sm">
+  <span class="w-6 h-6 rounded-full bg-emerald-400 grid place-items-center text-[var(--ink)]"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+  Takk! Vi kontakter deg innen én time i åpningstiden.
+</div>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Mobile menu
+  const burger = document.getElementById('burger'), mobile = document.getElementById('mobile');
+  burger.addEventListener('click', () => mobile.classList.toggle('hidden'));
+  mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobile.classList.add('hidden')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold: .12, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Counters
+  const fmt = n => n.toLocaleString('nb-NO');
+  const countIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = parseFloat(el.dataset.count), suffix = el.dataset.suffix || '';
+      const dec = String(target).includes('.') ? 1 : 0, start = performance.now(), dur = 1800;
+      const tick = t => {
+        const p = Math.min(1, (t - start) / dur), ease = 1 - Math.pow(1 - p, 4);
+        const v = target * ease;
+        el.textContent = (dec ? v.toFixed(1).replace('.', ',') : fmt(Math.round(v))) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick); countIO.unobserve(el);
+    });
+  }, {threshold: .5});
+  document.querySelectorAll('.stat[data-count]').forEach(el => countIO.observe(el));
+
+  // Hero glow follows cursor + subtle parallax
+  const hero = document.getElementById('top'), glow = document.getElementById('glow'), heroImg = document.getElementById('heroImg');
+  hero.addEventListener('mousemove', e => {
+    const r = hero.getBoundingClientRect();
+    glow.style.left = (e.clientX - r.left) + 'px'; glow.style.top = (e.clientY - r.top) + 'px';
+  });
+  addEventListener('scroll', () => { if (scrollY < innerHeight) heroImg.style.transform = `scale(1.05) translateY(${scrollY * .15}px)`; }, {passive:true});
+
+  // Accordion
+  document.querySelectorAll('.acc-btn').forEach(btn => btn.addEventListener('click', () => {
+    const item = btn.parentElement, open = item.classList.contains('open');
+    document.querySelectorAll('.acc.open').forEach(i => i.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  }));
+
+  // Chips
+  let tid = '';
+  document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(x => x.classList.remove('bg-sea','text-white','border-sea'));
+    c.classList.add('bg-sea','text-white','border-sea'); tid = c.dataset.v;
+  }));
+
+  // Form
+  const form = document.getElementById('bookingForm'), toast = document.getElementById('toast');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    form.querySelectorAll('[required]').forEach(i => {
+      const bad = !i.value.trim(); i.style.borderColor = bad ? '#dc2626' : ''; if (bad) ok = false;
+    });
+    if (!ok) return;
+    const btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.firstChild.textContent = 'Sender… ';
+    setTimeout(() => {
+      form.reset(); document.querySelectorAll('.chip').forEach(x => x.classList.remove('bg-sea','text-white','border-sea'));
+      btn.disabled = false; btn.firstChild.textContent = 'Send forespørsel ';
+      toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 4500);
+    }, 900);
+  });
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

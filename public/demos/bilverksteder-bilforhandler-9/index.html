@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andersen Auto AS — Bilverksted i Sandvika</title>
+<meta name="description" content="Andersen Auto AS er et moderne bilverksted i Sandvika. EU-kontroll, service, bremser, dekkskift, dekkhotell, AC-service og avansert feilsøking. Bestill time på 60 sekunder.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0D0E;
+  --ink-2:#14181A;
+  --paper:#F4F2ED;
+  --paper-2:#EAE7E0;
+  --line:rgba(11,13,14,.12);
+  --accent:#D8410F;
+  --accent-soft:#F0602C;
+  --muted:#6B7175;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--paper);color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  font-size:16px;line-height:1.55;
+  letter-spacing:-.011em;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.02em}
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.eyebrow span{color:var(--accent)}
+
+/* ---------- NAV ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.45s cubic-bezier(.2,.7,.2,1)}
+header .bar{display:flex;align-items:center;justify-content:space-between;height:78px;border-bottom:1px solid transparent;transition:.45s}
+header.solid{background:rgba(244,242,237,.88);backdrop-filter:blur(18px)}
+header.solid .bar{height:66px;border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.02em}
+.logo .mark{width:30px;height:30px;border-radius:9px;background:var(--ink);display:grid;place-items:center;color:var(--paper);font-size:13px;font-weight:600;transition:.4s}
+.logo:hover .mark{background:var(--accent);transform:rotate(-8deg)}
+.logo small{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-top:-3px}
+nav.links{display:flex;gap:6px;align-items:center}
+nav.links a{font-size:14px;padding:8px 14px;border-radius:99px;color:#2A2F32;transition:.25s;position:relative}
+nav.links a:hover{background:rgba(11,13,14,.06)}
+.navcta{display:flex;align-items:center;gap:14px}
+.phone{font-size:14px;font-weight:500;display:flex;align-items:center;gap:7px}
+.dot{width:7px;height:7px;border-radius:50%;background:#22B36B;box-shadow:0 0 0 0 rgba(34,179,107,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(34,179,107,0)}100%{box-shadow:0 0 0 0 rgba(34,179,107,0)}}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:99px;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer;transition:.35s cubic-bezier(.2,.7,.2,1);white-space:nowrap;font-family:inherit}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 12px 28px -12px rgba(216,65,15,.7)}
+.btn-ghost{border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(11,13,14,.04)}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-light:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
+.btn .arw{transition:.35s}
+.btn:hover .arw{transform:translateX(4px)}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:transparent;flex-direction:column;gap:5px;align-items:center;justify-content:center;cursor:pointer}
+.burger i{display:block;width:17px;height:1.5px;background:var(--ink);transition:.35s}
+.burger.on i:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.on i:nth-child(2){opacity:0}
+.burger.on i:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobmenu{position:fixed;inset:0;background:var(--ink);color:var(--paper);z-index:99;transform:translateY(-100%);transition:transform .6s cubic-bezier(.76,0,.24,1);padding:100px 24px 40px;display:flex;flex-direction:column;justify-content:space-between}
+.mobmenu.open{transform:translateY(0)}
+.mobmenu a.ml{font-family:'Instrument Serif',serif;font-size:38px;line-height:1.25;display:block;border-bottom:1px solid rgba(255,255,255,.1);padding:14px 0;opacity:0;transform:translateY(16px)}
+.mobmenu.open a.ml{animation:mlin .5s forwards}
+@keyframes mlin{to{opacity:1;transform:none}}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:132px 0 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:end}
+h1{font-family:'Instrument Serif',serif;font-size:clamp(46px,6.6vw,92px);line-height:.98;letter-spacing:-.03em}
+h1 em{font-style:italic;color:var(--accent)}
+.hero p.lead{font-size:17px;color:#3D4347;max-width:44ch;margin-top:26px}
+.hero-cta{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.trustrow{display:flex;gap:26px;margin-top:44px;padding-top:26px;border-top:1px solid var(--line);flex-wrap:wrap}
+.trustrow div b{font-family:'Instrument Serif',serif;font-size:30px;display:block;line-height:1}
+.trustrow div span{font-size:12px;color:var(--muted)}
+.hero-visual{position:relative;border-radius:22px 22px 0 0;overflow:hidden;aspect-ratio:4/4.1;background:var(--ink-2)}
+.hero-visual img{width:100%;height:100%;object-fit:cover;filter:grayscale(.15) contrast(1.05);transform:scale(1.08);transition:transform 1.4s}
+.hero-visual:hover img{transform:scale(1)}
+.badge{position:absolute;left:16px;bottom:16px;right:16px;background:rgba(244,242,237,.94);backdrop-filter:blur(10px);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.badge b{font-size:13px;display:block}
+.badge small{font-size:11.5px;color:var(--muted)}
+.stars{color:var(--accent);font-size:13px;letter-spacing:2px}
+
+/* marquee */
+.marq{margin-top:0;background:var(--ink);color:#8E9599;padding:16px 0;overflow:hidden;white-space:nowrap}
+.marq div{display:inline-block;animation:scroll 34s linear infinite}
+.marq span{font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:0 26px}
+.marq span i{color:var(--accent);font-style:normal}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+section{padding:104px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:48px;flex-wrap:wrap}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(34px,4.4vw,58px);line-height:1.02;letter-spacing:-.025em;max-width:16ch}
+h2 em{font-style:italic;color:var(--accent)}
+.sec-head p{max-width:38ch;color:var(--muted);font-size:15px}
+
+/* ---------- SERVICES ---------- */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.card{background:var(--paper);padding:32px 28px 28px;transition:.45s cubic-bezier(.2,.7,.2,1);position:relative;min-height:250px;display:flex;flex-direction:column}
+.card:hover{background:var(--ink);color:var(--paper)}
+.card .num{font-size:11px;color:var(--muted);letter-spacing:.14em}
+.card h3{font-size:21px;font-weight:500;margin:16px 0 10px;letter-spacing:-.02em}
+.card p{font-size:14px;color:var(--muted);transition:.4s;flex:1}
+.card:hover p,.card:hover .num{color:#9BA3A7}
+.card .price{margin-top:20px;display:flex;align-items:center;justify-content:space-between;font-size:13px;padding-top:16px;border-top:1px solid var(--line);transition:.4s}
+.card:hover .price{border-color:rgba(255,255,255,.15)}
+.card .price b{color:var(--accent);font-weight:500}
+.card .ic{width:38px;height:38px;border-radius:11px;background:rgba(11,13,14,.06);display:grid;place-items:center;transition:.4s;position:absolute;top:26px;right:26px}
+.card:hover .ic{background:var(--accent);transform:rotate(90deg)}
+.card svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.4}
+.card:hover .ic svg{stroke:#fff}
+
+/* ---------- SPLIT / USP ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.usp{border-top:1px solid var(--line);padding:22px 0;display:grid;grid-template-columns:34px 1fr;gap:18px;transition:.4s}
+.usp:hover{padding-left:8px}
+.usp b{font-size:16px;font-weight:500;display:block;margin-bottom:5px}
+.usp p{font-size:14px;color:var(--muted)}
+.usp .n{font-size:11px;color:var(--accent);letter-spacing:.1em;padding-top:4px}
+.imgstack{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:1/1.1}
+.imgstack img{width:100%;height:100%;object-fit:cover}
+.float-card{position:absolute;bottom:20px;left:20px;background:var(--paper);border-radius:16px;padding:18px 20px;box-shadow:0 24px 60px -24px rgba(0,0,0,.4);max-width:230px}
+.float-card b{font-family:'Instrument Serif',serif;font-size:34px;line-height:1;display:block}
+.float-card span{font-size:12px;color:var(--muted)}
+
+/* ---------- BOOKING ---------- */
+.booking{background:var(--ink);color:var(--paper);border-radius:28px;overflow:hidden;display:grid;grid-template-columns:.85fr 1.15fr}
+.book-side{padding:46px 40px;background:#0F1315;border-right:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;justify-content:space-between}
+.book-side h2{color:var(--paper);font-size:clamp(30px,3.4vw,44px)}
+.book-side .li{display:flex;gap:11px;font-size:13.5px;color:#9BA3A7;margin-top:14px;align-items:flex-start}
+.book-side .li em{color:var(--accent);font-style:normal}
+.book-main{padding:42px 40px}
+.steps{display:flex;gap:8px;margin-bottom:32px}
+.step{flex:1;height:3px;background:rgba(255,255,255,.13);border-radius:9px;overflow:hidden}
+.step i{display:block;height:100%;width:0;background:var(--accent);transition:.6s cubic-bezier(.2,.7,.2,1)}
+.step.done i,.step.act i{width:100%}
+.step.act i{background:var(--accent)}
+.stepnum{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7C8488;margin-bottom:8px}
+.panel{display:none;animation:fade .45s cubic-bezier(.2,.7,.2,1)}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}}
+.panel h4{font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;margin-bottom:22px;letter-spacing:-.02em}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.opt{border:1px solid rgba(255,255,255,.14);border-radius:13px;padding:15px 16px;cursor:pointer;transition:.3s;background:transparent;color:var(--paper);text-align:left;font-family:inherit}
+.opt:hover{border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
+.opt.sel{border-color:var(--accent);background:rgba(216,65,15,.13)}
+.opt b{display:block;font-size:14.5px;font-weight:500}
+.opt span{font-size:12px;color:#8E9599}
+.times{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.time{padding:11px 4px;text-align:center;font-size:13px}
+.field{margin-bottom:14px}
+.field label{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#7C8488;display:block;margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:12px;padding:13px 15px;color:#fff;font-family:inherit;font-size:14.5px;transition:.3s}
+.field input:focus,.field select,.field textarea:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,.08)}
+.field select option{background:#14181A}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.booknav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:12px}
+.summ{font-size:12.5px;color:#8E9599}
+.summ b{color:#fff;font-weight:500}
+.done{text-align:center;padding:30px 0}
+.done .chk{width:64px;height:64px;border-radius:50%;background:rgba(34,179,107,.15);border:1px solid rgba(34,179,107,.4);display:grid;place-items:center;margin:0 auto 22px;font-size:26px;color:#2ED47F}
+
+/* ---------- PRICING ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pcard{border:1px solid var(--line);border-radius:20px;padding:30px 28px;background:#fff;transition:.45s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(0,0,0,.28)}
+.pcard.feat{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pcard .tag{position:absolute;top:22px;right:22px;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;background:var(--accent);color:#fff;padding:5px 11px;border-radius:99px}
+.pcard h3{font-size:17px;font-weight:500;letter-spacing:-.01em}
+.pcard .amt{font-family:'Instrument Serif',serif;font-size:52px;line-height:1;margin:14px 0 4px}
+.pcard .amt sup{font-size:19px;vertical-align:super;font-family:'Inter';font-weight:400}
+.pcard .from{font-size:12px;color:var(--muted)}
+.pcard ul{list-style:none;margin:24px 0;display:grid;gap:11px}
+.pcard li{font-size:14px;display:flex;gap:10px;color:#3D4347}
+.pcard.feat li{color:#A8B0B4}
+.pcard li em{color:var(--accent);font-style:normal;font-size:12px;padding-top:2px}
+.pcard .btn{width:100%;justify-content:center}
+
+/* ---------- TESTIMONIALS ---------- */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 28px;display:flex;flex-direction:column;transition:.4s}
+.tcard:hover{transform:translateY(-5px);box-shadow:0 26px 50px -28px rgba(0,0,0,.25)}
+.tcard p{font-family:'Instrument Serif',serif;font-size:20px;line-height:1.4;letter-spacing:-.015em;flex:1;margin:16px 0 24px}
+.tcard .who{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:18px}
+.av{width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:500}
+.who b{font-size:14px;font-weight:500;display:block}
+.who span{font-size:12px;color:var(--muted)}
+
+/* ---------- FAQ ---------- */
+.faq{border-top:1px solid var(--line)}
+.q{border-bottom:1px solid var(--line);padding:24px 0;cursor:pointer}
+.q .qt{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:18px;font-weight:450;letter-spacing:-.015em;transition:.3s}
+.q:hover .qt{color:var(--accent)}
+.q .pm{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;flex-shrink:0;transition:.4s;font-size:16px;line-height:1}
+.q.open .pm{transform:rotate(45deg);background:var(--accent);color:#fff;border-color:var(--accent)}
+.q .a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.7,.2,1)}
+.q .a p{padding-top:14px;font-size:15px;color:var(--muted);max-width:70ch}
+
+/* ---------- CONTACT ---------- */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.cform .field label{color:var(--muted)}
+.cform input,.cform textarea,.cform select{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.cform input:focus,.cform textarea:focus{border-color:var(--ink);background:#fff}
+.cform select option{background:#fff;color:var(--ink)}
+.info-row{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.info-row .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);min-width:110px;padding-top:3px}
+.info-row .v{font-size:15px}
+.info-row .v a:hover{color:var(--accent)}
+.map{border-radius:18px;overflow:hidden;margin-top:26px;filter:grayscale(1) contrast(1.05);transition:.6s;border:1px solid var(--line)}
+.map:hover{filter:grayscale(0)}
+.map iframe{display:block;width:100%;height:250px;border:0}
+
+/* ---------- CTA BAND ---------- */
+.band{background:var(--ink);color:var(--paper);border-radius:28px;padding:70px 56px;text-align:center;position:relative;overflow:hidden}
+.band h2{color:#fff;margin:0 auto 18px;max-width:18ch}
+.band p{color:#9BA3A7;max-width:52ch;margin:0 auto 30px;font-size:15.5px}
+.band .glow{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(216,65,15,.35),transparent 65%);top:-220px;left:50%;transform:translateX(-50%);pointer-events:none}
+
+/* ---------- FOOTER ---------- */
+footer{padding:70px 0 34px;border-top:1px solid var(--line)}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
+footer h5{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:500}
+footer ul{list-style:none;display:grid;gap:10px}
+footer li a{font-size:14px;color:#3D4347;transition:.25s}
+footer li a:hover{color:var(--accent)}
+.fbot{margin-top:52px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* mobile sticky bar */
+.mobbar{position:fixed;bottom:0;left:0;right:0;z-index:90;display:none;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(244,242,237,.93);backdrop-filter:blur(16px);border-top:1px solid var(--line)}
+.mobbar .btn{flex:1;justify-content:center;padding:14px}
+
+@media(max-width:1024px){
+  .hero-grid,.split,.contact{grid-template-columns:1fr;gap:44px}
+  .svc,.pgrid,.tgrid{grid-template-columns:1fr 1fr}
+  .booking{grid-template-columns:1fr}
+  .book-side{border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .fgrid{grid-template-columns:1fr 1fr}
+  h1{font-size:clamp(44px,9vw,74px)}
+}
+@media(max-width:760px){
+  nav.links,.navcta .phone,.navcta .btn{display:none}
+  .burger{display:flex}
+  .mobbar{display:flex}
+  body{padding-bottom:74px}
+  section{padding:72px 0}
+  .wrap{padding:0 18px}
+  .svc,.pgrid,.tgrid,.opts,.two{grid-template-columns:1fr}
+  .times{grid-template-columns:repeat(3,1fr)}
+  .hero{padding-top:110px}
+  .hero-visual{aspect-ratio:4/3.4;border-radius:18px}
+  .book-side,.book-main{padding:30px 22px}
+  .band{padding:48px 24px;border-radius:22px}
+  .booking{border-radius:22px}
+  .trustrow{gap:18px}
+  .trustrow div{min-width:44%}
+  .sec-head{margin-bottom:32px}
+  .float-card{left:14px;bottom:14px;padding:14px 16px}
+  .fgrid{grid-template-columns:1fr;gap:28px}
+  .hero-cta .btn{flex:1;justify-content:center}
+}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a href="#top" class="logo">
+      <span class="mark">A</span>
+      <span>Andersen Auto<small>Bilverksted · Sandvika</small></span>
+    </a>
+    <nav class="links">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#verksted">Verkstedet</a>
+      <a href="#priser">Priser</a>
+      <a href="#omtaler">Omtaler</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="navcta">
+      <span class="phone"><span class="dot"></span> 67 54 22 10</span>
+      <a href="#bestill" class="btn btn-dark">Bestill time <span class="arw">→</span></a>
+      <button class="burger" id="burger" aria-label="Meny"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobmenu" id="mobmenu">
+  <div>
+    <a class="ml" href="#tjenester">Tjenester</a>
+    <a class="ml" href="#verksted">Verkstedet</a>
+    <a class="ml" href="#priser">Priser</a>
+    <a class="ml" href="#omtaler">Omtaler</a>
+    <a class="ml" href="#kontakt">Kontakt</a>
+  </div>
+  <div>
+    <a href="#bestill" class="btn btn-light" style="width:100%;justify-content:center;margin-bottom:12px">Bestill time <span class="arw">→</span></a>
+    <p style="color:#8E9599;font-size:13px">Skytterveien 14, 1338 Sandvika<br>Man–fre 07:30–17:00 · Lør 09:00–14:00</p>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow rv">Godkjent kontrollorgan <span>·</span> Statens vegvesen <span>·</span> Est. 1998</p>
+        <h1 class="rv" style="margin-top:22px">Verkstedet som<br>faktisk <em>holder</em><br>det de lover.</h1>
+        <p class="lead rv">EU-kontroll, service og reparasjon for privatpersoner og bedrifter i Bærum. Fastpris før vi starter, digital statusoppdatering underveis, og bilen klar til avtalt tid.</p>
+        <div class="hero-cta rv">
+          <a href="#bestill" class="btn btn-dark">Bestill time <span class="arw">→</span></a>
+          <a href="#priser" class="btn btn-ghost">Se priser</a>
+        </div>
+        <div class="trustrow rv">
+          <div><b>4,9</b><span>av 5 · 412 omtaler</span></div>
+          <div><b>27 år</b><span>i samme lokaler</span></div>
+          <div><b>18 400</b><span>EU-kontroller utført</span></div>
+          <div><b>0 kr</b><span>for feilsøking ved reparasjon</span></div>
+        </div>
+      </div>
+      <div class="hero-visual rv">
+        <img src="images/photo-02.jpg" alt="Mekaniker inspiserer bil på løftebukk hos Andersen Auto">
+        <div class="badge">
+          <div><b>Ledig time allerede i morgen</b><small>Sandvika · 3 løftebukker ledig denne uken</small></div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marq">
+  <div id="marq">
+    <span>EU-kontroll fra 690,–</span><span><i>◆</i></span><span>Alle merker · beholdt nybilgaranti</span><span><i>◆</i></span><span>Dekkhotell med henting</span><span><i>◆</i></span><span>Gratis lånebil</span><span><i>◆</i></span><span>Fastpris før oppstart</span><span><i>◆</i></span><span>Bosch Car Service-standard</span><span><i>◆</i></span>
+  </div>
+</div>
+
+<!-- TJENESTER -->
+<section id="tjenester">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">01 — Tjenester</p>
+        <h2 class="rv" style="margin-top:14px">Alt bilen trenger,<br><em>under ett tak.</em></h2>
+      </div>
+      <p class="rv">Fra lovpålagt EU-kontroll til avansert elektronisk feilsøking. Vi jobber på alle merker med originaldeler eller likeverdige kvalitetsdeler — uten at du mister nybilgarantien.</p>
+    </div>
+    <div class="svc rv" id="svcgrid"></div>
+  </div>
+</section>
+
+<!-- VERKSTED / USP -->
+<section id="verksted" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="split">
+      <div class="imgstack rv">
+        <img src="images/photo-01.jpg" alt="Moderne verkstedhall">
+        <div class="float-card"><b>94 %</b><span>av alle jobber ferdigstilles samme dag som innlevering</span></div>
+      </div>
+      <div>
+        <p class="eyebrow rv">02 — Hvorfor Andersen Auto</p>
+        <h2 class="rv" style="margin:14px 0 26px">Teknisk presisjon.<br><em>Null overraskelser.</em></h2>
+        <div class="rv">
+          <div class="usp"><span class="n">01</span><div><b>Fastpris før vi løfter en skiftenøkkel</b><p>Du får skriftlig tilbud på SMS eller e-post. Dukker det opp noe underveis, ringer vi før vi gjør noe som helst.</p></div></div>
+          <div class="usp"><span class="n">02</span><div><b>Digital servicehistorikk</b><p>Alt loggføres i DBS og Autodata. Du får bilder av slitedeler og en lenke til full rapport når jobben er ferdig.</p></div></div>
+          <div class="usp"><span class="n">03</span><div><b>Lånebil eller henting inkludert</b><p>Vi henter bilen på jobb eller hjemme i Bærum og Asker. Tre lånebiler står klare — kostnadsfritt ved service.</p></div></div>
+          <div class="usp" style="border-bottom:1px solid var(--line)"><span class="n">04</span><div><b>Sertifiserte teknikere</b><p>Syv fagbrev i teamet, godkjent kontrollorgan for EU-kontroll og sertifisert for arbeid på høyvoltsystemer i elbil.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="bestill">
+  <div class="wrap">
+    <div class="booking rv">
+      <div class="book-side">
+        <div>
+          <p class="eyebrow" style="color:#7C8488">03 — Bestill time</p>
+          <h2 style="margin:14px 0 22px">Fire steg.<br><em>Under ett minutt.</em></h2>
+          <div class="li"><em>◆</em><span>Bekreftelse på SMS innen 30 minutter i åpningstiden</span></div>
+          <div class="li"><em>◆</em><span>Uforpliktende — du kan endre eller avlyse fritt</span></div>
+          <div class="li"><em>◆</em><span>Vi sjekker regnr. mot Vegvesenet og finner riktig servicepakke</span></div>
+        </div>
+        <div style="margin-top:34px;padding-top:22px;border-top:1px solid rgba(255,255,255,.09)">
+          <p style="font-size:13px;color:#8E9599">Heller ringe? <a href="tel:+4767542210" style="color:#fff;border-bottom:1px solid var(--accent)">67 54 22 10</a></p>
+        </div>
+      </div>
+      <div class="book-main">
+        <div class="steps">
+          <div class="step act" data-s="1"><i></i></div>
+          <div class="step" data-s="2"><i></i></div>
+          <div class="step" data-s="3"><i></i></div>
+          <div class="step" data-s="4"><i></i></div>
+        </div>
+        <div class="stepnum" id="stepnum">Steg 1 av 4</div>
+
+        <div class="panel on" data-p="1">
+          <h4>Hva skal vi hjelpe deg med?</h4>
+          <div class="opts" id="svcOpts"></div>
+        </div>
+
+        <div class="panel" data-p="2">
+          <h4>Fortell oss om bilen</h4>
+          <div class="opts" style="margin-bottom:18px" id="typeOpts">
+            <button class="opt" data-v="Personbil"><b>Personbil</b><span>Bensin / diesel / hybrid</span></button>
+            <button class="opt" data-v="Elbil"><b>Elbil</b><span>Høyvolt-sertifisert</span></button>
+            <button class="opt" data-v="Varebil"><b>Varebil</b><span>Inntil 3 500 kg</span></button>
+            <button class="opt" data-v="Firmabil / flåte"><b>Firmabil / flåte</b><span>Avtalepris</span></button>
+          </div>
+          <div class="two">
+            <div class="field"><label>Registreringsnummer</label><input id="regnr" placeholder="EL 12345" maxlength="9"></div>
+            <div class="field"><label>Merke og modell</label><input id="modell" placeholder="Volvo XC60 2019"></div>
+          </div>
+        </div>
+
+        <div class="panel" data-p="3">
+          <h4>Når passer det?</h4>
+          <div class="field"><label>Velg dag</label><div class="opts" id="dayOpts"></div></div>
+          <div class="field" style="margin-top:18px"><label>Velg klokkeslett</label><div class="times" id="timeOpts"></div></div>
+        </div>
+
+        <div class="panel" data-p="4">
+          <h4>Kontaktinformasjon</h4>
+          <div class="two">
+            <div class="field"><label>Navn</label><input id="bnavn" placeholder="Ola Nordmann"></div>
+            <div class="field"><label>Telefon</label><input id="btlf" placeholder="900 00 000"></div>
+          </div>
+          <div class="field"><label>E-post</label><input id="bmail" placeholder="ola@epost.no"></div>
+          <div class="field"><label>Kommentar (valgfritt)</label><textarea id="bkom" rows="2" placeholder="Ulyd fra høyre forhjul ved lav fart..."></textarea></div>
+        </div>
+
+        <div class="panel" data-p="5">
+          <div class="done">
+            <div class="chk">✓</div>
+            <h4 style="margin-bottom:10px">Timen er reservert</h4>
+            <p style="color:#8E9599;font-size:14.5px;max-width:44ch;margin:0 auto" id="doneTxt"></p>
+            <button class="btn btn-light" style="margin-top:26px" onclick="resetBook()">Bestill en time til</button>
+          </div>
+        </div>
+
+        <div class="booknav" id="booknav">
+          <div class="summ" id="summ">Velg en tjeneste for å starte</div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-ghost" id="prev" style="border-color:rgba(255,255,255,.18);color:#fff;display:none">Tilbake</button>
+            <button class="btn btn-light" id="next">Neste <span class="arw">→</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRISER -->
+<section id="priser" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">04 — Priser</p>
+        <h2 class="rv" style="margin-top:14px">Tydelige priser,<br><em>ingen skjulte tillegg.</em></h2>
+      </div>
+      <p class="rv">Alle priser inkluderer mva. og miljøgebyr. Endelig pris bekreftes skriftlig etter at vi har sett bilen — den blir aldri høyere uten at du har godkjent den.</p>
+    </div>
+    <div class="pgrid">
+      <div class="pcard rv">
+        <h3>EU-kontroll</h3>
+        <div class="amt">690<sup>,–</sup></div>
+        <div class="from">Personbil inntil 3 500 kg</div>
+        <ul>
+          <li><em>✓</em> Full kontroll etter Vegvesenets krav</li>
+          <li><em>✓</em> Digital rapport samme dag</li>
+          <li><em>✓</em> Gratis etterkontroll innen 30 dager</li>
+          <li><em>✓</em> Vi melder inn til Vegvesenet</li>
+        </ul>
+        <a href="#bestill" class="btn btn-ghost" data-pick="EU-kontroll">Bestill EU-kontroll</a>
+      </div>
+      <div class="pcard feat rv">
+        <span class="tag">Mest valgt</span>
+        <h3>Storservice</h3>
+        <div class="amt">3 490<sup>,–</sup></div>
+        <div class="from" style="color:#8E9599">Fra-pris, avhengig av modell</div>
+        <ul>
+          <li><em>✓</em> Olje- og filterskift (originalkvalitet)</li>
+          <li><em>✓</em> Luft-, pollen- og drivstoffilter</li>
+          <li><em>✓</em> 42-punkts sikkerhetssjekk</li>
+          <li><em>✓</em> Feilkodelesing og nullstilling</li>
+          <li><em>✓</em> Servicehefte stemplet · garanti beholdt</li>
+        </ul>
+        <a href="#bestill" class="btn btn-light" data-pick="Storservice">Bestill storservice</a>
+      </div>
+      <div class="pcard rv">
+        <h3>Dekkskift &amp; hotell</h3>
+        <div class="amt">790<sup>,–</sup></div>
+        <div class="from">Hjulskift · dekkhotell 1 290,– / sesong</div>
+        <ul>
+          <li><em>✓</em> Avbalansering og trykkontroll</li>
+          <li><em>✓</em> Vask og måling av mønsterdybde</li>
+          <li><em>✓</em> Lagring i temperert hotell</li>
+          <li><em>✓</em> Vi minner deg på når det nærmer seg</li>
+        </ul>
+        <a href="#bestill" class="btn btn-ghost" data-pick="Dekkskift / dekkhotell">Bestill dekkskift</a>
+      </div>
+    </div>
+    <div class="rv" style="margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden" id="pricelist"></div>
+  </div>
+</section>
+
+<!-- OMTALER -->
+<section id="omtaler">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow rv">05 — Kundeomtaler</p>
+        <h2 class="rv" style="margin-top:14px">4,9 av 5 fra<br><em>412 kunder.</em></h2>
+      </div>
+      <p class="rv">Vi ber alle kunder om en ærlig tilbakemelding etter besøk. Under er et utvalg fra de siste månedene.</p>
+    </div>
+    <div class="tgrid" id="tgrid"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="split" style="align-items:start;gap:72px">
+      <div>
+        <p class="eyebrow rv">06 — Spørsmål</p>
+        <h2 class="rv" style="margin:14px 0 18px">Det folk<br><em>lurer på.</em></h2>
+        <p class="rv" style="color:var(--muted);font-size:15px">Finner du ikke svaret? Ring oss på <a href="tel:+4767542210" style="border-bottom:1px solid var(--accent)">67 54 22 10</a> — vi svarer som regel innen tre ring.</p>
+      </div>
+      <div class="faq rv" id="faq"></div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <p class="eyebrow rv">07 — Kontakt</p>
+        <h2 class="rv" style="margin:14px 0 26px">Kom innom,<br><em>eller skriv til oss.</em></h2>
+        <div class="rv">
+          <div class="info-row" style="border-top:1px solid var(--line)"><span class="k">Adresse</span><span class="v">Skytterveien 14<br>1338 Sandvika</span></div>
+          <div class="info-row"><span class="k">Telefon</span><span class="v"><a href="tel:+4767542210">67 54 22 10</a></span></div>
+          <div class="info-row"><span class="k">E-post</span><span class="v"><a href="mailto:post@andersenauto.no">post@andersenauto.no</a></span></div>
+          <div class="info-row"><span class="k">Åpningstider</span><span class="v">Man–fre 07:30–17:00<br>Lørdag 09:00–14:00<br><span style="color:var(--muted);font-size:13.5px">Søndag stengt</span></span></div>
+          <div class="info-row"><span class="k">Org.nr</span><span class="v">986 214 507 MVA</span></div>
+        </div>
+        <div class="map rv">
+          <iframe loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=10.51%2C59.88%2C10.56%2C59.90&layer=mapnik" title="Kart"></iframe>
+        </div>
+      </div>
+      <div class="cform rv">
+        <div style="background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px 30px">
+          <h3 style="font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;margin-bottom:6px">Få pristilbud</h3>
+          <p style="font-size:14px;color:var(--muted);margin-bottom:24px">Beskriv kort hva du trenger, så får du et uforpliktende tilbud innen én arbeidsdag.</p>
+          <form id="cform">
+            <div class="two">
+              <div class="field"><label>Navn *</label><input required placeholder="Ola Nordmann"></div>
+              <div class="field"><label>Telefon *</label><input required placeholder="900 00 000"></div>
+            </div>
+            <div class="field"><label>E-post *</label><input required type="email" placeholder="ola@epost.no"></div>
+            <div class="two">
+              <div class="field"><label>Regnr.</label><input placeholder="EL 12345"></div>
+              <div class="field"><label>Gjelder</label><select id="csel"></select></div>
+            </div>
+            <div class="field"><label>Melding</label><textarea rows="4" placeholder="Bilen brummer ved 80 km/t, og EU-kontrollen går ut i mars."></textarea></div>
+            <button class="btn btn-dark" style="width:100%;justify-content:center" type="submit">Send forespørsel <span class="arw">→</span></button>
+            <p style="font-size:11.5px;color:var(--muted);margin-top:14px;text-align:center">Vi lagrer aldri opplysningene lenger enn nødvendig. Se personvernerklæringen.</p>
+          </form>
+          <div id="csent" style="display:none;text-align:center;padding:26px 0">
+            <div style="width:56px;height:56px;border-radius:50%;background:rgba(34,179,107,.12);color:#1FA35F;display:grid;place-items:center;font-size:24px;margin:0 auto 18px">✓</div>
+            <h4 style="font-family:'Instrument Serif',serif;font-size:24px;font-weight:400">Takk for henvendelsen!</h4>
+            <p style="font-size:14px;color:var(--muted);margin-top:8px">Vi tar kontakt innen én arbeidsdag.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band rv">
+      <div class="glow"></div>
+      <p class="eyebrow" style="color:#7C8488;position:relative">Klar når du er</p>
+      <h2 style="margin-top:16px">Bilen fortjener et verksted du kan stole på.</h2>
+      <p>Bestill time på under ett minutt — vi bekrefter på SMS og holder deg oppdatert hele veien.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative">
+        <a href="#bestill" class="btn btn-light">Bestill time <span class="arw">→</span></a>
+        <a href="tel:+4767542210" class="btn btn-ghost" style="border-color:rgba(255,255,255,.22);color:#fff">Ring 67 54 22 10</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a href="#top" class="logo" style="margin-bottom:16px"><span class="mark">A</span><span>Andersen Auto<small>Bilverksted · Sandvika</small></span></a>
+        <p style="font-size:14px;color:var(--muted);max-width:34ch">Familiedrevet bilverksted siden 1998. Godkjent kontrollorgan for EU-kontroll og medlem av Norges Bilbransjeforbund.</p>
+      </div>
+      <div><h5>Tjenester</h5><ul>
+        <li><a href="#tjenester">EU-kontroll</a></li><li><a href="#tjenester">Service</a></li><li><a href="#tjenester">Bremser</a></li><li><a href="#tjenester">Dekkskift</a></li><li><a href="#tjenester">AC-service</a></li></ul></div>
+      <div><h5>Selskap</h5><ul>
+        <li><a href="#verksted">Om oss</a></li><li><a href="#omtaler">Omtaler</a></li><li><a href="#priser">Priser</a></li><li><a href="#kontakt">Kontakt</a></li><li><a href="#kontakt">Bedriftsavtale</a></li></ul></div>
+      <div><h5>Kontakt</h5><ul>
+        <li><a href="tel:+4767542210">67 54 22 10</a></li><li><a href="mailto:post@andersenauto.no">post@andersenauto.no</a></li><li><a href="#kontakt">Skytterveien 14, 1338 Sandvika</a></li></ul></div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Andersen Auto AS · Org.nr 986 214 507 MVA</span>
+      <span>Personvern · Vilkår · Design av et fiktivt byrå</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobbar">
+  <a href="tel:+4767542210" class="btn btn-ghost">Ring oss</a>
+  <a href="#bestill" class="btn btn-dark">Bestill time</a>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+const services=[
+ {t:"EU-kontroll",d:"Godkjent kontrollorgan. Vi kontrollerer, melder inn og gir gratis etterkontroll.",p:"fra 690,–",i:"M9 12l2 2 4-4"},
+ {t:"Service",d:"Liten og stor service på alle merker — med full nybilgaranti i behold.",p:"fra 1 890,–",i:"M12 6v6l4 2"},
+ {t:"Bremser",d:"Klosser, skiver og bremsevæske. Måling og dokumentert restlevetid.",p:"fra 2 290,–",i:"M12 3v18M3 12h18"},
+ {t:"Feilsøking & diagnose",d:"Autel- og Bosch-diagnose på motor, elektronikk og førerassistanse.",p:"fra 950,–",i:"M4 17l6-6 4 4 6-8"},
+ {t:"Dekkskift & dekkhotell",d:"Hjulskift, avbalansering og temperert lagring med henting i Bærum.",p:"fra 790,–",i:"M12 3a9 9 0 100 18 9 9 0 000-18zM12 8v8"},
+ {t:"AC-service",d:"Rens, lekkasjetest og påfylling av R134a eller R1234yf.",p:"fra 1 490,–",i:"M12 3v18M5 7l14 10M19 7L5 17"}
+];
+const grid=document.getElementById('svcgrid');
+services.forEach((s,i)=>{
+  grid.insertAdjacentHTML('beforeend',`<div class="card"><span class="num">0${i+1}</span>
+  <span class="ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="${s.i}"/></svg></span>
+  <h3>${s.t}</h3><p>${s.d}</p><div class="price"><span>Pris</span><b>${s.p}</b></div></div>`);
+});
+
+const pris=[["Oljeskift med filter","fra 1 190,–"],["Bremsevæskeskift","1 090,–"],["Batteribytte","fra 1 690,–"],["Hjulstilling 4-hjul","1 590,–"],["Girolje / DSG-service","fra 2 890,–"],["Clutchbytte","fra 9 900,–"],["Frontrutebytte","fra 3 490,–"],["Elbil-sjekk høyvolt","1 290,–"]];
+document.getElementById('pricelist').innerHTML=pris.map(p=>`<div style="background:var(--paper);padding:20px 22px"><div style="font-size:14px;margin-bottom:5px">${p[0]}</div><div style="font-size:13px;color:var(--accent)">${p[1]}</div></div>`).join('');
+
+const oms=[
+ ["Bilen var ferdig fire timer før avtalt tid, og de sendte bilder av de slitte bremseklossene før de gjorde noe. Det er sånn et verksted skal drives.","Marte Kirkeng","Privatkunde · Volvo V60"],
+ ["Vi har ni varebiler på avtale her. På tre år har vi aldri hatt en faktura som avvek fra tilbudet. Forutsigbarhet er alt for oss.","Jonas Wiik","Wiik Elektro AS · Flåtekunde"],
+ ["Fikk EU-kontroll på dagen da jeg hadde glemt fristen. Vennlige, ryddige og ærlige — anbefaler dem til alle i Bærum.","Silje Haugen","Privatkunde · Toyota RAV4"]
+];
+document.getElementById('tgrid').innerHTML=oms.map(o=>`<div class="tcard"><div class="stars">★★★★★</div><p>«${o[0]}»</p><div class="who"><div class="av">${o[1].split(' ').map(x=>x[0]).join('')}</div><div><b>${o[1]}</b><span>${o[2]}</span></div></div></div>`).join('');
+
+const faqs=[
+ ["Mister jeg nybilgarantien om jeg bruker dere?","Nei. EUs gruppeunntak gir deg full rett til å velge verksted. Vi bruker originaldeler eller likeverdige kvalitetsdeler, følger produsentens serviceprogram og stempler serviceheftet digitalt."],
+ ["Hvor lang tid tar en EU-kontroll?","Selve kontrollen tar 30–45 minutter, og du kan vente i kundeområdet vårt. Vi melder resultatet inn til Statens vegvesen samme dag."],
+ ["Får jeg lånebil?","Ja — vi har tre lånebiler som er kostnadsfrie ved service og større reparasjoner. Ved kortere jobber kan vi hente og levere bilen din i Bærum og Asker."],
+ ["Hva koster feilsøking?","Diagnose koster fra 950,–. Velger du å utføre reparasjonen hos oss, trekker vi hele diagnosekostnaden fra sluttsummen."],
+ ["Tar dere elbiler?","Ja. To av teknikerne våre er sertifisert for arbeid på høyvoltsystemer, og vi utfører service, bremser, dekk og batterihelsesjekk på de fleste elbilmodeller."],
+ ["Kan bedriften vår få egen avtale?","Absolutt. Vi tilbyr flåteavtaler med prioritert innlevering, faste rabatter, månedlig samlefaktura og servicerapport per bil. Ta kontakt for et tilbud."]
+];
+document.getElementById('faq').innerHTML=faqs.map(f=>`<div class="q"><div class="qt"><span>${f[0]}</span><span class="pm">+</span></div><div class="a"><p>${f[1]}</p></div></div>`).join('');
+document.querySelectorAll('.q').forEach(q=>q.addEventListener('click',()=>{
+  const open=q.classList.contains('open');
+  document.querySelectorAll('.q').forEach(o=>{o.classList.remove('open');o.querySelector('.a').style.maxHeight=null});
+  if(!open){q.classList.add('open');const a=q.querySelector('.a');a.style.maxHeight=a.scrollHeight+'px'}
+}));
+
+/* contact select */
+document.getElementById('csel').innerHTML=['Velg...','EU-kontroll','Service','Bremser','Feilsøking','Dekk / dekkhotell','AC-service','Bedriftsavtale','Annet'].map(o=>`<option>${o}</option>`).join('');
+
+/* ---------- BOOKING ---------- */
+const B={svc:null,type:null,day:null,time:null};
+const so=document.getElementById('svcOpts');
+[["EU-kontroll","fra 690,– · 45 min"],["Service","fra 1 890,– · 2–4 t"],["Bremser","fra 2 290,– · 2 t"],["Feilsøking / diagnose","fra 950,– · 1 t"],["Dekkskift / dekkhotell","fra 790,– · 30 min"],["AC-service","fra 1 490,– · 1 t"]]
+ .forEach(s=>so.insertAdjacentHTML('beforeend',`<button class="opt" data-v="${s[0]}"><b>${s[0]}</b><span>${s[1]}</span></button>`));
+
+const dager=['søn','man','tir','ons','tor','fre','lør'],mnd=['jan','feb','mar','apr','mai','jun','jul','aug','sep','okt','nov','des'];
+const dop=document.getElementById('dayOpts');dop.style.gridTemplateColumns='repeat(4,1fr)';
+let d=new Date(),c=0;
+while(c<4){d.setDate(d.getDate()+1);if(d.getDay()!==0){dop.insertAdjacentHTML('beforeend',`<button class="opt" style="text-align:center" data-v="${dager[d.getDay()]} ${d.getDate()}. ${mnd[d.getMonth()]}"><b>${dager[d.getDay()]}</b><span>${d.getDate()}. ${mnd[d.getMonth()]}</span></button>`);c++}}
+document.getElementById('timeOpts').innerHTML=['07:30','09:00','10:30','12:00','13:30','15:00','16:00'].map(t=>`<button class="opt time" data-v="${t}">${t}</button>`).join('');
+
+function bind(sel,key){document.querySelectorAll(sel+' .opt').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll(sel+' .opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');B[key]=b.dataset.v;sum();
+}))}
+bind('#svcOpts','svc');bind('#typeOpts','type');bind('#dayOpts','day');bind('#timeOpts','time');
+
+function sum(){
+  const p=[B.svc,B.type,B.day&&B.time?B.day+' kl. '+B.time:null].filter(Boolean);
+  document.getElementById('summ').innerHTML=p.length?p.map(x=>`<b>${x}</b>`).join(' · '):'Velg en tjeneste for å starte';
+}
+let step=1;
+function go(n){
+  step=n;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',+p.dataset.p===n));
+  document.querySelectorAll('.step').forEach(s=>{s.classList.toggle('done',+s.dataset.s<n);s.classList.toggle('act',+s.dataset.s===n)});
+  document.getElementById('stepnum').textContent=n<5?`Steg ${n} av 4`:'Ferdig';
+  document.getElementById('prev').style.display=n>1&&n<5?'inline-flex':'none';
+  document.getElementById('booknav').style.display=n<5?'flex':'none';
+  document.getElementById('next').innerHTML=n===4?'Bekreft bestilling <span class="arw">→</span>':'Neste <span class="arw">→</span>';
+}
+document.getElementById('next').addEventListener('click',()=>{
+  if(step===1&&!B.svc)return shake('#svcOpts');
+  if(step===2&&!B.type)return shake('#typeOpts');
+  if(step===3&&(!B.day||!B.time))return shake('#dayOpts');
+  if(step===4){
+    const n=document.getElementById('bnavn').value||'';
+    if(!n)return shake('.panel[data-p="4"]');
+    document.getElementById('doneTxt').innerHTML=`Takk, ${n.split(' ')[0]}! Vi har reservert <b style="color:#fff">${B.svc}</b> for ${B.type.toLowerCase()} <b style="color:#fff">${B.day} kl. ${B.time}</b>. Du får en SMS-bekreftelse innen kort tid.`;
+    go(5);return;
+  }
+  go(step+1);
+});
+document.getElementById('prev').addEventListener('click',()=>go(step-1));
+function shake(s){const e=document.querySelector(s);e.animate([{transform:'translateX(0)'},{transform:'translateX(-7px)'},{transform:'translateX(7px)'},{transform:'translateX(0)'}],{duration:280})}
+function resetBook(){Object.keys(B).forEach(k=>B[k]=null);document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));['bnavn','btlf','bmail','bkom','regnr','modell'].forEach(i=>document.getElementById(i).value='');sum();go(1)}
+go(1);
+
+/* price card -> booking prefill */
+document.querySelectorAll('[data-pick]').forEach(a=>a.addEventListener('click',()=>{
+  const v=a.dataset.pick.includes('Service')?'Service':a.dataset.pick;
+  const t=[...document.querySelectorAll('#svcOpts .opt')].find(o=>o.dataset.v===v||o.dataset.v.startsWith(v.split(' ')[0]));
+  if(t){setTimeout(()=>{t.click();go(1)},400)}
+}));
+
+/* contact form */
+document.getElementById('cform').addEventListener('submit',e=>{
+  e.preventDefault();e.target.style.display='none';document.getElementById('csent').style.display='block';
+});
+
+/* ---------- UI ---------- */
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('solid',scrollY>30));
+const bg=document.getElementById('burger'),mm=document.getElementById('mobmenu');
+bg.addEventListener('click',()=>{bg.classList.toggle('on');mm.classList.toggle('open');document.body.style.overflow=mm.classList.contains('open')?'hidden':''});
+mm.querySelectorAll('a').forEach((a,i)=>{a.style.animationDelay=(i*.06+.15)+'s';a.addEventListener('click',()=>{bg.classList.remove('on');mm.classList.remove('open');document.body.style.overflow=''})});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach((e,i)=>{e.style.transitionDelay=(i%4*.07)+'s';io.observe(e)});
+
+const m=document.getElementById('marq');m.innerHTML+=m.innerHTML;
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

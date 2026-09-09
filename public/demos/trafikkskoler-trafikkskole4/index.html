@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>DrivePro Trafikkskole — Oslo | Lær å kjøre på ekte</title>
+  <meta name="description" content="DrivePro er trafikkskolen i Oslo for deg som vil bli en trygg, våken sjåfør — ikke bare bestå. Klasse B manuell og automat, intensivpakker, teori og sikkerhetskurs." />
+  <meta name="theme-color" content="#11110F" />
+  <link rel="icon" href="images/image-01.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F2EDE3;
+      --bg-deep: #E7E0D2;
+      --paper: #FFFBF4;
+      --ink: #11110F;
+      --ink-2: #2C2A26;
+      --muted: #6E6A62;
+      --line: rgba(17,17,15,.12);
+      --accent: #FF3B00;
+      --accent-deep: #C92D00;
+      --lime: #D6FF3C;
+      --forest: #16352C;
+      --forest-2: #1F4A3D;
+      --ok: #1F7A4D;
+      --shadow: 0 18px 50px rgba(17,17,15,.12);
+      --radius: 22px;
+      --nav-h: 76px;
+      --ease: cubic-bezier(.22,1,.36,1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--ink); }
+    body {
+      font-family: Outfit, system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      overflow-x: hidden;
+      cursor: default;
+    }
+    img, svg { display: block; max-width: 100%; }
+    button, input, select, textarea { font-family: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: 0; background: none; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+    .wrap-wide { width: min(1360px, calc(100% - 32px)); margin-inline: auto; }
+
+    h1, h2, h3, .display {
+      font-family: Syne, Outfit, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: .92;
+    }
+
+    ::selection { background: var(--lime); color: var(--ink); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    body::before {
+      content: "";
+      pointer-events: none;
+      position: fixed; inset: 0; z-index: 80;
+      opacity: .035;
+      background-image: url("images/image-02.svg");
+    }
+
+    /* LOADER */
+    #loader {
+      position: fixed; inset: 0; z-index: 100;
+      background: var(--ink);
+      color: var(--lime);
+      display: grid;
+      place-items: center;
+      transition: transform .9s var(--ease), opacity .6s ease;
+    }
+    #loader.out { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+    .loader-inner { text-align: center; width: min(420px, 80vw); }
+    .loader-kicker { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #9aa; margin-bottom: 18px; }
+    .loader-title { font-family: Syne, sans-serif; font-size: clamp(42px, 8vw, 72px); font-weight: 800; letter-spacing: -.05em; }
+    .bar { height: 3px; background: #2a2a28; margin-top: 28px; overflow: hidden; border-radius: 99px; }
+    .bar > i { display: block; height: 100%; width: 0; background: var(--lime); animation: load 1.55s var(--ease) forwards; }
+    @keyframes load { to { width: 100%; } }
+
+    /* NAV */
+    header.nav {
+      position: sticky; top: 0; z-index: 50;
+      height: var(--nav-h);
+      display: flex; align-items: center;
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s, background .3s;
+    }
+    header.nav.scrolled { border-bottom-color: var(--line); background: color-mix(in srgb, var(--bg) 92%, #fff); }
+    .nav-inner { width: min(1360px, calc(100% - 32px)); margin: 0 auto; display: flex; align-items: center; gap: 28px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: Syne, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -.04em; }
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: var(--ink); color: var(--lime);
+      display: grid; place-items: center;
+      font-size: 11px; font-weight: 800; letter-spacing: 0;
+    }
+    .nav-links { display: flex; gap: 22px; margin-left: auto; font-size: 14.5px; font-weight: 500; color: var(--ink-2); }
+    .nav-links a { position: relative; }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0;
+      background: var(--accent); transition: width .3s var(--ease);
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      margin-left: 8px;
+      background: var(--ink); color: var(--lime);
+      padding: 11px 18px; border-radius: 999px;
+      font-weight: 600; font-size: 14px;
+      transition: transform .25s var(--ease), background .25s;
+    }
+    .nav-cta:hover { transform: translateY(-2px); background: #000; }
+    .burger {
+      display: none; margin-left: auto; width: 44px; height: 44px;
+      border-radius: 12px; border: 1px solid var(--line);
+      place-items: center; gap: 5px; flex-direction: column;
+    }
+    .burger span { display: block; width: 18px; height: 2px; background: var(--ink); }
+
+    /* HERO */
+    .hero { padding: 18px 0 40px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+    .hero-copy { padding: 18px 8px 10px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--paper); border: 1px solid var(--line);
+      padding: 7px 12px 7px 8px; border-radius: 999px;
+      font-size: 13px; font-weight: 500; color: var(--ink-2);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.15); }
+    .hero h1 {
+      font-size: clamp(52px, 7.4vw, 108px);
+      margin: 22px 0 22px;
+      max-width: 11ch;
+    }
+    .hero h1 em {
+      font-style: normal; color: var(--accent);
+    }
+    .hero-lead {
+      font-size: 19px; color: var(--ink-2); max-width: 42ch; font-weight: 400;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 15px 22px; border-radius: 999px; font-weight: 600; font-size: 15px;
+      transition: transform .25s var(--ease), background .25s, color .25s, box-shadow .25s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: var(--accent-deep); }
+    .btn-ink { background: var(--ink); color: var(--lime); }
+    .btn-ghost { background: transparent; border: 1.5px solid var(--ink); color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: #fff; }
+    .hero-meta { display: flex; gap: 28px; margin-top: 38px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .hero-meta b { display: block; font-family: Syne, sans-serif; font-size: 28px; letter-spacing: -.04em; }
+    .hero-meta span { font-size: 13px; color: var(--muted); }
+
+    .hero-panel {
+      background: var(--ink); color: #f4f1ea;
+      border-radius: 32px; padding: 26px;
+      position: relative; overflow: hidden; min-height: 540px;
+      display: flex; flex-direction: column;
+    }
+    .hero-panel::before {
+      content: "B";
+      position: absolute; right: -18px; bottom: -70px;
+      font-family: Syne, sans-serif; font-size: 340px; font-weight: 800;
+      color: transparent; -webkit-text-stroke: 1.5px rgba(214,255,60,.18);
+      line-height: 1; pointer-events: none;
+    }
+    .panel-top { display: flex; justify-content: space-between; align-items: flex-start; z-index: 1; }
+    .panel-kicker { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: #9a978e; }
+    .live-pill {
+      background: var(--lime); color: var(--ink); font-weight: 700; font-size: 12px;
+      padding: 6px 10px; border-radius: 999px;
+    }
+    .speed {
+      margin: 36px auto 8px; width: 240px; height: 240px; position: relative; z-index: 1;
+    }
+    .speed svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .speed-label {
+      position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
+    }
+    .speed-label strong {
+      font-family: Syne, sans-serif; font-size: 64px; letter-spacing: -.06em; display: block; line-height: .9;
+    }
+    .speed-label small { color: #aaa; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+    .next-slot {
+      margin-top: auto; z-index: 1;
+      background: #1c1c19; border-radius: 20px; padding: 16px 18px;
+      display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; align-items: center;
+    }
+    .next-slot p { font-size: 13px; color: #bdb8ad; }
+    .next-slot b { font-size: 16px; }
+    .mini-cta {
+      background: var(--lime); color: var(--ink); font-weight: 700; font-size: 13px;
+      padding: 10px 14px; border-radius: 999px;
+    }
+
+    .marquee {
+      margin-top: 28px; border-block: 1px solid var(--line);
+      overflow: hidden; padding: 14px 0; white-space: nowrap;
+    }
+    .marquee-track { display: inline-flex; gap: 0; animation: marq 28s linear infinite; }
+    .marquee span {
+      font-family: Syne, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .08em;
+      padding: 0 22px; color: var(--ink-2);
+    }
+    .marquee span i { color: var(--accent); font-style: normal; }
+    @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SECTIONS */
+    section { padding: 88px 0; }
+    .sec-kicker {
+      font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); font-weight: 600;
+    }
+    .sec-title { font-size: clamp(36px, 5vw, 64px); margin: 10px 0 18px; max-width: 16ch; }
+    .sec-lead { color: var(--ink-2); max-width: 48ch; font-size: 18px; }
+
+    /* JOURNEY */
+    .journey { background: var(--forest); color: #F3EEE4; border-radius: 0; }
+    .journey .sec-kicker { color: #9cb8ac; }
+    .journey .sec-lead { color: #d5e4dc; }
+    .journey-layout {
+      display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; margin-top: 42px;
+    }
+    .journey-sticky { position: sticky; top: 100px; align-self: start; }
+    .path { display: flex; flex-direction: column; }
+    .step {
+      display: grid; grid-template-columns: 56px 1fr; gap: 16px;
+      padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08);
+      text-align: left; color: inherit; width: 100%;
+    }
+    .step:hover .step-num, .step.active .step-num { background: var(--lime); color: var(--ink); }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      display: grid; place-items: center;
+      font-family: Syne, sans-serif; font-weight: 800; transition: .25s;
+    }
+    .step h3 { font-size: 22px; margin-bottom: 4px; }
+    .step p { color: #c5d4cc; font-size: 14.5px; }
+    .step.active h3 { color: var(--lime); }
+    .step-detail {
+      background: #10261f; border-radius: 28px; padding: 32px;
+      min-height: 420px;
+    }
+    .detail-tag {
+      display: inline-block; background: var(--lime); color: var(--ink);
+      font-weight: 700; font-size: 12px; padding: 6px 10px; border-radius: 999px; margin-bottom: 16px;
+    }
+    .step-detail h3 { font-size: 36px; margin-bottom: 12px; }
+    .step-detail p { color: #d7e6de; font-size: 16.5px; max-width: 46ch; }
+    .hours { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+    .hours span {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+      padding: 10px 14px; border-radius: 14px; font-size: 14px;
+    }
+    .progress-line { height: 6px; background: #0b1c17; border-radius: 99px; margin-top: 32px; overflow: hidden; }
+    .progress-line i { display: block; height: 100%; background: var(--lime); width: 14%; transition: width .5s var(--ease); }
+
+    /* BENTO */
+    .bento {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: auto auto;
+      gap: 14px; margin-top: 40px;
+    }
+    .tile {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 26px; padding: 26px;
+      position: relative; overflow: hidden; min-height: 210px;
+    }
+    .tile.big { grid-row: span 2; background: var(--ink); color: #f6f2ea; min-height: 440px; }
+    .tile.lime { background: var(--lime); border-color: transparent; }
+    .tile.accent { background: var(--accent); color: #fff; border-color: transparent; }
+    .tile h3 { font-size: 28px; margin: 10px 0 8px; }
+    .tile p { color: inherit; opacity: .82; font-size: 15px; max-width: 36ch; }
+    .tile.big p { color: #cfcabf; opacity: 1; }
+    .price-tag {
+      position: absolute; right: 22px; top: 22px;
+      font-family: Syne, sans-serif; font-weight: 800; font-size: 22px;
+    }
+    .tile ul { margin-top: 18px; list-style: none; display: grid; gap: 8px; font-size: 14.5px; }
+    .tile ul li::before { content: "→ "; color: var(--accent); font-weight: 700; }
+    .tile.big ul li::before { color: var(--lime); }
+
+    /* PACKAGES */
+    .packages { background: var(--bg-deep); }
+    .pkg-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px;
+    }
+    .pkg {
+      background: var(--paper); border-radius: 28px; padding: 28px 26px 24px;
+      border: 1px solid transparent; display: flex; flex-direction: column; min-height: 520px;
+      transition: transform .3s var(--ease), box-shadow .3s;
+    }
+    .pkg:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .pkg.featured {
+      background: var(--ink); color: #f4f0e6;
+      outline: 3px solid var(--lime); outline-offset: 0;
+    }
+    .pkg-badge {
+      font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 700;
+      color: var(--accent);
+    }
+    .pkg.featured .pkg-badge { color: var(--lime); }
+    .pkg h3 { font-size: 32px; margin: 10px 0 6px; }
+    .pkg .sum { font-size: 15px; color: var(--muted); }
+    .pkg.featured .sum { color: #b9b4a8; }
+    .pkg .amount {
+      font-family: Syne, sans-serif; font-size: 48px; margin: 22px 0 6px; letter-spacing: -.05em;
+    }
+    .pkg .amount small { font-size: 16px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+    .pkg ul { list-style: none; margin: 16px 0 24px; display: grid; gap: 10px; font-size: 15px; }
+    .pkg ul li { display: flex; gap: 10px; }
+    .pkg ul li::before { content: "✓"; color: var(--ok); font-weight: 700; }
+    .pkg.featured ul li::before { color: var(--lime); }
+    .pkg .btn { margin-top: auto; width: 100%; }
+
+    /* TEACHERS */
+    .teachers-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; }
+    .scroller {
+      display: grid; grid-auto-flow: column; grid-auto-columns: minmax(300px, 32%);
+      gap: 16px; overflow-x: auto; padding: 28px 0 10px;
+      scroll-snap-type: x mandatory; scrollbar-width: thin;
+    }
+    .card-t {
+      scroll-snap-align: start;
+      background: var(--paper); border-radius: 28px; overflow: hidden; border: 1px solid var(--line);
+      min-height: 430px; display: flex; flex-direction: column;
+    }
+    .avatar {
+      height: 210px; display: grid; place-items: end center; padding-bottom: 8px;
+      position: relative;
+    }
+    .avatar svg { width: 160px; height: 180px; }
+    .card-t .body { padding: 18px 20px 22px; }
+    .langs { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 12px; }
+    .langs span, .tag {
+      font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 999px;
+      background: var(--bg-deep); color: var(--ink-2);
+    }
+    .card-t h3 { font-size: 24px; }
+    .card-t .role { color: var(--muted); font-size: 14px; }
+
+    /* QUIZ + CALC */
+    .split-2 { display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px; margin-top: 36px; }
+    .panel {
+      background: var(--paper); border-radius: 28px; padding: 28px; border: 1px solid var(--line);
+    }
+    .q-progress { height: 6px; background: var(--bg-deep); border-radius: 99px; margin: 14px 0 22px; overflow: hidden; }
+    .q-progress i { display: block; height: 100%; background: var(--accent); width: 20%; transition: width .35s var(--ease); }
+    .q-opts { display: grid; gap: 10px; }
+    .q-opt {
+      text-align: left; padding: 14px 16px; border-radius: 16px;
+      border: 1.5px solid var(--line); background: #fff; font-size: 15px; font-weight: 500;
+      transition: .2s;
+    }
+    .q-opt:hover { border-color: var(--ink); }
+    .q-opt.good { border-color: var(--ok); background: #eaf7ef; }
+    .q-opt.bad { border-color: var(--accent); background: #ffeae4; }
+    .quiz-result { display: none; }
+    .quiz-result.show { display: block; }
+    .range { width: 100%; accent-color: var(--accent); }
+    .calc-out {
+      margin-top: 18px; background: var(--ink); color: #fff; border-radius: 20px; padding: 18px;
+    }
+    .calc-out b { font-family: Syne, sans-serif; font-size: 34px; color: var(--lime); }
+
+    /* CALENDAR */
+    .cal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 28px; }
+    .cal-item {
+      background: var(--paper); border-radius: 22px; padding: 18px; border: 1px solid var(--line);
+    }
+    .cal-item .d { font-family: Syne, sans-serif; font-size: 28px; }
+    .cal-item .full { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .spots { font-size: 13px; color: var(--muted); margin: 6px 0 12px; }
+
+    /* BOOKING */
+    .book {
+      background: var(--ink); color: #f4f0e6;
+    }
+    .book .sec-kicker { color: #9a978e; }
+    .book .sec-lead { color: #cfcabf; }
+    .wizard { margin-top: 36px; display: grid; grid-template-columns: 220px 1fr; gap: 28px; }
+    .w-steps { display: grid; gap: 8px; align-content: start; }
+    .w-step {
+      padding: 12px 14px; border-radius: 14px; text-align: left; color: #bdb8ad; font-size: 14px;
+      border: 1px solid transparent;
+    }
+    .w-step.on { background: #1c1c19; color: var(--lime); border-color: #2a2a26; }
+    .w-pane { background: #171714; border-radius: 28px; padding: 28px; min-height: 420px; }
+    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .choice {
+      text-align: left; padding: 18px; border-radius: 18px; border: 1.5px solid #2c2c28;
+      color: #f4f0e6; background: #121210; transition: .2s;
+    }
+    .choice:hover, .choice.sel { border-color: var(--lime); background: #1b1b16; }
+    .choice b { display: block; font-size: 16px; margin-bottom: 4px; }
+    .choice span { color: #a8a49a; font-size: 13px; }
+    .slots { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .slot {
+      padding: 10px 14px; border-radius: 12px; border: 1px solid #333; color: #eee; font-weight: 600; font-size: 14px;
+    }
+    .slot.sel { background: var(--lime); color: var(--ink); border-color: var(--lime); }
+    .field { display: grid; gap: 6px; margin-bottom: 12px; }
+    .field label { font-size: 13px; color: #bdb8ad; }
+    .field input, .field select, .field textarea {
+      background: #10100e; border: 1px solid #333; color: #fff; border-radius: 12px; padding: 12px 14px; font-size: 15px;
+    }
+    .success-box { display: none; text-align: center; padding: 40px 10px; }
+    .success-box.show { display: block; }
+    .success-box h3 { font-size: 40px; margin: 12px 0; color: var(--lime); }
+
+    /* REVIEWS */
+    .quotes { overflow: hidden; margin-top: 30px; }
+    .q-track { display: flex; gap: 14px; width: max-content; animation: marq 40s linear infinite; }
+    .quote {
+      width: 340px; background: var(--paper); border-radius: 22px; padding: 22px; border: 1px solid var(--line);
+    }
+    .stars { color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+    .quote p { font-size: 15.5px; }
+    .quote .who { margin-top: 14px; font-size: 13px; color: var(--muted); font-weight: 600; }
+
+    /* FAQ */
+    .faq { display: grid; gap: 8px; margin-top: 28px; }
+    details.faq-item {
+      background: var(--paper); border-radius: 18px; padding: 4px 18px; border: 1px solid var(--line);
+    }
+    details.faq-item summary {
+      cursor: pointer; list-style: none; padding: 16px 0; font-weight: 650; font-size: 17px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after { content: "+"; font-size: 22px; color: var(--accent); }
+    details.faq-item[open] summary::after { content: "–"; }
+    details.faq-item p { padding: 0 0 16px; color: var(--ink-2); max-width: 70ch; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    .map-fake {
+      background: var(--forest); color: #e8f0eb; border-radius: 28px; min-height: 360px; padding: 28px;
+      position: relative; overflow: hidden;
+    }
+    .map-fake svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .35; }
+    .pin {
+      position: relative; z-index: 1; margin-top: 80px;
+      background: var(--lime); color: var(--ink); display: inline-block;
+      padding: 12px 16px; border-radius: 16px; font-weight: 700;
+    }
+
+    footer {
+      background: var(--ink); color: #d8d3c8; padding: 48px 0 28px;
+    }
+    .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 24px; }
+    .foot h4 { color: #fff; font-family: Syne, sans-serif; margin-bottom: 12px; }
+    .foot a { display: block; padding: 4px 0; color: #b9b4a8; }
+    .foot a:hover { color: var(--lime); }
+    .copy { margin-top: 36px; padding-top: 18px; border-top: 1px solid #2a2a26; font-size: 13px; color: #8b877c; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    .mobile-bar {
+      display: none; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 40;
+      background: var(--ink); color: var(--lime); border-radius: 999px; padding: 8px 8px 8px 18px;
+      align-items: center; justify-content: space-between; box-shadow: var(--shadow);
+    }
+    .mobile-bar .btn { padding: 12px 16px; background: var(--accent); color: #fff; }
+
+    .reveal { opacity: 0; transform: translateY(18px); animation: up .8s var(--ease) forwards; }
+    .d1 { animation-delay: .08s; } .d2 { animation-delay: .16s; } .d3 { animation-delay: .24s; }
+    @keyframes up { to { opacity: 1; transform: none; } }
+
+    @media (max-width: 980px) {
+      .nav-links, .nav-cta { display: none; }
+      .burger { display: grid; }
+      .hero-grid, .journey-layout, .split-2, .contact-grid, .wizard, .pkg-row { grid-template-columns: 1fr; }
+      .bento { grid-template-columns: 1fr; }
+      .tile.big { grid-row: auto; min-height: 320px; }
+      .cal-grid { grid-template-columns: 1fr 1fr; }
+      .foot { grid-template-columns: 1fr 1fr; }
+      .hero-panel { min-height: 460px; }
+      .mobile-bar { display: flex; }
+      .w-steps { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; }
+      .choice-grid { grid-template-columns: 1fr; }
+      .teachers-head { flex-direction: column; align-items: start; }
+      .scroller { grid-auto-columns: 78%; }
+      .journey-sticky { position: static; }
+      section { padding: 64px 0; }
+      .hero h1 { font-size: clamp(44px, 12vw, 72px); }
+    }
+    @media (max-width: 560px) {
+      .wrap, .wrap-wide { width: calc(100% - 24px); }
+      .cal-grid { grid-template-columns: 1fr; }
+      .hero-meta { flex-direction: column; gap: 12px; }
+      .foot { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; }
+    }
+
+    /* mobile menu */
+    .drawer {
+      position: fixed; inset: 0; background: var(--ink); color: #fff; z-index: 60;
+      display: none; padding: 24px; flex-direction: column;
+    }
+    .drawer.open { display: flex; }
+    .drawer a { font-family: Syne, sans-serif; font-size: 36px; font-weight: 800; padding: 8px 0; }
+    .drawer .close { align-self: end; color: var(--lime); font-size: 14px; font-weight: 700; padding: 10px 14px; border: 1px solid #333; border-radius: 999px; }
+  </style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+  <div id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-kicker">Oslo · Klasse B</div>
+      <div class="loader-title">KLAR?</div>
+      <div class="bar"><i></i></div>
+    </div>
+  </div>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top" aria-label="DrivePro hjem">
+        <span class="logo-mark">DP</span> DrivePro
+      </a>
+      <nav class="nav-links" aria-label="Hovedmeny">
+        <a href="#reise">Opplæringen</a>
+        <a href="#kurs">Kurs</a>
+        <a href="#priser">Priser</a>
+        <a href="#laerere">Kjørelærere</a>
+        <a href="#quiz">Teori</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="nav-cta" href="#booking">Bestill kjøretime</a>
+      <button class="burger" id="burger" aria-label="Åpne meny"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <button class="close" id="closeDrawer">Lukk</button>
+    <a href="#reise">Opplæringen</a>
+    <a href="#kurs">Kurs</a>
+    <a href="#priser">Priser</a>
+    <a href="#laerere">Kjørelærere</a>
+    <a href="#quiz">Teori</a>
+    <a href="#booking">Booking</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap-wide">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="chip reveal"><span class="dot"></span> Neste ledige time i dag kl. 16:15 · Grünerløkka</span>
+            <h1 class="reveal d1">Ikke bare bestå.<br><em>Bli sjåfør.</em></h1>
+            <p class="hero-lead reveal d2">DrivePro er trafikkskolen i Oslo for deg som vil lære raskt, trygt og skikkelig. Manuell eller automat. Intensiv eller i ditt tempo. Alltid med en lærer som faktisk ser deg.</p>
+            <div class="hero-actions reveal d3">
+              <a class="btn btn-accent" href="#booking">Start opplæringen</a>
+              <a class="btn btn-ghost" href="#priser">Se priser</a>
+              <a class="btn btn-ink" href="#kurs">Se kurs</a>
+            </div>
+            <div class="hero-meta reveal d3">
+              <div><b id="statPass">0%</b><span>består oppkjøring første gang</span></div>
+              <div><b>14 d</b><span>typisk intensivløp til prøve</span></div>
+              <div><b>5</b><span>kjørelærere, tre biler, én plan</span></div>
+            </div>
+          </div>
+          <aside class="hero-panel reveal d2" aria-label="Ledig kapasitet">
+            <div class="panel-top">
+              <div>
+                <div class="panel-kicker">Live kapasitet</div>
+                <div style="margin-top:8px;font-family:Syne,sans-serif;font-size:22px;font-weight:800;">Oslo sentrum</div>
+              </div>
+              <span class="live-pill">LEDIG I DAG</span>
+            </div>
+            <div class="speed" aria-hidden="true">
+              <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#2a2a26" stroke-width="8"/>
+                <circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="#D6FF3C" stroke-width="8" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="327"/>
+              </svg>
+              <div class="speed-label"><div><strong id="cap">0</strong><small>plasser igjen<br>denne uken</small></div></div>
+            </div>
+            <div class="next-slot">
+              <div>
+                <p>Neste med Nora · automat</p>
+                <b>I dag, 16:15–17:00</b>
+              </div>
+              <a class="mini-cta" href="#booking">Book</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>KLASSE B</span><span><i>●</i></span><span>MANUELL</span><span><i>●</i></span><span>AUTOMAT</span><span><i>●</i></span><span>INTENSIV 14 DAGER</span><span><i>●</i></span><span>TRAFIKALT GRUNNKURS</span><span><i>●</i></span><span>SIKKERHETSKURS</span><span><i>●</i></span><span>TEORIHJELP</span><span><i>●</i></span><span>MØRKEKJØRING</span><span><i>●</i></span>
+          <span>KLASSE B</span><span><i>●</i></span><span>MANUELL</span><span><i>●</i></span><span>AUTOMAT</span><span><i>●</i></span><span>INTENSIV 14 DAGER</span><span><i>●</i></span><span>TRAFIKALT GRUNNKURS</span><span><i>●</i></span><span>SIKKERHETSKURS</span><span><i>●</i></span><span>TEORIHJELP</span><span><i>●</i></span><span>MØRKEKJØRING</span><span><i>●</i></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey" id="reise">
+      <div class="wrap">
+        <div class="journey-layout">
+          <div class="journey-sticky">
+            <p class="sec-kicker">Opplæringsplanen</p>
+            <h2 class="sec-title">Syv steg. Null gjetting.</h2>
+            <p class="sec-lead">Vi viser deg nøyaktig hvor du er, hva som gjenstår, og når du er klar for førerprøven. Trykk på et steg.</p>
+            <div class="progress-line" aria-hidden="true"><i id="jprog"></i></div>
+            <p style="margin-top:12px;font-size:13px;color:#9cb8ac;">Fremdrift i et typisk løp · <span id="jpct">14%</span></p>
+          </div>
+          <div>
+            <div class="path" id="path"></div>
+            <article class="step-detail" id="detail"></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kurs">
+      <div class="wrap">
+        <p class="sec-kicker">Hva vi tilbyr</p>
+        <h2 class="sec-title">Alt du trenger. Ingenting du ikke trenger.</h2>
+        <p class="sec-lead">Velg spor — manuell eller automat — og bygg videre med kurs, teori og pakker som faktisk henger sammen.</p>
+        <div class="bento">
+          <article class="tile big">
+            <p class="sec-kicker" style="color:#9a978e">Klasse B</p>
+            <h3>Manuell eller automat. Du velger rytmen.</h3>
+            <p>Begge spor følger Statens vegvesens trinn 1–4. Vi matcher deg med lærer, bil og tempo etter hvordan du lærer — ikke etter en ferdig mal.</p>
+            <ul>
+              <li>45 minutter kjøretimer i Oslo-øst og sentrum</li>
+              <li>Elbil automat (ID.3) og manuell Golf</li>
+              <li>Kvelder og lørdager uten tillegg i høysesong</li>
+              <li>Fast lærer gjennom hele løpet</li>
+            </ul>
+            <a class="btn btn-accent" style="margin-top:28px" href="#booking">Bestill kjøretime</a>
+          </article>
+          <article class="tile">
+            <span class="price-tag">1 990</span>
+            <p class="sec-kicker">Trinn 1</p>
+            <h3>Trafikalt grunnkurs</h3>
+            <p>17 timer over to kvelder + førstehjelp. Godkjent over hele landet.</p>
+          </article>
+          <article class="tile lime">
+            <p class="sec-kicker" style="color:#3a430c">Mest valgt</p>
+            <h3>Intensiv 14 dager</h3>
+            <p>Fra første time til oppkjøring. Fast plan, daglig kjøring, teoristøtte inkludert.</p>
+          </article>
+          <article class="tile">
+            <span class="price-tag">4 950</span>
+            <p class="sec-kicker">Trinn 3</p>
+            <h3>Sikkerhetskurs på bane</h3>
+            <p>Dyrskjøring på Rudskogen. Vi kjører deg tur-retur fra skolen.</p>
+          </article>
+          <article class="tile accent">
+            <p class="sec-kicker" style="color:#ffd8cc">Teori</p>
+            <h3>Teorihjelp som sitter</h3>
+            <p>Kveldsworkshop, app-øving og prøveeksamen til du scorer 90 %.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="packages" id="priser">
+      <div class="wrap">
+        <p class="sec-kicker">Pakker</p>
+        <h2 class="sec-title">Ærlige priser. Ingen skjulte «og så videre».</h2>
+        <p class="sec-lead">Timer utover pakken koster det samme som enkeltimer. Du betaler aldri for luft.</p>
+        <div class="pkg-row">
+          <article class="pkg">
+            <div class="pkg-badge">Fleksibelt</div>
+            <h3>Enkeltimer</h3>
+            <p class="sum">Når du vil styre tempoet selv.</p>
+            <div class="amount">890<small> kr / 45 min</small></div>
+            <ul>
+              <li>Manuell 890 · automat 850</li>
+              <li>Avbestilling inntil 24 t før</li>
+              <li>Samme lærer så langt det lar seg gjøre</li>
+              <li>Digital kjørebok etter hver time</li>
+            </ul>
+            <a class="btn btn-ghost" href="#booking">Bestill kjøretime</a>
+          </article>
+          <article class="pkg featured">
+            <div class="pkg-badge">Anbefalt</div>
+            <h3>Intensiv Pro</h3>
+            <p class="sum">To uker. Fast plan. Førerprøve booket.</p>
+            <div class="amount">24 900<small> kr</small></div>
+            <ul>
+              <li>18 kjøretimer + 2 simulerte oppkjøringer</li>
+              <li>Teorikurs og prøveeksamen</li>
+              <li>Sikkerhetskurs på vei</li>
+              <li>Henting ved Tøyen / Grünerløkka</li>
+              <li>Prøvegebyr er ikke inkludert</li>
+            </ul>
+            <a class="btn btn-accent" href="#booking">Start opplæringen</a>
+          </article>
+          <article class="pkg">
+            <div class="pkg-badge">Start</div>
+            <h3>Grunnlag 10</h3>
+            <p class="sum">TGK + de første timene, ferdig planlagt.</p>
+            <div class="amount">9 850<small> kr</small></div>
+            <ul>
+              <li>Trafikalt grunnkurs</li>
+              <li>10 kjøretimer</li>
+              <li>Mørkekjøring når sesong</li>
+              <li>Teori-oppstart og app-tilgang</li>
+            </ul>
+            <a class="btn btn-ghost" href="#booking">Se kurs</a>
+          </article>
+        </div>
+        <p style="margin-top:22px;font-size:14px;color:var(--muted)">Sikkerhetskurs på bane 4 950 kr · Sikkerhetskurs på vei 3 200 kr · Mørkekjøring 1 450 kr · Teorikurs kveld 1 490 kr. Alle priser inkl. mva. Oppdatert august 2026.</p>
+      </div>
+    </section>
+
+    <section id="laerere">
+      <div class="wrap-wide">
+        <div class="teachers-head">
+          <div>
+            <p class="sec-kicker">Teamet</p>
+            <h2 class="sec-title">Fem lærere. Null samlebånd.</h2>
+          </div>
+          <p class="sec-lead">Du får en fast lærer. Bytt hvis kjemien ikke stemmer — uten spørsmål, uten gebyr.</p>
+        </div>
+        <div class="scroller" id="teachers"></div>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="wrap">
+        <p class="sec-kicker">Teori & planlegging</p>
+        <h2 class="sec-title">Test deg. Så bygger vi løpet.</h2>
+        <div class="split-2">
+          <div class="panel">
+            <h3 style="font-size:28px">Mini-quiz · 5 spørsmål</h3>
+            <p style="color:var(--muted);margin-top:6px">Typiske feller fra teoriprøven. Ingen karakter, bare signal.</p>
+            <div class="q-progress"><i id="qp"></i></div>
+            <div id="quizBox">
+              <p id="qtext" style="font-size:18px;font-weight:600;margin-bottom:14px"></p>
+              <div class="q-opts" id="qopts"></div>
+            </div>
+            <div class="quiz-result" id="qres">
+              <h3 style="font-size:34px;margin-bottom:8px" id="qscore"></h3>
+              <p id="qmsg"></p>
+              <a class="btn btn-accent" style="margin-top:16px" href="#booking">Book teorihjelp</a>
+            </div>
+          </div>
+          <div class="panel">
+            <h3 style="font-size:28px">Timekalkulator</h3>
+            <p style="color:var(--muted);margin:6px 0 18px">Et ærlig anslag. Ikke et salgstriks.</p>
+            <div class="field">
+              <label>Har du tatt trafikalt grunnkurs?</label>
+              <select id="cTGK"><option value="nei">Nei</option><option value="ja">Ja</option></select>
+            </div>
+            <div class="field">
+              <label>Girtype</label>
+              <select id="cGear"><option value="manuell">Manuell</option><option value="automat">Automat</option></select>
+            </div>
+            <div class="field">
+              <label>Hvor vant er du i trafikken? <b id="cVal">3</b>/5</label>
+              <input class="range" type="range" min="1" max="5" value="3" id="cExp" />
+            </div>
+            <div class="calc-out">
+              <div style="font-size:13px;color:#bdb8ad">Anbefalt løp</div>
+              <b id="cHours">16–20 timer</b>
+              <p id="cPack" style="margin-top:6px;color:#d8d3c8">Start med Grunnlag 10, deretter Intensiv Pro hvis du vil i mål før ferien.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kalender" style="padding-top:0">
+      <div class="wrap">
+        <p class="sec-kicker">Kurskalender</p>
+        <h2 class="sec-title" style="max-width:18ch">Trafikalt grunnkurs · høsten 2026</h2>
+        <div class="cal-grid" id="cal"></div>
+      </div>
+    </section>
+
+    <section class="book" id="booking">
+      <div class="wrap">
+        <p class="sec-kicker">Booking</p>
+        <h2 class="sec-title">Bestill på fire steg. Vi bekrefter innen 15 minutter.</h2>
+        <p class="sec-lead">Dette er en demoside — ingen time blir faktisk booket. Flyten er ekte.</p>
+        <div class="wizard">
+          <div class="w-steps" id="wsteps"></div>
+          <div class="w-pane">
+            <div id="wpane"></div>
+            <div class="success-box" id="ok">
+              <div style="font-size:40px">✓</div>
+              <h3>Forespørsel sendt</h3>
+              <p>Vi hadde bekreftet på SMS innen 15 minutter. Siden dette er demo, stopper vi her.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="omtaler">
+      <div class="wrap">
+        <p class="sec-kicker">Elever</p>
+        <h2 class="sec-title">Folk som kom inn nervøse og kjørte ut rolige.</h2>
+      </div>
+      <div class="quotes">
+        <div class="q-track" id="quotes"></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <p class="sec-kicker">Spørsmål</p>
+        <h2 class="sec-title">Kort og konkret.</h2>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary>Hvor lang tid tar det å ta førerkort?</summary>
+            <p>De fleste hos oss bruker 2–4 måneder i vanlig tempo, eller 10–16 dager på intensiv. Det avhenger av utgangspunkt, oppmøte og når Statens vegvesen har ledig prøve.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Må jeg ha tatt trafikalt grunnkurs før første kjøretime?</summary>
+            <p>Ja. TGK er trinn 1 og lovpålagt før du kan øvelseskjøre. Vi kjører kurs hver uke, og du kan booke timer som starter rett etter kurset.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Kan jeg bytte fra manuell til automat underveis?</summary>
+            <p>Ja. Du får et kort overgangsøkt. Husk at automat-førerkortet har kode 78 — du kan da ikke kjøre manuell senere uten ny opplæring.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Hva skjer hvis jeg stryker på oppkjøring?</summary>
+            <p>Vi tar en ærlig gjennomgang, booker 1–2 målrettede timer og ny prøve. Intensiv Pro-elever får én oppfølgingstime uten ekstra kostnad.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Holder dere til bare på Grünerløkka?</summary>
+            <p>Kontoret ligger i Thorvald Meyers gate 49. Vi henter i Oslo sentrum, Tøyen, Sinsen og Gamle Oslo etter avtale. Baneøkt er på Rudskogen.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="wrap">
+        <p class="sec-kicker">Oslo</p>
+        <h2 class="sec-title">Kom innom. Eller bare skriv.</h2>
+        <div class="contact-grid">
+          <div class="panel">
+            <h3 style="font-size:28px;margin-bottom:12px">DrivePro Trafikkskole</h3>
+            <p>Thorvald Meyers gate 49<br>0555 Oslo</p>
+            <p style="margin:16px 0"><a href="tel:+4722148000"><b>22 14 80 00</b></a><br>
+            <a href="mailto:hei@drivepro.no">hei@drivepro.no</a></p>
+            <p style="color:var(--muted);font-size:14px">Mandag–fredag 08–18<br>Lørdag 10–14 · Søndag stengt</p>
+            <div class="hero-actions" style="margin-top:22px">
+              <a class="btn btn-accent" href="#booking">Bestill kjøretime</a>
+              <a class="btn btn-ghost" href="mailto:hei@drivepro.no">Send e-post</a>
+            </div>
+          </div>
+          <div class="map-fake" aria-label="Kartskisse Grünerløkka">
+            <svg viewBox="0 0 400 300" preserveAspectRatio="none">
+              <path d="M20 40 L380 40 L380 80 L220 80 L220 260 L180 260 L180 80 L20 80 Z" fill="none" stroke="#D6FF3C" stroke-width="2"/>
+              <path d="M40 160 H360 M80 20 V280 M300 20 V200" stroke="#2c5a4c" stroke-width="8"/>
+              <circle cx="210" cy="92" r="10" fill="#FF3B00"/>
+            </svg>
+            <div class="pin">Du er her · Grünerløkka</div>
+            <p style="position:relative;z-index:1;margin-top:14px;max-width:28ch">To minutter fra Birkelunden. Elbillader i bakgården. Kaffe mens du venter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <a class="logo" href="#top" style="color:#fff;margin-bottom:12px"><span class="logo-mark">DP</span> DrivePro</a>
+        <p>Trafikkskole med én jobb: gjøre deg til en sjåfør du stoler på. Autorisert av Statens vegvesen.</p>
+      </div>
+      <div>
+        <h4>Løp</h4>
+        <a href="#kurs">Klasse B</a>
+        <a href="#priser">Intensivpakker</a>
+        <a href="#reise">Opplæringsplan</a>
+        <a href="#quiz">Teorihjelp</a>
+      </div>
+      <div>
+        <h4>Skolen</h4>
+        <a href="#laerere">Kjørelærere</a>
+        <a href="#kalender">Kurskalender</a>
+        <a href="#faq">FAQ</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div>
+        <h4>Praktisk</h4>
+        <a href="#booking">Bestill kjøretime</a>
+        <a href="#">Personvern</a>
+        <a href="#">Vilkår</a>
+        <a href="https://www.vegvesen.no" rel="noopener">Statens vegvesen</a>
+      </div>
+    </div>
+    <div class="wrap copy">
+      <span>© 2026 DrivePro Trafikkskole AS · Org.nr. 912 334 881 · Demoside for portefølje</span>
+      <span>Designet for å bestå — og for å kjøre videre.</span>
+    </div>
+  </footer>
+
+  <div class="mobile-bar">
+    <span style="font-weight:700;font-size:14px">Ledig i dag 16:15</span>
+    <a class="btn" href="#booking">Bestill</a>
+  </div>
+
+  <script>
+    const $ = (s, r=document) => r.querySelector(s);
+    const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+
+    window.addEventListener("load", () => {
+      setTimeout(() => $("#loader").classList.add("out"), 1650);
+      animateNum("#statPass", 94, "%", 1400);
+      animateNum("#cap", 11, "", 1200);
+      const arc = $("#arc");
+      const len = 327;
+      arc.style.transition = "stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1)";
+      arc.style.strokeDashoffset = String(len * (1 - 0.72));
+    });
+
+    function animateNum(sel, to, suffix, ms) {
+      const el = $(sel); if (!el) return;
+      const t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / ms);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(e * to) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    window.addEventListener("scroll", () => {
+      $("#nav").classList.toggle("scrolled", scrollY > 8);
+    });
+
+    $("#burger").onclick = () => $("#drawer").classList.add("open");
+    $("#closeDrawer").onclick = () => $("#drawer").classList.remove("open");
+    $$("#drawer a").forEach(a => a.onclick = () => $("#drawer").classList.remove("open"));
+
+    const STEPS = [
+      { n:"01", t:"Trafikalt grunnkurs", d:"Lovpålagt start: 17 timer teori, førstehjelp og mørkekjøring. Du får beviset samme uke.", tag:"Trinn 1 · 1 990 kr", hours:["17 t teori","Førstehjelp","Mørke når sesong"], p:14 },
+      { n:"02", t:"Første kjøretimer", d:"Bilen, speilene, farten. Vi bygger rolige vaner før byen blir krevende. Alltid samme lærer.", tag:"Trinn 2 · grunnleggende", hours:["4–7 timer","Manuell eller automat","Hentes i nærområdet"], p:28 },
+      { n:"03", t:"Trafikal kjøring", d:"Kø, rundkjøringer, trikk og syklister. Oslo er læringsarenaen — ikke en hinderløype.", tag:"Trinn 2–3", hours:["6–10 timer","By + ring 2/3","Selvstendig rutevalg"], p:48 },
+      { n:"04", t:"Sikkerhetskurs på bane", d:"Glatt føre og unnamanøver på Rudskogen. Vi kjører deg tur-retur fra skolen.", tag:"Trinn 3 · 4 950 kr", hours:["Heldag","Transport inkludert","Krav før vei-kurs"], p:62 },
+      { n:"05", t:"Sikkerhetskurs på vei", d:"Langkjøring, risiko og ansvar. Her går du fra elev til sjåfør.", tag:"Trinn 4 · 3 200 kr", hours:["2 økter","Planlegging","Refleksjon"], p:76 },
+      { n:"06", t:"Teoriprøve", d:"Du øver til du scorer 90 % hos oss. Så booker vi time på trafikkstasjonen.", tag:"Statens vegvesen", hours:["Workshop","App-øving","Prøveeksamen"], p:88 },
+      { n:"07", t:"Oppkjøring", d:"Vi kjører en generalprøve først. Du skal kjenne ruten i kroppen, ikke i magen.", tag:"Førerprøve", hours:["Simulert prøve","Fast lærer med","Oppfølging om stryk"], p:100 }
+    ];
+
+    const path = $("#path");
+    STEPS.forEach((s,i) => {
+      const b = document.createElement("button");
+      b.className = "step" + (i===0 ? " active" : "");
+      b.innerHTML = `<div class="step-num">${s.n}</div><div><h3>${s.t}</h3><p>${s.d.slice(0,72)}…</p></div>`;
+      b.onclick = () => setStep(i);
+      path.appendChild(b);
+    });
+    function setStep(i){
+      $$(".step").forEach((el,k)=>el.classList.toggle("active", k===i));
+      const s = STEPS[i];
+      $("#detail").innerHTML = `<span class="detail-tag">${s.tag}</span><h3>${s.t}</h3><p>${s.d}</p><div class="hours">${s.hours.map(h=>`<span>${h}</span>`).join("")}</div>`;
+      $("#jprog").style.width = s.p + "%";
+      $("#jpct").textContent = s.p + "%";
+    }
+    setStep(0);
+
+    const TEACHERS = [
+      { name:"Nora Hagen", role:"Automat · 12 år", langs:["Norsk","Engelsk"], spec:"Rolig start, nervøse elever", color:"#16352C", face:"#E8C7A8" },
+      { name:"Jonas Berg", role:"Manuell · 8 år", langs:["Norsk"], spec:"Intensiv og effektiv bykjøring", color:"#FF3B00", face:"#D4B08C" },
+      { name:"Amira Hassan", role:"Automat · 6 år", langs:["Norsk","Engelsk","Arabisk"], spec:"Tydelig, strukturert, kvelder", color:"#2C4A6E", face:"#C9956C" },
+      { name:"Erik Solberg", role:"Bane & trinn 4 · 15 år", langs:["Norsk","Tysk"], spec:"Sikkerhetskurs og glattkjøring", color:"#3A2A16", face:"#E2C2A0" },
+      { name:"Lea Kristiansen", role:"Manuell · 5 år", langs:["Norsk","Spansk"], spec:"Ungdom og førstegangskjøring", color:"#5A1840", face:"#EBC4A6" }
+    ];
+    $("#teachers").innerHTML = TEACHERS.map(t => `
+      <article class="card-t">
+        <div class="avatar" style="background:${t.color}">
+          <svg viewBox="0 0 120 140" aria-hidden="true">
+            <circle cx="60" cy="52" r="28" fill="${t.face}"/>
+            <ellipse cx="60" cy="118" rx="40" ry="28" fill="#11110F"/>
+            <rect x="32" y="78" width="56" height="36" rx="18" fill="#11110F"/>
+          </svg>
+        </div>
+        <div class="body">
+          <p class="role">${t.role}</p>
+          <h3>${t.name}</h3>
+          <div class="langs">${t.langs.map(l=>`<span>${l}</span>`).join("")}</div>
+          <p>${t.spec}</p>
+        </div>
+      </article>`).join("");
+
+    const QS = [
+      { q:"Hva er fartsgrensen i tettbygd strøk når ikke annet er skiltet?", a:["30 km/t","50 km/t","60 km/t","40 km/t"], i:1 },
+      { q:"Du nærmer deg et fotgjengerfelt uten lys. En fotgjenger venter. Hva gjør du?", a:["Gir tegn og kjører","Stopper og viker","Øker farten for å passere","Bruker hornet"], i:1 },
+      { q:"Hva betyr heltrukken midtlinje?", a:["Du kan kjøre forbi ved god sikt","Du skal holde deg i feltet, ingen forbikjøring","Bare busser kan krysse","Gjelder kun om natten"], i:1 },
+      { q:"Hvor lang er reaksjonstiden for en uthvilt sjåfør, omtrent?", a:["0,2 sekund","1 sekund","3 sekunder","5 sekunder"], i:1 },
+      { q:"På motorvei, hvilket felt bruker du som hovedregel?", a:["Venstre felt","Høyre felt","Midterste felt alltid","Det med minst kø, uansett"], i:1 }
+    ];
+    let qi = 0, score = 0, locked = false;
+    function renderQ(){
+      if (qi >= QS.length){
+        $("#quizBox").style.display = "none";
+        $("#qres").classList.add("show");
+        $("#qscore").textContent = score + " / " + QS.length;
+        $("#qmsg").textContent = score >= 4 ? "Sterkt. Book teoriprøve når du scorer slik tre ganger på rad." : "Bra start. En kveldsworkshop tar deg over streken.";
+        return;
+      }
+      const x = QS[qi];
+      $("#qtext").textContent = (qi+1) + ". " + x.q;
+      $("#qopts").innerHTML = x.a.map((t,idx)=>`<button class="q-opt" data-i="${idx}">${t}</button>`).join("");
+      $("#qp").style.width = ((qi)/QS.length*100) + "%";
+      locked = false;
+      $$(".q-opt").forEach(btn => btn.onclick = () => {
+        if (locked) return; locked = true;
+        const ok = +btn.dataset.i === x.i;
+        if (ok) score++;
+        btn.classList.add(ok ? "good" : "bad");
+        $$(".q-opt")[x.i].classList.add("good");
+        setTimeout(() => { qi++; renderQ(); }, 650);
+      });
+    }
+    renderQ();
+
+    const calc = () => {
+      const exp = +$("#cExp").value;
+      $("#cVal").textContent = exp;
+      const auto = $("#cGear").value === "automat";
+      const tgk = $("#cTGK").value === "ja";
+      let min = auto ? 12 : 14;
+      min += (5 - exp) * 2;
+      if (!tgk) min += 0;
+      const max = min + 4;
+      $("#cHours").textContent = min + "–" + max + " kjøretimer";
+      $("#cPack").textContent = min > 18
+        ? "Vi anbefaler Intensiv Pro med ekstra buffer-timer. Ingen stress-dato."
+        : (tgk ? "Grunnlag 10 dekker starten. Fyll på med enkeltimer mot prøve." : "Start med TGK denne uken, deretter Grunnlag 10.");
+    };
+    ["cExp","cTGK","cGear"].forEach(id => $("#"+id).addEventListener("input", calc));
+    calc();
+
+    const CAL = [
+      { d:"12. sep", t:"Tor–fre 17–21", s:"4 plasser", full:false },
+      { d:"19. sep", t:"Tor–fre 17–21", s:"2 plasser", full:false },
+      { d:"26. sep", t:"Tor–fre 17–21", s:"Fulltegnet", full:true },
+      { d:"03. okt", t:"Lør–søn 10–16", s:"7 plasser", full:false },
+      { d:"10. okt", t:"Tor–fre 17–21", s:"6 plasser", full:false },
+      { d:"17. okt", t:"Tor–fre 17–21", s:"Fulltegnet", full:true },
+      { d:"24. okt", t:"Lør–søn 10–16", s:"5 plasser", full:false },
+      { d:"31. okt", t:"Tor–fre 17–21", s:"8 plasser", full:false }
+    ];
+    $("#cal").innerHTML = CAL.map(c => `
+      <article class="cal-item">
+        <div class="d">${c.d}</div>
+        <div>${c.t}</div>
+        <p class="spots ${c.full?'full':''}">${c.s}</p>
+        <a class="btn ${c.full?'btn-ghost':'btn-ink'}" href="#booking" style="padding:10px 14px;font-size:13px">${c.full?'Venteliste':'Meld på TGK'}</a>
+      </article>`).join("");
+
+    const QUOTES = [
+      ["Nora fikk meg gjennom oppkjøring uten at jeg gruet meg i to uker. Det er jo hele poenget.","Maja, 19 · automat"],
+      ["Intensiv på 12 dager. Strengt, rettferdig, null tulletimer.","Henrik, 24 · manuell"],
+      ["Byttet lærer etter to timer. Ingen drama. Jonas tok meg videre.","Sofia, 31"],
+      ["Teorikvelden reddet meg. Hadde stått fast på vikeplikt i månedsvis.","Lars, 22"],
+      ["Amira forklarer uten å snakke til deg som om du er tre år. Endelig.","Yasmin, 27"],
+      ["Betalte for pakke, ikke for overraskelser. Skjer sjelden i denne bransjen.","Kristoffer, 20"]
+    ];
+    $("#quotes").innerHTML = QUOTES.concat(QUOTES).map(([p,w]) => `
+      <article class="quote"><div class="stars">★★★★★</div><p>«${p}»</p><div class="who">${w}</div></article>`).join("");
+
+    const book = { klasse: "", type: "", laerer: "", tid: "", navn: "", tlf: "" };
+    const WLABELS = ["Klasse","Type","Lærer","Tid & kontakt"];
+    let w = 0;
+    function drawW(){
+      $("#wsteps").innerHTML = WLABELS.map((l,i)=>`<button class="w-step ${i===w?'on':''}" ${i>w?'disabled':''}>0${i+1}  ${l}</button>`).join("");
+      $$(".w-step").forEach((b,i)=> b.onclick = () => { if(i<=w){ w=i; drawW(); }});
+      const pane = $("#wpane");
+      $("#ok").classList.remove("show");
+      pane.style.display = "block";
+      if (w===0) pane.innerHTML = paneChoices("Hvilken førerkortklasse?", [
+        ["B manuell","Fullt førerkort, alle biler"],
+        ["B automat","Kode 78 · elbil ID.3"]
+      ], "klasse", "klasse");
+      if (w===1) pane.innerHTML = paneChoices("Hva skal du booke?", [
+        ["Kjøretime 45 min","Vanlig økt med fast lærer"],
+        ["Trafikalt grunnkurs","Første steg, kveld eller helg"],
+        ["Intensivpakke","14 dager mot førerprøve"],
+        ["Teorihjelp","Workshop + prøveeksamen"]
+      ], "type", "type");
+      if (w===2) pane.innerHTML = paneChoices("Velg kjørelærer", TEACHERS.map(t=>[t.name, t.role+" · "+t.spec]), "laerer", "laerer");
+      if (w===3){
+        pane.innerHTML = `
+          <h3 style="font-size:26px;margin-bottom:14px">Når passer det?</h3>
+          <div class="slots" id="slots"></div>
+          <div style="margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="field"><label>Navn</label><input id="bnavn" placeholder="Fullt navn" /></div>
+            <div class="field"><label>Telefon</label><input id="btlf" placeholder="9xxxxxxxx" /></div>
+          </div>
+          <button class="btn btn-accent" id="send" style="margin-top:8px">Send forespørsel</button>`;
+        const times = ["I dag 16:15","I dag 18:00","I morgen 09:30","I morgen 14:00","Ons 11:00","Tor 17:30"];
+        $("#slots").innerHTML = times.map(t=>`<button class="slot" data-t="${t}">${t}</button>`).join("");
+        $$(".slot").forEach(s => s.onclick = () => {
+          $$(".slot").forEach(x=>x.classList.remove("sel"));
+          s.classList.add("sel"); book.tid = s.dataset.t;
+        });
+        $("#send").onclick = () => {
+          book.navn = $("#bnavn").value.trim();
+          book.tlf = $("#btlf").value.trim();
+          if (!book.tid || !book.navn || book.tlf.length < 8){ $("#send").textContent = "Fyll inn tid, navn og telefon"; return; }
+          pane.style.display = "none";
+          $("#ok").classList.add("show");
+        };
+      }
+      if (w<3){
+        const next = document.createElement("button");
+        next.className = "btn btn-accent";
+        next.style.marginTop = "18px";
+        next.textContent = "Neste steg";
+        next.onclick = () => {
+          const key = w===0?"klasse":w===1?"type":"laerer";
+          if (!book[key]) { next.textContent = "Velg et alternativ først"; return; }
+          w++; drawW();
+        };
+        pane.appendChild(next);
+      }
+    }
+    function paneChoices(title, items, key){
+      return `<h3 style="font-size:26px;margin-bottom:16px">${title}</h3>
+        <div class="choice-grid">${items.map(([a,b])=>`
+          <button class="choice ${book[key]===a?'sel':''}" data-v="${a}"><b>${a}</b><span>${b}</span></button>`).join("")}</div>`;
+    }
+    document.addEventListener("click", (e) => {
+      const c = e.target.closest(".choice");
+      if (!c) return;
+      const key = w===0?"klasse":w===1?"type":"laerer";
+      book[key] = c.dataset.v;
+      $$(".choice").forEach(x=>x.classList.remove("sel"));
+      c.classList.add("sel");
+    });
+    drawW();
+  </script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

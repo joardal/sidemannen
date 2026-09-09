@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andersen Regnskap AS — Regnskap som frigjør vekst</title>
+<meta name="description" content="Andersen Regnskap AS er autorisert regnskapsfører for små og mellomstore bedrifter. Bokføring, lønn, MVA, årsoppgjør, fakturering og strategisk rådgivning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bone:#F3EFE6;
+  --bone-2:#EAE4D6;
+  --paper:#FBFAF6;
+  --ink:#171A12;
+  --ink-soft:#3B4033;
+  --muted:#6E755F;
+  --line:rgba(23,26,18,.13);
+  --line-soft:rgba(23,26,18,.08);
+  --green:#123E2E;
+  --green-deep:#0B2B20;
+  --lime:#D6F25B;
+  --lime-soft:#EDF8C2;
+  --radius:22px;
+  --max:1240px;
+  --sans:'Inter',system-ui,sans-serif;
+  --grot:'Space Grotesk',system-ui,sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--bone);
+  color:var(--ink);
+  line-height:1.6;
+  font-size:17px;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--lime);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+
+/* grain overlay */
+body::after{
+  content:"";position:fixed;inset:-50%;z-index:99000;pointer-events:none;
+  background-image:url("images/image-01.svg");
+  opacity:.022;animation:grain 8s steps(8) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}12%{transform:translate(-2%,2%)}
+  25%{transform:translate(2%,-1%)}37%{transform:translate(-1%,3%)}
+  50%{transform:translate(3%,1%)}62%{transform:translate(-3%,-2%)}
+  75%{transform:translate(1%,2%)}87%{transform:translate(-2%,-3%)}100%{transform:translate(0,0)}
+}
+
+/* scroll progress */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--green);z-index:1000;transition:width .1s linear}
+
+/* custom cursor */
+#cursor{position:fixed;top:0;left:0;width:9px;height:9px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .25s ease,height .25s ease,opacity .25s ease,background .25s ease;opacity:0}
+#cursor.on{opacity:1}
+#cursor.link{width:58px;height:58px;background:var(--lime);mix-blend-mode:multiply}
+@media(pointer:coarse){#cursor{display:none}}
+@media(pointer:fine){body,a,button,label,input,textarea,select,.faq-q,[data-hover]{cursor:none!important}}
+
+.container{max-width:var(--max);margin:0 auto;padding:0 28px}
+@media(max-width:640px){.container{padding:0 20px}}
+
+/* ============ TYPE HELPERS ============ */
+.serif{font-family:var(--serif)}
+.eyebrow{
+  font-family:var(--grot);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:500;color:var(--green);display:flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:"";width:34px;height:1.5px;background:var(--green);display:inline-block}
+.h-xl{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,7vw,5.4rem);line-height:1.02;letter-spacing:-.02em}
+.h-lg{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.08;letter-spacing:-.02em}
+.italic{font-style:italic;font-weight:400}
+.lead{font-size:clamp(1.05rem,1.5vw,1.25rem);color:var(--ink-soft);max-width:46ch}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--grot);font-weight:500;
+  font-size:.95rem;padding:15px 24px;border-radius:100px;border:none;letter-spacing:.01em;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s,color .3s,box-shadow .3s;
+  white-space:nowrap;
+}
+.btn .arw{display:inline-block;transition:transform .3s ease}
+.btn:hover .arw{transform:translateX(4px)}
+.btn-dark{background:var(--green);color:var(--paper)}
+.btn-dark:hover{background:var(--green-deep);transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(11,43,32,.6)}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:#e2fa7d;transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(0,0,0,.25)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+.btn-light{background:#2a5847;color:#f5f1e6}
+.btn-light:hover{background:#1e4737;transform:translateY(-2px)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+[data-delay="1"]{transition-delay:.08s}
+[data-delay="2"]{transition-delay:.16s}
+[data-delay="3"]{transition-delay:.24s}
+[data-delay="4"]{transition-delay:.32s}
+
+/* ============ NAV ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:900;transition:background .4s,box-shadow .4s,padding .4s;
+}
+header.scrolled{background:rgba(243,239,230,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line-soft)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.logo .mark{width:28px;height:28px;border-radius:9px;background:var(--green);position:relative;flex:none}
+.logo .mark::after{content:"";position:absolute;inset:8px;border-radius:3px;background:var(--lime)}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{font-family:var(--grot);font-size:.92rem;font-weight:500;color:var(--ink-soft);position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--green);transition:width .3s ease}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger{display:none;width:44px;height:44px;border:none;background:none;position:relative;z-index:1001}
+.burger span{position:absolute;left:11px;right:11px;height:2px;background:var(--ink);border-radius:2px;transition:.35s}
+.burger span:nth-child(1){top:18px}
+.burger span:nth-child(2){top:24px}
+.burger.open span:nth-child(1){top:21px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){top:21px;transform:rotate(-45deg)}
+
+/* mobile menu */
+.mobile-menu{
+  position:fixed;inset:0;z-index:999;background:var(--green-deep);color:var(--bone);
+  display:flex;flex-direction:column;justify-content:center;padding:0 34px;
+  transform:translateY(-100%);transition:transform .55s cubic-bezier(.7,0,.2,1);
+}
+.mobile-menu.open{transform:none}
+.mobile-menu .mm-top{position:absolute;top:24px;left:34px;right:34px;display:flex;justify-content:space-between;align-items:center}
+.mobile-menu a.mlink{font-family:var(--serif);font-size:clamp(1.9rem,9vw,2.8rem);padding:9px 0;display:flex;align-items:baseline;gap:14px;color:var(--bone);opacity:0;transform:translateY(20px);transition:.5s}
+.mobile-menu.open a.mlink{opacity:1;transform:none}
+.mobile-menu a.mlink span{font-family:var(--grot);font-size:.8rem;color:var(--lime)}
+.mobile-menu .mm-foot{position:absolute;bottom:40px;left:34px;right:34px;display:flex;gap:16px;flex-wrap:wrap}
+@media(min-width:900px){.mobile-menu{display:none}}
+
+/* ============ HERO ============ */
+.hero{position:relative;padding:150px 0 70px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-bg .grid-lines{position:absolute;left:0;right:0;top:0;bottom:0;
+  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:70px 70px;mask-image:radial-gradient(ellipse 80% 70% at 50% 20%,#000 20%,transparent 75%);opacity:.6}
+.hero-bg .glow{position:absolute;right:-10%;top:-10%;width:640px;height:640px;border-radius:50%;
+  background:radial-gradient(circle,rgba(18,62,46,.14),transparent 65%);filter:blur(10px)}
+.hero-inner{position:relative;display:grid;grid-template-columns:1.05fr .9fr;gap:56px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:8px 16px;font-family:var(--grot);font-size:.8rem;color:var(--ink-soft);margin-bottom:28px}
+.hero-tag .dot{width:8px;height:8px;border-radius:50%;background:#2ea879;box-shadow:0 0 0 0 rgba(46,168,121,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,168,121,.5)}70%{box-shadow:0 0 0 9px rgba(46,168,121,0)}100%{box-shadow:0 0 0 0 rgba(46,168,121,0)}}
+.hero h1{margin-bottom:26px}
+.hero h1 em{font-style:italic;position:relative;white-space:nowrap}
+.hero h1 em svg{position:absolute;left:-2%;bottom:-8px;width:104%;height:14px;overflow:visible}
+.hero h1 em svg path{stroke:var(--green);stroke-width:3;fill:none;stroke-linecap:round}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.hero-meta{display:flex;gap:34px;flex-wrap:wrap;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+.hero-meta .m{display:flex;flex-direction:column}
+.hero-meta .m b{font-family:var(--serif);font-size:1.9rem;font-weight:500;line-height:1}
+.hero-meta .m span{font-size:.8rem;color:var(--muted);font-family:var(--grot);margin-top:6px}
+.hero-meta .m b sup{font-size:.7em;color:var(--green);top:-.5em;position:relative}
+
+/* dashboard card */
+.dash{position:relative;background:var(--green);color:#eaf0e6;border-radius:28px;padding:26px;box-shadow:0 40px 80px -30px rgba(11,43,32,.55);border:1px solid rgba(255,255,255,.08)}
+.dash::before{content:"";position:absolute;inset:0;border-radius:28px;border:1px solid rgba(255,255,255,.06);pointer-events:none}
+.dash-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.dash-head .title{font-family:var(--grot);font-size:.85rem;letter-spacing:.06em;color:#c9ddce;display:flex;align-items:center;gap:9px}
+.dash-head .title .live{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.dash-head .period{font-family:var(--grot);font-size:.74rem;color:#93ad9c;background:rgba(255,255,255,.07);padding:5px 11px;border-radius:100px}
+.dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.dash-kpi{background:rgba(255,255,255,.06);border-radius:16px;padding:14px}
+.dash-kpi small{font-size:.68rem;font-family:var(--grot);letter-spacing:.05em;color:#93ad9c;text-transform:uppercase}
+.dash-kpi b{font-family:var(--serif);font-size:1.5rem;font-weight:500;display:block;margin-top:7px;color:#f4f8f1}
+.dash-kpi.up b{color:var(--lime)}
+.dash-kpi .delta{font-size:.72rem;font-family:var(--grot);color:#7dc99f;margin-top:3px}
+.dash-chart{margin-bottom:18px}
+.dash-stats{display:flex;justify-content:space-between}
+.dash-stat{font-family:var(--grot);font-size:.74rem;color:#c9ddce;display:flex;flex-direction:column;gap:2px}
+.dash-stat b{font-size:.95rem;color:#f4f8f1}
+.float-chip{position:absolute;background:var(--paper);color:var(--ink);border-radius:16px;box-shadow:0 22px 45px -20px rgba(11,43,32,.55);padding:13px 16px;font-family:var(--grot);display:flex;align-items:center;gap:11px}
+.float-chip .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--lime);color:var(--ink)}
+.float-chip small{display:block;font-size:.68rem;color:var(--muted);letter-spacing:.03em}
+.float-chip b{font-size:.95rem;color:var(--ink)}
+.chip-1{top:5%;right:-14px;animation:float 5s ease-in-out infinite}
+.chip-2{bottom:4%;left:-18px;animation:float 6s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.chart-line{stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.6s cubic-bezier(.4,0,.2,1) .4s forwards}
+.chart-fill{transform-origin:bottom;animation:fadeFill 1.6s ease .8s both}
+@keyframes fadeFill{from{opacity:0}to{opacity:1}}
+
+/* marquee strip */
+.strip{position:relative;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--bone-2)}
+.strip .track{display:flex;gap:0;width:max-content;animation:scroll 34s linear infinite}
+.strip:hover .track{animation-play-state:paused}
+.strip .item{font-family:var(--serif);font-size:1.35rem;color:var(--ink-soft);display:flex;align-items:center;gap:32px;padding-right:32px;white-space:nowrap}
+.strip .item::after{content:"✦";color:var(--green);font-size:.9rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS COMMON ============ */
+section{position:relative}
+.sec-pad{padding:110px 0}
+.sec-head{max-width:760px;margin-bottom:60px}
+.sec-head.center{margin:0 auto 60px;text-align:center}
+.sec-head.center .eyebrow{justify-content:center}
+.sec-head.center .eyebrow::before{display:none}
+.sec-head h2{margin-top:18px}
+.sec-head .lead{margin-top:20px}
+@media(max-width:640px){.sec-pad{padding:70px 0}}
+
+/* ============ SERVICES ============ */
+.services{background:var(--paper);border-top:1px solid var(--line-soft)}
+.svc-list{border-top:1px solid var(--line)}
+.svc-row{display:grid;grid-template-columns:70px 1fr 1.1fr 60px;align-items:center;gap:26px;padding:30px 8px;border-bottom:1px solid var(--line);transition:background .35s,color .35s,padding .35s;position:relative}
+.svc-row .idx{font-family:var(--grot);font-size:.85rem;color:var(--muted)}
+.svc-row h3{font-family:var(--serif);font-weight:500;font-size:1.6rem;letter-spacing:-.01em;transition:transform .35s}
+.svc-row p{color:var(--ink-soft);font-size:.95rem;max-width:40ch}
+.svc-row .tags{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
+.svc-row .tags span{font-family:var(--grot);font-size:.68rem;border:1px solid var(--line);padding:4px 10px;border-radius:100px;color:var(--muted)}
+.svc-row .arr{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:.35s;justify-self:end}
+.svc-row:hover{background:var(--green);color:var(--bone);padding-left:20px;padding-right:20px;border-radius:18px}
+.svc-row:hover .arr{background:var(--lime);color:var(--ink);border-color:var(--lime);transform:rotate(-45deg)}
+.svc-row:hover p{color:#c6d7cb}
+.svc-row:hover .tags span{border-color:rgba(255,255,255,.2);color:#c9ddce}
+.svc-row:hover .idx{color:#93ad9c}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:52px}.hero h1{font-size:clamp(2.6rem,11vw,3.9rem)}}
+@media(max-width:640px){.hero-inner{gap:44px}.hero{padding:118px 0 50px}.hero-meta{gap:22px 30px}.hero-meta .m b{font-size:1.6rem}.chip-1{top:2%;right:-4px}.chip-2{bottom:2%;left:-6px}.dash{padding:20px}.float-chip{padding:10px 12px}}
+@media(max-width:760px){.svc-row{grid-template-columns:40px 1fr 46px}.svc-row p{grid-column:2}.svc-row .arr{grid-row:1;grid-column:3}.svc-row .tags{grid-column:2}}
+@media(max-width:640px){.svc-row h3{font-size:1.35rem}.svc-row{padding:24px 6px}}
+
+/* ============ VALUE / PILLARS ============ */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pillar{border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;background:var(--paper);position:relative;overflow:hidden;transition:transform .4s,box-shadow .4s}
+.pillar:hover{transform:translateY(-6px);box-shadow:0 30px 50px -28px rgba(23,26,18,.3)}
+.pillar .n{font-family:var(--grot);font-size:.78rem;letter-spacing:.15em;color:var(--green)}
+.pillar h3{font-family:var(--serif);font-weight:500;font-size:1.6rem;margin:30px 0 12px}
+.pillar p{color:var(--ink-soft);font-size:.95rem}
+.pillar .bar{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--lime));transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.pillar:hover .bar{transform:scaleX(1)}
+@media(max-width:900px){.pillars{grid-template-columns:1fr}}
+
+/* ============ PRICING ============ */
+.pricing{background:var(--green-deep);color:var(--bone)}
+.pricing .eyebrow{color:var(--lime)}
+.pricing .eyebrow::before{background:var(--lime)}
+.pricing .lead{color:#9cb8a8}
+.bill-toggle{display:inline-flex;background:rgba(255,255,255,.08);border-radius:100px;padding:5px;margin-top:6px}
+.bill-toggle button{font-family:var(--grot);font-size:.85rem;border:none;background:transparent;color:#c9ddce;padding:10px 20px;border-radius:100px;transition:.3s;font-weight:500}
+.bill-toggle button.active{background:var(--lime);color:var(--ink)}
+.bill-toggle button .save{font-size:.68rem;color:var(--ink);background:var(--green);padding:2px 6px;border-radius:100px;margin-left:6px}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch}
+.plan{border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:32px 28px;background:rgba(255,255,255,.04);display:flex;flex-direction:column;transition:transform .4s,background .4s;position:relative}
+.plan:hover{background:rgba(255,255,255,.07)}
+.plan h3{font-family:var(--serif);font-weight:500;font-size:1.55rem}
+.plan .sub{font-family:var(--grot);font-size:.8rem;color:#93ad9c;margin-top:4px;min-height:38px}
+.plan .price{margin:28px 0 22px;display:flex;align-items:baseline;gap:6px}
+.plan .price .amt{font-family:var(--serif);font-size:2.9rem;font-weight:500;color:#fff}
+.plan .price .per{font-family:var(--grot);font-size:.8rem;color:#93ad9c}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;flex:1}
+.plan li{display:flex;gap:11px;font-size:.9rem;color:#c9ddce;align-items:flex-start}
+.plan li .ck{width:19px;height:19px;flex:none;border-radius:50%;background:rgba(214,242,91,.15);color:var(--lime);display:grid;place-items:center;font-size:.62rem;margin-top:2px}
+.plan .btn{justify-content:center;width:100%}
+.plan.featured{background:var(--lime);color:var(--ink);border-color:var(--lime);transform:scale(1.03)}
+.plan.featured .sub{color:#3c4a2a}
+.plan.featured .price .amt{color:var(--ink)}
+.plan.featured .price .per{color:#3c4a2a}
+.plan.featured li{color:#2a331f}
+.plan.featured li .ck{background:var(--green);color:var(--lime)}
+.plan .badge{position:absolute;top:-13px;left:28px;background:var(--green);color:var(--lime);font-family:var(--grot);font-size:.7rem;letter-spacing:.1em;padding:6px 13px;border-radius:100px;text-transform:uppercase}
+@media(max-width:1000px){.plans{grid-template-columns:1fr 1fr}.plan.featured{transform:none}}
+@media(max-width:620px){.plans{grid-template-columns:1fr}.plan.featured{order:-1}}
+
+/* ============ CALCULATOR ============ */
+.calc-wrap{background:var(--paper);border:1px solid var(--line);border-radius:30px;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr}
+.calc-form{padding:46px}
+.calc-result{background:var(--green);color:var(--bone);padding:46px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.calc-result::before{content:"";position:absolute;right:-60px;bottom:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(214,242,91,.22),transparent 70%)}
+.field{margin-bottom:30px}
+.field label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;font-family:var(--grot);font-size:.85rem;font-weight:500;color:var(--ink-soft)}
+.field label .val{font-family:var(--serif);font-size:1.5rem;color:var(--ink);font-weight:500}
+fieldset{border:none;margin-bottom:26px}
+fieldset legend{font-family:var(--grot);font-size:.85rem;font-weight:500;color:var(--ink-soft);margin-bottom:14px}
+.pill-select{display:flex;flex-wrap:wrap;gap:9px}
+.pill-select input{position:absolute;opacity:0}
+.pill-select label{font-family:var(--grot);font-size:.82rem;border:1.5px solid var(--line);padding:9px 15px;border-radius:100px;color:var(--ink-soft);transition:.25s;cursor:pointer}
+.pill-select input:checked + label{background:var(--green);color:var(--bone);border-color:var(--green)}
+/* range */
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:100px;background:var(--line);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--lime);border:3px solid var(--green);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:transform .2s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--lime);border:3px solid var(--green);cursor:pointer}
+.calc-result .est-label{font-family:var(--grot);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#93ad9c}
+.calc-result .est-price{font-family:var(--serif);font-size:4rem;font-weight:500;line-height:1;color:#fff;margin:14px 0 6px;position:relative;z-index:1}
+.calc-result .est-price span{font-size:1.2rem;color:#93ad9c}
+.calc-result .est-note{font-size:.9rem;color:#c9ddce;margin-bottom:28px;position:relative;z-index:1}
+.calc-result ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:26px;position:relative;z-index:1}
+.calc-result ul li{display:flex;justify-content:space-between;font-size:.9rem;color:#c9ddce;border-bottom:1px dashed rgba(255,255,255,.14);padding-bottom:11px}
+.calc-result ul li b{color:#f4f8f1;font-family:var(--grot);font-weight:500}
+@media(max-width:860px){.calc-wrap{grid-template-columns:1fr}.calc-form{padding:34px 22px}.calc-result{padding:38px 26px}}
+@media(max-width:640px){.calc-result .est-price{font-size:3rem}}
+
+/* ============ PROCESS ============ */
+.process{background:var(--bone)}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.proc-step{padding:36px 26px;border-left:1px solid var(--line);position:relative;transition:background .35s}
+.proc-step:first-child{border-left:none}
+.proc-step:hover{background:var(--paper)}
+.proc-step .n{font-family:var(--serif);font-size:3.6rem;font-weight:500;color:var(--line);line-height:1;transition:.4s}
+.proc-step:hover .n{color:var(--lime)}
+.proc-step h3{font-family:var(--serif);font-weight:500;font-size:1.45rem;margin:22px 0 10px}
+.proc-step p{font-size:.92rem;color:var(--ink-soft)}
+.proc-step .days{font-family:var(--grot);font-size:.74rem;color:var(--green);background:var(--lime-soft);padding:4px 11px;border-radius:100px;display:inline-block;margin-top:16px}
+@media(max-width:900px){.proc-grid{grid-template-columns:1fr 1fr}.proc-step:nth-child(1),.proc-step:nth-child(3){border-left:none}.proc-step:nth-child(3){border-top:1px solid var(--line)}.proc-step:nth-child(4){border-top:1px solid var(--line)}}
+@media(max-width:520px){.proc-grid{grid-template-columns:1fr}.proc-step{border-left:none;border-top:1px solid var(--line)}.proc-step:first-child{border-top:none}}
+
+/* ============ TESTIMONIALS ============ */
+.testi{background:var(--paper);border-top:1px solid var(--line-soft);overflow:hidden}
+.testi-wrap{position:relative}
+.t-rows{display:flex;flex-direction:column;gap:22px}
+.t-row{display:flex;gap:22px;width:max-content;animation:scroll 40s linear infinite}
+.t-row.rev{animation-direction:reverse}
+.t-rows:hover .t-row{animation-play-state:paused}
+.t-card{width:400px;background:var(--bone);border:1px solid var(--line);border-radius:22px;padding:30px;flex:none}
+.t-card .stars{display:flex;gap:3px;color:var(--green);margin-bottom:18px}
+.t-card p{font-family:var(--serif);font-size:1.2rem;line-height:1.4;color:var(--ink);font-weight:400}
+.t-card .who{display:flex;align-items:center;gap:13px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-soft)}
+.t-card .ava{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:var(--grot);font-weight:600;color:var(--paper);font-size:.85rem}
+.t-card .who b{font-size:.92rem;display:block;font-family:var(--grot)}
+.t-card .who span{font-size:.8rem;color:var(--muted)}
+@media(max-width:640px){.t-card{width:320px;padding:24px}.t-card p{font-size:1.05rem}}
+
+/* ============ TEAM ============ */
+.team{background:var(--bone)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.member{border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);padding:30px 26px;transition:transform .4s,box-shadow .4s,background .4s;position:relative;overflow:hidden}
+.member:hover{transform:translateY(-6px);box-shadow:0 28px 46px -26px rgba(23,26,18,.3)}
+.member .ava{width:78px;height:78px;border-radius:20px;display:grid;place-items:center;font-family:var(--serif);font-size:1.9rem;color:var(--paper);margin-bottom:22px;transition:.4s}
+.member:hover .ava{transform:rotate(-6deg) scale(1.04)}
+.member h3{font-family:var(--serif);font-weight:500;font-size:1.4rem}
+.member .role{font-family:var(--grot);font-size:.78rem;color:var(--green);margin:5px 0 4px;letter-spacing:.02em}
+.member .focus{font-size:.85rem;color:var(--muted)}
+.member .social{position:absolute;top:22px;right:22px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;opacity:0;transform:translateY(6px);transition:.35s}
+.member:hover .social{opacity:1;transform:none}
+.member .social:hover{background:var(--lime)}
+@media(max-width:900px){.team-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.team-grid{grid-template-columns:1fr}}
+
+/* ============ FAQ ============ */
+.faq{background:var(--paper);border-top:1px solid var(--line-soft)}
+.faq-list{max-width:840px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;background:none;border:none;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:28px 0;font-family:var(--serif);font-size:1.35rem;font-weight:500;color:var(--ink);cursor:pointer}
+.faq-q .icon{width:40px;height:40px;flex:none;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:1.4rem;transition:.35s;color:var(--ink)}
+.faq-item.open .icon{background:var(--lime);border-color:var(--lime);transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.7,.2,1),padding .5s;color:var(--ink-soft)}
+.faq-a p{max-width:60ch;padding-bottom:26px;font-size:.98rem}
+.faq-item.open .faq-a{max-height:300px}
+
+/* ============ CONTACT ============ */
+.contact{background:var(--green);color:var(--bone)}
+.contact .eyebrow{color:var(--lime)}
+.contact .eyebrow::before{background:var(--lime)}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+.contact-info h2{color:#fff}
+.contact-info .lead{color:#b8d0c0}
+.contact-list{margin-top:40px;display:flex;flex-direction:column;gap:8px}
+.contact-row{display:flex;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.contact-row .ic{width:44px;height:44px;border-radius:12px;background:rgba(214,242,91,.14);color:var(--lime);display:grid;place-items:center;flex:none}
+.contact-row b{font-family:var(--grot);font-size:.75rem;letter-spacing:.06em;color:#8fb0a0;text-transform:uppercase;display:block}
+.contact-row span{font-size:1.05rem;color:#fff}
+.form-card{background:var(--paper);color:var(--ink);border-radius:28px;padding:42px;box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+.form-card h3{font-family:var(--serif);font-weight:500;font-size:1.7rem;margin-bottom:8px}
+.form-card .hint{font-size:.92rem;color:var(--muted);margin-bottom:30px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f-field{margin-bottom:20px}
+.f-field label{display:block;font-family:var(--grot);font-size:.78rem;font-weight:500;color:var(--ink-soft);margin-bottom:8px;letter-spacing:.02em}
+.f-field input,.f-field select,.f-field textarea{width:100%;font-family:var(--sans);font-size:.98rem;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;background:var(--bone);color:var(--ink);transition:.25s}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{outline:none;border-color:var(--green);background:var(--paper);box-shadow:0 0 0 4px rgba(18,62,46,.08)}
+.f-field textarea{resize:vertical;min-height:110px}
+.f-field select{appearance:none;background-image:url("images/image-02.svg");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px}
+.f-field.checks .checks-wrap{display:flex;flex-wrap:wrap;gap:8px}
+.f-field .check{display:none}
+.f-field .cbtn{font-family:var(--grot);font-size:.8rem;border:1.5px solid var(--line);padding:9px 14px;border-radius:100px;color:var(--ink-soft);cursor:pointer;transition:.25s}
+.f-field .check:checked + .cbtn{background:var(--green);color:var(--bone);border-color:var(--green)}
+.form-msg{display:none;margin-top:20px;background:var(--green);color:var(--bone);padding:16px 20px;border-radius:12px;font-size:.92rem}
+.form-msg.show{display:block;animation:fadeIn .4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}.form-card{padding:30px 22px}}
+@media(max-width:560px){.f-row{grid-template-columns:1fr}}
+
+/* ============ BIG CTA ============ */
+.bigcta{background:var(--lime);color:var(--ink);padding:96px 0;position:relative;overflow:hidden}
+.bigcta .big{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,7vw,5rem);line-height:1;letter-spacing:-.02em;max-width:14ch}
+.bigcta .big em{font-style:italic}
+.bigcta p{font-size:1.05rem;color:#2a331f;max-width:44ch;margin:24px 0 34px}
+.bigcta .deco{position:absolute;right:-80px;top:-80px;width:380px;height:380px;border:2px solid rgba(23,26,18,.16);border-radius:50%}
+.bigcta .deco::after{content:"";position:absolute;inset:-60px;border:2px dashed rgba(23,26,18,.12);border-radius:50%}
+@media(max-width:640px){.bigcta{padding:70px 0}}
+
+/* ============ FOOTER ============ */
+footer{background:var(--green-deep);color:#9cb8a8;padding:80px 0 40px;position:relative;overflow:hidden}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.1)}
+footer .logo{color:#fff}
+.foot-brand p{font-size:.92rem;max-width:34ch;margin-top:20px;color:#8fb0a0}
+.foot-col h4{font-family:var(--grot);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:#5c7f6c;margin-bottom:20px}
+.foot-col a{display:block;font-size:.95rem;padding:7px 0;color:#b8d0c0;transition:.25s}
+.foot-col a:hover{color:var(--lime);transform:translateX(4px)}
+.foot-meta{display:flex;justify-content:space-between;align-items:center;padding-top:34px;font-size:.8rem;flex-wrap:wrap;gap:16px}
+.foot-meta .big{font-family:var(--serif);font-size:clamp(2.6rem,9vw,7rem);line-height:.8;color:rgba(255,255,255,.04);letter-spacing:-.03em;user-select:none}
+.to-top{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);padding:11px 20px;border-radius:100px;color:#fff;font-family:var(--grot);font-size:.85rem;transition:.3s}
+.to-top:hover{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+@media(max-width:900px){.foot-top{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.foot-top{grid-template-columns:1fr}}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+
+<div id="progress"></div>
+<div id="cursor"></div>
+
+<!-- ===== NAV ===== -->
+<header id="header">
+  <div class="container nav">
+    <a href="#top" class="logo"><span class="mark"></span>Andersen Regnskap</a>
+    <nav class="nav-links">
+      <a href="#tjenester">Tjenester</a>
+      <a href="#priser">Priser</a>
+      <a href="#prosess">Prosess</a>
+      <a href="#kunder">Kunder</a>
+      <a href="#team">Team</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#kontakt" class="btn btn-dark">Få tilbud <span class="arw">→</span></a>
+      <button class="burger" id="burger" aria-label="Meny"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-top">
+    <a href="#top" class="logo" style="color:var(--bone)"><span class="mark"></span>Andersen Regnskap</a>
+    <button class="burger open" id="closeBurger"><span></span><span></span></button>
+  </div>
+  <a href="#tjenester" class="mlink" style="transition-delay:.1s"><span>01</span> Tjenester</a>
+  <a href="#priser" class="mlink" style="transition-delay:.18s"><span>02</span> Priser</a>
+  <a href="#prosess" class="mlink" style="transition-delay:.26s"><span>03</span> Prosess</a>
+  <a href="#kunder" class="mlink" style="transition-delay:.34s"><span>04</span> Kunder</a>
+  <a href="#team" class="mlink" style="transition-delay:.42s"><span>05</span> Team</a>
+  <a href="#faq" class="mlink" style="transition-delay:.5s"><span>06</span> FAQ</a>
+  <div class="mm-foot">
+    <a href="#kontakt" class="btn btn-lime">Få tilbud</a>
+    <a href="#kontakt" class="btn btn-light">Bestill møte</a>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <div class="grid-lines"></div>
+    <div class="glow"></div>
+  </div>
+  <div class="container hero-inner">
+    <div>
+      <span class="hero-tag reveal"><span class="dot"></span>Autorisert regnskapsfører · For små og mellomstore bedrifter</span>
+      <h1 class="h-xl reveal" data-delay="1">Vi tar regnskapet.<br>Du tar <em>veksten.<svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M3 10 C60 3, 120 3, 160 8 S 260 12, 297 5" /></svg></em></h1>
+      <p class="lead reveal" data-delay="2">Andersen Regnskap AS er en moderne, autorisert regnskapsfører for små og mellomstore bedrifter. Fra bokføring og lønn til strategisk rådgivning — vi gjør økonomien enkel, slik at du kan bygge.</p>
+      <div class="hero-actions reveal" data-delay="3">
+        <a href="#kontakt" class="btn btn-dark">Få tilbud <span class="arw">→</span></a>
+        <a href="#kontakt" class="btn btn-ghost">Bestill møte <span class="arw">→</span></a>
+      </div>
+      <div class="hero-meta reveal" data-delay="4">
+        <div class="m"><b><span class="num" data-to="320">0</span><sup>+</sup></b><span>aktive kunder</span></div>
+        <div class="m"><b><span class="num" data-to="98">0</span><sup>%</sup></b><span>beholdt kundemasse</span></div>
+        <div class="m"><b><span class="num" data-to="24">0</span><sup>t</sup></b><span>gj.snitt svartid</span></div>
+        <div class="m"><b><span class="num" data-to="4">0</span><sup>,9</sup>/5</b><span>kundeomtale</span></div>
+      </div>
+    </div>
+
+    <!-- dashboard -->
+    <div class="dash reveal" data-delay="2">
+      <div class="dash-head">
+        <div class="title"><span class="live"></span>Kundepanel · Månedsrapport</div>
+        <div class="period">Juni 2026</div>
+      </div>
+      <div class="dash-kpis">
+        <div class="dash-kpi"><small>Omsetning</small><b>kr 1.24M</b><div class="delta">+12,4%</div></div>
+        <div class="dash-kpi up"><small>Resultat</small><b>kr 318k</b><div class="delta">+8,1%</div></div>
+        <div class="dash-kpi"><small>Lønn</small><b>kr 412k</b><div class="delta">+2,9%</div></div>
+      </div>
+      <div class="dash-chart">
+        <svg viewBox="0 0 300 130" width="100%" height="130">
+          <g fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1">
+            <line x1="0" y1="30" x2="300" y2="30"/><line x1="0" y1="65" x2="300" y2="65"/><line x1="0" y1="100" x2="300" y2="100"/>
+          </g>
+          <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#d6f25b" stop-opacity=".5"/><stop offset="1" stop-color="#d6f25b" stop-opacity="0"/>
+          </linearGradient></defs>
+          <path class="chart-fill" d="M0 100 L0 96 L30 90 L60 92 L90 80 L120 84 L150 68 L180 72 L210 55 L240 50 L270 34 L300 28 L300 130 L0 130 Z" fill="url(#ga)"/>
+          <path class="chart-line" d="M0 96 L30 90 L60 92 L90 80 L120 84 L150 68 L180 72 L210 55 L240 50 L270 34 L300 28" fill="none" stroke="#d6f25b" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="270" cy="34" r="4" fill="#d6f25b"/>
+        </svg>
+      </div>
+      <div class="dash-stats">
+        <div class="dash-stat"><b>Bokfør + 214</b><span>transaksjoner</span></div>
+        <div class="dash-stat"><b>MVA · Q2</b><span>levert idag</span></div>
+        <div class="dash-stat"><b>Lønn</b><span>14 ansatte</span></div>
+      </div>
+      <div class="float-chip chip-1"><span class="ic">✓</span><span><small>Årsoppgjør</small><b>Godkjent</b></span></div>
+      <div class="float-chip chip-2"><span class="ic">€</span><span><small>Skattebesparelse</small><b>+kr 46 900</b></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- marquee strip -->
+<div class="strip">
+  <div class="track" id="stripTrack">
+    <div class="item">Bokføring</div><div class="item">Lønn &amp; HR</div><div class="item">MVA &amp; Skatt</div><div class="item">Årsoppgjør</div><div class="item">Fakturering</div><div class="item">Rådgivning</div><div class="item">Selskapsstiftelse</div><div class="item">Økonomisk oppfølging</div>
+  </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="services sec-pad" id="tjenester">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Tjenester</span>
+      <h2 class="h-lg">Alt økonomien din trenger, under ett tak.</h2>
+      <p class="lead">Vi kombinerer ryddig, digital bokføring med rådgivning som faktisk skaper verdi. Du får én dedikert kontaktperson og en økonomi i fremste rekke.</p>
+    </div>
+
+    <div class="svc-list reveal">
+      <div class="svc-row" data-hover>
+        <span class="idx">01</span>
+        <div><h3>Bokføring</h3><div class="tags"><span>Løpende</span><span>Digitale bilag</span><span>Avstemming</span></div></div>
+        <p>Nøyaktig og løpende bokføring med full digitalisering. Vi holder orden i hver eneste bilagstrøm, så regnskapet alltid er klart og oppdatert.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="svc-row" data-hover>
+        <span class="idx">02</span>
+        <div><h3>Lønn &amp; HR</h3><div class="tags"><span>Lønnskjøring</span><span>Kontrakter</span><span>Fravær</span></div></div>
+        <p>Korrekt lønnsutbetaling, arbeidsgiveravgift og skattetrekk — samt digitale kontrakter og en ryddig HR-hverdag for hele teamet.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="svc-row" data-hover>
+        <span class="idx">03</span>
+        <div><h3>MVA &amp; Skatt</h3><div class="tags"><span>Terminmelding</span><span>Forskuddsskatt</span><span>Skattemelding</span></div></div>
+        <p>Vi håndterer terminoppgaver, bokføring og skattemelding — og sørger for at du aldri går glipp av en frist eller en fradragsmulighet.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="svc-row" data-hover>
+        <span class="idx">04</span>
+        <div><h3>Årsoppgjør</h3><div class="tags"><span>Regnskapsføring</span><span>Revisjon</span><span>Årsberetning</span></div></div>
+        <p>Et komplette årsoppgjør — fra balanse og resultat til årsberetning — levert tidsriktig og klart for godkjenning og innsending.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="svc-row" data-hover>
+        <span class="idx">05</span>
+        <div><h3>Fakturering</h3><div class="tags"><span>EHF</span><span>Digitale løsninger</span><span>Purring</span></div></div>
+        <p>Effektiv fakturering med EHF, automatisk purring og god flyt. Raskere betalinger og bedre likviditet for virksomheten din.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="svc-row" data-hover>
+        <span class="idx">06</span>
+        <div><h3>Strategisk rådgivning</h3><div class="tags"><span>Tall</span><span>Beslutninger</span><span>Vekstplan</span></div></div>
+        <p>Vi går utover bokføringen. Med tallene i bunn får du råd om lønnsomhet, prising, investeringer og vekst — i et språk du forstår.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="svc-row" data-hover>
+        <span class="idx">07</span>
+        <div><h3>Selskapsstiftelse</h3><div class="tags"><span>AS</span><span>ENK</span><span>Kartlegging</span></div></div>
+        <p>Fra idé til registrert selskap. Vi hjelper deg med stiftelse, vedtekter, valg av selskapsform og en trygg start på økonomien.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="svc-row" data-hover>
+        <span class="idx">08</span>
+        <div><h3>Økonomisk oppfølging</h3><div class="tags"><span>Månedsrapport</span><span>Cash flow</span><span>Budajett</span></div></div>
+        <p>Månedlige rapporter, budajett og likviditetsprognoser som gjør at du ser fremover — og aldri overraskes av økonomien.</p>
+        <span class="arr">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<section class="sec-pad" style="background:var(--bone)">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Hvorfor oss</span>
+      <h2 class="h-lg">Ikke bare et regnskapsbyrå.</h2>
+      <p class="lead">En økonomisk partner som bryr seg om tallene dine — og om veksten din. Dette lover vi hver eneste kunde.</p>
+    </div>
+    <div class="pillars reveal" data-delay="1">
+      <div class="pillar"><span class="bar"></span><span class="n">01</span><h3>En fast kontaktperson</h3><p>Du snakker alltid med samme regnskapsfører, som kjenner virksomheten din ut og inn. Aldri en anonym kø.</p></div>
+      <div class="pillar"><span class="bar"></span><span class="n">02</span><h3>100% digitalt</h3><p>Alt skjer i nettleseren. Bilag, avtaler, rapporter og signaturer — ryddig, sikkert og tilgjengelig når du trenger det.</p></div>
+      <div class="pillar"><span class="bar"></span><span class="n">03</span><h3>Proaktiv rådgivning</h3><p>Vi varsler deg før ting blir et problem, og peker på muligheter du ikke visste fantes i tallene dine.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="pricing sec-pad" id="priser">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Priser</span>
+      <h2 class="h-lg">Forutsigbare pakker. Ingen skjulte kostnader.</h2>
+      <p class="lead">Velg pakken som passer din virksomhet. Du kan alltid oppgradere når du vokser.</p>
+      <div class="bill-toggle">
+        <button id="btnMonthly" class="active">Månedlig</button>
+        <button id="btnAnnual">Årlig <span class="save">spar 2 mnd</span></button>
+      </div>
+    </div>
+
+    <div class="plans reveal" data-delay="1">
+      <div class="plan">
+        <h3>Starter</h3>
+        <div class="sub">For entusiaster og helt nye virksomheter.</div>
+        <div class="price"><span class="amt" data-monthly="1490" data-annual="1241">1 490</span><span class="per">kr/mnd</span></div>
+        <ul>
+          <li><span class="ck">✓</span>Løpende bokføring</li>
+          <li><span class="ck">✓</span>Digitale bilag</li>
+          <li><span class="ck">✓</span>MVA &amp; terminmelding</li>
+          <li><span class="ck">✓</span>Årsoppgjør</li>
+          <li><span class="ck">✓</span>Kundepanel &amp; chat</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost">Start i dag <span class="arw">→</span></a>
+      </div>
+
+      <div class="plan featured">
+        <span class="badge">Mest valgt</span>
+        <h3>Vekst</h3>
+        <div class="sub">For små og voksende aksjeselskaper.</div>
+        <div class="price"><span class="amt" data-monthly="3900" data-annual="3250">3 900</span><span class="per">kr/mnd</span></div>
+        <ul>
+          <li><span class="ck">✓</span>Alt i Starter</li>
+          <li><span class="ck">✓</span>Lønn &amp; HR for opptil 15 ansatte</li>
+          <li><span class="ck">✓</span>Fakturering &amp; EHF</li>
+          <li><span class="ck">✓</span>Månedsrapport &amp; likviditet</li>
+          <li><span class="ck">✓</span>Strategisk rådgivning</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-dark">Bytt regnskapsfører <span class="arw">→</span></a>
+      </div>
+
+      <div class="plan">
+        <h3>Etablert</h3>
+        <div class="sub">For mellomstore selskaper med behov.</div>
+        <div class="price"><span class="amt" data-monthly="7900" data-annual="6583">7 900</span><span class="per">kr/mnd</span></div>
+        <ul>
+          <li><span class="ck">✓</span>Alt i Vekst</li>
+          <li><span class="ck">✓</span>Flere enheter / konsern</li>
+          <li><span class="ck">✓</span>Full økonomirapportering</li>
+          <li><span class="ck">✓</span>Budajett &amp; prognoser</li>
+          <li><span class="ck">✓</span>Prioritert støtte</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost">Be om tilbud <span class="arw">→</span></a>
+      </div>
+
+      <div class="plan">
+        <h3>Partner</h3>
+        <div class="sub">For deg som vil ha en CFO-tjeneste.</div>
+        <div class="price"><span class="amt" data-monthly="14900" data-annual="12416">14 900</span><span class="per">kr/mnd</span></div>
+        <ul>
+          <li><span class="ck">✓</span>Alt i Etablert</li>
+          <li><span class="ck">✓</span>Ekstern CFO / virtuell CFO</li>
+          <li><span class="ck">✓</span>Kapital &amp; investorstøtte</li>
+          <li><span class="ck">✓</span>Styrerapportering</li>
+          <li><span class="ck">✓</span>Dedikert partner</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost">Snakk med oss <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALCULATOR ===== -->
+<section class="sec-pad">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Priskalkulator</span>
+      <h2 class="h-lg">Hva koster det å bytte?</h2>
+      <p class="lead">Still inn på 15 sekunder og få et estimat — helt uforpliktende. Ingen telefonkø, kun et klart tall.</p>
+    </div>
+
+    <div class="calc-wrap reveal" data-delay="1">
+      <div class="calc-form">
+        <div class="field">
+          <label>Antall ansatte <span class="val"><span id="empVal">5</span> stk</span></label>
+          <input type="range" id="empRange" min="0" max="50" value="5">
+        </div>
+
+        <fieldset>
+          <legend>Selskapsform</legend>
+          <div class="pill-select">
+            <input type="radio" name="form" id="f-as" value="as" checked><label for="f-as">Aksjeselskap (AS)</label>
+            <input type="radio" name="form" id="f-enk" value="enk"><label for="f-enk">Enkeltpersonforetak</label>
+            <input type="radio" name="form" id="f-ans" value="ans"><label for="f-ans">Ansvarlig selskap</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Hva trenger du hjelp med?</legend>
+          <div class="pill-select">
+            <input type="checkbox" id="c-bok" checked><label for="c-bok">Bokføring</label>
+            <input type="checkbox" id="c-fak"><label for="c-fak">Fakturering</label>
+            <input type="checkbox" id="c-mva"><label for="c-mva">MVA</label>
+            <input type="checkbox" id="c-aar" checked><label for="c-aar">Årsoppgjør</label>
+            <input type="checkbox" id="c-lonn" checked><label for="c-lonn">Lønn</label>
+            <input type="checkbox" id="c-rad"><label for="c-rad">Rådgivning</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="calc-result">
+        <div class="est-label">Ditt estimat · månedlig</div>
+        <div class="est-price"><span id="estPrice">kr 4 550</span></div>
+        <p class="est-note">Estimert månedskostnad for din pakke. Eks. mva.</p>
+        <a href="#kontakt" class="btn btn-lime" style="align-self:flex-start">Få nøyaktig tilbud <span class="arw">→</span></a>
+        <ul>
+          <li><span>Bokføring &amp; årsoppgjør</span><b>inkludert</b></li>
+          <li><span>Lønn for <span id="estEmp">5</span> ansatte</span><b id="estLonn">kr 1 000</b></li>
+          <li><span>Antatt årlig sparing</span><b>kr 32 400</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="process sec-pad" id="prosess">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Slik gjør vi det</span>
+      <h2 class="h-lg">Bytt regnskapsfører uten stress.</h2>
+      <p class="lead">Vi tar det meste av arbeidet, og du merker nesten ikke at noe skjer. Fakta: De fleste kunder er i gang på under 14 dager.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="proc-grid reveal" data-delay="1">
+      <div class="proc-step"><span class="n">01</span><h3>Kartlegging</h3><p>Vi går gjennom økonomien din og finner ut nøyaktig hva du trenger — og hva som kan forbedres.</p><span class="days">Dag 1</span></div>
+      <div class="proc-step"><span class="n">02</span><h3>Plan &amp; overføring</h3><p>Du godkjenner en klar plan, og vi overtar bokføring og avtaler med din nåværende leverandør.</p><span class="days">Dag 2–5</span></div>
+      <div class="proc-step"><span class="n">03</span><h3>Ny start</h3><p>Vi etablerer dine systemer, bilagstrømmer og rapporter. Alt er oppe og kjørt — du er i gang.</p><span class="days">Dag 5–14</span></div>
+      <div class="proc-step"><span class="n">04</span><h3>Fremover</h3><p>Løpende økonomistyring med månedsrapporter og proaktiv rådgivning. Bare vekst å se frem til.</p><span class="days">Løpende</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testi sec-pad" id="kunder">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Kundeomtaler</span>
+      <h2 class="h-lg">Ord fra økonomiansvarlige som oss.</h2>
+    </div>
+  </div>
+  <div class="container testi-wrap">
+    <div class="t-rows reveal">
+      <div class="t-row">
+        <div class="t-card"><div class="stars">★★★★★</div><p>“Vi byttet fra et tradisjonelt byrå, og forskjellen var merkbar første måned. Alt er digitalt, og jeg forstår endelig tallene våre.”</p><div class="who"><span class="ava" style="background:#123E2E">HM</span><div><b>Hanne Møller</b><span>Daglig leder · Møller Bygg AS</span></div></div></div>
+        <div class="t-card"><div class="stars">★★★★★</div><p>“Andersen er ikke bare et regnskapsbyrå — de er en støttespiller. Rådgivningen har spart oss for store summer.”</p><div class="who"><span class="ava" style="background:#B8934A">JB</span><div><b>Jonas Berg</b><span>Gründer · Vollan Studio</span></div></div></div>
+        <div class="t-card"><div class="stars">★★★★★</div><p>“Årsoppgjøret var aldri så smertefritt. Determinert, raskt og veldig profesjonelt fra start til slutt.”</p><div class="who"><span class="ava" style="background:#4A7B65">KF</span><div><b>Kari Fjeldheim</b><span>CFO · Nordvik Energi</span></div></div></div>
+        <div class="t-card"><div class="stars">★★★★★</div><p>“Som nystartet selskap var vi helt grønne. De stiftet selskapet, satte opp systemer og lærte oss alt. Uvurderlig.”</p><div class="who"><span class="ava" style="background:#8A4A7B">SL</span><div><b>Sigrid Larsen</b><span>Gründer · Aas &amp; Haugen</span></div></div></div>
+      </div>
+      <div class="t-row rev">
+        <div class="t-card"><div class="stars">★★★★★</div><p>“Kundepanelet er en gave. Jeg ser likviditeten live og tar beslutninger med helt annen trygghet.”</p><div class="who"><span class="ava" style="background:#3A5E8A">TO</span><div><b>Tore Olsen</b><span>Daglig leder · Krogen Marine</span></div></div></div>
+        <div class="t-card"><div class="stars">★★★★★</div><p>“Fikk svar på epost på under en time en søndag. Det sier alt om servicen her.”</p><div class="who"><span class="ava" style="background:#7A4A8A">EN</span><div><b>Erlend Nord</b><span>Økonomisjef · Sande Kooperativ</span></div></div></div>
+        <div class="t-card"><div class="stars">★★★★★</div><p>“Vi sluttet å bekymre oss for MVA og frister. Andersen bare håndterer det — knirkefritt.”</p><div class="who"><span class="ava" style="background:#4A8A6E">IT</span><div><b>Ingrid Tangen</b><span>Medeier · Lund Eiendom</span></div></div></div>
+        <div class="t-card"><div class="stars">★★★★★</div><p>“Lønn og HR er blitt helt smertefritt. Teamet er fornøyd, og jeg har fått tiden tilbake.”</p><div class="who"><span class="ava" style="background:#B8934A">PV</span><div><b>Petter Vold</b><span>Daglig leder · Bjerke Utvikling</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section class="team sec-pad" id="team">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Teamet</span>
+      <h2 class="h-lg">Mennesker bak tallene.</h2>
+      <p class="lead">Et kunnskapsrikt og dedikert team av autoriserte regnskapsførere og rådgivere — håndplukket for å gjøre økonomien din til noe du kan stole på.</p>
+    </div>
+    <div class="team-grid reveal" data-delay="1">
+      <div class="member"><span class="social">in</span><div class="ava" style="background:linear-gradient(135deg,#123E2E,#2A6A4C)">AA</div><h3>Anders Andersen</h3><div class="role">Partner · Autorisert regnskapsfører</div><div class="focus">Grunnlegger. 18 år med rådgivning og regnskap for vekstselskaper.</div></div>
+      <div class="member"><span class="social">in</span><div class="ava" style="background:linear-gradient(135deg,#4A7B65,#7FC08F)">MK</div><h3>Marte Knutsen</h3><div class="role">Senior rådgiver · Lønn &amp; HR</div><div class="focus">Lønn, kontrakter og compliance. Gjør personalforvaltning enkelt.</div></div>
+      <div class="member"><span class="social">in</span><div class="ava" style="background:linear-gradient(135deg,#8A4A7B,#C27BB0)">OB</div><h3>Ola Bergstrøm</h3><div class="role">Regnskapsfører · Bokføring &amp; MVA</div><div class="focus">Bokføring, terminoppgaver og skatt. Nøyaktig i hver detalj.</div></div>
+      <div class="member"><span class="social">in</span><div class="ava" style="background:linear-gradient(135deg,#3A5E8A,#6A9BC0)">SL</div><h3>Sofia Lindqvist</h3><div class="role">Rådgiver · Digitalisering &amp; Fakturering</div><div class="focus">Digitalisering, EHF og prosesser som sparer tid og penger.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq sec-pad" id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Vanlige spørsmål</span>
+      <h2 class="h-lg">Alt du lurer på, svar.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">Hva er inkludert i prisen?<span class="icon">+</span></button>
+        <div class="faq-a"><p>Alle pakker inkluderer løpende bokføring, MVA-håndtering, årsoppgjør og tilgang til kundepanelet. Du får også én fast kontaktperson — du skal aldri stå i kø. Utvidelser som lønn, fakturering og rådgivning er enkelt å legge til.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Hvor lang tid tar det å bytte regnskapsfører?<span class="icon">+</span></button>
+        <div class="faq-a"><p>De fleste er i gang innen 14 dager. Vi kontakter din gamle leverandør, henter over nødvendige data og setter opp dine nye systemer. Du trenger bare å godkjenne planen — vi tar resten, også den administrative overgangen.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Er dere autorisert regnskapsfører?<span class="icon">+</span></button>
+        <div class="faq-a"><p>Ja. Andersen Regnskap AS er registrert som autorisert regnskapsfører, og arbeidet vårt er underlagt Regnskapsførerloven. Du kan alltid være trygg på at regnskapet ditt føres riktig, sikkert og i henhold til gjeldende regelverk.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Kan jeg komme til å møte dere?<span class="icon">+</span></button>
+        <div class="faq-a"><p>Absolutt. Vi liker å møte kundene våre. Book et uforpliktende møte hos oss i Oslo, på Teams, eller vi kommer til deg hvis du er i nærheten. Det tar som regel 30–45 minutter, og du sitter igjen med et tydelig bilde av økonomien din.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Hvordan fungerer kundepanelet?<span class="icon">+</span></button>
+        <div class="faq-a"><p>Kundepanelet er din digitale nøkkel til virksomheten. Her ser du balanse, resultat, likviditet og rapporter live. Du kan laste opp bilag, chatte med din kontaktperson og følge med på alt fra fristdatoer — når som helst, hvor som helst.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact sec-pad" id="kontakt">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow">Kontakt</span>
+        <h2 class="h-lg" style="color:#fff;margin-top:14px">La oss ta økonomien videre.</h2>
+        <p class="lead" style="margin-top:18px">Svar vanligvis innen 24 timer. Fyll ut skjemaet, så ringer vi deg for en uformell prat om virksomheten din.</p>
+        <div class="contact-list">
+          <div class="contact-row"><span class="ic">✉</span><div><b>E-post</b><span>post@andersenregnskap.no</span></div></div>
+          <div class="contact-row"><span class="ic">✆</span><div><b>Telefon</b><span>+47 22 00 41 20</span></div></div>
+          <div class="contact-row"><span class="ic">◎</span><div><b>Besøk oss</b><span>Nedre gate 5, 0185 Oslo</span></div></div>
+          <div class="contact-row"><span class="ic">◷</span><div><b>Åpningstider</b><span>Man–fre, 08:00–17:00</span></div></div>
+        </div>
+      </div>
+
+      <div class="form-card reveal" data-delay="1">
+        <h3>Få tilbud eller bestill møte</h3>
+        <p class="hint">Fyll inn så mye du kan — det gjør oss mer presise. Uforpliktende.</p>
+        <form id="contactForm" novalidate>
+          <div class="f-row">
+            <div class="f-field"><label for="navn">Navn *</label><input type="text" id="navn" required placeholder="Ola Nordmann"></div>
+            <div class="f-field"><label for="tlf">Telefon</label><input type="tel" id="tlf" placeholder="+47 ..."></div>
+          </div>
+          <div class="f-row">
+            <div class="f-field"><label for="epost">E-post *</label><input type="email" id="epost" required placeholder="ola@bedrift.no"></div>
+            <div class="f-field"><label for="selskap">Selskapsform</label>
+              <select id="selskap">
+                <option>Aksjeselskap (AS)</option>
+                <option>Enkeltpersonforetak</option>
+                <option>Ansvarlig selskap</option>
+                <option>Norskregistrert utenlandsk foretak</option>
+                <option>Trenger hjelp til å velge</option>
+              </select>
+            </div>
+          </div>
+          <div class="f-row">
+            <div class="f-field"><label for="ansatte">Antall ansatte</label>
+              <select id="ansatte">
+                <option>0</option><option>1–5</option><option>6–15</option><option>16–40</option><option>41+</option>
+              </select>
+            </div>
+            <div class="f-field"><label for="emne">Emne</label>
+              <select id="emne">
+                <option>Bytt regnskapsfører</option>
+                <option>Få tilbud</option>
+                <option>Bestill møte</option>
+                <option>Selskapsstiftelse</option>
+                <option>Annet</option>
+              </select>
+            </div>
+          </div>
+          <div class="f-field checks">
+            <label>Hva trenger du hjelp med?</label>
+            <div class="checks-wrap">
+              <input type="checkbox" class="check" id="h1"><label class="cbtn" for="h1">Bokføring</label>
+              <input type="checkbox" class="check" id="h2"><label class="cbtn" for="h2">Lønn</label>
+              <input type="checkbox" class="check" id="h3"><label class="cbtn" for="h3">MVA</label>
+              <input type="checkbox" class="check" id="h4"><label class="cbtn" for="h4">Årsoppgjør</label>
+              <input type="checkbox" class="check" id="h5"><label class="cbtn" for="h5">Fakturering</label>
+              <input type="checkbox" class="check" id="h6"><label class="cbtn" for="h6">Rådgivning</label>
+              <input type="checkbox" class="check" id="h7"><label class="cbtn" for="h7">Stiftelse</label>
+            </div>
+          </div>
+          <div class="f-field"><label for="melding">Melding</label><textarea id="melding" placeholder="Fortell oss kort om virksomheten din og hva du trenger..."></textarea></div>
+          <button type="submit" class="btn btn-dark" style="width:100%;justify-content:center">Send forespørsel <span class="arw">→</span></button>
+          <div class="form-msg" id="formMsg">Takk! Forespørselen din er mottatt. Vi tar kontakt innen 24 timer. ✓</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BIG CTA ===== -->
+<section class="bigcta">
+  <div class="container">
+    <div class="deco"></div>
+    <h2 class="big reveal">Klar for økonomi i <em>fremste rekke?</em></h2>
+    <p class="reveal" data-delay="1">Bli en av over 320 norske bedrifter som stoler på Andersen Regnskap. Ingen bindingstid — bare en bedre økonomi.</p>
+    <a href="#kontakt" class="btn btn-dark reveal" data-delay="2">Bestill et uforpliktende møte <span class="arw">→</span></a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="#top" class="logo"><span class="mark"></span>Andersen Regnskap</a>
+        <p>Autorisert regnskapsfører for små og mellomstore bedrifter. Moderne, digitalt og alltid i fremste rekke for din vekst.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Tjenester</h4>
+        <a href="#tjenester">Bokføring</a><a href="#tjenester">Lønn &amp; HR</a><a href="#tjenester">MVA &amp; Skatt</a><a href="#tjenester">Årsoppgjør</a><a href="#tjenester">Rådgivning</a>
+      </div>
+      <div class="foot-col">
+        <h4>Selskap</h4>
+        <a href="#priser">Priser</a><a href="#prosess">Slik gjør vi det</a><a href="#kunder">Kunder</a><a href="#team">Team</a><a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <a href="mailto:post@andersenregnskap.no">post@andersenregnskap.no</a>
+        <a href="tel:+4722004120">+47 22 00 41 20</a>
+        <a href="#kontakt">Nedre gate 5, Oslo</a>
+        <a href="#top">Personvern &amp; vilkår</a>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <div class="big">Andersen</div>
+      <div>
+        <a href="#top" class="to-top">Til toppen ↑</a>
+      </div>
+      <div>© <span id="year"></span> Andersen Regnskap AS · Org.nr. 919 234 567 · Laget med ❤ i Oslo</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---- Year ----
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// ---- Scroll progress ----
+const progress = document.getElementById('progress');
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  const st = window.scrollY;
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (st / h * 100) + '%';
+  header.classList.toggle('scrolled', st > 40);
+});
+
+// ---- Mobile menu ----
+const burger = document.getElementById('burger');
+const closeBurger = document.getElementById('closeBurger');
+const mobileMenu = document.getElementById('mobileMenu');
+function openMenu(){ mobileMenu.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMenu(){ mobileMenu.classList.remove('open'); document.body.style.overflow=''; }
+burger.addEventListener('click', openMenu);
+closeBurger.addEventListener('click', closeMenu);
+mobileMenu.querySelectorAll('.mlink').forEach(l => l.addEventListener('click', closeMenu));
+
+// ---- Reveal on scroll ----
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ---- Counters ----
+const counterIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target; const to = +el.dataset.to; const dur = 1600; const start = performance.now();
+      function tick(now){
+        const p = Math.min((now - start)/dur, 1);
+        el.textContent = Math.floor(to * (1 - Math.pow(1-p,3))).toLocaleString('no-NO');
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      counterIO.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.num').forEach(el => counterIO.observe(el));
+
+// ---- Pricing toggle ----
+const btnM = document.getElementById('btnMonthly');
+const btnA = document.getElementById('btnAnnual');
+function setBill(mode){
+  btnM.classList.toggle('active', mode==='monthly');
+  btnA.classList.toggle('active', mode==='annual');
+  document.querySelectorAll('.plan .amt').forEach(a => {
+    const v = mode==='monthly' ? a.dataset.monthly : a.dataset.annual;
+    a.textContent = Number(v).toLocaleString('no-NO');
+  });
+}
+btnM.addEventListener('click', ()=>setBill('monthly'));
+btnA.addEventListener('click', ()=>setBill('annual'));
+
+// ---- Calculator ----
+const empRange = document.getElementById('empRange');
+const empVal = document.getElementById('empVal');
+const estPrice = document.getElementById('estPrice');
+const estEmp = document.getElementById('estEmp');
+const estLonn = document.getElementById('estLonn');
+function calc(){
+  const emp = +empRange.value;
+  empVal.textContent = emp;
+  const bok = document.getElementById('c-bok').checked ? 1400 : 0;
+  const fak = document.getElementById('c-fak').checked ? 300 : 0;
+  const mva = document.getElementById('c-mva').checked ? 450 : 0;
+  const aar = document.getElementById('c-aar').checked ? 1900 : 0;
+  const lonn = document.getElementById('c-lonn').checked ? (700 + emp*60) : 0;
+  const rad = document.getElementById('c-rad').checked ? 1200 : 0;
+  const total = bok + fak + mva + aar + lonn + rad;
+  estPrice.textContent = 'kr ' + total.toLocaleString('no-NO');
+  estEmp.textContent = emp;
+  estLonn.textContent = 'kr ' + (lonn ? lonn.toLocaleString('no-NO') : 0);
+}
+empRange.addEventListener('input', calc);
+document.querySelectorAll('.calc-form input').forEach(i => i.addEventListener('change', calc));
+calc();
+
+// ---- FAQ ----
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  });
+});
+
+// ---- Form ----
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const n = document.getElementById('navn').value.trim();
+  const em = document.getElementById('epost').value.trim();
+  if(!n || !em){ alert('Fyll inn navn og e-post.'); return; }
+  document.getElementById('formMsg').classList.add('show');
+  document.getElementById('contactForm').reset();
+  setTimeout(()=>document.getElementById('formMsg').classList.remove('show'), 6000);
+});
+
+// ---- Custom cursor ----
+const cursor = document.getElementById('cursor');
+if(window.matchMedia('(pointer:fine)').matches){
+  let mx=0,my=0,cx=0,cy=0;
+  window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.classList.add('on'); });
+  (function loop(){ cx += (mx-cx)*0.18; cy += (my-cy)*0.18; cursor.style.left=cx+'px'; cursor.style.top=cy+'px'; requestAnimationFrame(loop); })();
+  document.querySelectorAll('a,button,label,.svc-row,.faq-q,.member').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>cursor.classList.add('link'));
+    el.addEventListener('mouseleave', ()=>cursor.classList.remove('link'));
+  });
+}
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

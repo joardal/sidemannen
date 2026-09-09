@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blackline Detailing — Lakk som speil. Følelse som nybil.</title>
+<meta name="description" content="Blackline Detailing Oslo — presisjonspleie, keramisk coating, lakkorrigering og detailing på høyeste nivå. For deg som ser forskjellen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080A;
+  --bg2:#0E1012;
+  --bg3:#141718;
+  --bg4:#1C1F22;
+  --line:rgba(255,255,255,.08);
+  --line2:rgba(255,255,255,.14);
+  --cream:#F3EFE6;
+  --cream2:#E8E0C9;
+  --muted:#9AA0A6;
+  --muted2:#6B7177;
+  --gold:#C8A46A;
+  --gold2:#B89356;
+  --gold3:#8E6F3A;
+  --radius:22px;
+  --radius2:28px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background:var(--bg);
+  color:var(--cream);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;object-fit:cover}
+button,input,select,textarea{font:inherit}
+::selection{background:var(--gold);color:#000}
+
+/* progress */
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);width:0;z-index:9999;transition:width .1s linear}
+
+/* grain */
+.grain:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:2;
+  background-image:url("images/icon-01.svg");
+}
+
+/* nav */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  height:72px;display:flex;align-items:center;
+  background:rgba(7,8,10,.72);backdrop-filter: blur(18px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{width:min(1280px,92vw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:36px;height:36px;background:var(--cream);color:#000;display:grid;place-items:center;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;letter-spacing:.12em}
+.logo-type{line-height:1}
+.logo-type b{font-family:"Instrument Serif",serif;font-weight:400;font-size:22px;letter-spacing:.06em;display:block}
+.logo-type span{font-size:10px;letter-spacing:.28em;color:var(--muted);font-weight:600;margin-top:-2px;display:block}
+.nav-links{display:flex;align-items:center;gap:28px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.nav-links a{transition:.3s;color:var(--muted)}
+.nav-links a:hover{color:var(--cream)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.btn-gold{
+  background:var(--gold);color:#0A0A0A;padding:13px 22px;border-radius:999px;
+  font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  display:inline-flex;align-items:center;gap:10px;border:1px solid transparent;transition:.3s var(--ease);
+}
+.btn-gold:hover{background:var(--cream);transform:translateY(-1px)}
+.btn-ghost{
+  border:1px solid var(--line2);color:var(--cream);padding:13px 22px;border-radius:999px;
+  font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+  display:inline-flex;align-items:center;gap:10px;transition:.3s;background:transparent;
+}
+.btn-ghost:hover{border-color:var(--cream);background:rgba(255,255,255,.06)}
+.hamburger{display:none;width:42px;height:42px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--cream);place-items:center}
+@media(max-width:900px){
+  .nav-links,.nav-cta .btn-ghost{display:none}
+  .hamburger{display:grid}
+  nav{height:64px}
+}
+
+/* mobile menu */
+#mMenu{position:fixed;inset:0;z-index:49;background:#07080A;display:none;flex-direction:column;padding:84px 24px 24px}
+#mMenu.open{display:flex}
+#mMenu a{font-family:"Instrument Serif",serif;font-size:42px;line-height:.9;padding:18px 0;border-bottom:1px solid var(--line)}
+#mMenu .meta{margin-top:auto;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* hero */
+.hero{
+  position:relative;min-height:100vh;display:grid;align-items:center;
+  padding:110px 0 40px;overflow:hidden;
+  background:
+    radial-gradient(900px 600px at 70% 20%, rgba(200,164,106,.14), transparent 60%),
+    radial-gradient(700px 500px at 10% 80%, rgba(255,255,255,.06), transparent 60%),
+    linear-gradient(180deg, #0B0D0F 0%, #07080A 100%);
+}
+.hero-grid{width:min(1280px,92vw);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+.eyebrow i{width:28px;height:1px;background:var(--gold);display:block}
+.hero h1{
+  font-family:"Instrument Serif",serif;font-weight:400;
+  font-size:clamp(42px, 6vw, 84px);line-height:.88;letter-spacing:-.03em;margin:18px 0 18px;
+}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero p{color:var(--muted);font-size:clamp(15px,1.5vw,17px);line-height:1.7;max-width:520px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.hero-stats{display:flex;gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid var(--line);flex-wrap:wrap}
+.stat b{font-family:"Instrument Serif",serif;font-size:28px;font-weight:400;display:block;line-height:1}
+.stat span{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+.hero-visual{position:relative}
+.hero-card{
+  position:relative;border-radius:28px;overflow:hidden;background:#0F1113;
+  border:1px solid var(--line);aspect-ratio:4/3.05;box-shadow:0 30px 80px rgba(0,0,0,.55);
+}
+.hero-card img{height:100%}
+.hero-card:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, transparent 55%, rgba(0,0,0,.55) 100%);pointer-events:none
+}
+.hero-badge{
+  position:absolute;left:16px;right:16px;bottom:16px;z-index:2;
+  background:rgba(14,16,18,.92);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.08);border-radius:18px;
+  display:flex;align-items:center;justify-content:space-between;padding:14px 14px 14px 16px;gap:12px;
+}
+.hero-badge small{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block}
+.hero-badge b{font-size:13px;letter-spacing:.04em;display:block;margin-top:2px}
+.hero-badge .dot{width:10px;height:10px;border-radius:999px;background:#2ECC71;box-shadow:0 0 0 6px rgba(46,204,113,.15)}
+.floating{
+  position:absolute;top:-14px;right:-14px;background:var(--cream);color:#0A0A0A;
+  border-radius:18px;padding:14px 16px;min-width:168px;box-shadow:0 16px 40px rgba(0,0,0,.3);z-index:3;
+  transform:rotate(1.2deg);
+}
+.floating small{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#6B7177;display:block}
+.floating b{font-family:"Instrument Serif",serif;font-size:22px;font-weight:400;line-height:1;display:block;margin-top:2px}
+.floating span{font-size:12px;color:#6B7177}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:28px;padding-top:10px}
+  .hero{padding-top:84px;min-height:auto}
+  .floating{position:relative;top:auto;right:auto;transform:none;margin-bottom:12px;width:fit-content}
+  .hero-card{aspect-ratio:4/3}
+}
+
+/* trust strip */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.strip-inner{width:min(1280px,92vw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0;flex-wrap:wrap}
+.strip-label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.brands{display:flex;gap:26px;align-items:center;flex-wrap:wrap;opacity:.8}
+.brands span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--muted2)}
+.brands span b{color:var(--cream)}
+
+/* section generic */
+section{position:relative}
+.container{width:min(1280px,92vw);margin:0 auto}
+.kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px}
+.kicker:before{content:"";width:24px;height:1px;background:var(--gold)}
+.h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(30px,4.2vw,56px);line-height:.92;letter-spacing:-.02em}
+.h2 em{font-style:italic;color:var(--gold)}
+.lead{color:var(--muted);line-height:1.7;font-size:16px;max-width:600px}
+.divider{height:1px;background:var(--line);margin:32px 0}
+
+/* services */
+.services{padding:74px 0;background:var(--bg2);border-top:1px solid var(--line)}
+.services-head{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:end;margin-bottom:36px}
+@media(max-width:900px){.services-head{grid-template-columns:1fr}}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.svc{
+  background:var(--bg3);padding:28px 24px;position:relative;min-height:260px;display:flex;flex-direction:column;transition:.4s var(--ease);
+}
+.svc:hover{background:#1B1E21}
+.svc-num{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;color:var(--muted2)}
+.svc h3{font-family:"Instrument Serif",serif;font-weight:400;font-size:24px;margin:16px 0 10px;line-height:1}
+.svc p{color:var(--muted);font-size:13.5px;line-height:1.65}
+.svc ul{margin-top:auto;padding-top:18px;list-style:none;display:grid;gap:6px}
+.svc li{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.svc li:before{content:"";width:5px;height:5px;border-radius:999px;background:var(--gold)}
+.svc .arrow{position:absolute;top:24px;right:24px;width:32px;height:32px;border-radius:999px;border:1px solid var(--line2);display:grid;place-items:center;transition:.3s}
+.svc:hover .arrow{border-color:var(--gold);background:var(--gold);color:#000;transform:rotate(45deg)}
+@media(max-width:1100px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.svc-grid{grid-template-columns:1fr}}
+
+/* before after */
+.beforeafter{padding:80px 0;background:var(--bg)}
+.ba-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.ba-wrap{
+  position:relative;border-radius:24px;overflow:hidden;background:#0F1113;border:1px solid var(--line);
+  aspect-ratio:16/10.2;user-select:none;touch-action:none;
+}
+.ba-wrap img{position:absolute;inset:0;width:100%;height:100%}
+.ba-after{filter:saturate(1.05) contrast(1.02)}
+.ba-before{position:absolute;inset:0;overflow:hidden;width:50%;border-right:1px solid rgba(255,255,255,.9)}
+.ba-before img{filter:saturate(.15) contrast(.95) brightness(.95)}
+.ba-handle{
+  position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-50%);z-index:3;pointer-events:none;
+}
+.ba-handle span{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:44px;height:44px;border-radius:999px;background:#fff;color:#000;display:grid;place-items:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);border:1px solid rgba(0,0,0,.06)
+}
+.ba-labels{position:absolute;top:14px;left:14px;right:14px;z-index:4;display:flex;justify-content:space-between;pointer-events:none}
+.ba-labels i{
+  font-style:normal;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  background:rgba(0,0,0,.62);color:#fff;border:1px solid rgba(255,255,255,.14);padding:8px 10px;border-radius:999px;backdrop-filter:blur(8px)
+}
+.ba-range{position:absolute;inset:0;opacity:0;cursor:ew-resize}
+.ba-thumbs{display:flex;gap:12px;margin-top:16px;overflow:auto;padding-bottom:4px;scrollbar-width:none}
+.ba-thumbs::-webkit-scrollbar{display:none}
+.ba-thumb{flex:0 0 96px;height:72px;border-radius:14px;overflow:hidden;border:2px solid transparent;opacity:.6;transition:.3s;cursor:pointer}
+.ba-thumb.active{border-color:var(--gold);opacity:1}
+.ba-copy h3{font-family:"Instrument Serif",serif;font-size:34px;font-weight:400;line-height:.95}
+.ba-copy h3 em{font-style:italic;color:var(--gold)}
+.ba-specs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.spec{background:var(--bg3);border:1px solid var(--line);border-radius:16px;padding:16px}
+.spec small{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.spec b{font-size:14px;display:block;margin-top:6px}
+.spec p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+@media(max-width:900px){.ba-layout{grid-template-columns:1fr}}
+
+/* process */
+.process{padding:70px 0;background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-top:32px}
+.step{background:var(--bg3);padding:28px 24px}
+.step-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.step-num{font-family:"Instrument Serif",serif;font-size:44px;line-height:1;color:var(--gold);opacity:.9}
+.step-icon{width:38px;height:38px;border-radius:999px;background:rgba(200,164,106,.12);border:1px solid rgba(200,164,106,.18);display:grid;place-items:center;color:var(--gold)}
+.step h4{font-size:15px;letter-spacing:.02em;margin-bottom:8px}
+.step p{font-size:13px;color:var(--muted);line-height:1.65}
+@media(max-width:900px){.process-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.process-grid{grid-template-columns:1fr}}
+
+/* packages */
+.packages{padding:80px 0;background:var(--bg)}
+.pkg-head{display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+.toggle{
+  background:var(--bg3);border:1px solid var(--line);border-radius:999px;padding:4px;display:flex;gap:4px;
+}
+.toggle button{
+  padding:10px 18px;border-radius:999px;border:0;background:transparent;color:var(--muted);
+  font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:.3s
+}
+.toggle button.active{background:var(--cream);color:#0A0A0A}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.pkg{
+  background:var(--bg3);border:1px solid var(--line);border-radius:26px;overflow:hidden;
+  display:flex;flex-direction:column;position:relative;transition:.35s var(--ease);
+}
+.pkg.featured{border-color:rgba(200,164,106,.45);background:linear-gradient(180deg, #1A1D1A 0%, #141718 100%);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.35), 0 0 0 1px rgba(200,164,106,.12) inset}
+.pkg:hover{transform:translateY(-4px)}
+.pkg.featured:hover{transform:translateY(-8px)}
+.pkg-top{padding:26px 26px 0}
+.badge{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:7px 10px;border-radius:999px;border:1px solid var(--line2);color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.badge.gold{background:var(--gold);color:#000;border-color:var(--gold)}
+.pkg h3{font-family:"Instrument Serif",serif;font-weight:400;font-size:32px;margin:14px 0 6px;line-height:1}
+.pkg h3 em{font-style:italic;color:var(--gold)}
+.pkg .desc{color:var(--muted);font-size:13.5px;line-height:1.6;min-height:48px}
+.price{display:flex;align-items:baseline;gap:8px;margin-top:18px}
+.price b{font-family:"Instrument Serif",serif;font-size:42px;font-weight:400;line-height:1}
+.price small{color:var(--muted);font-size:12px}
+.price s{color:var(--muted2);font-size:13px;margin-left:6px}
+.pkg-img{height:168px;margin:18px 14px 0;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.pkg-list{padding:18px 26px 0;list-style:none;display:grid;gap:10px}
+.pkg-list li{font-size:13px;display:flex;gap:10px;align-items:center;color:#D8DBDE}
+.pkg-list li i{width:20px;height:20px;border-radius:999px;display:grid;place-items:center;flex:0 0 20px;font-size:11px}
+.i-yes{background:rgba(200,164,106,.16);border:1px solid rgba(200,164,106,.22);color:var(--gold)}
+.i-no{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--muted2)}
+.i-plus{background:var(--gold);color:#000}
+.pkg-actions{padding:18px 26px 26px;margin-top:auto;display:grid;gap:10px}
+.btn-block{width:100%;justify-content:center}
+.note{font-size:11px;color:var(--muted2);text-align:center}
+@media(max-width:1024px){.pkg-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}}
+/* configurator */
+.config{padding:70px 0;background:var(--bg2);border-top:1px solid var(--line)}
+.config-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start;margin-top:28px}
+.cfg-card{background:var(--bg3);border:1px solid var(--line);border-radius:26px;padding:26px}
+.cfg-step{margin-bottom:22px}
+.cfg-step h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cfg-step h4 span{width:22px;height:22px;border-radius:999px;background:var(--gold);color:#000;display:grid;place-items:center;font-size:11px;font-weight:700}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{
+  padding:12px 14px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.02);
+  font-size:13px;font-weight:600;cursor:pointer;transition:.25s;color:var(--muted);display:inline-flex;align-items:center;gap:8px
+}
+.opt.active{background:var(--cream);color:#0A0A0A;border-color:var(--cream)}
+.opt:hover{border-color:var(--cream);color:var(--cream)}
+.opt.active:hover{color:#0A0A0A}
+.result{
+  background:linear-gradient(180deg, #F3EFE6 0%, #E8E0C9 100%);color:#0A0A0A;border-radius:26px;padding:28px;position:sticky;top:88px;
+  border:1px solid rgba(0,0,0,.06);box-shadow:0 20px 50px rgba(0,0,0,.22)
+}
+.result-label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7A7466}
+.result h3{font-family:"Instrument Serif",serif;font-size:36px;font-weight:400;line-height:.95;margin:8px 0 10px}
+.result p{font-size:13.5px;line-height:1.6;color:#4A463E}
+.result-price{display:flex;align-items:baseline;gap:10px;margin:16px 0 14px;padding:16px;background:rgba(0,0,0,.06);border-radius:16px;border:1px solid rgba(0,0,0,.06)}
+.result-price b{font-family:"Instrument Serif",serif;font-size:34px;font-weight:400}
+.result ul{list-style:none;display:grid;gap:8px;margin:14px 0 18px}
+.result li{font-size:13px;display:flex;gap:8px;align-items:center}
+.result li:before{content:"✓";width:18px;height:18px;border-radius:999px;background:#0A0A0A;color:#fff;display:grid;place-items:center;font-size:10px;flex:0 0 18px}
+.btn-dark{background:#0A0A0A;color:#fff;padding:14px 18px;border-radius:999px;border:0;width:100%;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:13px;display:inline-flex;justify-content:center;align-items:center;gap:10px;cursor:pointer;transition:.3s}
+.btn-dark:hover{background:#1A1D20}
+@media(max-width:900px){.config-grid{grid-template-columns:1fr}.result{position:relative;top:auto}}
+
+/* gallery */
+.gallery{padding:70px 0;background:var(--bg);border-top:1px solid var(--line)}
+.gal-head{display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+.slider-wrap{overflow:hidden;border-radius:26px;border:1px solid var(--line);background:var(--bg3)}
+.slider-track{display:flex;transition:transform .6s var(--ease)}
+.slide{flex:0 0 100%;display:grid;grid-template-columns:1.35fr .65fr;min-height:420px}
+.slide-img{position:relative;overflow:hidden}
+.slide-img img{height:100%}
+.slide-meta{position:absolute;bottom:14px;left:14px;display:flex;gap:8px}
+.chip{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.62);color:#fff;border:1px solid rgba(255,255,255,.14);padding:7px 10px;border-radius:999px;backdrop-filter:blur(8px)}
+.slide-info{padding:28px;background:var(--bg3);display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--line)}
+.slide-info h4{font-family:"Instrument Serif",serif;font-size:28px;font-weight:400;line-height:1}
+.slide-info p{color:var(--muted);font-size:13.5px;line-height:1.65;margin:10px 0 16px}
+.slide-info dl{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.slide-info dt{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.slide-info dd{font-size:13px;font-weight:600;margin-top:4px}
+.gal-nav{display:flex;gap:10px;margin-top:14px;justify-content:flex-end}
+.gal-btn{width:44px;height:44px;border-radius:999px;border:1px solid var(--line2);background:var(--bg3);color:var(--cream);display:grid;place-items:center;cursor:pointer;transition:.3s}
+.gal-btn:hover{border-color:var(--cream)}
+.dots{display:flex;gap:6px;align-items:center;justify-content:center;margin-top:14px}
+.dot2{width:6px;height:6px;border-radius:999px;background:rgba(255,255,255,.18);transition:.3s}
+.dot2.active{width:22px;background:var(--gold)}
+@media(max-width:900px){
+  .slide{grid-template-columns:1fr}
+  .slide-info{border-left:0;border-top:1px solid var(--line)}
+  .slide-img{aspect-ratio:16/10}
+}
+
+/* testimonials */
+.testi{padding:70px 0;background:var(--bg2);border-top:1px solid var(--line)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.quote{
+  background:var(--bg3);border:1px solid var(--line);border-radius:24px;padding:24px;position:relative;
+}
+.quote-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.stars{color:var(--gold);letter-spacing:.14em;font-size:12px}
+.quote p{font-size:14px;line-height:1.65;color:#D8DBDE}
+.quote-author{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.avatar{width:42px;height:42px;border-radius:999px;overflow:hidden;border:1px solid var(--line);flex:0 0 42px}
+.quote-author b{font-size:13px;display:block}
+.quote-author span{font-size:12px;color:var(--muted)}
+.google{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);display:flex;align-items:center;gap:6px;margin-top:2px}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
+
+/* faq / contact */
+.contact{padding:70px 0;background:var(--bg);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:22px;align-items:start;margin-top:28px}
+.info{background:var(--bg3);border:1px solid var(--line);border-radius:26px;padding:26px}
+.info h3{font-family:"Instrument Serif",serif;font-size:28px;font-weight:400}
+.info-list{list-style:none;display:grid;gap:14px;margin:18px 0 18px}
+.info-list li{display:flex;gap:14px;align-items:flex-start}
+.ico{width:38px;height:38px;border-radius:999px;background:rgba(200,164,106,.12);border:1px solid rgba(200,164,106,.18);display:grid;place-items:center;color:var(--gold);flex:0 0 38px}
+.info-list b{font-size:13px;display:block}
+.info-list span{font-size:13px;color:var(--muted);line-height:1.5}
+.map{height:220px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:
+  radial-gradient(500px 300px at 30% 30%, rgba(200,164,106,.18), transparent 60%),
+  linear-gradient(180deg, #1A1D20, #0F1113);
+  position:relative;
+}
+.map:after{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:40px 40px;opacity:.35
+}
+.map-pin{position:absolute;left:52%;top:46%;transform:translate(-50%,-50%);background:var(--cream);color:#000;padding:10px 12px;border-radius:999px;display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,.3);font-size:12px;font-weight:700;z-index:2}
+.map-pin i{width:8px;height:8px;border-radius:999px;background:#E63946;display:block;box-shadow:0 0 0 6px rgba(230,57,70,.18)}
+.form{background:var(--bg3);border:1px solid var(--line);border-radius:26px;padding:26px}
+.form h3{font-family:"Instrument Serif",serif;font-size:28px;font-weight:400}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.field{display:grid;gap:6px}
+.field label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{
+  background:rgba(255,255,255,.04);border:1px solid var(--line2);color:var(--cream);
+  padding:13px 14px;border-radius:14px;outline:none;transition:.25s;width:100%
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(200,164,106,.5);background:rgba(255,255,255,.06)}
+.field textarea{min-height:96px;resize:vertical}
+.full{grid-column:1 / -1}
+.form-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;flex-wrap:wrap}
+.form-foot small{color:var(--muted2);font-size:11px;line-height:1.5}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}}
+
+/* footer */
+footer{padding:36px 0 30px;background:#050607;border-top:1px solid var(--line);color:var(--muted)}
+.footer-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr .7fr;gap:28px}
+.footer-grid h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);margin-bottom:14px}
+.footer-grid a{font-size:13px;color:var(--muted);display:block;padding:6px 0;transition:.2s}
+.footer-grid a:hover{color:var(--cream)}
+.foot-bottom{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted2)}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:.8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* micro */
+.hover-lift{transition:.35s var(--ease)}
+.hover-lift:hover{transform:translateY(-2px)}
+
+/* toast */
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(80px);background:var(--cream);color:#0A0A0A;padding:14px 18px;border-radius:999px;font-size:13px;font-weight:600;box-shadow:0 16px 40px rgba(0,0,0,.35);opacity:0;transition:.5s var(--ease);z-index:99}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body class="grain">
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo" aria-label="Blackline Detailing">
+      <div class="logo-mark">BL</div>
+      <div class="logo-type"><b>BLACKLINE</b><span>DETAILING — OSLO</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#behandlinger">Behandlinger</a>
+      <a href="#pakker">Pakker</a>
+      <a href="#resultat">Resultat</a>
+      <a href="#konfigurator">Konfigurator</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#konfigurator" class="btn-ghost">Finn riktig pakke</a>
+      <a href="#kontakt" class="btn-gold">Bestill detailing <span>→</span></a>
+      <button class="hamburger" id="ham" aria-label="Meny">☰</button>
+    </div>
+  </div>
+</nav>
+
+<div id="mMenu">
+  <a href="#behandlinger" onclick="closeMenu()">Behandlinger</a>
+  <a href="#pakker" onclick="closeMenu()">Pakker & priser</a>
+  <a href="#resultat" onclick="closeMenu()">Før / Etter</a>
+  <a href="#konfigurator" onclick="closeMenu()">Konfigurator</a>
+  <a href="#kontakt" onclick="closeMenu()">Bestill time</a>
+  <div class="meta"><span>Karenslyst Allé 8B — Oslo</span><span>post@blackline.no</span></div>
+</div>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow"><i></i> Presisjonsstudio for lakk & overflate — Etabl. 2018</div>
+      <h1>Lakk som<br><em>speil.</em> Følelse<br>som nybil.</h1>
+      <p>Blackline er et boutique detailing-studio på Skøyen. Vi korrigerer, beskytter og foredler — med kirurgisk presisjon, dagslys-kontroll og coatinger som varer i årevis. For deg som ser forskjellen på 95% og 100%.</p>
+      <div class="hero-actions">
+        <a href="#konfigurator" class="btn-gold">Finn riktig pakke <span>↗</span></a>
+        <a href="#behandlinger" class="btn-ghost">Se behandlinger</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>2 400+</b><span>Biler foredlet</span></div>
+        <div class="stat"><b>4.9/5</b><span>342 anmeldelser</span></div>
+        <div class="stat"><b>5 ÅR</b><span>Garanti coating</span></div>
+        <div class="stat"><b>9H</b><span>Hardhet & dybde</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="floating">
+        <small>Ledig kapasitet</small>
+        <b>Uke 37 — 3 plasser</b>
+        <span>Signature & Noir • Skøyen</span>
+      </div>
+      <div class="hero-card">
+        <img src="images/photo-08.jpg" alt="Sort Porsche detalj" loading="eager">
+        <div class="hero-badge">
+          <div>
+            <small>Sort uni • Lakkorrigering — Steg 2</small>
+            <b>Porsche 911 — Blackline Noir</b>
+          </div>
+          <div class="dot" title="Klar til utlevering"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-label">Klarert av kresne eiere — og bilene de faktisk kjører:</div>
+    <div class="brands">
+      <span><b>PORSCHE</b> • TAYCAN / 911</span>
+      <span><b>TESLA</b> MODEL S/3/X/Y</span>
+      <span>BMW • AUDI • POLESTAR</span>
+      <span>★★★★★ 4.9 PÅ GOOGLE</span>
+    </div>
+  </div>
+</div>
+
+<section id="behandlinger" class="services">
+  <div class="container">
+    <div class="services-head reveal">
+      <div>
+        <div class="kicker">Behandlinger</div>
+        <h2 class="h2" style="margin-top:10px">Alt som skal til for at<br><em>lakken ser dyrere ut</em> enn bilen.</h2>
+      </div>
+      <div>
+        <p class="lead">Ingen hurtigvask. Ingen snarveier. Hver bil får inspeksjon i dagslys og LED, tykkelsesmåling, og en plan som matcher lakkens tilstand og hvordan du faktisk bruker bilen.</p>
+        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+          <a href="#konfigurator" class="btn-gold" style="padding:11px 18px">Få anbefalt pakke</a>
+          <span style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);align-self:center">Svar på 30 sek • Uforpliktende</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-grid reveal">
+      <div class="svc">
+        <div class="svc-num">01 — CORE</div>
+        <div class="arrow">↗</div>
+        <h3>Lakkorrigering</h3>
+        <p>Fjerner vaskeriper, hologram og oksidering. Ett- eller to-stegs polering til lakkdybden er tilbake.</p>
+        <ul>
+          <li>Steg 1 / Steg 2 — valgfritt</li>
+          <li>Måling av lakktykkelse</li>
+          <li>Dagslys- & LED-kontroll</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">02 — PROTECTION</div>
+        <div class="arrow">↗</div>
+        <h3>Keramisk coating</h3>
+        <p>9H hardhet, ekstrem hydrofobisk effekt og glans som varer. 2–5 års holdbarhet.</p>
+        <ul>
+          <li>Gtechniq / CarPro / Gyeon</li>
+          <li>Felger & glass inkludert i Noir</li>
+          <li>Servicevask etter 14 dager</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">03 — BASE</div>
+        <div class="arrow">↗</div>
+        <h3>Polering</h3>
+        <p>For deg som vil ha glansen tilbake uten full coating. Perfekt før salg eller sesong.</p>
+        <ul>
+          <li>Glans & klarhet</li>
+          <li>Forsegling 3–6 mnd</li>
+          <li>Maskin + håndfinish</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">04 — INTERIOR</div>
+        <div class="arrow">↗</div>
+        <h3>Innvendig detailing</h3>
+        <p>Dyprens av tekstil, skinn og detaljer. Luktnøytralisering og coating av interiør.</p>
+        <ul>
+          <li>Tekstil/alcantara & skinn</li>
+          <li>Ozon ved behov</li>
+          <li>Coating av skinn & plast</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">05 — LEATHER</div>
+        <div class="arrow">↗</div>
+        <h3>Skinnbehandling</h3>
+        <p>Rens, farging og beskyttelse som gjør skinnet matt, mykt og motstandsdyktig igjen.</p>
+        <ul>
+          <li>pH-nøytral rens</li>
+          <li>Fargeforsegling</li>
+          <li>Anti-slitasje coating</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">06 — WHEELS</div>
+        <div class="arrow">↗</div>
+        <h3>Felgbehandling</h3>
+        <p>Av med bremsestøv og tjære. Keramisk beskyttelse som gjør neste vask til en lek.</p>
+        <ul>
+          <li>Felg av / på ved behov</li>
+          <li>Hjulhus & kaliptere</li>
+          <li>Coating 1–2 år</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="svc-num">07 — ENGINE</div>
+        <div class="arrow">↗</div>
+        <h3>Motorvask</h3>
+        <p>Skånsom, tørr metode — trygg for elektronikk. For salg, EU-kontroll eller bare orden.</p>
+        <ul>
+          <li>Damp & detailingpensler</li>
+          <li>Konservering av plast/slanger</li>
+          <li>Null høytrykk på feil sted</li>
+        </ul>
+      </div>
+      <div class="svc" style="background:var(--gold);color:#0A0A0A">
+        <div class="svc-num" style="color:rgba(0,0,0,.45)">08 — COMPLETE</div>
+        <div class="arrow" style="background:#0A0A0A;color:#fff;border-color:#0A0A0A">→</div>
+        <h3 style="color:#0A0A0A">Komplette pakker</h3>
+        <p style="color:rgba(0,0,0,.68)">Essential • Signature • Noir — ferdig sammensatt for ulike tilstander og ambisjoner.</p>
+        <ul>
+          <li style="color:#0A0A0A">Se pakker & priser →</li>
+          <li style="color:rgba(0,0,0,.6)">Anbefales via konfigurator</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resultat" class="beforeafter">
+  <div class="container">
+    <div class="ba-layout">
+      <div class="reveal">
+        <div class="kicker">Før / Etter</div>
+        <div class="ba-wrap" id="baWrap">
+          <img class="ba-after" id="baAfter" src="images/photo-01.jpg" alt="Etter - sort bil i glans">
+          <div class="ba-before" id="baBefore">
+            <img src="images/photo-01.jpg" alt="Før - samme bil" style="filter: saturate(0.15) contrast(0.92) brightness(0.92) blur(0.6px);">
+          </div>
+          <div class="ba-handle" id="baHandle"><span>↔</span></div>
+          <div class="ba-labels"><i>Før — vaskeriper & matt</i><i>Etter — Blackline Noir</i></div>
+          <input class="ba-range" id="baRange" type="range" min="0" max="100" value="52">
+        </div>
+        <div class="ba-thumbs" id="baThumbs">
+          <div class="ba-thumb active" data-after="images/photo-01.jpg" data-before="images/photo-01.jpg"><img src="images/photo-02.jpg" alt=""></div>
+          <div class="ba-thumb" data-after="images/photo-09.jpg" data-before="images/photo-09.jpg"><img src="images/photo-10.jpg" alt=""></div>
+          <div class="ba-thumb" data-after="images/photo-18.jpg" data-before="images/photo-18.jpg"><img src="images/photo-19.jpg" alt=""></div>
+          <div class="ba-thumb" data-after="images/photo-04.jpg" data-before="images/photo-04.jpg"><img src="images/photo-05.jpg" alt=""></div>
+          <div class="ba-thumb" data-after="images/photo-14.jpg" data-before="images/photo-14.jpg"><img src="images/photo-15.jpg" alt=""></div>
+        </div>
+        <p style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-top:10px">Dra i slideren — eller trykk på et bilde. Venstre er ubehandlet / matt lakk, høyre er korrigert + coating.</p>
+      </div>
+
+      <div class="ba-copy reveal">
+        <div class="kicker">Håndverk som synes</div>
+        <h3 style="margin-top:10px">Forskjellen er ikke<br><em>“ren bil”</em> — den er<br>dybde, klarhet og ro.</h3>
+        <p class="lead" style="margin-top:14px">På sort uni ser du alt. Derfor fotograferer vi i dagslys etter hver korreksjon. Under ser du hva som faktisk er gjort på bilen i slideren.</p>
+
+        <div class="ba-specs">
+          <div class="spec">
+            <small>Objekt</small><b>Porsche 911 • Sort uni</b><p>Lakk med kraftige vaskeriper og hologram fra automatvask.</p>
+          </div>
+          <div class="spec">
+            <small>Utført</small><b>Steg 2 + 5 års coating</b><p>Cut + finish, panelvis kontroll, Gtechniq Crystal Serum Ultra.</p>
+          </div>
+          <div class="spec">
+            <small>Glansmåling</small><b>86 → 97 GU (60°)</b><p>Målt med glossmeter før/etter. Synlig dybde i alle vinkler.</p>
+          </div>
+          <div class="spec">
+            <small>Tid i studio</small><b>3 dager • 26 timer</b><p>Inkl. dekon, clay, korreksjon, coating og herding.</p>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-top:22px;flex-wrap:wrap">
+          <a href="#pakker" class="btn-gold">Se hva som inngår <span>→</span></a>
+          <a href="#kontakt" class="btn-ghost">Få pristilbud</a>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:10px;align-items:center;color:var(--muted2);font-size:12px">
+          <span style="width:8px;height:8px;border-radius:999px;background:#2ECC71;display:inline-block"></span> Klar for utlevering • Video & bilder sendes før henting
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:end">
+      <div>
+        <div class="kicker">Prosessen</div>
+        <h2 class="h2" style="margin-top:10px">Fire steg. Samme<br><em>presisjon hver gang.</em></h2>
+      </div>
+      <p class="lead" style="max-width:520px">Vi jobber som et lakklab — ikke et vaskehall. Fast protokoll, riktig lys, riktig kjemi og null hastverk.</p>
+    </div>
+
+    <div class="process-grid reveal">
+      <div class="step">
+        <div class="step-head"><div class="step-num">01</div><div class="step-icon">◐</div></div>
+        <h4>Inspeksjon & måling</h4><p>Dagslys + Scangrip-lys, lakkdybdemåling panel for panel. Vi logger riper, steinsprut og tidligere lakk.</p>
+      </div>
+      <div class="step">
+        <div class="step-head"><div class="step-num">02</div><div class="step-icon">✦</div></div>
+        <h4>Dekontaminering</h4><p>Avfetting, iron remover, tjærefjerner og clay. Alt som ligger på lakken må bort før vi korrigerer.</p>
+      </div>
+      <div class="step">
+        <div class="step-head"><div class="step-num">03</div><div class="step-icon">◎</div></div>
+        <h4>Korreksjon & finish</h4><p>Cut og finish med Rupes-maskiner. Panelvis kontroll til hologram og slør er borte i alle vinkler.</p>
+      </div>
+      <div class="step">
+        <div class="step-head"><div class="step-num">04</div><div class="step-icon">⬢</div></div>
+        <h4>Coating & herding</h4><p>Keramisk coating legges i kontrollerte lag. Herding, toppstrøk og sluttkontroll før utlevering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pakker" class="packages">
+  <div class="container">
+    <div class="pkg-head reveal">
+      <div>
+        <div class="kicker">Pakker</div>
+        <h2 class="h2" style="margin-top:10px">Tre nivåer. <em>Ingen kompromisser</em><br>innenfor hvert nivå.</h2>
+      </div>
+      <div style="text-align:right">
+        <div class="toggle" role="tablist" aria-label="Biltype">
+          <button class="active" data-size="sedan">Sedan / Coupe</button>
+          <button data-size="suv">SUV / Stasjonsvogn</button>
+          <button data-size="large">XL / 7-seter</button>
+        </div>
+        <div style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-top:8px">Pris justeres automatisk etter bilstørrelse</div>
+      </div>
+    </div>
+
+    <div class="pkg-grid reveal" id="pkgGrid">
+      <!-- Essential -->
+      <div class="pkg">
+        <div class="pkg-top">
+          <span class="badge">Essential — For ny & velholdt lakk</span>
+          <h3>Essential</h3>
+          <p class="desc">Rask vei til glans og beskyttelse. For biler uten tunge riper.</p>
+          <div class="price"><b data-price-sedan="4900" data-price-suv="5900" data-price-large="6900">4 900 kr</b><small>inkl. mva</small></div>
+          <div class="pkg-img"><img src="images/photo-16.jpg" alt="Essential"></div>
+        </div>
+        <ul class="pkg-list">
+          <li><i class="i-yes">✓</i> Skånsom håndvask & dekon</li>
+          <li><i class="i-yes">✓</i> Ett-stegs polering (glansløft)</li>
+          <li><i class="i-yes">✓</i> Forsegling 4–6 mnd</li>
+          <li><i class="i-yes">✓</i> Innvendig lett detailing</li>
+          <li><i class="i-no">—</i> Keramisk coating</li>
+          <li><i class="i-no">—</i> Felgcoating</li>
+        </ul>
+        <div class="pkg-actions">
+          <button class="btn-ghost btn-block" onclick="scrollToConfig('essential')">Bestill Essential</button>
+          <span class="note">1 dag i studio • Perfekt før salg</span>
+        </div>
+      </div>
+
+      <!-- Signature -->
+      <div class="pkg featured">
+        <div class="pkg-top">
+          <span class="badge gold">★ Mest valgt — Signature</span>
+          <h3>Signature <em>— 2 år</em></h3>
+          <p class="desc">Steg 1-korreksjon + 2-års keramisk coating. Balanse mellom pris, glans og varighet.</p>
+          <div class="price"><b data-price-sedan="11900" data-price-suv="13500" data-price-large="14900">11 900 kr</b><small>inkl. mva</small><s>13 500</s></div>
+          <div class="pkg-img"><img src="images/photo-06.jpg" alt="Signature"></div>
+        </div>
+        <ul class="pkg-list">
+          <li><i class="i-yes">✓</i> Dekon + clay & avfetting</li>
+          <li><i class="i-plus">+</i> Lakkorrigering — Steg 1</li>
+          <li><i class="i-yes">✓</i> Keramisk coating 2 år (Gyeon Mohs)</li>
+          <li><i class="i-yes">✓</i> Glassforsegling & plastfornyelse</li>
+          <li><i class="i-yes">✓</i> Innvendig detailing + skinnpleie</li>
+          <li><i class="i-yes">✓</i> Servicevask etter 14 dager</li>
+        </ul>
+        <div class="pkg-actions">
+          <button class="btn-gold btn-block" onclick="scrollToConfig('signature')">Bestill Signature <span>→</span></button>
+          <span class="note">2 dager i studio • Garanti & vedlikeholdsguide</span>
+        </div>
+      </div>
+
+      <!-- Noir -->
+      <div class="pkg" style="border-color:rgba(255,255,255,.10)">
+        <div class="pkg-top">
+          <span class="badge" style="border-color:rgba(200,164,106,.28);color:var(--gold)">Blackline Noir — 5 år • For perfeksjonister</span>
+          <h3>Blackline <em>Noir</em></h3>
+          <p class="desc">Vår signatur. Steg 2-korreksjon til lakken er optisk perfekt, deretter 5-års coating.</p>
+          <div class="price"><b data-price-sedan="19900" data-price-suv="21900" data-price-large="23900">19 900 kr</b><small>inkl. mva</small></div>
+          <div class="pkg-img"><img src="images/photo-11.jpg" alt="Noir"></div>
+        </div>
+        <ul class="pkg-list">
+          <li><i class="i-plus">+</i> Lakkorrigering — Steg 2 (cut + finish)</li>
+          <li><i class="i-yes">✓</i> Keramisk coating 5 år — Crystal Serum Ultra</li>
+          <li><i class="i-yes">✓</i> Felg av/på + coating, kaliptere & hjulhus</li>
+          <li><i class="i-yes">✓</i> Full innvendig + skinncoating & motorrom</li>
+          <li><i class="i-yes">✓</i> Dokumentasjon — før/etter & tykkelsesrapport</li>
+          <li><i class="i-yes">✓</i> 2x servicevask inkludert</li>
+        </ul>
+        <div class="pkg-actions">
+          <button class="btn-ghost btn-block" onclick="scrollToConfig('noir')">Bestill Noir</button>
+          <span class="note">3 dager i studio • Kun 6 plasser / mnd</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;align-items:center;justify-content:center;margin-top:18px;flex-wrap:wrap;color:var(--muted2);font-size:12px">
+      <span>● Alle priser inkl. mva • Delbetaling via Walley</span><span>● Lånebil / hent & bring i Oslo</span><span>● Garanti forutsetter vedlikeholdsvask</span>
+    </div>
+  </div>
+</section>
+
+<section id="konfigurator" class="config">
+  <div class="container">
+    <div class="reveal" style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:end">
+      <div>
+        <div class="kicker">Konfigurator</div>
+        <h2 class="h2" style="margin-top:10px">Finn riktig pakke<br><em>på 30 sekunder.</em></h2>
+      </div>
+      <p class="lead" style="max-width:520px">Svar på tre spørsmål — så anbefaler vi nivået som faktisk gir mening for din bil og ambisjon. Ingen spam, bare en presis anbefaling.</p>
+    </div>
+
+    <div class="config-grid reveal">
+      <div class="cfg-card">
+        <div class="cfg-step">
+          <h4><span>1</span> Biltype</h4>
+          <div class="opts" data-group="car">
+            <button class="opt active" data-value="sedan">Sedan / Coupe</button>
+            <button class="opt" data-value="suv">SUV</button>
+            <button class="opt" data-value="stasjon">Stasjonsvogn</button>
+            <button class="opt" data-value="sport">Sportsbil</button>
+          </div>
+        </div>
+        <div class="cfg-step">
+          <h4><span>2</span> Lakkens tilstand nå</h4>
+          <div class="opts" data-group="cond">
+            <button class="opt active" data-value="ny">Ny (0–12 mnd)</button>
+            <button class="opt" data-value="velholdt">Velholdt</button>
+            <button class="opt" data-value="brukt">Brukt — vaskeriper</button>
+            <button class="opt" data-value="slitt">Slitt / matt / hologram</button>
+          </div>
+        </div>
+        <div class="cfg-step">
+          <h4><span>3</span> Hva ønsker du?</h4>
+          <div class="opts" data-group="goal">
+            <button class="opt active" data-value="beskytt">Beskyttelse i hverdagen</button>
+            <button class="opt" data-value="glans">Maks glans & dybde</button>
+            <button class="opt" data-value="full">Full forvandling</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+          <button class="btn-ghost" onclick="resetConfig()" style="padding:10px 16px;font-size:12px">Nullstill</button>
+          <span style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);align-self:center">Oppdateres live — ingen innsending</span>
+        </div>
+      </div>
+
+      <div class="result" id="cfgResult">
+        <div class="result-label">Anbefaling • Oppdatert nå</div>
+        <h3 id="resTitle">Signature</h3>
+        <p id="resDesc">Perfekt for deg som vil ha tydelig løft i glans og 2 års trygghet — uten full steg-2 prosess.</p>
+        <div class="result-price">
+          <b id="resPrice">11 900 kr</b><span id="resSub" style="font-size:12px;color:#5A564F">Sedan • Velholdt • 2 dager i studio</span>
+        </div>
+        <ul id="resList">
+          <li>Steg 1 lakkorrigering</li>
+          <li>2-års keramisk coating</li>
+          <li>Innvendig & skinnbehandling</li>
+          <li>Servicevask etter 14 dager</li>
+        </ul>
+        <button class="btn-dark" onclick="goContact()">Bestill denne pakken <span>→</span></button>
+        <div style="text-align:center;margin-top:10px"><a href="#pakker" style="font-size:12px;color:#5A564F;text-decoration:underline">Sammenlign alle pakker</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="container">
+    <div class="gal-head reveal">
+      <div>
+        <div class="kicker">Galleri — Utvalgte resultater</div>
+        <h2 class="h2" style="margin-top:10px">Biler vi har<br><em>foredlet nylig.</em></h2>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="gal-btn" id="gPrev" aria-label="Forrige">←</button>
+        <button class="gal-btn" id="gNext" aria-label="Neste">→</button>
+      </div>
+    </div>
+
+    <div class="slider-wrap reveal">
+      <div class="slider-track" id="gTrack">
+        <div class="slide">
+          <div class="slide-img">
+            <img src="images/photo-08.jpg" alt="Porsche 911">
+            <div class="slide-meta"><span class="chip">Noir • Steg 2</span><span class="chip">Sort uni</span></div>
+          </div>
+          <div class="slide-info">
+            <h4>Porsche 911 — sort uni</h4>
+            <p>Hologram og vaskeriper fjernet. 26 timer, to stegs korreksjon og 5-års coating. Klar for vinteren uten å miste dybden.</p>
+            <dl><div><dt>Pakke</dt><dd>Blackline Noir</dd></div><div><dt>Tid</dt><dd>3 dager</dd></div><div><dt>Coating</dt><dd>Crystal Serum Ultra</dd></div><div><dt>Glans</dt><dd>97 GU</dd></div></dl>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-img">
+            <img src="images/photo-17.jpg" alt="BMW">
+            <div class="slide-meta"><span class="chip">Signature</span><span class="chip">Brooklyn Grey</span></div>
+          </div>
+          <div class="slide-info">
+            <h4>BMW M4 — Brooklyn Grey</h4>
+            <p>Matt lakk løftet med steg 1 og 2-års coating. Felger av og keramisk beskyttelse — bremsestøv slipper nå ved spyling.</p>
+            <dl><div><dt>Pakke</dt><dd>Signature</dd></div><div><dt>Tid</dt><dd>2 dager</dd></div><div><dt>Coating</dt><dd>Gyeon Mohs</dd></div><div><dt>Extra</dt><dd>Felgcoating</dd></div></dl>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-img">
+            <img src="images/photo-13.jpg" alt="Tesla">
+            <div class="slide-meta"><span class="chip">Essential</span><span class="chip">Tesla Model Y</span></div>
+          </div>
+          <div class="slide-info">
+            <h4>Tesla Model Y — hvit</h4>
+            <p>Ny bil direkte fra forhandler. Dekon, lett polering og forsegling. Klar for norsk vinter med enkel vedlikeholdsvask.</p>
+            <dl><div><dt>Pakke</dt><dd>Essential</dd></div><div><dt>Tid</dt><dd>1 dag</dd></div><div><dt>Beskyttelse</dt><dd>6 mnd</dd></div><div><dt>Tilstand</dt><dd>Ny</dd></div></dl>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dots" id="gDots"><span class="dot2 active"></span><span class="dot2"></span><span class="dot2"></span></div>
+  </div>
+</section>
+
+<section class="testi">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:end">
+      <div>
+        <div class="kicker">Kundeomtaler</div>
+        <h2 class="h2" style="margin-top:10px">Folk som <em>ser forskjellen.</em></h2>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--line);border-radius:999px;padding:10px 14px;display:flex;align-items:center;gap:10px">
+        <span style="background:#fff;color:#000;width:28px;height:28px;border-radius:999px;display:grid;place-items:center;font-weight:700;font-size:12px">G</span>
+        <b style="font-size:13px">4.9/5</b><span style="color:var(--muted);font-size:12px">342 anmeldelser • Google</span>
+      </div>
+    </div>
+
+    <div class="testi-grid reveal">
+      <div class="quote">
+        <div class="quote-top"><div class="stars">★★★★★</div><span style="font-family:JetBrains Mono,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)">Verifisert • Noir</span></div>
+        <p>“Hadde vært hos to andre før. Først hos Blackline skjønte jeg hva lakkorrigering faktisk er. Sort 911 ser ut som våt lakk i alle vinkler. Null hologram.”</p>
+        <div class="quote-author">
+          <div class="avatar"><img src="images/photo-12.jpg" alt=""></div>
+          <div><b>Andreas H.</b><span>Porsche 911 • Oslo</span><div class="google">● Google-anmeldelse</div></div>
+        </div>
+      </div>
+      <div class="quote">
+        <div class="quote-top"><div class="stars">★★★★★</div><span style="font-family:JetBrains Mono,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)">Verifisert • Signature</span></div>
+        <p>“Teslaen var full av vaskeriper fra forhandler. Nå er den glatt som glass og ekstremt lett å holde ren. Servicevasken etter 14 dager var prikken over i-en.”</p>
+        <div class="quote-author">
+          <div class="avatar"><img src="images/photo-03.jpg" alt=""></div>
+          <div><b>Sara M.</b><span>Tesla Model Y • Bærum</span><div class="google">● Google-anmeldelse</div></div>
+        </div>
+      </div>
+      <div class="quote">
+        <div class="quote-top"><div class="stars">★★★★★</div><span style="font-family:JetBrains Mono,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)">Verifisert • Noir + PPF</span></div>
+        <p>“Leverte Taycan til full front PPF og Noir på resten. Nøyaktigheten er syk — kanter, kanaler, alt er strøkent. Føles som fabrikk, bare bedre.”</p>
+        <div class="quote-author">
+          <div class="avatar"><img src="images/photo-07.jpg" alt=""></div>
+          <div><b>Jonas E.</b><span>Porsche Taycan • Fornebu</span><div class="google">● Google-anmeldelse</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="contact">
+  <div class="container">
+    <div class="reveal" style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:end">
+      <div>
+        <div class="kicker">Bestill & kontakt</div>
+        <h2 class="h2" style="margin-top:10px">Klar for <em>speilblank</em><br>overlevering?</h2>
+      </div>
+      <p class="lead">Legg igjen bil og ønsker — vi svarer samme dag med anbefaling, pris og ledig tid. Eller kom innom Skøyen for inspeksjon i dagslys.</p>
+    </div>
+
+    <div class="contact-grid reveal">
+      <div class="info">
+        <h3>Blackline Detailing</h3>
+        <p style="color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6">Boutique-studio på Skøyen. Timebestilling — ingen drop-in vask. Hent & bring i Oslo og Bærum.</p>
+        <ul class="info-list">
+          <li><div class="ico">◉</div><div><b>Adresse</b><span>Karenslyst Allé 8B, 0278 Oslo<br>Skøyen — 2 min fra E18</span></div></li>
+          <li><div class="ico">✆</div><div><b>Telefon</b><span>+47 92 00 00 00<br>Man–Fre 08–18 • Lør 10–16</span></div></li>
+          <li><div class="ico">✉</div><div><b>E-post</b><span>post@blackline.no<br>Svar innen 4 timer (dagtid)</span></div></li>
+          <li><div class="ico">◷</div><div><b>Åpningstider studio</b><span>Man–Fre 08–17 • Etter avtale for utlevering</span></div></li>
+        </ul>
+        <div class="map">
+          <div class="map-pin"><i></i> BLACKLINE — SKØYEN</div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <span class="chip" style="background:var(--bg3);border-color:var(--line)">● Lånebil ved Noir</span>
+          <span class="chip" style="background:var(--bg3);border-color:var(--line)">● Hent & bring</span>
+        </div>
+      </div>
+
+      <form class="form" onsubmit="handleSubmit(event)">
+        <h3>Få pristilbud — svar samme dag</h3>
+        <p style="color:var(--muted);font-size:13px;margin-top:4px">Fortell oss om bilen, så anbefaler vi pakke og gir fast pris.</p>
+        <div class="form-grid">
+          <div class="field"><label>Navn</label><input required placeholder="Ola Nordmann"></div>
+          <div class="field"><label>Telefon</label><input required placeholder="+47 ___ __ ___" type="tel"></div>
+          <div class="field"><label>Bilmodell</label><input required placeholder="F.eks. Porsche 911 / Tesla Model Y"></div>
+          <div class="field"><label>Årsmodell</label><input placeholder="2021"></div>
+          <div class="field full"><label>Ønsket behandling</label>
+            <select id="formPkg">
+              <option>Usikker — anbefaler via konfigurator</option>
+              <option>Essential — fra 4 900 kr</option>
+              <option selected>Signature — fra 11 900 kr</option>
+              <option>Blackline Noir — fra 19 900 kr</option>
+              <option>Kun lakkorrigering / coating</option>
+              <option>Innvendig + skinn</option>
+            </select>
+          </div>
+          <div class="field full"><label>Melding — tilstand / ønsker</label><textarea placeholder="F.eks: Sort uni, mye vaskeriper fra automatvask, ønsker maks glans og 5 års beskyttelse..."></textarea></div>
+          <div class="field"><label>Ønsket uke</label><input type="date"></div>
+          <div class="field"><label>Hvordan hørte du om oss?</label>
+            <select><option>Google</option><option>Instagram</option><option>Anbefaling</option><option>Annet</option></select>
+          </div>
+        </div>
+        <div class="form-foot">
+          <button type="submit" class="btn-gold">Få pristilbud <span>→</span></button>
+          <small>Svar innen 4 timer i åpningstid.<br>Uforpliktende • Fast pris etter bilder/inspeksjon.</small>
+        </div>
+        <p style="font-size:11px;color:var(--muted2);margin-top:12px;text-align:center">Ved å sende samtykker du til at vi lagrer opplysningene for å gi tilbud (GDPR). Ingen spam.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div class="logo-mark" style="width:30px;height:30px;font-size:11px">BL</div>
+          <b style="font-family:Instrument Serif,serif;font-weight:400;letter-spacing:.06em;color:var(--cream)">BLACKLINE DETAILING</b>
+        </div>
+        <p style="font-size:13px;line-height:1.6;color:var(--muted)">Presisjonspleie for lakk og overflate.<br>Skøyen, Oslo — siden 2018.<br>Org.nr 999 888 777</p>
+        <div style="display:flex;gap:8px;margin-top:14px">
+          <a href="#" style="width:34px;height:34px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center">IG</a>
+          <a href="#" style="width:34px;height:34px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center">YT</a>
+          <a href="#" style="width:34px;height:34px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center">FB</a>
+        </div>
+      </div>
+      <div>
+        <h4>Behandlinger</h4>
+        <a href="#behandlinger">Lakkorrigering</a><a href="#behandlinger">Keramisk coating</a><a href="#behandlinger">Polering</a><a href="#behandlinger">Innvendig detailing</a><a href="#behandlinger">Felg & motor</a>
+      </div>
+      <div>
+        <h4>Pakker</h4>
+        <a href="#pakker">Essential — fra 4 900 kr</a><a href="#pakker">Signature — fra 11 900 kr</a><a href="#pakker">Blackline Noir — fra 19 900 kr</a><a href="#konfigurator">Konfigurator</a>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <a href="#">Karenslyst Allé 8B, Oslo</a><a href="#">post@blackline.no</a><a href="#">+47 92 00 00 00</a><a href="#">Personvern</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Blackline Detailing AS — Alle rettigheter forbeholdt. Laget med presisjon.</span>
+      <span>Demoside for webbyrå-portefølje • Bilder: Unsplash • Design: Blackline Studio</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast">Takk! Vi har mottatt henvendelsen — du hører fra oss samme dag.</div>
+
+<script>
+// progress
+window.addEventListener('scroll',()=>{const s=window.scrollY,h=document.body.scrollHeight - innerHeight;document.getElementById('progress').style.width=(s/h*100)+'%';});
+
+// mobile menu
+const ham=document.getElementById('ham'), mMenu=document.getElementById('mMenu');
+ham.addEventListener('click',()=>{mMenu.classList.toggle('open');ham.textContent=mMenu.classList.contains('open')?'✕':'☰';ham.style.background=mMenu.classList.contains('open')?'var(--cream)':'';ham.style.color=mMenu.classList.contains('open')?'#000':''});
+function closeMenu(){mMenu.classList.remove('open');ham.textContent='☰';ham.style.background='';ham.style.color='';}
+
+// reveal
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// before/after
+const baWrap=document.getElementById('baWrap'), baBefore=document.getElementById('baBefore'), baHandle=document.getElementById('baHandle'), baRange=document.getElementById('baRange'), baAfter=document.getElementById('baAfter');
+function setBA(v){const p=Math.max(0,Math.min(100,v));baBefore.style.width=p+'%';baHandle.style.left=p+'%';baRange.value=p}
+baRange.addEventListener('input',e=>setBA(e.target.value));
+let dragging=false;
+baWrap.addEventListener('pointerdown',e=>{dragging=true;baWrap.setPointerCapture(e.pointerId);updateBA(e)});
+baWrap.addEventListener('pointermove',e=>{if(dragging) updateBA(e)});
+window.addEventListener('pointerup',()=>dragging=false);
+function updateBA(e){const r=baWrap.getBoundingClientRect();const x=e.clientX - r.left; setBA(x/r.width*100)}
+// thumbs
+document.querySelectorAll('.ba-thumb').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.ba-thumb').forEach(x=>x.classList.remove('active'));t.classList.add('active');
+    const a=t.dataset.after, b=t.dataset.before;
+    baAfter.src=a;
+    baBefore.querySelector('img').src=b;
+    // keep muted before effect
+  })
+});
+
+// packages toggle
+const toggleBtns=document.querySelectorAll('.toggle button');
+let currentSize='sedan';
+toggleBtns.forEach(b=>b.addEventListener('click',()=>{
+  toggleBtns.forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  currentSize=b.dataset.size;
+  document.querySelectorAll('[data-price-sedan]').forEach(el=>{
+    const v=el.dataset['price'+ (currentSize==='sedan'?'Sedan': currentSize==='suv'?'Suv':'Large')];
+    el.textContent=Number(v).toLocaleString('nb-NO')+' kr';
+  });
+  updateConfig(); // also update config price base
+}));
+
+// gallery slider
+const track=document.getElementById('gTrack'), dots=document.querySelectorAll('.dot2');
+let gIndex=0;
+function goG(i){
+  const n=3; gIndex=(i+n)%n;
+  track.style.transform=`translateX(-${gIndex*100}%)`;
+  dots.forEach((d,idx)=>d.classList.toggle('active', idx===gIndex));
+}
+document.getElementById('gPrev').addEventListener('click',()=>goG(gIndex-1));
+document.getElementById('gNext').addEventListener('click',()=>goG(gIndex+1));
+dots.forEach((d,i)=>d.addEventListener('click',()=>goG(i)));
+let gAuto=setInterval(()=>goG(gIndex+1), 5200);
+track.addEventListener('mouseenter',()=>clearInterval(gAuto));
+track.addEventListener('mouseleave',()=>gAuto=setInterval(()=>goG(gIndex+1),5200));
+let sx=0;
+track.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX - sx; if(Math.abs(dx)>40){ goG(gIndex + (dx<0?1:-1)) }});
+
+// configurator
+const groups={
+  car: document.querySelector('[data-group="car"]'),
+  cond: document.querySelector('[data-group="cond"]'),
+  goal: document.querySelector('[data-group="goal"]')
+};
+let state={car:'sedan', cond:'ny', goal:'beskytt'};
+document.querySelectorAll('.opts button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const g=btn.parentElement.dataset.group;
+    btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    state[g]=btn.dataset.value;
+    // sync car with size toggle if relevant
+    if(g==='car'){
+      // map stasjon/sport to suv/large for pricing intuition
+      // keep currentSize synced loosely
+    }
+    updateConfig();
+  })
+});
+function resetConfig(){
+  state={car:'sedan', cond:'ny', goal:'beskytt'};
+  document.querySelectorAll('.opts').forEach(group=>{
+    group.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('active', i===0));
+  });
+  updateConfig();
+}
+function updateConfig(){
+  // pricing base by size
+  const sizeMap={sedan:'sedan', suv:'suv', stasjon:'suv', sport:'sedan'};
+  const s=sizeMap[state.car] || currentSize;
+  const priceTable={
+    essential:{sedan:4900,suv:5900,large:6900},
+    signature:{sedan:11900,suv:13500,large:14900},
+    noir:{sedan:19900,suv:21900,large:23900}
+  };
+  // decision logic
+  let pkg='signature';
+  if(state.cond==='slitt' || state.goal==='full') pkg='noir';
+  else if(state.cond==='ny' && state.goal==='beskytt') pkg='essential';
+  else if(state.cond==='velholdt' && state.goal==='beskytt') pkg='essential';
+  else if(state.cond==='brukt' && state.goal==='glans') pkg='signature';
+  else if(state.cond==='slitt') pkg='noir';
+  // override: if goal full -> noir always
+  if(state.goal==='full') pkg='noir';
+
+  const titles={
+    essential:'Essential',
+    signature:'Signature',
+    noir:'Blackline Noir'
+  };
+  const descs={
+    essential:'For ny og velholdt lakk — glansløft, forsegling og enkel vedlikehold. Klar på én dag.',
+    signature:'Vår bestselger — steg 1-korreksjon og 2 års coating. Tydelig dybde uten full restaurering.',
+    noir:'Signaturforvandlingen — steg 2 til lakken er optisk perfekt, deretter 5 års coating og full dokumentasjon.'
+  };
+  const lists={
+    essential:['Skånsom dekon & clay','Ett-stegs polering','Forsegling 4–6 mnd','Innvendig lett detailing'],
+    signature:['Steg 1 lakkorrigering','2-års keramisk coating','Glass & plastforsegling','Servicevask etter 14 dager'],
+    noir:['Steg 2 — cut + finish','5-års coating — Crystal Serum Ultra','Felg av/på + coating','Full innvendig & rapport']
+  };
+  const times={essential:'1 dag i studio',signature:'2 dager i studio',noir:'3 dager i studio'};
+  const price=priceTable[pkg][s==='large'? 'large': s];
+  document.getElementById('resTitle').textContent=titles[pkg];
+  document.getElementById('resDesc').textContent=descs[pkg];
+  document.getElementById('resPrice').textContent=price.toLocaleString('nb-NO')+' kr';
+  const carLabel={sedan:'Sedan / Coupe', suv:'SUV', stasjon:'Stasjonsvogn', sport:'Sportsbil'}[state.car];
+  document.getElementById('resSub').textContent=carLabel+' • '+times[pkg];
+  document.getElementById('resList').innerHTML=lists[pkg].map(li=>`<li>${li}</li>`).join('');
+  // update form select to match
+  const sel=document.getElementById('formPkg');
+  const mapSel={essential:1,signature:2,noir:3};
+  sel.selectedIndex=mapSel[pkg];
+}
+updateConfig();
+function scrollToConfig(which){
+  document.getElementById('konfigurator').scrollIntoView({behavior:'smooth'});
+  // optionally pre-set config to that pkg logic
+  if(which==='essential'){state={car:'sedan',cond:'ny',goal:'beskytt'}}
+  if(which==='signature'){state={car:'suv',cond:'brukt',goal:'glans'}}
+  if(which==='noir'){state={car:'sport',cond:'slitt',goal:'full'}}
+  // reflect in UI
+  const sets=[
+    {g:'car',v:state.car},
+    {g:'cond',v:state.cond},
+    {g:'goal',v:state.goal}
+  ];
+  sets.forEach(({g,v})=>{
+    const wrap=document.querySelector(`[data-group="${g}"]`);
+    wrap.querySelectorAll('button').forEach(b=>b.classList.toggle('active', b.dataset.value===v));
+  });
+  updateConfig();
+}
+function goContact(){
+  document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>document.querySelector('.form input').focus(),600);
+}
+function handleSubmit(e){
+  e.preventDefault();
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  e.target.reset();
+  setTimeout(()=>t.classList.remove('show'),4200);
+}
+
+// smooth anchor offset (for fixed nav)
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href'); if(id.length>1){
+      e.preventDefault();
+      document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
+      closeMenu();
+    }
+  })
+});
+</script>
+<script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>

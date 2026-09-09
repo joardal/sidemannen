@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlyttSmart AS — Flyttebyrå i Oslo | Fastpris på 60 sekunder</title>
+<meta name="description" content="FlyttSmart AS flytter privat og bedrift i Oslo og Øst-Norge. Få fastpris på flyttingen på 60 sekunder — pakking, bæring, kjøring, mellomlagring og flyttevask.">
+<meta name="theme-color" content="#0A1D16">
+<meta property="og:title" content="FlyttSmart AS — Flytting uten styr">
+<meta property="og:description" content="Fastpris på 60 sekunder. Pakking, bæring, kjøring og vask — alt i ett flyttebyrå.">
+<link rel="icon" href="images/image-01.svg">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ============ TOKENS & BASE ============ */
+:root{
+  --ink:#0A1D16;
+  --ink-2:#071510;
+  --forest:#0D2920;
+  --forest-2:#113226;
+  --lime:#C9F556;
+  --lime-2:#B9E93D;
+  --cream:#F6F4EC;
+  --paper:#FCFBF5;
+  --muted:#5B6C61;
+  --line:#E5E2D3;
+  --line-2:#DDD9C7;
+  --amber:#FFB020;
+  --red:#C64545;
+  --dark-text:#F6F4EC;
+  --dark-muted:rgba(246,244,236,.72);
+  --shadow-1:0 1px 2px rgba(10,29,22,.05),0 10px 30px rgba(10,29,22,.08);
+  --shadow-2:0 2px 4px rgba(10,29,22,.06),0 24px 60px rgba(10,29,22,.14);
+  --r-lg:24px;--r-md:18px;--r-sm:12px;
+  --ease:cubic-bezier(.22,.9,.32,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;font-family:"Inter","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16.5px;line-height:1.6;color:#283830;background:var(--cream);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip;
+}
+h1,h2,h3,h4{color:var(--ink);margin:0;line-height:1.08;letter-spacing:-.028em;font-weight:800}
+p{margin:0}
+img,svg{vertical-align:middle}
+button{font-family:inherit}
+a,button{-webkit-tap-highlight-color:transparent}
+::selection{background:var(--lime);color:var(--ink)}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px;border-radius:4px}
+[hidden]{display:none!important}
+.container{max-width:1180px;margin-inline:auto;padding-inline:clamp(20px,4vw,32px)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:fixed;top:10px;left:10px;z-index:200;background:var(--ink);color:var(--lime);padding:10px 18px;border-radius:99px;font-weight:700;text-decoration:none;transform:translateY(-160%);transition:transform .25s}
+.skip:focus{transform:none}
+.ic{width:20px;height:20px;flex:none}
+body.lock{overflow:hidden}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.55em;
+  min-height:52px;padding:.8em 1.5em;border-radius:999px;border:2px solid transparent;
+  font-weight:750;font-size:1rem;letter-spacing:-.01em;line-height:1.1;text-decoration:none;cursor:pointer;
+  transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s,color .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.98)}
+.btn .ic{width:19px;height:19px;transition:transform .2s var(--ease)}
+.btn:hover .ic{transform:translateX(3px)}
+.btn-sm{min-height:44px;padding:.62em 1.15em;font-size:.93rem}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(150,199,38,.42);background:var(--lime-2)}
+.btn-dark{background:var(--ink);color:var(--cream)}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(10,29,22,.35)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:rgba(10,29,22,.28)}
+.btn-ghost:hover{background:rgba(10,29,22,.05);transform:translateY(-2px)}
+.btn-ghost.on-dark{color:var(--cream);border-color:rgba(246,244,236,.35)}
+.btn-ghost.on-dark:hover{background:rgba(246,244,236,.08)}
+.btn[disabled]{opacity:.6;cursor:progress;transform:none!important}
+
+/* ============ HEADER ============ */
+.site-head{position:fixed;inset:0 0 auto 0;z-index:80;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+.site-head.scrolled{background:rgba(8,20,15,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(246,244,236,.08),0 14px 40px rgba(0,0,0,.28)}
+.head-in{display:flex;align-items:center;gap:26px;height:74px}
+.logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--cream)}
+.logo-mark{width:40px;height:40px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+.logo-word{font-size:1.28rem;font-weight:800;letter-spacing:-.03em}
+.logo-word em{font-style:normal;color:var(--lime)}
+.main-nav{display:flex;gap:26px;margin-inline:auto}
+.main-nav a{
+  color:rgba(246,244,236,.82);text-decoration:none;font-weight:650;font-size:.94rem;letter-spacing:-.01em;
+  padding:6px 0;background:linear-gradient(var(--lime),var(--lime)) left bottom/0 2px no-repeat;
+  transition:color .2s,background-size .25s var(--ease);
+}
+.main-nav a:hover{color:var(--lime);background-size:100% 2px}
+.head-actions{display:flex;align-items:center;gap:16px;margin-left:auto}
+.head-tel{display:inline-flex;align-items:center;gap:8px;color:rgba(246,244,236,.85);text-decoration:none;font-weight:750;font-size:.95rem;letter-spacing:.01em;transition:color .2s}
+.head-tel:hover{color:var(--lime)}
+.head-tel .ic{width:17px;height:17px}
+.burger{display:none;width:46px;height:46px;border:0;background:transparent;cursor:pointer;position:relative;z-index:90}
+.burger span{position:absolute;left:11px;width:24px;height:2.5px;border-radius:99px;background:var(--cream);transition:transform .3s var(--ease),top .3s var(--ease),opacity .2s}
+.burger span:nth-child(1){top:18px}
+.burger span:nth-child(2){top:26px}
+.burger[aria-expanded="true"] span:nth-child(1){top:22px;transform:rotate(45deg);background:var(--lime)}
+.burger[aria-expanded="true"] span:nth-child(2){top:22px;transform:rotate(-45deg);background:var(--lime)}
+@media(max-width:919px){
+  .main-nav,.head-tel{display:none}
+  .burger{display:block}
+  .head-in{gap:12px}
+  .head-actions .btn{margin-left:auto}
+  .burger{margin-left:2px}
+}
+
+/* mobile nav overlay */
+.mobnav{
+  position:fixed;inset:0;z-index:70;background:linear-gradient(160deg,var(--forest) 0%,var(--ink-2) 100%);
+  display:flex;flex-direction:column;justify-content:center;padding:100px clamp(24px,7vw,48px) 48px;
+  opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;
+}
+.mobnav.open{opacity:1;visibility:visible}
+.mobnav nav{display:flex;flex-direction:column;gap:6px}
+.mobnav nav a{
+  color:var(--cream);text-decoration:none;font-size:clamp(1.55rem,6vw,2rem);font-weight:800;letter-spacing:-.03em;
+  padding:10px 0;border-bottom:1px solid rgba(246,244,236,.1);
+  opacity:0;transform:translateY(14px);transition:opacity .4s var(--ease),transform .4s var(--ease),color .2s;
+}
+.mobnav.open nav a{opacity:1;transform:none}
+.mobnav nav a:hover{color:var(--lime)}
+.mobnav-foot{margin-top:36px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;opacity:0;transform:translateY(14px);transition:opacity .4s .25s var(--ease),transform .4s .25s var(--ease)}
+.mobnav.open .mobnav-foot{opacity:1;transform:none}
+.mob-tel{color:var(--dark-muted);text-decoration:none;font-weight:700}
+.mob-tel:hover{color:var(--lime)}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:linear-gradient(158deg,#0C251C 0%,#081711 58%,#0B2119 100%);color:var(--dark-text);overflow:clip}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(246,244,236,.065) 1.1px,transparent 1.6px);
+  background-size:26px 26px;
+  -webkit-mask-image:linear-gradient(#000 45%,transparent 96%);mask-image:linear-gradient(#000 45%,transparent 96%);
+}
+.hero::after{
+  content:"";position:absolute;width:900px;height:640px;right:-180px;top:-220px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(201,245,86,.13),transparent 72%);pointer-events:none;
+}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.route{position:absolute;right:2%;top:6%;width:min(46vw,640px);height:auto}
+.route-dash{animation:dash 7s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-180}}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.8s ease-out infinite}
+.pulse.p2{animation-delay:1.4s}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(3.4);opacity:0}}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(36px,5vw,72px);align-items:center;padding-top:150px;padding-bottom:96px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.84rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:26px}
+.hero-eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(201,245,86,.18);animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{50%{box-shadow:0 0 0 7px rgba(201,245,86,.06)}}
+.hero h1{color:var(--cream);font-size:clamp(2.65rem,5.6vw,4.3rem);line-height:1.02;letter-spacing:-.038em;margin-bottom:24px}
+.strike{position:relative;white-space:nowrap}
+.strike svg{position:absolute;left:-2%;bottom:-2px;width:104%;height:15px;overflow:visible}
+.strike path{fill:none;stroke:var(--lime);stroke-width:6.5;stroke-linecap:round;stroke-dasharray:230;stroke-dashoffset:230;animation:draw .7s .95s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-lead{font-size:clamp(1.05rem,1.5vw,1.19rem);color:var(--dark-muted);max-width:33rem;margin-bottom:34px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:38px}
+.hero-trust{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.94rem;color:var(--dark-muted)}
+.hero-trust strong{color:var(--cream)}
+.stars{display:inline-flex;gap:2px}
+.stars .ic{width:16px;height:16px;color:var(--lime)}
+
+.hero-visual{position:relative}
+.hero-card{
+  background:var(--cream);color:var(--ink);border-radius:var(--r-lg);padding:clamp(22px,2.4vw,30px);
+  box-shadow:0 30px 80px rgba(0,0,0,.42),0 2px 0 rgba(246,244,236,.14) inset;
+  display:flex;flex-direction:column;gap:15px;max-width:520px;margin-left:auto;width:100%;
+}
+.hc-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.hc-head h3{font-size:1.13rem;letter-spacing:-.02em}
+.hc-badge{background:var(--lime);border-radius:99px;padding:5px 13px;font-size:.76rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.hero-card .btn{width:100%;margin-top:4px}
+.hc-foot{display:flex;gap:18px;flex-wrap:wrap;font-size:.82rem;font-weight:650;color:var(--muted);margin-top:2px}
+.hc-foot span{display:inline-flex;align-items:center;gap:7px}
+.hc-foot .ic{width:16px;height:16px;color:#3E7A4C}
+.fbadge{
+  position:absolute;display:inline-flex;align-items:center;gap:8px;font-size:.83rem;font-weight:750;
+  padding:10px 16px;border-radius:99px;box-shadow:0 16px 40px rgba(0,0,0,.35);white-space:nowrap;
+  animation:float 6s ease-in-out infinite alternate;
+}
+.fbadge .ic{width:16px;height:16px}
+.f1{top:-20px;left:-26px;background:var(--forest-2);color:var(--cream);border:1px solid rgba(246,244,236,.14)}
+.f1 .ic{color:var(--lime)}
+.f2{bottom:-18px;right:-14px;background:var(--lime);color:var(--ink);animation-duration:7.5s;animation-delay:.8s}
+@keyframes float{from{transform:translateY(-6px)}to{transform:translateY(7px)}}
+@media(max-width:1199px){.fbadge{display:none}}
+@media(max-width:1023px){
+  .route{display:none}
+  .hero-grid{grid-template-columns:1fr;padding-top:128px;padding-bottom:72px}
+  .hero-card{margin-inline:auto;max-width:560px}
+}
+
+/* ============ FORM ELEMENTS ============ */
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:.84rem;font-weight:750;color:#33463C;letter-spacing:.01em}
+.field input,.field textarea{
+  width:100%;font-family:inherit;font-size:16px;color:var(--ink);background:#fff;
+  border:1.6px solid var(--line-2);border-radius:14px;padding:14px 16px;transition:border-color .2s,box-shadow .2s;
+  appearance:none;
+}
+.field textarea{resize:vertical;min-height:88px}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px rgba(201,245,86,.4)}
+.field input::placeholder,.field textarea::placeholder{color:#9AA79D}
+.field .fmsg{display:none;color:#B23B3B;font-size:.82rem;font-weight:650}
+.field.err input{border-color:var(--red);box-shadow:0 0 0 4px rgba(198,69,69,.13);animation:shake .35s}
+.field.err .fmsg{display:block}
+@keyframes shake{20%{transform:translateX(-5px)}45%{transform:translateX(4px)}70%{transform:translateX(-3px)}90%{transform:translateX(2px)}}
+
+/* ============ SECTIONS ============ */
+.sec{padding-block:clamp(74px,9vw,122px);position:relative}
+.sec--paper{background:var(--paper);border-block:1px solid var(--line)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:#4E6055}
+.eyebrow::before{content:"";width:26px;height:4px;border-radius:99px;background:var(--lime)}
+.on-dark .eyebrow,.sec-dark .eyebrow{color:var(--dark-muted)}
+.sec-head{max-width:660px;margin-bottom:clamp(38px,5vw,58px)}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head.center .eyebrow::before{display:none}
+.sec-head.center .eyebrow::after{content:"";width:26px;height:4px;border-radius:99px;background:var(--lime)}
+.sec-head h2{font-size:clamp(1.95rem,4.2vw,2.9rem);margin:.45em 0 .4em;letter-spacing:-.032em}
+.sec-head p{color:var(--muted);font-size:1.04rem}
+.sec-dark,.sec-dark h2,.sec-dark h3{color:var(--cream)}
+.sec-dark .sec-head p{color:var(--dark-muted)}
+
+/* ============ STEPS ============ */
+.steps-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.step{
+  position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);
+  padding:26px 24px 24px;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+}
+.step:hover{transform:translateY(-5px);box-shadow:var(--shadow-1);border-color:var(--line-2)}
+.step .rule{width:46px;height:4px;border-radius:99px;background:var(--lime);margin-bottom:18px;transform:scaleX(0);transform-origin:left;transition:transform .6s .25s var(--ease)}
+.step.in .rule{transform:none}
+.step-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.step-num{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--ink);color:var(--lime);font-weight:800;font-size:1.02rem;letter-spacing:-.02em}
+.step-when{background:#EFEDE0;color:#57685D;border-radius:99px;padding:5px 12px;font-size:.76rem;font-weight:750;letter-spacing:.02em;white-space:nowrap}
+.step h3{font-size:1.12rem;letter-spacing:-.02em;margin-bottom:9px}
+.step p{font-size:.94rem;color:var(--muted)}
+.step .ghostnum{position:absolute;right:10px;bottom:-18px;font-size:5.4rem;font-weight:800;letter-spacing:-.05em;color:rgba(10,29,22,.05);line-height:1;pointer-events:none}
+@media(max-width:1079px){.steps-list{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:639px){
+  .steps-list{grid-template-columns:1fr;gap:14px;position:relative}
+  .steps-list::before{content:"";position:absolute;left:22px;top:10px;bottom:10px;width:2px;background:var(--line-2);border-radius:99px}
+  .step{margin-left:44px}
+  .steps-list::before{left:21px}
+  .step::before{content:"";position:absolute;left:-37px;top:28px;width:14px;height:14px;border-radius:50%;background:var(--lime);border:3px solid var(--ink)}
+  .step .ghostnum{display:none}
+}
+
+/* ============ CALCULATOR ============ */
+.calc-head{max-width:720px}
+.calc-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.calc-meta span{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-size:.86rem;font-weight:700;color:#3A4C42}
+.calc-meta .ic{width:16px;height:16px;color:#3E7A4C}
+.calc-shell{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(26px,3.4vw,44px);align-items:start}
+.calc-shell.done .calc-main{display:none}
+.calc-shell.done .calc-side{display:none}
+
+.calc-progress{margin-bottom:26px}
+.cp-bar{height:7px;border-radius:99px;background:var(--line);overflow:hidden}
+.cp-fill{height:100%;width:20%;border-radius:99px;background:var(--lime);transition:width .45s var(--ease)}
+.cp-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:12px}
+.cp-label{font-size:.86rem;font-weight:800;color:var(--ink)}
+.cp-label b{color:#3E7A4C}
+.csegs{display:flex;gap:6px}
+.cseg{
+  border:1.4px solid var(--line-2);background:#fff;color:#57685D;border-radius:99px;
+  font-size:.78rem;font-weight:750;padding:6px 13px;cursor:pointer;transition:all .2s;
+}
+.cseg.done{background:var(--ink);border-color:var(--ink);color:var(--lime)}
+.cseg:disabled{opacity:.42;cursor:default}
+.cseg:not(:disabled):hover{transform:translateY(-1px)}
+@media(max-width:639px){.csegs{display:none}}
+
+.cpanel{display:none}
+.cpanel.active{display:block;animation:panelIn .38s var(--ease)}
+.cpanel.active.back{animation-name:panelInB}
+@keyframes panelIn{from{opacity:0;transform:translateX(28px)}}
+@keyframes panelInB{from{opacity:0;transform:translateX(-28px)}}
+.kick{display:inline-flex;align-items:center;gap:8px;background:#EFEDE0;color:#3E5147;font-weight:800;font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;padding:6px 13px;border-radius:99px}
+.cpanel h3{font-size:clamp(1.35rem,2.4vw,1.7rem);margin:14px 0 8px}
+.cpanel .sub{color:var(--muted);font-size:.97rem;margin-bottom:26px;max-width:34rem}
+.fgrid{display:grid;gap:18px}
+.fgrid.c2{grid-template-columns:1fr 1fr}
+@media(max-width:639px){.fgrid.c2{grid-template-columns:1fr}}
+
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.chip{
+  border:1.4px dashed var(--line-2);background:#FCFBF4;color:#3A4C42;border-radius:99px;
+  font-size:.84rem;font-weight:700;padding:8px 15px;cursor:pointer;transition:all .2s;
+}
+.chip:hover{border-color:var(--ink);border-style:solid;color:var(--ink);background:var(--lime);transform:translateY(-1px)}
+.routebox{
+  margin-top:20px;display:flex;align-items:center;gap:12px;background:var(--ink);color:var(--cream);
+  border-radius:14px;padding:14px 18px;font-size:.93rem;font-weight:650;
+  animation:rowIn .45s var(--ease);
+}
+.routebox .ic{width:18px;height:18px;color:var(--lime)}
+.routebox b{color:var(--lime)}
+
+.seg{display:grid;gap:10px;margin-bottom:22px}
+.seg.c4{grid-template-columns:repeat(4,1fr)}
+.seg.c2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:569px){.seg.c4{grid-template-columns:repeat(2,1fr)}}
+.seg-btn{
+  display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;
+  background:#fff;border:1.6px solid var(--line-2);border-radius:16px;padding:15px 10px 13px;
+  font-weight:750;font-size:.92rem;color:var(--ink);cursor:pointer;transition:all .2s var(--ease);letter-spacing:-.01em;
+}
+.seg-btn .ic{width:23px;height:23px;color:#4E6055;transition:color .2s}
+.seg-btn small{font-size:.76rem;font-weight:600;color:var(--muted);letter-spacing:0}
+.seg-btn:hover{border-color:var(--ink);transform:translateY(-2px)}
+.seg-btn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.seg-btn[aria-pressed="true"] .ic{color:var(--lime)}
+.seg-btn[aria-pressed="true"] small{color:var(--dark-muted)}
+
+.kvm-read{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:14px}
+.kvm-read .v{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.kvm-read .r{font-size:.9rem;font-weight:700;color:var(--muted)}
+.range{position:relative;padding:6px 0 2px}
+.range::before{content:"";position:absolute;left:0;right:0;top:50%;height:10px;transform:translateY(-50%);border-radius:99px;background:var(--range-bg,var(--line))}
+.range input{
+  position:relative;width:100%;height:30px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:grab;
+}
+.range input:active{cursor:grabbing}
+.range input::-webkit-slider-thumb{
+  -webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--lime);
+  border:4.5px solid var(--ink);box-shadow:0 4px 12px rgba(10,29,22,.35);transition:transform .15s;
+}
+.range input::-webkit-slider-thumb:hover{transform:scale(1.12)}
+.range input::-moz-range-thumb{width:19px;height:19px;border-radius:50%;background:var(--lime);border:4.5px solid var(--ink);box-shadow:0 4px 12px rgba(10,29,22,.35)}
+.range input::-moz-range-track{background:transparent}
+.range-scale{display:flex;justify-content:space-between;font-size:.78rem;font-weight:650;color:#79877B;margin-top:8px}
+
+.etg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:639px){.etg-grid{grid-template-columns:1fr}}
+.etg-card{background:#fff;border:1.5px solid var(--line-2);border-radius:var(--r-md);padding:20px}
+.etg-card h4{font-size:1rem;display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.etg-card h4 .ic{width:18px;height:18px;color:#3E7A4C}
+.etg-lab{font-weight:750;font-size:.94rem;letter-spacing:-.01em}
+.etg-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.etg-row+.etg-row{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line)}
+.stepper{display:inline-flex;align-items:center;background:#FCFBF4;border:1.6px solid var(--line-2);border-radius:99px}
+.stepper button{width:46px;height:46px;display:grid;place-items:center;border:0;background:transparent;cursor:pointer;color:var(--ink);border-radius:99px;transition:background .15s}
+.stepper button:hover{background:var(--lime)}
+.stepper .val{min-width:86px;text-align:center;font-weight:800;font-size:.99rem;letter-spacing:-.01em}
+.switchlab{display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:700;font-size:.93rem;color:var(--ink)}
+.sw{position:relative;width:54px;height:31px;flex:none}
+.sw input{position:absolute;inset:0;z-index:2;opacity:0;cursor:pointer;margin:0}
+.sw i{position:absolute;inset:0;border-radius:99px;background:#D7D3C0;transition:background .22s}
+.sw i::after{content:"";position:absolute;top:3.5px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .24s cubic-bezier(.34,1.45,.4,1)}
+.sw:has(input:checked) i{background:var(--lime)}
+.sw:has(input:checked) i::after{transform:translateX(22px)}
+.etg-note{font-size:.84rem;color:var(--muted);margin-top:18px;display:flex;gap:8px;align-items:flex-start}
+.etg-note .ic{width:16px;height:16px;color:#3E7A4C;margin-top:2px}
+
+.srv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:569px){.srv-grid{grid-template-columns:1fr}}
+.srv-t{
+  position:relative;display:grid;gap:6px;text-align:left;background:#fff;border:1.6px solid var(--line-2);
+  border-radius:var(--r-md);padding:20px 20px 18px;cursor:pointer;transition:all .22s var(--ease);
+}
+.srv-t:hover{border-color:var(--ink);transform:translateY(-2px)}
+.srv-t .s-top{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.02rem;letter-spacing:-.015em}
+.srv-t .s-top .ic{width:21px;height:21px;color:#3E7A4C}
+.srv-t p{font-size:.87rem;color:var(--muted)}
+.srv-t .s-price{font-size:.86rem;font-weight:800;color:var(--ink)}
+.srv-t .s-badge{position:absolute;top:16px;right:48px;background:#FFE9C2;color:#8A5A00;border-radius:99px;padding:3px 10px;font-size:.7rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.srv-t .tick{
+  position:absolute;top:15px;right:15px;width:27px;height:27px;border-radius:50%;background:var(--lime);color:var(--ink);
+  display:grid;place-items:center;transform:scale(0);transition:transform .28s cubic-bezier(.34,1.6,.4,1);
+}
+.srv-t .tick .ic{width:15px;height:15px}
+.srv-t[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1.6px var(--ink);background:#FFFEF9}
+.srv-t[aria-pressed="true"] .tick{transform:scale(1)}
+.srv-t[aria-pressed="true"] .s-top .ic{color:var(--ink)}
+.mnd-row{max-height:0;overflow:hidden;transition:max-height .35s var(--ease),margin .35s}
+.mnd-row.open{max-height:120px;margin-top:16px}
+.mnd-in{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#EFEDE0;border-radius:14px;padding:12px 12px 12px 20px;font-weight:750;font-size:.92rem;flex-wrap:wrap}
+
+.calc-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.calc-nav .hint{font-size:.85rem;color:var(--muted);font-weight:650}
+@media(max-width:979px){.calc-nav{display:none}}
+.btn.loading::before{content:"";width:17px;height:17px;border-radius:50%;border:2.5px solid rgba(10,29,22,.25);border-top-color:var(--ink);animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.calc-side{
+  position:sticky;top:96px;background:linear-gradient(165deg,var(--forest-2),var(--forest) 55%);
+  color:var(--cream);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow-2);display:flex;flex-direction:column;gap:4px;
+}
+.cs-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.cs-label{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--dark-muted)}
+.cs-live{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:750;color:var(--lime);background:rgba(201,245,86,.1);border:1px solid rgba(201,245,86,.25);border-radius:99px;padding:4px 11px}
+.cs-live i{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:blinkdot 1.6s ease-in-out infinite}
+@keyframes blinkdot{50%{opacity:.35}}
+.price-big{font-size:clamp(2.4rem,3.4vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1;color:var(--cream);font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:9px}
+.price-big .kr{font-size:1.15rem;color:var(--dark-muted);font-weight:700}
+.price-big.bump{animation:bump .45s var(--ease)}
+@keyframes bump{35%{transform:scale(1.045)}}
+.cs-sub{font-size:.83rem;color:var(--dark-muted);margin-top:7px}
+.plines{margin-top:18px;display:flex;flex-direction:column}
+.prow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 2px;border-bottom:1px dashed rgba(246,244,236,.15);font-size:.92rem}
+.prow .l{color:var(--dark-muted)}
+.prow .v{font-weight:750;white-space:nowrap;font-variant-numeric:tabular-nums}
+.prow .v.inkl{color:var(--lime)}
+.prow.pop{animation:rowIn .5s var(--ease)}
+@keyframes rowIn{from{opacity:0;transform:translateY(9px)}}
+.cs-note{font-size:.83rem;color:var(--dark-muted);margin-top:16px}
+.cs-note strong{color:var(--cream)}
+.calc-side .btn{margin-top:18px}
+.ptotal{display:flex;justify-content:space-between;align-items:baseline;padding-top:16px}
+.ptotal .l{font-weight:800;font-size:.95rem}
+.ptotal .v{font-weight:800;font-size:1.28rem;color:var(--lime);font-variant-numeric:tabular-nums}
+@media(max-width:979px){.calc-side{display:none}}
+
+.mcalc-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:46;display:none;align-items:center;gap:12px;
+  background:rgba(8,20,15,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform .32s var(--ease);
+  box-shadow:0 -12px 40px rgba(0,0,0,.3);border-top:1px solid rgba(201,245,86,.14);
+}
+.mcalc-bar.show{transform:none}
+.mc-back{width:44px;height:44px;flex:none;border-radius:50%;border:1.5px solid rgba(246,244,236,.25);background:transparent;color:var(--cream);display:grid;place-items:center;cursor:pointer;transition:all .2s}
+.mc-back:hover{border-color:var(--lime);color:var(--lime)}
+.mc-price{display:flex;flex-direction:column;line-height:1.25;margin-right:auto}
+.mc-price span{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dark-muted)}
+.mc-price strong{font-size:1.12rem;font-weight:800;color:var(--cream);font-variant-numeric:tabular-nums}
+.mc-next{min-height:46px;padding:.6em 1.25em;font-size:.94rem}
+@media(max-width:979px){.mcalc-bar{display:flex}}
+@media(max-width:979px){#kalkulator{padding-bottom:170px}}
+
+.sum-chips{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 22px}
+.sum-chips .sc{background:#EFEDE0;border-radius:99px;padding:7px 14px;font-size:.84rem;font-weight:700;color:#3A4C42;display:inline-flex;gap:7px;align-items:center}
+.sum-chips .sc .ic{width:14px;height:14px;color:#3E7A4C}
+.sum-chips .sc.hi{background:var(--ink);color:var(--cream)}
+.sum-chips .sc.hi .ic{color:var(--lime)}
+.legal{font-size:.8rem;color:var(--muted);margin-top:14px}
+
+.calc-success{display:none;position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(36px,5vw,64px);text-align:center}
+.calc-shell.done .calc-success{display:block;animation:rowIn .5s var(--ease)}
+.okmark{width:96px;height:96px;margin:0 auto 22px}
+.okmark circle{fill:none;stroke:var(--lime);stroke-width:3.5;stroke-dasharray:222;stroke-dashoffset:222;animation:drawok .7s .1s var(--ease) forwards}
+.okmark path{fill:none;stroke:var(--lime);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:drawok .45s .75s var(--ease) forwards}
+@keyframes drawok{to{stroke-dashoffset:0}}
+.calc-success h3{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:12px}
+.calc-success .ok-p{color:var(--muted);max-width:33rem;margin:0 auto 8px;font-size:1rem}
+.calc-success .ok-p strong{color:var(--ink)}
+.calc-success .ok-p b{color:var(--ink);background:rgba(201,245,86,.45);border-radius:6px;padding:1px 7px;font-variant-numeric:tabular-nums}
+.ok-chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:22px 0 6px}
+.ok-chips .sc{background:#EFEDE0;border-radius:99px;padding:8px 15px;font-size:.85rem;font-weight:750;color:#3A4C42;display:inline-flex;gap:8px;align-items:center}
+.ok-chips .sc .ic{width:15px;height:15px;color:#3E7A4C}
+.ok-actions{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;top:-14px;width:9px;height:14px;border-radius:2.5px;opacity:0;animation:fall var(--d) var(--dl) ease-in forwards}
+@keyframes fall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(240px) rotate(350deg)}}
+
+/* ============ SERVICES ============ */
+.svc-list{display:flex;flex-direction:column}
+.acc-head{border:0;background:none;cursor:pointer;text-align:left;padding:0;color:inherit}
+.svc{border-bottom:1px solid var(--line)}
+.svc:first-child{border-top:1px solid var(--line)}
+.svc-head{display:grid;grid-template-columns:auto auto 1fr auto auto;gap:18px;align-items:center;width:100%;padding:24px 6px;transition:background .2s;border-radius:10px}
+.svc-head:hover{background:rgba(201,245,86,.14)}
+.svc-num{font-size:.92rem;font-weight:800;color:#9AA79D;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.svc-ico{width:46px;height:46px;border-radius:14px;background:var(--ink);color:var(--lime);display:grid;place-items:center}
+.svc-ico .ic{width:22px;height:22px}
+.svc-t{display:flex;flex-direction:column;gap:3px;min-width:0}
+.svc-t strong{font-size:clamp(1.1rem,2vw,1.32rem);font-weight:800;letter-spacing:-.025em;color:var(--ink)}
+.svc-t small{font-size:.88rem;color:var(--muted);font-weight:600}
+.svc-price{font-size:.92rem;font-weight:800;color:var(--ink);white-space:nowrap;background:#EFEDE0;border-radius:99px;padding:7px 14px}
+.svc-chev{width:38px;height:38px;border:1.5px solid var(--line-2);border-radius:50%;display:grid;place-items:center;color:var(--ink);transition:all .35s var(--ease)}
+.svc-chev .ic{width:17px;height:17px}
+.acc.open .svc-chev{background:var(--ink);border-color:var(--ink);color:var(--lime);transform:rotate(180deg)}
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .38s var(--ease)}
+.acc.open .acc-body{grid-template-rows:1fr}
+.acc-body>div{overflow:hidden}
+.svc-in{padding:4px 6px 30px}
+.svc-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:start}
+.svc-grid p{color:#3C4E44;font-size:.99rem}
+.inc-t{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.inc{display:flex;flex-wrap:wrap;gap:8px}
+.inc span{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-2);background:#fff;border-radius:99px;padding:7px 13px;font-size:.84rem;font-weight:700;color:#33463C}
+.inc .ic{width:14px;height:14px;color:#3E7A4C}
+.svc-foot{margin-top:22px}
+.lnk-btn{display:inline-flex;align-items:center;gap:9px;background:none;border:0;cursor:pointer;font-weight:800;font-size:.95rem;letter-spacing:-.01em;color:var(--ink);padding:2px 0;border-bottom:2.5px solid var(--lime);transition:gap .2s}
+.lnk-btn:hover{gap:14px}
+.lnk-btn .ic{width:17px;height:17px}
+@media(max-width:639px){
+  .svc-head{grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;row-gap:8px;padding:20px 2px}
+  .svc-num{display:none}
+  .svc-t{grid-column:2}
+  .svc-price{grid-column:2;justify-self:start}
+  .svc-chev{grid-row:1/3;grid-column:3;align-self:center}
+  .svc-ico{width:40px;height:40px}
+  .svc-grid{grid-template-columns:1fr;gap:20px}
+}
+
+/* ============ OMtALER / STATS ============ */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:clamp(48px,6vw,72px)}
+.stat{padding:6px 4px}
+.stat+.stat{border-left:1px solid rgba(246,244,236,.13)}
+.stat-val{font-size:clamp(2.1rem,3.6vw,3.1rem);font-weight:800;letter-spacing:-.03em;color:var(--lime);line-height:1.05;font-variant-numeric:tabular-nums}
+.stat-val .suf{color:var(--cream);font-size:.55em;font-weight:800;margin-left:2px}
+.stat p{font-size:.9rem;color:var(--dark-muted);margin-top:8px;max-width:200px}
+@media(max-width:819px){
+  .stats-row{grid-template-columns:1fr 1fr;gap:30px 22px}
+  .stat+.stat{border-left:0}
+  .stat:nth-child(even){border-left:1px solid rgba(246,244,236,.13);padding-left:22px}
+}
+.mq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.mq-track{display:flex;width:max-content;animation:marq var(--sp,48s) linear infinite}
+.mq:hover .mq-track{animation-play-state:paused}
+.mq.rev .mq-track{animation-direction:reverse}
+@keyframes marq{to{transform:translateX(-50%)}}
+.rev-card{
+  margin-right:18px;width:340px;flex:none;background:rgba(246,244,236,.05);border:1px solid rgba(246,244,236,.11);
+  border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:13px;
+}
+.rev-card .stars .ic{width:15px;height:15px}
+.rev-card q{quotes:"«" "»";font-size:.97rem;line-height:1.55;color:rgba(246,244,236,.92)}
+.rev-foot{display:flex;align-items:center;gap:11px;margin-top:auto}
+.rev-foot .av{width:38px;height:38px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:.95rem}
+.rev-foot b{font-size:.92rem;display:block;line-height:1.2}
+.rev-foot small{color:var(--dark-muted);font-size:.8rem}
+.rev-v{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:750;color:rgba(246,244,236,.55)}
+.rev-v .ic{width:13px;height:13px;color:var(--lime)}
+.mq+.mq{margin-top:18px}
+
+/* ============ PRISER + FAQ ============ */
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,80px);align-items:start}
+.price-table{border-top:1px solid var(--line)}
+.prow2{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 10px;border-bottom:1px solid var(--line);transition:background .2s,padding .25s;border-radius:8px}
+.prow2:hover{background:#F1EFE2;padding-left:20px}
+.prow2 .n{font-weight:800;letter-spacing:-.015em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.prow2 .n small{display:block;font-weight:600;color:var(--muted);font-size:.84rem;letter-spacing:0}
+.p-badge{background:#FFE9C2;color:#8A5A00;border-radius:99px;padding:3px 10px;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.prow2 .p{font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums}
+.addons{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px;margin-top:22px}
+.addon{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;padding:9px 10px;border-radius:8px}
+.addon:hover{background:#F1EFE2}
+.addon span{color:#3C4E44;font-weight:650}
+.addon b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.p-note{font-size:.84rem;color:var(--muted);margin-top:20px;max-width:32rem}
+.pf-cta{margin-top:26px}
+.faq-list{border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line)}
+.q{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;background:none;border:0;cursor:pointer;text-align:left;padding:21px 4px;font-weight:800;font-size:1.04rem;letter-spacing:-.018em;color:var(--ink);line-height:1.35}
+.qi{width:32px;height:32px;flex:none;border:1.5px solid var(--line-2);border-radius:50%;display:grid;place-items:center;color:var(--ink);transition:all .32s var(--ease)}
+.qi .ic{width:15px;height:15px}
+.qa.open .qi{background:var(--ink);border-color:var(--ink);color:var(--lime);transform:rotate(135deg)}
+.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}
+.qa.open .a{grid-template-rows:1fr}
+.a>div{overflow:hidden}
+.a p{color:#41544A;font-size:.95rem;padding:0 44px 22px 4px;max-width:36rem}
+@media(max-width:919px){.pf-grid{grid-template-columns:1fr}}
+@media(max-width:569px){.addons{grid-template-columns:1fr}}
+
+/* ============ BEDRIFT ============ */
+.bed-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(40px,5vw,72px);align-items:center}
+.bed-list{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bed-list li{display:flex;gap:13px;align-items:center;font-weight:700;font-size:.95rem}
+.b-ic{width:40px;height:40px;flex:none;border-radius:13px;background:rgba(201,245,86,.13);color:var(--lime);display:grid;place-items:center}
+.b-ic .ic{width:19px;height:19px}
+.clients{margin-top:40px;padding-top:28px;border-top:1px solid rgba(246,244,236,.12)}
+.clients p{font-size:.78rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:rgba(246,244,236,.5);margin-bottom:14px}
+.clients b{display:block;font-size:.92rem;letter-spacing:.06em;color:rgba(246,244,236,.62);font-weight:750}
+.bed-card{background:var(--cream);color:var(--ink);border-radius:var(--r-lg);padding:clamp(26px,3vw,34px);box-shadow:0 30px 70px rgba(0,0,0,.38)}
+.bed-card h3{font-size:1.35rem;margin-bottom:8px}
+.bed-card>p{color:var(--muted);font-size:.94rem;margin-bottom:20px}
+.bed-card .field{margin-bottom:14px}
+.bed-card .btn{width:100%}
+.bed-micro{font-size:.82rem;color:var(--muted);margin-top:14px;display:flex;gap:8px;align-items:center}
+.bed-micro .ic{width:15px;height:15px;color:#3E7A4C}
+@media(max-width:939px){.bed-grid{grid-template-columns:1fr}}
+@media(max-width:569px){.bed-list{grid-template-columns:1fr}}
+
+/* ============ FINAL CTA ============ */
+.cta-final{background:var(--lime);position:relative;overflow:clip}
+.cta-final::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(10,29,22,.08) 1.1px,transparent 1.6px);background-size:24px 24px;
+  -webkit-mask-image:linear-gradient(120deg,#000 30%,transparent 75%);mask-image:linear-gradient(120deg,#000 30%,transparent 75%);
+}
+.cta-mark{position:absolute;right:-70px;bottom:-90px;width:380px;height:380px;opacity:.1;transform:rotate(-8deg)}
+.cta-in{position:relative;text-align:center;max-width:720px;margin-inline:auto}
+.cta-in h2{font-size:clamp(2.1rem,4.6vw,3.3rem);letter-spacing:-.035em;margin-bottom:18px}
+.cta-in p{color:rgba(10,29,22,.75);font-size:1.07rem;margin-bottom:34px}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-micro{margin-top:26px;font-size:.9rem;font-weight:700;color:rgba(10,29,22,.65);display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}
+.cta-micro .ic{width:16px;height:16px}
+
+/* ============ FOOTER ============ */
+.site-foot{background:var(--ink-2);color:rgba(246,244,236,.68);padding:clamp(56px,7vw,80px) 0 34px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.15fr;gap:44px}
+.foot-brand p{font-size:.95rem;margin:18px 0 0;max-width:280px}
+.foot-brand .logo{margin-bottom:4px}
+.foot-col h4{color:var(--cream);font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;margin:0 0 18px}
+.foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.foot-col a{color:rgba(246,244,236,.68);text-decoration:none;font-size:.93rem;transition:color .2s}
+.foot-col a:hover{color:var(--lime)}
+.foot-col li{font-size:.93rem;line-height:1.5}
+.foot-col li b{color:var(--cream);font-weight:700}
+.foot-bottom{margin-top:clamp(40px,6vw,60px);padding-top:26px;border-top:1px solid rgba(246,244,236,.1);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.82rem;color:rgba(246,244,236,.42)}
+@media(max-width:919px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:569px){.foot-grid{grid-template-columns:1fr;gap:34px}}
+
+/* ============ TOAST + FIXED CTA ============ */
+#toast{
+  position:fixed;left:50%;bottom:28px;z-index:90;transform:translate(-50%,20px);
+  background:var(--ink);color:var(--cream);border:1px solid rgba(201,245,86,.3);
+  padding:13px 22px;border-radius:99px;font-weight:700;font-size:.92rem;box-shadow:0 20px 50px rgba(0,0,0,.35);
+  opacity:0;visibility:hidden;transition:all .3s var(--ease);max-width:calc(100vw - 32px);text-align:center;
+}
+#toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+@media(max-width:979px){#toast{bottom:104px}}
+.fix-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:45;display:none;
+  background:rgba(8,20,15,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-top:1px solid rgba(201,245,86,.16);padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform .32s var(--ease);
+}
+.fix-cta.show{transform:none}
+.fx-in{max-width:1180px;margin-inline:auto;display:flex;align-items:center;gap:14px}
+.fx-t{font-size:.88rem;font-weight:750;color:var(--cream);margin-right:auto}
+.fx-tel{width:46px;height:46px;flex:none;display:grid;place-items:center;border-radius:50%;border:1.5px solid rgba(246,244,236,.28);color:var(--cream);transition:all .2s}
+.fx-tel:hover{border-color:var(--lime);color:var(--lime)}
+.fx-tel .ic{width:19px;height:19px}
+@media(max-width:979px){.fix-cta{display:block}}
+@media(max-width:520px){.fx-t{display:none}.fx-in{justify-content:flex-end;gap:12px}}
+
+/* ============ REVEAL & MOTION ============ */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .75s var(--ease);transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  .js .reveal{opacity:1;transform:none}
+  .mq-track{animation:none;flex-wrap:wrap;width:auto}
+  .mq{overflow-x:auto}
+  .strike path{stroke-dashoffset:0}
+}
+@media print{.site-head,.fix-cta,.mcalc-bar,#toast{display:none!important}}
+</style>
+<meta name="robots" content="noindex,nofollow"><base target="_self"></head>
+<body>
+<a class="skip" href="#hjem">Hopp til innhold</a>
+
+<header class="site-head" id="siteHead">
+  <div class="container head-in">
+    <a class="logo" href="#hjem" aria-label="FlyttSmart AS — til forsiden">
+      <svg class="logo-mark" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#C9F556"/><path d="M14 30 L30 14 M17 14 h13 v13" stroke="#0A1D16" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <span class="logo-word">Flytt<em>Smart</em></span>
+    </a>
+    <nav class="main-nav" aria-label="Hovedmeny">
+      <a href="#slik">Slik funker det</a>
+      <a href="#tjenester">Tjenester</a>
+      <a href="#priser">Priser</a>
+      <a href="#omtaler">Omtaler</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="head-actions">
+      <a class="head-tel" href="tel:+4721489060"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>21 48 90 60</a>
+      <a class="btn btn-lime btn-sm" href="#kalkulator">Få pris på 60 sek</a>
+      <button class="burger" id="burger" aria-label="Åpne meny" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobnav" id="mobnav" aria-hidden="true">
+  <nav aria-label="Mobilmeny">
+    <a href="#slik" style="transition-delay:.05s">Slik funker det</a>
+    <a href="#kalkulator" style="transition-delay:.1s">Priskalkulator</a>
+    <a href="#tjenester" style="transition-delay:.15s">Tjenester</a>
+    <a href="#omtaler" style="transition-delay:.2s">Omtaler</a>
+    <a href="#priser" style="transition-delay:.25s">Priser &amp; FAQ</a>
+    <a href="#bedrift" style="transition-delay:.3s">Bedrift</a>
+  </nav>
+  <div class="mobnav-foot">
+    <a class="btn btn-lime" href="#kalkulator">Få pris på 60 sekunder</a>
+    <a class="mob-tel" href="tel:+4721489060">eller ring 21 48 90 60 — vi svarer raskt</a>
+  </div>
+</div>
+
+<main id="hjem">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <svg class="route" viewBox="0 0 620 540" fill="none">
+      <path id="rp" d="M46 486 C 170 486, 120 330, 250 300 C 380 270, 330 200, 430 150 C 500 115, 545 80, 572 58" stroke="rgba(201,245,86,.14)" stroke-width="2"/>
+      <path class="route-dash" d="M46 486 C 170 486, 120 330, 250 300 C 380 270, 330 200, 430 150 C 500 115, 545 80, 572 58" stroke="rgba(201,245,86,.5)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3 15"/>
+      <circle cx="46" cy="486" r="8" fill="#C9F556"/>
+      <circle class="pulse" cx="46" cy="486" r="8" fill="none" stroke="rgba(201,245,86,.55)" stroke-width="2"/>
+      <text x="66" y="492" fill="rgba(246,244,236,.5)" font-size="14" font-weight="600">Fra · Grünerløkka</text>
+      <circle cx="572" cy="58" r="8" fill="#C9F556"/>
+      <circle class="pulse p2" cx="572" cy="58" r="8" fill="none" stroke="rgba(201,245,86,.55)" stroke-width="2"/>
+      <text x="558" y="34" text-anchor="end" fill="rgba(246,244,236,.5)" font-size="14" font-weight="600">Til · Majorstuen</text>
+      <circle r="5.5" fill="#C9F556"><animateMotion dur="10s" repeatCount="indefinite"><mpath href="#rp"/></animateMotion></circle>
+    </svg>
+  </div>
+
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="hero-eyebrow"><span class="dot"></span>Flyttebyrå i Oslo — hele Øst-Norge</p>
+      <h1>Flytt dagen.<br>Ikke <span class="strike">stresset<svg viewBox="0 0 210 24" preserveAspectRatio="none" aria-hidden="true"><path d="M5 15 C 60 7, 145 19, 205 9"/></svg></span>.</h1>
+      <p class="hero-lead">FlyttSmart tar flyttingen fra A til Å — pakking, bæring, kjøring og vask. Du svarer på fem raske steg, får fastpris på ett minutt og kan bruke energien på alt det andre.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-lime" href="#kalkulator">Beregn pris på 60 sekunder<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost on-dark" href="#slik">Slik funker det</a>
+      </div>
+      <div class="hero-trust">
+        <span class="stars" role="img" aria-label="5 av 5 stjerner">
+          <svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </span>
+        <span><strong>4,9 / 5</strong> på Google · <strong>12 400+</strong> flyttinger siden 2016</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <form class="hero-card" id="heroForm" novalidate>
+        <div class="hc-head">
+          <h3>Få pris på flyttingen</h3>
+          <span class="hc-badge">Fastpris</span>
+        </div>
+        <div class="field">
+          <label for="qFra">Flytter fra</label>
+          <input id="qFra" name="qFra" type="text" list="adr" placeholder="F.eks. Grünerløkka, Oslo" autocomplete="off">
+          <span class="fmsg">Skriv inn hvor du flytter fra.</span>
+        </div>
+        <div class="field">
+          <label for="qTil">Flytter til</label>
+          <input id="qTil" name="qTil" type="text" list="adr" placeholder="F.eks. Majorstuen, Oslo" autocomplete="off">
+          <span class="fmsg">Skriv inn hvor du flytter til.</span>
+        </div>
+        <button class="btn btn-lime" type="submit">Beregn pris<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <div class="hc-foot">
+          <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 11.5l2 2 4-4"/></svg>Full forsikring</span>
+          <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Svar innen 24 timer</span>
+        </div>
+      </form>
+      <div class="fbadge f1" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4,9 / 5 · 1 847 omtaler</div>
+      <div class="fbadge f2" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 11.5l2 2 4-4"/></svg>Fastpris-garanti</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIK FUNKER DET ============ -->
+<section class="sec" id="slik">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Slik funker det</p>
+      <h2>Fra første klikk til siste eske</h2>
+      <p>Fire steg — ingen telefonkø, ingen ventetid, ingen overraskelser. Slik oppleves en flytting med FlyttSmart:</p>
+    </div>
+    <ol class="steps-list">
+      <li class="step reveal">
+        <div class="rule"></div>
+        <div class="step-top"><span class="step-num">01</span><span class="step-when">Ett minutt</span></div>
+        <h3>Svar på fem steg</h3>
+        <p>Fra, til, boligtype og tilleggstjenester. Kalkulatoren gir deg et ærlig estimat med én gang.</p>
+        <span class="ghostnum" aria-hidden="true">1</span>
+      </li>
+      <li class="step reveal" style="--d:.08s">
+        <div class="rule"></div>
+        <div class="step-top"><span class="step-num">02</span><span class="step-when">Innen 24 timer</span></div>
+        <h3>Få fastprisen i innboksen</h3>
+        <p>Vi går over detaljene og låser estimatet til en skriftlig fastpris. Prisen du ser, er prisen du betaler.</p>
+        <span class="ghostnum" aria-hidden="true">2</span>
+      </li>
+      <li class="step reveal" style="--d:.16s">
+        <div class="rule"></div>
+        <div class="step-top"><span class="step-num">03</span><span class="step-when">Flyttedagen</span></div>
+        <h3>Vi bærer, kjører og plasserer</h3>
+        <p>Punktlige flyttefolk med alt utstyr — møbellifter, tepperull og flyttetau. Du bestemmer hvor ting skal stå.</p>
+        <span class="ghostnum" aria-hidden="true">3</span>
+      </li>
+      <li class="step reveal" style="--d:.24s">
+        <div class="rule"></div>
+        <div class="step-top"><span class="step-num">04</span><span class="step-when">Samme dag</span></div>
+        <h3>Nøkler og ryddig slutt</h3>
+        <p>Gjennomgang sammen, flyttevask om du ønsker, og gamle hjemmet klart for overlevering. Ferdig på én dag.</p>
+        <span class="ghostnum" aria-hidden="true">4</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ PRISKALKULATOR ============ -->
+<section class="sec sec--paper" id="kalkulator">
+  <div class="container">
+    <div class="sec-head calc-head reveal">
+      <p class="eyebrow">Priskalkulator</p>
+      <h2>Beregn prisen på flyttingen din</h2>
+      <p>Fem raske steg — og du ser prisen bygge seg opp etter hvert som du svarer. Ingen forpliktelser, ingen registrering før du selv velger å sende.</p>
+      <div class="calc-meta">
+        <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Tar ca. 60 sekunder</span>
+        <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Ingen binding</span>
+        <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Fastpris ved bekreftelse</span>
+      </div>
+    </div>
+
+    <datalist id="adr">
+      <option value="Grünerløkka, Oslo"></option>
+      <option value="Majorstuen, Oslo"></option>
+      <option value="Frogner, Oslo"></option>
+      <option value="Bislett, Oslo"></option>
+      <option value="Sagene, Oslo"></option>
+      <option value="Tøyen, Oslo"></option>
+      <option value="St. Hanshaugen, Oslo"></option>
+      <option value="Grefsen, Oslo"></option>
+      <option value="Nordstrand, Oslo"></option>
+      <option value="Oslo sentrum"></option>
+      <option value="Sandvika, Bærum"></option>
+      <option value="Lysaker, Bærum"></option>
+      <option value="Fornebu"></option>
+      <option value="Lillestrøm"></option>
+      <option value="Asker"></option>
+      <option value="Drammen"></option>
+    </datalist>
+
+    <div class="calc-shell" id="calcShell">
+      <form class="calc-main" id="calcForm" novalidate>
+
+        <div class="calc-progress">
+          <div class="cp-bar"><div class="cp-fill" id="calcFill"></div></div>
+          <div class="cp-row">
+            <span class="cp-label" id="calcStep">Steg 1 av 5 — <b>Fra &amp; til</b></span>
+            <div class="csegs" role="group" aria-label="Steg i kalkulatoren">
+              <button type="button" class="cseg" data-i="1">1 · Fra &amp; til</button>
+              <button type="button" class="cseg" data-i="2">2 · Bolig</button>
+              <button type="button" class="cseg" data-i="3">3 · Etasje</button>
+              <button type="button" class="cseg" data-i="4">4 · Tjenester</button>
+              <button type="button" class="cseg" data-i="5">5 · Kontakt</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEG 1 -->
+        <section class="cpanel active" data-step="1" aria-label="Steg 1: Fra og til">
+          <span class="kick">Steg 1 av 5</span>
+          <h3>Hvor flytter du fra og til?</h3>
+          <p class="sub">Skriv område eller adresse. Vi regner ut ruten når begge er på plass.</p>
+          <div class="fgrid c2">
+            <div class="field">
+              <label for="cFra">Flytter fra</label>
+              <input id="cFra" name="cFra" type="text" list="adr" placeholder="F.eks. Grünerløkka, Oslo" autocomplete="off">
+              <span class="fmsg">Skriv inn minst to tegn.</span>
+            </div>
+            <div class="field">
+              <label for="cTil">Flytter til</label>
+              <input id="cTil" name="cTil" type="text" list="adr" placeholder="F.eks. Majorstuen, Oslo" autocomplete="off">
+              <span class="fmsg">Skriv inn minst to tegn.</span>
+            </div>
+          </div>
+          <div class="chips" aria-label="Raske valg">
+            <button type="button" class="chip" data-fra="Grünerløkka, Oslo" data-til="Majorstuen, Oslo">Grunerløkka → Majorstuen</button>
+            <button type="button" class="chip" data-fra="Sagene, Oslo" data-til="Lillestrøm">Sagene → Lillestrøm</button>
+            <button type="button" class="chip" data-fra="Frogner, Oslo" data-til="Sandvika, Bærum">Frogner → Bærum</button>
+            <button type="button" class="chip" data-fra="Oslo sentrum" data-til="Asker">Oslo → Asker</button>
+          </div>
+          <div class="routebox" id="miniRoute" hidden>
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span id="mrTxt"></span>
+          </div>
+        </section>
+
+        <!-- STEG 2 -->
+        <section class="cpanel" data-step="2" aria-label="Steg 2: Bolig">
+          <span class="kick">Steg 2 av 5</span>
+          <h3>Fortell om boligen</h3>
+          <p class="sub">Boligtype og størrelse bestemmer bil, bemanning og tid.</p>
+          <div class="seg c4" id="segType" role="group" aria-label="Boligtype">
+            <button type="button" class="seg-btn" data-val="leilighet" aria-pressed="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="1.5"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>Leilighet</button>
+            <button type="button" class="seg-btn" data-val="rekkehus" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 11l4-4 4 4M14 11l4-4 4 4"/><path d="M3 11v10h6V11M15 11v10h6V11"/></svg>Rekkehus</button>
+            <button type="button" class="seg-btn" data-val="enebolig" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>Enebolig</button>
+            <button type="button" class="seg-btn" data-val="hytte" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l5 8h-3l4 7H6l4-7H7z"/><path d="M12 17v5"/></svg>Hytte</button>
+          </div>
+          <div class="kvm-read">
+            <span class="v" id="kvmVal">65 m²</span>
+            <span class="r" id="kvmRom">ca. 3 rom</span>
+          </div>
+          <div class="range">
+            <input type="range" id="kvmRange" min="20" max="250" step="5" value="65" aria-label="Boligens størrelse i kvadratmeter">
+          </div>
+          <div class="range-scale"><span>20 m²</span><span>135 m²</span><span>250 m²</span></div>
+          <div style="height:26px"></div>
+          <div class="seg c2" id="segMode" role="group" aria-label="Type hjelp">
+            <button type="button" class="seg-btn" data-val="bil" aria-pressed="true"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1.5"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Flytting med bil<small>Bil, bærere og alt utstyr</small></button>
+            <button type="button" class="seg-btn" data-val="baere" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M6.5 12h11M3.5 8.5v7M20.5 8.5v7"/></svg>Bare bærehjelp<small>Du ordner transporten — vi bærer</small></button>
+          </div>
+        </section>
+
+        <!-- STEG 3 -->
+        <section class="cpanel" data-step="3" aria-label="Steg 3: Etasje og heis">
+          <span class="kick">Steg 3 av 5</span>
+          <h3>Etasjer og heis</h3>
+          <p class="sub">Trapper tar tid — heis gjør flyttingen raskere og billigere. Hva gjelder ved hhv. fra- og til-adressen?</p>
+          <div class="etg-grid">
+            <div class="etg-card">
+              <h4><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Fra-adressen</h4>
+              <div class="etg-row">
+                <span class="etg-lab">Etasje</span>
+                <div class="stepper" data-key="fraEtg">
+                  <button type="button" data-d="-1" aria-label="Mindre etasje"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                  <span class="val" id="vFraEtg">1. etasje</span>
+                  <button type="button" data-d="1" aria-label="Høyere etasje"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                </div>
+              </div>
+              <div class="etg-row">
+                <span class="etg-lab">Heis i bygget</span>
+                <label class="switchlab">Heis
+                  <span class="sw"><input type="checkbox" id="swFraHeis" checked><i></i></span>
+                </label>
+              </div>
+            </div>
+            <div class="etg-card">
+              <h4><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Til-adressen</h4>
+              <div class="etg-row">
+                <span class="etg-lab">Etasje</span>
+                <div class="stepper" data-key="tilEtg">
+                  <button type="button" data-d="-1" aria-label="Mindre etasje"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                  <span class="val" id="vTilEtg">Gateplan</span>
+                  <button type="button" data-d="1" aria-label="Høyere etasje"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                </div>
+              </div>
+              <div class="etg-row">
+                <span class="etg-lab">Heis i bygget</span>
+                <label class="switchlab">Heis
+                  <span class="sw"><input type="checkbox" id="swTilHeis"><i></i></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <p class="etg-note"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Uten heis legger vi til 490 kr per etasje — dekker ekstra tid og bemanning. Med heis er det gratis.</p>
+        </section>
+
+        <!-- STEG 4 -->
+        <section class="cpanel" data-step="4" aria-label="Steg 4: Tilleggstjenester">
+          <span class="kick">Steg 4 av 5</span>
+          <h3>Tilleggstjenester</h3>
+          <p class="sub">Alt er valgfritt — legg til det du vil, og se prisen oppdateres. Du kan endre alt senere.</p>
+          <div class="srv-grid">
+            <button type="button" class="srv-t" data-srv="pakking" aria-pressed="false">
+              <span class="s-top"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>Pakkehjelp</span>
+              <p>Vi pakker hele hjemmet — esker, bobleplast og merking inngår.</p>
+              <span class="s-price">59 kr/m²</span>
+              <span class="s-badge">Mest valgt</span>
+              <span class="tick"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" class="srv-t" data-srv="vask" aria-pressed="false">
+              <span class="s-top"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>Flyttevask</span>
+              <p>Godkjent av utleier — eller vi gjør det om igjen gratis.</p>
+              <span class="s-price">fra 2 500 kr</span>
+              <span class="tick"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" class="srv-t" data-srv="lagring" aria-pressed="false">
+              <span class="s-top"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21V9l10-5 10 5v12"/><path d="M2 21h20"/><rect x="7" y="13" width="4.5" height="8"/><rect x="12.5" y="13" width="4.5" height="8"/></svg>Mellomlagring</span>
+              <p>Tørt og overvåket lager mellom flyttedatoene.</p>
+              <span class="s-price">fra 890 kr/mnd</span>
+              <span class="tick"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
+            </button>
+            <button type="button" class="srv-t" data-srv="bort" aria-pressed="false">
+              <span class="s-top"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M10 11v6M14 11v6"/></svg>Bortkjøring</span>
+              <p>Gamle møbler, avfall og hva det nå skal være — 1 lass.</p>
+              <span class="s-price">1 290 kr/lass</span>
+              <span class="tick"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
+            </button>
+          </div>
+          <div class="mnd-row" id="mndRow">
+            <div class="mnd-in">
+              <span>Hvor lenge trenger du lagring?</span>
+              <div class="stepper" data-key="mnd">
+                <button type="button" data-d="-1" aria-label="Færre måneder"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                <span class="val" id="vMnd">2 måneder</span>
+                <button type="button" data-d="1" aria-label="Flere måneder"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STEG 5 -->
+        <section class="cpanel" data-step="5" aria-label="Steg 5: Kontakt">
+          <span class="kick">Steg 5 av 5</span>
+          <h3>Hvem sender vi prisen til?</h3>
+          <p class="sub">Sjekk oppsummeringen og send forespørselen. Vi svarer innen 24 timer — ofte mye raskere.</p>
+          <div class="sum-chips" id="sumChips"></div>
+          <div class="fgrid c2">
+            <div class="field">
+              <label for="fNavn">Navn</label>
+              <input id="fNavn" name="fNavn" type="text" placeholder="Fornavn og etternavn" autocomplete="name">
+              <span class="fmsg">Skriv inn navnet ditt.</span>
+            </div>
+            <div class="field">
+              <label for="fEpost">E-post</label>
+              <input id="fEpost" name="fEpost" type="email" placeholder="deg@epost.no" autocomplete="email">
+              <span class="fmsg">Sjekk at e-postadressen er riktig.</span>
+            </div>
+            <div class="field">
+              <label for="fTlf">Telefon <span style="font-weight:600;color:#93A096">(valgfritt)</span></label>
+              <input id="fTlf" name="fTlf" type="tel" placeholder="+47 900 00 000" autocomplete="tel">
+              <span class="fmsg">Sjekk telefonnummeret.</span>
+            </div>
+            <div class="field">
+              <label for="fDato">Ønsket flyttedato <span style="font-weight:600;color:#93A096">(valgfritt)</span></label>
+              <input id="fDato" name="fDato" type="date">
+              <span class="fmsg"></span>
+            </div>
+          </div>
+          <div class="field" style="margin-top:18px">
+            <label for="fMelding">Noe vi bør vite? <span style="font-weight:600;color:#93A096">(valgfritt)</span></label>
+            <textarea id="fMelding" name="fMelding" placeholder="F.eks. piano, smal heis, møbler på loft …"></textarea>
+          </div>
+          <p class="legal">Ved å sende godtar du at vi lagrer opplysningene for å gi deg et tilbud. Ingen spam, ingen videreformidling.</p>
+        </section>
+
+        <div class="calc-nav">
+          <button type="button" class="btn btn-ghost" id="btnBack" style="visibility:hidden">Tilbake</button>
+          <span class="hint">Estimatet oppdateres i vinduet til høyre</span>
+          <button type="submit" class="btn btn-lime" id="btnNext"><span>Neste</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </form>
+
+      <aside class="calc-side" aria-label="Prisestimat">
+        <div class="cs-top">
+          <span class="cs-label">Ditt estimat</span>
+          <span class="cs-live"><i></i>Oppdateres live</span>
+        </div>
+        <div class="price-big"><span id="priceBig">9 820</span><span class="kr">kr</span></div>
+        <p class="cs-sub">ca.-pris, inkludert 25 % mva</p>
+        <div class="plines" id="priceLines"></div>
+        <div class="ptotal"><span class="l">Totalt</span><span class="v" id="priceTotal">9 820 kr</span></div>
+        <p class="cs-note">Prisen låses som <strong>fastpris</strong> i det skriftlige tilbudet vi sender deg.</p>
+        <button type="button" class="btn btn-lime" id="sideSubmit" hidden>Send forespørselen<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </aside>
+
+      <div class="calc-success" id="calcSuccess" tabindex="-1">
+        <div id="confettiHost"></div>
+        <svg class="okmark" viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="34"/><path d="M25 39l9 9 17-19"/></svg>
+        <h3 id="okName">Takk!</h3>
+        <p class="ok-p">Forespørselen er sendt til oss med referanse <b id="okRef">FS-00000</b>.</p>
+        <p class="ok-p">Vi går over detaljene og sender en skriftlig <strong>fastpris</strong> til <strong id="okMail">eposten din</strong> innen 24 timer — ofte går det på minutter.</p>
+        <div class="ok-chips" id="okChips"></div>
+        <div class="ok-actions">
+          <a class="btn btn-dark" href="#slik">Se hva som skjer nå<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <button type="button" class="btn btn-ghost" id="okAgain">Ny beregning</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ TJENESTER ============ -->
+<section class="sec" id="tjenester">
+  <div class="container">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Tjenester</p>
+      <h2>Alt du trenger — i ett flyttebyrå</h2>
+      <p>Åpne en tjeneste for å se hva som inngår. Alt kan legges rett inn i prisberegningen med ett klikk.</p>
+    </div>
+
+    <div class="svc-list">
+
+      <div class="svc acc reveal">
+        <button class="acc-head svc-head" aria-expanded="false">
+          <span class="svc-num">01</span>
+          <span class="svc-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1.5"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+          <span class="svc-t"><strong>Privatflytting</strong><small>Fastpris og full forsikring</small></span>
+          <span class="svc-price">fra 5 990 kr</span>
+          <span class="svc-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div><div class="svc-in">
+          <div class="svc-grid">
+            <p>Alt av biler, bærere og utstyr — til en pris du kjenner på forhånd. Vi flytter i hele Oslo og Øst-Norge, og du følger hele flyttingen steg for steg i SMS: når vi kommer, når vi laster og når vi er fremme.</p>
+            <div>
+              <p class="inc-t">Inngår alltid</p>
+              <div class="inc">
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Varebil med flytterigg</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>2–4 flyttefolk</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Møbellifter og tepperull</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Skadeforsikring inngår</span>
+              </div>
+            </div>
+          </div>
+          <div class="svc-foot"><button type="button" class="lnk-btn" data-action="calc">Beregn din pris<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </div></div></div>
+      </div>
+
+      <div class="svc acc reveal">
+        <button class="acc-head svc-head" aria-expanded="false">
+          <span class="svc-num">02</span>
+          <span class="svc-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+          <span class="svc-t"><strong>Bedriftsflytting</strong><small>Oppe å gå på mandag</small></span>
+          <span class="svc-price">tilbud innen 24 t</span>
+          <span class="svc-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div><div class="svc-in">
+          <div class="svc-grid">
+            <p>Kontorer, butikker og verksteder. En dedikert prosjektleder kartlegger alt på forhånd — vi flytter på kveld og helg, merker hver eneste eske og setter alt opp igjen. Dere mister ikke én arbeidsdag.</p>
+            <div>
+              <p class="inc-t">Inngår alltid</p>
+              <div class="inc">
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Dedikert prosjektleder</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Flyttes utenfor åpningstid</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Etterarbeid og oppmontering</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Full forsikring og dokumentasjon</span>
+              </div>
+            </div>
+          </div>
+          <div class="svc-foot"><button type="button" class="lnk-btn" data-action="bedrift">Be om bedriftstilbud<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </div></div></div>
+      </div>
+
+      <div class="svc acc reveal">
+        <button class="acc-head svc-head" aria-expanded="false">
+          <span class="svc-num">03</span>
+          <span class="svc-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg></span>
+          <span class="svc-t"><strong>Pakkehjelp</strong><small>Kjøkken til kjeller på én dag</small></span>
+          <span class="svc-price">fra 59 kr/m²</span>
+          <span class="svc-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div><div class="svc-in">
+          <div class="svc-grid">
+            <p>Erfarne pakkere kommer dagen før med esker, bobleplast og merkelapper. Alt pakkes og merkes rom for rom, slik at du gjenfinner alt på minutter i det nye hjemmet — også bestemmors porselen.</p>
+            <div>
+              <p class="inc-t">Inngår alltid</p>
+              <div class="inc">
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Alle materialer</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Esker og merkesystem</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Spesialpakking av glass og kunst</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Klart på én dag</span>
+              </div>
+            </div>
+          </div>
+          <div class="svc-foot"><button type="button" class="lnk-btn" data-action="pakking">Legg pakkehjelp til i beregningen<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </div></div></div>
+      </div>
+
+      <div class="svc acc reveal">
+        <button class="acc-head svc-head" aria-expanded="false">
+          <span class="svc-num">04</span>
+          <span class="svc-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M6.5 12h11M3.5 8.5v7M20.5 8.5v7"/></svg></span>
+          <span class="svc-t"><strong>Bærehjelp</strong><small>Du har bilen — vi har ryggen</small></span>
+          <span class="svc-price">1 290 kr/time</span>
+          <span class="svc-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div><div class="svc-in">
+          <div class="svc-grid">
+            <p>Har du leiet bil eller trailer selv? Vi stiller med sterke, forsikrede bærere som bærer, løfter og fester lasten ordentlig. Du slipper å overtale kompiser med løfter om pizza.</p>
+            <div>
+              <p class="inc-t">Inngår alltid</p>
+              <div class="inc">
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>2 bærere</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Minstepris 2 timer</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Festing av last</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Forsikret arbeidskraft</span>
+              </div>
+            </div>
+          </div>
+          <div class="svc-foot"><button type="button" class="lnk-btn" data-action="baere">Beregn bærehjelp<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </div></div></div>
+      </div>
+
+      <div class="svc acc reveal">
+        <button class="acc-head svc-head" aria-expanded="false">
+          <span class="svc-num">05</span>
+          <span class="svc-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21V9l10-5 10 5v12"/><path d="M2 21h20"/><rect x="7" y="13" width="4.5" height="8"/><rect x="12.5" y="13" width="4.5" height="8"/></svg></span>
+          <span class="svc-t"><strong>Mellomlagring</strong><small>Trygt mellom hjemmene</small></span>
+          <span class="svc-price">fra 890 kr/mnd</span>
+          <span class="svc-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div><div class="svc-in">
+          <div class="svc-grid">
+            <p>Nye hjemmet ikke klart ennå? Vi henter møblene, lagrer dem tørt og sikkert på overvåket lager, og leverer når det passer deg. Du forlenger måneden løpende — uten bindingstid.</p>
+            <div>
+              <p class="inc-t">Inngår alltid</p>
+              <div class="inc">
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Overvåket og tørt lager</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Henting og levering</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Løpende forlengelse</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Forsikret opp til 500 000 kr</span>
+              </div>
+            </div>
+          </div>
+          <div class="svc-foot"><button type="button" class="lnk-btn" data-action="lagring">Legg lagring til i beregningen<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </div></div></div>
+      </div>
+
+      <div class="svc acc reveal">
+        <button class="acc-head svc-head" aria-expanded="false">
+          <span class="svc-num">06</span>
+          <span class="svc-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+          <span class="svc-t"><strong>Flyttevask</strong><small>Godkjent — eller gratis om igjen</small></span>
+          <span class="svc-price">fra 2 490 kr</span>
+          <span class="svc-chev"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="acc-body"><div><div class="svc-in">
+          <div class="svc-grid">
+            <p>Våre vaskere følger utleierens krav punkt for punkt — vinduer, gulv, overflater og det utleiere elsker å finne feil på. Bestiller du vask med flytting, er alt klart samme kveld, og depositumet kommer fortere.</p>
+            <div>
+              <p class="inc-t">Inngår alltid</p>
+              <div class="inc">
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Godkjent av utleier</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Vindu, gulv og overflater</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Egen sjekkliste</span>
+                <span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Første forsøk-garanti</span>
+              </div>
+            </div>
+          </div>
+          <div class="svc-foot"><button type="button" class="lnk-btn" data-action="vask">Legg flyttevask til i beregningen<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </div></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ OMTALER ============ -->
+<section class="sec sec-dark" id="omtaler" style="background:linear-gradient(165deg,var(--forest) 0%,#0A1F18 100%)">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">Omtaler</p>
+      <h2>Kundene sier det best</h2>
+      <p>Over 1 800 har vurdert oss på Google. Her er noen av dem.</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat reveal"><div class="stat-val"><span class="num" data-n="12400">12 400</span><span class="suf">+</span></div><p>gjennomførte flyttinger siden 2016</p></div>
+      <div class="stat reveal" style="--d:.08s"><div class="stat-val"><span class="num" data-n="4.9" data-dec="1">4,9</span><span class="suf">/ 5</span></div><p>i gjennomsnitt på Google</p></div>
+      <div class="stat reveal" style="--d:.16s"><div class="stat-val"><span class="num" data-n="1847">1 847</span></div><p>skriftlige kundeomtaler</p></div>
+      <div class="stat reveal" style="--d:.24s"><div class="stat-val"><span class="num" data-n="98">98</span><span class="suf">%</span></div><p>anbefaler oss til andre</p></div>
+    </div>
+  </div>
+  <div class="mq" aria-label="Kundeomtaler">
+    <div class="mq-track" style="--sp:52s">
+      <article class="rev-card"><div class="stars" aria-label="5 av 5"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><q>Prisen fra kalkulatoren var prisen jeg betalte. Til kronen.</q><div class="rev-foot"><span class="av">KH</span><span><b>Kristine H.</b><small>Majorstuen</small></span><span class="rev-v"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Verifisert</span></div></article>
+      <article class="rev-card"><div class="stars" aria-label="5 av 5"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><q>Tre karer flyttet hele leiligheten på fire timer. Jeg rakk å hente unga før fem.</q><div class="rev-foot"><span class="av">TB</span><span><b>Thomas B.</b><small>Grünerløkka</small></span><span class="rev-v"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Verifisert</span></div></article>
+      <article class="rev-card"><div class="stars" aria-label="5 av 5"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><q>Første gang en flytting føltes helt grei. De pakket alt på én dag.</q><div class="rev-foot"><span class="av">SM</span><span><b>Silje M.</b><small>Frogner</small></span><span class="rev-v"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Verifisert</span></div></article>
+      <article class="rev-card"><div class="stars" aria-label="5 av 5"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><q>Kontoret vårt gikk fra avslag til oppe å gå på én helg.</q><div class="rev-foot"><span class="av">AR</span><span><b>Anders R.</b><small>Fornebu</small></span><span class="rev-v"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Verifisert</span></div></article>
+    </div>
+  </div>
+  <div class="mq rev" aria-hidden="true" style="margin-top:18px">
+    <div class="mq-track" style="--sp:60s">
+      <article class="rev-card"><div class="stars" aria-label="5 av 5"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><q>Flyttevasken ble godkjent av utleier på første forsøk. Depositumet kom samme dag.</q><div class="rev-foot"><span class="av">NS</span><span><b>Nora S.</b><small>Sagene</small></span><span class="rev-v"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Verifisert</span></div></article>
+      <article class="rev-card"><div class="stars" aria-label="4 av 5"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:rgba(246,244,236,.35)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><q>Mellomlagringen reddet oss da det nye ikke var klart. Enkelt og trygt.</q><div class="rev-foot"><span class="av">EL</span><span><b>Espen L.</b><small>Tøyen</small></span><span class="rev-v"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Verifisert</span></div></article>
+      <article class="rev-card"><div class="stars" aria-label="5 av 5"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><q>Svar på chat en søndagskveld. Ny fastpris i innboksen dagen etter.</q><div class="rev-foot"><span class="av">ET</span><span><b>Emma T.</b><small>Bærum</small></span><span class="rev-v"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Verifisert</span></div></article>
+      <article class="rev-card"><div class="stars" aria-label="5 av 5"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="ic" viewBox="0 0 24 24" fill="currentColor" style="color:var(--lime)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><q>Ingen skader, ingen overraskelser. De fikk til og med pianoet ned trappa.</q><div class="rev-foot"><span class="av">OK</span><span><b>Ola K.</b><small>Grefsen</small></span><span class="rev-v"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Verifisert</span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRISER + FAQ ============ -->
+<section class="sec" id="priser">
+  <div class="container pf-grid">
+    <div>
+      <div class="sec-head reveal" style="margin-bottom:34px">
+        <p class="eyebrow">Priser</p>
+        <h2>Hva koster det å flytte?</h2>
+        <p>Noen eksempler fra Oslo-området. Din eksakte pris får du på ett minutt i kalkulatoren.</p>
+      </div>
+      <div class="price-table reveal">
+        <div class="prow2">
+          <span class="n">1-roms leilighet<small>20–40 m² · innen 15 km</small></span>
+          <span class="p">fra 5 990 kr</span>
+        </div>
+        <div class="prow2">
+          <span class="n">2-roms leilighet<small>45–70 m² · innen 15 km</small></span>
+          <span class="p">fra 7 990 kr</span>
+        </div>
+        <div class="prow2">
+          <span class="n">3-roms leilighet <span class="p-badge">Mest valgt</span><small>75–100 m² · innen 15 km</small></span>
+          <span class="p">fra 9 990 kr</span>
+        </div>
+        <div class="prow2">
+          <span class="n">4-roms og enebolig<small>110–200 m² · innen 15 km</small></span>
+          <span class="p">fra 16 990 kr</span>
+        </div>
+      </div>
+      <div class="addons reveal">
+        <div class="addon"><span>Pakkehjelp</span><b>fra 2 490 kr</b></div>
+        <div class="addon"><span>Flyttevask</span><b>fra 2 490 kr</b></div>
+        <div class="addon"><span>Mellomlagring</span><b>fra 890 kr/mnd</b></div>
+        <div class="addon"><span>Bortkjøring</span><b>fra 1 290 kr</b></div>
+      </div>
+      <p class="p-note reveal">Alle priser er inkludert 25 % mva. Første 15 km inngår alltid — deretter 14 kr/km. Utenfor Oslo-området gir vi pris etter rute.</p>
+      <div class="pf-cta reveal"><a class="btn btn-lime" href="#kalkulator">Beregn din pris<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+
+    <div id="faq">
+      <div class="sec-head reveal" style="margin-bottom:34px">
+        <p class="eyebrow">FAQ</p>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.1rem)">Vanlige spørsmål</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="qa">
+          <button class="q" aria-expanded="false">Er prisen fra kalkulatoren endelig?<span class="qi"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="a"><div><p>Estimatet ligger som regel innenfor ±10 %. Når du sender forespørselen, går vi over detaljene og låser en skriftlig fastpris — den kan du stole på 100 %. Ingen timepriser, ingen tillegg i etterkant.</p></div></div>
+        </div>
+        <div class="qa">
+          <button class="q" aria-expanded="false">Hvor raskt får jeg svar?<span class="qi"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="a"><div><p>Du får bekreftelse med én gang, og et personlig tilbud innen 24 timer — ofte samme time i åpningstiden. Har du det travelt, kan du ringe 21 48 90 60 og få pris direkte i telefonen.</p></div></div>
+        </div>
+        <div class="qa">
+          <button class="q" aria-expanded="false">Hva skjer om noe går i stykker?<span class="qi"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="a"><div><p>Hele flyttingen er dekket av vår ansvarsforsikring opp til 2 millioner kroner, med null egenandel for deg. Skulle det først skje, ordner vi reparasjon eller erstatning — uten krangle. Det har vi gjort 14 ganger på 12 400 flyttinger.</p></div></div>
+        </div>
+        <div class="qa">
+          <button class="q" aria-expanded="false">Må jeg pakke selv?<span class="qi"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="a"><div><p>Nei. Bestiller du pakkehjelp, tar vi hele hjemmet fra kjøkken til kjeller på én dag — med esker, bobleplast og merkesystem. Vil du pakke selv, leverer vi esker gratis ved flytting i Oslo.</p></div></div>
+        </div>
+        <div class="qa">
+          <button class="q" aria-expanded="false">Hvor langt kjører dere?<span class="qi"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="a"><div><p>Vi flytter i hele Oslo, Bærum og resten av Øst-Norge. Første 15 km inngår alltid — deretter 14 kr per kilometer. Lange flyttinger til andre deler av landet gjøres på forespørsel.</p></div></div>
+        </div>
+        <div class="qa">
+          <button class="q" aria-expanded="false">Kan dere lagre møblene mine?<span class="qi"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="a"><div><p>Ja — mellomlagring fra 890 kr per måned. Vi henter, lagrer alt tørt og sikkert, og leverer når det nye hjemmet er klart. Du forlenger måneden løpende, uten bindingstid.</p></div></div>
+        </div>
+        <div class="qa">
+          <button class="q" aria-expanded="false">Når bør jeg bestille?<span class="qi"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button>
+          <div class="a"><div><p>Bestiller du to–tre uker i forveien, velger du dag selv. Vi klarer ofte flytting på to–tre dagers varsel, men helgene går fort. Send gjerne forespørselen i dag — den forplikter deg til ingenting.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEDRIFT ============ -->
+<section class="sec sec-dark" id="bedrift" style="background:linear-gradient(160deg,#0A1F18 0%,var(--ink-2) 100%)">
+  <div class="container bed-grid">
+    <div class="reveal">
+      <p class="eyebrow">Bedrift &amp; kontor</p>
+      <h2 style="font-size:clamp(1.9rem,4vw,2.75rem);margin:.45em 0 .5em">Fredag stenger du.<br>Mandag åpner du.</h2>
+      <p style="color:var(--dark-muted);max-width:32rem">Vi flytter kontorer, butikker og verksteder uten at dere mister en eneste arbeidsdag. En prosjektleder tar ansvaret fra kartlegging til siste stol på plass.</p>
+      <ul class="bed-list">
+        <li><span class="b-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Dedikert prosjektleder</li>
+        <li><span class="b-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Flyttes på kveld og helg</li>
+        <li><span class="b-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Alt merkes og gjenfinnes</li>
+        <li><span class="b-ic"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Full forsikring hele veien</li>
+      </ul>
+      <div class="clients">
+        <p>Flyttet for blant andre</p>
+        <b>NORDLYS INTERIØR · PIXEL &amp; PAPIR · FJORDKONTOR · LØFT LOGISTIKK · HAVBRUKK AS</b>
+      </div>
+    </div>
+    <form class="bed-card reveal" id="bedForm" novalidate>
+      <h3>Bedriftstilbud innen 24 timer</h3>
+      <p>Legg igjen jobb-e-posten din — vi tar resten på en kort telefon.</p>
+      <div class="field">
+        <label for="bedEpost">Arbeidse-post</label>
+        <input id="bedEpost" name="bedEpost" type="email" placeholder="deg@bedrift.no" autocomplete="email">
+        <span class="fmsg">Sjekk at e-postadressen er riktig.</span>
+      </div>
+      <button class="btn btn-dark" type="submit">Få bedriftstilbud<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="bed-micro"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Vi flytter alt fra fem til 500 arbeidsplasser.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="sec cta-final">
+  <svg class="cta-mark" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#0A1D16"/><path d="M14 30 L30 14 M17 14 h13 v13" stroke="#0A1D16" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+  <div class="container cta-in reveal">
+    <h2>Klar for en flytting uten styr?</h2>
+    <p>Få prisen nå — det tar ett minutt, og du forplikter deg til ingenting.</p>
+    <div class="cta-btns">
+      <a class="btn btn-dark" href="#kalkulator">Beregn pris på 60 sekunder<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="tel:+4721489060"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Ring 21 48 90 60</a>
+    </div>
+    <p class="cta-micro"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Åpent man–fre 07.30–20.00 · lør 09.00–16.00 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9d1dcd0f9dfd5c0cdcdcad4d8cbcd97d7d6">[email&#160;protected]</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#hjem" aria-label="FlyttSmart AS — til forsiden">
+          <svg class="logo-mark" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#C9F556"/><path d="M14 30 L30 14 M17 14 h13 v13" stroke="#0A1D16" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <span class="logo-word">Flytt<em>Smart</em></span>
+        </a>
+        <p>Flytting uten styr — for privat og bedrift, i Oslo og hele Øst-Norge.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Tjenester</h4>
+        <ul>
+          <li><a href="#tjenester">Privatflytting</a></li>
+          <li><a href="#bedrift">Bedriftsflytting</a></li>
+          <li><a href="#tjenester">Pakkehjelp</a></li>
+          <li><a href="#tjenester">Bærehjelp</a></li>
+          <li><a href="#tjenester">Mellomlagring</a></li>
+          <li><a href="#tjenester">Flyttevask</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kort om</h4>
+        <ul>
+          <li><a href="#slik">Slik funker det</a></li>
+          <li><a href="#kalkulator">Priskalkulator</a></li>
+          <li><a href="#priser">Priser &amp; FAQ</a></li>
+          <li><a href="#omtaler">Omtaler</a></li>
+          <li><a href="#bedrift">For bedrift</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><b>FlyttSmart AS</b><br>Schweigaards gate 12B<br>0191 Oslo</li>
+          <li><a href="tel:+4721489060">21 48 90 60</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#9cf4f9f5dcfaf0e5e8e8eff1fdeee8b2f2f3"><span class="__cf_email__" data-cfemail="432b262a03252f3a3737302e2231376d2d2c">[email&#160;protected]</span></a></li>
+          <li>Man–fre 07.30–20.00<br>Lør 09.00–16.00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yy">2025</span> FlyttSmart AS · Org.nr 923 108 552 MVA</span>
+      <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d1b9b4b891b7bda8a5a5a2bcb0a3a5ffbfbe">[email&#160;protected]</a> · 21 48 90 60</span>
+      <span>Fiktiv demonstrasjonsside</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ OVERLAYS ============ -->
+<div class="fix-cta" id="stickyCta">
+  <div class="fx-in">
+    <span class="fx-t">Få pris på flyttingen — på 60 sekunder</span>
+    <a class="fx-tel" href="tel:+4721489060" aria-label="Ring FlyttSmart på 21 48 90 60"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+    <a class="btn btn-lime btn-sm" href="#kalkulator">Beregn pris</a>
+  </div>
+</div>
+
+<div class="mcalc-bar" id="mcalcBar" aria-hidden="true">
+  <button class="mc-back" id="mcBack" aria-label="Forrige steg"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <div class="mc-price"><span>Ditt estimat</span><strong id="mcPrice">9 820 kr</strong></div>
+  <button class="btn btn-lime mc-next" id="mcNext" type="button">Neste</button>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<div class="sr-only" aria-live="polite" id="srLive"></div>
+<script>
+(function(){
+'use strict';
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var nf=new Intl.NumberFormat('nb-NO');
+function fmt(v){return nf.format(Math.round(v))}
+function r10(v){return Math.round(v/10)*10}
+
+/* ---------- state ---------- */
+var TYPES={leilighet:{f:1,label:'Leilighet'},rekkehus:{f:1.15,label:'Rekkehus'},enebolig:{f:1.3,label:'Enebolig'},hytte:{f:.85,label:'Hytte'}};
+var STEPS=['Fra & til','Bolig','Etasje & heis','Tjenester','Kontakt'];
+var DEFAULTS={fra:'',til:'',type:'leilighet',kvm:65,mode:'bil',fraEtg:1,tilEtg:0,fraHeis:true,tilHeis:false,pakking:false,lagring:false,vask:false,bort:false,mnd:2};
+var state=Object.assign({},DEFAULTS,{navn:'',epost:'',tlf:'',dato:'',melding:''});
+
+var SRVLBL={pakking:'Pakkehjelp',lagring:'Mellomlagring',vask:'Flyttevask',bort:'Bortkjøring'};
+var IC={
+  home:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>',
+  pin:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  check:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+  box:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>',
+  cal:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
+  kr:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18M6 8h5a4 4 0 0 1 0 8H6"/><path d="M14 16l6-6M20 16l-6-6"/></svg>'
+};
+
+/* ---------- price engine ---------- */
+function hash(s){var h=7;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))>>>0}return h}
+function estKm(){
+  var a=state.fra.trim().toLowerCase(),b=state.til.trim().toLowerCase();
+  if(a.length<2||b.length<2)return null;
+  if(a===b)return 1;
+  return 3+hash(a+'|'+b)%44;
+}
+function calc(){
+  var t=TYPES[state.type],lines=[],km=estKm();
+  if(state.mode==='baere'){
+    var h=Math.max(2,Math.ceil(state.kvm/28*t.f));
+    lines.push({k:'baere',l:'Bærehjelp · 2 bærere · '+h+' timer',v:r10(h*1290)});
+  }else{
+    lines.push({k:'transport',l:'Varetransport · '+t.label+' · '+state.kvm+' m²',v:r10(2990+state.kvm*105*t.f)});
+  }
+  if(state.mode!=='baere'&&km!=null){
+    if(km<=15)lines.push({k:'dist',l:'Distanse · ca. '+km+' km',v:0,inkl:true});
+    else lines.push({k:'dist',l:'Distanse · ca. '+km+' km',v:r10((km-15)*14)});
+  }
+  var etg=[],c=0;
+  if(state.fraEtg>0&&!state.fraHeis){c+=state.fraEtg*490;etg.push(state.fraEtg+' etg fra')}
+  if(state.tilEtg>0&&!state.tilHeis){c+=state.tilEtg*490;etg.push(state.tilEtg+' etg til')}
+  if(c)lines.push({k:'etg',l:'Etasjer uten heis · '+etg.join(' + '),v:r10(c)});
+  if(state.pakking)lines.push({k:'pakking',l:'Pakkehjelp · full pakking',v:r10(state.kvm*59)});
+  if(state.lagring){var m3=Math.max(4,Math.round(state.kvm*.3));lines.push({k:'lagring',l:'Mellomlagring · '+m3+' m³ × '+state.mnd+' mnd',v:r10(m3*99*state.mnd)})}
+  if(state.vask)lines.push({k:'vask',l:'Flyttevask · '+state.kvm+' m²',v:r10(1590+state.kvm*14)});
+  if(state.bort)lines.push({k:'bort',l:'Bortkjøring · 1 lass',v:1290});
+  var total=r10(lines.reduce(function(s,x){return s+x.v},0));
+  return {lines:lines,total:total,km:km};
+}
+
+/* ---------- render ---------- */
+var shownTotal=null,prevKeys={};
+function chipHtml(ic,label,cls){return '<span class="sc'+(cls?' '+cls:'')+'">'+ic+label+'</span>'}
+function summaryChips(){
+  var chips=[];
+  chips.push(chipHtml(IC.box,TYPES[state.type].label+' · '+state.kvm+' m²'));
+  if(state.fra&&state.til)chips.push(chipHtml(IC.pin,state.fra+' → '+state.til));
+  if(state.mode==='baere')chips.push(chipHtml(IC.check,'Bare bærehjelp'));
+  var ex=Object.keys(SRVLBL).filter(function(k){return state[k]}).map(function(k){return SRVLBL[k]});
+  if(ex.length)chips.push(chipHtml(IC.check,ex.join(' · ')));
+  if(state.dato)chips.push(chipHtml(IC.cal,state.dato));
+  chips.push(chipHtml(IC.kr,'Estimat: '+fmt(currentTotal())+' kr','hi'));
+  return chips.join('');
+}
+function currentTotal(){return calc().total}
+function renderSummary(){
+  var el=$('#sumChips');if(el)el.innerHTML=summaryChips();
+}
+function animNum(el,from,to,animate){
+  if(reduced||!animate||from===null||from===to){el.textContent=fmt(to);return}
+  var t0=performance.now(),dur=520;
+  (function step(t){
+    var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);
+    el.textContent=fmt(from+(to-from)*e);
+    if(p<1)requestAnimationFrame(step);
+  })(t0);
+}
+function renderPrice(animate){
+  var r=calc(),box=$('#priceLines'),html='',newKeys={};
+  r.lines.forEach(function(l){
+    newKeys[l.k]=1;
+    html+='<div class="prow'+(prevKeys[l.k]?'':' pop')+'"><span class="l">'+l.l+'</span><span class="v'+(l.inkl?' inkl':'')+'">'+(l.inkl?'Inkludert':fmt(l.v)+' kr')+'</span></div>';
+  });
+  box.innerHTML=html;
+  prevKeys=newKeys;
+  $('#priceTotal').textContent=fmt(r.total)+' kr';
+  var mc=$('#mcPrice');if(mc)mc.textContent=fmt(r.total)+' kr';
+  var big=$('#priceBig');
+  animNum(big,shownTotal,r.total,animate);
+  if(animate){big.classList.remove('bump');void big.offsetWidth;big.classList.add('bump')}
+  shownTotal=r.total;
+  renderSummary();
+}
+
+/* ---------- sync UI ---------- */
+function etgLabel(n){return n===0?'Gateplan':n+'. etasje'}
+function mndLabel(n){return n+(n===1?' måned':' måneder')}
+function syncUI(){
+  $('#cFra').value=state.fra;$('#cTil').value=state.til;
+  $('#qFra').value=state.fra;$('#qTil').value=state.til;
+  $$('#segType .seg-btn').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.val===state.type))});
+  $$('#segMode .seg-btn').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.val===state.mode))});
+  var kv=$('#kvmRange');kv.value=state.kvm;updateKvm();
+  $('#vFraEtg').textContent=etgLabel(state.fraEtg);
+  $('#vTilEtg').textContent=etgLabel(state.tilEtg);
+  $('#vMnd').textContent=mndLabel(state.mnd);
+  $('#swFraHeis').checked=state.fraHeis;
+  $('#swTilHeis').checked=state.tilHeis;
+  $$('.srv-t').forEach(function(b){b.setAttribute('aria-pressed',String(!!state[b.dataset.srv]))});
+  $('#mndRow').classList.toggle('open',state.lagring);
+  updateRoute();
+}
+function updateKvm(){
+  var kv=$('#kvmRange'),v=+kv.value;
+  state.kvm=v;
+  $('#kvmVal').textContent=v+' m²';
+  var rom=Math.min(8,Math.max(1,Math.round(v/26)));
+  $('#kvmRom').textContent='ca. '+rom+' rom';
+  var p=(v-kv.min)/(kv.max-kv.min)*100;
+  kv.closest('.range').style.setProperty('--range-bg','linear-gradient(90deg, var(--lime) '+p+'%, var(--line) '+p+'%)');
+}
+function updateRoute(){
+  var km=estKm(),box=$('#miniRoute');
+  if(km!=null){box.hidden=false;$('#mrTxt').innerHTML='<b>'+state.fra+'</b> → <b>'+state.til+'</b> · ca. '+km+' km'}
+  else box.hidden=true;
+}
+
+/* ---------- steps ---------- */
+var step=1,N=5,panels=$$('.cpanel');
+function goStep(n,back){
+  if(n<1||n>N)return;
+  step=n;
+  panels.forEach(function(p){
+    var is=(p.dataset.step===String(n));
+    p.hidden=!is;
+    p.classList.toggle('active',is);
+    p.classList.toggle('back',is&&!!back);
+  });
+  $('#calcFill').style.width=(n/N*100)+'%';
+  $('#calcStep').innerHTML='Steg '+n+' av 5 — <b>'+STEPS[n-1]+'</b>';
+  $$('.cseg').forEach(function(s){
+    var i=+s.dataset.i;
+    s.classList.toggle('done',i<=step);
+    s.disabled=i>step;
+  });
+  $('#btnBack').style.visibility=n===1?'hidden':'visible';
+  var last=(n===N);
+  $('#btnNext').querySelector('span').textContent=last?'Send forespørselen':'Neste';
+  $('#sideSubmit').hidden=!last;
+  $('#mcNext').textContent=last?'Send':'Neste';
+  $('#srLive').textContent='Steg '+n+' av 5: '+STEPS[n-1]+'. Estimat '+fmt(currentTotal())+' kroner.';
+  updBars();
+}
+function setErr(id,msg){
+  var inp=$('#'+id),f=inp.closest('.field');
+  f.classList.remove('err');void f.offsetWidth;f.classList.add('err');
+  var m=f.querySelector('.fmsg');if(m)m.textContent=msg;
+}
+function clearErr(id){var f=$('#'+id).closest('.field');if(f)f.classList.remove('err')}
+function validate(n){
+  var ok=true;
+  if(n===1){
+    [['cFra','Skriv inn hvor du flytter fra.'],['cTil','Skriv inn hvor du flytter til.']].forEach(function(p){
+      if($('#'+p[0]).value.trim().length<2){setErr(p[0],p[1]);ok=false}
+    });
+  }
+  if(n===5){
+    var navn=$('#fNavn').value.trim();
+    if(navn.length<2){setErr('fNavn','Skriv inn navnet ditt.');ok=false}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('#fEpost').value.trim())){setErr('fEpost','Sjekk at e-postadressen er riktig.');ok=false}
+    var tlf=$('#fTlf').value.trim();
+    if(tlf&&!/^[+0-9 ()-]{8,}$/.test(tlf)){setErr('fTlf','Sjekk telefonnummeret.');ok=false}
+  }
+  return ok;
+}
+function next(){if(step===N){submitCalc();return}if(!validate(step))return;goStep(step+1,false)}
+function prev(){goStep(step-1,true)}
+
+/* ---------- submit ---------- */
+var sending=false;
+function submitCalc(){
+  if(sending)return;
+  if(!validate(5))return;
+  sending=true;
+  var b=$('#btnNext');
+  b.disabled=true;b.classList.add('loading');b.querySelector('span').textContent='Sender …';
+  setTimeout(function(){
+    b.disabled=false;b.classList.remove('loading');
+    sending=false;
+    var first=state.navn.trim().split(/\s+/)[0]||'takk';
+    $('#okName').textContent='Takk, '+first+'!';
+    $('#okRef').textContent='FS-'+(20000+Math.floor(Math.random()*79999));
+    $('#okMail').textContent=state.epost.trim();
+    $('#okChips').innerHTML=summaryChips();
+    $('#calcShell').classList.add('done');
+    goStep(1,true);
+    confetti($('#confettiHost'));
+    $('#srLive').textContent='Forespørselen er sendt. Referanse '+$('#okRef').textContent+'.';
+    updBars();
+    var top=$('#kalkulator').getBoundingClientRect().top+window.pageYOffset-80;
+    window.scrollTo({top:top,behavior:reduced?'auto':'smooth'});
+  },1100);
+}
+function confetti(host){
+  if(reduced||!host)return;
+  var colors=['#C9F556','#FFB020','#0D2920','#F6F4EC','#B9E93D'];
+  var c=document.createElement('div');c.className='confetti';
+  for(var i=0;i<30;i++){
+    var p=document.createElement('i');
+    p.style.left=(Math.random()*100)+'%';
+    p.style.background=colors[i%colors.length];
+    p.style.setProperty('--d',(0.9+Math.random()*0.9)+'s');
+    p.style.setProperty('--dl',(Math.random()*0.5)+'s');
+    p.style.width=(6+Math.random()*6)+'px';
+    p.style.height=(9+Math.random()*8)+'px';
+    c.appendChild(p);
+  }
+  host.appendChild(c);
+  setTimeout(function(){if(c.parentNode)host.removeChild(c)},2800);
+}
+
+/* ---------- bindings: calc ---------- */
+['cFra','cTil'].forEach(function(id){
+  var el=$('#'+id);
+  el.addEventListener('input',function(){
+    state[id==='cFra'?'fra':'til']=el.value;
+    clearErr(id);updateRoute();renderPrice(true);
+  });
+});
+$$('.chip').forEach(function(ch){
+  ch.addEventListener('click',function(){
+    state.fra=ch.dataset.fra;state.til=ch.dataset.til;
+    syncUI();renderPrice(true);
+    toast('Rute satt: '+state.fra+' → '+state.til);
+  });
+});
+$$('#segType .seg-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    state.type=b.dataset.val;syncUI();renderPrice(true);
+  });
+});
+$$('#segMode .seg-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    state.mode=b.dataset.val;syncUI();renderPrice(true);
+  });
+});
+$('#kvmRange').addEventListener('input',function(){updateKvm();renderPrice(false)});
+$$('.stepper').forEach(function(st){
+  var key=st.dataset.key;
+  st.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var d=+b.dataset.d;
+      if(key==='mnd'){state.mnd=Math.min(12,Math.max(1,state.mnd+d));$('#vMnd').textContent=mndLabel(state.mnd)}
+      else{state[key]=Math.min(8,Math.max(0,state[key]+d));$('#v'+key.charAt(0).toUpperCase()+key.slice(1)).textContent=etgLabel(state[key])}
+      renderPrice(true);
+    });
+  });
+});
+$('#swFraHeis').addEventListener('change',function(e){state.fraHeis=e.target.checked;renderPrice(true)});
+$('#swTilHeis').addEventListener('change',function(e){state.tilHeis=e.target.checked;renderPrice(true)});
+$$('.srv-t').forEach(function(b){
+  b.addEventListener('click',function(){
+    var k=b.dataset.srv;
+    state[k]=!state[k];
+    b.setAttribute('aria-pressed',String(state[k]));
+    if(k==='lagring')$('#mndRow').classList.toggle('open',state.lagring);
+    renderPrice(true);
+  });
+});
+['fNavn','fEpost','fTlf','fDato','fMelding'].forEach(function(id){
+  var el=$('#'+id);
+  el.addEventListener('input',function(){
+    state[id==='fNavn'?'navn':id==='fEpost'?'epost':id==='fTlf'?'tlf':id==='fDato'?'dato':'melding']=el.value;
+    clearErr(id);
+  });
+});
+$('#calcForm').addEventListener('submit',function(e){e.preventDefault();next()});
+$('#btnBack').addEventListener('click',prev);
+$('#sideSubmit').addEventListener('click',submitCalc);
+$('#mcNext').addEventListener('click',next);
+$('#mcBack').addEventListener('click',prev);
+$$('.cseg').forEach(function(s){
+  s.addEventListener('click',function(){var i=+s.dataset.i;if(i<step)goStep(i,true)});
+});
+$('#okAgain').addEventListener('click',function(){
+  Object.assign(state,DEFAULTS);
+  syncUI();prevKeys={};shownTotal=null;
+  renderPrice(false);
+  $('#calcShell').classList.remove('done');
+  goStep(1,true);
+  var top=$('#kalkulator').getBoundingClientRect().top+window.pageYOffset-80;
+  window.scrollTo({top:top,behavior:reduced?'auto':'smooth'});
+});
+
+/* ---------- hero form ---------- */
+$('#heroForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var qf=$('#qFra').value.trim(),qt=$('#qTil').value.trim(),ok=true;
+  if(qf.length<2){setErr('qFra','Skriv inn hvor du flytter fra.');ok=false}
+  if(qt.length<2){setErr('qTil','Skriv inn hvor du flytter til.');ok=false}
+  if(!ok)return;
+  state.fra=qf;state.til=qt;
+  syncUI();renderPrice(true);
+  var top=$('#kalkulator').getBoundingClientRect().top+window.pageYOffset-80;
+  window.scrollTo({top:top,behavior:reduced?'auto':'smooth'});
+  setTimeout(function(){if(step===1)goStep(2,false)},reduced?0:750);
+});
+['qFra','qTil'].forEach(function(id){
+  $('#'+id).addEventListener('input',function(){clearErr(id)});
+});
+
+/* ---------- services + faq accordions ---------- */
+$$('.svc').forEach(function(acc){
+  var head=$('.acc-head',acc);
+  head.addEventListener('click',function(){
+    var open=acc.classList.contains('open');
+    $$('.svc').forEach(function(a){
+      a.classList.remove('open');
+      $('.acc-head',a).setAttribute('aria-expanded','false');
+    });
+    if(!open){acc.classList.add('open');head.setAttribute('aria-expanded','true')}
+  });
+});
+$$('.qa').forEach(function(qa){
+  var q=$('.q',qa);
+  q.addEventListener('click',function(){
+    var open=qa.classList.toggle('open');
+    q.setAttribute('aria-expanded',String(open));
+  });
+});
+
+/* ---------- service actions ---------- */
+$$('[data-action]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var act=btn.dataset.action;
+    var scrollCalc=function(){
+      var top=$('#kalkulator').getBoundingClientRect().top+window.pageYOffset-80;
+      window.scrollTo({top:top,behavior:reduced?'auto':'smooth'});
+    };
+    if(act==='calc'){scrollCalc();goStep(1,true)}
+    else if(act==='bedrift'){
+      var t=$('#bedrift').getBoundingClientRect().top+window.pageYOffset-80;
+      window.scrollTo({top:t,behavior:reduced?'auto':'smooth'});
+      setTimeout(function(){try{$('#bedEpost').focus({preventScroll:true})}catch(e){$('#bedEpost').focus()}},reduced?0:700);
+    }
+    else if(act==='baere'){
+      state.mode='baere';syncUI();renderPrice(true);goStep(2,true);scrollCalc();
+      toast('Bærehjelp er valgt i kalkulatoren.');
+    }
+    else if(SRVLBL[act]){
+      state[act]=true;syncUI();renderPrice(true);goStep(4,true);scrollCalc();
+      toast(SRVLBL[act]+' er lagt til i beregningen.');
+    }
+  });
+});
+
+/* ---------- bedrift form ---------- */
+$('#bedForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var em=$('#bedEpost');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em.value.trim())){
+    setErr('bedEpost','Sjekk at e-postadressen er riktig.');return;
+  }
+  em.value='';
+  toast('Takk! Bedriftstilbudet er på vei — vi tar kontakt innen én arbeidsdag.');
+});
+
+/* ---------- header / nav ---------- */
+var head=$('#siteHead');
+function onScroll(){head.classList.toggle('scrolled',(window.pageYOffset||document.documentElement.scrollTop)>12)}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+var burger=$('#burger'),mobnav=$('#mobnav'),mobOpen=false;
+function setMenu(open){
+  mobOpen=open;
+  burger.setAttribute('aria-expanded',String(open));
+  burger.setAttribute('aria-label',open?'Lukk meny':'Åpne meny');
+  mobnav.classList.toggle('open',open);
+  mobnav.setAttribute('aria-hidden',String(!open));
+  document.body.classList.toggle('lock',open);
+  updBars();
+}
+burger.addEventListener('click',function(){setMenu(!mobOpen)});
+$$('#mobnav a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+$$('.site-head a').forEach(function(a){a.addEventListener('click',function(){if(mobOpen)setMenu(false)})});
+window.addEventListener('keydown',function(e){if(e.key==='Escape'&&mobOpen)setMenu(false)});
+
+/* ---------- bars visibility ---------- */
+var heroVis=true,calcVis=false,footVis=false;
+function updBars(){
+  var done=$('#calcShell').classList.contains('done');
+  $('#stickyCta').classList.toggle('show',!heroVis&&!calcVis&&!footVis&&!mobOpen);
+  var mb=$('#mcalcBar');
+  var showMb=calcVis&&!done&&!mobOpen;
+  mb.classList.toggle('show',showMb);
+  mb.setAttribute('aria-hidden',String(!showMb));
+}
+function watch(el,fn){
+  if(!el)return;
+  new IntersectionObserver(function(en){fn(en[0].isIntersecting);updBars()},{threshold:0,rootMargin:'-40px 0px -40px 0px'}).observe(el);
+}
+watch($('.hero'),function(v){heroVis=v});
+watch($('#kalkulator'),function(v){calcVis=v});
+watch($('.site-foot'),function(v){footVis=v});
+
+/* ---------- toast ---------- */
+var toastEl=$('#toast'),toastT;
+function toast(msg){
+  toastEl.textContent=msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastT);
+  toastT=setTimeout(function(){toastEl.classList.remove('show')},3600);
+}
+
+/* ---------- reveal ---------- */
+var ro=new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){en.target.classList.add('in');ro.unobserve(en.target)}
+  });
+},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+$$('.reveal').forEach(function(el){ro.observe(el)});
+
+/* ---------- counters ---------- */
+function runNum(el){
+  var target=parseFloat(el.dataset.n),dec=el.dataset.dec?+el.dataset.dec:0;
+  if(reduced){el.textContent=dec?String(target).replace('.',','):fmt(target);return}
+  var t0=performance.now(),dur=1200;
+  (function step(t){
+    var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3),v=target*e;
+    el.textContent=dec?v.toFixed(dec).replace('.',','):fmt(v);
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=dec?String(target).replace('.',','):fmt(target);
+  })(t0);
+}
+var no=new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){runNum(en.target);no.unobserve(en.target)}
+  });
+},{threshold:.5});
+$$('.num').forEach(function(el){no.observe(el)});
+
+/* ---------- marquee ---------- */
+$$('.mq-track').forEach(function(t){t.innerHTML+=t.innerHTML});
+
+/* ---------- misc ---------- */
+var today=new Date();today.setHours(0,0,0,0);
+$('#fDato').min=today.toISOString().slice(0,10);
+$('#yy').textContent=today.getFullYear();
+
+/* ---------- init ---------- */
+syncUI();
+renderPrice(false);
+goStep(1,true);
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a378caf9ab410b31',t:'MTc4ODgxNjM5OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>document.addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();alert("Dette er en design-demo. Send forespørselen din via Sidekick.")},true);</script></body>
+</html>
