@@ -47,7 +47,7 @@ export default function HomeHero() {
     <section className={styles.hero} data-animate={started || undefined}>
       <div className={styles.top}>
         <span><i className="signal"/>Tar imot nye prosjekter</span>
-        <span>Webdesign &amp; utvikling — Fetsund / hele Norge</span>
+        <span>Webdesign &amp; utvikling, Lillestrøm / hele Norge</span>
       </div>
       <div className={styles.main}>
         <h1 className={styles.headline} key={`headline-${take}`}>
@@ -91,7 +91,7 @@ export default function HomeHero() {
         </div>
       </div>
       <div className={styles.bottom}>
-        <p>Profesjonelle nettsider for nyetablerte og små bedrifter. Velg en retning, send innholdet — så tar vi resten. Fra 2 000 kr.</p>
+        <p>Profesjonelle nettsider for nyetablerte og små bedrifter. Velg en retning, send innholdet, så tar vi resten. Fra 2 000 kr.</p>
         <Link className="button dark big" href="/kontakt">Få fast pris <span>→</span></Link>
         <div className={styles.note}><strong>5–7</strong><span>dager når innhold<br/>og omfang er klart</span></div>
       </div>
