@@ -19,7 +19,7 @@ export function runSeoSmoke({dest=defaultDest,production,expectedOrigin}={}){
   if(rootHeaders.toLowerCase().includes('x-robots-tag: noindex'))fail('global _headers rule still applies noindex in production');
   if(!block(headers,'https://sidekick-studio.pages.dev/*').toLowerCase().includes('x-robots-tag: noindex'))fail('production _headers must noindex the primary pages.dev host');
   if(!block(headers,'https://:version.sidekick-studio.pages.dev/*').toLowerCase().includes('x-robots-tag: noindex'))fail('production _headers must noindex version pages.dev hosts');
-  for(const host of ['https://sidemannen.pages.dev/*','https://:version.sidemannen.pages.dev/*'])if(!block(headers,host).toLowerCase().includes('x-robots-tag: noindex'))fail(`production _headers must noindex ${host}`);
+  for(const host of ['https://sidemannen.pages.dev/*','https://:version.sidemannen.pages.dev/*','https://sidemannen-next.pages.dev/*','https://:version.sidemannen-next.pages.dev/*'])if(!block(headers,host).toLowerCase().includes('x-robots-tag: noindex'))fail(`production _headers must noindex ${host}`);
   if(/disallow:\s*\/demos\//i.test(robots))fail('robots.txt must allow crawlers to reach demo noindex directives');
   if(!/disallow:\s*\/api\//i.test(robots))fail('robots.txt must disallow /api/');
   if(!robots.includes(`Sitemap: ${productionOrigin}/sitemap.xml`))fail('robots.txt sitemap URL is not production canonical');
