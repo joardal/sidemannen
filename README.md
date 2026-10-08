@@ -16,7 +16,7 @@ Bransjetekster og adresser ligger i lib/industries.ts. En ny bransje trenger en 
 
 ## Publisering
 
-Cloudflare-prosjekt: sidekick-studio. Bruk produksjonskommandoen i `package.json` etter vellykket kontroll; den skal bygge med riktig domene og stoppe hvis output fortsatt er noindex eller peker mot pages.dev. Cloudflare-konfigurasjonen ligger i cloudflare/wrangler.jsonc, adskilt fra Vinext-konfigurasjonen fordi frontend er en statisk eksport. Functions ligger i cloudflare/functions.
+Cloudflare Pages-prosjektet `sidemannen-next` bygger `main` fra [joardal/sidemannen](https://github.com/joardal/sidemannen) med `npm run build:pages` og publiserer `dist/client`. Grenen `dev` gir forhåndsvisning. `npm run deploy` publiserer ikke manuelt; endringer publiseres ved `git push`. Cloudflare-konfigurasjonen ligger i cloudflare/wrangler.jsonc, adskilt fra Vinext-konfigurasjonen fordi frontend er en statisk eksport. Functions ligger i cloudflare/functions.
 
 Forhåndsvisningen har noindex. Før lansering på eget domene: bekreft eierskap til domenet, koble domenet til Pages, sett SITE_URL=https://sidemannen.no og PUBLIC_LAUNCH=true ved bygging, og bygg/publiser på nytt. Dette oppdaterer canonical, sitemap og indeksregler. Demoene beholder noindex.
 

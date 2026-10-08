@@ -8,7 +8,7 @@ export function pagesEnvironment(env = process.env) {
   const production = env.CF_PAGES_BRANCH === 'main';
   return {
     ...env,
-    SITE_URL: production ? 'https://sidemannen.no' : 'https://dev.sidemannen.pages.dev',
+    SITE_URL: production ? 'https://sidemannen.no' : 'https://dev.sidemannen-next.pages.dev',
     PUBLIC_LAUNCH: production ? 'true' : 'false',
   };
 }
